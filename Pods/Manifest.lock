@@ -1,3 +1,42 @@
-PODFILE CHECKSUM: 5731bed0296e3c41833836fd2d175e780db17d91
+PODS:
+  - Alamofire (4.5.0)
+  - Carlos (0.9.1):
+    - PiedPiper (~> 0.10.1)
+  - Moya/Core (9.0.0-alpha.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - Moya/RxSwift (9.0.0-alpha.1):
+    - Moya/Core
+    - RxSwift (~> 3.3)
+  - PiedPiper (0.10.1)
+  - R.swift (3.3.0):
+    - R.swift.Library (~> 3.0.2)
+  - R.swift.Library (3.0.2)
+  - Result (3.2.3)
+  - RxSwift (3.6.1)
+  - RxTest (3.6.1):
+    - RxSwift (~> 3.6)
+  - SwiftLint (0.21.0)
+
+DEPENDENCIES:
+  - Carlos (= 0.9.1)
+  - Moya/RxSwift (= 9.0.0-alpha.1)
+  - R.swift (= 3.3.0)
+  - RxTest (= 3.6.1)
+  - SwiftLint (= 0.21.0)
+
+SPEC CHECKSUMS:
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Carlos: f6883dabefcdc762c050be9d1d7716d4beb60736
+  Moya: f2ce44cbd5e8be82b4761194420588b6b1aebf1e
+  PiedPiper: 0f9bc4e76c6fb0154d6fe6e078174e7fc391a684
+  R.swift: bde9704d50ff36820f49e266bc88ef545e1e9b36
+  R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
+  Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
+  RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
+  RxTest: 1d00348a7848c91ab5bf5d197d2378aa6b2bb356
+  SwiftLint: 6de8b2d15f43c482bdec2953b8cfd696faa876e8
+
+PODFILE CHECKSUM: 9731d03da9e4e528bc002abef3779249fd8c5c45
 
 COCOAPODS: 1.3.1
