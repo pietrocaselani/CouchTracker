@@ -42,7 +42,6 @@ ModuleCache
 reports/
 ModuleCache/
 Logs/
-info.plist
 .scannerwork
 .vscode
 .env
