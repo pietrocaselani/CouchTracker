@@ -9,6 +9,7 @@ target 'CouchTracker' do
   pod 'Carlos', '0.9.1'
   pod 'Moya/RxSwift', '9.0.0-alpha.1'
   pod 'R.swift', '3.3.0'
+  pod 'SwiftLint', '0.21.0'
 
   target 'CouchTrackerTests' do
     inherit! :search_paths

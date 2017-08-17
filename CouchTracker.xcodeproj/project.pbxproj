@@ -171,6 +171,7 @@
 				647632371F44824900F277F1 /* Resources */,
 				6BA4EFF523E57D8DC5A67DEA /* [CP] Embed Pods Frameworks */,
 				23F3BD4CAFAEE990BD7BDA72 /* [CP] Copy Pods Resources */,
+				6455BA751F45B862000660C6 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -294,6 +295,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		6455BA751F45B862000660C6 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
 		64D2FFD81F44DF7F009E9ED3 /* RSwift */ = {
 			isa = PBXShellScriptBuildPhase;

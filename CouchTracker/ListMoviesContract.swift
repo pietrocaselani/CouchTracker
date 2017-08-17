@@ -13,21 +13,21 @@ the license agreement.
 import RxSwift
 
 protocol ListMoviesRouter: class {
-  
+
   func configure(view: ListMoviesView)
-  
+
 }
 
 protocol ListMoviesPresenter: class {
-  
+
   init(view: ListMoviesView, router: ListMoviesRouter, interactor: ListMoviesInteractor)
-  
+
   func viewDidLoad()
-  
+
 }
 
 protocol ListMoviesView: class {
-  
+
   var presenter: ListMoviesPresenter! { get set }
 
   func showEmptyView()
@@ -35,25 +35,25 @@ protocol ListMoviesView: class {
   func show(movies: [MovieViewModel])
 
   func show(error: String)
-  
+
 }
 
 protocol ListMoviesInteractor: class {
-  
+
   init(store: ListMoviesStore)
-  
+
   func fetchMovies() -> Observable<[MovieEntity]>
-  
+
 }
 
 protocol ListMoviesStore: class {
-  
+
   func fetchMovies() -> Observable<[MovieEntity]>
-  
+
 }
 
 struct MovieEntity {
-  let id: String
+  let identifier: String
   let title: String
 }
 

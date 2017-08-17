@@ -11,7 +11,7 @@ the license agreement.
 */
 
 final class ListMoviesModule: ListMoviesRouter {
-  
+
   func configure(view: ListMoviesView) {
     let store = ListMoviesStoreImpl()
 
@@ -21,5 +21,5 @@ final class ListMoviesModule: ListMoviesRouter {
 
     view.presenter = presenter
   }
-  
+
 }
