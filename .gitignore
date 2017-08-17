@@ -27,7 +27,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 .idea
-*.xcworkspace
 *.zip
 fastlane/*.xml
 fastlane/test_output
