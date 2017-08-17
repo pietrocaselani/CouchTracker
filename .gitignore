@@ -26,11 +26,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-Pods
-Podfile.lock
-Gemfile.lock
 .idea
-*.xcworkspace
 *.zip
 fastlane/*.xml
 fastlane/test_output
@@ -45,7 +41,6 @@ ModuleCache
 reports/
 ModuleCache/
 Logs/
-info.plist
 .scannerwork
 .vscode
 .env
