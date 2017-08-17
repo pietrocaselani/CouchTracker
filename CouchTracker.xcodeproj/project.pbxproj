@@ -187,7 +187,7 @@
 				TargetAttributes = {
 					647632381F44824900F277F1 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 3S86K6JTSQ;
+						DevelopmentTeam = TF8P7NNQ29;
 						ProvisioningStyle = Automatic;
 					};
 					6476324C1F44824900F277F1 = {
@@ -482,11 +482,11 @@
 			baseConfigurationReference = 0FA2E782A9FF68C21C7B2774 /* Pods-CouchTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3S86K6JTSQ;
+				DEVELOPMENT_TEAM = TF8P7NNQ29;
 				INFOPLIST_FILE = CouchTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTrackerApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -497,11 +497,11 @@
 			baseConfigurationReference = 272DF8EEDCE0F42BC47F222B /* Pods-CouchTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3S86K6JTSQ;
+				DEVELOPMENT_TEAM = TF8P7NNQ29;
 				INFOPLIST_FILE = CouchTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTrackerApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
