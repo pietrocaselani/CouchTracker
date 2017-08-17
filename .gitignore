@@ -26,9 +26,6 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-Pods
-Podfile.lock
-Gemfile.lock
 .idea
 *.xcworkspace
 *.zip

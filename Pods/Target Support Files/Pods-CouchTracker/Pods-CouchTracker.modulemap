@@ -1,0 +1,6 @@
+framework module Pods_CouchTracker {
+  umbrella header "Pods-CouchTracker-umbrella.h"
+
+  export *
+  module * { export * }
+}
