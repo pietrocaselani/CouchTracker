@@ -57,6 +57,18 @@ struct MovieEntity {
   let title: String
 }
 
+extension MovieEntity: Equatable, Hashable {
+
+  static func == (lhs: MovieEntity, rhs: MovieEntity) -> Bool {
+    return lhs.identifier == rhs.identifier &&
+        lhs.title == rhs.title
+  }
+
+  var hashValue: Int {
+    return identifier.hashValue * title.hashValue
+  }
+}
+
 struct MovieViewModel {
   let title: String
 }

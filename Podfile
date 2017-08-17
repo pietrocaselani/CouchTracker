@@ -13,7 +13,7 @@ target 'CouchTracker' do
 
   target 'CouchTrackerTests' do
     inherit! :search_paths
-    # Pods for testing
+    pod 'RxTest', '3.6.1'
   end
 
 end
