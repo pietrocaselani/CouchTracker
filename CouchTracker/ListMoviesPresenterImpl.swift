@@ -46,7 +46,7 @@ final class ListMoviesPresenterImpl: ListMoviesPresenter {
             }
           } else if case .error(let error) = event {
             self.view?.show(error: error.localizedDescription)
-          } else {
+          } else if self.movies.count == 0 {
             self.view?.showEmptyView()
           }
         }.addDisposableTo(disposeBag)

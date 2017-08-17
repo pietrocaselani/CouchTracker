@@ -44,7 +44,7 @@ final class ListMoviesInteractorTest: XCTestCase {
   }
 
   func testHandleError() {
-    let connectionError = MockError.noConnection("There is no connection active")
+    let connectionError = ListMoviesErrorMock.noConnection("There is no connection active")
 
     let store = ErrorListMoviesStore(error: connectionError)
     let interactor = ListMoviesInteractorImpl(store: store)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		392D93DE5EDA7E2DB4E51639 /* ListMoviesPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9F7B00A175C2CF9D7AA9 /* ListMoviesPresenterTest.swift */; };
 		392D9624527BC45E1E4DAF3D /* ListMoviesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9E0F550480FBC279C883 /* ListMoviesMocks.swift */; };
 		392D9633B6766B4443D60643 /* RxAsserts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9CCADDD8B9EF1D8D74F7 /* RxAsserts.swift */; };
 		392D9E4440AB2550010F4794 /* ListMoviesPresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9DB7F50EF54F9A7444D1 /* ListMoviesPresenterImpl.swift */; };
@@ -44,6 +45,7 @@
 		392D9CCADDD8B9EF1D8D74F7 /* RxAsserts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxAsserts.swift; sourceTree = "<group>"; };
 		392D9DB7F50EF54F9A7444D1 /* ListMoviesPresenterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListMoviesPresenterImpl.swift; sourceTree = "<group>"; };
 		392D9E0F550480FBC279C883 /* ListMoviesMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListMoviesMocks.swift; sourceTree = "<group>"; };
+		392D9F7B00A175C2CF9D7AA9 /* ListMoviesPresenterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListMoviesPresenterTest.swift; sourceTree = "<group>"; };
 		5FA5E5D147F9088F5D88235F /* Pods_CouchTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6455BA781F45BE49000660C6 /* ListMoviesInteractorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListMoviesInteractorTest.swift; sourceTree = "<group>"; };
 		647632391F44824900F277F1 /* CouchTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CouchTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +150,7 @@
 				6455BA781F45BE49000660C6 /* ListMoviesInteractorTest.swift */,
 				392D9E0F550480FBC279C883 /* ListMoviesMocks.swift */,
 				392D9CCADDD8B9EF1D8D74F7 /* RxAsserts.swift */,
+				392D9F7B00A175C2CF9D7AA9 /* ListMoviesPresenterTest.swift */,
 			);
 			path = CouchTrackerTests;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = TF8P7NNQ29;
 						ProvisioningStyle = Automatic;
+						TestTargetID = 647632381F44824900F277F1;
 					};
 				};
 			};
@@ -446,6 +450,7 @@
 				6455BA791F45BE49000660C6 /* ListMoviesInteractorTest.swift in Sources */,
 				392D9633B6766B4443D60643 /* RxAsserts.swift in Sources */,
 				392D9624527BC45E1E4DAF3D /* ListMoviesMocks.swift in Sources */,
+				392D93DE5EDA7E2DB4E51639 /* ListMoviesPresenterTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,6 +618,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CouchTracker.app/CouchTracker";
 			};
 			name = Debug;
 		};
@@ -627,6 +633,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CouchTracker.app/CouchTracker";
 			};
 			name = Release;
 		};

@@ -10,7 +10,53 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
+import Foundation
 import RxSwift
+
+class StateListMoviesView: ListMoviesView {
+
+  enum State: Equatable {
+    case loaded
+    case showingError
+    case showingMovies([MovieViewModel])
+    case showingNoMovies
+
+    static func == (lhs: State, rhs: State) -> Bool {
+      switch (lhs, rhs) {
+      case let (.loaded, .loaded):
+        return true
+      case let (.showingNoMovies, .showingNoMovies):
+        return true
+      case let (.showingMovies(lhsMovies), .showingMovies(rhsMovies)):
+        return lhsMovies == rhsMovies
+      case let (.showingError, .showingError):
+        return true
+      default: return false
+      }
+    }
+  }
+
+  var presenter: ListMoviesPresenter! = nil
+  var currentState = State.loaded
+
+  func showEmptyView() {
+    currentState = .showingNoMovies
+  }
+
+  func show(error: String) {
+    currentState = .showingError
+  }
+
+  func show(movies: [MovieViewModel]) {
+    currentState = .showingMovies(movies)
+  }
+}
+
+class EmptyListMoviesRouter: ListMoviesRouter {
+
+  func configure(view: ListMoviesView) {
+  }
+}
 
 class EmptyListMoviesStore: ListMoviesStore {
 
@@ -22,9 +68,9 @@ class EmptyListMoviesStore: ListMoviesStore {
 
 class ErrorListMoviesStore: ListMoviesStore {
 
-  private let error: MockError
+  private let error: ListMoviesErrorMock
 
-  init(error: MockError) {
+  init(error: ListMoviesErrorMock) {
     self.error = error
   }
 
@@ -47,7 +93,7 @@ class MoviesListMovieStore: ListMoviesStore {
   }
 }
 
-enum MockError: Error {
+enum ListMoviesErrorMock: Error {
 
   case noConnection(String)
   case parseError(String)
