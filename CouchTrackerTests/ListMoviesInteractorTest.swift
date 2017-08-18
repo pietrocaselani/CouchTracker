@@ -18,12 +18,12 @@ import RxTest
 final class ListMoviesInteractorTest: XCTestCase {
 
   private let scheduler = TestScheduler(initialClock: 0)
-  private var observer: TestableObserver<[MovieEntity]>!
+  private var observer: TestableObserver<[TrendingMovie]>!
 
   override func setUp() {
     super.setUp()
 
-    observer = scheduler.createObserver([MovieEntity].self)
+    observer = scheduler.createObserver([TrendingMovie].self)
   }
 
   func testHandleEmpty() {
@@ -38,7 +38,7 @@ final class ListMoviesInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<[MovieEntity]>>] = [completed(0)]
+    let events: [Recorded<Event<[TrendingMovie]>>] = [completed(0)]
 
     RXAssertEvents(observer, events)
   }
@@ -57,16 +57,13 @@ final class ListMoviesInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<[MovieEntity]>>] = [error(0, connectionError)]
+    let events: [Recorded<Event<[TrendingMovie]>>] = [error(0, connectionError)]
 
     RXAssertEvents(observer, events)
   }
 
   func testHandleMovies() {
-    let movies = [
-      MovieEntity(identifier: "Movie1", title: "Movie1"),
-      MovieEntity(identifier: "Movie2", title: "Movie2")
-    ]
+    let movies = [TrendingMovie]()
 
     let store = MoviesListMovieStore(movies: movies)
     let interactor = ListMoviesInteractorImpl(store: store)
@@ -79,7 +76,7 @@ final class ListMoviesInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<[MovieEntity]>>] = [next(0, movies), completed(0)]
+    let events: [Recorded<Event<[TrendingMovie]>>] = [next(0, movies), completed(0)]
 
     RXAssertEvents(observer, events)
   }

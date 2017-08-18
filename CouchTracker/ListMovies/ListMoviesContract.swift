@@ -42,31 +42,14 @@ protocol ListMoviesInteractor: class {
 
   init(store: ListMoviesStore)
 
-  func fetchMovies() -> Observable<[MovieEntity]>
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]>
 
 }
 
 protocol ListMoviesStore: class {
 
-  func fetchMovies() -> Observable<[MovieEntity]>
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]>
 
-}
-
-struct MovieEntity {
-  let identifier: String
-  let title: String
-}
-
-extension MovieEntity: Equatable, Hashable {
-
-  static func == (lhs: MovieEntity, rhs: MovieEntity) -> Bool {
-    return lhs.identifier == rhs.identifier &&
-        lhs.title == rhs.title
-  }
-
-  var hashValue: Int {
-    return identifier.hashValue * title.hashValue
-  }
 }
 
 struct MovieViewModel {

@@ -13,6 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
+  let trakt = TraktV2(clientId: "1aec4225ee175a6affce5ad374140c360fd5f0ab5113e6aa1c123bd4baeb082b")
+
   private var listMoviesModule: ListMoviesModule!
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions
@@ -22,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       fatalError("RootViewController isn't an instance of ListMoviesView")
     }
 
-    let moviesModule = ListMoviesModule()
+    let moviesModule = ListMoviesModule(trakt: trakt)
     moviesModule.configure(view: listMoviesView)
 
     self.listMoviesModule = moviesModule

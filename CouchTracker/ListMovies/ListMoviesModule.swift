@@ -10,12 +10,22 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import RxSwift
+final class ListMoviesModule: ListMoviesRouter {
 
-final class ListMoviesStoreImpl: ListMoviesStore {
+  private let trakt: TraktV2
 
-  func fetchMovies() -> Observable<[MovieEntity]> {
-    return Observable.empty()
+  init(trakt: TraktV2) {
+    self.trakt = trakt
+  }
+
+  func configure(view: ListMoviesView) {
+    let store = ListMoviesStoreImpl(trakt: trakt)
+
+    let interactor = ListMoviesInteractorImpl(store: store)
+
+    let presenter = ListMoviesPresenterImpl(view: view, router: self, interactor: interactor)
+
+    view.presenter = presenter
   }
 
 }

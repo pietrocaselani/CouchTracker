@@ -41,10 +41,6 @@ public enum MultiTarget: TargetType {
         return target.validate
     }
 
-    public var headers: [String: String]? {
-        return target.headers
-    }
-
     /// The embedded `TargetType`.
     public var target: TargetType {
         switch self {

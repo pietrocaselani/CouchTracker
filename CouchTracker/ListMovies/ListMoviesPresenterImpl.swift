@@ -20,7 +20,9 @@ final class ListMoviesPresenterImpl: ListMoviesPresenter {
   private let interactor: ListMoviesInteractor
   private let disposeBag = DisposeBag()
 
-  private var movies = [MovieEntity]()
+  private var movies = [TrendingMovie]()
+
+  private var currentPage = 0
 
   init(view: ListMoviesView, router: ListMoviesRouter, interactor: ListMoviesInteractor) {
     self.view = view
@@ -29,7 +31,7 @@ final class ListMoviesPresenterImpl: ListMoviesPresenter {
   }
 
   func viewDidLoad() {
-    interactor.fetchMovies()
+    interactor.fetchMovies(page: currentPage, limit: 50)
         .do(onNext: { entities in
           self.movies.removeAll()
           self.movies.append(contentsOf: entities)
@@ -52,9 +54,9 @@ final class ListMoviesPresenterImpl: ListMoviesPresenter {
         }.addDisposableTo(disposeBag)
   }
 
-  func transformToViewModels(entities: [MovieEntity]) -> [MovieViewModel] {
+  func transformToViewModels(entities: [TrendingMovie]) -> [MovieViewModel] {
     return entities.map { entity -> MovieViewModel in
-      MovieViewModel(title: entity.title)
+      MovieViewModel(title: entity.movie.title ?? "TBA")
     }
   }
 }

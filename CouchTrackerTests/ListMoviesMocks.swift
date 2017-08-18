@@ -23,13 +23,13 @@ class StateListMoviesView: ListMoviesView {
 
     static func == (lhs: State, rhs: State) -> Bool {
       switch (lhs, rhs) {
-      case let (.loaded, .loaded):
+      case (.loaded, .loaded):
         return true
-      case let (.showingNoMovies, .showingNoMovies):
+      case (.showingNoMovies, .showingNoMovies):
         return true
       case let (.showingMovies(lhsMovies), .showingMovies(rhsMovies)):
         return lhsMovies == rhsMovies
-      case let (.showingError, .showingError):
+      case (.showingError, .showingError):
         return true
       default: return false
       }
@@ -60,7 +60,7 @@ class EmptyListMoviesRouter: ListMoviesRouter {
 
 class EmptyListMoviesStore: ListMoviesStore {
 
-  func fetchMovies() -> Observable<[MovieEntity]> {
+  func fetchMovies() -> Observable<[TrendingMovie]> {
     return Observable.empty()
   }
 
@@ -74,7 +74,7 @@ class ErrorListMoviesStore: ListMoviesStore {
     self.error = error
   }
 
-  func fetchMovies() -> Observable<[MovieEntity]> {
+  func fetchMovies() -> Observable<[TrendingMovie]> {
     return Observable.error(error)
   }
 
@@ -82,13 +82,13 @@ class ErrorListMoviesStore: ListMoviesStore {
 
 class MoviesListMovieStore: ListMoviesStore {
 
-  private let movies: [MovieEntity]
+  private let movies: [TrendingMovie]
 
-  init(movies: [MovieEntity]) {
+  init(movies: [TrendingMovie]) {
     self.movies = movies
   }
 
-  func fetchMovies() -> Observable<[MovieEntity]> {
+  func fetchMovies() -> Observable<[TrendingMovie]> {
     return Observable.just(movies)
   }
 }
