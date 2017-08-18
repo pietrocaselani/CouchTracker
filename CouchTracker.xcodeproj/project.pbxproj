@@ -57,6 +57,9 @@
 		64B03EF91F473027009E37C9 /* TraktV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBF1F4715AF009E37C9 /* TraktV2.swift */; };
 		64B03EFB1F473038009E37C9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B03EFA1F473038009E37C9 /* Alamofire.framework */; };
 		64D2FFDA1F44DFEA009E9ED3 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D2FFD91F44DFEA009E9ED3 /* R.generated.swift */; };
+		64DC37EB1F47433200413A43 /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC37EA1F47433200413A43 /* TrendingCell.swift */; };
+		64DC37ED1F47472700413A43 /* SimpleCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC37EC1F47472700413A43 /* SimpleCollectionViewDataSource.swift */; };
+		64DC37EF1F476F5B00413A43 /* UIColor+CouchTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC37EE1F476F5B00413A43 /* UIColor+CouchTracker.swift */; };
 		697C56830BC1531EA1BD9DDB /* Pods_CouchTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847EA74DA5621E8BC2C9D97D /* Pods_CouchTrackerTests.framework */; };
 		F23089BF675566CBB1950BC8 /* Pods_CouchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FA5E5D147F9088F5D88235F /* Pods_CouchTracker.framework */; };
 /* End PBXBuildFile section */
@@ -112,6 +115,9 @@
 		64B03EF01F472A5C009E37C9 /* Data+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+JSON.swift"; sourceTree = "<group>"; };
 		64B03EFA1F473038009E37C9 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../Library/Developer/Xcode/DerivedData/CouchTracker-cnszmjsjlweupdapdziltlacodhy/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		64D2FFD91F44DFEA009E9ED3 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		64DC37EA1F47433200413A43 /* TrendingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
+		64DC37EC1F47472700413A43 /* SimpleCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		64DC37EE1F476F5B00413A43 /* UIColor+CouchTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+CouchTracker.swift"; sourceTree = "<group>"; };
 		847EA74DA5621E8BC2C9D97D /* Pods_CouchTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E15B46F23414FFD31B0507 /* Pods-CouchTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerTests/Pods-CouchTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EDDD592B188BF69D05973F6E /* Pods-CouchTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerTests/Pods-CouchTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -193,6 +199,8 @@
 				64B03ECE1F4715D2009E37C9 /* ListMovies */,
 				64D2FFD91F44DFEA009E9ED3 /* R.generated.swift */,
 				64B03EAC1F4715AF009E37C9 /* Trakt */,
+				64DC37EC1F47472700413A43 /* SimpleCollectionViewDataSource.swift */,
+				64DC37EE1F476F5B00413A43 /* UIColor+CouchTracker.swift */,
 			);
 			path = CouchTracker;
 			sourceTree = "<group>";
@@ -280,6 +288,7 @@
 				64B03ED21F4715D2009E37C9 /* ListMoviesPresenterImpl.swift */,
 				64B03ED31F4715D2009E37C9 /* ListMoviesStoreImpl.swift */,
 				64B03ED41F4715D2009E37C9 /* ListMoviesViewController.swift */,
+				64DC37EA1F47433200413A43 /* TrendingCell.swift */,
 			);
 			path = ListMovies;
 			sourceTree = "<group>";
@@ -479,7 +488,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed. Using from Pods. Download from https://github.com/realm/SwiftLint\"\n    \"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT\"\nfi";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT\"";
 		};
 		6BA4EFF523E57D8DC5A67DEA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -573,6 +582,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64DC37EB1F47433200413A43 /* TrendingCell.swift in Sources */,
 				64B03EC51F4715AF009E37C9 /* MovieIds.swift in Sources */,
 				64B03ECD1F4715AF009E37C9 /* TraktV2.swift in Sources */,
 				64B03EC11F4715AF009E37C9 /* BaseEntity.swift in Sources */,
@@ -580,8 +590,10 @@
 				64D2FFDA1F44DFEA009E9ED3 /* R.generated.swift in Sources */,
 				64B03EC21F4715AF009E37C9 /* BaseIds.swift in Sources */,
 				64B03EC61F4715AF009E37C9 /* Extended.swift in Sources */,
+				64DC37ED1F47472700413A43 /* SimpleCollectionViewDataSource.swift in Sources */,
 				64B03EC71F4715AF009E37C9 /* TrendingMovie.swift in Sources */,
 				64B03ECA1F4715AF009E37C9 /* TraktType.swift in Sources */,
+				64DC37EF1F476F5B00413A43 /* UIColor+CouchTracker.swift in Sources */,
 				64B03ED61F4715D2009E37C9 /* ListMoviesInteractorImpl.swift in Sources */,
 				64B03EE31F471D04009E37C9 /* Future+Rx.swift in Sources */,
 				64B03ED91F4715D2009E37C9 /* ListMoviesStoreImpl.swift in Sources */,

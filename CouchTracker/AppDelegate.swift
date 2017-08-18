@@ -20,8 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions
     launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-    guard let listMoviesView = window?.rootViewController as? ListMoviesView else {
-      fatalError("RootViewController isn't an instance of ListMoviesView")
+    UINavigationBar.appearance().barTintColor = UIColor.ctblack
+    UINavigationBar.appearance().tintColor = UIColor.white
+    UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.ctzircon]
+
+    guard let navigationController = window?.rootViewController as? UINavigationController else {
+      fatalError("RootViewController isn't an instance of UINavigationController")
+    }
+
+    guard let listMoviesView = navigationController.topViewController as? ListMoviesView else {
+      fatalError("TopViewController isn't an instance of ListMoviesView")
     }
 
     let moviesModule = ListMoviesModule(trakt: trakt)

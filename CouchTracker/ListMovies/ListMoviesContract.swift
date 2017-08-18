@@ -52,8 +52,16 @@ protocol ListMoviesStore: class {
 
 }
 
-struct MovieViewModel {
-  let title: String
+protocol TrendingViewModel {
+
+  var title: String { get }
+
+}
+
+struct MovieViewModel: TrendingViewModel {
+
+  var title: String
+
 }
 
 extension MovieViewModel: Equatable, Hashable {
