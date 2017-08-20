@@ -12,7 +12,7 @@ the license agreement.
 
 import RxSwift
 
-final class ListMoviesStoreImpl: ListMoviesStore {
+final class ListMoviesStore: ListMoviesStoreInput {
 
   func fetchMovies() -> Observable<[MovieEntity]> {
     return Observable.empty()

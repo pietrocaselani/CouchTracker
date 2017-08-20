@@ -27,8 +27,8 @@ final class ListMoviesInteractorTest: XCTestCase {
   }
 
   func testHandleEmpty() {
-    let store = EmptyListMoviesStore()
-    let interactor = ListMoviesInteractorImpl(store: store)
+    let store = EmptyListMoviesStoreMock()
+    let interactor = ListMoviesInteractor(store: store)
 
     let subscription = interactor.fetchMovies().subscribe(observer)
 
@@ -44,10 +44,10 @@ final class ListMoviesInteractorTest: XCTestCase {
   }
 
   func testHandleError() {
-    let connectionError = ListMoviesErrorMock.noConnection("There is no connection active")
+    let connectionError = ListMoviesError.noConnection("There is no connection active")
 
-    let store = ErrorListMoviesStore(error: connectionError)
-    let interactor = ListMoviesInteractorImpl(store: store)
+    let store = ErrorListMoviesStoreMock(error: connectionError)
+    let interactor = ListMoviesInteractor(store: store)
 
     let subscription = interactor.fetchMovies().subscribe(observer)
 
@@ -68,8 +68,8 @@ final class ListMoviesInteractorTest: XCTestCase {
       MovieEntity(identifier: "Movie2", title: "Movie2")
     ]
 
-    let store = MoviesListMovieStore(movies: movies)
-    let interactor = ListMoviesInteractorImpl(store: store)
+    let store = MoviesListMovieStoreMock(movies: movies)
+    let interactor = ListMoviesInteractor(store: store)
 
     let subscription = interactor.fetchMovies().subscribe(observer)
 

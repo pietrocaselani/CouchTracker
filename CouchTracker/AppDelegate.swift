@@ -18,14 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions
     launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-    guard let listMoviesView = window?.rootViewController as? ListMoviesView else {
-      fatalError("RootViewController isn't an instance of ListMoviesView")
+    listMoviesModule = ListMoviesModule()
+    let view = listMoviesModule.loadView()
+
+    guard let viewController = view as? UIViewController else {
+      fatalError("view should be an instance of UIViewController")
     }
 
-    let moviesModule = ListMoviesModule()
-    moviesModule.configure(view: listMoviesView)
-
-    self.listMoviesModule = moviesModule
+    window = UIWindow(frame: UIScreen.main.bounds)
+    window?.rootViewController = viewController
+    window?.makeKeyAndVisible()
 
     return true
   }

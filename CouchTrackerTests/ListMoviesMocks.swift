@@ -13,7 +13,7 @@ the license agreement.
 import Foundation
 import RxSwift
 
-class StateListMoviesView: ListMoviesView {
+class StateListMoviesViewMock: ListMoviesView {
 
   enum State: Equatable {
     case loaded
@@ -23,20 +23,20 @@ class StateListMoviesView: ListMoviesView {
 
     static func == (lhs: State, rhs: State) -> Bool {
       switch (lhs, rhs) {
-      case let (.loaded, .loaded):
+      case (.loaded, .loaded):
         return true
-      case let (.showingNoMovies, .showingNoMovies):
+      case (.showingNoMovies, .showingNoMovies):
         return true
       case let (.showingMovies(lhsMovies), .showingMovies(rhsMovies)):
         return lhsMovies == rhsMovies
-      case let (.showingError, .showingError):
+      case (.showingError, .showingError):
         return true
       default: return false
       }
     }
   }
 
-  var presenter: ListMoviesPresenter! = nil
+  var presenter: ListMoviesPresenterOutput! = nil
   var currentState = State.loaded
 
   func showEmptyView() {
@@ -52,13 +52,15 @@ class StateListMoviesView: ListMoviesView {
   }
 }
 
-class EmptyListMoviesRouter: ListMoviesRouter {
+class EmptyListMoviesRouterMock: ListMoviesRouter {
 
-  func configure(view: ListMoviesView) {
+  func loadView() -> ListMoviesView {
+    return StateListMoviesViewMock()
   }
+
 }
 
-class EmptyListMoviesStore: ListMoviesStore {
+class EmptyListMoviesStoreMock: ListMoviesStoreInput {
 
   func fetchMovies() -> Observable<[MovieEntity]> {
     return Observable.empty()
@@ -66,11 +68,11 @@ class EmptyListMoviesStore: ListMoviesStore {
 
 }
 
-class ErrorListMoviesStore: ListMoviesStore {
+class ErrorListMoviesStoreMock: ListMoviesStoreInput {
 
-  private let error: ListMoviesErrorMock
+  private let error: ListMoviesError
 
-  init(error: ListMoviesErrorMock) {
+  init(error: ListMoviesError) {
     self.error = error
   }
 
@@ -80,7 +82,7 @@ class ErrorListMoviesStore: ListMoviesStore {
 
 }
 
-class MoviesListMovieStore: ListMoviesStore {
+class MoviesListMovieStoreMock: ListMoviesStoreInput {
 
   private let movies: [MovieEntity]
 
@@ -91,11 +93,4 @@ class MoviesListMovieStore: ListMoviesStore {
   func fetchMovies() -> Observable<[MovieEntity]> {
     return Observable.just(movies)
   }
-}
-
-enum ListMoviesErrorMock: Error {
-
-  case noConnection(String)
-  case parseError(String)
-
 }
