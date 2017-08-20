@@ -10,6 +10,8 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
+import UIKit
+
 final class ListMoviesModule: ListMoviesRouter {
 
   private let trakt: TraktV2
@@ -18,14 +20,26 @@ final class ListMoviesModule: ListMoviesRouter {
     self.trakt = trakt
   }
 
-  func configure(view: ListMoviesView) {
-    let store = ListMoviesStoreImpl(trakt: trakt)
+  func loadView() -> BaseView {
+    let viewController = R.storyboard.listMovies().instantiateInitialViewController()
 
-    let interactor = ListMoviesInteractorImpl(store: store)
+    guard let navigationController = viewController as? UINavigationController else {
+      fatalError("viewController should be an instance of UINavigationController")
+    }
 
-    let presenter = ListMoviesPresenterImpl(view: view, router: self, interactor: interactor)
+    guard let view = navigationController.topViewController as? ListMoviesView else {
+      fatalError("topViewController should be an instance of ListMoviesView")
+    }
+
+    let store = ListMoviesStore(trakt: trakt)
+
+    let interactor = ListMoviesInteractor(store: store)
+
+    let presenter = ListMoviesPresenter(view: view, router: self, interactor: interactor)
 
     view.presenter = presenter
+
+    return navigationController
   }
 
 }

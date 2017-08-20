@@ -24,18 +24,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().tintColor = UIColor.white
     UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.ctzircon]
 
-    guard let navigationController = window?.rootViewController as? UINavigationController else {
-      fatalError("RootViewController isn't an instance of UINavigationController")
+    listMoviesModule = ListMoviesModule(trakt: trakt)
+    let view = listMoviesModule.loadView()
+
+    guard let viewController = view as? UIViewController else {
+      fatalError("view should be an instance of UIViewController")
     }
 
-    guard let listMoviesView = navigationController.topViewController as? ListMoviesView else {
-      fatalError("TopViewController isn't an instance of ListMoviesView")
-    }
-
-    let moviesModule = ListMoviesModule(trakt: trakt)
-    moviesModule.configure(view: listMoviesView)
-
-    self.listMoviesModule = moviesModule
+    window = UIWindow(frame: UIScreen.main.bounds)
+    window?.rootViewController = viewController
+    window?.makeKeyAndVisible()
 
     return true
   }

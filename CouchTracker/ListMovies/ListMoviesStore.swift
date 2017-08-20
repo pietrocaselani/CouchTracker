@@ -25,7 +25,7 @@ extension Movies: StringConvertible {
 
 }
 
-final class ListMoviesStoreImpl: ListMoviesStore {
+final class ListMoviesStore: ListMoviesStoreInput {
 
   private let moviesProvider: RxMoyaProvider<Movies>
   private let cache: BasicCache<Movies, NSData>
@@ -34,13 +34,13 @@ final class ListMoviesStoreImpl: ListMoviesStore {
     self.moviesProvider = trakt.movies
 
     self.cache = MemoryCacheLevel()
-      .compose(MoyaFetcher(provider: moviesProvider))
+        .compose(MoyaFetcher(provider: moviesProvider))
   }
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
     return cache.get(.trending(page: page, limit: limit, extended: .full))
-      .asObservable()
-      .mapArray(TrendingMovie.self)
+        .asObservable()
+        .mapArray(TrendingMovie.self)
   }
 
 }

@@ -27,10 +27,10 @@ final class ListMoviesInteractorTest: XCTestCase {
   }
 
   func testHandleEmpty() {
-    let store = EmptyListMoviesStore()
-    let interactor = ListMoviesInteractorImpl(store: store)
+    let store = EmptyListMoviesStoreMock()
+    let interactor = ListMoviesInteractor(store: store)
 
-    let subscription = interactor.fetchMovies().subscribe(observer)
+    let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(observer)
 
     scheduler.scheduleAt(600) {
       subscription.dispose()
@@ -44,12 +44,12 @@ final class ListMoviesInteractorTest: XCTestCase {
   }
 
   func testHandleError() {
-    let connectionError = ListMoviesErrorMock.noConnection("There is no connection active")
+    let connectionError = ListMoviesError.noConnection("There is no connection active")
 
-    let store = ErrorListMoviesStore(error: connectionError)
-    let interactor = ListMoviesInteractorImpl(store: store)
+    let store = ErrorListMoviesStoreMock(error: connectionError)
+    let interactor = ListMoviesInteractor(store: store)
 
-    let subscription = interactor.fetchMovies().subscribe(observer)
+    let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(observer)
 
     scheduler.scheduleAt(600) {
       subscription.dispose()
@@ -65,10 +65,10 @@ final class ListMoviesInteractorTest: XCTestCase {
   func testHandleMovies() {
     let movies = [TrendingMovie]()
 
-    let store = MoviesListMovieStore(movies: movies)
-    let interactor = ListMoviesInteractorImpl(store: store)
+    let store = MoviesListMovieStoreMock(movies: movies)
+    let interactor = ListMoviesInteractor(store: store)
 
-    let subscription = interactor.fetchMovies().subscribe(observer)
+    let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(observer)
 
     scheduler.scheduleAt(600) {
       subscription.dispose()
