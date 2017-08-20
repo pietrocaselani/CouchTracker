@@ -14,56 +14,35 @@ import RxSwift
 
 protocol ListMoviesRouter: class {
 
-  func configure(view: ListMoviesView)
-
+  func loadView() -> ListMoviesView
 }
 
-protocol ListMoviesPresenter: class {
+protocol ListMoviesPresenterOutput: class {
 
-  init(view: ListMoviesView, router: ListMoviesRouter, interactor: ListMoviesInteractor)
+  init(view: ListMoviesView, router: ListMoviesRouter, interactor: ListMoviesInteractorInput)
 
   func viewDidLoad()
-
 }
 
 protocol ListMoviesView: class {
 
-  var presenter: ListMoviesPresenter! { get set }
+  var presenter: ListMoviesPresenterOutput! { get set }
 
   func showEmptyView()
-
   func show(movies: [MovieViewModel])
-
   func show(error: String)
-
 }
 
-protocol ListMoviesInteractor: class {
+protocol ListMoviesInteractorInput: class {
 
-  init(store: ListMoviesStore)
+  init(store: ListMoviesStoreInput)
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]>
 
 }
 
-protocol ListMoviesStore: class {
+protocol ListMoviesStoreInput: class {
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]>
-
-}
-
-struct MovieViewModel {
-  let title: String
-}
-
-extension MovieViewModel: Equatable, Hashable {
-
-  static func == (lhs: MovieViewModel, rhs: MovieViewModel) -> Bool {
-    return lhs.title == rhs.title
-  }
-
-  var hashValue: Int {
-    return title.hashValue
-  }
 
 }

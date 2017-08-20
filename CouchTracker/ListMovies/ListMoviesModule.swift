@@ -18,14 +18,22 @@ final class ListMoviesModule: ListMoviesRouter {
     self.trakt = trakt
   }
 
-  func configure(view: ListMoviesView) {
-    let store = ListMoviesStoreImpl(trakt: trakt)
+  func loadView() -> ListMoviesView {
+    let viewController = R.storyboard.listMovies().instantiateInitialViewController()
 
-    let interactor = ListMoviesInteractorImpl(store: store)
+    guard let view = viewController as? ListMoviesViewController else {
+      fatalError("viewController should be an instance of ListMoviesViewController")
+    }
 
-    let presenter = ListMoviesPresenterImpl(view: view, router: self, interactor: interactor)
+    let store = ListMoviesStore(trakt: trakt)
+
+    let interactor = ListMoviesInteractor(store: store)
+
+    let presenter = ListMoviesPresenter(view: view, router: self, interactor: interactor)
 
     view.presenter = presenter
+
+    return view
   }
 
 }

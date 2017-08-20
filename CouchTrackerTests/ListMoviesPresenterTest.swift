@@ -18,41 +18,41 @@ import XCTest
 
 final class ListMoviesPresenterTest: XCTestCase {
 
-  let router = EmptyListMoviesRouter()
-  let view = StateListMoviesView()
+  let router = EmptyListMoviesRouterMock()
+  let view = StateListMoviesViewMock()
 
   override func setUp() {
     super.setUp()
   }
 
   func testShowsEmptyView() {
-    let interactor = ListMoviesInteractorImpl(store: EmptyListMoviesStore())
+    let interactor = ListMoviesInteractor(store: EmptyListMoviesStoreMock())
 
-    let presenter = ListMoviesPresenterImpl(view: view, router: router, interactor: interactor)
+    let presenter = ListMoviesPresenter(view: view, router: router, interactor: interactor)
 
     presenter.viewDidLoad()
 
-    XCTAssertEqual(view.currentState, StateListMoviesView.State.showingNoMovies)
+    XCTAssertEqual(view.currentState, StateListMoviesViewMock.State.showingNoMovies)
   }
 
   func testShowsErrorMessage() {
-    let error = ListMoviesErrorMock.parseError("Invalid json")
-    let interactor = ListMoviesInteractorImpl(store: ErrorListMoviesStore(error: error))
+    let error = ListMoviesError.parseError("Invalid json")
+    let interactor = ListMoviesInteractor(store: ErrorListMoviesStoreMock(error: error))
 
-    let presenter = ListMoviesPresenterImpl(view: view, router: router, interactor: interactor)
+    let presenter = ListMoviesPresenter(view: view, router: router, interactor: interactor)
 
     presenter.viewDidLoad()
 
-    XCTAssertEqual(view.currentState, StateListMoviesView.State.showingError)
+    XCTAssertEqual(view.currentState, StateListMoviesViewMock.State.showingError)
   }
 
   func testShowsMovies() {
     let movies = createMockMovies()
 
-    let store = MoviesListMovieStore(movies: movies)
-    let interactor = ListMoviesInteractorImpl(store: store)
+    let store = MoviesListMovieStoreMock(movies: movies)
+    let interactor = ListMoviesInteractor(store: store)
 
-    let presenter = ListMoviesPresenterImpl(view: view, router: router, interactor: interactor)
+    let presenter = ListMoviesPresenter(view: view, router: router, interactor: interactor)
 
     presenter.viewDidLoad()
 
@@ -61,20 +61,20 @@ final class ListMoviesPresenterTest: XCTestCase {
       MovieViewModel(title: "The Dark Knight")
     ]
 
-    XCTAssertEqual(view.currentState, StateListMoviesView.State.showingMovies(moviesViewModel))
+    XCTAssertEqual(view.currentState, StateListMoviesViewMock.State.showingMovies(moviesViewModel))
   }
 
   func testNoMovies() {
     let movies = [TrendingMovie]()
 
-    let store = MoviesListMovieStore(movies: movies)
-    let interactor = ListMoviesInteractorImpl(store: store)
+    let store = MoviesListMovieStoreMock(movies: movies)
+    let interactor = ListMoviesInteractor(store: store)
 
-    let presenter = ListMoviesPresenterImpl(view: view, router: router, interactor: interactor)
+    let presenter = ListMoviesPresenter(view: view, router: router, interactor: interactor)
 
     presenter.viewDidLoad()
 
-    XCTAssertEqual(view.currentState, StateListMoviesView.State.showingNoMovies)
+    XCTAssertEqual(view.currentState, StateListMoviesViewMock.State.showingNoMovies)
   }
 
   private func createMockMovies() -> [TrendingMovie] {

@@ -13,7 +13,7 @@ the license agreement.
 import Foundation
 import RxSwift
 
-class StateListMoviesView: ListMoviesView {
+class StateListMoviesViewMock: ListMoviesView {
 
   enum State: Equatable {
     case loaded
@@ -36,7 +36,7 @@ class StateListMoviesView: ListMoviesView {
     }
   }
 
-  var presenter: ListMoviesPresenter! = nil
+  var presenter: ListMoviesPresenterOutput! = nil
   var currentState = State.loaded
 
   func showEmptyView() {
@@ -52,35 +52,36 @@ class StateListMoviesView: ListMoviesView {
   }
 }
 
-class EmptyListMoviesRouter: ListMoviesRouter {
+class EmptyListMoviesRouterMock: ListMoviesRouter {
 
-  func configure(view: ListMoviesView) {
+  func loadView() -> ListMoviesView {
+    return StateListMoviesViewMock()
   }
+
 }
 
-class EmptyListMoviesStore: ListMoviesStore {
+class EmptyListMoviesStoreMock: ListMoviesStoreInput {
 
-  func fetchMovies() -> Observable<[TrendingMovie]> {
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
     return Observable.empty()
   }
 
 }
 
-class ErrorListMoviesStore: ListMoviesStore {
+class ErrorListMoviesStoreMock: ListMoviesStoreInput {
 
-  private let error: ListMoviesErrorMock
+  private let error: ListMoviesError
 
-  init(error: ListMoviesErrorMock) {
+  init(error: ListMoviesError) {
     self.error = error
   }
 
-  func fetchMovies() -> Observable<[TrendingMovie]> {
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
     return Observable.error(error)
   }
-
 }
 
-class MoviesListMovieStore: ListMoviesStore {
+class MoviesListMovieStoreMock: ListMoviesStoreInput {
 
   private let movies: [TrendingMovie]
 
@@ -88,14 +89,7 @@ class MoviesListMovieStore: ListMoviesStore {
     self.movies = movies
   }
 
-  func fetchMovies() -> Observable<[TrendingMovie]> {
-    return Observable.just(movies)
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
+    return Observable.just(movies).take(limit)
   }
-}
-
-enum ListMoviesErrorMock: Error {
-
-  case noConnection(String)
-  case parseError(String)
-
 }
