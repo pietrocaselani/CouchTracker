@@ -1,0 +1,6 @@
+framework module PiedPiper {
+  umbrella header "PiedPiper-umbrella.h"
+
+  export *
+  module * { export * }
+}
