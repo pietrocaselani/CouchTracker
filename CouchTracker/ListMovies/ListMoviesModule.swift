@@ -15,6 +15,7 @@ import UIKit
 final class ListMoviesModule: ListMoviesRouter {
 
   private let trakt: TraktV2
+  private var detailsRouter: MovieDetailsRouter?
 
   init(trakt: TraktV2) {
     self.trakt = trakt
@@ -40,6 +41,15 @@ final class ListMoviesModule: ListMoviesRouter {
     view.presenter = presenter
 
     return navigationController
+  }
+
+  func showDetails(of movie: TrendingMovie, navigable: Navigable) {
+    let detailsModule = MovieDetailsModule(trakt: trakt)
+    let detailsView = detailsModule.loadView(of: movie.movie.ids.slug)
+
+    detailsRouter = detailsModule
+
+    navigable.push(view: detailsView, animated: true)
   }
 
 }

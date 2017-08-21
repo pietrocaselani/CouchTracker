@@ -14,7 +14,7 @@ import RxSwift
 
 protocol MovieDetailsRouter: class {
 
-  func loadView() -> BaseView
+  func loadView(of movieId: String) -> BaseView
 }
 
 protocol MovieDetailsPresenterOutput: class {

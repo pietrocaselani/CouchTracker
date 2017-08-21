@@ -27,6 +27,7 @@ final class ListMoviesViewController: UIViewController, ListMoviesView {
     super.viewDidLoad()
 
     emptyLabel.text = "Sorry!\nNo movies to show right now"
+    collectionView.delegate = self
 
     configureMoviewDataSource()
 
@@ -77,4 +78,14 @@ final class ListMoviesViewController: UIViewController, ListMoviesView {
     dataSource = SimpleCollectionViewDataSource<TrendingViewModel>(cellFactory: cellFactory)
     self.collectionView.dataSource = dataSource
   }
+}
+
+extension ListMoviesViewController: UICollectionViewDelegate {
+
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard let navigable = navigationController else { return }
+
+    presenter.showDetailsOfMovie(at: indexPath.row, navigable: navigable)
+  }
+
 }

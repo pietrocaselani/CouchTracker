@@ -15,6 +15,7 @@ import RxSwift
 protocol ListMoviesRouter: class {
 
   func loadView() -> BaseView
+  func showDetails(of movie: TrendingMovie, navigable: Navigable)
 }
 
 protocol ListMoviesPresenterOutput: class {
@@ -22,6 +23,7 @@ protocol ListMoviesPresenterOutput: class {
   init(view: ListMoviesView, router: ListMoviesRouter, interactor: ListMoviesInteractorInput)
 
   func viewDidLoad()
+  func showDetailsOfMovie(at index: Int, navigable: Navigable)
 }
 
 protocol ListMoviesView: BaseView {

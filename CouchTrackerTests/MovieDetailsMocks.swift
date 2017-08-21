@@ -38,7 +38,7 @@ final class MovieDetailsViewMock: MovieDetailsView {
 
 final class EmptyMovieDetailsRouterMock: MovieDetailsRouter {
 
-  func loadView() -> BaseView {
+  func loadView(of movieId: String) -> BaseView {
     return MovieDetailsViewMock()
   }
 

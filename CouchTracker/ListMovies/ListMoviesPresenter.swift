@@ -63,7 +63,17 @@ final class ListMoviesPresenter: ListMoviesPresenterOutput {
         }).disposed(by: disposeBag)
   }
 
-  func transformToViewModels(entities: [TrendingMovie]) -> [MovieViewModel] {
+  func showDetailsOfMovie(at index: Int, navigable: Navigable) {
+    guard let router = router else {
+      return
+    }
+
+    let movie = movies[index]
+
+    router.showDetails(of: movie, navigable: navigable)
+  }
+
+  private func transformToViewModels(entities: [TrendingMovie]) -> [MovieViewModel] {
     return entities.map { MovieViewModel(title: $0.movie.title ?? "TBA") }
   }
 }

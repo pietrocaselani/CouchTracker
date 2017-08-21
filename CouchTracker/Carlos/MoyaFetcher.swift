@@ -47,8 +47,14 @@ final class MoyaFetcher<Target: TargetType>: Fetcher {
 
     let cancellable = provider.request(target) { result in
       DispatchQueue.main.async {
-        if case .success(let data) = result {
-          promise.succeed(data.data as NSData)
+        if case .success(var response) = result {
+          do {
+            print("StatusCode = \(response.statusCode)")
+            response = try response.filterSuccessfulStatusAndRedirectCodes()
+            promise.succeed(response.data as NSData)
+          } catch {
+            promise.fail(error)
+          }
         } else if case .failure(let error) = result {
           promise.fail(error)
         }
