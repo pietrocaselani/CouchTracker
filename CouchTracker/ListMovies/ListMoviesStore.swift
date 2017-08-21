@@ -14,17 +14,6 @@ import Carlos
 import Moya
 import RxSwift
 
-extension Movies: StringConvertible {
-
-  public func toString() -> String {
-    switch self {
-    case .trending(let page, let limit, _):
-      return "\(self.path)-\(page)-\(limit)"
-    }
-  }
-
-}
-
 final class ListMoviesStore: ListMoviesStoreInput {
 
   private let moviesProvider: RxMoyaProvider<Movies>
