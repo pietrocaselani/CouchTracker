@@ -12,7 +12,7 @@ the license agreement.
 
 import ObjectMapper
 
-public final class Movie: StandardMinimalEntity {
+public final class Movie: StandardMediaEntity {
   public let year: Int
   public let ids: MovieIds
 
