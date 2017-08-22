@@ -52,9 +52,9 @@ final class ListMoviesViewController: UIViewController, ListMoviesView {
 
     let errorAlert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
 
-    let okAction = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+    let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
       errorAlert.dismiss(animated: true, completion: nil)
-    })
+    }
 
     errorAlert.addAction(okAction)
 

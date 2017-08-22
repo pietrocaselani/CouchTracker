@@ -18,6 +18,10 @@ extension TraktV2 {
     return createProvider(forTarget: Movies.self)
   }
 
+  public var genres: RxMoyaProvider<Genres> {
+    return createProvider(forTarget: Genres.self)
+  }
+
   private func createProvider<T: TraktType>(forTarget target: T.Type) -> RxMoyaProvider<T> {
     let endpointClosure = createEndpointClosure(forTarget: target)
 

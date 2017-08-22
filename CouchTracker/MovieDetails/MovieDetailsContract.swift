@@ -34,9 +34,11 @@ protocol MovieDetailsView: BaseView {
 
 protocol MovieDetailsInteractorInput: class {
 
-  init(store: MovieDetailsStoreInput)
+  init(store: MovieDetailsStoreInput, genreStore: GenreStoreInput)
 
   func fetchDetails(movieId: String) -> Observable<Movie>
+
+  func fetchGenres() -> Observable<[Genre]>
 
 }
 

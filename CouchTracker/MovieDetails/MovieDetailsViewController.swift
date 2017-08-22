@@ -16,6 +16,14 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsView {
 
   var presenter: MovieDetailsPresenterOutput!
 
+  @IBOutlet var titleLabel: UILabel!
+  @IBOutlet var taglineLabel: UILabel!
+  @IBOutlet var overviewLabel: UILabel!
+  @IBOutlet var releaseDateLabel: UILabel!
+  @IBOutlet var genresLabel: UILabel!
+  @IBOutlet var backgroundImageView: UIImageView!
+  @IBOutlet var posterImageView: UIImageView!
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -23,11 +31,23 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsView {
   }
 
   func show(error: String) {
-    print(error)
+    let errorAlert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+
+    let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+      errorAlert.dismiss(animated: true, completion: nil)
+    }
+
+    errorAlert.addAction(okAction)
+
+    present(errorAlert, animated: true, completion: nil)
   }
 
   func show(details: MovieDetailsViewModel) {
-    print(details.title)
+    titleLabel.text = details.title
+    taglineLabel.text = details.tagline
+    overviewLabel.text = details.overview
+    releaseDateLabel.text = details.releaseDate
+    genresLabel.text = details.genres
   }
 
 }

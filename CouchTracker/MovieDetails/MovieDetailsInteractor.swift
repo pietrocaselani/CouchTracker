@@ -15,12 +15,18 @@ import RxSwift
 final class MovieDetailsInteractor: MovieDetailsInteractorInput {
 
   private let store: MovieDetailsStoreInput
+  private let genreStore: GenreStoreInput
 
-  init(store: MovieDetailsStoreInput) {
+  init(store: MovieDetailsStoreInput, genreStore: GenreStoreInput) {
     self.store = store
+    self.genreStore = genreStore
   }
 
   func fetchDetails(movieId: String) -> Observable<Movie> {
     return store.fetchDetails(movieId: movieId)
+  }
+
+  func fetchGenres() -> Observable<[Genre]> {
+    return genreStore.fetchMoviesGenres()
   }
 }

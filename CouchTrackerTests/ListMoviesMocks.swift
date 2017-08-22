@@ -58,6 +58,10 @@ final class EmptyListMoviesRouterMock: ListMoviesRouter {
     return StateListMoviesViewMock()
   }
 
+  func showDetails(of movie: TrendingMovie, navigable: Navigable) {
+
+  }
+
 }
 
 class EmptyListMoviesStoreMock: ListMoviesStoreInput {

@@ -49,7 +49,6 @@ final class MoyaFetcher<Target: TargetType>: Fetcher {
       DispatchQueue.main.async {
         if case .success(var response) = result {
           do {
-            print("StatusCode = \(response.statusCode)")
             response = try response.filterSuccessfulStatusAndRedirectCodes()
             promise.succeed(response.data as NSData)
           } catch {

@@ -23,7 +23,7 @@ extension Movies: TraktType {
     switch self {
     case .trending:
       return "movies/trending"
-    case .summary(let movieId):
+    case .summary(let movieId, _):
       return "movies/\(movieId)"
     }
   }

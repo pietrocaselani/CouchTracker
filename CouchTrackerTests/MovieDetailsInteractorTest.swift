@@ -30,7 +30,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let movie = createMovieDetailsMock()
 
     let store = MovieDetailsStoreMock(movie: movie)
-    let interactor = MovieDetailsInteractor(store: store)
+    let interactor = MovieDetailsInteractor(store: store, genreStore: GenreStoreMock())
 
     let subscription = interactor.fetchDetails(movieId: "tron-legacy").subscribe(observer)
 
@@ -49,7 +49,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let movie = createMovieDetailsMock()
 
     let store = MovieDetailsStoreMock(movie: movie)
-    let interactor = MovieDetailsInteractor(store: store)
+    let interactor = MovieDetailsInteractor(store: store, genreStore: GenreStoreMock())
 
     let subscription = interactor.fetchDetails(movieId: "tron-legacy-2010").subscribe(observer)
 
@@ -68,7 +68,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let connectionError = MovieDetailsError.noConnection("There is no connection active")
 
     let store = ErrorMovieDetailsStoreMock(error: connectionError)
-    let interactor = MovieDetailsInteractor(store: store)
+    let interactor = MovieDetailsInteractor(store: store, genreStore: GenreStoreMock())
 
     let subscription = interactor.fetchDetails(movieId: "tron-legacy-2010").subscribe(observer)
 

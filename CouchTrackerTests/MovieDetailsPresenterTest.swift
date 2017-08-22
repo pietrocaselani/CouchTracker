@@ -21,7 +21,9 @@ final class MovieDetailsPresenterTest: XCTestCase {
   func testMovieDetailsPresenter_fetchSuccess_andPresentMovieDetails() {
     let movie = createMovieDetailsMock()
 
-    let interactor = MovieDetailsInteractor(store: MovieDetailsStoreMock(movie: movie))
+    let genreStore = GenreStoreMock()
+
+    let interactor = MovieDetailsInteractor(store: MovieDetailsStoreMock(movie: movie), genreStore: genreStore)
 
     let presenter = MovieDetailsPresenter(view: view, router: router, interactor: interactor, movieId: movie.ids.slug)
 
@@ -29,11 +31,19 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
     let dateFormatter = TraktDateTransformer.dateTransformer.dateFormatter
 
+    let genres = movie.genres?.map { movieGenre -> String in
+      let g = genreStore.genres.first(where: { genre -> Bool in
+        genre.slug == movieGenre
+      })
+
+      return g?.name ?? ""
+    } ?? [String]()
+
     let viewModel = MovieDetailsViewModel(
         title: movie.title ?? "TBA",
         tagline: movie.tagline ?? "",
         overview: movie.overview ?? "",
-        genres: movie.genres ?? [String](),
+        genres: genres.joined(separator: " | "),
         releaseDate: movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!))
 
     XCTAssertEqual(view.receivedMovieDetails, viewModel)
@@ -44,7 +54,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
     let detailsError = MovieDetailsError.noConnection("There is no active connection")
 
-    let interactor = MovieDetailsInteractor(store: ErrorMovieDetailsStoreMock(error: detailsError))
+    let interactor = MovieDetailsInteractor(store: ErrorMovieDetailsStoreMock(error: detailsError), genreStore: GenreStoreMock())
 
     let presenter = MovieDetailsPresenter(view: view, router: router, interactor: interactor, movieId: movie.ids.slug)
 

@@ -16,11 +16,10 @@ import RxSwift
 
 final class MovieDetailsStore: MovieDetailsStoreInput {
 
-  private let moviesProvider: RxMoyaProvider<Movies>
   private let cache: BasicCache<Movies, Movie>
 
   init(trakt: TraktV2) {
-    self.moviesProvider = trakt.movies
+    let moviesProvider = trakt.movies
 
     self.cache = MemoryCacheLevel<Movies, NSData>()
         .compose(DiskCacheLevel<Movies, NSData>())
@@ -31,10 +30,5 @@ final class MovieDetailsStore: MovieDetailsStoreInput {
   func fetchDetails(movieId: String) -> Observable<Movie> {
     return cache.get(.summary(movieId: movieId, extended: .full))
       .asObservable()
-      .do(onNext: { movie in
-        let threadName = Thread.current.name ?? "Eita"
-        print(threadName)
-        print(movie)
-      })
   }
 }

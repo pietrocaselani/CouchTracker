@@ -32,17 +32,34 @@ final class MovieDetailsPresenter: MovieDetailsPresenterOutput {
   func viewDidLoad() {
     let dateFormatter = TraktDateTransformer.dateTransformer.dateFormatter
 
-    interactor.fetchDetails(movieId: movieId)
-        .map { movie -> MovieDetailsViewModel in
-          let releaseDate = movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!)
+    let genresObservable = interactor.fetchGenres()
+    let detailsObservable = interactor.fetchDetails(movieId: movieId)
 
-          return MovieDetailsViewModel(
-              title: movie.title ?? "TBA",
-              tagline: movie.tagline ?? "",
-              overview: movie.tagline ?? "",
-              genres: movie.genres ?? [String](),
-              releaseDate: releaseDate)
-        }.observeOn(MainScheduler.instance)
+    let map = detailsObservable.flatMap { movie -> Observable<MovieDetailsViewModel> in
+      return genresObservable.flatMap { genres -> Observable<MovieDetailsViewModel> in
+        let presentableGenres = movie.genres?.map { movieGenreSlug -> String in
+          let genre = genres.first { genre in
+            genre.slug == movieGenreSlug
+          }
+          return genre?.name ?? ""
+        }.filter { genreName in
+          return genreName.characters.count > 0
+        } ?? [String]()
+
+        let releaseDate = movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!)
+
+        let viewModel = MovieDetailsViewModel(
+            title: movie.title ?? "TBA",
+            tagline: movie.tagline ?? "",
+            overview: movie.overview ?? "",
+            genres: presentableGenres.joined(separator: " | "),
+            releaseDate: releaseDate)
+
+        return Observable.just(viewModel)
+      }
+    }
+
+    map.observeOn(MainScheduler.instance)
         .subscribe(onNext: { [unowned self] viewModel in
           self.view?.show(details: viewModel)
         }, onError: { [unowned self] error in

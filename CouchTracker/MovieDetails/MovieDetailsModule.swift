@@ -22,7 +22,8 @@ final class MovieDetailsModule: MovieDetailsRouter {
 
   func loadView(of movieId: String) -> BaseView {
     let store = MovieDetailsStore(trakt: trakt)
-    let interactor = MovieDetailsInteractor(store: store)
+    let genreStore = TraktGenreStore(trakt: trakt)
+    let interactor = MovieDetailsInteractor(store: store, genreStore: genreStore)
 
     let viewController = R.storyboard.movieDetails.movieDetailsViewController()
 
