@@ -41,25 +41,26 @@ final class ListMoviesPresenter: ListMoviesPresenterOutput {
             return
           }
 
-          if viewModels.count == 0 {
+          guard viewModels.count > 0 else {
             view.showEmptyView()
-          } else {
-            view.show(movies: viewModels)
+            return
           }
+
+          view.show(movies: viewModels)
         }, onError: { error in
           guard let view = self.view else {
             return
           }
 
-          if let moviesListError = error as? ListMoviesError {
-            view.show(error: moviesListError.message)
-          } else {
+          guard let moviesListError = error as? ListMoviesError else {
             view.show(error: error.localizedDescription)
+            return
           }
+
+          view.show(error: moviesListError.message)
         }, onCompleted: {
-          if self.movies.count == 0 {
-            self.view?.showEmptyView()
-          }
+          guard self.movies.count == 0 else { return }
+          self.view?.showEmptyView()
         }).disposed(by: disposeBag)
   }
 

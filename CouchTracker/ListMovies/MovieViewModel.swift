@@ -7,9 +7,7 @@
 //
 
 struct MovieViewModel: TrendingViewModel {
-
   var title: String
-
 }
 
 extension MovieViewModel: Equatable, Hashable {

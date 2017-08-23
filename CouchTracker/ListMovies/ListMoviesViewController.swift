@@ -28,7 +28,7 @@ final class ListMoviesViewController: UIViewController, ListMoviesView {
 
     emptyLabel.text = "Sorry!\nNo movies to show right now"
 
-    configureMoviewDataSource()
+    configureMoviesDataSource()
 
     presenter.viewDidLoad()
   }
@@ -51,16 +51,16 @@ final class ListMoviesViewController: UIViewController, ListMoviesView {
 
     let errorAlert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
 
-    let okAction = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+    let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
       errorAlert.dismiss(animated: true, completion: nil)
-    })
+    }
 
     errorAlert.addAction(okAction)
 
     present(errorAlert, animated: true, completion: nil)
   }
 
-  private func configureMoviewDataSource() {
+  private func configureMoviesDataSource() {
     let cellFactory: TrendingCellFactory = { (collectionView, indexPath, model) -> UICollectionViewCell in
 
       let identifier = R.reuseIdentifier.trendingCell

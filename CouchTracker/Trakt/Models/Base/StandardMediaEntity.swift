@@ -12,7 +12,7 @@ the license agreement.
 
 import ObjectMapper
 
-public class BaseEntity: ImmutableMappable {
+public class StandardMediaEntity: ImmutableMappable {
 
   public var title: String?
   public var overview: String?
