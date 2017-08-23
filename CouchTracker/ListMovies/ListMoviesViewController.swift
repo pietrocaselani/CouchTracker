@@ -29,7 +29,7 @@ final class ListMoviesViewController: UIViewController, ListMoviesView {
     emptyLabel.text = "Sorry!\nNo movies to show right now"
     collectionView.delegate = self
 
-    configureMoviewDataSource()
+    configureMoviesDataSource()
 
     presenter.viewDidLoad()
   }
@@ -61,7 +61,7 @@ final class ListMoviesViewController: UIViewController, ListMoviesView {
     present(errorAlert, animated: true, completion: nil)
   }
 
-  private func configureMoviewDataSource() {
+  private func configureMoviesDataSource() {
     let cellFactory: TrendingCellFactory = { (collectionView, indexPath, model) -> UICollectionViewCell in
 
       let identifier = R.reuseIdentifier.trendingCell

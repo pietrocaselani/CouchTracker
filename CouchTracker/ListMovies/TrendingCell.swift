@@ -17,7 +17,7 @@ final class TrendingCell: UICollectionViewCell {
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var coverImageView: UIImageView!
 
-  func configure(`for` movie: TrendingViewModel) {
+  func configure(for movie: TrendingViewModel) {
     titleLabel.text = movie.title
   }
 

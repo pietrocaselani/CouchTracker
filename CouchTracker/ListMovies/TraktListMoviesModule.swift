@@ -12,7 +12,7 @@ the license agreement.
 
 import UIKit
 
-final class ListMoviesModule: ListMoviesRouter {
+final class TraktListMoviesModule: ListMoviesRouter {
 
   private let trakt: TraktV2
   private var detailsRouter: MovieDetailsRouter?
@@ -22,9 +22,8 @@ final class ListMoviesModule: ListMoviesRouter {
   }
 
   func loadView() -> BaseView {
-    let viewController = R.storyboard.listMovies().instantiateInitialViewController()
-
-    guard let navigationController = viewController as? UINavigationController else {
+    guard let navigationController =
+      R.storyboard.listMovies().instantiateInitialViewController() as? UINavigationController else {
       fatalError("viewController should be an instance of UINavigationController")
     }
 

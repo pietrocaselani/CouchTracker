@@ -15,7 +15,6 @@ import Moya
 import PiedPiper
 
 final class MoyaFetcher<Target: TargetType>: Fetcher {
-  typealias KeyType = Target
   typealias OutputType = NSData
 
   private let lock: ReadWriteLock = PThreadReadWriteLock()

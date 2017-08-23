@@ -21,5 +21,4 @@ extension UINavigationController: Navigable {
 
     pushViewController(viewController, animated: animated)
   }
-
 }

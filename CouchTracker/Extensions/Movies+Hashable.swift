@@ -20,5 +20,4 @@ extension Movies: Hashable {
   public static func == (lhs: Movies, rhs: Movies) -> Bool {
     return lhs.hashValue == rhs.hashValue
   }
-
 }

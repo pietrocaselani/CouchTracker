@@ -21,10 +21,6 @@ final class ListMoviesPresenterTest: XCTestCase {
   let router = EmptyListMoviesRouterMock()
   let view = StateListMoviesViewMock()
 
-  override func setUp() {
-    super.setUp()
-  }
-
   func testShowsEmptyView() {
     let interactor = ListMoviesInteractor(store: EmptyListMoviesStoreMock())
 

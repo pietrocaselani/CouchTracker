@@ -26,6 +26,11 @@ final class SearchInteractorTest: XCTestCase {
     observer = scheduler.createObserver([SearchResult].self)
   }
 
+  override func tearDown() {
+    observer = nil
+    super.tearDown()
+  }
+
   func testSearchInteractor_fetchSuccess_butReceivesEmptyData() {
     let interactor = SearchInteractor(store: EmptySearchStoreMock())
 
