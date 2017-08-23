@@ -15,7 +15,6 @@ import RxSwift
 final class ListMoviesPresenter: ListMoviesPresenterOutput {
 
   private weak var view: ListMoviesView?
-  private weak var router: ListMoviesRouter?
 
   private let interactor: ListMoviesInteractorInput
   private let disposeBag = DisposeBag()
@@ -24,9 +23,8 @@ final class ListMoviesPresenter: ListMoviesPresenterOutput {
 
   private var currentPage = 0
 
-  init(view: ListMoviesView, router: ListMoviesRouter, interactor: ListMoviesInteractorInput) {
+  init(view: ListMoviesView, interactor: ListMoviesInteractorInput) {
     self.view = view
-    self.router = router
     self.interactor = interactor
   }
 
@@ -59,7 +57,7 @@ final class ListMoviesPresenter: ListMoviesPresenterOutput {
 
           view.show(error: moviesListError.message)
         }, onCompleted: {
-          guard self.movies.count > 0 else { return }
+          guard self.movies.count == 0 else { return }
           self.view?.showEmptyView()
         }).disposed(by: disposeBag)
   }

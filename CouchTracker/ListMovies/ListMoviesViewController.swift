@@ -14,23 +14,67 @@ import UIKit
 
 final class ListMoviesViewController: UIViewController, ListMoviesView {
 
-  var presenter: ListMoviesPresenterOutput!
+  private typealias TrendingCellFactory = SimpleCollectionViewDataSource<TrendingViewModel>.CellFactory
+
+  var presenter: ListMoviesPresenterOutput! = nil
+
+  private var dataSource: SimpleCollectionViewDataSource<TrendingViewModel>!
+
+  @IBOutlet weak var collectionView: UICollectionView!
+  @IBOutlet weak var emptyLabel: UILabel!
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    emptyLabel.text = "Sorry!\nNo movies to show right now"
+
+    configureMoviesDataSource()
 
     presenter.viewDidLoad()
   }
 
   func show(movies: [MovieViewModel]) {
-    print(movies)
+    emptyLabel.isHidden = true
+    collectionView.isHidden = false
+
+    dataSource.elements = movies
+    collectionView.reloadData()
   }
 
   func showEmptyView() {
-    print("No movies to show right now")
+    emptyLabel.isHidden = false
+    collectionView.isHidden = true
   }
 
   func show(error: String) {
-    print(error)
+    showEmptyView()
+
+    let errorAlert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+
+    let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+      errorAlert.dismiss(animated: true, completion: nil)
+    }
+
+    errorAlert.addAction(okAction)
+
+    present(errorAlert, animated: true, completion: nil)
+  }
+
+  private func configureMoviesDataSource() {
+    let cellFactory: TrendingCellFactory = { (collectionView, indexPath, model) -> UICollectionViewCell in
+
+      let identifier = R.reuseIdentifier.trendingCell
+
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) else {
+        fatalError("cell isn't an instance of TrendingCell.")
+      }
+
+      cell.configure(for: model)
+
+      return cell
+    }
+
+    dataSource = SimpleCollectionViewDataSource<TrendingViewModel>(cellFactory: cellFactory)
+    self.collectionView.dataSource = dataSource
   }
 }

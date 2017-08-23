@@ -6,8 +6,8 @@
 //  Copyright © 2017 ArcTouch LLC. All rights reserved.
 //
 
-struct MovieViewModel {
-  let title: String
+struct MovieViewModel: TrendingViewModel {
+  var title: String
 }
 
 extension MovieViewModel: Equatable, Hashable {

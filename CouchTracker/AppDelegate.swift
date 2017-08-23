@@ -20,10 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions
     launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-    listMoviesModule = ListMoviesModule(trakt: trakt)
-    let view = listMoviesModule.loadView()
+    UINavigationBar.appearance().barTintColor = UIColor.ctblack
+    UINavigationBar.appearance().tintColor = UIColor.white
+    UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.ctzircon]
 
-    guard let viewController = view as? UIViewController else {
+    guard let viewController = ListMoviesModule.setupModule(apiProvider: trakt) as? UIViewController else {
       fatalError("view should be an instance of UIViewController")
     }
 
