@@ -36,14 +36,6 @@ final class MovieDetailsViewMock: MovieDetailsView {
 
 }
 
-final class EmptyMovieDetailsRouterMock: MovieDetailsRouter {
-
-  func loadView() -> BaseView {
-    return MovieDetailsViewMock()
-  }
-
-}
-
 final class ErrorMovieDetailsStoreMock: MovieDetailsStoreInput {
 
   private let error: MovieDetailsError

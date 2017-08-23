@@ -15,7 +15,6 @@ import XCTest
 
 final class MovieDetailsPresenterTest: XCTestCase {
 
-  let router = EmptyMovieDetailsRouterMock()
   let view = MovieDetailsViewMock()
 
   func testMovieDetailsPresenter_fetchSuccess_andPresentMovieDetails() {
@@ -23,7 +22,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
     let interactor = MovieDetailsInteractor(store: MovieDetailsStoreMock(movie: movie))
 
-    let presenter = MovieDetailsPresenter(view: view, router: router, interactor: interactor, movieId: movie.ids.slug)
+    let presenter = MovieDetailsPresenter(view: view, interactor: interactor, movieId: movie.ids.slug)
 
     presenter.viewDidLoad()
 
@@ -46,7 +45,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
     let interactor = MovieDetailsInteractor(store: ErrorMovieDetailsStoreMock(error: detailsError))
 
-    let presenter = MovieDetailsPresenter(view: view, router: router, interactor: interactor, movieId: movie.ids.slug)
+    let presenter = MovieDetailsPresenter(view: view, interactor: interactor, movieId: movie.ids.slug)
 
     presenter.viewDidLoad()
 

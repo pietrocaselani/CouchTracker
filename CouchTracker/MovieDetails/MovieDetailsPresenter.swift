@@ -18,30 +18,21 @@ final class MovieDetailsPresenter: MovieDetailsPresenterOutput {
   private let disposeBag = DisposeBag()
 
   private weak var view: MovieDetailsView?
-  private weak var router: MovieDetailsRouter?
   private let interactor: MovieDetailsInteractorInput
   private let movieId: String
 
-  init(view: MovieDetailsView, router: MovieDetailsRouter, interactor: MovieDetailsInteractorInput, movieId: String) {
+  init(view: MovieDetailsView, interactor: MovieDetailsInteractorInput, movieId: String) {
     self.view = view
-    self.router = router
     self.interactor = interactor
     self.movieId = movieId
   }
 
   func viewDidLoad() {
-    let dateFormatter = TraktDateTransformer.dateTransformer.dateFormatter
+
 
     interactor.fetchDetails(movieId: movieId)
-        .map { movie -> MovieDetailsViewModel in
-          let releaseDate = movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!)
-
-          return MovieDetailsViewModel(
-              title: movie.title ?? "TBA",
-              tagline: movie.tagline ?? "",
-              overview: movie.tagline ?? "",
-              genres: movie.genres ?? [String](),
-              releaseDate: releaseDate)
+        .map { [unowned self] in
+          return self.mapToViewModel($0)
         }.observeOn(MainScheduler.instance)
         .subscribe(onNext: { [unowned self] viewModel in
           self.view?.show(details: viewModel)
@@ -56,5 +47,18 @@ final class MovieDetailsPresenter: MovieDetailsPresenterOutput {
             view.show(error: error.localizedDescription)
           }
         }).disposed(by: disposeBag)
+  }
+
+  private func mapToViewModel(_ movie: Movie) -> MovieDetailsViewModel {
+    let dateFormatter = TraktDateTransformer.dateTransformer.dateFormatter
+
+    let releaseDate = movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!)
+
+    return MovieDetailsViewModel(
+      title: movie.title ?? "TBA",
+      tagline: movie.tagline ?? "",
+      overview: movie.tagline ?? "",
+      genres: movie.genres ?? [String](),
+      releaseDate: releaseDate)
   }
 }

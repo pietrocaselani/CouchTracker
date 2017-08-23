@@ -52,20 +52,11 @@ final class StateListMoviesViewMock: ListMoviesView {
   }
 }
 
-final class EmptyListMoviesRouterMock: ListMoviesRouter {
-
-  func loadView() -> BaseView {
-    return StateListMoviesViewMock()
-  }
-
-}
-
 class EmptyListMoviesStoreMock: ListMoviesStoreInput {
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
     return Observable.empty()
   }
-
 }
 
 class ErrorListMoviesStoreMock: ListMoviesStoreInput {

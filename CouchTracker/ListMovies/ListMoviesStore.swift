@@ -16,11 +16,10 @@ import RxSwift
 
 final class ListMoviesStore: ListMoviesStoreInput {
 
-  private let moviesProvider: RxMoyaProvider<Movies>
   private let cache: BasicCache<Movies, NSData>
 
-  init(trakt: TraktV2) {
-    self.moviesProvider = trakt.movies
+  init(apiProvider: APIProvider) {
+    let moviesProvider = apiProvider.movies
 
     self.cache = MemoryCacheLevel()
         .compose(MoyaFetcher(provider: moviesProvider))

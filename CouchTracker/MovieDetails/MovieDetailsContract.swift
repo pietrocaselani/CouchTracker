@@ -12,14 +12,9 @@
 
 import RxSwift
 
-protocol MovieDetailsRouter: class {
-
-  func loadView() -> BaseView
-}
-
 protocol MovieDetailsPresenterOutput: class {
 
-  init(view: MovieDetailsView, router: MovieDetailsRouter, interactor: MovieDetailsInteractorInput, movieId: String)
+  init(view: MovieDetailsView, interactor: MovieDetailsInteractorInput, movieId: String)
 
   func viewDidLoad()
 }

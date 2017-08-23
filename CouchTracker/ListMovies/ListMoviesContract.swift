@@ -12,14 +12,9 @@ the license agreement.
 
 import RxSwift
 
-protocol ListMoviesRouter: class {
-
-  func loadView() -> BaseView
-}
-
 protocol ListMoviesPresenterOutput: class {
 
-  init(view: ListMoviesView, router: ListMoviesRouter, interactor: ListMoviesInteractorInput)
+  init(view: ListMoviesView, interactor: ListMoviesInteractorInput)
 
   func viewDidLoad()
 }
