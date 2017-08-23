@@ -115,12 +115,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6476324E1F44824900F277F1 /* PBXContainerItemProxy */ = {
+		646D8C201F4E1FA1009685E6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 647632311F44824900F277F1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 647632381F44824900F277F1;
-			remoteInfo = CouchTracker;
+			remoteGlobalIDString = 646D8BEB1F4E1CA6009685E6;
+			remoteInfo = "CouchTracker-Ugly";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -142,6 +142,8 @@
 		6455BA781F45BE49000660C6 /* ListMoviesInteractorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListMoviesInteractorTest.swift; sourceTree = "<group>"; };
 		646D8C1E1F4E1CA6009685E6 /* CouchTracker-Ugly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CouchTracker-Ugly.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		646D8C1F1F4E1CA6009685E6 /* CouchTracker-Ugly-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "CouchTracker-Ugly-Info.plist"; path = "/Users/pietrocaselani/Documents/Dev/ArcTouch/CouchTracker/CouchTracker-Ugly-Info.plist"; sourceTree = "<absolute>"; };
+		646D8C281F4E2107009685E6 /* CouchTrackerTests_Ugly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouchTrackerTests_Ugly.swift; sourceTree = "<group>"; };
+		646D8C2A1F4E2107009685E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		647632391F44824900F277F1 /* CouchTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CouchTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6476323C1F44824900F277F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		647632431F44824900F277F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -232,11 +234,21 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		646D8C271F4E2107009685E6 /* CouchTrackerTests-Ugly */ = {
+			isa = PBXGroup;
+			children = (
+				646D8C281F4E2107009685E6 /* CouchTrackerTests_Ugly.swift */,
+				646D8C2A1F4E2107009685E6 /* Info.plist */,
+			);
+			path = "CouchTrackerTests-Ugly";
+			sourceTree = "<group>";
+		};
 		647632301F44824900F277F1 = {
 			isa = PBXGroup;
 			children = (
 				6476323B1F44824900F277F1 /* CouchTracker */,
 				647632501F44824900F277F1 /* CouchTrackerTests */,
+				646D8C271F4E2107009685E6 /* CouchTrackerTests-Ugly */,
 				6476323A1F44824900F277F1 /* Products */,
 				35F4540E74D8632B2F76B8F1 /* Pods */,
 				31C11952FDC8E067FC72DB57 /* Frameworks */,
@@ -435,12 +447,11 @@
 				6476324B1F44824900F277F1 /* Resources */,
 				0D81E016AD2F46641B40AF86 /* [CP] Embed Pods Frameworks */,
 				8376C0499EF7B367A2A1B64A /* [CP] Copy Pods Resources */,
-				64B03EFC1F473074009E37C9 /* SwiftLint */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6476324F1F44824900F277F1 /* PBXTargetDependency */,
+				646D8C211F4E1FA1009685E6 /* PBXTargetDependency */,
 			);
 			name = CouchTrackerTests;
 			productName = CouchTrackerTests;
@@ -453,7 +464,7 @@
 		647632311F44824900F277F1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "ArcTouch LLC";
 				TargetAttributes = {
@@ -469,7 +480,7 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = TF8P7NNQ29;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 647632381F44824900F277F1;
+						TestTargetID = 646D8BEB1F4E1CA6009685E6;
 					};
 				};
 			};
@@ -653,20 +664,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		64B03EFC1F473074009E37C9 /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, using from Pods. Please download from https://github.com/realm/SwiftLint\"\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi";
 		};
 		64D2FFD81F44DF7F009E9ED3 /* RSwift */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -889,10 +886,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6476324F1F44824900F277F1 /* PBXTargetDependency */ = {
+		646D8C211F4E1FA1009685E6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 647632381F44824900F277F1 /* CouchTracker */;
-			targetProxy = 6476324E1F44824900F277F1 /* PBXContainerItemProxy */;
+			target = 646D8BEB1F4E1CA6009685E6 /* CouchTracker-Ugly */;
+			targetProxy = 646D8C201F4E1FA1009685E6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1072,7 +1069,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CouchTracker.app/CouchTracker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CouchTracker-Ugly.app/CouchTracker-Ugly";
 			};
 			name = Debug;
 		};
@@ -1087,7 +1084,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CouchTracker.app/CouchTracker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CouchTracker-Ugly.app/CouchTracker-Ugly";
 			};
 			name = Release;
 		};
