@@ -142,8 +142,6 @@
 		6455BA781F45BE49000660C6 /* ListMoviesInteractorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListMoviesInteractorTest.swift; sourceTree = "<group>"; };
 		646D8C1E1F4E1CA6009685E6 /* CouchTracker-Ugly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CouchTracker-Ugly.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		646D8C1F1F4E1CA6009685E6 /* CouchTracker-Ugly-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "CouchTracker-Ugly-Info.plist"; path = "/Users/pietrocaselani/Documents/Dev/ArcTouch/CouchTracker/CouchTracker-Ugly-Info.plist"; sourceTree = "<absolute>"; };
-		646D8C281F4E2107009685E6 /* CouchTrackerTests_Ugly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouchTrackerTests_Ugly.swift; sourceTree = "<group>"; };
-		646D8C2A1F4E2107009685E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		647632391F44824900F277F1 /* CouchTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CouchTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6476323C1F44824900F277F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		647632431F44824900F277F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -234,21 +232,11 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		646D8C271F4E2107009685E6 /* CouchTrackerTests-Ugly */ = {
-			isa = PBXGroup;
-			children = (
-				646D8C281F4E2107009685E6 /* CouchTrackerTests_Ugly.swift */,
-				646D8C2A1F4E2107009685E6 /* Info.plist */,
-			);
-			path = "CouchTrackerTests-Ugly";
-			sourceTree = "<group>";
-		};
 		647632301F44824900F277F1 = {
 			isa = PBXGroup;
 			children = (
 				6476323B1F44824900F277F1 /* CouchTracker */,
 				647632501F44824900F277F1 /* CouchTrackerTests */,
-				646D8C271F4E2107009685E6 /* CouchTrackerTests-Ugly */,
 				6476323A1F44824900F277F1 /* Products */,
 				35F4540E74D8632B2F76B8F1 /* Pods */,
 				31C11952FDC8E067FC72DB57 /* Frameworks */,
