@@ -12,6 +12,12 @@ the license agreement.
 
 final class ListMoviesModule: ListMoviesRouter {
 
+  private let trakt: TraktV2
+
+  init(trakt: TraktV2) {
+    self.trakt = trakt
+  }
+
   func loadView() -> ListMoviesView {
     let viewController = R.storyboard.listMovies().instantiateInitialViewController()
 
@@ -19,7 +25,7 @@ final class ListMoviesModule: ListMoviesRouter {
       fatalError("viewController should be an instance of ListMoviesViewController")
     }
 
-    let store = ListMoviesStore()
+    let store = ListMoviesStore(trakt: trakt)
 
     let interactor = ListMoviesInteractor(store: store)
 

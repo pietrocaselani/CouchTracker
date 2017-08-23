@@ -10,6 +10,8 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
+import Moya
+import ObjectMapper
 import XCTest
 
 @testable import CouchTracker
@@ -45,10 +47,7 @@ final class ListMoviesPresenterTest: XCTestCase {
   }
 
   func testShowsMovies() {
-    let movies = [
-      MovieEntity(identifier: "Movie1", title: "Movie1"),
-      MovieEntity(identifier: "Movie2", title: "Movie2")
-    ]
+    let movies = createMockMovies()
 
     let store = MoviesListMovieStoreMock(movies: movies)
     let interactor = ListMoviesInteractor(store: store)
@@ -58,15 +57,15 @@ final class ListMoviesPresenterTest: XCTestCase {
     presenter.viewDidLoad()
 
     let moviesViewModel = [
-      MovieViewModel(title: "Movie1"),
-      MovieViewModel(title: "Movie2")
+      MovieViewModel(title: "TRON: Legacy"),
+      MovieViewModel(title: "The Dark Knight")
     ]
 
     XCTAssertEqual(view.currentState, StateListMoviesViewMock.State.showingMovies(moviesViewModel))
   }
 
   func testNoMovies() {
-    let movies = [MovieEntity]()
+    let movies = [TrendingMovie]()
 
     let store = MoviesListMovieStoreMock(movies: movies)
     let interactor = ListMoviesInteractor(store: store)
@@ -76,6 +75,11 @@ final class ListMoviesPresenterTest: XCTestCase {
     presenter.viewDidLoad()
 
     XCTAssertEqual(view.currentState, StateListMoviesViewMock.State.showingNoMovies)
+  }
+
+  private func createMockMovies() -> [TrendingMovie] {
+    let jsonData = Movies.trending(page: 0, limit: 50, extended: .full).sampleData
+    return try! jsonData.mapArray(TrendingMovie.self)
   }
 
 }

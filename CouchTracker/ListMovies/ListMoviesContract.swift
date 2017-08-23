@@ -37,10 +37,12 @@ protocol ListMoviesInteractorInput: class {
 
   init(store: ListMoviesStoreInput)
 
-  func fetchMovies() -> Observable<[MovieEntity]>
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]>
+
 }
 
 protocol ListMoviesStoreInput: class {
 
-  func fetchMovies() -> Observable<[MovieEntity]>
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]>
+
 }

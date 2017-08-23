@@ -1,7 +1,7 @@
 /*
 Copyright 2017 ArcTouch LLC.
 All rights reserved.
-
+ 
 This file, its contents, concepts, methods, behavior, and operation
 (collectively the "Software") are protected by trade secret, patent,
 and copyright laws. The use of the Software is governed by a license
@@ -10,17 +10,14 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import RxSwift
+public enum Extended: String, Equatable {
+  case defaultMin = "min"
+  case full = "full"
+  case noSeasons = "noseasons"
+  case episodes = "episodes"
+  case fullEpisodes = "full,episodes"
 
-final class ListMoviesInteractor: ListMoviesInteractorInput {
-
-  private let store: ListMoviesStoreInput
-
-  init(store: ListMoviesStoreInput) {
-    self.store = store
-  }
-
-  func fetchMovies() -> Observable<[MovieEntity]> {
-    return store.fetchMovies()
+  public static func == (lhs: Extended, rhs: Extended) -> Bool {
+    return lhs.rawValue == rhs.rawValue
   }
 }

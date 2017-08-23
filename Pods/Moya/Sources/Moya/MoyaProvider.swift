@@ -25,14 +25,8 @@ public struct ProgressResponse {
     }
 }
 
-public protocol MoyaProviderType: class {
-    associatedtype Target: TargetType
-
-    func request(_ target: Target, callbackQueue: DispatchQueue?, progress: Moya.ProgressBlock?, completion: @escaping Moya.Completion) -> Cancellable
-}
-
 /// Request provider class. Requests should be made through this class only.
-open class MoyaProvider<Target: TargetType>: MoyaProviderType {
+open class MoyaProvider<Target: TargetType> {
 
     /// Closure that defines the endpoints for the provider.
     public typealias EndpointClosure = (Target) -> Endpoint<Target>
@@ -59,14 +53,10 @@ open class MoyaProvider<Target: TargetType>: MoyaProviderType {
 
     open internal(set) var inflightRequests: [Endpoint<Target>: [Moya.Completion]] = [:]
 
-    /// Propagated to Alamofire as callback queue. If nil - the Alamofire default (as of their API in 2017 - the main queue) will be used.
-    let callbackQueue: DispatchQueue?
-
     /// Initializes a provider.
     public init(endpointClosure: @escaping EndpointClosure = MoyaProvider.defaultEndpointMapping,
                 requestClosure: @escaping RequestClosure = MoyaProvider.defaultRequestMapping,
                 stubClosure: @escaping StubClosure = MoyaProvider.neverStub,
-                callbackQueue: DispatchQueue? = nil,
                 manager: Manager = MoyaProvider<Target>.defaultAlamofireManager(),
                 plugins: [PluginType] = [],
                 trackInflights: Bool = false) {
@@ -77,7 +67,6 @@ open class MoyaProvider<Target: TargetType>: MoyaProviderType {
         self.manager = manager
         self.plugins = plugins
         self.trackInflights = trackInflights
-        self.callbackQueue = callbackQueue
     }
 
     /// Returns an `Endpoint` based on the token, method, and parameters by invoking the `endpointClosure`.
@@ -87,36 +76,31 @@ open class MoyaProvider<Target: TargetType>: MoyaProviderType {
 
     /// Designated request-making method. Returns a `Cancellable` token to cancel the request later.
     @discardableResult
-    open func request(_ target: Target,
-                      callbackQueue: DispatchQueue? = .none,
-                      progress: ProgressBlock? = .none,
-                      completion: @escaping Completion) -> Cancellable {
+    open func request(_ target: Target, completion: @escaping Moya.Completion) -> Cancellable {
+        return self.request(target, queue: nil, completion: completion)
+    }
 
-        let callbackQueue = callbackQueue ?? self.callbackQueue
-        return requestNormal(target, callbackQueue: callbackQueue, progress: progress, completion: completion)
+    /// Designated request-making method with queue option. Returns a `Cancellable` token to cancel the request later.
+    @discardableResult
+    open func request(_ target: Target, queue: DispatchQueue?, progress: Moya.ProgressBlock? = nil, completion: @escaping Moya.Completion) -> Cancellable {
+        return requestNormal(target, queue: queue, progress: progress, completion: completion)
     }
 
     /// When overriding this method, take care to `notifyPluginsOfImpendingStub` and to perform the stub using the `createStubFunction` method.
     /// Note: this was previously in an extension, however it must be in the original class declaration to allow subclasses to override.
     @discardableResult
-    open func stubRequest(_ target: Target, request: URLRequest, callbackQueue: DispatchQueue?, completion: @escaping Moya.Completion, endpoint: Endpoint<Target>, stubBehavior: Moya.StubBehavior) -> CancellableToken {
-        let callbackQueue = callbackQueue ?? self.callbackQueue
+    open func stubRequest(_ target: Target, request: URLRequest, completion: @escaping Moya.Completion, endpoint: Endpoint<Target>, stubBehavior: Moya.StubBehavior) -> CancellableToken {
         let cancellableToken = CancellableToken { }
         notifyPluginsOfImpendingStub(for: request, target: target)
         let plugins = self.plugins
         let stub: () -> Void = createStubFunction(cancellableToken, forTarget: target, withCompletion: completion, endpoint: endpoint, plugins: plugins, request: request)
         switch stubBehavior {
         case .immediate:
-            switch callbackQueue {
-            case .none:
-                stub()
-            case .some(let callbackQueue):
-                callbackQueue.async(execute: stub)
-            }
+            stub()
         case .delayed(let delay):
             let killTimeOffset = Int64(CDouble(delay) * CDouble(NSEC_PER_SEC))
             let killTime = DispatchTime.now() + Double(killTimeOffset) / Double(NSEC_PER_SEC)
-            (callbackQueue ?? DispatchQueue.main).asyncAfter(deadline: killTime) {
+            DispatchQueue.main.asyncAfter(deadline: killTime) {
                 stub()
             }
         case .never:
@@ -166,15 +150,11 @@ public func convertResponseToResult(_ response: HTTPURLResponse?, request: URLRe
         case let (.some(response), data, .none):
             let response = Moya.Response(statusCode: response.statusCode, data: data ?? Data(), request: request, response: response)
             return .success(response)
-        case let (.some(response), _, .some(error)):
-            let response = Moya.Response(statusCode: response.statusCode, data: data ?? Data(), request: request, response: response)
-            let error = MoyaError.underlying(error, response)
-            return .failure(error)
         case let (_, _, .some(error)):
-            let error = MoyaError.underlying(error, nil)
+            let error = MoyaError.underlying(error)
             return .failure(error)
         default:
-            let error = MoyaError.underlying(NSError(domain: NSURLErrorDomain, code: NSURLErrorUnknown, userInfo: nil), nil)
+            let error = MoyaError.underlying(NSError(domain: NSURLErrorDomain, code: NSURLErrorUnknown, userInfo: nil))
             return .failure(error)
         }
 }

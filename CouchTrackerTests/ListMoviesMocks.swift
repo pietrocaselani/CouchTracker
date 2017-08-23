@@ -62,7 +62,7 @@ class EmptyListMoviesRouterMock: ListMoviesRouter {
 
 class EmptyListMoviesStoreMock: ListMoviesStoreInput {
 
-  func fetchMovies() -> Observable<[MovieEntity]> {
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
     return Observable.empty()
   }
 
@@ -76,21 +76,20 @@ class ErrorListMoviesStoreMock: ListMoviesStoreInput {
     self.error = error
   }
 
-  func fetchMovies() -> Observable<[MovieEntity]> {
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
     return Observable.error(error)
   }
-
 }
 
 class MoviesListMovieStoreMock: ListMoviesStoreInput {
 
-  private let movies: [MovieEntity]
+  private let movies: [TrendingMovie]
 
-  init(movies: [MovieEntity]) {
+  init(movies: [TrendingMovie]) {
     self.movies = movies
   }
 
-  func fetchMovies() -> Observable<[MovieEntity]> {
-    return Observable.just(movies)
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
+    return Observable.just(movies).take(limit)
   }
 }

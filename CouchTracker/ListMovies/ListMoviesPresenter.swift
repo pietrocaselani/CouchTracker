@@ -20,7 +20,9 @@ final class ListMoviesPresenter: ListMoviesPresenterOutput {
   private let interactor: ListMoviesInteractorInput
   private let disposeBag = DisposeBag()
 
-  private var movies = [MovieEntity]()
+  private var movies = [TrendingMovie]()
+
+  private var currentPage = 0
 
   init(view: ListMoviesView, router: ListMoviesRouter, interactor: ListMoviesInteractorInput) {
     self.view = view
@@ -29,7 +31,7 @@ final class ListMoviesPresenter: ListMoviesPresenterOutput {
   }
 
   func viewDidLoad() {
-    interactor.fetchMovies()
+    interactor.fetchMovies(page: currentPage, limit: 50)
         .do(onNext: { [unowned self] entities in
           self.movies = entities
         }).map { [unowned self] in self.transformToViewModels(entities: $0) }
@@ -39,29 +41,30 @@ final class ListMoviesPresenter: ListMoviesPresenterOutput {
             return
           }
 
-          if viewModels.count == 0 {
+          guard viewModels.count > 0 else {
             view.showEmptyView()
-          } else {
-            view.show(movies: viewModels)
+            return
           }
+
+          view.show(movies: viewModels)
         }, onError: { error in
           guard let view = self.view else {
             return
           }
 
-          if let moviesListError = error as? ListMoviesError {
-            view.show(error: moviesListError.message)
-          } else {
+          guard let moviesListError = error as? ListMoviesError else {
             view.show(error: error.localizedDescription)
+            return
           }
+
+          view.show(error: moviesListError.message)
         }, onCompleted: {
-          if self.movies.count == 0 {
-            self.view?.showEmptyView()
-          }
+          guard self.movies.count > 0 else { return }
+          self.view?.showEmptyView()
         }).disposed(by: disposeBag)
   }
 
-  func transformToViewModels(entities: [MovieEntity]) -> [MovieViewModel] {
-    return entities.map { MovieViewModel(title: $0.title) }
+  func transformToViewModels(entities: [TrendingMovie]) -> [MovieViewModel] {
+    return entities.map { MovieViewModel(title: $0.movie.title ?? "TBA") }
   }
 }
