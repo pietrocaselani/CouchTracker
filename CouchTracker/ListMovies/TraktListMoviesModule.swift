@@ -12,7 +12,7 @@ the license agreement.
 
 import UIKit
 
-final class ListMoviesModule: ListMoviesRouter {
+final class TraktListMoviesModule: ListMoviesRouter {
 
   private let trakt: TraktV2
 
