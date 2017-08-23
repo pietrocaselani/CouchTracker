@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		392D93DE5EDA7E2DB4E51639 /* ListMoviesPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9F7B00A175C2CF9D7AA9 /* ListMoviesPresenterTest.swift */; };
+		392D9584CCDA725450C73DB0 /* Trakt+APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D96C1A5EB37E009B666FF /* Trakt+APIProvider.swift */; };
+		392D958DB03FE621653C3325 /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D98A0A0AC9DCAF8065DCB /* APIProvider.swift */; };
 		392D9624527BC45E1E4DAF3D /* ListMoviesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9E0F550480FBC279C883 /* ListMoviesMocks.swift */; };
 		392D9633B6766B4443D60643 /* RxAsserts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9CCADDD8B9EF1D8D74F7 /* RxAsserts.swift */; };
 		6406BEAF1F4DB669004661C4 /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEAD1F4DB669004661C4 /* TrendingCell.swift */; };
@@ -46,7 +48,7 @@
 		64B03ECC1F4715AF009E37C9 /* TraktV2+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBE1F4715AF009E37C9 /* TraktV2+Endpoints.swift */; };
 		64B03ECD1F4715AF009E37C9 /* TraktV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBF1F4715AF009E37C9 /* TraktV2.swift */; };
 		64B03ED51F4715D2009E37C9 /* ListMoviesContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03ECF1F4715D2009E37C9 /* ListMoviesContract.swift */; };
-		64B03ED71F4715D2009E37C9 /* TraktListMoviesModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03ED11F4715D2009E37C9 /* TraktListMoviesModule.swift */; };
+		64B03ED71F4715D2009E37C9 /* ListMoviesModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03ED11F4715D2009E37C9 /* ListMoviesModule.swift */; };
 		64B03EDA1F4715D2009E37C9 /* ListMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03ED41F4715D2009E37C9 /* ListMoviesViewController.swift */; };
 		64B03EDC1F471BC1009E37C9 /* ListMovies.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B03EDB1F471BC1009E37C9 /* ListMovies.storyboard */; };
 		64B03EDF1F471C32009E37C9 /* MoyaFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EDE1F471C32009E37C9 /* MoyaFetcher.swift */; };
@@ -86,6 +88,8 @@
 /* Begin PBXFileReference section */
 		0FA2E782A9FF68C21C7B2774 /* Pods-CouchTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		272DF8EEDCE0F42BC47F222B /* Pods-CouchTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker.release.xcconfig"; sourceTree = "<group>"; };
+		392D96C1A5EB37E009B666FF /* Trakt+APIProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trakt+APIProvider.swift"; sourceTree = "<group>"; };
+		392D98A0A0AC9DCAF8065DCB /* APIProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIProvider.swift; sourceTree = "<group>"; };
 		392D9CCADDD8B9EF1D8D74F7 /* RxAsserts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxAsserts.swift; sourceTree = "<group>"; };
 		392D9E0F550480FBC279C883 /* ListMoviesMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListMoviesMocks.swift; sourceTree = "<group>"; };
 		392D9F7B00A175C2CF9D7AA9 /* ListMoviesPresenterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListMoviesPresenterTest.swift; sourceTree = "<group>"; };
@@ -124,7 +128,7 @@
 		64B03EBE1F4715AF009E37C9 /* TraktV2+Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TraktV2+Endpoints.swift"; sourceTree = "<group>"; };
 		64B03EBF1F4715AF009E37C9 /* TraktV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktV2.swift; sourceTree = "<group>"; };
 		64B03ECF1F4715D2009E37C9 /* ListMoviesContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListMoviesContract.swift; sourceTree = "<group>"; };
-		64B03ED11F4715D2009E37C9 /* TraktListMoviesModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktListMoviesModule.swift; sourceTree = "<group>"; };
+		64B03ED11F4715D2009E37C9 /* ListMoviesModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListMoviesModule.swift; sourceTree = "<group>"; };
 		64B03ED41F4715D2009E37C9 /* ListMoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListMoviesViewController.swift; sourceTree = "<group>"; };
 		64B03EDB1F471BC1009E37C9 /* ListMovies.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ListMovies.storyboard; sourceTree = "<group>"; };
 		64B03EDE1F471C32009E37C9 /* MoyaFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoyaFetcher.swift; sourceTree = "<group>"; };
@@ -217,6 +221,8 @@
 				64B03EAC1F4715AF009E37C9 /* Trakt */,
 				6406BEB41F4DB69C004661C4 /* UIColor+CouchTracker.swift */,
 				6406BEB51F4DB69C004661C4 /* UINavigationController+BaseView.swift */,
+				392D98A0A0AC9DCAF8065DCB /* APIProvider.swift */,
+				392D96C1A5EB37E009B666FF /* Trakt+APIProvider.swift */,
 			);
 			path = CouchTracker;
 			sourceTree = "<group>";
@@ -301,11 +307,11 @@
 				64B03ECF1F4715D2009E37C9 /* ListMoviesContract.swift */,
 				6486879D1F4A3B9C005A0BA8 /* ListMoviesError.swift */,
 				6486879E1F4A3B9C005A0BA8 /* ListMoviesInteractor.swift */,
-				64B03ED11F4715D2009E37C9 /* TraktListMoviesModule.swift */,
 				6486879F1F4A3B9C005A0BA8 /* ListMoviesPresenter.swift */,
 				648687A01F4A3B9C005A0BA8 /* ListMoviesStore.swift */,
 				64B03ED41F4715D2009E37C9 /* ListMoviesViewController.swift */,
 				648687A11F4A3B9C005A0BA8 /* MovieViewModel.swift */,
+				64B03ED11F4715D2009E37C9 /* ListMoviesModule.swift */,
 				6406BEAD1F4DB669004661C4 /* TrendingCell.swift */,
 				6406BEAE1F4DB669004661C4 /* TrendingViewModel.swift */,
 			);
@@ -619,7 +625,7 @@
 				64B03EE31F471D04009E37C9 /* Future+Rx.swift in Sources */,
 				64B03EDF1F471C32009E37C9 /* MoyaFetcher.swift in Sources */,
 				648687A41F4A3B9C005A0BA8 /* ListMoviesPresenter.swift in Sources */,
-				64B03ED71F4715D2009E37C9 /* TraktListMoviesModule.swift in Sources */,
+				64B03ED71F4715D2009E37C9 /* ListMoviesModule.swift in Sources */,
 				64B03EC41F4715AF009E37C9 /* Movie.swift in Sources */,
 				64B03EC01F4715AF009E37C9 /* Movies.swift in Sources */,
 				64B03EF11F472A5C009E37C9 /* Data+JSON.swift in Sources */,
@@ -634,6 +640,8 @@
 				6406BEB61F4DB69C004661C4 /* BaseView.swift in Sources */,
 				648687A51F4A3B9C005A0BA8 /* ListMoviesStore.swift in Sources */,
 				64B03EDA1F4715D2009E37C9 /* ListMoviesViewController.swift in Sources */,
+				392D958DB03FE621653C3325 /* APIProvider.swift in Sources */,
+				392D9584CCDA725450C73DB0 /* Trakt+APIProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,7 +18,6 @@ import XCTest
 
 final class ListMoviesPresenterTest: XCTestCase {
 
-  let router = EmptyListMoviesRouterMock()
   let view = StateListMoviesViewMock()
 
   override func setUp() {
@@ -28,7 +27,7 @@ final class ListMoviesPresenterTest: XCTestCase {
   func testShowsEmptyView() {
     let interactor = ListMoviesInteractor(store: EmptyListMoviesStoreMock())
 
-    let presenter = ListMoviesPresenter(view: view, router: router, interactor: interactor)
+    let presenter = ListMoviesPresenter(view: view, interactor: interactor)
 
     presenter.viewDidLoad()
 
@@ -39,7 +38,7 @@ final class ListMoviesPresenterTest: XCTestCase {
     let error = ListMoviesError.parseError("Invalid json")
     let interactor = ListMoviesInteractor(store: ErrorListMoviesStoreMock(error: error))
 
-    let presenter = ListMoviesPresenter(view: view, router: router, interactor: interactor)
+    let presenter = ListMoviesPresenter(view: view, interactor: interactor)
 
     presenter.viewDidLoad()
 
@@ -52,7 +51,7 @@ final class ListMoviesPresenterTest: XCTestCase {
     let store = MoviesListMovieStoreMock(movies: movies)
     let interactor = ListMoviesInteractor(store: store)
 
-    let presenter = ListMoviesPresenter(view: view, router: router, interactor: interactor)
+    let presenter = ListMoviesPresenter(view: view, interactor: interactor)
 
     presenter.viewDidLoad()
 
@@ -70,7 +69,7 @@ final class ListMoviesPresenterTest: XCTestCase {
     let store = MoviesListMovieStoreMock(movies: movies)
     let interactor = ListMoviesInteractor(store: store)
 
-    let presenter = ListMoviesPresenter(view: view, router: router, interactor: interactor)
+    let presenter = ListMoviesPresenter(view: view, interactor: interactor)
 
     presenter.viewDidLoad()
 
