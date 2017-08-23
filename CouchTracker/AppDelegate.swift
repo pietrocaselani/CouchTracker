@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   let trakt = TraktV2(clientId: "1aec4225ee175a6affce5ad374140c360fd5f0ab5113e6aa1c123bd4baeb082b")
 
-  private var listMoviesModule: ListMoviesModule!
+  private var listMoviesModule: TraktListMoviesModule!
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions
     launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().tintColor = UIColor.white
     UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.ctzircon]
 
-    listMoviesModule = ListMoviesModule(trakt: trakt)
+    listMoviesModule = TraktListMoviesModule(trakt: trakt)
     let view = listMoviesModule.loadView()
 
     guard let viewController = view as? UIViewController else {

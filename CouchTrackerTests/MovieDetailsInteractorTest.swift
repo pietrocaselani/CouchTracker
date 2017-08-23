@@ -26,7 +26,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     observer = scheduler.createObserver(Movie.self)
   }
 
-  func testMovieDetailsInteractor_fetchSuccess_butReceivesEmptyData() {
+  func testMovieDetailsInteractor_fetchSuccessWithEmptyData_andEmitsOnlyOnCompleted() {
     let movie = createMovieDetailsMock()
 
     let store = MovieDetailsStoreMock(movie: movie)
@@ -45,7 +45,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     XCTAssertEqual(observer.events, events)
   }
 
-  func testMovieDetailsInteractor_fetchSuccess_andReceivesMovieDetails() {
+  func testMovieDetailsInteractor_fetchSuccessDetails_andEmitsDetailsAndOnCompleted() {
     let movie = createMovieDetailsMock()
 
     let store = MovieDetailsStoreMock(movie: movie)
@@ -64,7 +64,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     XCTAssertEqual(observer.events, events)
   }
 
-  func testMoviesDetailsInteractor_receivesError() {
+  func testMoviesDetailsInteractor_fetchFailure_andEmitsOnlyOnError() {
     let connectionError = MovieDetailsError.noConnection("There is no connection active")
 
     let store = ErrorMovieDetailsStoreMock(error: connectionError)
