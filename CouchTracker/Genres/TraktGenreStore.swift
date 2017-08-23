@@ -35,7 +35,7 @@ final class TraktGenreStore: GenreStoreInput {
     return fetchGenres(mediaType: .shows)
   }
 
-  private func fetchGenres(mediaType: MediaType) -> Observable<[Genre]> {
+  private func fetchGenres(mediaType: GenreType) -> Observable<[Genre]> {
     return cache.get(.list(mediaType)).asObservable()
   }
 }

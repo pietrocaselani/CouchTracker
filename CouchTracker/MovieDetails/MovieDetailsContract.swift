@@ -39,11 +39,9 @@ protocol MovieDetailsInteractorInput: class {
   func fetchDetails(movieId: String) -> Observable<Movie>
 
   func fetchGenres() -> Observable<[Genre]>
-
 }
 
 protocol MovieDetailsStoreInput: class {
 
   func fetchDetails(movieId: String) -> Observable<Movie>
-
 }
