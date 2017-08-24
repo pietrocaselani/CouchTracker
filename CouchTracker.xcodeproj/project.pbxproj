@@ -516,6 +516,7 @@
 				TargetAttributes = {
 					646D8BEB1F4E1CA6009685E6 = {
 						DevelopmentTeam = TF8P7NNQ29;
+						LastSwiftMigration = 0900;
 					};
 					647632381F44824900F277F1 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -525,6 +526,7 @@
 					6476324C1F44824900F277F1 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = TF8P7NNQ29;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 646D8BEB1F4E1CA6009685E6;
 					};
