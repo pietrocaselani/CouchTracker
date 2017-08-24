@@ -22,5 +22,4 @@ extension Movies: StringConvertible {
       return "\(self.path)/\(movieId)-\(extended.rawValue)"
     }
   }
-
 }

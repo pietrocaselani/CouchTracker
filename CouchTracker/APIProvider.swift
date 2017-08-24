@@ -13,7 +13,5 @@ the license agreement.
 import Moya
 
 protocol APIProvider: class {
-
   var movies: RxMoyaProvider<Movies> { get }
-
 }

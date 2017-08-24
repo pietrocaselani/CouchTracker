@@ -21,7 +21,7 @@ final class ListMoviesStore: ListMoviesStoreLayer {
   init(apiProvider: APIProvider) {
     let moviesProvider = apiProvider.movies
 
-    self.cache = MemoryCacheLevel()
+    self.cache = MemoryCacheLevel<Movies, NSData>()
         .compose(MoyaFetcher(provider: moviesProvider))
   }
 
