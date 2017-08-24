@@ -19,11 +19,13 @@ final class MovieDetailsPresenter: MovieDetailsPresenterLayer {
 
   private weak var view: MovieDetailsView?
   private let interactor: MovieDetailsInteractorLayer
+  private let router: MovieDetailsRouter
   private let movieId: String
 
-  init(view: MovieDetailsView, interactor: MovieDetailsInteractorLayer, movieId: String) {
+  init(view: MovieDetailsView, interactor: MovieDetailsInteractorLayer, router: MovieDetailsRouter, movieId: String) {
     self.view = view
     self.interactor = interactor
+    self.router = router
     self.movieId = movieId
   }
 
@@ -43,14 +45,10 @@ final class MovieDetailsPresenter: MovieDetailsPresenterLayer {
         .subscribe(onNext: { [unowned self] viewModel in
           self.view?.show(details: viewModel)
         }, onError: { [unowned self] error in
-          guard let view = self.view else {
-            return
-          }
-
           if let detailsError = error as? MovieDetailsError {
-            view.show(error: detailsError.message)
+            self.router.showError(message: detailsError.message)
           } else {
-            view.show(error: error.localizedDescription)
+            self.router.showError(message: error.localizedDescription)
           }
         }).disposed(by: disposeBag)
   }

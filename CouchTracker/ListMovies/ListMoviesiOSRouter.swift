@@ -14,21 +14,30 @@ import UIKit
 
 final class ListMoviesiOSRouter: ListMoviesRouter {
 
-  private weak var navigationController: UINavigationController?
+  private weak var viewController: UIViewController?
   private let apiProvider: APIProvider
 
-  init(navigationController: UINavigationController, apiProvider: APIProvider) {
-    self.navigationController = navigationController
+  init(viewController: UIViewController, apiProvider: APIProvider) {
+    self.viewController = viewController
     self.apiProvider = apiProvider
   }
 
   func showDetails(of movie: TrendingMovie) {
+    guard let navigationController = viewController?.navigationController else { return }
+
     let movieId = movie.movie.ids.slug
     guard let view =
       MovieDetailsModule.setupModule(apiProvider: apiProvider, movieId: movieId) as? UIViewController else {
       fatalError("view should be an instance of UIViewController")
     }
 
-    navigationController?.pushViewController(view, animated: true)
+    navigationController.pushViewController(view, animated: true)
+  }
+
+  func showError(message: String) {
+    guard let viewController = viewController else { return }
+
+    let errorAlert = UIAlertController.createErrorAlert(message: message)
+    viewController.present(errorAlert, animated: true)
   }
 }

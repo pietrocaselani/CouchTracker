@@ -25,7 +25,9 @@ final class MovieDetailsModule {
       fatalError("viewController should be an instance of MovieDetailsView")
     }
 
-    let presenter = MovieDetailsPresenter(view: view, interactor: interactor, movieId: movieId)
+    let router = MovieDetailsiOSRouter(viewController: view)
+
+    let presenter = MovieDetailsPresenter(view: view, interactor: interactor, router: router, movieId: movieId)
 
     view.presenter = presenter
 

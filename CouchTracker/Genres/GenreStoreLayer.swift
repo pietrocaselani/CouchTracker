@@ -13,9 +13,6 @@ the license agreement.
 import RxSwift
 
 protocol GenreStoreLayer {
-
   func fetchMoviesGenres() -> Observable<[Genre]>
-
   func fetchShowsGenres() -> Observable<[Genre]>
-
 }

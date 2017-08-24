@@ -7,7 +7,6 @@
 //
 
 extension Movies: Hashable {
-
   public var hashValue: Int {
     switch self {
     case .trending(let page, let limit, let extended):
@@ -20,5 +19,4 @@ extension Movies: Hashable {
   public static func == (lhs: Movies, rhs: Movies) -> Bool {
     return lhs.hashValue == rhs.hashValue
   }
-
 }

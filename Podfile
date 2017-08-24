@@ -5,7 +5,7 @@ def common_pods
 end
 
 def ios_pods
-  commom_pods
+  common_pods
   pod 'R.swift', '3.3.0'
   pod 'Carlos', '0.9.1'
 end
@@ -25,7 +25,7 @@ target 'CouchTrackerFastTests' do
   use_frameworks!
   inhibit_all_warnings!
   
-  commom_pods
+  common_pods
   tests_shared_pods
 end
 

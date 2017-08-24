@@ -10,12 +10,10 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-extension Genres: Hashable {
-  public var hashValue: Int {
-    return self.path.hashValue
-  }
+import Foundation
 
-  public static func == (lhs: Genres, rhs: Genres) -> Bool {
-    return lhs.path == rhs.path
+extension String: Localizable {
+  var localized: String {
+    return NSLocalizedString(self, comment: "")
   }
 }

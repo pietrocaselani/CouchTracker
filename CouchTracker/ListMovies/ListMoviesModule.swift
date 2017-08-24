@@ -28,7 +28,7 @@ final class ListMoviesModule {
 
     let store = ListMoviesStore(apiProvider: apiProvider)
     let interactor = ListMoviesInteractor(store: store)
-    let router = ListMoviesiOSRouter(navigationController: navigationController, apiProvider: apiProvider)
+    let router = ListMoviesiOSRouter(viewController: navigationController, apiProvider: apiProvider)
     let presenter = ListMoviesPresenter(view: view, interactor: interactor, router: router)
 
     view.presenter = presenter

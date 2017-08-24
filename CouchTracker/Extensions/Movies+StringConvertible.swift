@@ -13,7 +13,6 @@ the license agreement.
 import Carlos
 
 extension Movies: StringConvertible {
-
   public func toString() -> String {
     switch self {
     case .trending(let page, let limit, _):

@@ -14,6 +14,7 @@ import RxSwift
 
 protocol ListMoviesRouter: class {
   func showDetails(of movie: TrendingMovie)
+  func showError(message: String)
 }
 
 protocol ListMoviesPresenterLayer: class {
@@ -30,7 +31,6 @@ protocol ListMoviesView: BaseView {
 
   func showEmptyView()
   func show(movies: [MovieViewModel])
-  func show(error: String)
 }
 
 protocol ListMoviesInteractorLayer: class {

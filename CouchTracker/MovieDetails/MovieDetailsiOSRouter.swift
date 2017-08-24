@@ -10,12 +10,20 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-extension Genres: Hashable {
-  public var hashValue: Int {
-    return self.path.hashValue
+import UIKit
+
+final class MovieDetailsiOSRouter: MovieDetailsRouter {
+
+  private weak var viewController: UIViewController?
+
+  init(viewController: UIViewController) {
+    self.viewController = viewController
   }
 
-  public static func == (lhs: Genres, rhs: Genres) -> Bool {
-    return lhs.path == rhs.path
+  func showError(message: String) {
+    guard let viewController = viewController else { return }
+
+    let errorAlert = UIAlertController.createErrorAlert(message: message)
+    viewController.present(errorAlert, animated: true)
   }
 }

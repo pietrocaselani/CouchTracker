@@ -12,9 +12,13 @@
 
 import RxSwift
 
+protocol MovieDetailsRouter: class {
+  func showError(message: String)
+}
+
 protocol MovieDetailsPresenterLayer: class {
 
-  init(view: MovieDetailsView, interactor: MovieDetailsInteractorLayer, movieId: String)
+  init(view: MovieDetailsView, interactor: MovieDetailsInteractorLayer, router: MovieDetailsRouter, movieId: String)
 
   func viewDidLoad()
 }
@@ -24,7 +28,6 @@ protocol MovieDetailsView: BaseView {
   var presenter: MovieDetailsPresenterLayer! { get set }
 
   func show(details: MovieDetailsViewModel)
-  func show(error: String)
 }
 
 protocol MovieDetailsInteractorLayer: class {
