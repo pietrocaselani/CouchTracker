@@ -12,31 +12,31 @@ the license agreement.
 
 import RxSwift
 
-protocol ListMoviesPresenterOutput: class {
+protocol ListMoviesPresenterLayer: class {
 
-  init(view: ListMoviesView, interactor: ListMoviesInteractorInput)
+  init(view: ListMoviesView, interactor: ListMoviesInteractorLayer)
 
   func viewDidLoad()
 }
 
 protocol ListMoviesView: BaseView {
 
-  var presenter: ListMoviesPresenterOutput! { get set }
+  var presenter: ListMoviesPresenterLayer! { get set }
 
   func showEmptyView()
   func show(movies: [MovieViewModel])
   func show(error: String)
 }
 
-protocol ListMoviesInteractorInput: class {
+protocol ListMoviesInteractorLayer: class {
 
-  init(store: ListMoviesStoreInput)
+  init(store: ListMoviesStoreLayer)
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]>
 
 }
 
-protocol ListMoviesStoreInput: class {
+protocol ListMoviesStoreLayer: class {
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]>
 

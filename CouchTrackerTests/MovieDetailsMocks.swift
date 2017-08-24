@@ -20,7 +20,7 @@ final class MovieDetailsViewMock: MovieDetailsView {
   var receivedMovieDetails: MovieDetailsViewModel?
   var methodShowEmptyViewCalled = false
 
-  var presenter: MovieDetailsPresenterOutput!
+  var presenter: MovieDetailsPresenterLayer!
 
   func showEmptyView() {
     methodShowEmptyViewCalled = true
@@ -36,7 +36,7 @@ final class MovieDetailsViewMock: MovieDetailsView {
 
 }
 
-final class ErrorMovieDetailsStoreMock: MovieDetailsStoreInput {
+final class ErrorMovieDetailsStoreMock: MovieDetailsStoreLayer {
 
   private let error: MovieDetailsError
 
@@ -50,7 +50,7 @@ final class ErrorMovieDetailsStoreMock: MovieDetailsStoreInput {
 
 }
 
-final class MovieDetailsStoreMock: MovieDetailsStoreInput {
+final class MovieDetailsStoreMock: MovieDetailsStoreLayer {
 
   private let movie: Movie
 

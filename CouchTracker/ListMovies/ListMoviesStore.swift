@@ -14,7 +14,7 @@ import Carlos
 import Moya
 import RxSwift
 
-final class ListMoviesStore: ListMoviesStoreInput {
+final class ListMoviesStore: ListMoviesStoreLayer {
 
   private let cache: BasicCache<Movies, NSData>
 

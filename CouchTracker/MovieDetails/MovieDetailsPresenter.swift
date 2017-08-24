@@ -13,15 +13,15 @@ the license agreement.
 import RxSwift
 import Foundation
 
-final class MovieDetailsPresenter: MovieDetailsPresenterOutput {
+final class MovieDetailsPresenter: MovieDetailsPresenterLayer {
 
   private let disposeBag = DisposeBag()
 
   private weak var view: MovieDetailsView?
-  private let interactor: MovieDetailsInteractorInput
+  private let interactor: MovieDetailsInteractorLayer
   private let movieId: String
 
-  init(view: MovieDetailsView, interactor: MovieDetailsInteractorInput, movieId: String) {
+  init(view: MovieDetailsView, interactor: MovieDetailsInteractorLayer, movieId: String) {
     self.view = view
     self.interactor = interactor
     self.movieId = movieId

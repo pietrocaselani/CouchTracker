@@ -12,11 +12,11 @@ the license agreement.
 
 import RxSwift
 
-final class MovieDetailsInteractor: MovieDetailsInteractorInput {
+final class MovieDetailsInteractor: MovieDetailsInteractorLayer {
 
-  private let store: MovieDetailsStoreInput
+  private let store: MovieDetailsStoreLayer
 
-  init(store: MovieDetailsStoreInput) {
+  init(store: MovieDetailsStoreLayer) {
     self.store = store
   }
 

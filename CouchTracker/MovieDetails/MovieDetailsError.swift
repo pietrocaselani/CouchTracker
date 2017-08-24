@@ -25,5 +25,4 @@ enum MovieDetailsError: Error, Equatable {
   static func == (lhs: MovieDetailsError, rhs: MovieDetailsError) -> Bool {
     return lhs.message == rhs.message
   }
-
 }

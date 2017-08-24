@@ -16,7 +16,7 @@ final class ListMoviesViewController: UIViewController, ListMoviesView {
 
   private typealias TrendingCellFactory = SimpleCollectionViewDataSource<TrendingViewModel>.CellFactory
 
-  var presenter: ListMoviesPresenterOutput! = nil
+  var presenter: ListMoviesPresenterLayer! = nil
 
   private var dataSource: SimpleCollectionViewDataSource<TrendingViewModel>!
 

@@ -14,7 +14,7 @@ import Carlos
 import Moya
 import RxSwift
 
-final class MovieDetailsStore: MovieDetailsStoreInput {
+final class MovieDetailsStore: MovieDetailsStoreLayer {
 
   private let moviesProvider: RxMoyaProvider<Movies>
   private let cache: BasicCache<Movies, NSData>
@@ -28,7 +28,7 @@ final class MovieDetailsStore: MovieDetailsStoreInput {
 
   func fetchDetails(movieId: String) -> Observable<Movie> {
     return cache.get(.summary(movieId: movieId, extended: .full))
-    .asObservable()
-    .mapObject(Movie.self)
+        .asObservable()
+        .mapObject(Movie.self)
   }
 }

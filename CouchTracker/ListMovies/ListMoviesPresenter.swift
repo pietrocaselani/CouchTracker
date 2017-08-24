@@ -12,18 +12,18 @@ the license agreement.
 
 import RxSwift
 
-final class ListMoviesPresenter: ListMoviesPresenterOutput {
+final class ListMoviesPresenter: ListMoviesPresenterLayer {
 
   private weak var view: ListMoviesView?
 
-  private let interactor: ListMoviesInteractorInput
+  private let interactor: ListMoviesInteractorLayer
   private let disposeBag = DisposeBag()
 
   private var movies = [TrendingMovie]()
 
   private var currentPage = 0
 
-  init(view: ListMoviesView, interactor: ListMoviesInteractorInput) {
+  init(view: ListMoviesView, interactor: ListMoviesInteractorLayer) {
     self.view = view
     self.interactor = interactor
   }
