@@ -28,8 +28,6 @@ final class MovieDetailsPresenter: MovieDetailsPresenterLayer {
   }
 
   func viewDidLoad() {
-
-
     interactor.fetchDetails(movieId: movieId)
         .map { [unowned self] in
           return self.mapToViewModel($0)
