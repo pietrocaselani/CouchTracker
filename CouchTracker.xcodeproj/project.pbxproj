@@ -11,6 +11,7 @@
 		392D93DE5EDA7E2DB4E51639 /* ListMoviesPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9F7B00A175C2CF9D7AA9 /* ListMoviesPresenterTest.swift */; };
 		392D9624527BC45E1E4DAF3D /* ListMoviesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9E0F550480FBC279C883 /* ListMoviesMocks.swift */; };
 		392D9633B6766B4443D60643 /* RxAsserts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9CCADDD8B9EF1D8D74F7 /* RxAsserts.swift */; };
+		5AFB185485EB040E4F014E77 /* Pods_CouchTrackerFastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 939B7E4F3BDEEABB056F9AEE /* Pods_CouchTrackerFastTests.framework */; };
 		6406BEAF1F4DB669004661C4 /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEAD1F4DB669004661C4 /* TrendingCell.swift */; };
 		6406BEB01F4DB669004661C4 /* TrendingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEAE1F4DB669004661C4 /* TrendingViewModel.swift */; };
 		6406BEB11F4DB675004661C4 /* TrendingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEAE1F4DB669004661C4 /* TrendingViewModel.swift */; };
@@ -171,6 +172,46 @@
 		64B1CCC71F4F589F002A9FFD /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC6D1F4F5592002A9FFD /* APIProvider.swift */; };
 		64B1CCC81F4F589F002A9FFD /* GenreStoreLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC731F4F55A8002A9FFD /* GenreStoreLayer.swift */; };
 		64B1CCC91F4F58BA002A9FFD /* Date+TraktDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC701F4F559F002A9FFD /* Date+TraktDateFormatter.swift */; };
+		64BE62F61F4F5C20002E55EA /* GenreStoreMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEEC1F4DC372004661C4 /* GenreStoreMock.swift */; };
+		64BE62F71F4F5C20002E55EA /* ListMoviesInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6455BA781F45BE49000660C6 /* ListMoviesInteractorTest.swift */; };
+		64BE62F81F4F5C20002E55EA /* ListMoviesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9E0F550480FBC279C883 /* ListMoviesMocks.swift */; };
+		64BE62F91F4F5C20002E55EA /* ListMoviesPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9F7B00A175C2CF9D7AA9 /* ListMoviesPresenterTest.swift */; };
+		64BE62FA1F4F5C20002E55EA /* MovieDetailsInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BECB1F4DBF75004661C4 /* MovieDetailsInteractorTest.swift */; };
+		64BE62FB1F4F5C20002E55EA /* MovieDetailsMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BECC1F4DBF75004661C4 /* MovieDetailsMocks.swift */; };
+		64BE62FC1F4F5C20002E55EA /* MovieDetailsPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BECD1F4DBF75004661C4 /* MovieDetailsPresenterTest.swift */; };
+		64BE62FD1F4F5C20002E55EA /* RxAsserts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9CCADDD8B9EF1D8D74F7 /* RxAsserts.swift */; };
+		64BE62FE1F4F5C3B002E55EA /* ListMoviesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486879F1F4A3B9C005A0BA8 /* ListMoviesPresenter.swift */; };
+		64BE62FF1F4F5C5F002E55EA /* ListMoviesContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03ECF1F4715D2009E37C9 /* ListMoviesContract.swift */; };
+		64BE63001F4F5C5F002E55EA /* ListMoviesError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486879D1F4A3B9C005A0BA8 /* ListMoviesError.swift */; };
+		64BE63011F4F5C5F002E55EA /* ListMoviesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486879E1F4A3B9C005A0BA8 /* ListMoviesInteractor.swift */; };
+		64BE63021F4F5C5F002E55EA /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648687A11F4A3B9C005A0BA8 /* MovieViewModel.swift */; };
+		64BE63031F4F5C5F002E55EA /* TrendingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEAE1F4DB669004661C4 /* TrendingViewModel.swift */; };
+		64BE63041F4F5C5F002E55EA /* MovieDetailsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEBC1F4DBEFA004661C4 /* MovieDetailsContract.swift */; };
+		64BE63051F4F5C5F002E55EA /* MovieDetailsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEBD1F4DBEFA004661C4 /* MovieDetailsError.swift */; };
+		64BE63061F4F5C5F002E55EA /* MovieDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEBE1F4DBEFA004661C4 /* MovieDetailsInteractor.swift */; };
+		64BE63071F4F5C5F002E55EA /* MovieDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEBF1F4DBEFA004661C4 /* MovieDetailsPresenter.swift */; };
+		64BE63081F4F5C5F002E55EA /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEC11F4DBEFA004661C4 /* MovieDetailsViewModel.swift */; };
+		64BE63091F4F5C5F002E55EA /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEF71F4DC3C7004661C4 /* Genres.swift */; };
+		64BE630A1F4F5C5F002E55EA /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EAE1F4715AF009E37C9 /* Movies.swift */; };
+		64BE630B1F4F5C72002E55EA /* StandardMediaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EB11F4715AF009E37C9 /* StandardMediaEntity.swift */; };
+		64BE630C1F4F5C72002E55EA /* BaseIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EB21F4715AF009E37C9 /* BaseIds.swift */; };
+		64BE630D1F4F5C72002E55EA /* BaseTrendingEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EB31F4715AF009E37C9 /* BaseTrendingEntity.swift */; };
+		64BE630E1F4F5C72002E55EA /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEF11F4DC3AB004661C4 /* Genre.swift */; };
+		64BE630F1F4F5C72002E55EA /* MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEF21F4DC3AB004661C4 /* MediaType.swift */; };
+		64BE63101F4F5C72002E55EA /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EB51F4715AF009E37C9 /* Movie.swift */; };
+		64BE63111F4F5C72002E55EA /* MovieIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EB61F4715AF009E37C9 /* MovieIds.swift */; };
+		64BE63121F4F5C72002E55EA /* Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EB81F4715AF009E37C9 /* Extended.swift */; };
+		64BE63131F4F5C72002E55EA /* TrendingMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EB91F4715AF009E37C9 /* TrendingMovie.swift */; };
+		64BE63141F4F5C72002E55EA /* TraktDateTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBB1F4715AF009E37C9 /* TraktDateTransformer.swift */; };
+		64BE63151F4F5C8E002E55EA /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC6D1F4F5592002A9FFD /* APIProvider.swift */; };
+		64BE63181F4F5E00002E55EA /* TraktType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBC1F4715AF009E37C9 /* TraktType.swift */; };
+		64BE63191F4F5E04002E55EA /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEB21F4DB69C004661C4 /* BaseView.swift */; };
+		64BE631A1F4F5E43002E55EA /* Date+TraktDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC701F4F559F002A9FFD /* Date+TraktDateFormatter.swift */; };
+		64BE631B1F4F5E43002E55EA /* GenreStoreLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC731F4F55A8002A9FFD /* GenreStoreLayer.swift */; };
+		64BE631C1F4F5E43002E55EA /* String+Enconding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBA1F4715AF009E37C9 /* String+Enconding.swift */; };
+		64BE631D1F4F5E43002E55EA /* TraktV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBF1F4715AF009E37C9 /* TraktV2.swift */; };
+		64BE631E1F4F5E50002E55EA /* Data+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EF01F472A5C009E37C9 /* Data+JSON.swift */; };
+		64BE631F1F4F5E67002E55EA /* TraktV2+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBD1F4715AF009E37C9 /* TraktV2+Constants.swift */; };
 		64D2FFDA1F44DFEA009E9ED3 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D2FFD91F44DFEA009E9ED3 /* R.generated.swift */; };
 		697C56830BC1531EA1BD9DDB /* Pods_CouchTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847EA74DA5621E8BC2C9D97D /* Pods_CouchTrackerTests.framework */; };
 		F23089BF675566CBB1950BC8 /* Pods_CouchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FA5E5D147F9088F5D88235F /* Pods_CouchTracker.framework */; };
@@ -265,13 +306,19 @@
 		64B1CC761F4F55B0002A9FFD /* ListMoviesiOSRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListMoviesiOSRouter.swift; sourceTree = "<group>"; };
 		64B1CCC21F4F560E002A9FFD /* CouchTrackerUgly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CouchTrackerUgly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B1CCC41F4F5649002A9FFD /* CouchTracker-Ugly-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CouchTracker-Ugly-Info.plist"; sourceTree = SOURCE_ROOT; };
+		64B1CCCE1F4F597D002A9FFD /* CouchTrackerFastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CouchTrackerFastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		64B1CCD21F4F597D002A9FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64BE63161F4F5CB5002E55EA /* Moya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Moya.framework; path = "../../../../Library/Developer/Xcode/DerivedData/CouchTracker-cnszmjsjlweupdapdziltlacodhy/Build/Products/Debug-iphoneos/Moya/Moya.framework"; sourceTree = "<group>"; };
 		64D2FFD91F44DFEA009E9ED3 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		7D22040F8C3128B9E69F0873 /* Pods-CouchTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		847EA74DA5621E8BC2C9D97D /* Pods_CouchTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		939B7E4F3BDEEABB056F9AEE /* Pods_CouchTrackerFastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerFastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1928DD97DF5EC94CEB6E55D /* Pods-CouchTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker.release.xcconfig"; sourceTree = "<group>"; };
+		D67E1A3BC6DA1CF83894528D /* Pods-CouchTrackerFastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerFastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerFastTests/Pods-CouchTrackerFastTests.release.xcconfig"; sourceTree = "<group>"; };
 		D98956F891B4A93C32DB6F21 /* Pods-CouchTrackerUgly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerUgly.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerUgly/Pods-CouchTrackerUgly.debug.xcconfig"; sourceTree = "<group>"; };
 		E0E15B46F23414FFD31B0507 /* Pods-CouchTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerTests/Pods-CouchTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EDDD592B188BF69D05973F6E /* Pods-CouchTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerTests/Pods-CouchTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
+		F784A204EA64B9FADB2C5649 /* Pods-CouchTrackerFastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerFastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerFastTests/Pods-CouchTrackerFastTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,16 +348,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		64B1CCCB1F4F597D002A9FFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5AFB185485EB040E4F014E77 /* Pods_CouchTrackerFastTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		31C11952FDC8E067FC72DB57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64BE63161F4F5CB5002E55EA /* Moya.framework */,
 				64B03EFA1F473038009E37C9 /* Alamofire.framework */,
 				5FA5E5D147F9088F5D88235F /* Pods_CouchTracker.framework */,
 				847EA74DA5621E8BC2C9D97D /* Pods_CouchTrackerTests.framework */,
 				3B3EB9009A3B523D8632A924 /* Pods_CouchTrackerUgly.framework */,
+				939B7E4F3BDEEABB056F9AEE /* Pods_CouchTrackerFastTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -324,6 +381,8 @@
 				D1928DD97DF5EC94CEB6E55D /* Pods-CouchTracker.release.xcconfig */,
 				D98956F891B4A93C32DB6F21 /* Pods-CouchTrackerUgly.debug.xcconfig */,
 				21101C0B2363E828A0DA0151 /* Pods-CouchTrackerUgly.release.xcconfig */,
+				F784A204EA64B9FADB2C5649 /* Pods-CouchTrackerFastTests.debug.xcconfig */,
+				D67E1A3BC6DA1CF83894528D /* Pods-CouchTrackerFastTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -373,6 +432,7 @@
 			children = (
 				6476323B1F44824900F277F1 /* CouchTracker */,
 				647632501F44824900F277F1 /* CouchTrackerTests */,
+				64B1CCCF1F4F597D002A9FFD /* CouchTrackerFastTests */,
 				6476323A1F44824900F277F1 /* Products */,
 				35F4540E74D8632B2F76B8F1 /* Pods */,
 				31C11952FDC8E067FC72DB57 /* Frameworks */,
@@ -388,6 +448,7 @@
 				647632391F44824900F277F1 /* CouchTracker.app */,
 				6476324D1F44824900F277F1 /* CouchTrackerTests.xctest */,
 				64B1CCC21F4F560E002A9FFD /* CouchTrackerUgly.app */,
+				64B1CCCE1F4F597D002A9FFD /* CouchTrackerFastTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -525,6 +586,14 @@
 			path = Carlos;
 			sourceTree = "<group>";
 		};
+		64B1CCCF1F4F597D002A9FFD /* CouchTrackerFastTests */ = {
+			isa = PBXGroup;
+			children = (
+				64B1CCD21F4F597D002A9FFD /* Info.plist */,
+			);
+			path = CouchTrackerFastTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -592,13 +661,33 @@
 			productReference = 64B1CCC21F4F560E002A9FFD /* CouchTrackerUgly.app */;
 			productType = "com.apple.product-type.application";
 		};
+		64B1CCCD1F4F597D002A9FFD /* CouchTrackerFastTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64B1CCD31F4F597D002A9FFD /* Build configuration list for PBXNativeTarget "CouchTrackerFastTests" */;
+			buildPhases = (
+				E83747C01B067E55A7A850C9 /* [CP] Check Pods Manifest.lock */,
+				64B1CCCA1F4F597D002A9FFD /* Sources */,
+				64B1CCCB1F4F597D002A9FFD /* Frameworks */,
+				64B1CCCC1F4F597D002A9FFD /* Resources */,
+				F483F689627BAF70907ABE73 /* [CP] Embed Pods Frameworks */,
+				25E414564D68C579BC824989 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CouchTrackerFastTests;
+			productName = CouchTrackerFastTests;
+			productReference = 64B1CCCE1F4F597D002A9FFD /* CouchTrackerFastTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		647632311F44824900F277F1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "ArcTouch LLC";
 				TargetAttributes = {
@@ -611,9 +700,12 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = TF8P7NNQ29;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 64B1CC791F4F560E002A9FFD;
 					};
 					64B1CC791F4F560E002A9FFD = {
+						DevelopmentTeam = TF8P7NNQ29;
+					};
+					64B1CCCD1F4F597D002A9FFD = {
+						CreatedOnToolsVersion = 9.0;
 						DevelopmentTeam = TF8P7NNQ29;
 					};
 				};
@@ -634,6 +726,7 @@
 				647632381F44824900F277F1 /* CouchTracker */,
 				6476324C1F44824900F277F1 /* CouchTrackerTests */,
 				64B1CC791F4F560E002A9FFD /* CouchTrackerUgly */,
+				64B1CCCD1F4F597D002A9FFD /* CouchTrackerFastTests */,
 			);
 		};
 /* End PBXProject section */
@@ -668,6 +761,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		64B1CCCC1F4F597D002A9FFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -678,8 +778,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerTests/Pods-CouchTrackerTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest-iOS/RxTest.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -706,6 +806,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		25E414564D68C579BC824989 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerFastTests/Pods-CouchTrackerFastTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		32E18F0565B0545DF3C33B76 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -713,15 +828,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerUgly/Pods-CouchTrackerUgly-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Carlos/Carlos.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya-ObjectMapper/Moya_ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya-iOS/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya-ObjectMapper-iOS/Moya_ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper-iOS/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PiedPiper/PiedPiper.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -804,15 +919,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Carlos/Carlos.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya-ObjectMapper/Moya_ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya-iOS/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya-ObjectMapper-iOS/Moya_ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper-iOS/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PiedPiper/PiedPiper.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -898,6 +1013,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E83747C01B067E55A7A850C9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CouchTrackerFastTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F483F689627BAF70907ABE73 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerFastTests/Pods-CouchTrackerFastTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya-macOS/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya-ObjectMapper-macOS/Moya_ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper-macOS/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Result-macOS/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-macOS/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest-macOS/RxTest.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerFastTests/Pods-CouchTrackerFastTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1079,6 +1242,53 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		64B1CCCA1F4F597D002A9FFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64BE631F1F4F5E67002E55EA /* TraktV2+Constants.swift in Sources */,
+				64BE631E1F4F5E50002E55EA /* Data+JSON.swift in Sources */,
+				64BE631A1F4F5E43002E55EA /* Date+TraktDateFormatter.swift in Sources */,
+				64BE631B1F4F5E43002E55EA /* GenreStoreLayer.swift in Sources */,
+				64BE631C1F4F5E43002E55EA /* String+Enconding.swift in Sources */,
+				64BE631D1F4F5E43002E55EA /* TraktV2.swift in Sources */,
+				64BE63191F4F5E04002E55EA /* BaseView.swift in Sources */,
+				64BE63181F4F5E00002E55EA /* TraktType.swift in Sources */,
+				64BE63151F4F5C8E002E55EA /* APIProvider.swift in Sources */,
+				64BE630B1F4F5C72002E55EA /* StandardMediaEntity.swift in Sources */,
+				64BE630C1F4F5C72002E55EA /* BaseIds.swift in Sources */,
+				64BE630D1F4F5C72002E55EA /* BaseTrendingEntity.swift in Sources */,
+				64BE630E1F4F5C72002E55EA /* Genre.swift in Sources */,
+				64BE630F1F4F5C72002E55EA /* MediaType.swift in Sources */,
+				64BE63101F4F5C72002E55EA /* Movie.swift in Sources */,
+				64BE63111F4F5C72002E55EA /* MovieIds.swift in Sources */,
+				64BE63121F4F5C72002E55EA /* Extended.swift in Sources */,
+				64BE63131F4F5C72002E55EA /* TrendingMovie.swift in Sources */,
+				64BE63141F4F5C72002E55EA /* TraktDateTransformer.swift in Sources */,
+				64BE62FF1F4F5C5F002E55EA /* ListMoviesContract.swift in Sources */,
+				64BE63001F4F5C5F002E55EA /* ListMoviesError.swift in Sources */,
+				64BE63011F4F5C5F002E55EA /* ListMoviesInteractor.swift in Sources */,
+				64BE63021F4F5C5F002E55EA /* MovieViewModel.swift in Sources */,
+				64BE63031F4F5C5F002E55EA /* TrendingViewModel.swift in Sources */,
+				64BE63041F4F5C5F002E55EA /* MovieDetailsContract.swift in Sources */,
+				64BE63051F4F5C5F002E55EA /* MovieDetailsError.swift in Sources */,
+				64BE63061F4F5C5F002E55EA /* MovieDetailsInteractor.swift in Sources */,
+				64BE63071F4F5C5F002E55EA /* MovieDetailsPresenter.swift in Sources */,
+				64BE63081F4F5C5F002E55EA /* MovieDetailsViewModel.swift in Sources */,
+				64BE63091F4F5C5F002E55EA /* Genres.swift in Sources */,
+				64BE630A1F4F5C5F002E55EA /* Movies.swift in Sources */,
+				64BE62FE1F4F5C3B002E55EA /* ListMoviesPresenter.swift in Sources */,
+				64BE62F61F4F5C20002E55EA /* GenreStoreMock.swift in Sources */,
+				64BE62F71F4F5C20002E55EA /* ListMoviesInteractorTest.swift in Sources */,
+				64BE62F81F4F5C20002E55EA /* ListMoviesMocks.swift in Sources */,
+				64BE62F91F4F5C20002E55EA /* ListMoviesPresenterTest.swift in Sources */,
+				64BE62FA1F4F5C20002E55EA /* MovieDetailsInteractorTest.swift in Sources */,
+				64BE62FB1F4F5C20002E55EA /* MovieDetailsMocks.swift in Sources */,
+				64BE62FC1F4F5C20002E55EA /* MovieDetailsPresenterTest.swift in Sources */,
+				64BE62FD1F4F5C20002E55EA /* RxAsserts.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1235,7 +1445,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CouchTrackerUgly.app/CouchTrackerUgly";
 			};
 			name = Debug;
 		};
@@ -1250,7 +1459,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CouchTrackerUgly.app/CouchTrackerUgly";
 			};
 			name = Release;
 		};
@@ -1281,6 +1489,58 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTrackerApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		64B1CCD41F4F597D002A9FFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F784A204EA64B9FADB2C5649 /* Pods-CouchTrackerFastTests.debug.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TF8P7NNQ29;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CouchTrackerFastTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTrackerFastTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		64B1CCD51F4F597D002A9FFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D67E1A3BC6DA1CF83894528D /* Pods-CouchTrackerFastTests.release.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TF8P7NNQ29;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CouchTrackerFastTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTrackerFastTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1319,6 +1579,15 @@
 			buildConfigurations = (
 				64B1CCC01F4F560E002A9FFD /* Debug */,
 				64B1CCC11F4F560E002A9FFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64B1CCD31F4F597D002A9FFD /* Build configuration list for PBXNativeTarget "CouchTrackerFastTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64B1CCD41F4F597D002A9FFD /* Debug */,
+				64B1CCD51F4F597D002A9FFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -14,8 +14,6 @@ import Moya
 import ObjectMapper
 import XCTest
 
-@testable import CouchTracker_Ugly
-
 final class ListMoviesPresenterTest: XCTestCase {
 
   let view = StateListMoviesViewMock()

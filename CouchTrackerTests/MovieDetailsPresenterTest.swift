@@ -11,7 +11,6 @@ the license agreement.
 */
 
 import XCTest
-@testable import CouchTracker_Ugly
 
 final class MovieDetailsPresenterTest: XCTestCase {
 
