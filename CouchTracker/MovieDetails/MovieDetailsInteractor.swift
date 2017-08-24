@@ -1,7 +1,7 @@
 /*
 Copyright 2017 ArcTouch LLC.
 All rights reserved.
-
+ 
 This file, its contents, concepts, methods, behavior, and operation
 (collectively the "Software") are protected by trade secret, patent,
 and copyright laws. The use of the Software is governed by a license
@@ -12,15 +12,15 @@ the license agreement.
 
 import RxSwift
 
-final class ListMoviesInteractor: ListMoviesInteractorLayer {
+final class MovieDetailsInteractor: MovieDetailsInteractorLayer {
 
-  private let store: ListMoviesStoreLayer
+  private let store: MovieDetailsStoreLayer
 
-  init(store: ListMoviesStoreLayer) {
+  init(store: MovieDetailsStoreLayer) {
     self.store = store
   }
 
-  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
-    return store.fetchMovies(page: page, limit: limit)
+  func fetchDetails(movieId: String) -> Observable<Movie> {
+    return store.fetchDetails(movieId: movieId)
   }
 }

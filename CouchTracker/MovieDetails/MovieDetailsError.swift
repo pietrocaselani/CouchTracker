@@ -1,7 +1,7 @@
 /*
 Copyright 2017 ArcTouch LLC.
 All rights reserved.
-
+ 
 This file, its contents, concepts, methods, behavior, and operation
 (collectively the "Software") are protected by trade secret, patent,
 and copyright laws. The use of the Software is governed by a license
@@ -10,17 +10,19 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import RxSwift
+enum MovieDetailsError: Error, Equatable {
 
-final class ListMoviesInteractor: ListMoviesInteractorLayer {
+  case noConnection(String)
+  case parseError(String)
 
-  private let store: ListMoviesStoreLayer
-
-  init(store: ListMoviesStoreLayer) {
-    self.store = store
+  var message: String {
+    switch self {
+    case .noConnection(let message), .parseError(let message):
+      return message
+    }
   }
 
-  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
-    return store.fetchMovies(page: page, limit: limit)
+  static func == (lhs: MovieDetailsError, rhs: MovieDetailsError) -> Bool {
+    return lhs.message == rhs.message
   }
 }

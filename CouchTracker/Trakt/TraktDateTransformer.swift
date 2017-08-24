@@ -19,16 +19,16 @@ struct TraktDateTransformer: TransformType {
   static let dateTimeTransformer = TraktDateTransformer(format: "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.000Z'")
   static let dateTransformer = TraktDateTransformer(format: "yyyy'-'MM'-'dd")
 
-  private let dateFormeatter: DateFormatter
+  let dateFormatter: DateFormatter
 
   private init(format: String) {
-    dateFormeatter = DateFormatter()
-    dateFormeatter.dateFormat = format
+    dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = format
   }
 
   func transformFromJSON(_ value: Any?) -> Date? {
     if let stringDate = value as? String {
-      return dateFormeatter.date(from: stringDate)
+      return dateFormatter.date(from: stringDate)
     }
 
     return nil
@@ -36,7 +36,7 @@ struct TraktDateTransformer: TransformType {
 
   func transformToJSON(_ value: Date?) -> String? {
     if let date = value {
-      return dateFormeatter.string(from: date)
+      return dateFormatter.string(from: date)
     }
 
     return nil

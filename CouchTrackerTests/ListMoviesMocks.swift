@@ -13,7 +13,7 @@ the license agreement.
 import Foundation
 import RxSwift
 
-class StateListMoviesViewMock: ListMoviesView {
+final class StateListMoviesViewMock: ListMoviesView {
 
   enum State: Equatable {
     case loaded
@@ -36,7 +36,7 @@ class StateListMoviesViewMock: ListMoviesView {
     }
   }
 
-  var presenter: ListMoviesPresenterOutput! = nil
+  var presenter: ListMoviesPresenterLayer!
   var currentState = State.loaded
 
   func showEmptyView() {
@@ -52,15 +52,14 @@ class StateListMoviesViewMock: ListMoviesView {
   }
 }
 
-class EmptyListMoviesStoreMock: ListMoviesStoreInput {
+class EmptyListMoviesStoreMock: ListMoviesStoreLayer {
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
     return Observable.empty()
   }
-
 }
 
-class ErrorListMoviesStoreMock: ListMoviesStoreInput {
+class ErrorListMoviesStoreMock: ListMoviesStoreLayer {
 
   private let error: ListMoviesError
 
@@ -73,7 +72,7 @@ class ErrorListMoviesStoreMock: ListMoviesStoreInput {
   }
 }
 
-class MoviesListMovieStoreMock: ListMoviesStoreInput {
+class MoviesListMovieStoreMock: ListMoviesStoreLayer {
 
   private let movies: [TrendingMovie]
 
