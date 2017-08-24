@@ -14,9 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "647632381F44824900F277F1"
-               BuildableName = "CouchTracker.app"
-               BlueprintName = "CouchTracker"
+               BlueprintIdentifier = "646D8BEB1F4E1CA6009685E6"
+               BuildableName = "CouchTracker-Ugly.app"
+               BlueprintName = "CouchTracker-Ugly"
+               ReferencedContainer = "container:CouchTracker.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6476324C1F44824900F277F1"
+               BuildableName = "CouchTrackerTests.xctest"
+               BlueprintName = "CouchTrackerTests"
                ReferencedContainer = "container:CouchTracker.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -40,23 +54,13 @@
                ReferencedContainer = "container:CouchTracker.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "646D8C251F4E2107009685E6"
-               BuildableName = "CouchTrackerTests-Ugly.xctest"
-               BlueprintName = "CouchTrackerTests-Ugly"
-               ReferencedContainer = "container:CouchTracker.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "647632381F44824900F277F1"
-            BuildableName = "CouchTracker.app"
-            BlueprintName = "CouchTracker"
+            BlueprintIdentifier = "646D8BEB1F4E1CA6009685E6"
+            BuildableName = "CouchTracker-Ugly.app"
+            BlueprintName = "CouchTracker-Ugly"
             ReferencedContainer = "container:CouchTracker.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -78,9 +82,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "647632381F44824900F277F1"
-            BuildableName = "CouchTracker.app"
-            BlueprintName = "CouchTracker"
+            BlueprintIdentifier = "646D8BEB1F4E1CA6009685E6"
+            BuildableName = "CouchTracker-Ugly.app"
+            BlueprintName = "CouchTracker-Ugly"
             ReferencedContainer = "container:CouchTracker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -97,9 +101,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "647632381F44824900F277F1"
-            BuildableName = "CouchTracker.app"
-            BlueprintName = "CouchTracker"
+            BlueprintIdentifier = "646D8BEB1F4E1CA6009685E6"
+            BuildableName = "CouchTracker-Ugly.app"
+            BlueprintName = "CouchTracker-Ugly"
             ReferencedContainer = "container:CouchTracker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

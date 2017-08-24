@@ -14,7 +14,7 @@ import Moya
 import ObjectMapper
 import XCTest
 
-@testable import CouchTracker
+@testable import CouchTracker_Ugly
 
 final class ListMoviesPresenterTest: XCTestCase {
 
