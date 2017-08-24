@@ -16,7 +16,7 @@ final class ListMoviesViewController: UIViewController, ListMoviesView {
 
   private typealias TrendingCellFactory = SimpleCollectionViewDataSource<TrendingViewModel>.CellFactory
 
-  var presenter: ListMoviesPresenterOutput! = nil
+  var presenter: ListMoviesPresenterLayer! = nil
 
   private var dataSource: SimpleCollectionViewDataSource<TrendingViewModel>!
 
@@ -83,9 +83,7 @@ final class ListMoviesViewController: UIViewController, ListMoviesView {
 extension ListMoviesViewController: UICollectionViewDelegate {
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    guard let navigable = navigationController else { return }
-
-    presenter.showDetailsOfMovie(at: indexPath.row, navigable: navigable)
+    presenter.showDetailsOfMovie(at: indexPath.row)
   }
 
 }

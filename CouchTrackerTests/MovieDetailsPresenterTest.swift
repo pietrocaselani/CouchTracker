@@ -11,11 +11,10 @@ the license agreement.
 */
 
 import XCTest
-@testable import CouchTracker
+@testable import CouchTracker_Ugly
 
 final class MovieDetailsPresenterTest: XCTestCase {
 
-  let router = EmptyMovieDetailsRouterMock()
   let view = MovieDetailsViewMock()
 
   func testMovieDetailsPresenter_fetchSuccess_andPresentMovieDetails() {
@@ -25,7 +24,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
     let interactor = MovieDetailsInteractor(store: MovieDetailsStoreMock(movie: movie), genreStore: genreStore)
 
-    let presenter = MovieDetailsPresenter(view: view, router: router, interactor: interactor, movieId: movie.ids.slug)
+    let presenter = MovieDetailsPresenter(view: view, interactor: interactor, movieId: movie.ids.slug)
 
     presenter.viewDidLoad()
 
@@ -56,11 +55,23 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
     let interactor = MovieDetailsInteractor(store: ErrorMovieDetailsStoreMock(error: detailsError), genreStore: GenreStoreMock())
 
-    let presenter = MovieDetailsPresenter(view: view, router: router, interactor: interactor, movieId: movie.ids.slug)
+    let presenter = MovieDetailsPresenter(view: view, interactor: interactor, movieId: movie.ids.slug)
 
     presenter.viewDidLoad()
 
     XCTAssertEqual(view.receivedErrorMessage, detailsError.message)
+  }
+
+  func testMovieDetailsPresenter_fetchFailure_andIsCustomError() {
+    let movie = createMovieDetailsMock()
+    let error = NSError(domain: "com.arctouch.CouchTracker", code: 10, userInfo: [NSLocalizedDescriptionKey: "Custom details error"])
+    let interactor = MovieDetailsInteractor(store: ErrorMovieDetailsStoreMock(error: error), genreStore: GenreStoreMock())
+
+    let presenter = MovieDetailsPresenter(view: view, interactor: interactor, movieId: movie.ids.slug)
+
+    presenter.viewDidLoad()
+
+    XCTAssertEqual(view.receivedErrorMessage, "Custom details error")
   }
 
 }

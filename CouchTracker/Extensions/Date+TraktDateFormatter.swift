@@ -10,12 +10,10 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import RxSwift
+import Foundation
 
-protocol GenreStoreInput {
-
-  func fetchMoviesGenres() -> Observable<[Genre]>
-
-  func fetchShowsGenres() -> Observable<[Genre]>
-
+extension Date {
+  func parse(using formatter: DateFormatter = TraktDateTransformer.dateTransformer.dateFormatter) -> String {
+    return formatter.string(from: self)
+  }
 }

@@ -14,12 +14,12 @@ import Carlos
 import Moya
 import RxSwift
 
-final class MovieDetailsStore: MovieDetailsStoreInput {
+final class MovieDetailsStore: MovieDetailsStoreLayer {
 
   private let cache: BasicCache<Movies, Movie>
 
-  init(trakt: TraktV2) {
-    let moviesProvider = trakt.movies
+  init(apiProvider: APIProvider) {
+    let moviesProvider = apiProvider.movies
 
     self.cache = MemoryCacheLevel<Movies, NSData>()
         .compose(DiskCacheLevel<Movies, NSData>())
@@ -28,7 +28,6 @@ final class MovieDetailsStore: MovieDetailsStoreInput {
   }
 
   func fetchDetails(movieId: String) -> Observable<Movie> {
-    return cache.get(.summary(movieId: movieId, extended: .full))
-      .asObservable()
+    return cache.get(.summary(movieId: movieId, extended: .full)).asObservable()
   }
 }

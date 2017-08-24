@@ -12,7 +12,7 @@ the license agreement.
 
 import RxSwift
 
-final class GenreStoreMock: GenreStoreInput {
+final class GenreStoreMock: GenreStoreLayer {
 
   let genres: [Genre]
 

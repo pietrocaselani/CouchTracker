@@ -14,7 +14,7 @@ import UIKit
 
 final class MovieDetailsViewController: UIViewController, MovieDetailsView {
 
-  var presenter: MovieDetailsPresenterOutput!
+  var presenter: MovieDetailsPresenterLayer!
 
   @IBOutlet var titleLabel: UILabel!
   @IBOutlet var taglineLabel: UILabel!

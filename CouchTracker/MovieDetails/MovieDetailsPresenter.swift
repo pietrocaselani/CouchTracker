@@ -13,53 +13,33 @@ the license agreement.
 import RxSwift
 import Foundation
 
-final class MovieDetailsPresenter: MovieDetailsPresenterOutput {
+final class MovieDetailsPresenter: MovieDetailsPresenterLayer {
 
   private let disposeBag = DisposeBag()
 
   private weak var view: MovieDetailsView?
-  private weak var router: MovieDetailsRouter?
-  private let interactor: MovieDetailsInteractorInput
+  private let interactor: MovieDetailsInteractorLayer
   private let movieId: String
 
-  init(view: MovieDetailsView, router: MovieDetailsRouter, interactor: MovieDetailsInteractorInput, movieId: String) {
+  init(view: MovieDetailsView, interactor: MovieDetailsInteractorLayer, movieId: String) {
     self.view = view
-    self.router = router
     self.interactor = interactor
     self.movieId = movieId
   }
 
   func viewDidLoad() {
-    let dateFormatter = TraktDateTransformer.dateTransformer.dateFormatter
-
     let genresObservable = interactor.fetchGenres()
     let detailsObservable = interactor.fetchDetails(movieId: movieId)
 
-    let map = detailsObservable.flatMap { movie -> Observable<MovieDetailsViewModel> in
-      return genresObservable.flatMap { genres -> Observable<MovieDetailsViewModel> in
-        let presentableGenres = movie.genres?.map { movieGenreSlug -> String in
-          let genre = genres.first { genre in
-            genre.slug == movieGenreSlug
+    detailsObservable.flatMap { movie -> Observable<MovieDetailsViewModel> in
+          return genresObservable.flatMap { [unowned self] genres -> Observable<MovieDetailsViewModel> in
+            let presentableGenres = self.map(genres: genres, for: movie)
+
+            let viewModel = self.mapToViewModel(movie, presentableGenres)
+
+            return Observable.just(viewModel)
           }
-          return genre?.name ?? ""
-        }.filter { genreName in
-          return genreName.characters.count > 0
-        } ?? [String]()
-
-        let releaseDate = movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!)
-
-        let viewModel = MovieDetailsViewModel(
-            title: movie.title ?? "TBA",
-            tagline: movie.tagline ?? "",
-            overview: movie.overview ?? "",
-            genres: presentableGenres.joined(separator: " | "),
-            releaseDate: releaseDate)
-
-        return Observable.just(viewModel)
-      }
-    }
-
-    map.observeOn(MainScheduler.instance)
+        }.observeOn(MainScheduler.instance)
         .subscribe(onNext: { [unowned self] viewModel in
           self.view?.show(details: viewModel)
         }, onError: { [unowned self] error in
@@ -73,5 +53,27 @@ final class MovieDetailsPresenter: MovieDetailsPresenterOutput {
             view.show(error: error.localizedDescription)
           }
         }).disposed(by: disposeBag)
+  }
+
+  private func mapToViewModel(_ movie: Movie, _ genres: [String]) -> MovieDetailsViewModel {
+    let releaseDate = movie.released?.parse() ?? "Unknown"
+
+    return MovieDetailsViewModel(
+        title: movie.title ?? "TBA",
+        tagline: movie.tagline ?? "",
+        overview: movie.tagline ?? "",
+        genres: genres.joined(separator: " | "),
+        releaseDate: releaseDate)
+  }
+
+  private func map(genres: [Genre], for movie: Movie) -> [String] {
+    return movie.genres?.map { movieGenreSlug -> String in
+      let genre = genres.first { genre in
+        genre.slug == movieGenreSlug
+      }
+      return genre?.name ?? ""
+    }.filter { genreName in
+      return genreName.characters.count > 0
+    } ?? [String]()
   }
 }

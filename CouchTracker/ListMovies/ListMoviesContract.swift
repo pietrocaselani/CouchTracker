@@ -13,38 +13,34 @@ the license agreement.
 import RxSwift
 
 protocol ListMoviesRouter: class {
-
-  func loadView() -> BaseView
-  func showDetails(of movie: TrendingMovie, navigable: Navigable)
+  func showDetails(of movie: TrendingMovie)
 }
 
-protocol ListMoviesPresenterOutput: class {
+protocol ListMoviesPresenterLayer: class {
 
-  init(view: ListMoviesView, router: ListMoviesRouter, interactor: ListMoviesInteractorInput)
+  init(view: ListMoviesView, interactor: ListMoviesInteractorLayer, router: ListMoviesRouter)
 
   func viewDidLoad()
-  func showDetailsOfMovie(at index: Int, navigable: Navigable)
+  func showDetailsOfMovie(at index: Int)
 }
 
 protocol ListMoviesView: BaseView {
 
-  var presenter: ListMoviesPresenterOutput! { get set }
+  var presenter: ListMoviesPresenterLayer! { get set }
 
   func showEmptyView()
   func show(movies: [MovieViewModel])
   func show(error: String)
 }
 
-protocol ListMoviesInteractorInput: class {
+protocol ListMoviesInteractorLayer: class {
 
-  init(store: ListMoviesStoreInput)
+  init(store: ListMoviesStoreLayer)
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]>
-
 }
 
-protocol ListMoviesStoreInput: class {
+protocol ListMoviesStoreLayer: class {
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]>
-
 }

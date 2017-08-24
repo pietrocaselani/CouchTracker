@@ -36,7 +36,7 @@ final class StateListMoviesViewMock: ListMoviesView {
     }
   }
 
-  var presenter: ListMoviesPresenterOutput!
+  var presenter: ListMoviesPresenterLayer!
   var currentState = State.loaded
 
   func showEmptyView() {
@@ -52,31 +52,32 @@ final class StateListMoviesViewMock: ListMoviesView {
   }
 }
 
-final class EmptyListMoviesRouterMock: ListMoviesRouter {
+final class ListMoviesRouterMock: ListMoviesRouter {
 
-  func loadView() -> BaseView {
-    return StateListMoviesViewMock()
+  var invokedShowDetails = false
+  var invokedShowDetailsCount = 0
+  var invokedShowDetailsParameters: TrendingMovie?
+  var invokedShowDetailsParametersList = [TrendingMovie]()
+
+  func showDetails(of movie: TrendingMovie) {
+    invokedShowDetails = true
+    invokedShowDetailsCount += 1
+    invokedShowDetailsParameters = movie
+    invokedShowDetailsParametersList.append(movie)
   }
-
-  func showDetails(of movie: TrendingMovie, navigable: Navigable) {
-
-  }
-
 }
 
-class EmptyListMoviesStoreMock: ListMoviesStoreInput {
-
+final class EmptyListMoviesStoreMock: ListMoviesStoreLayer {
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
     return Observable.empty()
   }
-
 }
 
-class ErrorListMoviesStoreMock: ListMoviesStoreInput {
+final class ErrorListMoviesStoreMock: ListMoviesStoreLayer {
 
-  private let error: ListMoviesError
+  private let error: Error
 
-  init(error: ListMoviesError) {
+  init(error: Error) {
     self.error = error
   }
 
@@ -85,7 +86,7 @@ class ErrorListMoviesStoreMock: ListMoviesStoreInput {
   }
 }
 
-class MoviesListMovieStoreMock: ListMoviesStoreInput {
+final class MoviesListMovieStoreMock: ListMoviesStoreLayer {
 
   private let movies: [TrendingMovie]
 

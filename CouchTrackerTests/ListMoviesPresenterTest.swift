@@ -14,21 +14,17 @@ import Moya
 import ObjectMapper
 import XCTest
 
-@testable import CouchTracker
+@testable import CouchTracker_Ugly
 
 final class ListMoviesPresenterTest: XCTestCase {
 
-  let router = EmptyListMoviesRouterMock()
   let view = StateListMoviesViewMock()
-
-  override func setUp() {
-    super.setUp()
-  }
+  let router = ListMoviesRouterMock()
 
   func testShowsEmptyView() {
     let interactor = ListMoviesInteractor(store: EmptyListMoviesStoreMock())
 
-    let presenter = ListMoviesPresenter(view: view, router: router, interactor: interactor)
+    let presenter = ListMoviesPresenter(view: view, interactor: interactor, router: router)
 
     presenter.viewDidLoad()
 
@@ -39,7 +35,7 @@ final class ListMoviesPresenterTest: XCTestCase {
     let error = ListMoviesError.parseError("Invalid json")
     let interactor = ListMoviesInteractor(store: ErrorListMoviesStoreMock(error: error))
 
-    let presenter = ListMoviesPresenter(view: view, router: router, interactor: interactor)
+    let presenter = ListMoviesPresenter(view: view, interactor: interactor, router: router)
 
     presenter.viewDidLoad()
 
@@ -52,7 +48,7 @@ final class ListMoviesPresenterTest: XCTestCase {
     let store = MoviesListMovieStoreMock(movies: movies)
     let interactor = ListMoviesInteractor(store: store)
 
-    let presenter = ListMoviesPresenter(view: view, router: router, interactor: interactor)
+    let presenter = ListMoviesPresenter(view: view, interactor: interactor, router: router)
 
     presenter.viewDidLoad()
 
@@ -70,11 +66,38 @@ final class ListMoviesPresenterTest: XCTestCase {
     let store = MoviesListMovieStoreMock(movies: movies)
     let interactor = ListMoviesInteractor(store: store)
 
-    let presenter = ListMoviesPresenter(view: view, router: router, interactor: interactor)
+    let presenter = ListMoviesPresenter(view: view, interactor: interactor, router: router)
 
     presenter.viewDidLoad()
 
     XCTAssertEqual(view.currentState, StateListMoviesViewMock.State.showingNoMovies)
+  }
+
+  func testListMoviesPresenter_fetchFailure_andIsCustomError() {
+    let userInfo = [NSLocalizedDescriptionKey: "Custom list movies error"]
+    let error = NSError(domain: "com.arctouch.CouchTracker", code: 10, userInfo: userInfo)
+    let interactor = ListMoviesInteractor(store: ErrorListMoviesStoreMock(error: error))
+
+    let presenter = ListMoviesPresenter(view: view, interactor: interactor, router: router)
+
+    presenter.viewDidLoad()
+
+    XCTAssertEqual(view.currentState, StateListMoviesViewMock.State.showingError)
+  }
+
+  func testListMoviesPresenter_requestToShowDetails_notifyRouterToShowDetails() {
+    let movieIndex = 1
+    let movies = createMockMovies()
+    let store = MoviesListMovieStoreMock(movies: movies)
+    let interactor = ListMoviesInteractor(store: store)
+    let presenter = ListMoviesPresenter(view: view, interactor: interactor, router: router)
+
+    presenter.viewDidLoad()
+    presenter.showDetailsOfMovie(at: movieIndex)
+
+    XCTAssertTrue(router.invokedShowDetails)
+    XCTAssertEqual(router.invokedShowDetailsCount, 1)
+    XCTAssertEqual(router.invokedShowDetailsParameters, movies[movieIndex])
   }
 
   private func createMockMovies() -> [TrendingMovie] {

@@ -13,7 +13,7 @@
 import XCTest
 import RxSwift
 import RxTest
-@testable import CouchTracker
+@testable import CouchTracker_Ugly
 
 final class MovieDetailsInteractorTest: XCTestCase {
 

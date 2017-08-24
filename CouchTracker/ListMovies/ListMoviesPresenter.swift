@@ -12,22 +12,22 @@ the license agreement.
 
 import RxSwift
 
-final class ListMoviesPresenter: ListMoviesPresenterOutput {
+final class ListMoviesPresenter: ListMoviesPresenterLayer {
 
   private weak var view: ListMoviesView?
-  private weak var router: ListMoviesRouter?
 
-  private let interactor: ListMoviesInteractorInput
+  private let router: ListMoviesRouter
+  private let interactor: ListMoviesInteractorLayer
   private let disposeBag = DisposeBag()
 
   private var movies = [TrendingMovie]()
 
   private var currentPage = 0
 
-  init(view: ListMoviesView, router: ListMoviesRouter, interactor: ListMoviesInteractorInput) {
+  init(view: ListMoviesView, interactor: ListMoviesInteractorLayer, router: ListMoviesRouter) {
     self.view = view
-    self.router = router
     self.interactor = interactor
+    self.router = router
   }
 
   func viewDidLoad() {
@@ -64,14 +64,8 @@ final class ListMoviesPresenter: ListMoviesPresenterOutput {
         }).disposed(by: disposeBag)
   }
 
-  func showDetailsOfMovie(at index: Int, navigable: Navigable) {
-    guard let router = router else {
-      return
-    }
-
-    let movie = movies[index]
-
-    router.showDetails(of: movie, navigable: navigable)
+  func showDetailsOfMovie(at index: Int) {
+    router.showDetails(of: movies[index])
   }
 
   private func transformToViewModels(entities: [TrendingMovie]) -> [MovieViewModel] {

@@ -10,19 +10,13 @@
  the license agreement.
  */
 
-import UIKit
+final class MovieDetailsModule {
 
-final class MovieDetailsModule: MovieDetailsRouter {
+  private init() {}
 
-  private let trakt: TraktV2
-
-  init(trakt: TraktV2) {
-    self.trakt = trakt
-  }
-
-  func loadView(of movieId: String) -> BaseView {
-    let store = MovieDetailsStore(trakt: trakt)
-    let genreStore = TraktGenreStore(trakt: trakt)
+  static func setupModule(apiProvider: APIProvider, movieId: String) -> BaseView {
+    let store = MovieDetailsStore(apiProvider: apiProvider)
+    let genreStore = TraktGenreStore(apiProvider: apiProvider)
     let interactor = MovieDetailsInteractor(store: store, genreStore: genreStore)
 
     let viewController = R.storyboard.movieDetails.movieDetailsViewController()
@@ -31,11 +25,10 @@ final class MovieDetailsModule: MovieDetailsRouter {
       fatalError("viewController should be an instance of MovieDetailsView")
     }
 
-    let presenter = MovieDetailsPresenter(view: view, router: self, interactor: interactor, movieId: movieId)
+    let presenter = MovieDetailsPresenter(view: view, interactor: interactor, movieId: movieId)
 
     view.presenter = presenter
 
     return view
   }
-
 }

@@ -10,19 +10,12 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-enum MovieDetailsError: Error, Equatable {
+import RxSwift
 
-  case noConnection(String)
-  case parseError(String)
+protocol GenreStoreLayer {
 
-  var message: String {
-    switch self {
-    case .noConnection(let message), .parseError(let message):
-      return message
-    }
-  }
+  func fetchMoviesGenres() -> Observable<[Genre]>
 
-  static func == (lhs: MovieDetailsError, rhs: MovieDetailsError) -> Bool {
-    return lhs.message == rhs.message
-  }
+  func fetchShowsGenres() -> Observable<[Genre]>
+
 }

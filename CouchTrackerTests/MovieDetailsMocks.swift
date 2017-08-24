@@ -10,8 +10,7 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Moya
-import ObjectMapper
+import Foundation
 import RxSwift
 
 final class MovieDetailsViewMock: MovieDetailsView {
@@ -20,7 +19,7 @@ final class MovieDetailsViewMock: MovieDetailsView {
   var receivedMovieDetails: MovieDetailsViewModel?
   var methodShowEmptyViewCalled = false
 
-  var presenter: MovieDetailsPresenterOutput!
+  var presenter: MovieDetailsPresenterLayer!
 
   func showEmptyView() {
     methodShowEmptyViewCalled = true
@@ -36,19 +35,11 @@ final class MovieDetailsViewMock: MovieDetailsView {
 
 }
 
-final class EmptyMovieDetailsRouterMock: MovieDetailsRouter {
+final class ErrorMovieDetailsStoreMock: MovieDetailsStoreLayer {
 
-  func loadView(of movieId: String) -> BaseView {
-    return MovieDetailsViewMock()
-  }
+  private let error: Error
 
-}
-
-final class ErrorMovieDetailsStoreMock: MovieDetailsStoreInput {
-
-  private let error: MovieDetailsError
-
-  init(error: MovieDetailsError) {
+  init(error: Error) {
     self.error = error
   }
 
@@ -58,7 +49,7 @@ final class ErrorMovieDetailsStoreMock: MovieDetailsStoreInput {
 
 }
 
-final class MovieDetailsStoreMock: MovieDetailsStoreInput {
+final class MovieDetailsStoreMock: MovieDetailsStoreLayer {
 
   private let movie: Movie
 
