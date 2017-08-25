@@ -20,18 +20,16 @@ final class MovieDetailsPresenter: MovieDetailsPresenterLayer {
   private weak var view: MovieDetailsView?
   private let interactor: MovieDetailsInteractorLayer
   private let router: MovieDetailsRouter
-  private let movieId: String
 
-  init(view: MovieDetailsView, interactor: MovieDetailsInteractorLayer, router: MovieDetailsRouter, movieId: String) {
+  init(view: MovieDetailsView, interactor: MovieDetailsInteractorLayer, router: MovieDetailsRouter) {
     self.view = view
     self.interactor = interactor
     self.router = router
-    self.movieId = movieId
   }
 
   func viewDidLoad() {
     let genresObservable = interactor.fetchGenres()
-    let detailsObservable = interactor.fetchDetails(movieId: movieId)
+    let detailsObservable = interactor.fetchDetails()
 
     detailsObservable.flatMap { movie -> Observable<MovieDetailsViewModel> in
           return genresObservable.flatMap { [unowned self] genres -> Observable<MovieDetailsViewModel> in

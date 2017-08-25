@@ -20,8 +20,9 @@ final class MovieDetailsPresenterTest: XCTestCase {
   func testMovieDetailsPresenter_fetchSuccess_andPresentMovieDetails() {
     let movie = createMovieDetailsMock()
     let genreStore = GenreStoreMock()
-    let interactor = MovieDetailsInteractor(store: MovieDetailsStoreMock(movie: movie), genreStore: genreStore)
-    let presenter = MovieDetailsPresenter(view: view, interactor: interactor, router: router, movieId: movie.ids.slug)
+    let store = MovieDetailsStoreMock(movie: movie)
+    let interactor = MovieDetailsInteractor(store: store , genreStore: genreStore, movieId: movie.ids.slug)
+    let presenter = MovieDetailsPresenter(view: view, interactor: interactor, router: router)
 
     presenter.viewDidLoad()
 
@@ -51,8 +52,8 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let errorMessage = "There is no active connection"
     let detailsError = MovieDetailsError.noConnection(errorMessage)
     let store = ErrorMovieDetailsStoreMock(error: detailsError)
-    let interactor = MovieDetailsInteractor(store: store, genreStore: GenreStoreMock())
-    let presenter = MovieDetailsPresenter(view: view, interactor: interactor, router: router, movieId: movie.ids.slug)
+    let interactor = MovieDetailsInteractor(store: store, genreStore: GenreStoreMock(), movieId: movie.ids.slug)
+    let presenter = MovieDetailsPresenter(view: view, interactor: interactor, router: router)
 
     presenter.viewDidLoad()
 
@@ -65,8 +66,8 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let errorMessage = "Custom details error"
     let error = NSError(domain: "com.arctouch.CouchTracker", code: 10, userInfo: [NSLocalizedDescriptionKey: errorMessage])
     let store = ErrorMovieDetailsStoreMock(error: error)
-    let interactor = MovieDetailsInteractor(store: store, genreStore: GenreStoreMock())
-    let presenter = MovieDetailsPresenter(view: view, interactor: interactor, router: router, movieId: movie.ids.slug)
+    let interactor = MovieDetailsInteractor(store: store, genreStore: GenreStoreMock(), movieId: movie.ids.slug)
+    let presenter = MovieDetailsPresenter(view: view, interactor: interactor, router: router)
 
     presenter.viewDidLoad()
 

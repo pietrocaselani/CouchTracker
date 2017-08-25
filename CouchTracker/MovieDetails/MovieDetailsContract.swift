@@ -18,7 +18,7 @@ protocol MovieDetailsRouter: class {
 
 protocol MovieDetailsPresenterLayer: class {
 
-  init(view: MovieDetailsView, interactor: MovieDetailsInteractorLayer, router: MovieDetailsRouter, movieId: String)
+  init(view: MovieDetailsView, interactor: MovieDetailsInteractorLayer, router: MovieDetailsRouter)
 
   func viewDidLoad()
 }
@@ -32,9 +32,9 @@ protocol MovieDetailsView: BaseView {
 
 protocol MovieDetailsInteractorLayer: class {
 
-  init(store: MovieDetailsStoreLayer, genreStore: GenreStoreLayer)
+  init(store: MovieDetailsStoreLayer, genreStore: GenreStoreLayer, movieId: String)
 
-  func fetchDetails(movieId: String) -> Observable<Movie>
+  func fetchDetails() -> Observable<Movie>
 
   func fetchGenres() -> Observable<[Genre]>
 }
