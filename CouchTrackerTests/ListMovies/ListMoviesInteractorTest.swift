@@ -25,6 +25,11 @@ final class ListMoviesInteractorTest: XCTestCase {
     observer = scheduler.createObserver([TrendingMovie].self)
   }
 
+  override func tearDown() {
+    observer = nil
+    super.tearDown()
+  }
+
   func testHandleEmpty() {
     let store = EmptyListMoviesStoreMock()
     let interactor = ListMoviesInteractor(store: store)

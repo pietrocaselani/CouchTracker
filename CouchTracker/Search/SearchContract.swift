@@ -10,10 +10,16 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Moya
+import RxSwift
 
-protocol APIProvider: class {
-  var movies: RxMoyaProvider<Movies> { get }
-  var genres: RxMoyaProvider<Genres> { get }
-  var search: RxMoyaProvider<Search> { get }
+protocol SearchInteractorInput: class {
+
+  init(store: SearchStoreInput)
+
+  func searchMovies(query: String) -> Observable<[SearchResult]>
+}
+
+protocol SearchStoreInput: class {
+
+  func search(query: String, types: [SearchType]) -> Observable<[SearchResult]>
 }

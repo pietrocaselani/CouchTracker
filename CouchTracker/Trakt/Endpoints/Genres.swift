@@ -13,7 +13,7 @@ the license agreement.
 import Moya
 
 public enum Genres {
-  case list(MediaType)
+  case list(GenreType)
 }
 
 extension Genres: TraktType {

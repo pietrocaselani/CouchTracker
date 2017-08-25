@@ -25,6 +25,11 @@ final class MovieDetailsInteractorTest: XCTestCase {
     observer = scheduler.createObserver(Movie.self)
   }
 
+  override func tearDown() {
+    observer = nil
+    super.tearDown()
+  }
+
   func testMovieDetailsInteractor_fetchSuccessWithEmptyData_andEmitsOnlyOnCompleted() {
     let movie = createMovieDetailsMock()
     let store = MovieDetailsStoreMock(movie: movie)

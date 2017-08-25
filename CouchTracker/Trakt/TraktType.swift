@@ -28,3 +28,13 @@ public extension TraktType {
     return "".utf8Encoded
   }
 }
+
+func stubbedResponse(_ filename: String) -> Data {
+  let bundle = Bundle(for: TraktV2.self)
+  guard let url = bundle.url(forResource: filename, withExtension: "json"),
+    let data = try? Data(contentsOf: url) else {
+      return Data()
+  }
+
+  return data
+}

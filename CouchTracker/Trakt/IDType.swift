@@ -10,10 +10,10 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Moya
-
-protocol APIProvider: class {
-  var movies: RxMoyaProvider<Movies> { get }
-  var genres: RxMoyaProvider<Genres> { get }
-  var search: RxMoyaProvider<Search> { get }
+public enum IDType: String {
+  case trakt
+  case imdb
+  case tmdb
+  case tvdb
+  case tvrage
 }

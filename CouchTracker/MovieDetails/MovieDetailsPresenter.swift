@@ -52,10 +52,10 @@ final class MovieDetailsPresenter: MovieDetailsPresenterLayer {
   }
 
   private func mapToViewModel(_ movie: Movie, _ genres: [String]) -> MovieDetailsViewModel {
-    let releaseDate = movie.released?.parse() ?? "Unknown"
+    let releaseDate = movie.released?.parse() ?? "Unknown".localized
 
     return MovieDetailsViewModel(
-        title: movie.title ?? "TBA",
+        title: movie.title ?? "TBA".localized,
         tagline: movie.tagline ?? "",
         overview: movie.overview ?? "",
         genres: genres.joined(separator: " | "),
