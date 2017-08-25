@@ -20,18 +20,25 @@ final class SearchViewMock: SearchView {
   var invokedPresenterList = [SearchPresenterLayer!]()
   var invokedPresenterGetter = false
   var invokedPresenterGetterCount = 0
-  var stubbedPresenter: SearchPresenterLayer!
-  var presenter: SearchPresenterLayer! {
+  var presenter: SearchPresenterLayer!
+  var invokedHintSetter = false
+  var invokedHintSetterCount = 0
+  var invokedHint: String?
+  var invokedHintList = [String?]()
+  var invokedHintGetter = false
+  var invokedHintGetterCount = 0
+  var stubbedHint: String!
+  var hint: String? {
     set {
-      invokedPresenterSetter = true
-      invokedPresenterSetterCount += 1
-      invokedPresenter = newValue
-      invokedPresenterList.append(newValue)
+      invokedHintSetter = true
+      invokedHintSetterCount += 1
+      invokedHint = newValue
+      invokedHintList.append(newValue)
     }
     get {
-      invokedPresenterGetter = true
-      invokedPresenterGetterCount += 1
-      return stubbedPresenter
+      invokedHintGetter = true
+      invokedHintGetterCount += 1
+      return stubbedHint
     }
   }
 }
@@ -68,10 +75,18 @@ final class SearchResultOutputMock: SearchResultOutput {
     invokedHandleErrorParameters = (message, ())
     invokedHandleErrorParametersList.append((message, ()))
   }
+
+  var invokedSearchCancelled = false
+  var invokedSearchCancelledCount = 0
+
+  func searchCancelled() {
+    invokedSearchCancelled = true
+    invokedSearchCancelledCount += 1
+  }
 }
 
 final class EmptySearchStoreMock: SearchStoreLayer {
-  func search(query: String, types: [SearchType]) -> Observable<[SearchResult]> {
+  func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]> {
     return Observable.empty()
   }
 }
@@ -83,7 +98,7 @@ final class ErrorSearchStoreMock: SearchStoreLayer {
     self.error = error
   }
 
-  func search(query: String, types: [SearchType]) -> Observable<[SearchResult]> {
+  func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]> {
     return Observable.error(error)
   }
 }
@@ -95,13 +110,13 @@ final class SearchStoreMock: SearchStoreLayer {
     self.results = results
   }
 
-  func search(query: String, types: [SearchType]) -> Observable<[SearchResult]> {
-    return Observable.just(results)
+  func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]> {
+    return Observable.just(results).take(limit)
   }
 }
 
 func createSearchResultsMock() -> [SearchResult] {
-  let data = Search.textQuery(types: [.movie], query: "Tron").sampleData
+  let data = Search.textQuery(types: [.movie], query: "Tron", page: 0, limit: 50).sampleData
   let options = JSONSerialization.ReadingOptions(rawValue: 0)
 
   let array = try! JSONSerialization.jsonObject(with: data, options: options) as! [[String: AnyObject]]

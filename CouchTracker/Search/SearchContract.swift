@@ -14,19 +14,23 @@ import RxSwift
 
 protocol SearchView: BaseView {
   var presenter: SearchPresenterLayer! { get set }
+  var hint: String? { get set }
 }
 
 protocol SearchResultOutput: class {
   func handleEmptySearchResult()
   func handleSearch(results: [SearchResultViewModel])
   func handleError(message: String)
+  func searchCancelled()
 }
 
 protocol SearchPresenterLayer: class {
 
-  init(interactor: SearchInteractorLayer, resultOutput: SearchResultOutput)
+  init(view: SearchView, interactor: SearchInteractorLayer, resultOutput: SearchResultOutput)
 
+  func viewDidLoad()
   func searchMovies(query: String)
+  func cancelSearch()
 }
 
 protocol SearchInteractorLayer: class {
@@ -37,6 +41,5 @@ protocol SearchInteractorLayer: class {
 }
 
 protocol SearchStoreLayer: class {
-
-  func search(query: String, types: [SearchType]) -> Observable<[SearchResult]>
+  func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]>
 }

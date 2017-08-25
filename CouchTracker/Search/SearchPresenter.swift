@@ -13,14 +13,19 @@
 import RxSwift
 
 final class SearchPresenter: SearchPresenterLayer {
-
-  private weak var output: SearchResultOutput?
+  private weak var view: SearchView?
+  private let output: SearchResultOutput
   private let interactor: SearchInteractorLayer
   private let disposeBag = DisposeBag()
 
-  init(interactor: SearchInteractorLayer, resultOutput: SearchResultOutput) {
+  init(view: SearchView, interactor: SearchInteractorLayer, resultOutput: SearchResultOutput) {
+    self.view = view
     self.interactor = interactor
     self.output = resultOutput
+  }
+
+  func viewDidLoad() {
+    view?.hint = "Type a movie name".localized
   }
 
   func searchMovies(query: String) {
@@ -30,17 +35,19 @@ final class SearchPresenter: SearchPresenterLayer {
         }
         .observeOn(MainScheduler.instance)
         .subscribe(onNext: { [unowned self] viewModels in
-          guard let output = self.output else { return }
-
           guard viewModels.count > 0 else {
-            output.handleEmptySearchResult()
+            self.output.handleEmptySearchResult()
             return
           }
 
-          output.handleSearch(results: viewModels)
+          self.output.handleSearch(results: viewModels)
         }, onError: { [unowned self] error in
-          self.output?.handleError(message: error.localizedDescription)
+          self.output.handleError(message: error.localizedDescription)
         }).disposed(by: disposeBag)
+  }
+
+  func cancelSearch() {
+    self.output.searchCancelled()
   }
 
   private func mapToViewModel(_ results: [SearchResult]) -> [SearchResultViewModel] {

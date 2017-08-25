@@ -21,13 +21,14 @@ protocol ListMoviesPresenterLayer: class {
 
   init(view: ListMoviesView, interactor: ListMoviesInteractorLayer, router: ListMoviesRouter)
 
-  func viewDidLoad()
+  func fetchMovies()
   func showDetailsOfMovie(at index: Int)
 }
 
 protocol ListMoviesView: BaseView {
 
   var presenter: ListMoviesPresenterLayer! { get set }
+  var searchView: SearchView! { get set }
 
   func showEmptyView()
   func show(movies: [MovieViewModel])

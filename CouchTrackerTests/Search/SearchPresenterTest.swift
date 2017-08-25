@@ -14,12 +14,23 @@ import XCTest
 
 final class SearchPresenterTest: XCTestCase {
   let output = SearchResultOutputMock()
+  let view = SearchViewMock()
+
+  func testSearchPresenter_viewDidLoad_updateViewHint() {
+    let store = EmptySearchStoreMock()
+    let interactor = SearchInteractor(store: store)
+    let presenter = SearchPresenter(view: view, interactor: interactor, resultOutput: output)
+
+    presenter.viewDidLoad()
+
+    XCTAssertTrue(view.invokedHintSetter)
+  }
 
   func testSearchPresenter_performSearchSuccess_outputsTheResults() {
     let searchResultEntities = createSearchResultsMock()
     let store = SearchStoreMock(results: searchResultEntities)
     let interactor = SearchInteractor(store: store)
-    let presenter = SearchPresenter(interactor: interactor, resultOutput: output)
+    let presenter = SearchPresenter(view: view, interactor: interactor, resultOutput: output)
 
     presenter.searchMovies(query: "Tron")
 
@@ -35,7 +46,7 @@ final class SearchPresenterTest: XCTestCase {
   func testSearchPresenter_performSearchReceivesNoData_notifyOutput() {
     let store = EmptySearchStoreMock()
     let interactor = SearchInteractor(store: store)
-    let presenter = SearchPresenter(interactor: interactor, resultOutput: output)
+    let presenter = SearchPresenter(view: view, interactor: interactor, resultOutput: output)
 
     presenter.searchMovies(query: "Tron")
 
@@ -47,7 +58,7 @@ final class SearchPresenterTest: XCTestCase {
     let error = NSError(domain: "com.arctouch.CouchTracker", code: 10, userInfo: userInfo)
     let store = ErrorSearchStoreMock(error: error)
     let interactor = SearchInteractor(store: store)
-    let presenter = SearchPresenter(interactor: interactor, resultOutput: output)
+    let presenter = SearchPresenter(view: view, interactor: interactor, resultOutput: output)
 
     presenter.searchMovies(query: "Tron")
 
@@ -55,5 +66,15 @@ final class SearchPresenterTest: XCTestCase {
 
     XCTAssertTrue(output.invokedHandleError)
     XCTAssertEqual(output.invokedHandleErrorParameters?.message, expectedMessage)
+  }
+
+  func testSearchPresenter_performCancel_notifyOutput() {
+    let store = EmptySearchStoreMock()
+    let interactor = SearchInteractor(store: store)
+    let presenter = SearchPresenter(view: view, interactor: interactor, resultOutput: output)
+
+    presenter.cancelSearch()
+
+    XCTAssertTrue(output.invokedSearchCancelled)
   }
 }

@@ -20,20 +20,15 @@ final class ListMoviesViewMock: ListMoviesView {
   var invokedPresenterList = [ListMoviesPresenterLayer!]()
   var invokedPresenterGetter = false
   var invokedPresenterGetterCount = 0
-  var stubbedPresenter: ListMoviesPresenterLayer!
-  var presenter: ListMoviesPresenterLayer! {
-    set {
-      invokedPresenterSetter = true
-      invokedPresenterSetterCount += 1
-      invokedPresenter = newValue
-      invokedPresenterList.append(newValue)
-    }
-    get {
-      invokedPresenterGetter = true
-      invokedPresenterGetterCount += 1
-      return stubbedPresenter
-    }
-  }
+  var presenter: ListMoviesPresenterLayer!
+  var invokedSearchViewSetter = false
+  var invokedSearchViewSetterCount = 0
+  var invokedSearchView: SearchView?
+  var invokedSearchViewList = [SearchView!]()
+  var invokedSearchViewGetter = false
+  var invokedSearchViewGetterCount = 0
+  var stubbedSearchView: SearchView!
+  var searchView: SearchView!
   var invokedShowEmptyView = false
   var invokedShowEmptyViewCount = 0
 
@@ -52,6 +47,30 @@ final class ListMoviesViewMock: ListMoviesView {
     invokedShowCount += 1
     invokedShowParameters = (movies, ())
     invokedShowParametersList.append((movies, ()))
+  }
+}
+
+final class ListMoviesPresenterMock: ListMoviesPresenterLayer {
+  var invokedFetchMovies = false
+  var invokedFetchMoviesCount = 0
+
+  init(view: ListMoviesView, interactor: ListMoviesInteractorLayer, router: ListMoviesRouter) {}
+
+  func fetchMovies() {
+    invokedFetchMovies = true
+    invokedFetchMoviesCount += 1
+  }
+
+  var invokedShowDetailsOfMovie = false
+  var invokedShowDetailsOfMovieCount = 0
+  var invokedShowDetailsOfMovieParameters: (index: Int, Void)?
+  var invokedShowDetailsOfMovieParametersList = [(index: Int, Void)]()
+
+  func showDetailsOfMovie(at index: Int) {
+    invokedShowDetailsOfMovie = true
+    invokedShowDetailsOfMovieCount += 1
+    invokedShowDetailsOfMovieParameters = (index, ())
+    invokedShowDetailsOfMovieParametersList.append((index, ()))
   }
 }
 

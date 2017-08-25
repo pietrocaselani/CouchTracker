@@ -14,9 +14,9 @@ import RxSwift
 
 final class ListMoviesPresenter: ListMoviesPresenterLayer {
 
-  private weak var view: ListMoviesView?
+  weak var view: ListMoviesView?
+  let router: ListMoviesRouter
 
-  private let router: ListMoviesRouter
   private let interactor: ListMoviesInteractorLayer
   private let disposeBag = DisposeBag()
 
@@ -30,7 +30,7 @@ final class ListMoviesPresenter: ListMoviesPresenterLayer {
     self.router = router
   }
 
-  func viewDidLoad() {
+  func fetchMovies() {
     interactor.fetchMovies(page: currentPage, limit: 50)
         .do(onNext: { [unowned self] entities in
           self.movies = entities

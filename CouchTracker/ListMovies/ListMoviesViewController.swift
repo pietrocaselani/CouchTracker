@@ -12,39 +12,34 @@ the license agreement.
 
 import UIKit
 
-final class ListMoviesViewController: UIViewController, ListMoviesView {
+final class ListMoviesViewController: UIViewController {
 
   private typealias TrendingCellFactory = SimpleCollectionViewDataSource<TrendingViewModel>.CellFactory
 
   var presenter: ListMoviesPresenterLayer! = nil
+  var searchView: SearchView!
 
-  private var dataSource: SimpleCollectionViewDataSource<TrendingViewModel>!
+  fileprivate var dataSource: SimpleCollectionViewDataSource<TrendingViewModel>!
 
   @IBOutlet weak var collectionView: UICollectionView!
   @IBOutlet weak var emptyLabel: UILabel!
+  @IBOutlet weak var searchContainer: UIView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    guard let searchView = searchView as? UIView else {
+      fatalError("searchView should be an instance of UIView")
+    }
 
     emptyLabel.text = "Sorry!\nNo movies to show right now"
     collectionView.delegate = self
 
     configureMoviesDataSource()
 
-    presenter.viewDidLoad()
-  }
+    searchContainer.addSubview(searchView)
 
-  func show(movies: [MovieViewModel]) {
-    emptyLabel.isHidden = true
-    collectionView.isHidden = false
-
-    dataSource.elements = movies
-    collectionView.reloadData()
-  }
-
-  func showEmptyView() {
-    emptyLabel.isHidden = false
-    collectionView.isHidden = true
+    presenter.fetchMovies()
   }
 
   private func configureMoviesDataSource() {
@@ -66,10 +61,23 @@ final class ListMoviesViewController: UIViewController, ListMoviesView {
   }
 }
 
-extension ListMoviesViewController: UICollectionViewDelegate {
+extension ListMoviesViewController: ListMoviesView {
+  func show(movies: [MovieViewModel]) {
+    emptyLabel.isHidden = true
+    collectionView.isHidden = false
 
+    dataSource.elements = movies
+    collectionView.reloadData()
+  }
+
+  func showEmptyView() {
+    emptyLabel.isHidden = false
+    collectionView.isHidden = true
+  }
+}
+
+extension ListMoviesViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     presenter.showDetailsOfMovie(at: indexPath.row)
   }
-
 }

@@ -35,7 +35,11 @@ final class ListMoviesModule {
     let router = ListMoviesiOSRouter(viewController: viewController, apiProvider: apiProvider)
     let presenter = ListMoviesPresenter(view: view, interactor: interactor, router: router)
 
+    let searchOutput = ListMoviesSearchOutput(view: view, router: router, presenter: presenter)
+
     view.presenter = presenter
+
+    view.searchView = SearchModule.setupModule(apiProvider: apiProvider, resultsOutput: searchOutput)
 
     return navigationController
   }
