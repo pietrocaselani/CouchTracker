@@ -13,7 +13,6 @@ the license agreement.
 import XCTest
 import RxTest
 import RxSwift
-@testable import CouchTracker
 
 final class SearchInteractorTest: XCTestCase {
 

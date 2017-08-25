@@ -11,7 +11,6 @@ the license agreement.
 */
 
 extension Genres: Hashable {
-
   public var hashValue: Int {
     return self.path.hashValue
   }

@@ -13,35 +13,33 @@
 import RxSwift
 
 protocol MovieDetailsRouter: class {
-
-  func loadView(of movieId: String) -> BaseView
+  func showError(message: String)
 }
 
-protocol MovieDetailsPresenterOutput: class {
+protocol MovieDetailsPresenterLayer: class {
 
-  init(view: MovieDetailsView, router: MovieDetailsRouter, interactor: MovieDetailsInteractorInput, movieId: String)
+  init(view: MovieDetailsView, interactor: MovieDetailsInteractorLayer, router: MovieDetailsRouter)
 
   func viewDidLoad()
 }
 
 protocol MovieDetailsView: BaseView {
 
-  var presenter: MovieDetailsPresenterOutput! { get set }
+  var presenter: MovieDetailsPresenterLayer! { get set }
 
   func show(details: MovieDetailsViewModel)
-  func show(error: String)
 }
 
-protocol MovieDetailsInteractorInput: class {
+protocol MovieDetailsInteractorLayer: class {
 
-  init(store: MovieDetailsStoreInput, genreStore: GenreStoreInput)
+  init(store: MovieDetailsStoreLayer, genreStore: GenreStoreLayer, movieId: String)
 
-  func fetchDetails(movieId: String) -> Observable<Movie>
+  func fetchDetails() -> Observable<Movie>
 
   func fetchGenres() -> Observable<[Genre]>
 }
 
-protocol MovieDetailsStoreInput: class {
+protocol MovieDetailsStoreLayer: class {
 
   func fetchDetails(movieId: String) -> Observable<Movie>
 }

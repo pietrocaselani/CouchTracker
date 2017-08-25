@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  CouchTracker
+
+  Created by Pietro Caselani on 8/24/17.
+  Copyright © 2017 ArcTouch LLC. All rights reserved.
+*/
+"TBA"="TBA";
+"Unknown"="Desconhecido";
+"Error"="Erro";

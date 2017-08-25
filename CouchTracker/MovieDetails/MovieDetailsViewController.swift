@@ -14,7 +14,7 @@ import UIKit
 
 final class MovieDetailsViewController: UIViewController, MovieDetailsView {
 
-  var presenter: MovieDetailsPresenterOutput!
+  var presenter: MovieDetailsPresenterLayer!
 
   @IBOutlet var titleLabel: UILabel!
   @IBOutlet var taglineLabel: UILabel!
@@ -28,18 +28,6 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsView {
     super.viewDidLoad()
 
     presenter.viewDidLoad()
-  }
-
-  func show(error: String) {
-    let errorAlert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
-
-    let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
-      errorAlert.dismiss(animated: true, completion: nil)
-    }
-
-    errorAlert.addAction(okAction)
-
-    present(errorAlert, animated: true, completion: nil)
   }
 
   func show(details: MovieDetailsViewModel) {

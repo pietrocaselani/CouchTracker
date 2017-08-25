@@ -96,5 +96,4 @@ extension UIColor {
 	static var ctfog: UIColor {
 		return UIColor(red: 0.8274509907, green: 0.7960783839, blue: 0.8941177130, alpha: 1.0000000000)
 	}
-
 }

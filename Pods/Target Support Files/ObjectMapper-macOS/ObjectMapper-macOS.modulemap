@@ -1,0 +1,6 @@
+framework module ObjectMapper {
+  umbrella header "ObjectMapper-macOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

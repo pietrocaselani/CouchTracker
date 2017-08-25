@@ -13,7 +13,6 @@
 import XCTest
 import RxSwift
 import RxTest
-@testable import CouchTracker
 
 final class MovieDetailsInteractorTest: XCTestCase {
 
@@ -33,11 +32,10 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
   func testMovieDetailsInteractor_fetchSuccessWithEmptyData_andEmitsOnlyOnCompleted() {
     let movie = createMovieDetailsMock()
-
     let store = MovieDetailsStoreMock(movie: movie)
-    let interactor = MovieDetailsInteractor(store: store, genreStore: GenreStoreMock())
+    let interactor = MovieDetailsInteractor(store: store, genreStore: GenreStoreMock(), movieId: "the-dark-knight-2008")
 
-    let subscription = interactor.fetchDetails(movieId: "tron-legacy").subscribe(observer)
+    let subscription = interactor.fetchDetails().subscribe(observer)
 
     scheduler.scheduleAt(600) {
       subscription.dispose()
@@ -52,11 +50,10 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
   func testMovieDetailsInteractor_fetchSuccessDetails_andEmitsDetailsAndOnCompleted() {
     let movie = createMovieDetailsMock()
-
     let store = MovieDetailsStoreMock(movie: movie)
-    let interactor = MovieDetailsInteractor(store: store, genreStore: GenreStoreMock())
+    let interactor = MovieDetailsInteractor(store: store, genreStore: GenreStoreMock(), movieId: movie.ids.slug)
 
-    let subscription = interactor.fetchDetails(movieId: "tron-legacy-2010").subscribe(observer)
+    let subscription = interactor.fetchDetails().subscribe(observer)
 
     scheduler.scheduleAt(600) {
       subscription.dispose()
@@ -71,11 +68,10 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
   func testMoviesDetailsInteractor_fetchFailure_andEmitsOnlyOnError() {
     let connectionError = MovieDetailsError.noConnection("There is no connection active")
-
     let store = ErrorMovieDetailsStoreMock(error: connectionError)
-    let interactor = MovieDetailsInteractor(store: store, genreStore: GenreStoreMock())
+    let interactor = MovieDetailsInteractor(store: store, genreStore: GenreStoreMock(), movieId: "tron-legacy-2010")
 
-    let subscription = interactor.fetchDetails(movieId: "tron-legacy-2010").subscribe(observer)
+    let subscription = interactor.fetchDetails().subscribe(observer)
 
     scheduler.scheduleAt(600) {
       subscription.dispose()

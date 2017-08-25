@@ -14,12 +14,12 @@ import Carlos
 import Moya
 import RxSwift
 
-final class TraktGenreStore: GenreStoreInput {
+final class TraktGenreStore: GenreStoreLayer {
 
   private let cache: BasicCache<Genres, [Genre]>
 
-  init(trakt: TraktV2) {
-    let provider = trakt.genres
+  init(apiProvider: APIProvider) {
+    let provider = apiProvider.genres
 
     self.cache = MemoryCacheLevel<Genres, NSData>()
         .compose(DiskCacheLevel<Genres, NSData>())

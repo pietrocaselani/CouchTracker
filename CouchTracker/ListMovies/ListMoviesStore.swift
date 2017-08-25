@@ -15,13 +15,12 @@ import Moya
 import PiedPiper
 import RxSwift
 
-final class ListMoviesStore: ListMoviesStoreInput {
+final class ListMoviesStore: ListMoviesStoreLayer {
 
-  private let moviesProvider: RxMoyaProvider<Movies>
   private let cache: BasicCache<Movies, [TrendingMovie]>
 
-  init(trakt: TraktV2) {
-    self.moviesProvider = trakt.movies
+  init(apiProvider: APIProvider) {
+    let moviesProvider = apiProvider.movies
 
     let fetcher = MoyaFetcher(provider: moviesProvider).pooled()
 
@@ -35,5 +34,4 @@ final class ListMoviesStore: ListMoviesStoreInput {
     return cache.get(.trending(page: page, limit: limit, extended: .full))
         .asObservable()
   }
-
 }

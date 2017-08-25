@@ -11,7 +11,5 @@
  */
 
 protocol TrendingViewModel {
-
   var title: String { get }
-
 }

@@ -16,7 +16,7 @@ final class ListMoviesViewController: UIViewController, ListMoviesView {
 
   private typealias TrendingCellFactory = SimpleCollectionViewDataSource<TrendingViewModel>.CellFactory
 
-  var presenter: ListMoviesPresenterOutput! = nil
+  var presenter: ListMoviesPresenterLayer! = nil
 
   private var dataSource: SimpleCollectionViewDataSource<TrendingViewModel>!
 
@@ -47,20 +47,6 @@ final class ListMoviesViewController: UIViewController, ListMoviesView {
     collectionView.isHidden = true
   }
 
-  func show(error: String) {
-    showEmptyView()
-
-    let errorAlert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
-
-    let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
-      errorAlert.dismiss(animated: true, completion: nil)
-    }
-
-    errorAlert.addAction(okAction)
-
-    present(errorAlert, animated: true, completion: nil)
-  }
-
   private func configureMoviesDataSource() {
     let cellFactory: TrendingCellFactory = { (collectionView, indexPath, model) -> UICollectionViewCell in
 
@@ -83,9 +69,7 @@ final class ListMoviesViewController: UIViewController, ListMoviesView {
 extension ListMoviesViewController: UICollectionViewDelegate {
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    guard let navigable = navigationController else { return }
-
-    presenter.showDetailsOfMovie(at: indexPath.row, navigable: navigable)
+    presenter.showDetailsOfMovie(at: indexPath.row)
   }
 
 }

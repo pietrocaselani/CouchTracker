@@ -13,7 +13,6 @@ the license agreement.
 import Carlos
 
 extension Genres: StringConvertible {
-
   public func toString() -> String {
     return self.path
   }

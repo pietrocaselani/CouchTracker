@@ -7,7 +7,6 @@
 //
 
 extension Movies: Hashable {
-
   public var hashValue: Int {
     switch self {
     case .trending(let page, let limit, let extended):

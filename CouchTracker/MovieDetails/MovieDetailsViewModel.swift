@@ -17,7 +17,6 @@ struct MovieDetailsViewModel {
   let overview: String
   let genres: String
   let releaseDate: String
-
 }
 
 extension MovieDetailsViewModel: Equatable, Hashable {
@@ -29,5 +28,4 @@ extension MovieDetailsViewModel: Equatable, Hashable {
   var hashValue: Int {
     return title.hashValue * releaseDate.hashValue
   }
-
 }
