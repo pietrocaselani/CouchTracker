@@ -65,6 +65,6 @@ final class ListMoviesPresenter: ListMoviesPresenterLayer {
   }
 
   private func transformToViewModels(entities: [TrendingMovie]) -> [MovieViewModel] {
-    return entities.map { MovieViewModel(title: $0.movie.title ?? "TBA".localized ) }
+    return entities.map { mapMovieToViewModel($0.movie) }
   }
 }

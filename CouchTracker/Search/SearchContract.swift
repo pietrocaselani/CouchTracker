@@ -12,6 +12,23 @@ the license agreement.
 
 import RxSwift
 
+protocol SearchView: BaseView {
+  var presenter: SearchPresenterLayer! { get set }
+}
+
+protocol SearchResultOutput: class {
+  func handleEmptySearchResult()
+  func handleSearch(results: [SearchResultViewModel])
+  func handleError(message: String)
+}
+
+protocol SearchPresenterLayer: class {
+
+  init(interactor: SearchInteractorLayer, resultOutput: SearchResultOutput)
+
+  func searchMovies(query: String)
+}
+
 protocol SearchInteractorLayer: class {
 
   init(store: SearchStoreLayer)

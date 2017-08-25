@@ -10,17 +10,6 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import RxSwift
-
-final class SearchInteractor: SearchInteractorLayer {
-
-  private let store: SearchStoreLayer
-
-  init(store: SearchStoreLayer) {
-    self.store = store
-  }
-
-  func searchMovies(query: String) -> Observable<[SearchResult]> {
-    return store.search(query: query, types: [.movie]).ifEmpty(default: [SearchResult]())
-  }
+func mapMovieToViewModel(_ movie: Movie, defaultTitle: String = "TBA".localized) -> MovieViewModel {
+  return MovieViewModel(title: movie.title ?? defaultTitle)
 }

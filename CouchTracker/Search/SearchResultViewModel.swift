@@ -10,17 +10,23 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import RxSwift
+struct SearchResultViewModel {
+  let type: SearchType
+  let movie: MovieViewModel?
+}
 
-final class SearchInteractor: SearchInteractorLayer {
+extension SearchResultViewModel: Hashable {
+  var hashValue: Int {
+    var hash = type.hashValue
 
-  private let store: SearchStoreLayer
+    if let movieHash = movie?.hashValue {
+      hash ^= movieHash
+    }
 
-  init(store: SearchStoreLayer) {
-    self.store = store
+    return hash
   }
 
-  func searchMovies(query: String) -> Observable<[SearchResult]> {
-    return store.search(query: query, types: [.movie]).ifEmpty(default: [SearchResult]())
+  static func == (lhs: SearchResultViewModel, rhs: SearchResultViewModel) -> Bool {
+    return lhs.hashValue == rhs.hashValue
   }
 }
