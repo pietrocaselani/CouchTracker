@@ -59,7 +59,7 @@ final class MovieDetailsPresenter: MovieDetailsPresenterLayer {
     return MovieDetailsViewModel(
         title: movie.title ?? "TBA",
         tagline: movie.tagline ?? "",
-        overview: movie.tagline ?? "",
+        overview: movie.overview ?? "",
         genres: genres.joined(separator: " | "),
         releaseDate: releaseDate)
   }
