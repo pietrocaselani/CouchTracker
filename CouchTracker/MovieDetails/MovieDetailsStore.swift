@@ -16,19 +16,18 @@ import RxSwift
 
 final class MovieDetailsStore: MovieDetailsStoreLayer {
 
-  private let moviesProvider: RxMoyaProvider<Movies>
-  private let cache: BasicCache<Movies, NSData>
+  private let cache: BasicCache<Movies, Movie>
 
-  init(trakt: TraktV2) {
-    self.moviesProvider = trakt.movies
+  init(apiProvider: APIProvider) {
+    let moviesProvider = apiProvider.movies
 
-    self.cache = MemoryCacheLevel()
+    self.cache = MemoryCacheLevel<Movies, NSData>()
+        .compose(DiskCacheLevel<Movies, NSData>())
         .compose(MoyaFetcher(provider: moviesProvider))
+        .transformValues(JSONObjectTransfomer<Movie>())
   }
 
   func fetchDetails(movieId: String) -> Observable<Movie> {
-    return cache.get(.summary(movieId: movieId, extended: .full))
-        .asObservable()
-        .mapObject(Movie.self)
+    return cache.get(.summary(movieId: movieId, extended: .full)).asObservable()
   }
 }

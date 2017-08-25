@@ -15,7 +15,7 @@ struct MovieDetailsViewModel {
   let title: String
   let tagline: String
   let overview: String
-  let genres: [String]
+  let genres: String
   let releaseDate: String
 }
 

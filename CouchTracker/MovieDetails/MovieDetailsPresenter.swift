@@ -19,44 +19,57 @@ final class MovieDetailsPresenter: MovieDetailsPresenterLayer {
 
   private weak var view: MovieDetailsView?
   private let interactor: MovieDetailsInteractorLayer
-  private let movieId: String
+  private let router: MovieDetailsRouter
 
-  init(view: MovieDetailsView, interactor: MovieDetailsInteractorLayer, movieId: String) {
+  init(view: MovieDetailsView, interactor: MovieDetailsInteractorLayer, router: MovieDetailsRouter) {
     self.view = view
     self.interactor = interactor
-    self.movieId = movieId
+    self.router = router
   }
 
   func viewDidLoad() {
-    interactor.fetchDetails(movieId: movieId)
-        .map { [unowned self] in
-          return self.mapToViewModel($0)
+    let genresObservable = interactor.fetchGenres()
+    let detailsObservable = interactor.fetchDetails()
+
+    detailsObservable.flatMap { movie -> Observable<MovieDetailsViewModel> in
+          return genresObservable.flatMap { [unowned self] genres -> Observable<MovieDetailsViewModel> in
+            let presentableGenres = self.map(genres: genres, for: movie)
+
+            let viewModel = self.mapToViewModel(movie, presentableGenres)
+
+            return Observable.just(viewModel)
+          }
         }.observeOn(MainScheduler.instance)
         .subscribe(onNext: { [unowned self] viewModel in
           self.view?.show(details: viewModel)
         }, onError: { [unowned self] error in
-          guard let view = self.view else {
-            return
-          }
-
           if let detailsError = error as? MovieDetailsError {
-            view.show(error: detailsError.message)
+            self.router.showError(message: detailsError.message)
           } else {
-            view.show(error: error.localizedDescription)
+            self.router.showError(message: error.localizedDescription)
           }
         }).disposed(by: disposeBag)
   }
 
-  private func mapToViewModel(_ movie: Movie) -> MovieDetailsViewModel {
-    let dateFormatter = TraktDateTransformer.dateTransformer.dateFormatter
-
-    let releaseDate = movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!)
+  private func mapToViewModel(_ movie: Movie, _ genres: [String]) -> MovieDetailsViewModel {
+    let releaseDate = movie.released?.parse() ?? "Unknown"
 
     return MovieDetailsViewModel(
-      title: movie.title ?? "TBA",
-      tagline: movie.tagline ?? "",
-      overview: movie.tagline ?? "",
-      genres: movie.genres ?? [String](),
-      releaseDate: releaseDate)
+        title: movie.title ?? "TBA",
+        tagline: movie.tagline ?? "",
+        overview: movie.overview ?? "",
+        genres: genres.joined(separator: " | "),
+        releaseDate: releaseDate)
+  }
+
+  private func map(genres: [Genre], for movie: Movie) -> [String] {
+    return movie.genres?.map { movieGenreSlug -> String in
+      let genre = genres.first { genre in
+        genre.slug == movieGenreSlug
+      }
+      return genre?.name ?? ""
+    }.filter { genreName in
+      return genreName.characters.count > 0
+    } ?? [String]()
   }
 }

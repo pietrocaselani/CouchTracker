@@ -10,44 +10,68 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Moya
-import ObjectMapper
+import Foundation
 import RxSwift
 
 final class MovieDetailsViewMock: MovieDetailsView {
-
-  var receivedErrorMessage: String?
-  var receivedMovieDetails: MovieDetailsViewModel?
-  var methodShowEmptyViewCalled = false
-
-  var presenter: MovieDetailsPresenterLayer!
-
-  func showEmptyView() {
-    methodShowEmptyViewCalled = true
+  var invokedPresenterSetter = false
+  var invokedPresenterSetterCount = 0
+  var invokedPresenter: MovieDetailsPresenterLayer?
+  var invokedPresenterList = [MovieDetailsPresenterLayer!]()
+  var invokedPresenterGetter = false
+  var invokedPresenterGetterCount = 0
+  var stubbedPresenter: MovieDetailsPresenterLayer!
+  var presenter: MovieDetailsPresenterLayer! {
+    set {
+      invokedPresenterSetter = true
+      invokedPresenterSetterCount += 1
+      invokedPresenter = newValue
+      invokedPresenterList.append(newValue)
+    }
+    get {
+      invokedPresenterGetter = true
+      invokedPresenterGetterCount += 1
+      return stubbedPresenter
+    }
   }
+  var invokedShow = false
+  var invokedShowCount = 0
+  var invokedShowParameters: (details: MovieDetailsViewModel, Void)?
+  var invokedShowParametersList = [(details: MovieDetailsViewModel, Void)]()
 
   func show(details: MovieDetailsViewModel) {
-    receivedMovieDetails = details
+    invokedShow = true
+    invokedShowCount += 1
+    invokedShowParameters = (details, ())
+    invokedShowParametersList.append((details, ()))
   }
+}
 
-  func show(error: String) {
-    receivedErrorMessage = error
+final class MovieDetailsRouterMock: MovieDetailsRouter {
+  var invokedShowError = false
+  var invokedShowErrorCount = 0
+  var invokedShowErrorParameters: (message: String, Void)?
+  var invokedShowErrorParametersList = [(message: String, Void)]()
+
+  func showError(message: String) {
+    invokedShowError = true
+    invokedShowErrorCount += 1
+    invokedShowErrorParameters = (message, ())
+    invokedShowErrorParametersList.append((message, ()))
   }
-
 }
 
 final class ErrorMovieDetailsStoreMock: MovieDetailsStoreLayer {
 
-  private let error: MovieDetailsError
+  private let error: Error
 
-  init(error: MovieDetailsError) {
+  init(error: Error) {
     self.error = error
   }
 
   func fetchDetails(movieId: String) -> Observable<Movie> {
     return Observable.error(error)
   }
-
 }
 
 final class MovieDetailsStoreMock: MovieDetailsStoreLayer {

@@ -12,11 +12,17 @@ the license agreement.
 
 import RxSwift
 
+protocol ListMoviesRouter: class {
+  func showDetails(of movie: TrendingMovie)
+  func showError(message: String)
+}
+
 protocol ListMoviesPresenterLayer: class {
 
-  init(view: ListMoviesView, interactor: ListMoviesInteractorLayer)
+  init(view: ListMoviesView, interactor: ListMoviesInteractorLayer, router: ListMoviesRouter)
 
   func viewDidLoad()
+  func showDetailsOfMovie(at index: Int)
 }
 
 protocol ListMoviesView: BaseView {
@@ -25,7 +31,6 @@ protocol ListMoviesView: BaseView {
 
   func showEmptyView()
   func show(movies: [MovieViewModel])
-  func show(error: String)
 }
 
 protocol ListMoviesInteractorLayer: class {
@@ -33,11 +38,9 @@ protocol ListMoviesInteractorLayer: class {
   init(store: ListMoviesStoreLayer)
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]>
-
 }
 
 protocol ListMoviesStoreLayer: class {
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]>
-
 }

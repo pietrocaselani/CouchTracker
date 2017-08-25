@@ -1,21 +1,43 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+def common_pods
+  pod 'Moya/RxSwift', '8.0.5'
+  pod 'SwiftLint', '0.21.0'
+  pod 'Moya-ObjectMapper/RxSwift', '2.3.2'
+end
 
-target 'CouchTracker' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+def ios_pods
+  common_pods
+  pod 'R.swift', '3.3.0'
+  pod 'Carlos', '0.9.1'
+end
+
+def tests_shared_pods
+  pod 'RxTest', '3.6.1'
+end
+
+target 'CouchTrackerUgly' do
   use_frameworks!
   inhibit_all_warnings!
 
-  # Pods for CouchTracker
-  pod 'Carlos', '0.9.1'
-  pod 'Moya/RxSwift', '8.0.5'
-  pod 'R.swift', '3.3.0'
-  pod 'SwiftLint', '0.21.0'
-  pod 'Moya-ObjectMapper/RxSwift', '2.3.2'
+  ios_pods
+end
+
+target 'CouchTrackerFastTests' do
+  use_frameworks!
+  inhibit_all_warnings!
+  
+  common_pods
+  tests_shared_pods
+end
+
+target 'CouchTracker' do
+  use_frameworks!
+  inhibit_all_warnings!
+
+  ios_pods
 
   target 'CouchTrackerTests' do
     inherit! :search_paths
-    pod 'RxTest', '3.6.1'
+    tests_shared_pods
   end
 
 end

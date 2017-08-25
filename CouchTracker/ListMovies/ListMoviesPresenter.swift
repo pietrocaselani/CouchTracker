@@ -16,6 +16,7 @@ final class ListMoviesPresenter: ListMoviesPresenterLayer {
 
   private weak var view: ListMoviesView?
 
+  private let router: ListMoviesRouter
   private let interactor: ListMoviesInteractorLayer
   private let disposeBag = DisposeBag()
 
@@ -23,9 +24,10 @@ final class ListMoviesPresenter: ListMoviesPresenterLayer {
 
   private var currentPage = 0
 
-  init(view: ListMoviesView, interactor: ListMoviesInteractorLayer) {
+  init(view: ListMoviesView, interactor: ListMoviesInteractorLayer, router: ListMoviesRouter) {
     self.view = view
     self.interactor = interactor
+    self.router = router
   }
 
   func viewDidLoad() {
@@ -45,24 +47,24 @@ final class ListMoviesPresenter: ListMoviesPresenterLayer {
           }
 
           view.show(movies: viewModels)
-        }, onError: { error in
-          guard let view = self.view else {
-            return
-          }
-
+        }, onError: { [unowned self] error in
           guard let moviesListError = error as? ListMoviesError else {
-            view.show(error: error.localizedDescription)
+            self.router.showError(message: error.localizedDescription)
             return
           }
 
-          view.show(error: moviesListError.message)
+          self.router.showError(message: moviesListError.message)
         }, onCompleted: {
           guard self.movies.count == 0 else { return }
           self.view?.showEmptyView()
         }).disposed(by: disposeBag)
   }
 
-  func transformToViewModels(entities: [TrendingMovie]) -> [MovieViewModel] {
-    return entities.map { MovieViewModel(title: $0.movie.title ?? "TBA") }
+  func showDetailsOfMovie(at index: Int) {
+    router.showDetails(of: movies[index])
+  }
+
+  private func transformToViewModels(entities: [TrendingMovie]) -> [MovieViewModel] {
+    return entities.map { MovieViewModel(title: $0.movie.title ?? "TBA".localized ) }
   }
 }

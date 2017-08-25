@@ -26,13 +26,17 @@ final class ListMoviesModule {
       fatalError("topViewController should be an instance of ListMoviesView")
     }
 
+    guard let viewController = view as? UIViewController else {
+      fatalError("view should be an instance of UIViewController")
+    }
+
     let store = ListMoviesStore(apiProvider: apiProvider)
     let interactor = ListMoviesInteractor(store: store)
-    let presenter = ListMoviesPresenter(view: view, interactor: interactor)
+    let router = ListMoviesiOSRouter(viewController: viewController, apiProvider: apiProvider)
+    let presenter = ListMoviesPresenter(view: view, interactor: interactor, router: router)
 
     view.presenter = presenter
 
     return navigationController
   }
-
 }

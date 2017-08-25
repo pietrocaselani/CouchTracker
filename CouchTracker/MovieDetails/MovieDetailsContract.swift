@@ -12,9 +12,13 @@
 
 import RxSwift
 
+protocol MovieDetailsRouter: class {
+  func showError(message: String)
+}
+
 protocol MovieDetailsPresenterLayer: class {
 
-  init(view: MovieDetailsView, interactor: MovieDetailsInteractorLayer, movieId: String)
+  init(view: MovieDetailsView, interactor: MovieDetailsInteractorLayer, router: MovieDetailsRouter)
 
   func viewDidLoad()
 }
@@ -24,19 +28,18 @@ protocol MovieDetailsView: BaseView {
   var presenter: MovieDetailsPresenterLayer! { get set }
 
   func show(details: MovieDetailsViewModel)
-  func show(error: String)
 }
 
 protocol MovieDetailsInteractorLayer: class {
 
-  init(store: MovieDetailsStoreLayer)
+  init(store: MovieDetailsStoreLayer, genreStore: GenreStoreLayer, movieId: String)
 
-  func fetchDetails(movieId: String) -> Observable<Movie>
+  func fetchDetails() -> Observable<Movie>
 
+  func fetchGenres() -> Observable<[Genre]>
 }
 
 protocol MovieDetailsStoreLayer: class {
 
   func fetchDetails(movieId: String) -> Observable<Movie>
-
 }
