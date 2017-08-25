@@ -15,26 +15,12 @@ import RxSwift
 
 final class ListMoviesViewMock: ListMoviesView {
   var invokedPresenterSetter = false
-  var invokedPresenterSetterCount = 0
-  var invokedPresenter: ListMoviesPresenterLayer?
-  var invokedPresenterList = [ListMoviesPresenterLayer!]()
-  var invokedPresenterGetter = false
-  var invokedPresenterGetterCount = 0
   var presenter: ListMoviesPresenterLayer!
-  var invokedSearchViewSetter = false
-  var invokedSearchViewSetterCount = 0
-  var invokedSearchView: SearchView?
-  var invokedSearchViewList = [SearchView!]()
-  var invokedSearchViewGetter = false
-  var invokedSearchViewGetterCount = 0
-  var stubbedSearchView: SearchView!
   var searchView: SearchView!
   var invokedShowEmptyView = false
-  var invokedShowEmptyViewCount = 0
 
   func showEmptyView() {
     invokedShowEmptyView = true
-    invokedShowEmptyViewCount += 1
   }
 
   var invokedShow = false
@@ -76,27 +62,19 @@ final class ListMoviesPresenterMock: ListMoviesPresenterLayer {
 
 final class ListMoviesRouterMock: ListMoviesRouter {
   var invokedShowDetails = false
-  var invokedShowDetailsCount = 0
   var invokedShowDetailsParameters: (movie: TrendingMovie, Void)?
-  var invokedShowDetailsParametersList = [(movie: TrendingMovie, Void)]()
 
   func showDetails(of movie: TrendingMovie) {
     invokedShowDetails = true
-    invokedShowDetailsCount += 1
     invokedShowDetailsParameters = (movie, ())
-    invokedShowDetailsParametersList.append((movie, ()))
   }
 
   var invokedShowError = false
-  var invokedShowErrorCount = 0
   var invokedShowErrorParameters: (message: String, Void)?
-  var invokedShowErrorParametersList = [(message: String, Void)]()
 
   func showError(message: String) {
     invokedShowError = true
-    invokedShowErrorCount += 1
     invokedShowErrorParameters = (message, ())
-    invokedShowErrorParametersList.append((message, ()))
   }
 }
 
