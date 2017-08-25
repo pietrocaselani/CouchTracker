@@ -12,11 +12,11 @@ the license agreement.
 
 import RxSwift
 
-final class SearchInteractor: SearchInteractorInput {
+final class SearchInteractor: SearchInteractorLayer {
 
-  private let store: SearchStoreInput
+  private let store: SearchStoreLayer
 
-  init(store: SearchStoreInput) {
+  init(store: SearchStoreLayer) {
     self.store = store
   }
 

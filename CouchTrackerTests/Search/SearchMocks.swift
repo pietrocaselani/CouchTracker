@@ -13,13 +13,13 @@ the license agreement.
 import RxSwift
 import ObjectMapper
 
-final class EmptySearchStoreMock: SearchStoreInput {
+final class EmptySearchStoreMock: SearchStoreLayer {
   func search(query: String, types: [SearchType]) -> RxSwift.Observable<[SearchResult]> {
     return Observable.empty()
   }
 }
 
-final class SearchStoreMock: SearchStoreInput {
+final class SearchStoreMock: SearchStoreLayer {
   private let results: [SearchResult]
 
   init(results: [SearchResult]) {

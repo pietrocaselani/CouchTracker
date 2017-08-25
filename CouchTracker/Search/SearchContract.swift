@@ -12,14 +12,14 @@ the license agreement.
 
 import RxSwift
 
-protocol SearchInteractorInput: class {
+protocol SearchInteractorLayer: class {
 
-  init(store: SearchStoreInput)
+  init(store: SearchStoreLayer)
 
   func searchMovies(query: String) -> Observable<[SearchResult]>
 }
 
-protocol SearchStoreInput: class {
+protocol SearchStoreLayer: class {
 
   func search(query: String, types: [SearchType]) -> Observable<[SearchResult]>
 }
