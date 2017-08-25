@@ -15,58 +15,31 @@ import ObjectMapper
 
 final class SearchViewMock: SearchView {
   var invokedPresenterSetter = false
-  var invokedPresenterSetterCount = 0
   var invokedPresenter: SearchPresenterLayer?
-  var invokedPresenterList = [SearchPresenterLayer!]()
-  var invokedPresenterGetter = false
-  var invokedPresenterGetterCount = 0
-  var stubbedPresenter: SearchPresenterLayer!
-  var presenter: SearchPresenterLayer! {
-    set {
-      invokedPresenterSetter = true
-      invokedPresenterSetterCount += 1
-      invokedPresenter = newValue
-      invokedPresenterList.append(newValue)
-    }
-    get {
-      invokedPresenterGetter = true
-      invokedPresenterGetterCount += 1
-      return stubbedPresenter
-    }
-  }
+  var presenter: SearchPresenterLayer!
 }
 
 final class SearchResultOutputMock: SearchResultOutput {
   var invokedHandleEmptySearchResult = false
-  var invokedHandleEmptySearchResultCount = 0
 
   func handleEmptySearchResult() {
     invokedHandleEmptySearchResult = true
-    invokedHandleEmptySearchResultCount += 1
   }
 
   var invokedHandleSearch = false
-  var invokedHandleSearchCount = 0
   var invokedHandleSearchParameters: (results: [SearchResultViewModel], Void)?
-  var invokedHandleSearchParametersList = [(results: [SearchResultViewModel], Void)]()
 
   func handleSearch(results: [SearchResultViewModel]) {
     invokedHandleSearch = true
-    invokedHandleSearchCount += 1
     invokedHandleSearchParameters = (results, ())
-    invokedHandleSearchParametersList.append((results, ()))
   }
 
   var invokedHandleError = false
-  var invokedHandleErrorCount = 0
   var invokedHandleErrorParameters: (message: String, Void)?
-  var invokedHandleErrorParametersList = [(message: String, Void)]()
 
   func handleError(message: String) {
     invokedHandleError = true
-    invokedHandleErrorCount += 1
     invokedHandleErrorParameters = (message, ())
-    invokedHandleErrorParametersList.append((message, ()))
   }
 }
 

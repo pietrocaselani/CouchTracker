@@ -21,6 +21,6 @@ final class SearchInteractor: SearchInteractorLayer {
   }
 
   func searchMovies(query: String) -> Observable<[SearchResult]> {
-    return store.search(query: query, types: [.movie]).ifEmpty(default: [SearchResult]())
+    return store.search(query: query, types: [.movie])
   }
 }
