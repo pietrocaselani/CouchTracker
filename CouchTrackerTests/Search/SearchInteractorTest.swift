@@ -15,7 +15,6 @@ import RxTest
 import RxSwift
 
 final class SearchInteractorTest: XCTestCase {
-
   private let scheduler = TestScheduler(initialClock: 0)
   private var observer: TestableObserver<[SearchResult]>!
 
@@ -30,7 +29,7 @@ final class SearchInteractorTest: XCTestCase {
     super.tearDown()
   }
 
-  func testSearchInteractor_fetchSuccess_butReceivesEmptyData() {
+  func testSearchInteractor_fetchSuccessEmptyData_andEmitsOnlyOnCompleted() {
     let interactor = SearchInteractor(store: EmptySearchStoreMock())
 
     let disposable = interactor.searchMovies(query: "Cool movie").subscribe(observer)
@@ -42,7 +41,7 @@ final class SearchInteractorTest: XCTestCase {
     RXAssertEvents(observer, expectedEvents)
   }
 
-  func testSearchInteractor_fetchSuccess_andReceivesData() {
+  func testSearchInteractor_fetchSuccessReceivesData_andEmitDataAndOnCompleted() {
     let results = createSearchResultsMock()
 
     let interactor = SearchInteractor(store: SearchStoreMock(results: results))
@@ -54,5 +53,4 @@ final class SearchInteractorTest: XCTestCase {
 
     RXAssertEvents(observer, expectedEvents)
   }
-
 }

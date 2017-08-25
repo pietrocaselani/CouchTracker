@@ -69,7 +69,7 @@
 		648390E21F504EA500911BA0 /* SearchMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648390D01F504E7500911BA0 /* SearchMocks.swift */; };
 		648390E71F504EE500911BA0 /* SearchContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648390E41F504EE500911BA0 /* SearchContract.swift */; };
 		648390E81F504EE500911BA0 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648390E51F504EE500911BA0 /* SearchInteractor.swift */; };
-		648390E91F504EE500911BA0 /* TraktSearchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648390E61F504EE500911BA0 /* TraktSearchStore.swift */; };
+		648390E91F504EE500911BA0 /* APISearchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648390E61F504EE500911BA0 /* APISearchStore.swift */; };
 		648390EB1F504EF700911BA0 /* IDType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648390EA1F504EF700911BA0 /* IDType.swift */; };
 		648390ED1F504EFE00911BA0 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648390EC1F504EFE00911BA0 /* Search.swift */; };
 		648390F11F504F1300911BA0 /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648390EE1F504F1200911BA0 /* SearchType.swift */; };
@@ -96,7 +96,7 @@
 		648391061F504F6800911BA0 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648390E51F504EE500911BA0 /* SearchInteractor.swift */; };
 		648391071F504F6900911BA0 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648390E51F504EE500911BA0 /* SearchInteractor.swift */; };
 		648391081F504F6A00911BA0 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648390E51F504EE500911BA0 /* SearchInteractor.swift */; };
-		648391091F504F7100911BA0 /* TraktSearchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648390E61F504EE500911BA0 /* TraktSearchStore.swift */; };
+		648391091F504F7100911BA0 /* APISearchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648390E61F504EE500911BA0 /* APISearchStore.swift */; };
 		648687A21F4A3B9C005A0BA8 /* ListMoviesError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486879D1F4A3B9C005A0BA8 /* ListMoviesError.swift */; };
 		648687A31F4A3B9C005A0BA8 /* ListMoviesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486879E1F4A3B9C005A0BA8 /* ListMoviesInteractor.swift */; };
 		648687A41F4A3B9C005A0BA8 /* ListMoviesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486879F1F4A3B9C005A0BA8 /* ListMoviesPresenter.swift */; };
@@ -321,7 +321,7 @@
 		648390D01F504E7500911BA0 /* SearchMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchMocks.swift; sourceTree = "<group>"; };
 		648390E41F504EE500911BA0 /* SearchContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchContract.swift; sourceTree = "<group>"; };
 		648390E51F504EE500911BA0 /* SearchInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
-		648390E61F504EE500911BA0 /* TraktSearchStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktSearchStore.swift; sourceTree = "<group>"; };
+		648390E61F504EE500911BA0 /* APISearchStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APISearchStore.swift; sourceTree = "<group>"; };
 		648390EA1F504EF700911BA0 /* IDType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDType.swift; sourceTree = "<group>"; };
 		648390EC1F504EFE00911BA0 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		648390EE1F504F1200911BA0 /* SearchType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchType.swift; sourceTree = "<group>"; };
@@ -599,7 +599,7 @@
 			children = (
 				648390E41F504EE500911BA0 /* SearchContract.swift */,
 				648390E51F504EE500911BA0 /* SearchInteractor.swift */,
-				648390E61F504EE500911BA0 /* TraktSearchStore.swift */,
+				648390E61F504EE500911BA0 /* APISearchStore.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -817,6 +817,7 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = TF8P7NNQ29;
 						ProvisioningStyle = Automatic;
+						TestTargetID = 64B1CC791F4F560E002A9FFD;
 					};
 					64B1CC791F4F560E002A9FFD = {
 						DevelopmentTeam = TF8P7NNQ29;
@@ -1223,7 +1224,7 @@
 				648687A21F4A3B9C005A0BA8 /* ListMoviesError.swift in Sources */,
 				648687A61F4A3B9C005A0BA8 /* MovieViewModel.swift in Sources */,
 				648390F31F504F1300911BA0 /* GenreType.swift in Sources */,
-				648390E91F504EE500911BA0 /* TraktSearchStore.swift in Sources */,
+				648390E91F504EE500911BA0 /* APISearchStore.swift in Sources */,
 				6406BEB71F4DB69C004661C4 /* SimpleCollectionViewDataSource.swift in Sources */,
 				64B03EE31F471D04009E37C9 /* Future+Rx.swift in Sources */,
 				6406BEC51F4DBEFA004661C4 /* MovieDetailsPresenter.swift in Sources */,
@@ -1388,7 +1389,7 @@
 				64B1CCB01F4F560E002A9FFD /* ListMoviesStore.swift in Sources */,
 				64B1CCB11F4F560E002A9FFD /* ListMoviesViewController.swift in Sources */,
 				64B1CCB21F4F560E002A9FFD /* Date+TraktDateFormatter.swift in Sources */,
-				648391091F504F7100911BA0 /* TraktSearchStore.swift in Sources */,
+				648391091F504F7100911BA0 /* APISearchStore.swift in Sources */,
 				64B1CCB31F4F560E002A9FFD /* TraktGenreStore.swift in Sources */,
 				648390F51F504F3A00911BA0 /* Search.swift in Sources */,
 				64B1CCB41F4F560E002A9FFD /* MovieDetailsStore.swift in Sources */,
@@ -1612,12 +1613,14 @@
 			baseConfigurationReference = E0E15B46F23414FFD31B0507 /* Pods-CouchTrackerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = TF8P7NNQ29;
 				INFOPLIST_FILE = CouchTrackerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CouchTrackerUgly.app/CouchTrackerUgly";
 			};
 			name = Debug;
 		};
@@ -1626,12 +1629,14 @@
 			baseConfigurationReference = EDDD592B188BF69D05973F6E /* Pods-CouchTrackerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = TF8P7NNQ29;
 				INFOPLIST_FILE = CouchTrackerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CouchTrackerUgly.app/CouchTrackerUgly";
 			};
 			name = Release;
 		};

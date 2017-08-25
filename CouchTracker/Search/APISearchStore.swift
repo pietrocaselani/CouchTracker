@@ -14,12 +14,12 @@ import RxSwift
 import Moya
 import Moya_ObjectMapper
 
-final class TraktSearchStore: SearchStoreInput {
+final class APISearchStore: SearchStoreInput {
 
   private let provider: RxMoyaProvider<Search>
 
-  init(trakt: TraktV2) {
-    self.provider = trakt.search
+  init(apiProvider: APIProvider) {
+    self.provider = apiProvider.search
   }
 
   func search(query: String, types: [SearchType]) -> Observable<[SearchResult]> {

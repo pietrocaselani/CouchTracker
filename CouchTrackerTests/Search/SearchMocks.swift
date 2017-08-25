@@ -14,15 +14,12 @@ import RxSwift
 import ObjectMapper
 
 final class EmptySearchStoreMock: SearchStoreInput {
-
   func search(query: String, types: [SearchType]) -> RxSwift.Observable<[SearchResult]> {
     return Observable.empty()
   }
-
 }
 
 final class SearchStoreMock: SearchStoreInput {
-
   private let results: [SearchResult]
 
   init(results: [SearchResult]) {
@@ -32,7 +29,6 @@ final class SearchStoreMock: SearchStoreInput {
   func search(query: String, types: [SearchType]) -> Observable<[SearchResult]> {
     return Observable.just(results)
   }
-
 }
 
 func createSearchResultsMock() -> [SearchResult] {

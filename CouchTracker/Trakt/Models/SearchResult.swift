@@ -19,7 +19,7 @@ public final class SearchResult: ImmutableMappable {
   public let movie: Movie?
 
   public init(map: Map) throws {
-    self.type = try map.value("type")
+    self.type = (try? map.value("type")) ?? .movie
     self.score = try? map.value("score")
     self.movie = try? map.value("movie")
   }
@@ -30,9 +30,13 @@ extension SearchResult: Hashable {
   public var hashValue: Int {
     var hash = type.rawValue.hashValue
 
-    hash ^= (score?.hashValue ?? 1)
+    if let scoreHash = score?.hashValue {
+      hash ^= scoreHash
+    }
 
-    hash ^= (movie?.hashValue ?? 1)
+    if let movieHash = movie?.hashValue {
+      hash ^= movieHash
+    }
 
     return hash
   }

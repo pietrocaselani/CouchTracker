@@ -15,4 +15,5 @@ import Moya
 protocol APIProvider: class {
   var movies: RxMoyaProvider<Movies> { get }
   var genres: RxMoyaProvider<Genres> { get }
+  var search: RxMoyaProvider<Search> { get }
 }
