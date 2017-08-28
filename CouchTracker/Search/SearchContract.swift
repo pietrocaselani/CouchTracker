@@ -14,7 +14,8 @@ import RxSwift
 
 protocol SearchView: BaseView {
   var presenter: SearchPresenterLayer! { get set }
-  var hint: String? { get set }
+
+  func showHint(message: String)
 }
 
 protocol SearchResultOutput: class {

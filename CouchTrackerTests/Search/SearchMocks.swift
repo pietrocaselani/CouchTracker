@@ -16,16 +16,12 @@ import ObjectMapper
 final class SearchViewMock: SearchView {
   var invokedPresenterSetter = false
   var presenter: SearchPresenterLayer!
-  var invokedHintSetter = false
-  var invokedHint: String?
-  var hint: String? {
-    set {
-      invokedHintSetter = true
-      invokedHint = newValue
-    }
-    get {
-      return invokedHint
-    }
+  var invokedShowHint = false
+  var invokedShowHintParameters: (message: String, Void)?
+
+  func showHint(message: String) {
+    invokedShowHint = true
+    invokedShowHintParameters = (message, ())
   }
 }
 
