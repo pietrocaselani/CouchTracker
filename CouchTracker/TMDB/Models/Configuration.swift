@@ -10,21 +10,13 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Moya
+import ObjectMapper
 
-public protocol TraktType: TargetType {}
+public final class Configuration: ImmutableMappable {
 
-public extension TraktType {
+  public let images: Images
 
-  public var baseURL: URL { return Trakt.baseURL }
-
-  public var method: Moya.Method { return .get }
-
-  public var parameterEncoding: ParameterEncoding { return URLEncoding.default }
-
-  public var task: Task { return .request }
-
-  public var sampleData: Data {
-    return "".utf8Encoded
+  public init(map: Map) throws {
+    self.images = try map.value("images")
   }
 }

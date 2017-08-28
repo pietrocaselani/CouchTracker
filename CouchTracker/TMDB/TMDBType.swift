@@ -12,11 +12,10 @@ the license agreement.
 
 import Moya
 
-public protocol TraktType: TargetType {}
+public protocol TMDBType: TargetType {}
 
-public extension TraktType {
-
-  public var baseURL: URL { return Trakt.baseURL }
+public extension TMDBType {
+  public var baseURL: URL { return TMDB.baseURL }
 
   public var method: Moya.Method { return .get }
 
@@ -24,7 +23,5 @@ public extension TraktType {
 
   public var task: Task { return .request }
 
-  public var sampleData: Data {
-    return "".utf8Encoded
-  }
+  public var sampleData: Data { return "".utf8Encoded }
 }

@@ -13,7 +13,6 @@ the license agreement.
 import Moya
 
 extension Trakt {
-
   public var movies: RxMoyaProvider<Movies> {
     return createProvider(forTarget: Movies.self)
   }
@@ -39,7 +38,7 @@ extension Trakt {
   }
 
   private func createEndpointClosure<T: TargetType>(forTarget: T.Type) -> MoyaProvider<T>.EndpointClosure {
-    let endpointClosure = { (target: T) -> Endpoint<T> in
+    return { (target: T) -> Endpoint<T> in
       var endpoint = MoyaProvider.defaultEndpointMapping(for: target)
       endpoint = endpoint.adding(newHTTPHeaderFields: [Trakt.headerContentType: Trakt.contentTypeJSON])
       endpoint = endpoint.adding(newHTTPHeaderFields: [Trakt.headerTraktAPIKey: self.clientId])
@@ -47,8 +46,5 @@ extension Trakt {
 
       return endpoint
     }
-
-    return endpointClosure
   }
-
 }

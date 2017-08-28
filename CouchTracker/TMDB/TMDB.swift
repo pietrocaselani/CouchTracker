@@ -10,21 +10,10 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Moya
+public final class TMDB {
+  let apiKey: String
 
-public protocol TraktType: TargetType {}
-
-public extension TraktType {
-
-  public var baseURL: URL { return Trakt.baseURL }
-
-  public var method: Moya.Method { return .get }
-
-  public var parameterEncoding: ParameterEncoding { return URLEncoding.default }
-
-  public var task: Task { return .request }
-
-  public var sampleData: Data {
-    return "".utf8Encoded
+  init(apiKey: String) {
+    self.apiKey = apiKey
   }
 }

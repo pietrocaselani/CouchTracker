@@ -12,19 +12,20 @@ the license agreement.
 
 import Moya
 
-public protocol TraktType: TargetType {}
+public enum TMDBConfiguration {
+  case configuration
+}
 
-public extension TraktType {
+extension TMDBConfiguration: TMDBType {
+  public var path: String {
+    return "configuration"
+  }
 
-  public var baseURL: URL { return Trakt.baseURL }
-
-  public var method: Moya.Method { return .get }
-
-  public var parameterEncoding: ParameterEncoding { return URLEncoding.default }
-
-  public var task: Task { return .request }
+  public var parameters: [String: Any]? {
+    return nil
+  }
 
   public var sampleData: Data {
-    return "".utf8Encoded
+    return stubbedResponse("tmdb_configuration")
   }
 }

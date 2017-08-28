@@ -10,21 +10,14 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Moya
+import Foundation
 
-public protocol TraktType: TargetType {}
-
-public extension TraktType {
-
-  public var baseURL: URL { return Trakt.baseURL }
-
-  public var method: Moya.Method { return .get }
-
-  public var parameterEncoding: ParameterEncoding { return URLEncoding.default }
-
-  public var task: Task { return .request }
-
-  public var sampleData: Data {
-    return "".utf8Encoded
+func stubbedResponse(_ filename: String) -> Data {
+  let bundle = Bundle(for: Trakt.self)
+  guard let url = bundle.url(forResource: filename, withExtension: "json"),
+    let data = try? Data(contentsOf: url) else {
+      return Data()
   }
+
+  return data
 }

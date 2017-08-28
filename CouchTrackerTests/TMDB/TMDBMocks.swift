@@ -10,21 +10,13 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Moya
+import Foundation
 
-public protocol TraktType: TargetType {}
+func createConfigurationsMock() -> Configuration {
+  let data = TMDBConfiguration.configuration.sampleData
+  let options = JSONSerialization.ReadingOptions(rawValue: 0)
 
-public extension TraktType {
+  let jsonObject = try! JSONSerialization.jsonObject(with: data, options: options) as! [String: AnyObject]
 
-  public var baseURL: URL { return Trakt.baseURL }
-
-  public var method: Moya.Method { return .get }
-
-  public var parameterEncoding: ParameterEncoding { return URLEncoding.default }
-
-  public var task: Task { return .request }
-
-  public var sampleData: Data {
-    return "".utf8Encoded
-  }
+  return try! Configuration(JSON: jsonObject)
 }
