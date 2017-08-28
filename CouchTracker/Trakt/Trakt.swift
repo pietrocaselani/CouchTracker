@@ -12,8 +12,7 @@ the license agreement.
 
 import Moya
 
-public final class TraktV2 {
-
+public final class Trakt {
   let clientId: String
   let clientSecret, redirectURL: String?
 
@@ -26,5 +25,4 @@ public final class TraktV2 {
     self.clientSecret = clientSecret
     self.redirectURL = redirectURL
   }
-
 }

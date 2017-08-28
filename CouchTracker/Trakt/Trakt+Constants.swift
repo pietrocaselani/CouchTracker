@@ -12,9 +12,8 @@ the license agreement.
 
 import Foundation
 
-extension TraktV2 {
-
-  public static let baseURL = URL(string: "https://\(TraktV2.apiHost)")!
+extension Trakt {
+  public static let baseURL = URL(string: "https://\(Trakt.apiHost)")!
   public static let siteURL = URL(string: "https://trakt.tv")!
 
   static let OAuth2AuthorizationPath = "/oauth/authorize"
@@ -30,5 +29,4 @@ extension TraktV2 {
   static let apiHost = "api.trakt.tv"
 
   static let accessTokenKey = "trakt_token"
-
 }

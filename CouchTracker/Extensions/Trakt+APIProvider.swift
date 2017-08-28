@@ -10,4 +10,4 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-extension TraktV2: APIProvider {}
+extension Trakt: APIProvider {}

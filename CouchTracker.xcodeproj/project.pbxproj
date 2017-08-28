@@ -139,9 +139,9 @@
 		64B03EC81F4715AF009E37C9 /* String+Enconding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBA1F4715AF009E37C9 /* String+Enconding.swift */; };
 		64B03EC91F4715AF009E37C9 /* TraktDateTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBB1F4715AF009E37C9 /* TraktDateTransformer.swift */; };
 		64B03ECA1F4715AF009E37C9 /* TraktType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBC1F4715AF009E37C9 /* TraktType.swift */; };
-		64B03ECB1F4715AF009E37C9 /* TraktV2+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBD1F4715AF009E37C9 /* TraktV2+Constants.swift */; };
-		64B03ECC1F4715AF009E37C9 /* TraktV2+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBE1F4715AF009E37C9 /* TraktV2+Endpoints.swift */; };
-		64B03ECD1F4715AF009E37C9 /* TraktV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBF1F4715AF009E37C9 /* TraktV2.swift */; };
+		64B03ECB1F4715AF009E37C9 /* Trakt+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBD1F4715AF009E37C9 /* Trakt+Constants.swift */; };
+		64B03ECC1F4715AF009E37C9 /* Trakt+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBE1F4715AF009E37C9 /* Trakt+Endpoints.swift */; };
+		64B03ECD1F4715AF009E37C9 /* Trakt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBF1F4715AF009E37C9 /* Trakt.swift */; };
 		64B03ED51F4715D2009E37C9 /* ListMoviesContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03ECF1F4715D2009E37C9 /* ListMoviesContract.swift */; };
 		64B03EDA1F4715D2009E37C9 /* ListMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03ED41F4715D2009E37C9 /* ListMoviesViewController.swift */; };
 		64B03EDC1F471BC1009E37C9 /* ListMovies.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B03EDB1F471BC1009E37C9 /* ListMovies.storyboard */; };
@@ -161,8 +161,8 @@
 		64B03EF21F472EAF009E37C9 /* Data+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EF01F472A5C009E37C9 /* Data+JSON.swift */; };
 		64B03EF31F472FCA009E37C9 /* TraktType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBC1F4715AF009E37C9 /* TraktType.swift */; };
 		64B03EF71F473027009E37C9 /* String+Enconding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBA1F4715AF009E37C9 /* String+Enconding.swift */; };
-		64B03EF81F473027009E37C9 /* TraktV2+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBD1F4715AF009E37C9 /* TraktV2+Constants.swift */; };
-		64B03EF91F473027009E37C9 /* TraktV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBF1F4715AF009E37C9 /* TraktV2.swift */; };
+		64B03EF81F473027009E37C9 /* Trakt+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBD1F4715AF009E37C9 /* Trakt+Constants.swift */; };
+		64B03EF91F473027009E37C9 /* Trakt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBF1F4715AF009E37C9 /* Trakt.swift */; };
 		64B03EFB1F473038009E37C9 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64B03EFA1F473038009E37C9 /* Alamofire.framework */; };
 		64B1CC6E1F4F5593002A9FFD /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC6D1F4F5592002A9FFD /* APIProvider.swift */; };
 		64B1CC711F4F559F002A9FFD /* Trakt+APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC6F1F4F559F002A9FFD /* Trakt+APIProvider.swift */; };
@@ -173,7 +173,7 @@
 		64B1CC7D1F4F560E002A9FFD /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEAD1F4DB669004661C4 /* TrendingCell.swift */; };
 		64B1CC7E1F4F560E002A9FFD /* MovieIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EB61F4715AF009E37C9 /* MovieIds.swift */; };
 		64B1CC7F1F4F560E002A9FFD /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BF021F4DC41F004661C4 /* MovieDetailsViewController.swift */; };
-		64B1CC801F4F560E002A9FFD /* TraktV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBF1F4715AF009E37C9 /* TraktV2.swift */; };
+		64B1CC801F4F560E002A9FFD /* Trakt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBF1F4715AF009E37C9 /* Trakt.swift */; };
 		64B1CC811F4F560E002A9FFD /* StandardMediaEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EB11F4715AF009E37C9 /* StandardMediaEntity.swift */; };
 		64B1CC821F4F560E002A9FFD /* BaseTrendingEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EB31F4715AF009E37C9 /* BaseTrendingEntity.swift */; };
 		64B1CC831F4F560E002A9FFD /* MovieDetailsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEBD1F4DBEFA004661C4 /* MovieDetailsError.swift */; };
@@ -212,11 +212,11 @@
 		64B1CCA51F4F560E002A9FFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6476323C1F44824900F277F1 /* AppDelegate.swift */; };
 		64B1CCA61F4F560E002A9FFD /* GenreStoreLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC731F4F55A8002A9FFD /* GenreStoreLayer.swift */; };
 		64B1CCA71F4F560E002A9FFD /* String+Enconding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBA1F4715AF009E37C9 /* String+Enconding.swift */; };
-		64B1CCA81F4F560E002A9FFD /* TraktV2+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBD1F4715AF009E37C9 /* TraktV2+Constants.swift */; };
+		64B1CCA81F4F560E002A9FFD /* Trakt+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBD1F4715AF009E37C9 /* Trakt+Constants.swift */; };
 		64B1CCAA1F4F560E002A9FFD /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEF11F4DC3AB004661C4 /* Genre.swift */; };
 		64B1CCAB1F4F560E002A9FFD /* TraktDateTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBB1F4715AF009E37C9 /* TraktDateTransformer.swift */; };
 		64B1CCAC1F4F560E002A9FFD /* ListMoviesiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC761F4F55B0002A9FFD /* ListMoviesiOSRouter.swift */; };
-		64B1CCAD1F4F560E002A9FFD /* TraktV2+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBE1F4715AF009E37C9 /* TraktV2+Endpoints.swift */; };
+		64B1CCAD1F4F560E002A9FFD /* Trakt+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBE1F4715AF009E37C9 /* Trakt+Endpoints.swift */; };
 		64B1CCAE1F4F560E002A9FFD /* ListMoviesContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03ECF1F4715D2009E37C9 /* ListMoviesContract.swift */; };
 		64B1CCAF1F4F560E002A9FFD /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEB21F4DB69C004661C4 /* BaseView.swift */; };
 		64B1CCB01F4F560E002A9FFD /* ListMoviesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648687A01F4A3B9C005A0BA8 /* ListMoviesStore.swift */; };
@@ -261,9 +261,9 @@
 		64BE631A1F4F5E43002E55EA /* Date+TraktDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC701F4F559F002A9FFD /* Date+TraktDateFormatter.swift */; };
 		64BE631B1F4F5E43002E55EA /* GenreStoreLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC731F4F55A8002A9FFD /* GenreStoreLayer.swift */; };
 		64BE631C1F4F5E43002E55EA /* String+Enconding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBA1F4715AF009E37C9 /* String+Enconding.swift */; };
-		64BE631D1F4F5E43002E55EA /* TraktV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBF1F4715AF009E37C9 /* TraktV2.swift */; };
+		64BE631D1F4F5E43002E55EA /* Trakt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBF1F4715AF009E37C9 /* Trakt.swift */; };
 		64BE631E1F4F5E50002E55EA /* Data+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EF01F472A5C009E37C9 /* Data+JSON.swift */; };
-		64BE631F1F4F5E67002E55EA /* TraktV2+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBD1F4715AF009E37C9 /* TraktV2+Constants.swift */; };
+		64BE631F1F4F5E67002E55EA /* Trakt+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EBD1F4715AF009E37C9 /* Trakt+Constants.swift */; };
 		64BE63211F4F6893002E55EA /* UIAlertController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE63201F4F6893002E55EA /* UIAlertController+Error.swift */; };
 		64BE63221F4F6893002E55EA /* UIAlertController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE63201F4F6893002E55EA /* UIAlertController+Error.swift */; };
 		64BE63251F4F692B002E55EA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64BE63231F4F692B002E55EA /* Localizable.strings */; };
@@ -376,9 +376,9 @@
 		64B03EBA1F4715AF009E37C9 /* String+Enconding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Enconding.swift"; sourceTree = "<group>"; };
 		64B03EBB1F4715AF009E37C9 /* TraktDateTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktDateTransformer.swift; sourceTree = "<group>"; };
 		64B03EBC1F4715AF009E37C9 /* TraktType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktType.swift; sourceTree = "<group>"; };
-		64B03EBD1F4715AF009E37C9 /* TraktV2+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TraktV2+Constants.swift"; sourceTree = "<group>"; };
-		64B03EBE1F4715AF009E37C9 /* TraktV2+Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TraktV2+Endpoints.swift"; sourceTree = "<group>"; };
-		64B03EBF1F4715AF009E37C9 /* TraktV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktV2.swift; sourceTree = "<group>"; };
+		64B03EBD1F4715AF009E37C9 /* Trakt+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trakt+Constants.swift"; sourceTree = "<group>"; };
+		64B03EBE1F4715AF009E37C9 /* Trakt+Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Trakt+Endpoints.swift"; sourceTree = "<group>"; };
+		64B03EBF1F4715AF009E37C9 /* Trakt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trakt.swift; sourceTree = "<group>"; };
 		64B03ECF1F4715D2009E37C9 /* ListMoviesContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListMoviesContract.swift; sourceTree = "<group>"; };
 		64B03ED41F4715D2009E37C9 /* ListMoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListMoviesViewController.swift; sourceTree = "<group>"; };
 		64B03EDB1F471BC1009E37C9 /* ListMovies.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ListMovies.storyboard; sourceTree = "<group>"; };
@@ -664,9 +664,9 @@
 				64B03EBA1F4715AF009E37C9 /* String+Enconding.swift */,
 				64B03EBB1F4715AF009E37C9 /* TraktDateTransformer.swift */,
 				64B03EBC1F4715AF009E37C9 /* TraktType.swift */,
-				64B03EBD1F4715AF009E37C9 /* TraktV2+Constants.swift */,
-				64B03EBE1F4715AF009E37C9 /* TraktV2+Endpoints.swift */,
-				64B03EBF1F4715AF009E37C9 /* TraktV2.swift */,
+				64B03EBD1F4715AF009E37C9 /* Trakt+Constants.swift */,
+				64B03EBE1F4715AF009E37C9 /* Trakt+Endpoints.swift */,
+				64B03EBF1F4715AF009E37C9 /* Trakt.swift */,
 			);
 			path = Trakt;
 			sourceTree = "<group>";
@@ -1250,7 +1250,7 @@
 				6406BEAF1F4DB669004661C4 /* TrendingCell.swift in Sources */,
 				64B03EC51F4715AF009E37C9 /* MovieIds.swift in Sources */,
 				6406BF051F4DC41F004661C4 /* MovieDetailsViewController.swift in Sources */,
-				64B03ECD1F4715AF009E37C9 /* TraktV2.swift in Sources */,
+				64B03ECD1F4715AF009E37C9 /* Trakt.swift in Sources */,
 				64B03EC11F4715AF009E37C9 /* StandardMediaEntity.swift in Sources */,
 				64B03EC31F4715AF009E37C9 /* BaseTrendingEntity.swift in Sources */,
 				6483911B1F505F4100911BA0 /* MovieViewModelMapper.swift in Sources */,
@@ -1302,13 +1302,13 @@
 				6476323D1F44824900F277F1 /* AppDelegate.swift in Sources */,
 				64B1CC741F4F55A9002A9FFD /* GenreStoreLayer.swift in Sources */,
 				64B03EC81F4715AF009E37C9 /* String+Enconding.swift in Sources */,
-				64B03ECB1F4715AF009E37C9 /* TraktV2+Constants.swift in Sources */,
+				64B03ECB1F4715AF009E37C9 /* Trakt+Constants.swift in Sources */,
 				6406BEF31F4DC3AB004661C4 /* Genre.swift in Sources */,
 				648390ED1F504EFE00911BA0 /* Search.swift in Sources */,
 				64DA35401F50914A005BF4E3 /* SearchModule.swift in Sources */,
 				64B03EC91F4715AF009E37C9 /* TraktDateTransformer.swift in Sources */,
 				64B1CC781F4F55B1002A9FFD /* ListMoviesiOSRouter.swift in Sources */,
-				64B03ECC1F4715AF009E37C9 /* TraktV2+Endpoints.swift in Sources */,
+				64B03ECC1F4715AF009E37C9 /* Trakt+Endpoints.swift in Sources */,
 				648391101F505CB000911BA0 /* SearchResultViewModel.swift in Sources */,
 				64B03ED51F4715D2009E37C9 /* ListMoviesContract.swift in Sources */,
 				6406BEB61F4DB69C004661C4 /* BaseView.swift in Sources */,
@@ -1352,9 +1352,9 @@
 				648391031F504F6400911BA0 /* SearchContract.swift in Sources */,
 				648390D41F504E7600911BA0 /* ListMoviesInteractorTest.swift in Sources */,
 				648391111F505CB000911BA0 /* SearchResultViewModel.swift in Sources */,
-				64B03EF81F473027009E37C9 /* TraktV2+Constants.swift in Sources */,
+				64B03EF81F473027009E37C9 /* Trakt+Constants.swift in Sources */,
 				6406BEEF1F4DC381004661C4 /* Genres+Hashable.swift in Sources */,
-				64B03EF91F473027009E37C9 /* TraktV2.swift in Sources */,
+				64B03EF91F473027009E37C9 /* Trakt.swift in Sources */,
 				64B03EF31F472FCA009E37C9 /* TraktType.swift in Sources */,
 				648390FA1F504F4D00911BA0 /* GenreType.swift in Sources */,
 				6406BEED1F4DC372004661C4 /* GenreStoreMock.swift in Sources */,
@@ -1397,7 +1397,7 @@
 				648390FE1F504F4D00911BA0 /* SearchResult.swift in Sources */,
 				64B1CC7E1F4F560E002A9FFD /* MovieIds.swift in Sources */,
 				64B1CC7F1F4F560E002A9FFD /* MovieDetailsViewController.swift in Sources */,
-				64B1CC801F4F560E002A9FFD /* TraktV2.swift in Sources */,
+				64B1CC801F4F560E002A9FFD /* Trakt.swift in Sources */,
 				64B1CC811F4F560E002A9FFD /* StandardMediaEntity.swift in Sources */,
 				6483911D1F505F4100911BA0 /* MovieViewModelMapper.swift in Sources */,
 				64B1CC821F4F560E002A9FFD /* BaseTrendingEntity.swift in Sources */,
@@ -1449,12 +1449,12 @@
 				64B1CCA51F4F560E002A9FFD /* AppDelegate.swift in Sources */,
 				64B1CCA61F4F560E002A9FFD /* GenreStoreLayer.swift in Sources */,
 				64B1CCA71F4F560E002A9FFD /* String+Enconding.swift in Sources */,
-				64B1CCA81F4F560E002A9FFD /* TraktV2+Constants.swift in Sources */,
+				64B1CCA81F4F560E002A9FFD /* Trakt+Constants.swift in Sources */,
 				64B1CCAA1F4F560E002A9FFD /* Genre.swift in Sources */,
 				64DA35411F50914A005BF4E3 /* SearchModule.swift in Sources */,
 				64B1CCAB1F4F560E002A9FFD /* TraktDateTransformer.swift in Sources */,
 				64B1CCAC1F4F560E002A9FFD /* ListMoviesiOSRouter.swift in Sources */,
-				64B1CCAD1F4F560E002A9FFD /* TraktV2+Endpoints.swift in Sources */,
+				64B1CCAD1F4F560E002A9FFD /* Trakt+Endpoints.swift in Sources */,
 				648391121F505CB000911BA0 /* SearchResultViewModel.swift in Sources */,
 				64B1CCAE1F4F560E002A9FFD /* ListMoviesContract.swift in Sources */,
 				64B1CCAF1F4F560E002A9FFD /* BaseView.swift in Sources */,
@@ -1473,13 +1473,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64BE631F1F4F5E67002E55EA /* TraktV2+Constants.swift in Sources */,
+				64BE631F1F4F5E67002E55EA /* Trakt+Constants.swift in Sources */,
 				648390DD1F504E9A00911BA0 /* ListMoviesPresenterTest.swift in Sources */,
 				64BE631E1F4F5E50002E55EA /* Data+JSON.swift in Sources */,
 				64BE631A1F4F5E43002E55EA /* Date+TraktDateFormatter.swift in Sources */,
 				64BE631B1F4F5E43002E55EA /* GenreStoreLayer.swift in Sources */,
 				64BE631C1F4F5E43002E55EA /* String+Enconding.swift in Sources */,
-				64BE631D1F4F5E43002E55EA /* TraktV2.swift in Sources */,
+				64BE631D1F4F5E43002E55EA /* Trakt.swift in Sources */,
 				648390E21F504EA500911BA0 /* SearchMocks.swift in Sources */,
 				64BE63191F4F5E04002E55EA /* BaseView.swift in Sources */,
 				64BE63181F4F5E00002E55EA /* TraktType.swift in Sources */,

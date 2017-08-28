@@ -16,7 +16,7 @@ public protocol TraktType: TargetType {}
 
 public extension TraktType {
 
-  public var baseURL: URL { return TraktV2.baseURL }
+  public var baseURL: URL { return Trakt.baseURL }
 
   public var method: Moya.Method { return .get }
 
@@ -30,7 +30,7 @@ public extension TraktType {
 }
 
 func stubbedResponse(_ filename: String) -> Data {
-  let bundle = Bundle(for: TraktV2.self)
+  let bundle = Bundle(for: Trakt.self)
   guard let url = bundle.url(forResource: filename, withExtension: "json"),
     let data = try? Data(contentsOf: url) else {
       return Data()
