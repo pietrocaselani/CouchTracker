@@ -25,7 +25,7 @@ final class SearchPresenter: SearchPresenterLayer {
   }
 
   func viewDidLoad() {
-    view?.hint = "Type a movie name".localized
+    view?.showHint(message: "Type a movie name".localized)
   }
 
   func searchMovies(query: String) {

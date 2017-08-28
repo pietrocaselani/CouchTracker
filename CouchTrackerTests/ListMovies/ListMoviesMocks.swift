@@ -24,39 +24,29 @@ final class ListMoviesViewMock: ListMoviesView {
   }
 
   var invokedShow = false
-  var invokedShowCount = 0
   var invokedShowParameters: (movies: [MovieViewModel], Void)?
-  var invokedShowParametersList = [(movies: [MovieViewModel], Void)]()
 
   func show(movies: [MovieViewModel]) {
     invokedShow = true
-    invokedShowCount += 1
     invokedShowParameters = (movies, ())
-    invokedShowParametersList.append((movies, ()))
   }
 }
 
 final class ListMoviesPresenterMock: ListMoviesPresenterLayer {
   var invokedFetchMovies = false
-  var invokedFetchMoviesCount = 0
 
   init(view: ListMoviesView, interactor: ListMoviesInteractorLayer, router: ListMoviesRouter) {}
 
   func fetchMovies() {
     invokedFetchMovies = true
-    invokedFetchMoviesCount += 1
   }
 
   var invokedShowDetailsOfMovie = false
-  var invokedShowDetailsOfMovieCount = 0
   var invokedShowDetailsOfMovieParameters: (index: Int, Void)?
-  var invokedShowDetailsOfMovieParametersList = [(index: Int, Void)]()
 
   func showDetailsOfMovie(at index: Int) {
     invokedShowDetailsOfMovie = true
-    invokedShowDetailsOfMovieCount += 1
     invokedShowDetailsOfMovieParameters = (index, ())
-    invokedShowDetailsOfMovieParametersList.append((index, ()))
   }
 }
 

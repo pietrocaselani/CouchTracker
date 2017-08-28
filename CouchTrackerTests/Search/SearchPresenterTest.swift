@@ -23,7 +23,7 @@ final class SearchPresenterTest: XCTestCase {
 
     presenter.viewDidLoad()
 
-    XCTAssertTrue(view.invokedHintSetter)
+    XCTAssertTrue(view.invokedShowHint)
   }
 
   func testSearchPresenter_performSearchSuccess_outputsTheResults() {

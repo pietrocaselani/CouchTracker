@@ -26,6 +26,18 @@ final class ListMoviesSearchOutput: SearchResultOutput {
   }
 
   func handleSearch(results: [SearchResultViewModel]) {
+    updateMovies(with: results)
+  }
+
+  func handleError(message: String) {
+    router.showError(message: message)
+  }
+
+  func searchCancelled() {
+    fetchTrendingMovies()
+  }
+
+  private func updateMovies(with results: [SearchResultViewModel]) {
     guard let view = view else { return }
 
     let movieViewModels = results.map { $0.movie ?? MovieViewModel(title: "") }
@@ -34,11 +46,7 @@ final class ListMoviesSearchOutput: SearchResultOutput {
     view.show(movies: movieViewModels)
   }
 
-  func handleError(message: String) {
-    router.showError(message: message)
-  }
-
-  func searchCancelled() {
+  private func fetchTrendingMovies() {
     self.presenter.fetchMovies()
   }
 }

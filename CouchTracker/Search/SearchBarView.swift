@@ -15,13 +15,8 @@ import UIKit
 final class SearchBarView: UISearchBar, SearchView {
   var presenter: SearchPresenterLayer!
 
-  var hint: String? {
-    set {
-      placeholder = newValue
-    }
-    get {
-      return placeholder
-    }
+  func showHint(message: String) {
+    self.placeholder = message
   }
 
   override func didMoveToSuperview() {
