@@ -1,0 +1,6 @@
+framework module Pods_Trakt_Mac {
+  umbrella header "Pods-Trakt-Mac-umbrella.h"
+
+  export *
+  module * { export * }
+}

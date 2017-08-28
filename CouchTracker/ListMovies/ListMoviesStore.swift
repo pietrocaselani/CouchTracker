@@ -14,6 +14,7 @@ import Carlos
 import Moya
 import PiedPiper
 import RxSwift
+import Trakt
 
 final class ListMoviesStore: ListMoviesStoreLayer {
 

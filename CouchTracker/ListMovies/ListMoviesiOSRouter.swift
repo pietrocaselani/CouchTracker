@@ -11,6 +11,7 @@ the license agreement.
 */
 
 import UIKit
+import Trakt
 
 final class ListMoviesiOSRouter: ListMoviesRouter {
 

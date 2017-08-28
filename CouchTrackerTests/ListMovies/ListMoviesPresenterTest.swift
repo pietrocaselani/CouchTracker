@@ -13,6 +13,7 @@ the license agreement.
 import Moya
 import ObjectMapper
 import XCTest
+import Trakt
 
 final class ListMoviesPresenterTest: XCTestCase {
 

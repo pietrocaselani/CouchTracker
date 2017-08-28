@@ -13,6 +13,7 @@
 import XCTest
 import RxSwift
 import RxTest
+import Trakt
 
 final class ListMoviesInteractorTest: XCTestCase {
 

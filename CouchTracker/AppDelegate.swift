@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Trakt
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -11,6 +11,7 @@ the license agreement.
 */
 
 import RxSwift
+import Trakt
 
 protocol SearchView: BaseView {
   var presenter: SearchPresenterLayer! { get set }

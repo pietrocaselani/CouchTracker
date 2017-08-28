@@ -39,6 +39,16 @@
                ReferencedContainer = "container:CouchTracker.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6405C9EF1F549BE90039D6E6"
+               BuildableName = "TraktTests.xctest"
+               BlueprintName = "TraktTests"
+               ReferencedContainer = "container:CouchTracker.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

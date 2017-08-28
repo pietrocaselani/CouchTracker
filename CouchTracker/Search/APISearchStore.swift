@@ -13,6 +13,7 @@ the license agreement.
 import RxSwift
 import Moya
 import Moya_ObjectMapper
+import Trakt
 
 final class APISearchStore: SearchStoreLayer {
 

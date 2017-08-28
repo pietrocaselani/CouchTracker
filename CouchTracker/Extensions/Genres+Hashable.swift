@@ -10,6 +10,8 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
+import Trakt
+
 extension Genres: Hashable {
   public var hashValue: Int {
     return self.path.hashValue

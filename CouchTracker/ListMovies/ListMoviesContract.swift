@@ -11,6 +11,7 @@ the license agreement.
 */
 
 import RxSwift
+import Trakt
 
 protocol ListMoviesRouter: class {
   func showDetails(of movie: TrendingMovie)

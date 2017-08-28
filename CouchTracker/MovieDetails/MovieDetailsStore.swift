@@ -13,6 +13,7 @@
 import Carlos
 import Moya
 import RxSwift
+import Trakt
 
 final class MovieDetailsStore: MovieDetailsStoreLayer {
 

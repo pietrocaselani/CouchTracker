@@ -11,6 +11,7 @@
  */
 
 import RxSwift
+import Trakt
 
 final class SearchPresenter: SearchPresenterLayer {
   private weak var view: SearchView?
