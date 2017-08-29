@@ -16,7 +16,7 @@ final class ListMoviesViewController: UIViewController {
 
   private typealias TrendingCellFactory = SimpleCollectionViewDataSource<TrendingViewModel>.CellFactory
 
-  var presenter: ListMoviesPresenterLayer! = nil
+  var presenter: ListMoviesPresenter!
   var searchView: SearchView!
 
   fileprivate var dataSource: SimpleCollectionViewDataSource<TrendingViewModel>!
@@ -63,8 +63,7 @@ final class ListMoviesViewController: UIViewController {
 
 extension ListMoviesViewController: ListMoviesView {
   func show(movies: [MovieViewModel]) {
-    emptyLabel.isHidden = true
-    collectionView.isHidden = false
+    makeListVisible()
 
     dataSource.elements = movies
     collectionView.reloadData()
@@ -73,6 +72,11 @@ extension ListMoviesViewController: ListMoviesView {
   func showEmptyView() {
     emptyLabel.isHidden = false
     collectionView.isHidden = true
+  }
+
+  private func makeListVisible() {
+    emptyLabel.isHidden = true
+    collectionView.isHidden = false
   }
 }
 

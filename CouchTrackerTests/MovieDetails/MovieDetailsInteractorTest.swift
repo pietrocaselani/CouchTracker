@@ -34,7 +34,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
   func testMovieDetailsInteractor_fetchSuccessWithEmptyData_andEmitsOnlyOnCompleted() {
     let movie = createMovieDetailsMock()
     let store = MovieDetailsStoreMock(movie: movie)
-    let interactor = MovieDetailsInteractor(store: store, genreStore: GenreStoreMock(), movieId: "the-dark-knight-2008")
+    let interactor = MovieDetailsUseCase(repository: store, genreRepository: GenreStoreMock(), movieId: "the-dark-knight-2008")
 
     let subscription = interactor.fetchDetails().subscribe(observer)
 
@@ -52,7 +52,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
   func testMovieDetailsInteractor_fetchSuccessDetails_andEmitsDetailsAndOnCompleted() {
     let movie = createMovieDetailsMock()
     let store = MovieDetailsStoreMock(movie: movie)
-    let interactor = MovieDetailsInteractor(store: store, genreStore: GenreStoreMock(), movieId: movie.ids.slug)
+    let interactor = MovieDetailsUseCase(repository: store, genreRepository: GenreStoreMock(), movieId: movie.ids.slug)
 
     let subscription = interactor.fetchDetails().subscribe(observer)
 
@@ -70,7 +70,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
   func testMoviesDetailsInteractor_fetchFailure_andEmitsOnlyOnError() {
     let connectionError = MovieDetailsError.noConnection("There is no connection active")
     let store = ErrorMovieDetailsStoreMock(error: connectionError)
-    let interactor = MovieDetailsInteractor(store: store, genreStore: GenreStoreMock(), movieId: "tron-legacy-2010")
+    let interactor = MovieDetailsUseCase(repository: store, genreRepository: GenreStoreMock(), movieId: "tron-legacy-2010")
 
     let subscription = interactor.fetchDetails().subscribe(observer)
 

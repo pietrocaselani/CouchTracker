@@ -15,8 +15,7 @@ import ObjectMapper
 import Trakt
 
 final class SearchViewMock: SearchView {
-  var invokedPresenterSetter = false
-  var presenter: SearchPresenterLayer!
+  var presenter: SearchPresenter!
   var invokedShowHint = false
   var invokedShowHintParameters: (message: String, Void)?
 
@@ -56,13 +55,13 @@ final class SearchResultOutputMock: SearchResultOutput {
   }
 }
 
-final class EmptySearchStoreMock: SearchStoreLayer {
+final class EmptySearchStoreMock: SearchRepository {
   func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]> {
     return Observable.just([SearchResult]())
   }
 }
 
-final class ErrorSearchStoreMock: SearchStoreLayer {
+final class ErrorSearchStoreMock: SearchRepository {
   private let error: Error
 
   init(error: Error) {
@@ -74,7 +73,7 @@ final class ErrorSearchStoreMock: SearchStoreLayer {
   }
 }
 
-final class SearchStoreMock: SearchStoreLayer {
+final class SearchStoreMock: SearchRepository {
   private let results: [SearchResult]
 
   init(results: [SearchResult]) {

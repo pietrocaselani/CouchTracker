@@ -13,7 +13,7 @@ the license agreement.
 import RxSwift
 import Trakt
 
-final class GenreStoreMock: GenreStoreLayer {
+final class GenreStoreMock: GenreRepository {
 
   let genres: [Genre]
 

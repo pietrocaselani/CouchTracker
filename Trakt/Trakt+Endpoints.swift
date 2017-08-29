@@ -38,7 +38,7 @@ extension Trakt {
   }
 
   private func createEndpointClosure<T: TargetType>(forTarget: T.Type) -> MoyaProvider<T>.EndpointClosure {
-    return { (target: T) -> Endpoint<T> in
+    let endpointClosure = { (target: T) -> Endpoint<T> in
       var endpoint = MoyaProvider.defaultEndpointMapping(for: target)
       endpoint = endpoint.adding(newHTTPHeaderFields: [Trakt.headerContentType: Trakt.contentTypeJSON])
       endpoint = endpoint.adding(newHTTPHeaderFields: [Trakt.headerTraktAPIKey: self.clientId])
@@ -46,5 +46,7 @@ extension Trakt {
 
       return endpoint
     }
+
+    return endpointClosure
   }
 }

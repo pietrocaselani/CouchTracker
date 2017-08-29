@@ -12,6 +12,6 @@ the license agreement.
 
 import Trakt
 
-func mapMovieToViewModel(_ movie: Movie, defaultTitle: String = "TBA".localized) -> MovieViewModel {
+func viewModel(for movie: Movie, defaultTitle: String = "TBA".localized) -> MovieViewModel {
   return MovieViewModel(title: movie.title ?? defaultTitle)
 }

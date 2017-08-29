@@ -13,19 +13,15 @@ the license agreement.
 import RxSwift
 import Trakt
 
-final class ListMoviesPresenter: ListMoviesPresenterLayer {
-
+final class ListMoviesiOSPresenter: ListMoviesPresenter {
   weak var view: ListMoviesView?
-  let router: ListMoviesRouter
-
-  private let interactor: ListMoviesInteractorLayer
+  private let interactor: ListMoviesInteractor
+  private let router: ListMoviesRouter
   private let disposeBag = DisposeBag()
-
   private var movies = [TrendingMovie]()
-
   private var currentPage = 0
 
-  init(view: ListMoviesView, interactor: ListMoviesInteractorLayer, router: ListMoviesRouter) {
+  init(view: ListMoviesView, interactor: ListMoviesInteractor, router: ListMoviesRouter) {
     self.view = view
     self.interactor = interactor
     self.router = router
@@ -66,6 +62,6 @@ final class ListMoviesPresenter: ListMoviesPresenterLayer {
   }
 
   private func transformToViewModels(entities: [TrendingMovie]) -> [MovieViewModel] {
-    return entities.map { mapMovieToViewModel($0.movie) }
+    return entities.map { viewModel(for: $0.movie) }
   }
 }

@@ -13,7 +13,7 @@ the license agreement.
 import UIKit
 
 final class SearchBarView: UISearchBar, SearchView {
-  var presenter: SearchPresenterLayer!
+  var presenter: SearchPresenter!
 
   func showHint(message: String) {
     self.placeholder = message
@@ -34,9 +34,9 @@ extension SearchBarView: UISearchBarDelegate {
   }
 
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    if let query = searchBar.text {
-      presenter.searchMovies(query: query)
-    }
+    guard let query = searchBar.text else { return }
+
+    presenter.searchMovies(query: query)
   }
 
   func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

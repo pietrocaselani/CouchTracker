@@ -14,7 +14,7 @@ import RxSwift
 import Trakt
 
 protocol SearchView: BaseView {
-  var presenter: SearchPresenterLayer! { get set }
+  var presenter: SearchPresenter! { get set }
 
   func showHint(message: String)
 }
@@ -26,22 +26,20 @@ protocol SearchResultOutput: class {
   func searchCancelled()
 }
 
-protocol SearchPresenterLayer: class {
-
-  init(view: SearchView, interactor: SearchInteractorLayer, resultOutput: SearchResultOutput)
+protocol SearchPresenter: class {
+  init(view: SearchView, interactor: SearchInteractor, resultOutput: SearchResultOutput)
 
   func viewDidLoad()
   func searchMovies(query: String)
   func cancelSearch()
 }
 
-protocol SearchInteractorLayer: class {
-
-  init(store: SearchStoreLayer)
+protocol SearchInteractor: class {
+  init(repository: SearchRepository)
 
   func searchMovies(query: String) -> Observable<[SearchResult]>
 }
 
-protocol SearchStoreLayer: class {
+protocol SearchRepository: class {
   func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]>
 }

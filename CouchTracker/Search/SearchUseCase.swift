@@ -1,7 +1,7 @@
 /*
 Copyright 2017 ArcTouch LLC.
 All rights reserved.
-
+ 
 This file, its contents, concepts, methods, behavior, and operation
 (collectively the "Software") are protected by trade secret, patent,
 and copyright laws. The use of the Software is governed by a license
@@ -13,15 +13,14 @@ the license agreement.
 import RxSwift
 import Trakt
 
-final class ListMoviesInteractor: ListMoviesInteractorLayer {
+final class SearchUseCase: SearchInteractor {
+  private let repository: SearchRepository
 
-  private let store: ListMoviesStoreLayer
-
-  init(store: ListMoviesStoreLayer) {
-    self.store = store
+  init(repository: SearchRepository) {
+    self.repository = repository
   }
 
-  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
-    return store.fetchMovies(page: page, limit: limit)
+  func searchMovies(query: String) -> Observable<[SearchResult]> {
+    return repository.search(query: query, types: [.movie], page: 0, limit: 50)
   }
 }

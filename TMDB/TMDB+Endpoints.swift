@@ -32,7 +32,7 @@ extension TMDB {
   }
 
   private func createRequestClosure<T: TMDBType>(forTarget target: T.Type) -> MoyaProvider<T>.RequestClosure {
-    return { (endpoint: Endpoint<T>, done: MoyaProvider.RequestResultClosure) in
+    let requestClosure = { (endpoint: Endpoint<T>, done: MoyaProvider.RequestResultClosure) in
       guard let url = endpoint.urlRequest?.url else {
         done(.failure(MoyaError.requestMapping(endpoint.url)))
         return
@@ -54,5 +54,7 @@ extension TMDB {
 
       done(.success(validRequest))
     }
+
+    return requestClosure
   }
 }

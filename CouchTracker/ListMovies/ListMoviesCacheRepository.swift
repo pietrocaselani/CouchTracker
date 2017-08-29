@@ -12,23 +12,27 @@
 
 import Carlos
 import Moya
+import PiedPiper
 import RxSwift
 import Trakt
 
-final class MovieDetailsStore: MovieDetailsStoreLayer {
+final class ListMoviesCacheRepository: ListMoviesRepository {
 
-  private let cache: BasicCache<Movies, Movie>
+  private let cache: BasicCache<Movies, [TrendingMovie]>
 
   init(apiProvider: APIProvider) {
     let moviesProvider = apiProvider.movies
 
+    let fetcher = MoyaFetcher(provider: moviesProvider).pooled()
+
     self.cache = MemoryCacheLevel<Movies, NSData>()
         .compose(DiskCacheLevel<Movies, NSData>())
-        .compose(MoyaFetcher(provider: moviesProvider))
-        .transformValues(JSONObjectTransfomer<Movie>())
+        .compose(fetcher)
+        .transformValues(JSONArrayTransfomer<TrendingMovie>())
   }
 
-  func fetchDetails(movieId: String) -> Observable<Movie> {
-    return cache.get(.summary(movieId: movieId, extended: .full)).asObservable()
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
+    return cache.get(.trending(page: page, limit: limit, extended: .full))
+        .asObservable()
   }
 }

@@ -13,15 +13,7 @@ the license agreement.
 import RxSwift
 import Trakt
 
-final class SearchInteractor: SearchInteractorLayer {
-
-  private let store: SearchStoreLayer
-
-  init(store: SearchStoreLayer) {
-    self.store = store
-  }
-
-  func searchMovies(query: String) -> Observable<[SearchResult]> {
-    return store.search(query: query, types: [.movie], page: 0, limit: 50)
-  }
+protocol GenreRepository {
+  func fetchMoviesGenres() -> Observable<[Genre]>
+  func fetchShowsGenres() -> Observable<[Genre]>
 }

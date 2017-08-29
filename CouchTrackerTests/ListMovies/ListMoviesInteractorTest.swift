@@ -33,7 +33,7 @@ final class ListMoviesInteractorTest: XCTestCase {
 
   func testHandleEmpty() {
     let store = EmptyListMoviesStoreMock()
-    let interactor = ListMoviesInteractor(store: store)
+    let interactor = ListMoviesUseCase(repository: store)
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(observer)
 
@@ -52,7 +52,7 @@ final class ListMoviesInteractorTest: XCTestCase {
     let connectionError = ListMoviesError.noConnection("There is no connection active")
 
     let store = ErrorListMoviesStoreMock(error: connectionError)
-    let interactor = ListMoviesInteractor(store: store)
+    let interactor = ListMoviesUseCase(repository: store)
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(observer)
 
@@ -71,7 +71,7 @@ final class ListMoviesInteractorTest: XCTestCase {
     let movies = [TrendingMovie]()
 
     let store = MoviesListMovieStoreMock(movies: movies)
-    let interactor = ListMoviesInteractor(store: store)
+    let interactor = ListMoviesUseCase(repository: store)
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(observer)
 

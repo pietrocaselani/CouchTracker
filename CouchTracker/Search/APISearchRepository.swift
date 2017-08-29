@@ -15,7 +15,7 @@ import Moya
 import Moya_ObjectMapper
 import Trakt
 
-final class APISearchStore: SearchStoreLayer {
+final class APISearchRepository: SearchRepository {
 
   private let provider: RxMoyaProvider<Search>
 
