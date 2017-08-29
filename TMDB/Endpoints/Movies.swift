@@ -10,13 +10,25 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import ObjectMapper
+import Moya
 
-public final class ConfigurationResponse: ImmutableMappable {
+public enum Movies {
+  case images(movieId: Int)
+}
 
-  public let images: ImagesConfiguration
+extension Movies: TMDBType {
+  public var path: String {
+    switch self {
+    case .images(let movieId):
+      return "movie/\(movieId)/images"
+    }
+  }
 
-  public init(map: Map) throws {
-    self.images = try map.value("images")
+  public var parameters: [String: Any]? {
+    return nil
+  }
+
+  public var sampleData: Data {
+    return stubbedResponse("tmdb_movie_images")
   }
 }

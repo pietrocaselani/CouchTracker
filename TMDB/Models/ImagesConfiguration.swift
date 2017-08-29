@@ -12,11 +12,15 @@ the license agreement.
 
 import ObjectMapper
 
-public final class ConfigurationResponse: ImmutableMappable {
+public final class ImagesConfiguration: ImmutableMappable {
 
-  public let images: ImagesConfiguration
+  public let secureBaseURL: String
+  public let backdropSizes: [String]
+  public let posterSizes: [String]
 
   public init(map: Map) throws {
-    self.images = try map.value("images")
+    self.secureBaseURL = (try? map.value("secure_base_url")) ?? TMDB.defaultSecureImageURL
+    self.backdropSizes = (try map.value("backdrop_sizes")) ?? TMDB.defaultBackdropSizes
+    self.posterSizes = (try? map.value("poster_sizes")) ?? TMDB.defaultPosterSizes
   }
 }
