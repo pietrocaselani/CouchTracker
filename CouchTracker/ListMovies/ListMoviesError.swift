@@ -21,5 +21,4 @@ enum ListMoviesError: Error {
       return message
     }
   }
-
 }

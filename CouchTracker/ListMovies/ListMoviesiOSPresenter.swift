@@ -13,15 +13,11 @@ the license agreement.
 import RxSwift
 
 final class ListMoviesiOSPresenter: ListMoviesPresenter {
-
-  private weak var view: ListMoviesView?
-
-  private let router: ListMoviesRouter
+  weak var view: ListMoviesView?
   private let interactor: ListMoviesInteractor
+  private let router: ListMoviesRouter
   private let disposeBag = DisposeBag()
-
   private var movies = [TrendingMovie]()
-
   private var currentPage = 0
 
   init(view: ListMoviesView, interactor: ListMoviesInteractor, router: ListMoviesRouter) {
@@ -30,7 +26,7 @@ final class ListMoviesiOSPresenter: ListMoviesPresenter {
     self.router = router
   }
 
-  func viewDidLoad() {
+  func fetchMovies() {
     interactor.fetchMovies(page: currentPage, limit: 50)
         .do(onNext: { [unowned self] entities in
           self.movies = entities

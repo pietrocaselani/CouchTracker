@@ -30,13 +30,13 @@ final class SearchInteractorTest: XCTestCase {
   }
 
   func testSearchInteractor_fetchSuccessEmptyData_andEmitsEmptyDataAndOnCompleted() {
-    let interactor = SearchUseCase(repository: EmptySearchStoreMock())
+    let interactor = SearchUseCase(repository: SearchStoreMock(results: [SearchResult]()))
 
     let disposable = interactor.searchMovies(query: "Cool movie").subscribe(observer)
 
     scheduler.scheduleAt(500) { disposable.dispose() }
 
-    let expectedEvents: [Recorded<Event<[SearchResult]>>] = [completed(0)]
+    let expectedEvents: [Recorded<Event<[SearchResult]>>] = [next(0, [SearchResult]()), completed(0)]
 
     RXAssertEvents(observer, expectedEvents)
   }

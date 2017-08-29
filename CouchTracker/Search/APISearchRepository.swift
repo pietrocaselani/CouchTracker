@@ -22,14 +22,14 @@ final class APISearchRepository: SearchRepository {
     self.provider = apiProvider.search
   }
 
-  func search(query: String, types: [SearchType]) -> Observable<[SearchResult]> {
-    let target = Search.textQuery(types: types, query: query)
+  func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]> {
+    let target = Search.textQuery(types: types, query: query, page: page, limit: limit)
 
     let scheduler = ConcurrentDispatchQueueScheduler(qos: .background)
 
     return provider.request(target)
-        .subscribeOn(scheduler)
-        .observeOn(scheduler)
-        .mapArray(SearchResult.self)
+      .subscribeOn(scheduler)
+      .observeOn(scheduler)
+      .mapArray(SearchResult.self)
   }
 }

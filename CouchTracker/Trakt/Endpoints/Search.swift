@@ -13,17 +13,17 @@ the license agreement.
 import Moya
 
 public enum Search {
-  case idLookup(idType: IDType, id: String, types: [SearchType])
-  case textQuery(types: [SearchType], query: String)
+  case idLookup(idType: IDType, id: String, types: [SearchType], page: Int?, limit: Int?)
+  case textQuery(types: [SearchType], query: String, page: Int?, limit: Int?)
 }
 
 extension Search: TraktType {
 
   public var path: String {
     switch self {
-    case .idLookup(let idType, let id, _):
+    case .idLookup(let idType, let id, _, _, _):
       return "search/\(idType.rawValue)/\(id)"
-    case .textQuery(let types, _):
+    case .textQuery(let types, _, _, _):
       let typesPath = types.map { $0.rawValue }.joined(separator: ",")
       return "search/\(typesPath)"
     }
@@ -31,10 +31,10 @@ extension Search: TraktType {
 
   public var parameters: [String: Any]? {
     switch self {
-    case .idLookup(_, _, let types):
-      return ["type": types.map { $0.rawValue }.joined(separator: ",")]
-    case .textQuery(_, let query):
-      return ["query": query]
+    case .idLookup(_, _, let types, let page, let limit):
+      return ["type": types.map { $0.rawValue }.joined(separator: ","), "page": page ?? 0, "limit": limit ?? 10]
+    case .textQuery(_, let query, let page, let limit):
+      return ["query": query, "page": page ?? 0, "limit": limit ?? 10]
     }
   }
 

@@ -14,29 +14,31 @@ import RxSwift
 
 protocol SearchView: BaseView {
   var presenter: SearchPresenter! { get set }
+
+  func showHint(message: String)
 }
 
 protocol SearchResultOutput: class {
   func handleEmptySearchResult()
   func handleSearch(results: [SearchResultViewModel])
   func handleError(message: String)
+  func searchCancelled()
 }
 
 protocol SearchPresenter: class {
+  init(view: SearchView, interactor: SearchInteractor, resultOutput: SearchResultOutput)
 
-  init(interactor: SearchInteractor, resultOutput: SearchResultOutput)
-
+  func viewDidLoad()
   func searchMovies(query: String)
+  func cancelSearch()
 }
 
 protocol SearchInteractor: class {
-
   init(repository: SearchRepository)
 
   func searchMovies(query: String) -> Observable<[SearchResult]>
 }
 
 protocol SearchRepository: class {
-
-  func search(query: String, types: [SearchType]) -> Observable<[SearchResult]>
+  func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]>
 }

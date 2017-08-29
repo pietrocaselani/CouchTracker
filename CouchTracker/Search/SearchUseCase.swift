@@ -13,7 +13,6 @@ the license agreement.
 import RxSwift
 
 final class SearchUseCase: SearchInteractor {
-
   private let repository: SearchRepository
 
   init(repository: SearchRepository) {
@@ -21,6 +20,6 @@ final class SearchUseCase: SearchInteractor {
   }
 
   func searchMovies(query: String) -> Observable<[SearchResult]> {
-    return repository.search(query: query, types: [.movie])
+    return repository.search(query: query, types: [.movie], page: 0, limit: 50)
   }
 }

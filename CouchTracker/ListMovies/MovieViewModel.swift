@@ -11,7 +11,6 @@ struct MovieViewModel: TrendingViewModel {
 }
 
 extension MovieViewModel: Equatable, Hashable {
-
   static func == (lhs: MovieViewModel, rhs: MovieViewModel) -> Bool {
     return lhs.title == rhs.title
   }
@@ -19,5 +18,4 @@ extension MovieViewModel: Equatable, Hashable {
   var hashValue: Int {
     return title.hashValue
   }
-
 }

@@ -15,6 +15,13 @@ import ObjectMapper
 
 final class SearchViewMock: SearchView {
   var presenter: SearchPresenter!
+  var invokedShowHint = false
+  var invokedShowHintParameters: (message: String, Void)?
+
+  func showHint(message: String) {
+    invokedShowHint = true
+    invokedShowHintParameters = (message, ())
+  }
 }
 
 final class SearchResultOutputMock: SearchResultOutput {
@@ -39,11 +46,17 @@ final class SearchResultOutputMock: SearchResultOutput {
     invokedHandleError = true
     invokedHandleErrorParameters = (message, ())
   }
+
+  var invokedSearchCancelled = false
+
+  func searchCancelled() {
+    invokedSearchCancelled = true
+  }
 }
 
 final class EmptySearchStoreMock: SearchRepository {
-  func search(query: String, types: [SearchType]) -> Observable<[SearchResult]> {
-    return Observable.empty()
+  func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]> {
+    return Observable.just([SearchResult]())
   }
 }
 
@@ -54,7 +67,7 @@ final class ErrorSearchStoreMock: SearchRepository {
     self.error = error
   }
 
-  func search(query: String, types: [SearchType]) -> Observable<[SearchResult]> {
+  func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]> {
     return Observable.error(error)
   }
 }
@@ -66,13 +79,13 @@ final class SearchStoreMock: SearchRepository {
     self.results = results
   }
 
-  func search(query: String, types: [SearchType]) -> Observable<[SearchResult]> {
-    return Observable.just(results)
+  func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]> {
+    return Observable.just(results).take(limit)
   }
 }
 
 func createSearchResultsMock() -> [SearchResult] {
-  let data = Search.textQuery(types: [.movie], query: "Tron").sampleData
+  let data = Search.textQuery(types: [.movie], query: "Tron", page: 0, limit: 100).sampleData
   let options = JSONSerialization.ReadingOptions(rawValue: 0)
 
   let array = try! JSONSerialization.jsonObject(with: data, options: options) as! [[String: AnyObject]]

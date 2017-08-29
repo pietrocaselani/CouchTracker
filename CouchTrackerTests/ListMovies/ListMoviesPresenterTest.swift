@@ -23,7 +23,7 @@ final class ListMoviesPresenterTest: XCTestCase {
     let interactor = ListMoviesUseCase(repository: EmptyListMoviesStoreMock())
     let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
-    presenter.viewDidLoad()
+    presenter.fetchMovies()
 
     XCTAssertTrue(view.invokedShowEmptyView)
     XCTAssertFalse(view.invokedShow)
@@ -34,7 +34,7 @@ final class ListMoviesPresenterTest: XCTestCase {
     let interactor = ListMoviesUseCase(repository: ErrorListMoviesStoreMock(error: error))
     let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
-    presenter.viewDidLoad()
+    presenter.fetchMovies()
 
     XCTAssertTrue(router.invokedShowError)
     XCTAssertEqual(router.invokedShowErrorParameters?.message, "Invalid json")
@@ -46,7 +46,7 @@ final class ListMoviesPresenterTest: XCTestCase {
     let interactor = ListMoviesUseCase(repository: store)
     let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
-    presenter.viewDidLoad()
+    presenter.fetchMovies()
 
     let expectedViewModel = movies.map { MovieViewModel(title: $0.movie.title ?? "TBA") }
 
@@ -61,7 +61,7 @@ final class ListMoviesPresenterTest: XCTestCase {
 
     let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
-    presenter.viewDidLoad()
+    presenter.fetchMovies()
 
     XCTAssertTrue(view.invokedShowEmptyView)
     XCTAssertFalse(view.invokedShow)
@@ -74,7 +74,7 @@ final class ListMoviesPresenterTest: XCTestCase {
 
     let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
-    presenter.viewDidLoad()
+    presenter.fetchMovies()
 
     XCTAssertTrue(router.invokedShowError)
     XCTAssertEqual(router.invokedShowErrorParameters?.message, "Custom list movies error")
@@ -87,7 +87,7 @@ final class ListMoviesPresenterTest: XCTestCase {
     let interactor = ListMoviesUseCase(repository: store)
     let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
-    presenter.viewDidLoad()
+    presenter.fetchMovies()
     presenter.showDetailsOfMovie(at: movieIndex)
 
     XCTAssertTrue(router.invokedShowDetails)

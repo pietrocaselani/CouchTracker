@@ -15,6 +15,7 @@ import RxSwift
 
 final class ListMoviesViewMock: ListMoviesView {
   var presenter: ListMoviesPresenter!
+  var searchView: SearchView!
   var invokedShowEmptyView = false
 
   func showEmptyView() {
@@ -27,6 +28,24 @@ final class ListMoviesViewMock: ListMoviesView {
   func show(movies: [MovieViewModel]) {
     invokedShow = true
     invokedShowParameters = (movies, ())
+  }
+}
+
+final class ListMoviesPresenterMock: ListMoviesPresenter {
+  var invokedFetchMovies = false
+
+  init(view: ListMoviesView, interactor: ListMoviesInteractor, router: ListMoviesRouter) {}
+
+  func fetchMovies() {
+    invokedFetchMovies = true
+  }
+
+  var invokedShowDetailsOfMovie = false
+  var invokedShowDetailsOfMovieParameters: (index: Int, Void)?
+
+  func showDetailsOfMovie(at index: Int) {
+    invokedShowDetailsOfMovie = true
+    invokedShowDetailsOfMovieParameters = (index, ())
   }
 }
 
