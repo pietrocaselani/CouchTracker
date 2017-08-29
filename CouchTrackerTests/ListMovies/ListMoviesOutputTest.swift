@@ -16,12 +16,17 @@ final class ListMoviesOutputTest: XCTestCase {
 
   let view = ListMoviesViewMock()
   let router = ListMoviesRouterMock()
+  var presenter: ListMoviesPresenterMock!
 
-  func testListMoviesOutput_receivesEmptyResults_shouldNotifyView() {
+  private func setupSearchOutputWithEmptyStore() -> SearchResultOutput {
     let store = EmptyListMoviesStoreMock()
     let interactor = ListMoviesUseCase(repository: store)
-    let presenter = ListMoviesPresenterMock(view: view, interactor: interactor, router: router)
-    let output = ListMoviesSearchOutput(view: view, router: router, presenter: presenter)
+    presenter = ListMoviesPresenterMock(view: view, interactor: interactor, router: router)
+    return ListMoviesSearchOutput(view: view, router: router, presenter: presenter)
+  }
+
+  func testListMoviesOutput_receivesEmptyResults_shouldNotifyView() {
+    let output = setupSearchOutputWithEmptyStore()
 
     output.handleEmptySearchResult()
 
@@ -29,10 +34,7 @@ final class ListMoviesOutputTest: XCTestCase {
   }
 
   func testListMoviesOutput_receivesCancel_shouldNotifyPresenter() {
-    let store = EmptyListMoviesStoreMock()
-    let interactor = ListMoviesUseCase(repository: store)
-    let presenter = ListMoviesPresenterMock(view: view, interactor: interactor, router: router)
-    let output = ListMoviesSearchOutput(view: view, router: router, presenter: presenter)
+    let output = setupSearchOutputWithEmptyStore()
 
     output.searchCancelled()
 
@@ -40,10 +42,7 @@ final class ListMoviesOutputTest: XCTestCase {
   }
 
   func testListMoviesOutput_receivesError_shouldNotifyRouter() {
-    let store = EmptyListMoviesStoreMock()
-    let interactor = ListMoviesUseCase(repository: store)
-    let presenter = ListMoviesPresenterMock(view: view, interactor: interactor, router: router)
-    let output = ListMoviesSearchOutput(view: view, router: router, presenter: presenter)
+    let output = setupSearchOutputWithEmptyStore()
 
     output.handleError(message: "There is no active connection")
 
@@ -52,10 +51,7 @@ final class ListMoviesOutputTest: XCTestCase {
   }
 
   func testListMoviesOutput_receivesResults_shoudShowOnView() {
-    let store = EmptyListMoviesStoreMock()
-    let interactor = ListMoviesUseCase(repository: store)
-    let presenter = ListMoviesPresenterMock(view: view, interactor: interactor, router: router)
-    let output = ListMoviesSearchOutput(view: view, router: router, presenter: presenter)
+    let output = setupSearchOutputWithEmptyStore()
 
     let searchResults = createSearchResultsMock()
     let viewModels = searchResults.map {
