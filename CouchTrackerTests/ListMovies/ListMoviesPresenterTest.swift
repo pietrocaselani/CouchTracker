@@ -20,8 +20,8 @@ final class ListMoviesPresenterTest: XCTestCase {
   let router = ListMoviesRouterMock()
 
   func testListMoviesPresenter_fetchSuccessWithEmptyData_andPresentNoMovies() {
-    let interactor = ListMoviesInteractor(store: EmptyListMoviesStoreMock())
-    let presenter = ListMoviesPresenter(view: view, interactor: interactor, router: router)
+    let interactor = ListMoviesUseCase(repository: EmptyListMoviesStoreMock())
+    let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.fetchMovies()
 
@@ -31,8 +31,8 @@ final class ListMoviesPresenterTest: XCTestCase {
 
   func testListMoviesPresenter_fetchFailure_andPresentError() {
     let error = ListMoviesError.parseError("Invalid json")
-    let interactor = ListMoviesInteractor(store: ErrorListMoviesStoreMock(error: error))
-    let presenter = ListMoviesPresenter(view: view, interactor: interactor, router: router)
+    let interactor = ListMoviesUseCase(repository: ErrorListMoviesStoreMock(error: error))
+    let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.fetchMovies()
 
@@ -43,8 +43,8 @@ final class ListMoviesPresenterTest: XCTestCase {
   func testListMoviesPresenter_fetchSuccess_andPresentMovies() {
     let movies = createMockMovies()
     let store = MoviesListMovieStoreMock(movies: movies)
-    let interactor = ListMoviesInteractor(store: store)
-    let presenter = ListMoviesPresenter(view: view, interactor: interactor, router: router)
+    let interactor = ListMoviesUseCase(repository: store)
+    let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.fetchMovies()
 
@@ -57,9 +57,9 @@ final class ListMoviesPresenterTest: XCTestCase {
   func testListMoviesPresenter_fetchSuccess_andPresentNoMovies() {
     let movies = [TrendingMovie]()
     let store = MoviesListMovieStoreMock(movies: movies)
-    let interactor = ListMoviesInteractor(store: store)
+    let interactor = ListMoviesUseCase(repository: store)
 
-    let presenter = ListMoviesPresenter(view: view, interactor: interactor, router: router)
+    let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.fetchMovies()
 
@@ -70,9 +70,9 @@ final class ListMoviesPresenterTest: XCTestCase {
   func testListMoviesPresenter_fetchFailure_andIsCustomError() {
     let userInfo = [NSLocalizedDescriptionKey: "Custom list movies error"]
     let error = NSError(domain: "com.arctouch.CouchTracker", code: 10, userInfo: userInfo)
-    let interactor = ListMoviesInteractor(store: ErrorListMoviesStoreMock(error: error))
+    let interactor = ListMoviesUseCase(repository: ErrorListMoviesStoreMock(error: error))
 
-    let presenter = ListMoviesPresenter(view: view, interactor: interactor, router: router)
+    let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.fetchMovies()
 
@@ -84,8 +84,8 @@ final class ListMoviesPresenterTest: XCTestCase {
     let movieIndex = 1
     let movies = createMockMovies()
     let store = MoviesListMovieStoreMock(movies: movies)
-    let interactor = ListMoviesInteractor(store: store)
-    let presenter = ListMoviesPresenter(view: view, interactor: interactor, router: router)
+    let interactor = ListMoviesUseCase(repository: store)
+    let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.fetchMovies()
     presenter.showDetailsOfMovie(at: movieIndex)

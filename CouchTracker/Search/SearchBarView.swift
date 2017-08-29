@@ -13,7 +13,7 @@ the license agreement.
 import UIKit
 
 final class SearchBarView: UISearchBar, SearchView {
-  var presenter: SearchPresenterLayer!
+  var presenter: SearchPresenter!
 
   func showHint(message: String) {
     self.placeholder = message

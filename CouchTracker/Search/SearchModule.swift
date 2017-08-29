@@ -21,9 +21,9 @@ final class SearchModule {
       fatalError("searchView should be an instance of SearchView")
     }
 
-    let store = APISearchStore(apiProvider: apiProvider)
-    let interactor = SearchInteractor(store: store)
-    let presenter = SearchPresenter(view: searchView, interactor: interactor, resultOutput: resultsOutput)
+    let store = APISearchRepository(apiProvider: apiProvider)
+    let interactor = SearchUseCase(repository: store)
+    let presenter = SearchiOSPresenter(view: searchView, interactor: interactor, resultOutput: resultsOutput)
 
     searchView.presenter = presenter
 

@@ -14,8 +14,7 @@ import Foundation
 import RxSwift
 
 final class ListMoviesViewMock: ListMoviesView {
-  var invokedPresenterSetter = false
-  var presenter: ListMoviesPresenterLayer!
+  var presenter: ListMoviesPresenter!
   var searchView: SearchView!
   var invokedShowEmptyView = false
 
@@ -32,10 +31,10 @@ final class ListMoviesViewMock: ListMoviesView {
   }
 }
 
-final class ListMoviesPresenterMock: ListMoviesPresenterLayer {
+final class ListMoviesPresenterMock: ListMoviesPresenter {
   var invokedFetchMovies = false
 
-  init(view: ListMoviesView, interactor: ListMoviesInteractorLayer, router: ListMoviesRouter) {}
+  init(view: ListMoviesView, interactor: ListMoviesInteractor, router: ListMoviesRouter) {}
 
   func fetchMovies() {
     invokedFetchMovies = true
@@ -68,13 +67,13 @@ final class ListMoviesRouterMock: ListMoviesRouter {
   }
 }
 
-final class EmptyListMoviesStoreMock: ListMoviesStoreLayer {
+final class EmptyListMoviesStoreMock: ListMoviesRepository {
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
     return Observable.empty()
   }
 }
 
-final class ErrorListMoviesStoreMock: ListMoviesStoreLayer {
+final class ErrorListMoviesStoreMock: ListMoviesRepository {
 
   private let error: Error
 
@@ -87,7 +86,7 @@ final class ErrorListMoviesStoreMock: ListMoviesStoreLayer {
   }
 }
 
-final class MoviesListMovieStoreMock: ListMoviesStoreLayer {
+final class MoviesListMovieStoreMock: ListMoviesRepository {
 
   private let movies: [TrendingMovie]
 

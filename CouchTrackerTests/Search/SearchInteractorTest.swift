@@ -30,7 +30,7 @@ final class SearchInteractorTest: XCTestCase {
   }
 
   func testSearchInteractor_fetchSuccessEmptyData_andEmitsEmptyDataAndOnCompleted() {
-    let interactor = SearchInteractor(store: EmptySearchStoreMock())
+    let interactor = SearchUseCase(repository: SearchStoreMock(results: [SearchResult]()))
 
     let disposable = interactor.searchMovies(query: "Cool movie").subscribe(observer)
 
@@ -44,7 +44,7 @@ final class SearchInteractorTest: XCTestCase {
   func testSearchInteractor_fetchSuccessReceivesData_andEmitDataAndOnCompleted() {
     let results = createSearchResultsMock()
 
-    let interactor = SearchInteractor(store: SearchStoreMock(results: results))
+    let interactor = SearchUseCase(repository: SearchStoreMock(results: results))
     let disposable = interactor.searchMovies(query: "Tron").subscribe(observer)
 
     scheduler.scheduleAt(500) { disposable.dispose() }

@@ -15,7 +15,7 @@ import RxSwift
 
 final class MovieDetailsViewMock: MovieDetailsView {
   var invokedPresenterSetter = false
-  var presenter: MovieDetailsPresenterLayer!
+  var presenter: MovieDetailsPresenter!
   var invokedShow = false
   var invokedShowParameters: (details: MovieDetailsViewModel, Void)?
 
@@ -35,7 +35,7 @@ final class MovieDetailsRouterMock: MovieDetailsRouter {
   }
 }
 
-final class ErrorMovieDetailsStoreMock: MovieDetailsStoreLayer {
+final class ErrorMovieDetailsStoreMock: MovieDetailsRepository {
 
   private let error: Error
 
@@ -48,7 +48,7 @@ final class ErrorMovieDetailsStoreMock: MovieDetailsStoreLayer {
   }
 }
 
-final class MovieDetailsStoreMock: MovieDetailsStoreLayer {
+final class MovieDetailsStoreMock: MovieDetailsRepository {
 
   private let movie: Movie
 

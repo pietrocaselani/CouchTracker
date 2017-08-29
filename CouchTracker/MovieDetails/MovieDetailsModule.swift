@@ -15,9 +15,9 @@ final class MovieDetailsModule {
   private init() {}
 
   static func setupModule(apiProvider: APIProvider, movieId: String) -> BaseView {
-    let store = MovieDetailsStore(apiProvider: apiProvider)
-    let genreStore = TraktGenreStore(apiProvider: apiProvider)
-    let interactor = MovieDetailsInteractor(store: store, genreStore: genreStore, movieId: movieId)
+    let repository = MovieDetailsCacheRepository(apiProvider: apiProvider)
+    let genreRepository = TraktGenreRepository(apiProvider: apiProvider)
+    let interactor = MovieDetailsUseCase(repository: repository, genreRepository: genreRepository, movieId: movieId)
 
     let viewController = R.storyboard.movieDetails.movieDetailsViewController()
 
@@ -27,7 +27,7 @@ final class MovieDetailsModule {
 
     let router = MovieDetailsiOSRouter(viewController: view)
 
-    let presenter = MovieDetailsPresenter(view: view, interactor: interactor, router: router)
+    let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
 
     view.presenter = presenter
 

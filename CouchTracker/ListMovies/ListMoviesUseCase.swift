@@ -12,15 +12,15 @@ the license agreement.
 
 import RxSwift
 
-final class ListMoviesInteractor: ListMoviesInteractorLayer {
+final class ListMoviesUseCase: ListMoviesInteractor {
 
-  private let store: ListMoviesStoreLayer
+  private let repository: ListMoviesRepository
 
-  init(store: ListMoviesStoreLayer) {
-    self.store = store
+  init(repository: ListMoviesRepository) {
+    self.repository = repository
   }
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
-    return store.fetchMovies(page: page, limit: limit)
+    return repository.fetchMovies(page: page, limit: limit)
   }
 }
