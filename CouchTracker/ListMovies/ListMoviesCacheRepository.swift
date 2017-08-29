@@ -15,7 +15,7 @@ import Moya
 import PiedPiper
 import RxSwift
 
-final class ListMoviesStore: ListMoviesStoreLayer {
+final class ListMoviesCacheRepository: ListMoviesRepository {
 
   private let cache: BasicCache<Movies, [TrendingMovie]>
 

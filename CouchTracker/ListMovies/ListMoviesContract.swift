@@ -17,9 +17,9 @@ protocol ListMoviesRouter: class {
   func showError(message: String)
 }
 
-protocol ListMoviesPresenterLayer: class {
+protocol ListMoviesPresenter: class {
 
-  init(view: ListMoviesView, interactor: ListMoviesInteractorLayer, router: ListMoviesRouter)
+  init(view: ListMoviesView, interactor: ListMoviesInteractor, router: ListMoviesRouter)
 
   func viewDidLoad()
   func showDetailsOfMovie(at index: Int)
@@ -27,20 +27,20 @@ protocol ListMoviesPresenterLayer: class {
 
 protocol ListMoviesView: BaseView {
 
-  var presenter: ListMoviesPresenterLayer! { get set }
+  var presenter: ListMoviesPresenter! { get set }
 
   func showEmptyView()
   func show(movies: [MovieViewModel])
 }
 
-protocol ListMoviesInteractorLayer: class {
+protocol ListMoviesInteractor: class {
 
-  init(store: ListMoviesStoreLayer)
+  init(repository: ListMoviesRepository)
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]>
 }
 
-protocol ListMoviesStoreLayer: class {
+protocol ListMoviesRepository: class {
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]>
 }

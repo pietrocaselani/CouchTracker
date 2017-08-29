@@ -14,9 +14,7 @@ import RxSwift
 import ObjectMapper
 
 final class SearchViewMock: SearchView {
-  var invokedPresenterSetter = false
-  var invokedPresenter: SearchPresenterLayer?
-  var presenter: SearchPresenterLayer!
+  var presenter: SearchPresenter!
 }
 
 final class SearchResultOutputMock: SearchResultOutput {
@@ -43,13 +41,13 @@ final class SearchResultOutputMock: SearchResultOutput {
   }
 }
 
-final class EmptySearchStoreMock: SearchStoreLayer {
+final class EmptySearchStoreMock: SearchRepository {
   func search(query: String, types: [SearchType]) -> Observable<[SearchResult]> {
     return Observable.empty()
   }
 }
 
-final class ErrorSearchStoreMock: SearchStoreLayer {
+final class ErrorSearchStoreMock: SearchRepository {
   private let error: Error
 
   init(error: Error) {
@@ -61,7 +59,7 @@ final class ErrorSearchStoreMock: SearchStoreLayer {
   }
 }
 
-final class SearchStoreMock: SearchStoreLayer {
+final class SearchStoreMock: SearchRepository {
   private let results: [SearchResult]
 
   init(results: [SearchResult]) {

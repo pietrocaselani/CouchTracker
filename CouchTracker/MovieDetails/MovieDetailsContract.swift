@@ -16,30 +16,30 @@ protocol MovieDetailsRouter: class {
   func showError(message: String)
 }
 
-protocol MovieDetailsPresenterLayer: class {
+protocol MovieDetailsPresenter: class {
 
-  init(view: MovieDetailsView, interactor: MovieDetailsInteractorLayer, router: MovieDetailsRouter)
+  init(view: MovieDetailsView, interactor: MovieDetailsInteractor, router: MovieDetailsRouter)
 
   func viewDidLoad()
 }
 
 protocol MovieDetailsView: BaseView {
 
-  var presenter: MovieDetailsPresenterLayer! { get set }
+  var presenter: MovieDetailsPresenter! { get set }
 
   func show(details: MovieDetailsViewModel)
 }
 
-protocol MovieDetailsInteractorLayer: class {
+protocol MovieDetailsInteractor: class {
 
-  init(store: MovieDetailsStoreLayer, genreStore: GenreStoreLayer, movieId: String)
+  init(repository: MovieDetailsRepository, genreRepository: GenreRepository, movieId: String)
 
   func fetchDetails() -> Observable<Movie>
 
   func fetchGenres() -> Observable<[Genre]>
 }
 
-protocol MovieDetailsStoreLayer: class {
+protocol MovieDetailsRepository: class {
 
   func fetchDetails(movieId: String) -> Observable<Movie>
 }

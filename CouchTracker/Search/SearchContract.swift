@@ -13,7 +13,7 @@ the license agreement.
 import RxSwift
 
 protocol SearchView: BaseView {
-  var presenter: SearchPresenterLayer! { get set }
+  var presenter: SearchPresenter! { get set }
 }
 
 protocol SearchResultOutput: class {
@@ -22,21 +22,21 @@ protocol SearchResultOutput: class {
   func handleError(message: String)
 }
 
-protocol SearchPresenterLayer: class {
+protocol SearchPresenter: class {
 
-  init(interactor: SearchInteractorLayer, resultOutput: SearchResultOutput)
+  init(interactor: SearchInteractor, resultOutput: SearchResultOutput)
 
   func searchMovies(query: String)
 }
 
-protocol SearchInteractorLayer: class {
+protocol SearchInteractor: class {
 
-  init(store: SearchStoreLayer)
+  init(repository: SearchRepository)
 
   func searchMovies(query: String) -> Observable<[SearchResult]>
 }
 
-protocol SearchStoreLayer: class {
+protocol SearchRepository: class {
 
   func search(query: String, types: [SearchType]) -> Observable<[SearchResult]>
 }

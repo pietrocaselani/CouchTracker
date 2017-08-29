@@ -12,23 +12,23 @@ the license agreement.
 
 import RxSwift
 
-final class MovieDetailsInteractor: MovieDetailsInteractorLayer {
+final class MovieDetailsUseCase: MovieDetailsInteractor {
 
-  private let store: MovieDetailsStoreLayer
-  private let genreStore: GenreStoreLayer
+  private let repository: MovieDetailsRepository
+  private let genreRepository: GenreRepository
   private let movieId: String
 
-  init(store: MovieDetailsStoreLayer, genreStore: GenreStoreLayer, movieId: String) {
-    self.store = store
-    self.genreStore = genreStore
+  init(repository: MovieDetailsRepository, genreRepository: GenreRepository, movieId: String) {
+    self.repository = repository
+    self.genreRepository = genreRepository
     self.movieId = movieId
   }
 
   func fetchDetails() -> Observable<Movie> {
-    return store.fetchDetails(movieId: movieId)
+    return repository.fetchDetails(movieId: movieId)
   }
 
   func fetchGenres() -> Observable<[Genre]> {
-    return genreStore.fetchMoviesGenres()
+    return genreRepository.fetchMoviesGenres()
   }
 }

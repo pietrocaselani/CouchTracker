@@ -12,13 +12,13 @@
 
 import RxSwift
 
-final class SearchPresenter: SearchPresenterLayer {
+final class SearchiOSPresenter: SearchPresenter {
 
   private weak var output: SearchResultOutput?
-  private let interactor: SearchInteractorLayer
+  private let interactor: SearchInteractor
   private let disposeBag = DisposeBag()
 
-  init(interactor: SearchInteractorLayer, resultOutput: SearchResultOutput) {
+  init(interactor: SearchInteractor, resultOutput: SearchResultOutput) {
     self.interactor = interactor
     self.output = resultOutput
   }
@@ -44,6 +44,6 @@ final class SearchPresenter: SearchPresenterLayer {
   }
 
   private func mapToViewModel(_ results: [SearchResult]) -> [SearchResultViewModel] {
-    return results.map { SearchResultViewModel(type: $0.type, movie: $0.movie.map { mapMovieToViewModel($0) }) }
+    return results.map { SearchResultViewModel(type: $0.type, movie: $0.movie.map { viewModel(for: $0) }) }
   }
 }

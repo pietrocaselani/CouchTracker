@@ -14,7 +14,7 @@ import Carlos
 import Moya
 import RxSwift
 
-final class TraktGenreStore: GenreStoreLayer {
+final class TraktGenreRepository: GenreRepository {
 
   private let cache: BasicCache<Genres, [Genre]>
 
