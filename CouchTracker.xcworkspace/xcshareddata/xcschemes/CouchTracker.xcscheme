@@ -27,7 +27,8 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       language = ""
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -36,16 +37,6 @@
                BlueprintIdentifier = "6476324C1F44824900F277F1"
                BuildableName = "CouchTrackerTests.xctest"
                BlueprintName = "CouchTrackerTests"
-               ReferencedContainer = "container:CouchTracker.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6405C9EF1F549BE90039D6E6"
-               BuildableName = "TraktTests.xctest"
-               BlueprintName = "TraktTests"
                ReferencedContainer = "container:CouchTracker.xcodeproj">
             </BuildableReference>
          </TestableReference>
