@@ -1,7 +1,7 @@
 /*
 Copyright 2017 ArcTouch LLC.
 All rights reserved.
-
+ 
 This file, its contents, concepts, methods, behavior, and operation
 (collectively the "Software") are protected by trade secret, patent,
 and copyright laws. The use of the Software is governed by a license
@@ -10,17 +10,23 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import RxSwift
+struct SearchResultViewModel {
+  let type: SearchType
+  let movie: MovieViewModel?
+}
 
-final class ListMoviesInteractor: ListMoviesInteractorLayer {
+extension SearchResultViewModel: Hashable {
+  var hashValue: Int {
+    var hash = type.hashValue
 
-  private let store: ListMoviesStoreLayer
+    if let movieHash = movie?.hashValue {
+      hash ^= movieHash
+    }
 
-  init(store: ListMoviesStoreLayer) {
-    self.store = store
+    return hash
   }
 
-  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
-    return store.fetchMovies(page: page, limit: limit)
+  static func == (lhs: SearchResultViewModel, rhs: SearchResultViewModel) -> Bool {
+    return lhs.hashValue == rhs.hashValue
   }
 }

@@ -14,7 +14,7 @@ import RxSwift
 import Moya
 import Moya_ObjectMapper
 
-final class APISearchStore: SearchStoreInput {
+final class APISearchRepository: SearchRepository {
 
   private let provider: RxMoyaProvider<Search>
 

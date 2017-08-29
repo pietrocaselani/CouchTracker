@@ -1,7 +1,7 @@
 /*
 Copyright 2017 ArcTouch LLC.
 All rights reserved.
- 
+
 This file, its contents, concepts, methods, behavior, and operation
 (collectively the "Software") are protected by trade secret, patent,
 and copyright laws. The use of the Software is governed by a license
@@ -12,7 +12,15 @@ the license agreement.
 
 import RxSwift
 
-protocol GenreRepository {
-  func fetchMoviesGenres() -> Observable<[Genre]>
-  func fetchShowsGenres() -> Observable<[Genre]>
+final class ListMoviesUseCase: ListMoviesInteractor {
+
+  private let repository: ListMoviesRepository
+
+  init(repository: ListMoviesRepository) {
+    self.repository = repository
+  }
+
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
+    return repository.fetchMovies(page: page, limit: limit)
+  }
 }

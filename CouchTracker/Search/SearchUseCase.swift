@@ -12,15 +12,15 @@ the license agreement.
 
 import RxSwift
 
-final class SearchInteractor: SearchInteractorInput {
+final class SearchUseCase: SearchInteractor {
 
-  private let store: SearchStoreInput
+  private let repository: SearchRepository
 
-  init(store: SearchStoreInput) {
-    self.store = store
+  init(repository: SearchRepository) {
+    self.repository = repository
   }
 
   func searchMovies(query: String) -> Observable<[SearchResult]> {
-    return store.search(query: query, types: [.movie])
+    return repository.search(query: query, types: [.movie])
   }
 }

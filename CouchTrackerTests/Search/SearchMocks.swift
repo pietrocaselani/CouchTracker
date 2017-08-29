@@ -13,13 +13,53 @@ the license agreement.
 import RxSwift
 import ObjectMapper
 
-final class EmptySearchStoreMock: SearchStoreInput {
-  func search(query: String, types: [SearchType]) -> RxSwift.Observable<[SearchResult]> {
+final class SearchViewMock: SearchView {
+  var presenter: SearchPresenter!
+}
+
+final class SearchResultOutputMock: SearchResultOutput {
+  var invokedHandleEmptySearchResult = false
+
+  func handleEmptySearchResult() {
+    invokedHandleEmptySearchResult = true
+  }
+
+  var invokedHandleSearch = false
+  var invokedHandleSearchParameters: (results: [SearchResultViewModel], Void)?
+
+  func handleSearch(results: [SearchResultViewModel]) {
+    invokedHandleSearch = true
+    invokedHandleSearchParameters = (results, ())
+  }
+
+  var invokedHandleError = false
+  var invokedHandleErrorParameters: (message: String, Void)?
+
+  func handleError(message: String) {
+    invokedHandleError = true
+    invokedHandleErrorParameters = (message, ())
+  }
+}
+
+final class EmptySearchStoreMock: SearchRepository {
+  func search(query: String, types: [SearchType]) -> Observable<[SearchResult]> {
     return Observable.empty()
   }
 }
 
-final class SearchStoreMock: SearchStoreInput {
+final class ErrorSearchStoreMock: SearchRepository {
+  private let error: Error
+
+  init(error: Error) {
+    self.error = error
+  }
+
+  func search(query: String, types: [SearchType]) -> Observable<[SearchResult]> {
+    return Observable.error(error)
+  }
+}
+
+final class SearchStoreMock: SearchRepository {
   private let results: [SearchResult]
 
   init(results: [SearchResult]) {

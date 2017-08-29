@@ -30,10 +30,10 @@ final class ListMoviesModule {
       fatalError("view should be an instance of UIViewController")
     }
 
-    let store = ListMoviesStore(apiProvider: apiProvider)
-    let interactor = ListMoviesInteractor(store: store)
+    let repository = ListMoviesCacheRepository(apiProvider: apiProvider)
+    let interactor = ListMoviesUseCase(repository: repository)
     let router = ListMoviesiOSRouter(viewController: viewController, apiProvider: apiProvider)
-    let presenter = ListMoviesPresenter(view: view, interactor: interactor, router: router)
+    let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
     view.presenter = presenter
 

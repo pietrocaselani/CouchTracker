@@ -10,9 +10,6 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import RxSwift
-
-protocol GenreRepository {
-  func fetchMoviesGenres() -> Observable<[Genre]>
-  func fetchShowsGenres() -> Observable<[Genre]>
+func viewModel(for movie: Movie, defaultTitle: String = "TBA".localized) -> MovieViewModel {
+  return MovieViewModel(title: movie.title ?? defaultTitle)
 }

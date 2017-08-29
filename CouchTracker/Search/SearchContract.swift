@@ -12,14 +12,31 @@ the license agreement.
 
 import RxSwift
 
-protocol SearchInteractorInput: class {
+protocol SearchView: BaseView {
+  var presenter: SearchPresenter! { get set }
+}
 
-  init(store: SearchStoreInput)
+protocol SearchResultOutput: class {
+  func handleEmptySearchResult()
+  func handleSearch(results: [SearchResultViewModel])
+  func handleError(message: String)
+}
+
+protocol SearchPresenter: class {
+
+  init(interactor: SearchInteractor, resultOutput: SearchResultOutput)
+
+  func searchMovies(query: String)
+}
+
+protocol SearchInteractor: class {
+
+  init(repository: SearchRepository)
 
   func searchMovies(query: String) -> Observable<[SearchResult]>
 }
 
-protocol SearchStoreInput: class {
+protocol SearchRepository: class {
 
   func search(query: String, types: [SearchType]) -> Observable<[SearchResult]>
 }
