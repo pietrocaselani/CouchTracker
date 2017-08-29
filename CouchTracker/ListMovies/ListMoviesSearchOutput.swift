@@ -40,10 +40,7 @@ final class ListMoviesSearchOutput: SearchResultOutput {
   private func updateMovies(with results: [SearchResultViewModel]) {
     guard let view = view else { return }
 
-    let movieViewModels = results.map { $0.movie ?? MovieViewModel(title: "") }
-      .filter { $0.title.characters.count > 0 }
-
-    view.show(movies: movieViewModels)
+    view.show(movies: results.flatMap { $0.movie })
   }
 
   private func fetchTrendingMovies() {

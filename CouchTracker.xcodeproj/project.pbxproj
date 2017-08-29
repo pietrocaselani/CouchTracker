@@ -280,6 +280,10 @@
 		64BE633A1F4F71DC002E55EA /* MovieDetailsiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE63381F4F71DC002E55EA /* MovieDetailsiOSRouter.swift */; };
 		64BE633C1F4F7ED7002E55EA /* UIViewController+BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE633B1F4F7ED7002E55EA /* UIViewController+BaseView.swift */; };
 		64BE633D1F4F7ED7002E55EA /* UIViewController+BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE633B1F4F7ED7002E55EA /* UIViewController+BaseView.swift */; };
+		64D29C2B1F55A4D6008E344E /* ListMoviesOutputTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C2A1F55A4D5008E344E /* ListMoviesOutputTest.swift */; };
+		64D29C2C1F55A4D9008E344E /* ListMoviesOutputTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C2A1F55A4D5008E344E /* ListMoviesOutputTest.swift */; };
+		64D29C2D1F55A50A008E344E /* ListMoviesSearchOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6408EAAE1F559AB30046094A /* ListMoviesSearchOutput.swift */; };
+		64D29C2E1F55A50B008E344E /* ListMoviesSearchOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6408EAAE1F559AB30046094A /* ListMoviesSearchOutput.swift */; };
 		64D2FFDA1F44DFEA009E9ED3 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D2FFD91F44DFEA009E9ED3 /* R.generated.swift */; };
 		697C56830BC1531EA1BD9DDB /* Pods_CouchTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847EA74DA5621E8BC2C9D97D /* Pods_CouchTrackerTests.framework */; };
 		F23089BF675566CBB1950BC8 /* Pods_CouchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FA5E5D147F9088F5D88235F /* Pods_CouchTracker.framework */; };
@@ -401,6 +405,7 @@
 		64BE63331F4F6F63002E55EA /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
 		64BE63381F4F71DC002E55EA /* MovieDetailsiOSRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsiOSRouter.swift; sourceTree = "<group>"; };
 		64BE633B1F4F7ED7002E55EA /* UIViewController+BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+BaseView.swift"; sourceTree = "<group>"; };
+		64D29C2A1F55A4D5008E344E /* ListMoviesOutputTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListMoviesOutputTest.swift; sourceTree = "<group>"; };
 		64D2FFD91F44DFEA009E9ED3 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		7D22040F8C3128B9E69F0873 /* Pods-CouchTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		847EA74DA5621E8BC2C9D97D /* Pods_CouchTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -600,6 +605,7 @@
 		648390C81F504E7500911BA0 /* ListMovies */ = {
 			isa = PBXGroup;
 			children = (
+				64D29C2A1F55A4D5008E344E /* ListMoviesOutputTest.swift */,
 				648390C91F504E7500911BA0 /* ListMoviesInteractorTest.swift */,
 				648390CA1F504E7500911BA0 /* ListMoviesMocks.swift */,
 				648390CB1F504E7500911BA0 /* ListMoviesPresenterTest.swift */,
@@ -1334,6 +1340,7 @@
 				6406BED31F4DBFEB004661C4 /* MovieDetailsUseCase.swift in Sources */,
 				6406BEB11F4DB675004661C4 /* TrendingViewModel.swift in Sources */,
 				6406BED51F4DBFF3004661C4 /* MovieDetailsViewModel.swift in Sources */,
+				64D29C2B1F55A4D6008E344E /* ListMoviesOutputTest.swift in Sources */,
 				648390F41F504F3900911BA0 /* Search.swift in Sources */,
 				648390FB1F504F4D00911BA0 /* SearchResult.swift in Sources */,
 				648687A81F4A3D6D005A0BA8 /* ListMoviesUseCase.swift in Sources */,
@@ -1359,6 +1366,7 @@
 				64B03EEE1F47204F009E37C9 /* TraktDateTransformer.swift in Sources */,
 				6406BEBA1F4DB6C5004661C4 /* BaseView.swift in Sources */,
 				64B03EE41F472038009E37C9 /* ListMoviesContract.swift in Sources */,
+				64D29C2D1F55A50A008E344E /* ListMoviesSearchOutput.swift in Sources */,
 				648391201F50606100911BA0 /* SearchPresenterTest.swift in Sources */,
 				648390D31F504E7600911BA0 /* MovieDetailsPresenterTest.swift in Sources */,
 				648390D91F504E7600911BA0 /* SearchMocks.swift in Sources */,
@@ -1478,6 +1486,7 @@
 				64BE63151F4F5C8E002E55EA /* APIProvider.swift in Sources */,
 				6483911E1F505F4100911BA0 /* MovieViewModelMapper.swift in Sources */,
 				648391001F504F4E00911BA0 /* GenreType.swift in Sources */,
+				64D29C2E1F55A50B008E344E /* ListMoviesSearchOutput.swift in Sources */,
 				648391011F504F4E00911BA0 /* SearchResult.swift in Sources */,
 				64BE630B1F4F5C72002E55EA /* StandardMediaEntity.swift in Sources */,
 				6483910E1F505BAA00911BA0 /* SearchiOSPresenter.swift in Sources */,
@@ -1515,6 +1524,7 @@
 				64BE63091F4F5C5F002E55EA /* Genres.swift in Sources */,
 				64BE630A1F4F5C5F002E55EA /* Movies.swift in Sources */,
 				648391131F505CB000911BA0 /* SearchResultViewModel.swift in Sources */,
+				64D29C2C1F55A4D9008E344E /* ListMoviesOutputTest.swift in Sources */,
 				64BE62FE1F4F5C3B002E55EA /* ListMoviesiOSPresenter.swift in Sources */,
 				64BE62F61F4F5C20002E55EA /* GenreStoreMock.swift in Sources */,
 				64BE62FD1F4F5C20002E55EA /* RxAsserts.swift in Sources */,

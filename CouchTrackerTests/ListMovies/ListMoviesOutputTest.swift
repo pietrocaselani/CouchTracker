@@ -19,7 +19,7 @@ final class ListMoviesOutputTest: XCTestCase {
 
   func testListMoviesOutput_receivesEmptyResults_shouldNotifyView() {
     let store = EmptyListMoviesStoreMock()
-    let interactor = ListMoviesInteractor(store: store)
+    let interactor = ListMoviesUseCase(repository: store)
     let presenter = ListMoviesPresenterMock(view: view, interactor: interactor, router: router)
     let output = ListMoviesSearchOutput(view: view, router: router, presenter: presenter)
 
@@ -30,7 +30,7 @@ final class ListMoviesOutputTest: XCTestCase {
 
   func testListMoviesOutput_receivesCancel_shouldNotifyPresenter() {
     let store = EmptyListMoviesStoreMock()
-    let interactor = ListMoviesInteractor(store: store)
+    let interactor = ListMoviesUseCase(repository: store)
     let presenter = ListMoviesPresenterMock(view: view, interactor: interactor, router: router)
     let output = ListMoviesSearchOutput(view: view, router: router, presenter: presenter)
 
@@ -41,7 +41,7 @@ final class ListMoviesOutputTest: XCTestCase {
 
   func testListMoviesOutput_receivesError_shouldNotifyRouter() {
     let store = EmptyListMoviesStoreMock()
-    let interactor = ListMoviesInteractor(store: store)
+    let interactor = ListMoviesUseCase(repository: store)
     let presenter = ListMoviesPresenterMock(view: view, interactor: interactor, router: router)
     let output = ListMoviesSearchOutput(view: view, router: router, presenter: presenter)
 
@@ -53,7 +53,7 @@ final class ListMoviesOutputTest: XCTestCase {
 
   func testListMoviesOutput_receivesResults_shoudShowOnView() {
     let store = EmptyListMoviesStoreMock()
-    let interactor = ListMoviesInteractor(store: store)
+    let interactor = ListMoviesUseCase(repository: store)
     let presenter = ListMoviesPresenterMock(view: view, interactor: interactor, router: router)
     let output = ListMoviesSearchOutput(view: view, router: router, presenter: presenter)
 
@@ -64,9 +64,7 @@ final class ListMoviesOutputTest: XCTestCase {
 
     output.handleSearch(results: viewModels)
 
-    let expectedParameters = viewModels.map {
-      $0.movie ?? MovieViewModel(title: "")
-    }.filter { $0.title.characters.count > 0 }
+    let expectedParameters = viewModels.flatMap { $0.movie }
 
     XCTAssertTrue(view.invokedShow)
     XCTAssertEqual(view.invokedShowParameters!.movies, expectedParameters)
