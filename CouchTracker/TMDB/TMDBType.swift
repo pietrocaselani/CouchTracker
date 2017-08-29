@@ -10,4 +10,18 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-extension Trakt: APIProvider {}
+import Moya
+
+public protocol TMDBType: TargetType {}
+
+public extension TMDBType {
+  public var baseURL: URL { return TMDB.baseURL }
+
+  public var method: Moya.Method { return .get }
+
+  public var parameterEncoding: ParameterEncoding { return URLEncoding.default }
+
+  public var task: Task { return .request }
+
+  public var sampleData: Data { return "".utf8Encoded }
+}

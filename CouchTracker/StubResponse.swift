@@ -10,4 +10,14 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-extension Trakt: APIProvider {}
+import Foundation
+
+func stubbedResponse(_ filename: String) -> Data {
+  let bundle = Bundle(for: Trakt.self)
+  guard let url = bundle.url(forResource: filename, withExtension: "json"),
+    let data = try? Data(contentsOf: url) else {
+      return Data()
+  }
+
+  return data
+}

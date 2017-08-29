@@ -10,4 +10,10 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-extension Trakt: APIProvider {}
+public final class TMDB {
+  let apiKey: String
+
+  init(apiKey: String) {
+    self.apiKey = apiKey
+  }
+}

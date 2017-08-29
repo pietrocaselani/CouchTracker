@@ -10,4 +10,19 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-extension Trakt: APIProvider {}
+import Moya
+
+public final class Trakt {
+  let clientId: String
+  let clientSecret, redirectURL: String?
+
+  public convenience init(clientId: String) {
+    self.init(clientId: clientId, clientSecret: nil, redirectURL: nil)
+  }
+
+  public init(clientId: String, clientSecret: String?, redirectURL: String?) {
+    self.clientId = clientId
+    self.clientSecret = clientSecret
+    self.redirectURL = redirectURL
+  }
+}

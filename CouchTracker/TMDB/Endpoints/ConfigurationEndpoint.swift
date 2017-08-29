@@ -12,19 +12,20 @@ the license agreement.
 
 import Moya
 
-public final class TraktV2 {
+public enum TMDBConfiguration {
+  case configuration
+}
 
-  let clientId: String
-  let clientSecret, redirectURL: String?
-
-  public convenience init(clientId: String) {
-    self.init(clientId: clientId, clientSecret: nil, redirectURL: nil)
+extension TMDBConfiguration: TMDBType {
+  public var path: String {
+    return "configuration"
   }
 
-  public init(clientId: String, clientSecret: String?, redirectURL: String?) {
-    self.clientId = clientId
-    self.clientSecret = clientSecret
-    self.redirectURL = redirectURL
+  public var parameters: [String: Any]? {
+    return nil
   }
 
+  public var sampleData: Data {
+    return stubbedResponse("tmdb_configuration")
+  }
 }

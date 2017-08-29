@@ -10,4 +10,13 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-extension Trakt: APIProvider {}
+import Foundation
+
+func createConfigurationsMock() -> Configuration {
+  let data = TMDBConfiguration.configuration.sampleData
+  let options = JSONSerialization.ReadingOptions(rawValue: 0)
+
+  let jsonObject = try! JSONSerialization.jsonObject(with: data, options: options) as! [String: AnyObject]
+
+  return try! Configuration(JSON: jsonObject)
+}

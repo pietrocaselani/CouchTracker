@@ -10,4 +10,13 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-extension Trakt: APIProvider {}
+import ObjectMapper
+
+public final class Configuration: ImmutableMappable {
+
+  public let images: Images
+
+  public init(map: Map) throws {
+    self.images = try map.value("images")
+  }
+}
