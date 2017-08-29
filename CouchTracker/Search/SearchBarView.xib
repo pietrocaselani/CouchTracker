@@ -14,7 +14,7 @@
         <searchBar contentMode="redraw" id="xtf-XB-Y4h" customClass="SearchBarView" customModule="CouchTracker" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-            <color key="barTintColor" red="0.1764705882" green="0.1764705882" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="barTintColor" red="0.1764705882352941" green="0.1764705882352941" blue="0.1764705882352941" alpha="1" colorSpace="calibratedRGB"/>
             <textInputTraits key="textInputTraits" returnKeyType="search"/>
             <point key="canvasLocation" x="42" y="49"/>
         </searchBar>

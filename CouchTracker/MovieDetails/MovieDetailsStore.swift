@@ -14,7 +14,7 @@ import Carlos
 import Moya
 import RxSwift
 
-final class MovieDetailsStore: MovieDetailsStoreLayer {
+final class MovieDetailsCacheRepository: MovieDetailsRepository {
 
   private let cache: BasicCache<Movies, Movie>
 
