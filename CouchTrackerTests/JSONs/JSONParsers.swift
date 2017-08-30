@@ -10,13 +10,17 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import ObjectMapper
+import Foundation
 
-public final class ConfigurationResponse: ImmutableMappable {
+func parseToJSONArray(data: Data) -> [[String: AnyObject]] {
+  return parseJSON(data: data) as! [[String: AnyObject]]
+}
 
-  public let images: ImagesConfiguration
+func parseToJSONObject(data: Data) -> [String: AnyObject] {
+  return parseJSON(data: data) as! [String: AnyObject]
+}
 
-  public init(map: Map) throws {
-    self.images = try map.value("images")
-  }
+func parseJSON(data: Data) -> Any {
+  let options = JSONSerialization.ReadingOptions(rawValue: 0)
+  return try! JSONSerialization.jsonObject(with: data, options: options)
 }

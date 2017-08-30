@@ -13,15 +13,17 @@ the license agreement.
 import Moya
 import ObjectMapper
 import XCTest
-import Trakt
+import Trakt_Swift
+import RxTest
 
 final class ListMoviesPresenterTest: XCTestCase {
 
+  private let scheduler = TestScheduler(initialClock: 0)
   let view = ListMoviesViewMock()
   let router = ListMoviesRouterMock()
 
   func testListMoviesPresenter_fetchSuccessWithEmptyData_andPresentNoMovies() {
-    let interactor = ListMoviesUseCase(repository: EmptyListMoviesStoreMock())
+    let interactor = ListMoviesServiceMock(repository: EmptyListMoviesStoreMock(), movieImageRepository: movieImageRepositoryMock)
     let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.fetchMovies()
@@ -32,24 +34,28 @@ final class ListMoviesPresenterTest: XCTestCase {
 
   func testListMoviesPresenter_fetchFailure_andPresentError() {
     let error = ListMoviesError.parseError("Invalid json")
-    let interactor = ListMoviesUseCase(repository: ErrorListMoviesStoreMock(error: error))
+    let repository = ErrorListMoviesStoreMock(error: error)
+    let interactor = ListMoviesServiceMock(repository: repository, movieImageRepository: movieImageRepositoryMock)
     let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.fetchMovies()
 
-    XCTAssertTrue(router.invokedShowError)
-    XCTAssertEqual(router.invokedShowErrorParameters?.message, "Invalid json")
+    XCTAssertTrue(self.router.invokedShowError)
+    XCTAssertEqual(self.router.invokedShowErrorParameters?.message, "Invalid json")
   }
 
   func testListMoviesPresenter_fetchSuccess_andPresentMovies() {
     let movies = createMockMovies()
-    let store = MoviesListMovieStoreMock(movies: movies)
-    let interactor = ListMoviesUseCase(repository: store)
+    let images = createImagesEntityMock()
+    let repository = MoviesListMovieStoreMock(movies: movies)
+    let interactor = ListMoviesServiceMock(repository: repository, movieImageRepository: createMovieImagesRepositoryMock(images))
     let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.fetchMovies()
 
-    let expectedViewModel = movies.map { MovieViewModel(title: $0.movie.title ?? "TBA") }
+    let link = images.bestImage()?.link
+
+    let expectedViewModel = movies.map { MovieViewModel(title: $0.movie.title ?? "TBA", imageLink: link) }
 
     XCTAssertTrue(view.invokedShow)
     XCTAssertEqual(view.invokedShowParameters!.movies, expectedViewModel)
@@ -57,8 +63,9 @@ final class ListMoviesPresenterTest: XCTestCase {
 
   func testListMoviesPresenter_fetchSuccess_andPresentNoMovies() {
     let movies = [TrendingMovie]()
-    let store = MoviesListMovieStoreMock(movies: movies)
-    let interactor = ListMoviesUseCase(repository: store)
+    let images = createImagesEntityMock()
+    let repository = MoviesListMovieStoreMock(movies: movies)
+    let interactor = ListMoviesServiceMock(repository: repository, movieImageRepository: createMovieImagesRepositoryMock(images))
 
     let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
@@ -71,7 +78,7 @@ final class ListMoviesPresenterTest: XCTestCase {
   func testListMoviesPresenter_fetchFailure_andIsCustomError() {
     let userInfo = [NSLocalizedDescriptionKey: "Custom list movies error"]
     let error = NSError(domain: "com.arctouch.CouchTracker", code: 10, userInfo: userInfo)
-    let interactor = ListMoviesUseCase(repository: ErrorListMoviesStoreMock(error: error))
+    let interactor = ListMoviesServiceMock(repository: ErrorListMoviesStoreMock(error: error), movieImageRepository: movieImageRepositoryMock)
 
     let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
@@ -84,15 +91,18 @@ final class ListMoviesPresenterTest: XCTestCase {
   func testListMoviesPresenter_requestToShowDetails_notifyRouterToShowDetails() {
     let movieIndex = 1
     let movies = createMockMovies()
-    let store = MoviesListMovieStoreMock(movies: movies)
-    let interactor = ListMoviesUseCase(repository: store)
+    let images =  createImagesEntityMock()
+    let repository = MoviesListMovieStoreMock(movies: movies)
+    let interactor = ListMoviesServiceMock(repository: repository, movieImageRepository: createMovieImagesRepositoryMock(images))
     let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.fetchMovies()
     presenter.showDetailsOfMovie(at: movieIndex)
 
+    let expectedMovie = entity(for: movies[movieIndex], with: images)
+
     XCTAssertTrue(router.invokedShowDetails)
-    XCTAssertEqual(router.invokedShowDetailsParameters?.movie, movies[movieIndex])
+    XCTAssertEqual(router.invokedShowDetailsParameters?.movie, expectedMovie)
   }
 
   private func createMockMovies() -> [TrendingMovie] {

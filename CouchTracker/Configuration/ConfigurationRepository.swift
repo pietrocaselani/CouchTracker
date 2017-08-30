@@ -10,22 +10,11 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Moya
+import RxSwift
+import TMDB_Swift
 
-public enum Configuration {
-  case configuration
-}
+protocol ConfigurationRepository: class {
+  init(tmdbProvider: TMDBProvider)
 
-extension Configuration: TMDBType {
-  public var path: String {
-    return "configuration"
-  }
-
-  public var parameters: [String: Any]? {
-    return nil
-  }
-
-  public var sampleData: Data {
-    return stubbedResponse("tmdb_configuration")
-  }
+  func fetchConfiguration() -> Observable<Configuration>
 }

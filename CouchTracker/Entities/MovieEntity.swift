@@ -10,24 +10,26 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import RxSwift
-import Trakt
+import Trakt_Swift
 
-final class GenreStoreMock: GenreRepository {
+struct MovieEntity: Hashable {
+  let ids: MovieIds
+  let title: String?
+  let images: ImagesEntity
 
-  let genres: [Genre]
+  var hashValue: Int {
+    var hash = ids.hashValue
 
-  init() {
-    let data = Genres.list(.shows).sampleData
-    self.genres = try! data.mapArray(Genre.self)
+    if let titleHash = title?.hashValue {
+      hash = hash ^ titleHash
+    }
+
+    hash = hash ^ images.hashValue
+
+    return hash
   }
 
-  func fetchShowsGenres() -> Observable<[Genre]> {
-    return Observable.just(genres)
+  static func == (lhs: MovieEntity, rhs: MovieEntity) -> Bool {
+    return lhs.hashValue == rhs.hashValue
   }
-
-  func fetchMoviesGenres() -> Observable<[Genre]> {
-    return Observable.just(genres)
-  }
-
 }

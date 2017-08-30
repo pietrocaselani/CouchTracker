@@ -17,6 +17,11 @@ import XCTest
 func RXAssertEvents<T:Equatable>(_ observer: TestableObserver<[T]>, _ events: [Recorded<Event<[T]>>]) {
   XCTAssertEqual(observer.events.count, events.count)
 
+  if (observer.events.count != events.count) {
+    XCTFail("Number of events don't match")
+    return
+  }
+
   let count = events.count
   var index = 0
 

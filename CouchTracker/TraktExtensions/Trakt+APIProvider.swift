@@ -10,11 +10,6 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Foundation
-import Trakt
+import Trakt_Swift
 
-extension Date {
-  func parse(using formatter: DateFormatter = TraktDateTransformer.dateTransformer.dateFormatter) -> String {
-    return formatter.string(from: self)
-  }
-}
+extension Trakt: TraktProvider {}

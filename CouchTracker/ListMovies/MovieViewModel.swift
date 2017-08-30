@@ -8,14 +8,21 @@
 
 struct MovieViewModel: TrendingViewModel {
   var title: String
+  var imageLink: String?
 }
 
 extension MovieViewModel: Equatable, Hashable {
   static func == (lhs: MovieViewModel, rhs: MovieViewModel) -> Bool {
-    return lhs.title == rhs.title
+    return lhs.hashValue == rhs.hashValue
   }
 
   var hashValue: Int {
-    return title.hashValue
+    var hash = title.hashValue
+
+    if let imageLinkHash = imageLink?.hashValue {
+      hash = hash ^ imageLinkHash
+    }
+
+    return hash
   }
 }

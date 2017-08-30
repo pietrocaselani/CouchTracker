@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import RxSwift
-import Trakt
+import Trakt_Swift
 
 protocol GenreRepository {
   func fetchMoviesGenres() -> Observable<[Genre]>

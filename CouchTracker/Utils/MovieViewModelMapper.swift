@@ -10,8 +10,13 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Trakt
+import Trakt_Swift
+
+func viewModel(for movie: MovieEntity, defaultTitle: String = "TBA".localized) -> MovieViewModel {
+  let image = movie.images.bestImage()
+  return MovieViewModel(title: movie.title ?? defaultTitle, imageLink: image?.link)
+}
 
 func viewModel(for movie: Movie, defaultTitle: String = "TBA".localized) -> MovieViewModel {
-  return MovieViewModel(title: movie.title ?? defaultTitle)
+  return MovieViewModel(title: movie.title ?? defaultTitle, imageLink: nil)
 }

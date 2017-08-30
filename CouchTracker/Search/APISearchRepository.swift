@@ -13,14 +13,14 @@ the license agreement.
 import RxSwift
 import Moya
 import Moya_ObjectMapper
-import Trakt
+import Trakt_Swift
 
 final class APISearchRepository: SearchRepository {
 
   private let provider: RxMoyaProvider<Search>
 
-  init(apiProvider: APIProvider) {
-    self.provider = apiProvider.search
+  init(traktProvider: TraktProvider) {
+    self.provider = traktProvider.search
   }
 
   func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]> {

@@ -11,10 +11,15 @@ the license agreement.
 */
 
 import Carlos
-import Trakt
+import Trakt_Swift
 
-extension Genres: StringConvertible {
+extension Movies: StringConvertible {
   public func toString() -> String {
-    return self.path
+    switch self {
+    case .trending(let page, let limit, _):
+      return "\(self.path)-\(page)-\(limit)"
+    case .summary(let movieId, let extended):
+      return "\(self.path)/\(movieId)-\(extended.rawValue)"
+    }
   }
 }

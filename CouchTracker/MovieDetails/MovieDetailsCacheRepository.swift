@@ -13,14 +13,14 @@
 import Carlos
 import Moya
 import RxSwift
-import Trakt
+import Trakt_Swift
 
 final class MovieDetailsCacheRepository: MovieDetailsRepository {
 
   private let cache: BasicCache<Movies, Movie>
 
-  init(apiProvider: APIProvider) {
-    let moviesProvider = apiProvider.movies
+  init(traktProvider: TraktProvider) {
+    let moviesProvider = traktProvider.movies
 
     self.cache = MemoryCacheLevel<Movies, NSData>()
         .compose(DiskCacheLevel<Movies, NSData>())

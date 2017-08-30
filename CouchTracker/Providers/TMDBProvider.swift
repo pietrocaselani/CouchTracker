@@ -10,16 +10,10 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Carlos
-import Trakt
+import Moya
+import TMDB_Swift
 
-extension Movies: StringConvertible {
-  public func toString() -> String {
-    switch self {
-    case .trending(let page, let limit, _):
-      return "\(self.path)-\(page)-\(limit)"
-    case .summary(let movieId, let extended):
-      return "\(self.path)/\(movieId)-\(extended.rawValue)"
-    }
-  }
+protocol TMDBProvider: class {
+  var movies: RxMoyaProvider<Movies> { get }
+  var configuration: RxMoyaProvider<ConfigurationService> { get }
 }

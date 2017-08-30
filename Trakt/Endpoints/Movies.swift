@@ -18,7 +18,6 @@ public enum Movies {
 }
 
 extension Movies: TraktType {
-
   public var path: String {
     switch self {
     case .trending:

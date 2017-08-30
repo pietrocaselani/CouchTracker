@@ -12,7 +12,7 @@ the license agreement.
 
 import ObjectMapper
 
-public class BaseIds: ImmutableMappable {
+public class BaseIds: ImmutableMappable, Hashable {
   public let trakt: Int
   public let tmdb: Int?
   public let imdb: String?
@@ -27,5 +27,23 @@ public class BaseIds: ImmutableMappable {
     self.trakt >>> map["trakt"]
     self.tmdb >>> map["tmdb"]
     self.imdb >>> map["imdb"]
+  }
+
+  public var hashValue: Int {
+    var hash = trakt.hashValue
+
+    if let tmdbHash = tmdb?.hashValue {
+      hash = hash ^ tmdbHash
+    }
+
+    if let imdbHash = imdb?.hashValue {
+      hash = hash ^ imdbHash
+    }
+
+    return hash
+  }
+
+  public static func == (lhs: BaseIds, rhs: BaseIds) -> Bool {
+    return lhs.hashValue == rhs.hashValue
   }
 }

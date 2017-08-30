@@ -13,7 +13,7 @@ the license agreement.
 public final class TMDB {
   let apiKey: String
 
-  init(apiKey: String) {
+  public init(apiKey: String) {
     self.apiKey = apiKey
   }
 }

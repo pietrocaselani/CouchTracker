@@ -10,17 +10,17 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import RxSwift
-import Trakt
+import Moya
+import TMDB_Swift
 
-final class SearchUseCase: SearchInteractor {
-  private let repository: SearchRepository
+let tmdbProviderMock = TMDBProviderMock()
 
-  init(repository: SearchRepository) {
-    self.repository = repository
+final class TMDBProviderMock: TMDBProvider {
+  var movies: RxMoyaProvider<Movies> {
+    return RxMoyaProvider<Movies>(stubClosure: MoyaProvider.immediatelyStub)
   }
 
-  func searchMovies(query: String) -> Observable<[SearchResult]> {
-    return repository.search(query: query, types: [.movie], page: 0, limit: 50)
+  var configuration: RxMoyaProvider<ConfigurationService> {
+    return RxMoyaProvider<ConfigurationService>(stubClosure: MoyaProvider.immediatelyStub)
   }
 }

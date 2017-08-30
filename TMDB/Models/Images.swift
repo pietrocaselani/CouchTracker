@@ -13,12 +13,12 @@ the license agreement.
 import ObjectMapper
 
 public final class Images: ImmutableMappable {
-  public let id: Int
+  public let identifier: Int
   public let backdrops: [Image]
   public let posters: [Image]
 
   public init(map: Map) throws {
-    self.id = try map.value("id")
+    self.identifier = try map.value("id")
     self.backdrops = try map.value("backdrops")
     self.posters = try map.value("posters")
   }

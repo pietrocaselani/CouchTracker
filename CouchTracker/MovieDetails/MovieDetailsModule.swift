@@ -14,10 +14,10 @@ final class MovieDetailsModule {
 
   private init() {}
 
-  static func setupModule(apiProvider: APIProvider, movieId: String) -> BaseView {
-    let repository = MovieDetailsCacheRepository(apiProvider: apiProvider)
-    let genreRepository = TraktGenreRepository(apiProvider: apiProvider)
-    let interactor = MovieDetailsUseCase(repository: repository, genreRepository: genreRepository, movieId: movieId)
+  static func setupModule(traktProvider: TraktProvider, movieId: String) -> BaseView {
+    let repository = MovieDetailsCacheRepository(traktProvider: traktProvider)
+    let genreRepository = TraktGenreRepository(traktProvider: traktProvider)
+    let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository, movieId: movieId)
 
     let viewController = R.storyboard.movieDetails.movieDetailsViewController()
 

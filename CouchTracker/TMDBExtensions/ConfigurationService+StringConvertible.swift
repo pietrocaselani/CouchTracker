@@ -10,14 +10,11 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Trakt
+import Carlos
+import TMDB_Swift
 
-extension Genres: Hashable {
-  public var hashValue: Int {
-    return self.path.hashValue
-  }
-
-  public static func == (lhs: Genres, rhs: Genres) -> Bool {
-    return lhs.path == rhs.path
+extension ConfigurationService: StringConvertible {
+  public func toString() -> String {
+    return self.path
   }
 }

@@ -19,7 +19,7 @@ final class TMDBMoviesTest: XCTestCase {
   func testTMDBMovies_images_parseJSONToModel() {
     let images = createMovieImagesMock()
 
-    XCTAssertEqual(images.id, 550)
+    XCTAssertEqual(images.identifier, 550)
   }
 
   func testTMDBMovies_imagesPath_buildCorrect() {

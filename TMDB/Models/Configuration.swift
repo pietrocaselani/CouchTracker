@@ -1,7 +1,7 @@
 /*
 Copyright 2017 ArcTouch LLC.
 All rights reserved.
-
+ 
 This file, its contents, concepts, methods, behavior, and operation
 (collectively the "Software") are protected by trade secret, patent,
 and copyright laws. The use of the Software is governed by a license
@@ -10,18 +10,13 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import RxSwift
-import Trakt
+import ObjectMapper
 
-final class ListMoviesUseCase: ListMoviesInteractor {
+public final class Configuration: ImmutableMappable {
 
-  private let repository: ListMoviesRepository
+  public let images: ImagesConfiguration
 
-  init(repository: ListMoviesRepository) {
-    self.repository = repository
-  }
-
-  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
-    return repository.fetchMovies(page: page, limit: limit)
+  public init(map: Map) throws {
+    self.images = try map.value("images")
   }
 }

@@ -14,14 +14,14 @@ import Carlos
 import Moya
 import PiedPiper
 import RxSwift
-import Trakt
+import Trakt_Swift
 
 final class ListMoviesCacheRepository: ListMoviesRepository {
 
   private let cache: BasicCache<Movies, [TrendingMovie]>
 
-  init(apiProvider: APIProvider) {
-    let moviesProvider = apiProvider.movies
+  init(traktProvider: TraktProvider) {
+    let moviesProvider = traktProvider.movies
 
     let fetcher = MoyaFetcher(provider: moviesProvider).pooled()
 

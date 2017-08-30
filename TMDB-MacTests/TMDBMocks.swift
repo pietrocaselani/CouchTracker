@@ -22,9 +22,9 @@ private func parseToJSONArray(data: Data) -> [[String: AnyObject]] {
   return try! JSONSerialization.jsonObject(with: data, options: options) as! [[String: AnyObject]]
 }
 
-func createConfigurationsMock() -> ConfigurationResponse {
-  let jsonObject = parseToJSONObject(data: Configuration.configuration.sampleData)
-  return try! ConfigurationResponse(JSON: jsonObject)
+func createConfigurationsMock() -> Configuration {
+  let jsonObject = parseToJSONObject(data: ConfigurationService.configuration.sampleData)
+  return try! Configuration(JSON: jsonObject)
 }
 
 func createMovieImagesMock() -> Images {

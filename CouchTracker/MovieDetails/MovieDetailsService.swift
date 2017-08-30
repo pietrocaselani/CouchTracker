@@ -11,9 +11,9 @@ the license agreement.
 */
 
 import RxSwift
-import Trakt
+import Trakt_Swift
 
-final class MovieDetailsUseCase: MovieDetailsInteractor {
+final class MovieDetailsService: MovieDetailsInteractor {
 
   private let repository: MovieDetailsRepository
   private let genreRepository: GenreRepository

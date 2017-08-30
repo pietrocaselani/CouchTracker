@@ -11,24 +11,24 @@ the license agreement.
 */
 
 import UIKit
-import Trakt
+import Trakt_Swift
 
 final class ListMoviesiOSRouter: ListMoviesRouter {
 
   private weak var viewController: UIViewController?
-  private let apiProvider: APIProvider
+  private let traktProvider: TraktProvider
 
-  init(viewController: UIViewController, apiProvider: APIProvider) {
+  init(viewController: UIViewController, traktProvider: TraktProvider) {
     self.viewController = viewController
-    self.apiProvider = apiProvider
+    self.traktProvider = traktProvider
   }
 
-  func showDetails(of movie: TrendingMovie) {
+  func showDetails(of movie: TrendingMovieEntity) {
     guard let navigationController = viewController?.navigationController else { return }
 
     let movieId = movie.movie.ids.slug
     guard let view =
-      MovieDetailsModule.setupModule(apiProvider: apiProvider, movieId: movieId) as? UIViewController else {
+      MovieDetailsModule.setupModule(traktProvider: traktProvider, movieId: movieId) as? UIViewController else {
       fatalError("view should be an instance of UIViewController")
     }
 
