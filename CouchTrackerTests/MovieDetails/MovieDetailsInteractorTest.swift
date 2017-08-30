@@ -38,9 +38,9 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
     let subscription = interactor.fetchDetails().subscribe(observer)
 
-//    scheduler.scheduleAt(600) {
-//      subscription.dispose()
-//    }
+    scheduler.scheduleAt(600) {
+      subscription.dispose()
+    }
 
     scheduler.start()
 
@@ -56,9 +56,9 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
     let subscription = interactor.fetchDetails().subscribe(observer)
 
-//    scheduler.scheduleAt(600) {
-//      subscription.dispose()
-//    }
+    scheduler.scheduleAt(600) {
+      subscription.dispose()
+    }
 
     scheduler.start()
 
@@ -74,9 +74,9 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
     let subscription = interactor.fetchDetails().subscribe(observer)
 
-//    scheduler.scheduleAt(600) {
-//      subscription.dispose()
-//    }
+    scheduler.scheduleAt(600) {
+      subscription.dispose()
+    }
 
     scheduler.start()
 
