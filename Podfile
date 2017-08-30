@@ -15,6 +15,7 @@ def tests_shared_pods
 end
 
 target 'CouchTrackerUgly' do
+  platform :ios, '9.0'
   use_frameworks!
   inhibit_all_warnings!
 
@@ -22,6 +23,7 @@ target 'CouchTrackerUgly' do
 end
 
 target 'CouchTrackerFastTests' do
+  platform :osx, '10.11'
   use_frameworks!
   inhibit_all_warnings!
   
@@ -30,6 +32,7 @@ target 'CouchTrackerFastTests' do
 end
 
 target 'CouchTracker' do
+  platform :ios, '9.0'
   use_frameworks!
   inhibit_all_warnings!
 
@@ -39,5 +42,46 @@ target 'CouchTracker' do
     inherit! :search_paths
     tests_shared_pods
   end
+end
 
+target 'Trakt' do
+  platform :ios, '9.0'
+  use_frameworks!
+  inhibit_all_warnings!
+
+  common_pods
+end
+
+target 'Trakt-Mac' do
+  platform :osx, '10.11'
+  use_frameworks!
+  inhibit_all_warnings!
+
+  common_pods
+
+  target 'Trakt-MacTests' do
+    inherit! :search_paths
+    tests_shared_pods
+  end
+end
+
+target 'TMDB' do
+  platform :ios, '9.0'
+  use_frameworks!
+  inhibit_all_warnings!
+
+  common_pods
+end
+
+target 'TMDB-Mac' do
+  platform :osx, '10.11'
+  use_frameworks!
+  inhibit_all_warnings!
+
+  common_pods
+
+  target 'TMDB-MacTests' do
+    inherit! :search_paths
+    tests_shared_pods
+  end
 end

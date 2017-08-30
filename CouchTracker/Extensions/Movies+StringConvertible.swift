@@ -11,6 +11,7 @@ the license agreement.
 */
 
 import Carlos
+import Trakt
 
 extension Movies: StringConvertible {
   public func toString() -> String {

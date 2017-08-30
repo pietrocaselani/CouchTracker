@@ -11,6 +11,7 @@ the license agreement.
 */
 
 import RxSwift
+import Trakt
 
 final class ListMoviesiOSPresenter: ListMoviesPresenter {
   weak var view: ListMoviesView?

@@ -11,6 +11,7 @@ the license agreement.
 */
 
 import Moya
+import Trakt
 
 protocol APIProvider: class {
   var movies: RxMoyaProvider<Movies> { get }

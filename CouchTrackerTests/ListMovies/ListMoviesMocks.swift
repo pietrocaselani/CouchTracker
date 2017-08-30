@@ -12,6 +12,7 @@ the license agreement.
 
 import Foundation
 import RxSwift
+import Trakt
 
 final class ListMoviesViewMock: ListMoviesView {
   var presenter: ListMoviesPresenter!

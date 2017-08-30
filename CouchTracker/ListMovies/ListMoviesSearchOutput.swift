@@ -10,6 +10,8 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
+import Trakt
+
 final class ListMoviesSearchOutput: SearchResultOutput {
   private weak var view: ListMoviesView?
   private let router: ListMoviesRouter

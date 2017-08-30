@@ -11,6 +11,7 @@ the license agreement.
 */
 
 import XCTest
+import Trakt
 
 final class MovieDetailsPresenterTest: XCTestCase {
 

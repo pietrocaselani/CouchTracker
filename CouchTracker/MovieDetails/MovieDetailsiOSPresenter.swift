@@ -12,6 +12,7 @@ the license agreement.
 
 import RxSwift
 import Foundation
+import Trakt
 
 final class MovieDetailsiOSPresenter: MovieDetailsPresenter {
 

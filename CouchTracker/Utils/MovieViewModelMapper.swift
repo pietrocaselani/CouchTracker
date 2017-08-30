@@ -10,6 +10,8 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
+import Trakt
+
 func viewModel(for movie: Movie, defaultTitle: String = "TBA".localized) -> MovieViewModel {
   return MovieViewModel(title: movie.title ?? defaultTitle)
 }

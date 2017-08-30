@@ -8,15 +8,29 @@
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "64B1CCCD1F4F597D002A9FFD"
                BuildableName = "CouchTrackerFastTests.xctest"
                BlueprintName = "CouchTrackerFastTests"
+               ReferencedContainer = "container:CouchTracker.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "64A45A011F54AE49002C5CAC"
+               BuildableName = "TMDB-MacTests.xctest"
+               BlueprintName = "TMDB-MacTests"
                ReferencedContainer = "container:CouchTracker.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -40,7 +54,36 @@
                ReferencedContainer = "container:CouchTracker.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "64A4599E1F54A8F0002C5CAC"
+               BuildableName = "Trakt-MacTests.xctest"
+               BlueprintName = "Trakt-MacTests"
+               ReferencedContainer = "container:CouchTracker.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "64A45A011F54AE49002C5CAC"
+               BuildableName = "TMDB-MacTests.xctest"
+               BlueprintName = "TMDB-MacTests"
+               ReferencedContainer = "container:CouchTracker.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "64A45A011F54AE49002C5CAC"
+            BuildableName = "TMDB-MacTests.xctest"
+            BlueprintName = "TMDB-MacTests"
+            ReferencedContainer = "container:CouchTracker.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -55,15 +98,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "64B1CCCD1F4F597D002A9FFD"
-            BuildableName = "CouchTrackerFastTests.xctest"
-            BlueprintName = "CouchTrackerFastTests"
-            ReferencedContainer = "container:CouchTracker.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

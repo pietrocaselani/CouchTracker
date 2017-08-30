@@ -12,6 +12,7 @@ the license agreement.
 
 import RxSwift
 import ObjectMapper
+import Trakt
 
 final class SearchViewMock: SearchView {
   var presenter: SearchPresenter!
