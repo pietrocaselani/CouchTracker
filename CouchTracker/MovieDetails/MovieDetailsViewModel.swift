@@ -11,7 +11,6 @@
  */
 
 struct MovieDetailsViewModel {
-
   let title: String
   let tagline: String
   let overview: String
@@ -22,10 +21,12 @@ struct MovieDetailsViewModel {
 extension MovieDetailsViewModel: Equatable, Hashable {
 
   static func == (lhs: MovieDetailsViewModel, rhs: MovieDetailsViewModel) -> Bool {
-    return lhs.title == rhs.title && lhs.releaseDate == rhs.releaseDate
+    return lhs.hashValue == rhs.hashValue
   }
 
   var hashValue: Int {
-    return title.hashValue * releaseDate.hashValue
+    var hash = title.hashValue ^ releaseDate.hashValue ^ tagline.hashValue
+    hash = hash ^ overview.hashValue ^ genres.hashValue ^ releaseDate.hashValue
+    return hash
   }
 }
