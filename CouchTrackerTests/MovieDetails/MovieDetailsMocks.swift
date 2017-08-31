@@ -62,7 +62,20 @@ final class MovieDetailsStoreMock: MovieDetailsRepository {
   }
 }
 
-func createMovieDetailsMock() -> Movie {
-  let jsonData = Movies.summary(movieId: "tron-legacy-2010", extended: .full).sampleData
+func createMovieMock(for movieId: String) -> Movie {
+  let jsonData = Movies.trending(page: 0, limit: 0, extended: .fullEpisodes).sampleData
+  let movies = try! jsonData.mapArray(TrendingMovie.self)
+
+  let trendingMovie = movies.first { $0.movie.ids.slug == movieId }
+
+  return trendingMovie?.movie ?? createMovieDetailsMock(for: movieId)
+}
+
+func createMovieDetailsMock(for movieId: String) -> Movie {
+  let jsonData = Movies.summary(movieId: movieId, extended: .full).sampleData
   return try! jsonData.mapObject(Movie.self)
+}
+
+func createMovieDetailsMock() -> Movie {
+  return createMovieDetailsMock(for: "tron-legacy-2010")
 }

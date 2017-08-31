@@ -29,7 +29,6 @@ final class ListMoviesService: ListMoviesInteractor {
   init(repository: ListMoviesRepository, movieImageRepository: MovieImageRepository, scheduler: SchedulerType) {
     self.repository = repository
     self.movieImageRepository = movieImageRepository
-
     self.scheduler = scheduler
   }
 

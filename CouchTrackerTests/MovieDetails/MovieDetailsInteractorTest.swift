@@ -32,9 +32,12 @@ final class MovieDetailsInteractorTest: XCTestCase {
   }
 
   func testMovieDetailsInteractor_fetchSuccessWithEmptyData_andEmitsOnlyOnCompleted() {
-    let movie = createMovieDetailsMock()
-    let store = MovieDetailsStoreMock(movie: movie)
-    let interactor = MovieDetailsService(repository: store, genreRepository: GenreRepositoryMock(), movieId: "the-dark-knight-2008")
+    let movie = createMovieMock(for: "the-dark-knight-2008")
+    let repository = MovieDetailsStoreMock(movie: createMovieDetailsMock())
+    let genreRepository = GenreRepositoryMock()
+    let imageRepository = movieImageRepositoryMock
+    let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
+                                         imageRepository: imageRepository, movieIds: movie.ids, scheduler: scheduler)
 
     let subscription = interactor.fetchDetails().subscribe(observer)
 
@@ -51,8 +54,11 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
   func testMovieDetailsInteractor_fetchSuccessDetails_andEmitsDetailsAndOnCompleted() {
     let movie = createMovieDetailsMock()
-    let store = MovieDetailsStoreMock(movie: movie)
-    let interactor = MovieDetailsService(repository: store, genreRepository: GenreRepositoryMock(), movieId: movie.ids.slug)
+    let repository = MovieDetailsStoreMock(movie: movie)
+    let genreRepository = GenreRepositoryMock()
+    let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
+                                         imageRepository: movieImageRepositoryMock,
+                                         movieIds: movie.ids, scheduler: scheduler)
 
     let subscription = interactor.fetchDetails().subscribe(observer)
 
@@ -69,8 +75,12 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
   func testMoviesDetailsInteractor_fetchFailure_andEmitsOnlyOnError() {
     let connectionError = MovieDetailsError.noConnection("There is no connection active")
-    let store = ErrorMovieDetailsStoreMock(error: connectionError)
-    let interactor = MovieDetailsService(repository: store, genreRepository: GenreRepositoryMock(), movieId: "tron-legacy-2010")
+    let repository = ErrorMovieDetailsStoreMock(error: connectionError)
+    let genreRepository = GenreRepositoryMock()
+    let movieIds = createMovieDetailsMock().ids
+    let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
+                                         imageRepository: movieImageRepositoryMock,
+                                         movieIds: movieIds, scheduler: scheduler)
 
     let subscription = interactor.fetchDetails().subscribe(observer)
 

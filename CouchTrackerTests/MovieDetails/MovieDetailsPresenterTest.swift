@@ -21,8 +21,8 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
   func testMovieDetailsPresenter_fetchSuccess_andPresentMovieDetails() {
     let movie = createMovieDetailsMock()
-    let store = MovieDetailsStoreMock(movie: movie)
-    let interactor = MovieDetailsService(repository: store , genreRepository: genreRepository, movieId: movie.ids.slug)
+    let repository = MovieDetailsStoreMock(movie: movie)
+    let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository, imageRepository: movieImageRepositoryMock, movieIds: movie.ids)
     let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.viewDidLoad()
@@ -52,8 +52,8 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let movie = createMovieDetailsMock()
     let errorMessage = "There is no active connection"
     let detailsError = MovieDetailsError.noConnection(errorMessage)
-    let store = ErrorMovieDetailsStoreMock(error: detailsError)
-    let interactor = MovieDetailsService(repository: store, genreRepository: GenreRepositoryMock(), movieId: movie.ids.slug)
+    let repository = ErrorMovieDetailsStoreMock(error: detailsError)
+    let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository, imageRepository: movieImageRepositoryMock, movieIds: movie.ids)
     let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.viewDidLoad()
@@ -66,8 +66,8 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let movie = createMovieDetailsMock()
     let errorMessage = "Custom details error"
     let error = NSError(domain: "com.arctouch.CouchTracker", code: 10, userInfo: [NSLocalizedDescriptionKey: errorMessage])
-    let store = ErrorMovieDetailsStoreMock(error: error)
-    let interactor = MovieDetailsService(repository: store, genreRepository: GenreRepositoryMock(), movieId: movie.ids.slug)
+    let repository = ErrorMovieDetailsStoreMock(error: error)
+    let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository, imageRepository: movieImageRepositoryMock, movieIds: movie.ids)
     let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.viewDidLoad()

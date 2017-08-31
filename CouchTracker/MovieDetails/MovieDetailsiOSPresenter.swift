@@ -29,7 +29,7 @@ final class MovieDetailsiOSPresenter: MovieDetailsPresenter {
   }
 
   func viewDidLoad() {
-    let genresObservable = interactor.fetchGenres()
+    let genresObservable = Observable<[Genre]>.empty()
     let detailsObservable = interactor.fetchDetails()
 
     detailsObservable.flatMap { movie -> Observable<MovieDetailsViewModel> in
