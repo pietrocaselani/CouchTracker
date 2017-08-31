@@ -12,11 +12,22 @@ the license agreement.
 
 import Foundation
 
-func createConfigurationsMock() -> ConfigurationResponse {
-  let data = Configuration.configuration.sampleData
+private func parseToJSONObject(data: Data) -> [String: AnyObject] {
   let options = JSONSerialization.ReadingOptions(rawValue: 0)
+  return try! JSONSerialization.jsonObject(with: data, options: options) as! [String: AnyObject]
+}
 
-  let jsonObject = try! JSONSerialization.jsonObject(with: data, options: options) as! [String: AnyObject]
+private func parseToJSONArray(data: Data) -> [[String: AnyObject]] {
+  let options = JSONSerialization.ReadingOptions(rawValue: 0)
+  return try! JSONSerialization.jsonObject(with: data, options: options) as! [[String: AnyObject]]
+}
 
+func createConfigurationsMock() -> ConfigurationResponse {
+  let jsonObject = parseToJSONObject(data: Configuration.configuration.sampleData)
   return try! ConfigurationResponse(JSON: jsonObject)
+}
+
+func createMovieImagesMock() -> Images {
+  let jsonObject = parseToJSONObject(data: Movies.images(movieId: 23).sampleData)
+  return try! Images(JSON: jsonObject)
 }

@@ -10,13 +10,21 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import ObjectMapper
+import XCTest
 
-public final class ConfigurationResponse: ImmutableMappable {
+final class TMDBMoviesTest: XCTestCase {
 
-  public let images: ImagesConfiguration
+  private let tmdb = TMDB(apiKey: "my_awesome_api_key")
 
-  public init(map: Map) throws {
-    self.images = try map.value("images")
+  func testTMDBMovies_images_parseJSONToModel() {
+    let images = createMovieImagesMock()
+
+    XCTAssertEqual(images.id, 550)
+  }
+
+  func testTMDBMovies_imagesPath_buildCorrect() {
+    let path = Movies.images(movieId: 56).path
+
+    XCTAssertEqual(path, "movie/56/images")
   }
 }
