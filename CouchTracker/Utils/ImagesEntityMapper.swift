@@ -13,17 +13,27 @@ the license agreement.
 import TMDB_Swift
 import Foundation
 
+func posterSize(for configuration: Configuration) -> String {
+  return configuration.images.posterSizes.first ?? "w92"
+}
+
+func backdropSize(for configuration: Configuration) -> String {
+  return configuration.images.backdropSizes.first ?? "w300"
+}
+
 func entity(for images: Images, using configuration: Configuration) -> ImagesEntity {
   let baseURL = configuration.images.secureBaseURL as NSString
 
-  let backdrops = images.backdrops.map { imageEntity(for: $0, with: baseURL) }
-  let posters = images.posters.map { imageEntity(for: $0, with: baseURL) }
+  let backdrops = images.backdrops.map { imageEntity(for: $0, with: baseURL, size: backdropSize(for: configuration)) }
+  let posters = images.posters.map { imageEntity(for: $0, with: baseURL, size: posterSize(for: configuration)) }
 
   return ImagesEntity(identifier: images.identifier, backdrops: backdrops, posters: posters)
 }
 
-func imageEntity(for image: Image, with baseURL: NSString) -> ImageEntity {
-  return ImageEntity(link: baseURL.appendingPathComponent(image.filePath),
+func imageEntity(for image: Image, with baseURL: NSString, size: String) -> ImageEntity {
+  let link = (baseURL.appendingPathComponent(size) as NSString).appendingPathComponent(image.filePath)
+
+  return ImageEntity(link: link,
                      width: image.width,
                      height: image.height,
                      iso6391: image.iso6391,
