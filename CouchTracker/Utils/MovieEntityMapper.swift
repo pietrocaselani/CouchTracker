@@ -11,8 +11,14 @@ the license agreement.
 */
 
 import Trakt_Swift
+import Foundation
 
-func entity(for trendingMovie: TrendingMovie, with images: ImagesEntity) -> TrendingMovieEntity {
-  let movie = MovieEntity(ids: trendingMovie.movie.ids, title: trendingMovie.movie.title, images: images)
+func entity(for movie: Movie, with images: ImagesEntity, genres: [Genre]? = nil) -> MovieEntity {
+  return MovieEntity(ids: movie.ids, title: movie.title, images: images, genres: genres,
+                     tagline: movie.tagline, overview: movie.overview, releaseDate: movie.released)
+}
+
+func entity(for trendingMovie: TrendingMovie, with images: ImagesEntity, genres: [Genre]? = nil) -> TrendingMovieEntity {
+  let movie = entity(for: trendingMovie.movie, with: images, genres: genres)
   return TrendingMovieEntity(movie: movie)
 }

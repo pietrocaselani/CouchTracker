@@ -34,7 +34,7 @@ protocol MovieDetailsInteractor: class {
   init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
        imageRepository: MovieImageRepository, movieIds: MovieIds)
 
-  func fetchDetails() -> Observable<Movie>
+  func fetchDetails() -> Observable<MovieEntity>
 }
 
 protocol MovieDetailsRepository: class {

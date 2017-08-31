@@ -11,16 +11,9 @@ the license agreement.
 */
 
 import RxSwift
-import Moya
 import TMDB_Swift
 import Moya_ObjectMapper
-
-let movieImageRepositoryRealMock = MovieImageRepositoryMock(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock)
-let movieImageRepositoryMock = EmptyMovieImageRepositoryMock(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock)
-
-func createMovieImagesRepositoryMock(_ images: ImagesEntity) -> MovieImageRepository {
-  return MovieImagesRepositorySampleMock(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock, images: images)
-}
+import Moya
 
 final class EmptyMovieImageRepositoryMock: MovieImageRepository {
   init(tmdbProvider: TMDBProvider, cofigurationRepository: ConfigurationRepository) {}

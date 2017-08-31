@@ -19,35 +19,30 @@ final class MovieDetailsPresenterTest: XCTestCase {
   let router = MovieDetailsRouterMock()
   let genreRepository = GenreRepositoryMock()
 
-//  func testMovieDetailsPresenter_fetchSuccess_andPresentMovieDetails() {
-//    let movie = createMovieDetailsMock()
-//    let repository = MovieDetailsStoreMock(movie: movie)
-//    let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
-//                                             imageRepository: movieImageRepositoryMock, movieIds: movie.ids)
-//    let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
-//
-//    presenter.viewDidLoad()
-//
-//    let dateFormatter = TraktDateTransformer.dateTransformer.dateFormatter
-//
-//    let genres = movie.genres?.map { movieGenre -> String in
-//      let g = genreRepository.genres.first(where: { genre -> Bool in
-//        genre.slug == movieGenre
-//      })
-//
-//      return g?.name ?? ""
-//    } ?? [String]()
-//
-//    let viewModel = MovieDetailsViewModel(
-//        title: movie.title ?? "TBA",
-//        tagline: movie.tagline ?? "",
-//        overview: movie.overview ?? "",
-//        genres: genres.joined(separator: " | "),
-//        releaseDate: movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!))
-//
-//    XCTAssertTrue(view.invokedShow)
-//    XCTAssertEqual(view.invokedShowParameters?.details, viewModel)
-//  }
+  func testMovieDetailsPresenter_fetchSuccess_andPresentMovieDetails() {
+    let movie = createMovieDetailsMock()
+    let repository = MovieDetailsStoreMock(movie: movie)
+    let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
+                                             imageRepository: movieImageRepositoryRealMock, movieIds: movie.ids)
+    let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
+
+    presenter.viewDidLoad()
+
+    let dateFormatter = TraktDateTransformer.dateTransformer.dateFormatter
+
+    let genres = createMoviesGenresMock()
+    let movieGenres = genres.filter { movie.genres?.contains($0.slug) ?? false }.map { $0.name }
+
+    let viewModel = MovieDetailsViewModel(
+        title: movie.title ?? "TBA",
+        tagline: movie.tagline ?? "",
+        overview: movie.overview ?? "",
+        genres: movieGenres.joined(separator: " | "),
+        releaseDate: movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!))
+
+    XCTAssertTrue(view.invokedShow)
+    XCTAssertEqual(view.invokedShowParameters?.details, viewModel)
+  }
 
   func testMovieDetailsPresenter_fetchFailure_andPresentErrorMessage() {
     let movie = createMovieDetailsMock()

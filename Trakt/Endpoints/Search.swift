@@ -42,7 +42,7 @@ extension Search: TraktType {
     let fileName: String
 
     if case .textQuery = self {
-      fileName = "search_textquery"
+      fileName = "trakt_search_textquery"
     } else {
       fileName = "search_idlookup"
     }

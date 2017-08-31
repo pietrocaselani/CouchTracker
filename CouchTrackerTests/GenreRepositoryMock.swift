@@ -13,21 +13,22 @@ the license agreement.
 import RxSwift
 import Trakt_Swift
 
+func createMoviesGenresMock() -> [Genre] {
+  let jsonArray = parseToJSONArray(data: Genres.list(.movies).sampleData)
+  return try! jsonArray.map { try Genre(JSON: $0) }
+}
+
+func createShowsGenresMock() -> [Genre] {
+  let jsonArray = parseToJSONArray(data: Genres.list(.shows).sampleData)
+  return try! jsonArray.map { try Genre(JSON: $0) }
+}
+
 final class GenreRepositoryMock: GenreRepository {
-
-  let genres: [Genre]
-
-  init() {
-    let data = Genres.list(.movies).sampleData
-    self.genres = try! data.mapArray(Genre.self)
-  }
-
   func fetchShowsGenres() -> Observable<[Genre]> {
-    return Observable.just(genres)
+    return Observable.just(createShowsGenresMock())
   }
 
   func fetchMoviesGenres() -> Observable<[Genre]> {
-    return Observable.just(genres)
+    return Observable.just(createMoviesGenresMock())
   }
-
 }

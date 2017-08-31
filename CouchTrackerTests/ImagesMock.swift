@@ -12,9 +12,10 @@ the license agreement.
 
 import TMDB_Swift
 
+let configurationMock = try! Configuration(JSON: parseToJSONObject(data: ConfigurationService.configuration.sampleData))
+
 func createImagesEntityMock() -> ImagesEntity {
-  let configuration = try! Configuration(JSON: parseToJSONObject(data: ConfigurationService.configuration.sampleData))
   let images = try! Images(JSON: parseToJSONObject(data: Movies.images(movieId: -1).sampleData))
 
-  return entity(for: images, using: configuration)
+  return entity(for: images, using: configurationMock)
 }

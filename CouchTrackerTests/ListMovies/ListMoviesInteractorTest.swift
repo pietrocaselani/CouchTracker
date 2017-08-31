@@ -71,10 +71,10 @@ final class ListMoviesInteractorTest: XCTestCase {
   }
 
   func testHandleMovies() {
-    let movies = [TrendingMovie]()
+    let movies = createMockMovies()
 
     let repository = MoviesListMovieStoreMock(movies: movies)
-    let interactor = ListMoviesService(repository: repository, movieImageRepository: movieImageRepositoryMock, scheduler: scheduler)
+    let interactor = ListMoviesService(repository: repository, movieImageRepository: movieImageRepositoryRealMock, scheduler: scheduler)
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(observer)
 
@@ -84,7 +84,12 @@ final class ListMoviesInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<[TrendingMovieEntity]>>] = [completed(0)]
+    let expectedMovies = movies.map { trendingMovie -> TrendingMovieEntity in
+      let images = createImagesMock(movieId: trendingMovie.movie.ids.tmdb ?? -1)
+      return entity(for: trendingMovie, with: entity(for: images, using: configurationMock))
+    }
+
+    let events: [Recorded<Event<[TrendingMovieEntity]>>] = [next(0, expectedMovies), completed(0)]
 
     RXAssertEvents(observer, events)
   }

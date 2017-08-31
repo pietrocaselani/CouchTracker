@@ -17,6 +17,7 @@ final class MovieDetailsService: MovieDetailsInteractor {
 
   private let repository: MovieDetailsRepository
   private let genreRepository: GenreRepository
+  private let imageRepository: MovieImageRepository
   private let movieIds: MovieIds
   private let scheduler: SchedulerType
 
@@ -24,6 +25,7 @@ final class MovieDetailsService: MovieDetailsInteractor {
        imageRepository: MovieImageRepository, movieIds: MovieIds, scheduler: SchedulerType) {
     self.repository = repository
     self.genreRepository = genreRepository
+    self.imageRepository = imageRepository
     self.movieIds = movieIds
     self.scheduler = scheduler
   }
@@ -35,11 +37,17 @@ final class MovieDetailsService: MovieDetailsInteractor {
               imageRepository: imageRepository, movieIds: movieIds, scheduler: scheduler)
   }
 
-  func fetchDetails() -> Observable<Movie> {
-    return repository.fetchDetails(movieId: movieIds.slug)
-  }
+  func fetchDetails() -> Observable<MovieEntity> {
+    let detailsObservable = repository.fetchDetails(movieId: movieIds.slug)
+    let genresObservable = genreRepository.fetchMoviesGenres()
+    let imagesObservable = imageRepository.fetchImages(for: movieIds.tmdb ?? -1)
 
-  func fetchGenres() -> Observable<[Genre]> {
-    return genreRepository.fetchMoviesGenres()
+    return Observable.combineLatest(detailsObservable, genresObservable, imagesObservable) { (movie, genres, images) -> MovieEntity in
+      let movieGenres = genres.filter { genre -> Bool in
+        return movie.genres?.contains(genre.slug) ?? false
+      }
+
+      return entity(for: movie, with: images, genres: movieGenres)
+    }
   }
 }

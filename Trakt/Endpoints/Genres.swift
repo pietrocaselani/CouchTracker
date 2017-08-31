@@ -30,7 +30,9 @@ extension Genres: TraktType {
   }
 
   public var sampleData: Data {
-    // swiftlint:disable line_length
-    return "[{\"name\":\"Action\",\"slug\":\"action\"},{\"name\":\"Adventure\",\"slug\":\"adventure\"},{\"name\":\"Animation\",\"slug\":\"animation\"},{\"name\":\"Anime\",\"slug\":\"anime\"},{\"name\":\"Comedy\",\"slug\":\"comedy\"},{\"name\":\"Crime\",\"slug\":\"crime\"},{\"name\":\"Disaster\",\"slug\":\"disaster\"},{\"name\":\"Documentary\",\"slug\":\"documentary\"},{\"name\":\"Drama\",\"slug\":\"drama\"},{\"name\":\"Eastern\",\"slug\":\"eastern\"},{\"name\":\"Family\",\"slug\":\"family\"},{\"name\":\"FanFilm\",\"slug\":\"fan-film\"},{\"name\":\"Fantasy\",\"slug\":\"fantasy\"},{\"name\":\"FilmNoir\",\"slug\":\"film-noir\"},{\"name\":\"History\",\"slug\":\"history\"},{\"name\":\"Holiday\",\"slug\":\"holiday\"},{\"name\":\"Horror\",\"slug\":\"horror\"},{\"name\":\"Indie\",\"slug\":\"indie\"},{\"name\":\"Music\",\"slug\":\"music\"},{\"name\":\"Musical\",\"slug\":\"musical\"},{\"name\":\"Mystery\",\"slug\":\"mystery\"},{\"name\":\"None\",\"slug\":\"none\"},{\"name\":\"Road\",\"slug\":\"road\"},{\"name\":\"Romance\",\"slug\":\"romance\"},{\"name\":\"ScienceFiction\",\"slug\":\"science-fiction\"},{\"name\":\"Short\",\"slug\":\"short\"},{\"name\":\"Sports\",\"slug\":\"sports\"},{\"name\":\"SportingEvent\",\"slug\":\"sporting-event\"},{\"name\":\"Suspense\",\"slug\":\"suspense\"},{\"name\":\"Thriller\",\"slug\":\"thriller\"},{\"name\":\"TvMovie\",\"slug\":\"tv-movie\"},{\"name\":\"War\",\"slug\":\"war\"},{\"name\":\"Western\",\"slug\":\"western\"}]".utf8Encoded
+    switch self {
+    case .list(let type):
+      return stubbedResponse("trakt_genres_\(type)")
+    }
   }
 }

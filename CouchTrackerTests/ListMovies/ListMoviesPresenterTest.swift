@@ -104,10 +104,4 @@ final class ListMoviesPresenterTest: XCTestCase {
     XCTAssertTrue(router.invokedShowDetails)
     XCTAssertEqual(router.invokedShowDetailsParameters?.movie, expectedMovie)
   }
-
-  private func createMockMovies() -> [TrendingMovie] {
-    let jsonData = Movies.trending(page: 0, limit: 50, extended: .full).sampleData
-    return try! jsonData.mapArray(TrendingMovie.self)
-  }
-
 }

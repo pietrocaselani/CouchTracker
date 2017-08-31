@@ -14,16 +14,17 @@ import XCTest
 import RxSwift
 import RxTest
 import Trakt_Swift
+import TMDB_Swift
 
 final class MovieDetailsInteractorTest: XCTestCase {
 
   private let scheduler: TestScheduler = TestScheduler(initialClock: 0)
-  private var observer: TestableObserver<Movie>!
+  private var observer: TestableObserver<MovieEntity>!
 
   override func setUp() {
     super.setUp()
 
-    observer = scheduler.createObserver(Movie.self)
+    observer = scheduler.createObserver(MovieEntity.self)
   }
 
   override func tearDown() {
@@ -47,7 +48,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<Movie>>] = [completed(0)]
+    let events: [Recorded<Event<MovieEntity>>] = [completed(0)]
 
     XCTAssertEqual(observer.events, events)
   }
@@ -57,7 +58,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let repository = MovieDetailsStoreMock(movie: movie)
     let genreRepository = GenreRepositoryMock()
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
-                                         imageRepository: movieImageRepositoryMock,
+                                         imageRepository: movieImageRepositoryRealMock,
                                          movieIds: movie.ids, scheduler: scheduler)
 
     let subscription = interactor.fetchDetails().subscribe(observer)
@@ -68,7 +69,16 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<Movie>>] = [next(0, movie), completed(0)]
+    let genres = try! parseToJSONArray(data: Genres.list(.movies).sampleData).map { return try Genre(JSON: $0) }
+    let moviesGenre = genres.filter { movie.genres?.contains($0.slug) ?? false }
+
+    let images = try! Images(JSON: parseToJSONObject(data: Movies.images(movieId: movie.ids.tmdb ?? -1).sampleData))
+    let imagesEntity = entity(for: images, using: configurationMock)
+
+    let expectedMovie = MovieEntity(ids: movie.ids, title: movie.title, images: imagesEntity, genres: moviesGenre,
+                tagline: movie.tagline, overview: movie.overview, releaseDate: movie.released)
+
+    let events: [Recorded<Event<MovieEntity>>] = [next(0, expectedMovie), completed(0)]
 
     XCTAssertEqual(observer.events, events)
   }
@@ -90,7 +100,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<Movie>>] = [error(0, connectionError)]
+    let events: [Recorded<Event<MovieEntity>>] = [error(0, connectionError)]
 
     XCTAssertEqual(observer.events, events)
 
