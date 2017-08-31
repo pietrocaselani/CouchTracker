@@ -18,7 +18,7 @@ final class GenreRepositoryMock: GenreRepository {
   let genres: [Genre]
 
   init() {
-    let data = Genres.list(.shows).sampleData
+    let data = Genres.list(.movies).sampleData
     self.genres = try! data.mapArray(Genre.self)
   }
 

@@ -53,11 +53,6 @@
                BlueprintName = "CouchTrackerFastTests"
                ReferencedContainer = "container:CouchTracker.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "MovieDetailsPresenterTest">
-               </Test>
-            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO">
