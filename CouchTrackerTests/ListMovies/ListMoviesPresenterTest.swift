@@ -40,8 +40,8 @@ final class ListMoviesPresenterTest: XCTestCase {
 
     presenter.fetchMovies()
 
-    XCTAssertTrue(self.router.invokedShowError)
-    XCTAssertEqual(self.router.invokedShowErrorParameters?.message, "Invalid json")
+    XCTAssertTrue(router.invokedShowError)
+    XCTAssertEqual(router.invokedShowErrorParameters?.message, "Invalid json")
   }
 
   func testListMoviesPresenter_fetchSuccess_andPresentMovies() {
