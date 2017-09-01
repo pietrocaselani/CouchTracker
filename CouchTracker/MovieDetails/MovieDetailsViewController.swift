@@ -40,15 +40,13 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsView {
     genresLabel.text = details.genres
 
     if let backdropLink = details.backdropLink {
-      backdropImageView.kf.setImage(with: URL(string: backdropLink), placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (_, _, _, url) in
-        print("Backdrop = \(url)")
-      })
+      backdropImageView.kf.setImage(with: URL(string: backdropLink), placeholder: R.image.backdropPlaceholder(),
+                                    options: nil, progressBlock: nil, completionHandler: nil)
     }
 
     if let posterLink = details.posterLink {
-      posterImageView.kf.setImage(with: URL(string: posterLink), placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (_, _, _, url) in
-        print("Poster = \(url)")
-      })
+      posterImageView.kf.setImage(with: URL(string: posterLink), placeholder: R.image.posterPlacehoder(),
+                                  options: nil, progressBlock: nil, completionHandler: nil)
     }
   }
 
