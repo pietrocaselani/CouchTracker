@@ -55,7 +55,7 @@ final class ListMoviesService: ListMoviesInteractor {
       return movies.count == 0 ? Observable.empty() : Observable.just(movies)
       }.retryWhen { errorObservable -> Observable<[TrendingMovieEntity]> in
         return errorObservable.flatMap { error -> Observable<[TrendingMovieEntity]> in
-          guard let moyaError = error as? MoyaError, moyaError.response?.statusCode == 429 else {
+          guard let moyaError = error as? MoyaError, moyaError.response?.statusCode == TMDBError.toManyRequests else {
             return Observable.error(error)
           }
 
