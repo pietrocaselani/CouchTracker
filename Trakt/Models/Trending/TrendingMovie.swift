@@ -13,25 +13,14 @@ the license agreement.
 import ObjectMapper
 
 public final class TrendingMovie: BaseTrendingEntity {
-
   public let movie: Movie
 
   public required init(map: Map) throws {
     self.movie = try map.value("movie")
-
     try super.init(map: map)
   }
 
-}
-
-extension TrendingMovie: Equatable, Hashable {
-
-  public static func == (lhs: TrendingMovie, rhs: TrendingMovie) -> Bool {
-    return lhs.movie == rhs.movie
+  public override var hashValue: Int {
+    return super.hashValue ^ movie.hashValue
   }
-
-  public var hashValue: Int {
-    return self.movie.hashValue
-  }
-
 }

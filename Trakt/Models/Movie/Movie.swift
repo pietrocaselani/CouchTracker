@@ -15,7 +15,6 @@ import ObjectMapper
 public final class Movie: StandardMediaEntity {
   public let year: Int
   public let ids: MovieIds
-
   public let certification: String?
   public let tagline: String?
   public let released: Date?
@@ -40,16 +39,39 @@ public final class Movie: StandardMediaEntity {
     try super.init(map: map)
   }
 
-}
+  public override var hashValue: Int {
+    var hash = super.hashValue ^ year.hashValue ^ ids.hashValue
 
-extension Movie: Equatable, Hashable {
+    if let certificationHash = certification?.hashValue {
+      hash = hash ^ certificationHash
+    }
 
-  public static func == (lhs: Movie, rhs: Movie) -> Bool {
-    return lhs.ids.slug == rhs.ids.slug
+    if let taglineHash = tagline?.hashValue {
+      hash = hash ^ taglineHash
+    }
+
+    if let releasedHash = released?.hashValue {
+      hash = hash ^ releasedHash
+    }
+
+    if let runtimeHash = runtime?.hashValue {
+      hash = hash ^ runtimeHash
+    }
+
+    if let trailerHash = trailer?.hashValue {
+      hash = hash ^ trailerHash
+    }
+
+    if let homepageHash = homepage?.hashValue {
+      hash = hash ^ homepageHash
+    }
+
+    if let languageHash = language?.hashValue {
+      hash = hash ^ languageHash
+    }
+
+    genres?.forEach { hash = hash ^ $0.hashValue }
+
+    return hash
   }
-
-  public var hashValue: Int {
-    return self.ids.slug.hashValue
-  }
-
 }

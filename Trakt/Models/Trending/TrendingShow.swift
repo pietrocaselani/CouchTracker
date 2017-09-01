@@ -12,18 +12,15 @@
 
 import ObjectMapper
 
-public class BaseTrendingEntity: ImmutableMappable, Hashable {
-  public let watchers: Int
-
+public final class TrendingShow: BaseTrendingEntity {
+  public let show: Show
+  
   public required init(map: Map) throws {
-    self.watchers = try map.value("watchers")
+    self.show = try map.value("show")
+    try super.init(map: map)
   }
-
-  public var hashValue: Int {
-    return watchers.hashValue
-  }
-
-  public static func == (lhs: BaseTrendingEntity, rhs: BaseTrendingEntity) -> Bool {
-    return lhs.hashValue == rhs.hashValue
+  
+  public override var hashValue: Int {
+    return super.hashValue ^ show.hashValue
   }
 }

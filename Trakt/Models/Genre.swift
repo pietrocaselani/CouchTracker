@@ -13,7 +13,6 @@ the license agreement.
 import ObjectMapper
 
 public final class Genre: ImmutableMappable, Hashable {
-
   public let name: String
   public let slug: String
 

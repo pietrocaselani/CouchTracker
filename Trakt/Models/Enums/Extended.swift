@@ -10,14 +10,10 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-public enum Extended: String, Equatable {
+public enum Extended: String {
   case defaultMin = "min"
   case full = "full"
   case noSeasons = "noseasons"
   case episodes = "episodes"
   case fullEpisodes = "full,episodes"
-
-  public static func == (lhs: Extended, rhs: Extended) -> Bool {
-    return lhs.rawValue == rhs.rawValue
-  }
 }

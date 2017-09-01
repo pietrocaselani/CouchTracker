@@ -28,8 +28,4 @@ public final class MovieIds: BaseIds {
   public override var hashValue: Int {
     return super.hashValue ^ slug.hashValue
   }
-
-  public static func == (lhs: MovieIds, rhs: MovieIds) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-  }
 }
