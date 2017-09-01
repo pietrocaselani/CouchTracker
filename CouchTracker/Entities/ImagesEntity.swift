@@ -15,18 +15,13 @@ struct ImagesEntity: Hashable {
   public let backdrops: [ImageEntity]
   public let posters: [ImageEntity]
 
-  func bestImage() -> ImageEntity? {
-    return bestPosterImage() ?? bestBackdropImage()
-  }
-
-  func bestPosterImage() -> ImageEntity? {
+  func posterImage() -> ImageEntity? {
     return posters.first
   }
 
-  func bestBackdropImage() -> ImageEntity? {
+  func backdropImage() -> ImageEntity? {
     return backdrops.first
   }
-
   var hashValue: Int {
     var hash = identifier.hashValue
     backdrops.forEach { hash = hash ^ $0.hashValue }

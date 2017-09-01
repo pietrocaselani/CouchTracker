@@ -44,6 +44,9 @@ final class MovieDetailsiOSPresenter: MovieDetailsPresenter {
   }
 
   private func mapToViewModel(_ movie: MovieEntity) -> MovieDetailsViewModel {
+    let backdropLink = movie.images.backdropImage()?.link
+    let posterLink = movie.images.posterImage()?.link
+
     let releaseDate = movie.releaseDate?.parse() ?? "Unknown".localized
     let genres = movie.genres?.map { $0.name }.joined(separator: " | ")
 
@@ -52,6 +55,8 @@ final class MovieDetailsiOSPresenter: MovieDetailsPresenter {
       tagline: movie.tagline ?? "",
       overview: movie.overview ?? "",
       genres: genres ?? "",
-      releaseDate: releaseDate)
+      releaseDate: releaseDate,
+      posterLink: posterLink,
+      backdropLink: backdropLink)
   }
 }

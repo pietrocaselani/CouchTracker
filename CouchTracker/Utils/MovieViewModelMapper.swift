@@ -13,7 +13,7 @@ the license agreement.
 import Trakt_Swift
 
 func viewModel(for movie: MovieEntity, defaultTitle: String = "TBA".localized) -> MovieViewModel {
-  let image = movie.images.bestImage()
+  let image = movie.images.posterImage()
   return MovieViewModel(title: movie.title ?? defaultTitle, imageLink: image?.link)
 }
 

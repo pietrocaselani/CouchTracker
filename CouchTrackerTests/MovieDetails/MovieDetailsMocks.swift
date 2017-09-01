@@ -81,7 +81,7 @@ final class MovieDetailsServiceMock: MovieDetailsInteractor {
   func fetchDetails() -> Observable<MovieEntity> {
     let detailsObservable = repository.fetchDetails(movieId: movieIds.slug)
     let genresObservable = genreRepository.fetchMoviesGenres()
-    let imagesObservable = imageRepository.fetchImages(for: movieIds.tmdb ?? -1)
+    let imagesObservable = imageRepository.fetchImages(for: movieIds.tmdb ?? -1, posterSize: nil, backdropSize: nil)
 
     return Observable.combineLatest(detailsObservable, genresObservable, imagesObservable) { [unowned self] (movie, genres, images) -> MovieEntity in
       let movieGenres = genres.filter { genre -> Bool in

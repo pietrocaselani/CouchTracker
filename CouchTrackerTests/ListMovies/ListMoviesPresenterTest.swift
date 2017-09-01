@@ -53,7 +53,7 @@ final class ListMoviesPresenterTest: XCTestCase {
 
     presenter.fetchMovies()
 
-    let link = images.bestImage()?.link
+    let link = images.posterImage()?.link
 
     let expectedViewModel = movies.map { MovieViewModel(title: $0.movie.title ?? "TBA", imageLink: link) }
 

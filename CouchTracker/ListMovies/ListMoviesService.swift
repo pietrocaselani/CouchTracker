@@ -39,7 +39,8 @@ final class ListMoviesService: ListMoviesInteractor {
       }
       }.flatMap { trendingMovies -> Observable<TrendingMovieEntity> in
         return Observable.from(trendingMovies).flatMap { [unowned self] movie -> Observable<TrendingMovieEntity> in
-          return self.movieImageRepository.fetchImages(for: movie.movie.ids.tmdb ?? -1)
+          let tmdbId = movie.movie.ids.tmdb ?? -1
+          return self.movieImageRepository.fetchImages(for: tmdbId, posterSize: .w342 , backdropSize: .w780)
             .observeOn(self.scheduler)
             .delay(0.25, scheduler: self.scheduler)
             .flatMap { images -> Observable<(TrendingMovie, ImagesEntity)> in

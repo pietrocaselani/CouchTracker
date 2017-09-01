@@ -116,10 +116,10 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="backgroundImageView" destination="b06-ge-MMW" id="P3S-nl-XJ9"/>
+                        <outlet property="backdropImageView" destination="Ftg-26-pQr" id="hES-5Q-es6"/>
                         <outlet property="genresLabel" destination="3wc-YN-l8R" id="35k-ga-54j"/>
                         <outlet property="overviewLabel" destination="s1V-Kf-twH" id="uN2-f3-sKu"/>
-                        <outlet property="posterImageView" destination="Ftg-26-pQr" id="E8m-2h-9vU"/>
+                        <outlet property="posterImageView" destination="b06-ge-MMW" id="S2t-hs-If7"/>
                         <outlet property="releaseDateLabel" destination="jjz-i5-kgA" id="AOh-AY-RPF"/>
                         <outlet property="taglineLabel" destination="rqp-lc-dWQ" id="RCe-Yn-tJz"/>
                         <outlet property="titleLabel" destination="WKa-XQ-3sA" id="dbP-GF-p02"/>

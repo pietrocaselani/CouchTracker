@@ -12,6 +12,8 @@
 
 import UIKit
 
+import Kingfisher
+
 final class MovieDetailsViewController: UIViewController, MovieDetailsView {
 
   var presenter: MovieDetailsPresenter!
@@ -21,7 +23,7 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsView {
   @IBOutlet var overviewLabel: UILabel!
   @IBOutlet var releaseDateLabel: UILabel!
   @IBOutlet var genresLabel: UILabel!
-  @IBOutlet var backgroundImageView: UIImageView!
+  @IBOutlet var backdropImageView: UIImageView!
   @IBOutlet var posterImageView: UIImageView!
 
   override func viewDidLoad() {
@@ -36,6 +38,18 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsView {
     overviewLabel.text = details.overview
     releaseDateLabel.text = details.releaseDate
     genresLabel.text = details.genres
+
+    if let backdropLink = details.backdropLink {
+      backdropImageView.kf.setImage(with: URL(string: backdropLink), placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (_, _, _, url) in
+        print("Backdrop = \(url)")
+      })
+    }
+
+    if let posterLink = details.posterLink {
+      posterImageView.kf.setImage(with: URL(string: posterLink), placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (_, _, _, url) in
+        print("Poster = \(url)")
+      })
+    }
   }
 
 }

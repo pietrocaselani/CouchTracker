@@ -33,12 +33,17 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let genres = createMoviesGenresMock()
     let movieGenres = genres.filter { movie.genres?.contains($0.slug) ?? false }.map { $0.name }
 
+    let images = createImagesMock(movieId: movie.ids.tmdb ?? -1)
+    let imagesEntity = entity(for: images, using: configurationMock, posterSize: .w342, backdropSize: .w300)
+
     let viewModel = MovieDetailsViewModel(
         title: movie.title ?? "TBA",
         tagline: movie.tagline ?? "",
         overview: movie.overview ?? "",
         genres: movieGenres.joined(separator: " | "),
-        releaseDate: movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!))
+        releaseDate: movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!),
+        posterLink: imagesEntity.posterImage()?.link,
+        backdropLink: imagesEntity.backdropImage()?.link)
 
     XCTAssertTrue(view.invokedShow)
     XCTAssertEqual(view.invokedShowParameters?.details, viewModel)

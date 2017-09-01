@@ -112,7 +112,7 @@ final class ListMoviesServiceMock: ListMoviesInteractor {
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovieEntity]> {
     let listMoviesObservable = listMoviesRepo.fetchMovies(page: page, limit: limit)
-    let imagesObservable = movieImageRepo.fetchImages(for: 30)
+    let imagesObservable = movieImageRepo.fetchImages(for: 30, posterSize: nil, backdropSize: nil)
 
     let observable = Observable.combineLatest(listMoviesObservable, imagesObservable) { (movies, images) -> [TrendingMovieEntity]  in
       let entities = movies.map { entity(for: $0, with: images) }
