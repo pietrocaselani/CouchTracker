@@ -12,7 +12,9 @@
 		392D9148FB2A0AD50C1D97BD /* MovieImageCachedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9639185F354505ABB8D3 /* MovieImageCachedRepository.swift */; };
 		392D91A14A77BFFEEFB0AC35 /* TraktProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D980BC37D71470843481C /* TraktProvider.swift */; };
 		392D91ACA359E1DA03CF204E /* ImagesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9B38999C1C359F37014E /* ImagesEntity.swift */; };
+		392D921F6165C25A7211C508 /* TMDBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D91DCE83E0C5410BBE9BB /* TMDBError.swift */; };
 		392D922DF10F1941A06FA554 /* MovieImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9C8588003600B65A2EE7 /* MovieImageRepository.swift */; };
+		392D9231878E9EF8BC925DC6 /* TMDBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D91DCE83E0C5410BBE9BB /* TMDBError.swift */; };
 		392D9240A1D79C99113DBA6F /* MovieImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9C8588003600B65A2EE7 /* MovieImageRepository.swift */; };
 		392D93DE0557D965D77E87A5 /* MovieImageCachedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9639185F354505ABB8D3 /* MovieImageCachedRepository.swift */; };
 		392D94094EB036ECB0061A99 /* TraktProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D980BC37D71470843481C /* TraktProvider.swift */; };
@@ -29,6 +31,7 @@
 		392D9A1DD54F1131A5D41137 /* TMDBProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9D4CE78A30D125591157 /* TMDBProvider.swift */; };
 		392D9AD6F14C3D5032BC770C /* ConfigurationService+StringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9937B6160E19099D6508 /* ConfigurationService+StringConvertible.swift */; };
 		392D9B4C5816B7FBE116064A /* TMDBProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9D4CE78A30D125591157 /* TMDBProvider.swift */; };
+		392D9BBEDAB8E03E953873BB /* TMDBError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D91DCE83E0C5410BBE9BB /* TMDBError.swift */; };
 		392D9BE44E5502E84E7A7DB7 /* TraktProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D980BC37D71470843481C /* TraktProvider.swift */; };
 		392D9C7D002D380975348E62 /* ImagesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9B38999C1C359F37014E /* ImagesEntity.swift */; };
 		392D9CAB8901302FCB6F2C14 /* TMDBProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9D4CE78A30D125591157 /* TMDBProvider.swift */; };
@@ -544,6 +547,7 @@
 		24484C0F60E961344BD895C1 /* Pods-Trakt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trakt.release.xcconfig"; path = "Pods/Target Support Files/Pods-Trakt/Pods-Trakt.release.xcconfig"; sourceTree = "<group>"; };
 		2D51FA3E8D17203E8608B2E7 /* Pods_TMDB_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMDB_Mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31AB7C7E6CF3308254C64DD0 /* Pods-Trakt-Mac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trakt-Mac.release.xcconfig"; path = "Pods/Target Support Files/Pods-Trakt-Mac/Pods-Trakt-Mac.release.xcconfig"; sourceTree = "<group>"; };
+		392D91DCE83E0C5410BBE9BB /* TMDBError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBError.swift; sourceTree = "<group>"; };
 		392D9639185F354505ABB8D3 /* MovieImageCachedRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieImageCachedRepository.swift; sourceTree = "<group>"; };
 		392D9763C4A563BA44D78E12 /* ImageEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEntity.swift; sourceTree = "<group>"; };
 		392D980BC37D71470843481C /* TraktProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktProvider.swift; sourceTree = "<group>"; };
@@ -1313,6 +1317,7 @@
 				64A45A131F54AEF4002C5CAC /* ImagesConfiguration.swift */,
 				644EE12E1F55B46E0053D631 /* Images.swift */,
 				644EE1321F55B49B0053D631 /* Image.swift */,
+				392D91DCE83E0C5410BBE9BB /* TMDBError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2685,6 +2690,7 @@
 				64A45A1F1F54AEF4002C5CAC /* TMDBType.swift in Sources */,
 				644EE1331F55B49B0053D631 /* Image.swift in Sources */,
 				64A45A1C1F54AEF4002C5CAC /* TMDB+Constants.swift in Sources */,
+				392D9BBEDAB8E03E953873BB /* TMDBError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2703,6 +2709,7 @@
 				64A45A221F54AF05002C5CAC /* ConfigurationEndpoint.swift in Sources */,
 				644EE1341F55B49B0053D631 /* Image.swift in Sources */,
 				64A45A281F54AF09002C5CAC /* TMDBType.swift in Sources */,
+				392D921F6165C25A7211C508 /* TMDBError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2724,6 +2731,7 @@
 				64A45A2B1F54AF0A002C5CAC /* TMDB.swift in Sources */,
 				64A45A341F54AF62002C5CAC /* TMDBMocks.swift in Sources */,
 				64A45A211F54AF04002C5CAC /* ConfigurationEndpoint.swift in Sources */,
+				392D9231878E9EF8BC925DC6 /* TMDBError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
