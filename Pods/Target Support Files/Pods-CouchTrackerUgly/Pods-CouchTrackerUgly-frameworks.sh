@@ -104,6 +104,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Carlos/Carlos.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-iOS/Moya.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-ObjectMapper-iOS/Moya_ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper-iOS/ObjectMapper.framework"
@@ -115,6 +116,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Carlos/Carlos.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-iOS/Moya.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya-ObjectMapper-iOS/Moya_ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper-iOS/ObjectMapper.framework"

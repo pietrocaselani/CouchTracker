@@ -11,6 +11,7 @@
  */
 
 import RxSwift
+import Moya
 import Trakt_Swift
 import TMDB_Swift
 
@@ -21,7 +22,7 @@ final class ListMoviesService: ListMoviesInteractor {
   private let scheduler: SchedulerType
 
   convenience init(repository: ListMoviesRepository, movieImageRepository: MovieImageRepository) {
-    let scheduler = ConcurrentDispatchQueueScheduler(qos: DispatchQueue(label: "listMoviesServiceQueue").qos)
+    let scheduler = SerialDispatchQueueScheduler(qos: DispatchQueue(label: "listMoviesServiceQueue").qos)
     self.init(repository: repository, movieImageRepository: movieImageRepository, scheduler: scheduler)
   }
 
@@ -37,20 +38,29 @@ final class ListMoviesService: ListMoviesInteractor {
       $0.filter {
         $0.movie.ids.tmdb != nil
       }
-    }.flatMap { trendingMovies -> Observable<TrendingMovieEntity> in
-      Observable.from(trendingMovies).flatMap { [unowned self] trendingMovie -> Observable<TrendingMovieEntity> in
-        return self.movieImageRepository.fetchImages(for: trendingMovie.movie.ids.tmdb ?? -1)
-          .observeOn(self.scheduler)
-          .flatMap { images -> Observable<(TrendingMovie, ImagesEntity)> in
-            return Observable.just((trendingMovie, images))
-          }.map { (trendingMovie, images) -> TrendingMovieEntity in
-            return entity(for: trendingMovie, with: images)
+      }.flatMap { trendingMovies -> Observable<TrendingMovieEntity> in
+        return Observable.from(trendingMovies).flatMap { [unowned self] movie -> Observable<TrendingMovieEntity> in
+          return self.movieImageRepository.fetchImages(for: movie.movie.ids.tmdb ?? -1)
+            .observeOn(self.scheduler)
+            .delay(0.25, scheduler: self.scheduler)
+            .flatMap { images -> Observable<(TrendingMovie, ImagesEntity)> in
+              return Observable.just((movie, images))
+            }.map { (trendingMovie, images) -> TrendingMovieEntity in
+              return entity(for: trendingMovie, with: images)
+          }
         }
-      }
       }.subscribeOn(scheduler)
 
     return moviesObservable.toArray().flatMap { movies -> Observable<[TrendingMovieEntity]> in
       return movies.count == 0 ? Observable.empty() : Observable.just(movies)
-    }
+      }.retryWhen { errorObservable -> Observable<[TrendingMovieEntity]> in
+        return errorObservable.flatMap { error -> Observable<[TrendingMovieEntity]> in
+          guard let moyaError = error as? MoyaError, moyaError.response?.statusCode == TMDBError.toManyRequests else {
+            return Observable.error(error)
+          }
+
+          return self.fetchMovies(page: page, limit: limit).delay(10, scheduler: self.scheduler)
+        }
+      }
   }
 }

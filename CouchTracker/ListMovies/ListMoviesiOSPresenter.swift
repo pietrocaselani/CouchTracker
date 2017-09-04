@@ -28,7 +28,7 @@ final class ListMoviesiOSPresenter: ListMoviesPresenter {
   }
 
   func fetchMovies() {
-    interactor.fetchMovies(page: currentPage, limit: 50)
+    interactor.fetchMovies(page: currentPage, limit: 25)
         .do(onNext: { [unowned self] entities in
           self.movies = entities
         }).map { [unowned self] in self.transformToViewModels(entities: $0) }
