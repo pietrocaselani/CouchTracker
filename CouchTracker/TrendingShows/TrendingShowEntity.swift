@@ -10,12 +10,14 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Moya
-import Trakt_Swift
+struct TrendingShowEntity: Hashable {
+  let show: ShowEntity
 
-protocol TraktProvider: class {
-  var movies: RxMoyaProvider<Movies> { get }
-  var genres: RxMoyaProvider<Genres> { get }
-  var search: RxMoyaProvider<Search> { get }
-  var shows: RxMoyaProvider<Shows> { get }
+  var hashValue: Int {
+    return show.hashValue
+  }
+
+  static func == (lhs: TrendingShowEntity, rhs: TrendingShowEntity) -> Bool {
+    return lhs.hashValue == rhs.hashValue
+  }
 }

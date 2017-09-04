@@ -10,12 +10,11 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Moya
 import Trakt_Swift
+import Carlos
 
-protocol TraktProvider: class {
-  var movies: RxMoyaProvider<Movies> { get }
-  var genres: RxMoyaProvider<Genres> { get }
-  var search: RxMoyaProvider<Search> { get }
-  var shows: RxMoyaProvider<Shows> { get }
+extension Shows: StringConvertible {
+  public func toString() -> String {
+    return self.path
+  }
 }
