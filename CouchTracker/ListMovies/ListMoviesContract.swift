@@ -11,15 +11,14 @@ the license agreement.
 */
 
 import RxSwift
-import Trakt
+import Trakt_Swift
 
 protocol ListMoviesRouter: class {
-  func showDetails(of movie: TrendingMovie)
+  func showDetails(of movie: TrendingMovieEntity)
   func showError(message: String)
 }
 
 protocol ListMoviesPresenter: class {
-
   init(view: ListMoviesView, interactor: ListMoviesInteractor, router: ListMoviesRouter)
 
   func fetchMovies()
@@ -27,7 +26,6 @@ protocol ListMoviesPresenter: class {
 }
 
 protocol ListMoviesView: BaseView {
-
   var presenter: ListMoviesPresenter! { get set }
   var searchView: SearchView! { get set }
 
@@ -36,13 +34,11 @@ protocol ListMoviesView: BaseView {
 }
 
 protocol ListMoviesInteractor: class {
+  init(repository: ListMoviesRepository, movieImageRepository: MovieImageRepository)
 
-  init(repository: ListMoviesRepository)
-
-  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]>
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovieEntity]>
 }
 
 protocol ListMoviesRepository: class {
-
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]>
 }

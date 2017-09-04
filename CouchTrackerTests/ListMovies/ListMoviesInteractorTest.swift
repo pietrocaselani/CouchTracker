@@ -13,37 +13,40 @@
 import XCTest
 import RxSwift
 import RxTest
-import Trakt
+import Trakt_Swift
 
 final class ListMoviesInteractorTest: XCTestCase {
 
   private let scheduler = TestScheduler(initialClock: 0)
-  private var observer: TestableObserver<[TrendingMovie]>!
+  private var observer: TestableObserver<[TrendingMovieEntity]>!
+
+  private var disposeBag: DisposeBag!
 
   override func setUp() {
     super.setUp()
 
-    observer = scheduler.createObserver([TrendingMovie].self)
+    observer = scheduler.createObserver([TrendingMovieEntity].self)
+    disposeBag = DisposeBag()
   }
 
   override func tearDown() {
     observer = nil
+    disposeBag = nil
     super.tearDown()
   }
 
   func testHandleEmpty() {
-    let store = EmptyListMoviesStoreMock()
-    let interactor = ListMoviesUseCase(repository: store)
+    let repository = EmptyListMoviesStoreMock()
+    let imageRepository = EmptyMovieImageRepositoryMock(tmdbProvider: tmdbProviderMock,
+                                                        cofigurationRepository: configurationRepositoryMock)
+    let interactor = ListMoviesService(repository: repository, movieImageRepository: imageRepository, scheduler: scheduler)
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(observer)
-
-    scheduler.scheduleAt(600) {
-      subscription.dispose()
-    }
+    subscription.disposed(by: disposeBag)
 
     scheduler.start()
 
-    let events: [Recorded<Event<[TrendingMovie]>>] = [completed(0)]
+    let events: [Recorded<Event<[TrendingMovieEntity]>>] = [completed(0)]
 
     RXAssertEvents(observer, events)
   }
@@ -51,8 +54,8 @@ final class ListMoviesInteractorTest: XCTestCase {
   func testHandleError() {
     let connectionError = ListMoviesError.noConnection("There is no connection active")
 
-    let store = ErrorListMoviesStoreMock(error: connectionError)
-    let interactor = ListMoviesUseCase(repository: store)
+    let repository = ErrorListMoviesStoreMock(error: connectionError)
+    let interactor = ListMoviesService(repository: repository, movieImageRepository: movieImageRepositoryMock, scheduler: scheduler)
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(observer)
 
@@ -62,7 +65,7 @@ final class ListMoviesInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<[TrendingMovie]>>] = [error(0, connectionError)]
+    let events: [Recorded<Event<[TrendingMovieEntity]>>] = [error(0, connectionError)]
 
     RXAssertEvents(observer, events)
   }
@@ -70,8 +73,8 @@ final class ListMoviesInteractorTest: XCTestCase {
   func testHandleMovies() {
     let movies = [TrendingMovie]()
 
-    let store = MoviesListMovieStoreMock(movies: movies)
-    let interactor = ListMoviesUseCase(repository: store)
+    let repository = MoviesListMovieStoreMock(movies: movies)
+    let interactor = ListMoviesService(repository: repository, movieImageRepository: movieImageRepositoryMock, scheduler: scheduler)
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(observer)
 
@@ -81,9 +84,8 @@ final class ListMoviesInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<[TrendingMovie]>>] = [next(0, movies), completed(0)]
+    let events: [Recorded<Event<[TrendingMovieEntity]>>] = [completed(0)]
 
     RXAssertEvents(observer, events)
   }
-
 }

@@ -16,7 +16,7 @@ final class ListMoviesModule {
 
   private init() {}
 
-  static func setupModule(apiProvider: APIProvider) -> BaseView {
+  static func setupModule(traktProvider: TraktProvider, tmdbProvider: TMDBProvider) -> BaseView {
     guard let navigationController =
     R.storyboard.listMovies().instantiateInitialViewController() as? UINavigationController else {
       fatalError("viewController should be an instance of UINavigationController")
@@ -30,16 +30,20 @@ final class ListMoviesModule {
       fatalError("view should be an instance of UIViewController")
     }
 
-    let repository = ListMoviesCacheRepository(apiProvider: apiProvider)
-    let interactor = ListMoviesUseCase(repository: repository)
-    let router = ListMoviesiOSRouter(viewController: viewController, apiProvider: apiProvider)
+    let repository = ListMoviesCacheRepository(traktProvider: traktProvider)
+    let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdbProvider)
+    let movieImageRepository = MovieImageCachedRepository(tmdbProvider: tmdbProvider,
+                                                          cofigurationRepository: configurationRepository)
+
+    let interactor = ListMoviesService(repository: repository, movieImageRepository: movieImageRepository)
+    let router = ListMoviesiOSRouter(viewController: viewController, traktProvider: traktProvider)
     let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
     let searchOutput = ListMoviesSearchOutput(view: view, router: router, presenter: presenter)
 
     view.presenter = presenter
 
-    view.searchView = SearchModule.setupModule(apiProvider: apiProvider, resultsOutput: searchOutput)
+    view.searchView = SearchModule.setupModule(traktProvider: traktProvider, resultsOutput: searchOutput)
 
     return navigationController
   }

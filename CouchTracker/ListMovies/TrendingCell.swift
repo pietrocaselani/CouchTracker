@@ -12,6 +12,8 @@
 
 import UIKit
 
+import Kingfisher
+
 final class TrendingCell: UICollectionViewCell {
 
   @IBOutlet weak var titleLabel: UILabel!
@@ -19,6 +21,10 @@ final class TrendingCell: UICollectionViewCell {
 
   func configure(for movie: TrendingViewModel) {
     titleLabel.text = movie.title
+
+    guard let imageLink = movie.imageLink else { return }
+
+    coverImageView.kf.setImage(with: URL(string: imageLink))
   }
 
   override func layoutSubviews() {

@@ -8,6 +8,7 @@ def ios_pods
   common_pods
   pod 'R.swift', '3.3.0'
   pod 'Carlos', '0.9.1'
+  pod 'Kingfisher', '3.12.1'
 end
 
 def tests_shared_pods

@@ -12,4 +12,5 @@
 
 protocol TrendingViewModel {
   var title: String { get }
+  var imageLink: String? { get }
 }

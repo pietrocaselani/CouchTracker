@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import XCTest
-import Trakt
+import Trakt_Swift
 
 final class SearchPresenterTest: XCTestCase {
   let output = SearchResultOutputMock()
@@ -19,7 +19,7 @@ final class SearchPresenterTest: XCTestCase {
 
   func testSearchPresenter_viewDidLoad_updateViewHint() {
     let store = EmptySearchStoreMock()
-    let interactor = SearchUseCase(repository: store)
+    let interactor = SearchService(repository: store)
     let presenter = SearchiOSPresenter(view: view, interactor: interactor, resultOutput: output)
 
     presenter.viewDidLoad()
@@ -30,7 +30,7 @@ final class SearchPresenterTest: XCTestCase {
   func testSearchPresenter_performSearchSuccess_outputsTheResults() {
     let searchResultEntities = createSearchResultsMock()
     let store = SearchStoreMock(results: searchResultEntities)
-    let interactor = SearchUseCase(repository: store)
+    let interactor = SearchService(repository: store)
     let presenter = SearchiOSPresenter(view: view, interactor: interactor, resultOutput: output)
 
     presenter.searchMovies(query: "Tron")
@@ -46,7 +46,7 @@ final class SearchPresenterTest: XCTestCase {
 
   func testSearchPresenter_performSearchReceivesNoData_notifyOutput() {
     let store = SearchStoreMock(results: [SearchResult]())
-    let interactor = SearchUseCase(repository: store)
+    let interactor = SearchService(repository: store)
     let presenter = SearchiOSPresenter(view: view, interactor: interactor, resultOutput: output)
 
     presenter.searchMovies(query: "Tron")
@@ -58,7 +58,7 @@ final class SearchPresenterTest: XCTestCase {
     let userInfo = [NSLocalizedDescriptionKey: "There is no active connection"]
     let error = NSError(domain: "com.arctouch.CouchTracker", code: 10, userInfo: userInfo)
     let store = ErrorSearchStoreMock(error: error)
-    let interactor = SearchUseCase(repository: store)
+    let interactor = SearchService(repository: store)
     let presenter = SearchiOSPresenter(view: view, interactor: interactor, resultOutput: output)
 
     presenter.searchMovies(query: "Tron")
@@ -71,7 +71,7 @@ final class SearchPresenterTest: XCTestCase {
 
   func testSearchPresenter_performCancel_notifyOutput() {
     let store = EmptySearchStoreMock()
-    let interactor = SearchUseCase(repository: store)
+    let interactor = SearchService(repository: store)
     let presenter = SearchiOSPresenter(view: view, interactor: interactor, resultOutput: output)
 
     presenter.cancelSearch()

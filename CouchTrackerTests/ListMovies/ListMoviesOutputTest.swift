@@ -19,8 +19,8 @@ final class ListMoviesOutputTest: XCTestCase {
   var presenter: ListMoviesPresenterMock!
 
   private func setupSearchOutputWithEmptyStore() -> SearchResultOutput {
-    let store = EmptyListMoviesStoreMock()
-    let interactor = ListMoviesUseCase(repository: store)
+    let repository = EmptyListMoviesStoreMock()
+    let interactor = ListMoviesService(repository: repository, movieImageRepository: movieImageRepositoryMock)
     presenter = ListMoviesPresenterMock(view: view, interactor: interactor, router: router)
     return ListMoviesSearchOutput(view: view, router: router, presenter: presenter)
   }
@@ -55,7 +55,7 @@ final class ListMoviesOutputTest: XCTestCase {
 
     let searchResults = createSearchResultsMock()
     let viewModels = searchResults.map {
-      SearchResultViewModel(type: $0.type, movie: MovieViewModel(title: $0.movie?.title ?? ""))
+      SearchResultViewModel(type: $0.type, movie: MovieViewModel(title: $0.movie?.title ?? "", imageLink: nil))
     }
 
     output.handleSearch(results: viewModels)

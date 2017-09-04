@@ -10,7 +10,7 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Trakt
+import Trakt_Swift
 
 final class ListMoviesSearchOutput: SearchResultOutput {
   private weak var view: ListMoviesView?

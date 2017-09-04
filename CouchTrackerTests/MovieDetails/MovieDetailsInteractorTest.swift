@@ -13,7 +13,7 @@
 import XCTest
 import RxSwift
 import RxTest
-import Trakt
+import Trakt_Swift
 
 final class MovieDetailsInteractorTest: XCTestCase {
 
@@ -34,7 +34,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
   func testMovieDetailsInteractor_fetchSuccessWithEmptyData_andEmitsOnlyOnCompleted() {
     let movie = createMovieDetailsMock()
     let store = MovieDetailsStoreMock(movie: movie)
-    let interactor = MovieDetailsUseCase(repository: store, genreRepository: GenreStoreMock(), movieId: "the-dark-knight-2008")
+    let interactor = MovieDetailsService(repository: store, genreRepository: GenreRepositoryMock(), movieId: "the-dark-knight-2008")
 
     let subscription = interactor.fetchDetails().subscribe(observer)
 
@@ -52,7 +52,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
   func testMovieDetailsInteractor_fetchSuccessDetails_andEmitsDetailsAndOnCompleted() {
     let movie = createMovieDetailsMock()
     let store = MovieDetailsStoreMock(movie: movie)
-    let interactor = MovieDetailsUseCase(repository: store, genreRepository: GenreStoreMock(), movieId: movie.ids.slug)
+    let interactor = MovieDetailsService(repository: store, genreRepository: GenreRepositoryMock(), movieId: movie.ids.slug)
 
     let subscription = interactor.fetchDetails().subscribe(observer)
 
@@ -70,7 +70,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
   func testMoviesDetailsInteractor_fetchFailure_andEmitsOnlyOnError() {
     let connectionError = MovieDetailsError.noConnection("There is no connection active")
     let store = ErrorMovieDetailsStoreMock(error: connectionError)
-    let interactor = MovieDetailsUseCase(repository: store, genreRepository: GenreStoreMock(), movieId: "tron-legacy-2010")
+    let interactor = MovieDetailsService(repository: store, genreRepository: GenreRepositoryMock(), movieId: "tron-legacy-2010")
 
     let subscription = interactor.fetchDetails().subscribe(observer)
 

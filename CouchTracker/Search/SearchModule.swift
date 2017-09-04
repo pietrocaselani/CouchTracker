@@ -16,13 +16,13 @@ final class SearchModule {
 
   private init() {}
 
-  static func setupModule(apiProvider: APIProvider, resultsOutput: SearchResultOutput) -> SearchView {
+  static func setupModule(traktProvider: TraktProvider, resultsOutput: SearchResultOutput) -> SearchView {
     guard let searchView = R.nib.searchBarView.firstView(owner: nil) else {
       fatalError("searchView should be an instance of SearchView")
     }
 
-    let store = APISearchRepository(apiProvider: apiProvider)
-    let interactor = SearchUseCase(repository: store)
+    let store = APISearchRepository(traktProvider: traktProvider)
+    let interactor = SearchService(repository: store)
     let presenter = SearchiOSPresenter(view: searchView, interactor: interactor, resultOutput: resultsOutput)
 
     searchView.presenter = presenter

@@ -11,18 +11,18 @@ the license agreement.
 */
 
 import XCTest
-import Trakt
+import Trakt_Swift
 
 final class MovieDetailsPresenterTest: XCTestCase {
 
   let view = MovieDetailsViewMock()
   let router = MovieDetailsRouterMock()
+  let genreRepository = GenreRepositoryMock()
 
   func testMovieDetailsPresenter_fetchSuccess_andPresentMovieDetails() {
     let movie = createMovieDetailsMock()
-    let genreStore = GenreStoreMock()
     let store = MovieDetailsStoreMock(movie: movie)
-    let interactor = MovieDetailsUseCase(repository: store , genreRepository: genreStore, movieId: movie.ids.slug)
+    let interactor = MovieDetailsService(repository: store , genreRepository: genreRepository, movieId: movie.ids.slug)
     let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.viewDidLoad()
@@ -30,7 +30,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let dateFormatter = TraktDateTransformer.dateTransformer.dateFormatter
 
     let genres = movie.genres?.map { movieGenre -> String in
-      let g = genreStore.genres.first(where: { genre -> Bool in
+      let g = genreRepository.genres.first(where: { genre -> Bool in
         genre.slug == movieGenre
       })
 
@@ -53,7 +53,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let errorMessage = "There is no active connection"
     let detailsError = MovieDetailsError.noConnection(errorMessage)
     let store = ErrorMovieDetailsStoreMock(error: detailsError)
-    let interactor = MovieDetailsUseCase(repository: store, genreRepository: GenreStoreMock(), movieId: movie.ids.slug)
+    let interactor = MovieDetailsService(repository: store, genreRepository: GenreRepositoryMock(), movieId: movie.ids.slug)
     let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.viewDidLoad()
@@ -67,7 +67,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let errorMessage = "Custom details error"
     let error = NSError(domain: "com.arctouch.CouchTracker", code: 10, userInfo: [NSLocalizedDescriptionKey: errorMessage])
     let store = ErrorMovieDetailsStoreMock(error: error)
-    let interactor = MovieDetailsUseCase(repository: store, genreRepository: GenreStoreMock(), movieId: movie.ids.slug)
+    let interactor = MovieDetailsService(repository: store, genreRepository: GenreRepositoryMock(), movieId: movie.ids.slug)
     let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.viewDidLoad()
@@ -75,5 +75,4 @@ final class MovieDetailsPresenterTest: XCTestCase {
     XCTAssertTrue(router.invokedShowError)
     XCTAssertEqual(router.invokedShowErrorParameters?.message, errorMessage)
   }
-
 }

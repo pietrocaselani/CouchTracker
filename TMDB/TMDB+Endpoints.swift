@@ -15,8 +15,12 @@ import Result
 
 extension TMDB {
 
-  public var configuration: RxMoyaProvider<Configuration> {
-    return createProvider(forTarget: Configuration.self)
+  public var configuration: RxMoyaProvider<ConfigurationService> {
+    return createProvider(forTarget: ConfigurationService.self)
+  }
+
+  public var movies: RxMoyaProvider<Movies> {
+    return createProvider(forTarget: Movies.self)
   }
 
   private func createProvider<T: TMDBType>(forTarget target: T.Type) -> RxMoyaProvider<T> {

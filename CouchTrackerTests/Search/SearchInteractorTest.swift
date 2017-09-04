@@ -13,7 +13,7 @@ the license agreement.
 import XCTest
 import RxTest
 import RxSwift
-import Trakt
+import Trakt_Swift
 
 final class SearchInteractorTest: XCTestCase {
   private let scheduler = TestScheduler(initialClock: 0)
@@ -31,7 +31,7 @@ final class SearchInteractorTest: XCTestCase {
   }
 
   func testSearchInteractor_fetchSuccessEmptyData_andEmitsEmptyDataAndOnCompleted() {
-    let interactor = SearchUseCase(repository: SearchStoreMock(results: [SearchResult]()))
+    let interactor = SearchService(repository: SearchStoreMock(results: [SearchResult]()))
 
     let disposable = interactor.searchMovies(query: "Cool movie").subscribe(observer)
 
@@ -45,7 +45,7 @@ final class SearchInteractorTest: XCTestCase {
   func testSearchInteractor_fetchSuccessReceivesData_andEmitDataAndOnCompleted() {
     let results = createSearchResultsMock()
 
-    let interactor = SearchUseCase(repository: SearchStoreMock(results: results))
+    let interactor = SearchService(repository: SearchStoreMock(results: results))
     let disposable = interactor.searchMovies(query: "Tron").subscribe(observer)
 
     scheduler.scheduleAt(500) { disposable.dispose() }

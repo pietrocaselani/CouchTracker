@@ -13,14 +13,14 @@ the license agreement.
 import Carlos
 import Moya
 import RxSwift
-import Trakt
+import Trakt_Swift
 
 final class TraktGenreRepository: GenreRepository {
 
   private let cache: BasicCache<Genres, [Genre]>
 
-  init(apiProvider: APIProvider) {
-    let provider = apiProvider.genres
+  init(traktProvider: TraktProvider) {
+    let provider = traktProvider.genres
 
     self.cache = MemoryCacheLevel<Genres, NSData>()
         .compose(DiskCacheLevel<Genres, NSData>())

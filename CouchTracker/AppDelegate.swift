@@ -7,14 +7,16 @@
 //
 
 import UIKit
-import Trakt
+import Trakt_Swift
+import TMDB_Swift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-  let trakt = Trakt(clientId: "1aec4225ee175a6affce5ad374140c360fd5f0ab5113e6aa1c123bd4baeb082b")
+  private let trakt = Trakt(clientId: "1aec4225ee175a6affce5ad374140c360fd5f0ab5113e6aa1c123bd4baeb082b")
+  private let tmdb = TMDB(apiKey: "d2042fb7e51f1e8c94c015dacd5074f2")
 
   private var listMoviesModule: ListMoviesModule!
 
@@ -25,7 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().tintColor = UIColor.white
     UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.ctzircon]
 
-    guard let viewController = ListMoviesModule.setupModule(apiProvider: trakt) as? UIViewController else {
+    let view = ListMoviesModule.setupModule(traktProvider: trakt, tmdbProvider: tmdb)
+
+    guard let viewController = view as? UIViewController else {
       fatalError("view should be an instance of UIViewController")
     }
 

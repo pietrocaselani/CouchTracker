@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.5.0)
   - Carlos (0.9.1):
     - PiedPiper (~> 0.10.1)
+  - Kingfisher (3.12.1)
   - Moya (8.0.5):
     - Moya/Core (= 8.0.5)
   - Moya-ObjectMapper/Core (2.3.2):
@@ -30,6 +31,7 @@ PODS:
 
 DEPENDENCIES:
   - Carlos (= 0.9.1)
+  - Kingfisher (= 3.12.1)
   - Moya-ObjectMapper/RxSwift (= 2.3.2)
   - Moya/RxSwift (= 8.0.5)
   - R.swift (= 3.3.0)
@@ -39,6 +41,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   Carlos: f6883dabefcdc762c050be9d1d7716d4beb60736
+  Kingfisher: 7e87498c3b795c2b8f6430fd5853ae5b5548ff9c
   Moya: c37eec09a098ba9991b5a963b291fc5704bdb9ef
   Moya-ObjectMapper: 1b05f10bb69fb6c8750d497d2974c1c63c08c3a9
   ObjectMapper: 3d571bb5af471c779e1160828cd9ad5c4ef90958
@@ -50,6 +53,6 @@ SPEC CHECKSUMS:
   RxTest: 1d00348a7848c91ab5bf5d197d2378aa6b2bb356
   SwiftLint: 6de8b2d15f43c482bdec2953b8cfd696faa876e8
 
-PODFILE CHECKSUM: 7bfd6ba5255bc4c745f3591347bc29a059a9e19a
+PODFILE CHECKSUM: 4bd1e033baa7d5370922d2cc8a7baf738b1813ce
 
 COCOAPODS: 1.3.1

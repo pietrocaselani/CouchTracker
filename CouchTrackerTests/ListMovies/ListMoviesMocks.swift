@@ -12,7 +12,7 @@ the license agreement.
 
 import Foundation
 import RxSwift
-import Trakt
+import Trakt_Swift
 
 final class ListMoviesViewMock: ListMoviesView {
   var presenter: ListMoviesPresenter!
@@ -52,9 +52,9 @@ final class ListMoviesPresenterMock: ListMoviesPresenter {
 
 final class ListMoviesRouterMock: ListMoviesRouter {
   var invokedShowDetails = false
-  var invokedShowDetailsParameters: (movie: TrendingMovie, Void)?
+  var invokedShowDetailsParameters: (movie: TrendingMovieEntity, Void)?
 
-  func showDetails(of movie: TrendingMovie) {
+  func showDetails(of movie: TrendingMovieEntity) {
     invokedShowDetails = true
     invokedShowDetailsParameters = (movie, ())
   }
@@ -98,4 +98,28 @@ final class MoviesListMovieStoreMock: ListMoviesRepository {
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
     return Observable.just(movies).take(limit)
   }
+}
+
+final class ListMoviesServiceMock: ListMoviesInteractor {
+
+  let listMoviesRepo: ListMoviesRepository
+  let movieImageRepo: MovieImageRepository
+
+  init(repository: ListMoviesRepository, movieImageRepository: MovieImageRepository) {
+    self.listMoviesRepo = repository
+    self.movieImageRepo = movieImageRepository
+  }
+
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovieEntity]> {
+    let listMoviesObservable = listMoviesRepo.fetchMovies(page: page, limit: limit)
+    let imagesObservable = movieImageRepo.fetchImages(for: 30)
+
+    let observable = Observable.combineLatest(listMoviesObservable, imagesObservable) { (movies, images) -> [TrendingMovieEntity]  in
+      let entities = movies.map { entity(for: $0, with: images) }
+      return entities
+    }
+
+    return observable
+  }
+
 }

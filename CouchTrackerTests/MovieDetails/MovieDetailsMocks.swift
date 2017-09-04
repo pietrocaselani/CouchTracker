@@ -12,7 +12,7 @@ the license agreement.
 
 import Foundation
 import RxSwift
-import Trakt
+import Trakt_Swift
 
 final class MovieDetailsViewMock: MovieDetailsView {
   var invokedPresenterSetter = false

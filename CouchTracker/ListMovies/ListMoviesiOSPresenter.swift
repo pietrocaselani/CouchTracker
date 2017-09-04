@@ -11,14 +11,14 @@ the license agreement.
 */
 
 import RxSwift
-import Trakt
+import Trakt_Swift
 
 final class ListMoviesiOSPresenter: ListMoviesPresenter {
   weak var view: ListMoviesView?
   private let interactor: ListMoviesInteractor
   private let router: ListMoviesRouter
   private let disposeBag = DisposeBag()
-  private var movies = [TrendingMovie]()
+  private var movies = [TrendingMovieEntity]()
   private var currentPage = 0
 
   init(view: ListMoviesView, interactor: ListMoviesInteractor, router: ListMoviesRouter) {
@@ -28,7 +28,7 @@ final class ListMoviesiOSPresenter: ListMoviesPresenter {
   }
 
   func fetchMovies() {
-    interactor.fetchMovies(page: currentPage, limit: 50)
+    interactor.fetchMovies(page: currentPage, limit: 25)
         .do(onNext: { [unowned self] entities in
           self.movies = entities
         }).map { [unowned self] in self.transformToViewModels(entities: $0) }
@@ -61,7 +61,7 @@ final class ListMoviesiOSPresenter: ListMoviesPresenter {
     router.showDetails(of: movies[index])
   }
 
-  private func transformToViewModels(entities: [TrendingMovie]) -> [MovieViewModel] {
+  private func transformToViewModels(entities: [TrendingMovieEntity]) -> [MovieViewModel] {
     return entities.map { viewModel(for: $0.movie) }
   }
 }
