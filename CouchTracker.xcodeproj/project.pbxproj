@@ -947,10 +947,10 @@
 		6405CA0B1F549C8A0039D6E6 /* Endpoints */ = {
 			isa = PBXGroup;
 			children = (
-				646C938A1F59E4920032772F /* Shows.swift */,
 				6405CA0C1F549C8A0039D6E6 /* Genres.swift */,
 				6405CA0D1F549C8A0039D6E6 /* Movies.swift */,
 				6405CA0E1F549C8A0039D6E6 /* Search.swift */,
+				646C938A1F59E4920032772F /* Shows.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";

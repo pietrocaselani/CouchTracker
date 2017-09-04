@@ -44,12 +44,13 @@ final class MovieDetailsService: MovieDetailsInteractor {
     let genresObservable = genreRepository.fetchMoviesGenres()
     let imagesObservable = imageRepository.fetchImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)
 
-    return Observable.combineLatest(detailsObservable, genresObservable, imagesObservable) { (movie, genres, images) -> MovieEntity in
-      let movieGenres = genres.filter { genre -> Bool in
+    return Observable.combineLatest(detailsObservable, genresObservable, imagesObservable) {
+      let movie = $0.0
+      let movieGenres = $0.1.filter { genre -> Bool in
         return movie.genres?.contains(genre.slug) ?? false
       }
 
-      return entity(for: movie, with: images, genres: movieGenres)
+      return entity(for: movie, with: $0.2, genres: movieGenres)
     }
   }
 }
