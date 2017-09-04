@@ -45,9 +45,7 @@ final class ListMoviesService: ListMoviesInteractor {
             .delay(0.25, scheduler: self.scheduler)
             .flatMap { images -> Observable<(TrendingMovie, ImagesEntity)> in
               return Observable.just((movie, images))
-            }.map { (trendingMovie, images) -> TrendingMovieEntity in
-              return entity(for: trendingMovie, with: images)
-          }
+            }.map { [unowned self] in self.mapToEntity($0.0, $0.1) }
         }
       }.subscribeOn(scheduler)
 
@@ -55,12 +53,17 @@ final class ListMoviesService: ListMoviesInteractor {
       return movies.count == 0 ? Observable.empty() : Observable.just(movies)
       }.retryWhen { errorObservable -> Observable<[TrendingMovieEntity]> in
         return errorObservable.flatMap { error -> Observable<[TrendingMovieEntity]> in
-          guard let moyaError = error as? MoyaError, moyaError.response?.statusCode == TMDBError.toManyRequests else {
+          guard let moyaError = error as? MoyaError,
+            moyaError.response?.statusCode == TMDBError.toManyRequests.rawValue else {
             return Observable.error(error)
           }
 
           return self.fetchMovies(page: page, limit: limit).delay(10, scheduler: self.scheduler)
         }
       }
+  }
+
+  private func mapToEntity(_ trendingMovie: TrendingMovie, _ images: ImagesEntity) -> TrendingMovieEntity {
+    return entity(for: trendingMovie, with: images)
   }
 }
