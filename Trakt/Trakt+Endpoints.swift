@@ -25,6 +25,10 @@ extension Trakt {
     return createProvider(forTarget: Search.self)
   }
 
+  public var shows: RxMoyaProvider<Shows> {
+    return createProvider(forTarget: Shows.self)
+  }
+
   private func createProvider<T: TraktType>(forTarget target: T.Type) -> RxMoyaProvider<T> {
     let endpointClosure = createEndpointClosure(forTarget: target)
 
