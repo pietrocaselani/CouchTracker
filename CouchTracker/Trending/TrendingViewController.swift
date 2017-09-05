@@ -82,6 +82,6 @@ extension TrendingViewController: TrendingView {
 
 extension TrendingViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    presenter.showDetailsOfTrending(at: indexPath.row)
+    presenter.showDetailsOf(trending: .movies, at: indexPath.row)
   }
 }

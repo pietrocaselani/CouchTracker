@@ -33,11 +33,10 @@ final class TrendingiOSPresenter: TrendingPresenter {
     }
   }
 
-  func showDetailsOfTrending(at index: Int) {
-  }
-
-  func showDetailsOfMovie(at index: Int) {
-    router.showDetails(of: movies[index])
+  func showDetailsOf(trending type: TrendingType, at index: Int) {
+    if type == .movies {
+      showDetailsOfMovie(at: index)
+    }
   }
 
   private func fetchMovies() {
@@ -72,5 +71,9 @@ final class TrendingiOSPresenter: TrendingPresenter {
 
   private func transformToViewModels(entities: [TrendingMovieEntity]) -> [TrendingViewModel] {
     return entities.map { viewModel(for: $0.movie) }
+  }
+
+  private func showDetailsOfMovie(at index: Int) {
+    router.showDetails(of: movies[index])
   }
 }

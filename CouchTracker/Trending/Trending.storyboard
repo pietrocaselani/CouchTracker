@@ -13,7 +13,7 @@
         <!--CouchTracker-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="CouchTracker" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="TrendingViewController" sceneMemberID="viewController">
+                <viewController title="CouchTracker" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="TrendingViewController" customModule="CouchTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -42,7 +42,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Mb-Ir-Pdd">
                                                     <rect key="frame" x="8" y="8" width="84" height="142"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoverDemo" translatesAutoresizingMaskIntoConstraints="NO" id="Qm8-CJ-hQh">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qm8-CJ-hQh">
                                                             <rect key="frame" x="0.0" y="0.0" width="84" height="112"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8KI-6N-jvX">
@@ -155,7 +155,4 @@
             <point key="canvasLocation" x="32.799999999999997" y="77.811094452773617"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="CoverDemo" width="242" height="363"/>
-    </resources>
 </document>

@@ -46,7 +46,7 @@ final class TrendingPresenterMock: TrendingPresenter {
   var invokedShowDetailsOfTrending = false
   var invokedShowDetailsOfTrendingParameters: (index: Int, Void)?
 
-  func showDetailsOfTrending(at index: Int) {
+  func showDetailsOf(trending type: TrendingType, at index: Int) {
     invokedShowDetailsOfTrending = true
     invokedShowDetailsOfTrendingParameters = (index, ())
   }

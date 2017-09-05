@@ -98,7 +98,7 @@ final class TrendingPresenterTest: XCTestCase {
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.fetchTrending(of: .movies)
-    presenter.showDetailsOfMovie(at: movieIndex)
+    presenter.showDetailsOf(trending: .movies, at: movieIndex)
 
     let expectedMovie = entity(for: movies[movieIndex], with: images)
 

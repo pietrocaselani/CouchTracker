@@ -23,7 +23,7 @@ protocol TrendingPresenter: class {
 
   func fetchTrending(of type: TrendingType)
 
-  func showDetailsOfTrending(at index: Int)
+  func showDetailsOf(trending type: TrendingType, at index: Int)
 }
 
 protocol TrendingView: BaseView {
