@@ -10,23 +10,19 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import ObjectMapper
+enum PosterImageSize: String {
+  case w92
+  case w154
+  case w185
+  case w342
+  case w500
+  case w780
+  case original
+}
 
-public final class Genre: ImmutableMappable, Hashable {
-
-  public let name: String
-  public let slug: String
-
-  public init(map: Map) throws {
-    self.name = try map.value("name")
-    self.slug = try map.value("slug")
-  }
-
-  public var hashValue: Int {
-    return name.hashValue ^ slug.hashValue
-  }
-
-  public static func == (lhs: Genre, rhs: Genre) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-  }
+enum BackdropImageSize: String {
+  case w300
+  case w780
+  case w1280
+  case original
 }

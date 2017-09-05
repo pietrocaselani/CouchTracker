@@ -17,19 +17,39 @@ final class MovieDetailsService: MovieDetailsInteractor {
 
   private let repository: MovieDetailsRepository
   private let genreRepository: GenreRepository
-  private let movieId: String
+  private let imageRepository: MovieImageRepository
+  private let movieIds: MovieIds
+  private let scheduler: SchedulerType
 
-  init(repository: MovieDetailsRepository, genreRepository: GenreRepository, movieId: String) {
+  init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
+       imageRepository: MovieImageRepository, movieIds: MovieIds, scheduler: SchedulerType) {
     self.repository = repository
     self.genreRepository = genreRepository
-    self.movieId = movieId
+    self.imageRepository = imageRepository
+    self.movieIds = movieIds
+    self.scheduler = scheduler
   }
 
-  func fetchDetails() -> Observable<Movie> {
-    return repository.fetchDetails(movieId: movieId)
+  convenience init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
+                   imageRepository: MovieImageRepository, movieIds: MovieIds) {
+    let scheduler = SerialDispatchQueueScheduler(qos: DispatchQueue(label: "movieDetailsServiceQueue").qos)
+    self.init(repository: repository, genreRepository: genreRepository,
+              imageRepository: imageRepository, movieIds: movieIds, scheduler: scheduler)
   }
 
-  func fetchGenres() -> Observable<[Genre]> {
-    return genreRepository.fetchMoviesGenres()
+  func fetchDetails() -> Observable<MovieEntity> {
+    let tmdbId = movieIds.tmdb ?? -1
+
+    let detailsObservable = repository.fetchDetails(movieId: movieIds.slug)
+    let genresObservable = genreRepository.fetchMoviesGenres()
+    let imagesObservable = imageRepository.fetchImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)
+
+    return Observable.combineLatest(detailsObservable, genresObservable, imagesObservable) { (movie, genres, images) -> MovieEntity in
+      let movieGenres = genres.filter { genre -> Bool in
+        return movie.genres?.contains(genre.slug) ?? false
+      }
+
+      return entity(for: movie, with: images, genres: movieGenres)
+    }
   }
 }

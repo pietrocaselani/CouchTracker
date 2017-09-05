@@ -18,14 +18,12 @@ protocol MovieDetailsRouter: class {
 }
 
 protocol MovieDetailsPresenter: class {
-
   init(view: MovieDetailsView, interactor: MovieDetailsInteractor, router: MovieDetailsRouter)
 
   func viewDidLoad()
 }
 
 protocol MovieDetailsView: BaseView {
-
   var presenter: MovieDetailsPresenter! { get set }
 
   func show(details: MovieDetailsViewModel)
@@ -33,14 +31,12 @@ protocol MovieDetailsView: BaseView {
 
 protocol MovieDetailsInteractor: class {
 
-  init(repository: MovieDetailsRepository, genreRepository: GenreRepository, movieId: String)
+  init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
+       imageRepository: MovieImageRepository, movieIds: MovieIds)
 
-  func fetchDetails() -> Observable<Movie>
-
-  func fetchGenres() -> Observable<[Genre]>
+  func fetchDetails() -> Observable<MovieEntity>
 }
 
 protocol MovieDetailsRepository: class {
-
   func fetchDetails(movieId: String) -> Observable<Movie>
 }

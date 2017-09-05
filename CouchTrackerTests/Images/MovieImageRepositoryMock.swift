@@ -11,21 +11,14 @@ the license agreement.
 */
 
 import RxSwift
-import Moya
 import TMDB_Swift
 import Moya_ObjectMapper
-
-let movieImageRepositoryRealMock = MovieImageRepositoryMock(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock)
-let movieImageRepositoryMock = EmptyMovieImageRepositoryMock(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock)
-
-func createMovieImagesRepositoryMock(_ images: ImagesEntity) -> MovieImageRepository {
-  return MovieImagesRepositorySampleMock(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock, images: images)
-}
+import Moya
 
 final class EmptyMovieImageRepositoryMock: MovieImageRepository {
   init(tmdbProvider: TMDBProvider, cofigurationRepository: ConfigurationRepository) {}
 
-  func fetchImages(for movieId: Int) -> Observable<ImagesEntity> {
+  func fetchImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
     return Observable.empty()
   }
 }
@@ -42,7 +35,7 @@ final class MovieImagesRepositorySampleMock: MovieImageRepository {
     self.images = images
   }
 
-  func fetchImages(for movieId: Int) -> Observable<ImagesEntity> {
+  func fetchImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
     return Observable.just(images)
   }
 }
@@ -56,10 +49,13 @@ final class MovieImageRepositoryMock: MovieImageRepository {
     self.configuration = cofigurationRepository
   }
 
-  func fetchImages(for movieId: Int) -> Observable<ImagesEntity> {
+  func fetchImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
     let observable = configuration.fetchConfiguration().flatMap { [unowned self] config -> Observable<ImagesEntity> in
       return self.provider.request(.images(movieId: movieId)).mapObject(Images.self).map {
-        return entity(for: $0, using: config)
+        let pSize = posterSize ?? .w342
+        let bSize = backdropSize ?? .w300
+
+        return entity(for: $0, using: config, posterSize: pSize, backdropSize: bSize)
       }
     }
 

@@ -36,7 +36,8 @@ final class ListMoviesModule {
                                                           cofigurationRepository: configurationRepository)
 
     let interactor = ListMoviesService(repository: repository, movieImageRepository: movieImageRepository)
-    let router = ListMoviesiOSRouter(viewController: viewController, traktProvider: traktProvider)
+    let router = ListMoviesiOSRouter(viewController: viewController, traktProvider: traktProvider,
+                                     tmdbProvider: tmdbProvider)
     let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
 
     let searchOutput = ListMoviesSearchOutput(view: view, router: router, presenter: presenter)

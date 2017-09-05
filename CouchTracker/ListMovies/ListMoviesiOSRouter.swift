@@ -17,22 +17,26 @@ final class ListMoviesiOSRouter: ListMoviesRouter {
 
   private weak var viewController: UIViewController?
   private let traktProvider: TraktProvider
+  private let tmdbProvider: TMDBProvider
 
-  init(viewController: UIViewController, traktProvider: TraktProvider) {
+  init(viewController: UIViewController, traktProvider: TraktProvider, tmdbProvider: TMDBProvider) {
     self.viewController = viewController
     self.traktProvider = traktProvider
+    self.tmdbProvider = tmdbProvider
   }
 
   func showDetails(of movie: TrendingMovieEntity) {
     guard let navigationController = viewController?.navigationController else { return }
 
-    let movieId = movie.movie.ids.slug
-    guard let view =
-      MovieDetailsModule.setupModule(traktProvider: traktProvider, movieId: movieId) as? UIViewController else {
+    let movieIds = movie.movie.ids
+    let view = MovieDetailsModule.setupModule(traktProvider: traktProvider,
+                                              tmdbProvider: tmdbProvider, movieIds: movieIds)
+
+    guard let viewController = view as? UIViewController else {
       fatalError("view should be an instance of UIViewController")
     }
 
-    navigationController.pushViewController(view, animated: true)
+    navigationController.pushViewController(viewController, animated: true)
   }
 
   func showError(message: String) {

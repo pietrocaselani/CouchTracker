@@ -10,14 +10,20 @@
  the license agreement.
  */
 
+import Trakt_Swift
+
 final class MovieDetailsModule {
 
   private init() {}
 
-  static func setupModule(traktProvider: TraktProvider, movieId: String) -> BaseView {
+  static func setupModule(traktProvider: TraktProvider, tmdbProvider: TMDBProvider, movieIds: MovieIds) -> BaseView {
     let repository = MovieDetailsCacheRepository(traktProvider: traktProvider)
     let genreRepository = TraktGenreRepository(traktProvider: traktProvider)
-    let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository, movieId: movieId)
+    let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdbProvider)
+    let imageRespository = MovieImageCachedRepository(tmdbProvider: tmdbProvider,
+                                                cofigurationRepository: configurationRepository)
+    let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
+                                         imageRepository: imageRespository, movieIds: movieIds)
 
     let viewController = R.storyboard.movieDetails.movieDetailsViewController()
 

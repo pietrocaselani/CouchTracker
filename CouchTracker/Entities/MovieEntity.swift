@@ -11,11 +11,16 @@ the license agreement.
 */
 
 import Trakt_Swift
+import Foundation
 
 struct MovieEntity: Hashable {
   let ids: MovieIds
   let title: String?
   let images: ImagesEntity
+  let genres: [Genre]?
+  let tagline: String?
+  let overview: String?
+  let releaseDate: Date?
 
   var hashValue: Int {
     var hash = ids.hashValue
@@ -24,7 +29,21 @@ struct MovieEntity: Hashable {
       hash = hash ^ titleHash
     }
 
+    if let taglineHash = tagline?.hashValue {
+      hash = hash ^ taglineHash
+    }
+
+    if let overviewHash = overview?.hashValue {
+      hash = hash ^ overviewHash
+    }
+
+    if let releaseDateHash = releaseDate?.hashValue {
+      hash = hash ^ releaseDateHash
+    }
+
     hash = hash ^ images.hashValue
+
+    genres?.forEach { hash = hash ^ $0.hashValue }
 
     return hash
   }

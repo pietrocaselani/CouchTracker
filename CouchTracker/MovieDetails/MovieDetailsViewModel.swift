@@ -11,21 +11,33 @@
  */
 
 struct MovieDetailsViewModel {
-
   let title: String
   let tagline: String
   let overview: String
   let genres: String
   let releaseDate: String
+  let posterLink: String?
+  let backdropLink: String?
 }
 
 extension MovieDetailsViewModel: Equatable, Hashable {
 
   static func == (lhs: MovieDetailsViewModel, rhs: MovieDetailsViewModel) -> Bool {
-    return lhs.title == rhs.title && lhs.releaseDate == rhs.releaseDate
+    return lhs.hashValue == rhs.hashValue
   }
 
   var hashValue: Int {
-    return title.hashValue * releaseDate.hashValue
+    var hash = title.hashValue ^ releaseDate.hashValue ^ tagline.hashValue
+    hash = hash ^ overview.hashValue ^ genres.hashValue ^ releaseDate.hashValue
+
+    if let posterLinkHash = posterLink?.hashValue {
+      hash = hash ^ posterLinkHash
+    }
+
+    if let backdropLinkHash = backdropLink?.hashValue {
+      hash = hash ^ backdropLinkHash
+    }
+
+    return hash
   }
 }

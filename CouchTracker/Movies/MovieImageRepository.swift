@@ -15,5 +15,5 @@ import RxSwift
 protocol MovieImageRepository: class {
   init(tmdbProvider: TMDBProvider, cofigurationRepository: ConfigurationRepository)
 
-  func fetchImages(for movieId: Int) -> Observable<ImagesEntity>
+  func fetchImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Observable<ImagesEntity>
 }

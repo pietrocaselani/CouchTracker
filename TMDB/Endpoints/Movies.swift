@@ -29,6 +29,12 @@ extension Movies: TMDBType {
   }
 
   public var sampleData: Data {
-    return stubbedResponse("tmdb_movie_images")
+    switch self {
+    case .images(let movieId):
+      guard movieId == 20526 else {
+        return stubbedResponse("tmdb_movie_images")
+      }
+      return stubbedResponse("tmdb_movie_images_20526")
+    }
   }
 }
