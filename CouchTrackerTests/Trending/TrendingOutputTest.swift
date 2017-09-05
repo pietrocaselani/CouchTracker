@@ -38,7 +38,7 @@ final class TrendingOutputTest: XCTestCase {
 
     output.searchCancelled()
 
-    XCTAssertTrue(presenter.invokedFetchTrending)
+    XCTAssertTrue(presenter.invokedViewDidLoad)
   }
 
   func testListMoviesOutput_receivesError_shouldNotifyRouter() {

@@ -125,11 +125,22 @@
                             <constraint firstItem="5x8-fY-77i" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zT2-Ng-0g0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="CouchTracker" id="pYQ-bj-bUD"/>
+                    <navigationItem key="navigationItem" id="pYQ-bj-bUD">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="0LF-Qb-1pY">
+                            <rect key="frame" x="130" y="7" width="115" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Movies"/>
+                                <segment title="Shows"/>
+                            </segments>
+                        </segmentedControl>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="k6I-kt-D60" id="KlL-eM-SQW"/>
                         <outlet property="emptyLabel" destination="5x8-fY-77i" id="Efj-xx-ki5"/>
                         <outlet property="searchContainer" destination="r4X-n3-bK2" id="BXj-EV-Mkb"/>
+                        <outlet property="trendingTypeSegmentedControl" destination="0LF-Qb-1pY" id="UEz-Ad-DMX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

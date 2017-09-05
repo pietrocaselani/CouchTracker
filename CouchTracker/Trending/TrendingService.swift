@@ -48,7 +48,6 @@ final class TrendingService: TrendingInteractor {
           let tmdbId = movie.movie.ids.tmdb ?? -1
           return self.imageRepository.fetchImages(for: tmdbId, posterSize: .w342, backdropSize: .w780)
             .observeOn(self.scheduler)
-            .delay(1, scheduler: self.scheduler)
             .flatMap { images -> Observable<(TrendingMovie, ImagesEntity)> in
               return Observable.just((movie, images))
             }.map { (trendingMovie, images) -> TrendingMovieEntity in
@@ -66,7 +65,7 @@ final class TrendingService: TrendingInteractor {
             return Observable.error(error)
           }
 
-          return self.fetchMovies(page: page, limit: limit).delay(2, scheduler: self.scheduler)
+          return self.fetchMovies(page: page, limit: limit).delay(1, scheduler: self.scheduler)
         }
       }
   }

@@ -22,7 +22,10 @@ final class TrendingCell: UICollectionViewCell {
   func configure(for movie: TrendingViewModel) {
     titleLabel.text = movie.title
 
-    guard let imageLink = movie.imageLink else { return }
+    guard let imageLink = movie.imageLink else {
+      coverImageView.image = nil
+      return
+    }
 
     coverImageView.kf.setImage(with: URL(string: imageLink))
   }
