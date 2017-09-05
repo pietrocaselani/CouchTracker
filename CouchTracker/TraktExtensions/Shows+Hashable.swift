@@ -10,11 +10,14 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import RxSwift
+import Trakt_Swift
 
-protocol MovieImageRepository: class {
-  init(tmdbProvider: TMDBProvider, cofigurationRepository: ConfigurationRepository)
+extension Shows: Hashable {
+  public var hashValue: Int {
+    return self.path.hashValue
+  }
 
-  func fetchImages(for movieId: Int, posterSize: PosterImageSize?,
-                   backdropSize: BackdropImageSize?) -> Observable<ImagesEntity>
+  public static func == (lhs: Shows, rhs: Shows) -> Bool {
+    return lhs.hashValue == rhs.hashValue
+  }
 }

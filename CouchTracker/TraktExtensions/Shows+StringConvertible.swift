@@ -10,11 +10,11 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import RxSwift
+import Trakt_Swift
+import Carlos
 
-protocol MovieImageRepository: class {
-  init(tmdbProvider: TMDBProvider, cofigurationRepository: ConfigurationRepository)
-
-  func fetchImages(for movieId: Int, posterSize: PosterImageSize?,
-                   backdropSize: BackdropImageSize?) -> Observable<ImagesEntity>
+extension Shows: StringConvertible {
+  public func toString() -> String {
+    return self.path
+  }
 }

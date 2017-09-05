@@ -29,7 +29,8 @@ final class MovieImageCachedRepository: MovieImageRepository {
       .transformValues(JSONObjectTransfomer<Images>())
   }
 
-  func fetchImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
+  func fetchImages(for movieId: Int, posterSize: PosterImageSize?,
+                   backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
     let configurationObservable = configurationRepository.fetchConfiguration()
     let imagesObservable = images(for: movieId)
 

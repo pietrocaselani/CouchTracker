@@ -10,11 +10,14 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import RxSwift
+struct TrendingShowEntity: Hashable {
+  let show: ShowEntity
 
-protocol MovieImageRepository: class {
-  init(tmdbProvider: TMDBProvider, cofigurationRepository: ConfigurationRepository)
+  var hashValue: Int {
+    return show.hashValue
+  }
 
-  func fetchImages(for movieId: Int, posterSize: PosterImageSize?,
-                   backdropSize: BackdropImageSize?) -> Observable<ImagesEntity>
+  static func == (lhs: TrendingShowEntity, rhs: TrendingShowEntity) -> Bool {
+    return lhs.hashValue == rhs.hashValue
+  }
 }
