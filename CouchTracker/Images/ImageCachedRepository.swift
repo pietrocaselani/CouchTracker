@@ -15,7 +15,7 @@ import Moya
 import RxSwift
 import TMDB_Swift
 
-final class MovieImageCachedRepository: MovieImageRepository {
+final class ImageCachedRepository: ImageRepository {
 
   private let cache: BasicCache<Movies, Images>
   private let configurationRepository: ConfigurationRepository

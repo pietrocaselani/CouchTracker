@@ -12,11 +12,11 @@ the license agreement.
 
 import UIKit
 
-final class ListMoviesViewController: UIViewController {
+final class TrendingViewController: UIViewController {
 
   private typealias TrendingCellFactory = SimpleCollectionViewDataSource<TrendingViewModel>.CellFactory
 
-  var presenter: ListMoviesPresenter!
+  var presenter: TrendingPresenter!
   var searchView: SearchView!
 
   fileprivate var dataSource: SimpleCollectionViewDataSource<TrendingViewModel>!
@@ -39,7 +39,7 @@ final class ListMoviesViewController: UIViewController {
 
     searchContainer.addSubview(searchView)
 
-    presenter.fetchMovies()
+    presenter.fetchTrending(of: .movies)
   }
 
   private func configureMoviesDataSource() {
@@ -61,11 +61,11 @@ final class ListMoviesViewController: UIViewController {
   }
 }
 
-extension ListMoviesViewController: ListMoviesView {
-  func show(movies: [MovieViewModel]) {
+extension TrendingViewController: TrendingView {
+  func show(trending: [TrendingViewModel]) {
     makeListVisible()
 
-    dataSource.elements = movies
+    dataSource.elements = trending
     collectionView.reloadData()
   }
 
@@ -80,8 +80,8 @@ extension ListMoviesViewController: ListMoviesView {
   }
 }
 
-extension ListMoviesViewController: UICollectionViewDelegate {
+extension TrendingViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    presenter.showDetailsOfMovie(at: indexPath.row)
+    presenter.showDetailsOfTrending(at: indexPath.row)
   }
 }

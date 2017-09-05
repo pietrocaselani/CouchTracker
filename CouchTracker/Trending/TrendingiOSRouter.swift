@@ -13,7 +13,7 @@ the license agreement.
 import UIKit
 import Trakt_Swift
 
-final class ListMoviesiOSRouter: ListMoviesRouter {
+final class TrendingiOSRouter: TrendingRouter {
 
   private weak var viewController: UIViewController?
   private let traktProvider: TraktProvider

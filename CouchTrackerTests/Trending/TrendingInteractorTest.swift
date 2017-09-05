@@ -15,7 +15,7 @@ import RxSwift
 import RxTest
 import Trakt_Swift
 
-final class ListMoviesInteractorTest: XCTestCase {
+final class TrendingInteractorTest: XCTestCase {
 
   private let scheduler = TestScheduler(initialClock: 0)
   private var observer: TestableObserver<[TrendingMovieEntity]>!
@@ -37,9 +37,9 @@ final class ListMoviesInteractorTest: XCTestCase {
 
   func testHandleEmpty() {
     let repository = EmptyListMoviesStoreMock()
-    let imageRepository = EmptyMovieImageRepositoryMock(tmdbProvider: tmdbProviderMock,
+    let imageRepository = EmptyImageRepositoryMock(tmdbProvider: tmdbProviderMock,
                                                         cofigurationRepository: configurationRepositoryMock)
-    let interactor = ListMoviesService(repository: repository, movieImageRepository: imageRepository, scheduler: scheduler)
+    let interactor = TrendingService(repository: repository, imageRepository: imageRepository, scheduler: scheduler)
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(observer)
     subscription.disposed(by: disposeBag)
@@ -52,10 +52,10 @@ final class ListMoviesInteractorTest: XCTestCase {
   }
 
   func testHandleError() {
-    let connectionError = ListMoviesError.noConnection("There is no connection active")
+    let connectionError = TrendingError.noConnection("There is no connection active")
 
-    let repository = ErrorListMoviesStoreMock(error: connectionError)
-    let interactor = ListMoviesService(repository: repository, movieImageRepository: movieImageRepositoryMock, scheduler: scheduler)
+    let repository = ErrorTrendingRepositoryMock(error: connectionError)
+    let interactor = TrendingService(repository: repository, imageRepository: movieImageRepositoryMock, scheduler: scheduler)
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(observer)
 
@@ -73,8 +73,8 @@ final class ListMoviesInteractorTest: XCTestCase {
   func testHandleMovies() {
     let movies = createMockMovies()
 
-    let repository = MoviesListMovieStoreMock(movies: movies)
-    let interactor = ListMoviesService(repository: repository, movieImageRepository: movieImageRepositoryRealMock, scheduler: scheduler)
+    let repository = TrendingMoviesRepositoryMock(movies: movies)
+    let interactor = TrendingService(repository: repository, imageRepository: movieImageRepositoryRealMock, scheduler: scheduler)
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(observer)
 

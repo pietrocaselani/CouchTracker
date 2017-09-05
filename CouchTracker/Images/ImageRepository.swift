@@ -12,7 +12,7 @@ the license agreement.
 
 import RxSwift
 
-protocol MovieImageRepository: class {
+protocol ImageRepository: class {
   init(tmdbProvider: TMDBProvider, cofigurationRepository: ConfigurationRepository)
 
   func fetchImages(for movieId: Int, posterSize: PosterImageSize?,

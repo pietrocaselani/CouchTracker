@@ -68,10 +68,10 @@ final class MovieDetailsServiceMock: MovieDetailsInteractor {
   private let movieIds: MovieIds
   private let repository: MovieDetailsRepository
   private let genreRepository: GenreRepository
-  private let imageRepository: MovieImageRepository
+  private let imageRepository: ImageRepository
 
   init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
-       imageRepository: MovieImageRepository, movieIds: MovieIds) {
+       imageRepository: ImageRepository, movieIds: MovieIds) {
     self.repository = repository
     self.genreRepository = genreRepository
     self.imageRepository = imageRepository

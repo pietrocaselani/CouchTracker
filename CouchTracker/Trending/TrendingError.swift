@@ -10,8 +10,7 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-enum ListMoviesError: Error {
-
+enum TrendingError: Error {
   case noConnection(String)
   case parseError(String)
 

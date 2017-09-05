@@ -12,35 +12,35 @@
 
 import UIKit
 
-final class ListMoviesModule {
+final class TrendingModule {
 
   private init() {}
 
   static func setupModule(traktProvider: TraktProvider, tmdbProvider: TMDBProvider) -> BaseView {
     guard let navigationController =
-    R.storyboard.listMovies().instantiateInitialViewController() as? UINavigationController else {
+    R.storyboard.trending().instantiateInitialViewController() as? UINavigationController else {
       fatalError("viewController should be an instance of UINavigationController")
     }
 
-    guard let view = navigationController.topViewController as? ListMoviesView else {
-      fatalError("topViewController should be an instance of ListMoviesView")
+    guard let view = navigationController.topViewController as? TrendingView else {
+      fatalError("topViewController should be an instance of TrendingView")
     }
 
     guard let viewController = view as? UIViewController else {
       fatalError("view should be an instance of UIViewController")
     }
 
-    let repository = ListMoviesCacheRepository(traktProvider: traktProvider)
+    let repository = TrendingCacheRepository(traktProvider: traktProvider)
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdbProvider)
-    let movieImageRepository = MovieImageCachedRepository(tmdbProvider: tmdbProvider,
+    let imageRepository = ImageCachedRepository(tmdbProvider: tmdbProvider,
                                                           cofigurationRepository: configurationRepository)
 
-    let interactor = ListMoviesService(repository: repository, movieImageRepository: movieImageRepository)
-    let router = ListMoviesiOSRouter(viewController: viewController, traktProvider: traktProvider,
+    let interactor = TrendingService(repository: repository, imageRepository: imageRepository)
+    let router = TrendingiOSRouter(viewController: viewController, traktProvider: traktProvider,
                                      tmdbProvider: tmdbProvider)
-    let presenter = ListMoviesiOSPresenter(view: view, interactor: interactor, router: router)
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router)
 
-    let searchOutput = ListMoviesSearchOutput(view: view, router: router, presenter: presenter)
+    let searchOutput = TrendingSearchOutput(view: view, router: router, presenter: presenter)
 
     view.presenter = presenter
 

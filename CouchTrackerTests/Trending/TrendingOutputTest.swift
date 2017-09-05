@@ -12,17 +12,17 @@
 
 import XCTest
 
-final class ListMoviesOutputTest: XCTestCase {
+final class TrendingOutputTest: XCTestCase {
 
-  let view = ListMoviesViewMock()
-  let router = ListMoviesRouterMock()
-  var presenter: ListMoviesPresenterMock!
+  let view = TrendingViewMock()
+  let router = TrendingRouterMock()
+  var presenter: TrendingPresenterMock!
 
   private func setupSearchOutputWithEmptyStore() -> SearchResultOutput {
     let repository = EmptyListMoviesStoreMock()
-    let interactor = ListMoviesService(repository: repository, movieImageRepository: movieImageRepositoryMock)
-    presenter = ListMoviesPresenterMock(view: view, interactor: interactor, router: router)
-    return ListMoviesSearchOutput(view: view, router: router, presenter: presenter)
+    let interactor = TrendingService(repository: repository, imageRepository: movieImageRepositoryMock)
+    presenter = TrendingPresenterMock(view: view, interactor: interactor, router: router)
+    return TrendingSearchOutput(view: view, router: router, presenter: presenter)
   }
 
   func testListMoviesOutput_receivesEmptyResults_shouldNotifyView() {
@@ -38,7 +38,7 @@ final class ListMoviesOutputTest: XCTestCase {
 
     output.searchCancelled()
 
-    XCTAssertTrue(presenter.invokedFetchMovies)
+    XCTAssertTrue(presenter.invokedFetchTrending)
   }
 
   func testListMoviesOutput_receivesError_shouldNotifyRouter() {
@@ -55,7 +55,7 @@ final class ListMoviesOutputTest: XCTestCase {
 
     let searchResults = createSearchResultsMock()
     let viewModels = searchResults.map {
-      SearchResultViewModel(type: $0.type, movie: MovieViewModel(title: $0.movie?.title ?? "", imageLink: nil))
+      SearchResultViewModel(type: $0.type, movie: TrendingViewModel(title: $0.movie?.title ?? "", imageLink: nil))
     }
 
     output.handleSearch(results: viewModels)

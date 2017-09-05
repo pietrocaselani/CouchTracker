@@ -12,12 +12,12 @@ the license agreement.
 
 import Trakt_Swift
 
-final class ListMoviesSearchOutput: SearchResultOutput {
-  private weak var view: ListMoviesView?
-  private let router: ListMoviesRouter
-  private let presenter: ListMoviesPresenter
+final class TrendingSearchOutput: SearchResultOutput {
+  private weak var view: TrendingView?
+  private let router: TrendingRouter
+  private let presenter: TrendingPresenter
 
-  init(view: ListMoviesView, router: ListMoviesRouter, presenter: ListMoviesPresenter) {
+  init(view: TrendingView, router: TrendingRouter, presenter: TrendingPresenter) {
     self.view = view
     self.router = router
     self.presenter = presenter
@@ -42,10 +42,10 @@ final class ListMoviesSearchOutput: SearchResultOutput {
   private func updateMovies(with results: [SearchResultViewModel]) {
     guard let view = view else { return }
 
-    view.show(movies: results.flatMap { $0.movie })
+    view.show(trending: results.flatMap { $0.movie })
   }
 
   private func fetchTrendingMovies() {
-    self.presenter.fetchMovies()
+    self.presenter.fetchTrending(of: .movies)
   }
 }

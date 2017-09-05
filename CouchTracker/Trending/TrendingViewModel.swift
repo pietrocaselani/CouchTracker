@@ -10,9 +10,21 @@
  the license agreement.
  */
 
-import RxSwift
-import Trakt_Swift
+struct TrendingViewModel: Hashable {
+  let title: String
+  let imageLink: String?
 
-protocol TrendingShowRepository: class {
-  func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShow]>
+  static func == (lhs: TrendingViewModel, rhs: TrendingViewModel) -> Bool {
+    return lhs.hashValue == rhs.hashValue
+  }
+
+  var hashValue: Int {
+    var hash = title.hashValue
+
+    if let imageLinkHash = imageLink?.hashValue {
+      hash = hash ^ imageLinkHash
+    }
+
+    return hash
+  }
 }

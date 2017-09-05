@@ -15,21 +15,25 @@ import Moya
 import Trakt_Swift
 import TMDB_Swift
 
-final class ListMoviesService: ListMoviesInteractor {
+final class TrendingService: TrendingInteractor {
 
-  private let repository: ListMoviesRepository
-  private let movieImageRepository: MovieImageRepository
+  private let repository: TrendingRepository
+  private let imageRepository: ImageRepository
   private let scheduler: SchedulerType
 
-  convenience init(repository: ListMoviesRepository, movieImageRepository: MovieImageRepository) {
+  convenience init(repository: TrendingRepository, imageRepository: ImageRepository) {
     let scheduler = SerialDispatchQueueScheduler(qos: DispatchQueue(label: "listMoviesServiceQueue").qos)
-    self.init(repository: repository, movieImageRepository: movieImageRepository, scheduler: scheduler)
+    self.init(repository: repository, imageRepository: imageRepository, scheduler: scheduler)
   }
 
-  init(repository: ListMoviesRepository, movieImageRepository: MovieImageRepository, scheduler: SchedulerType) {
+  init(repository: TrendingRepository, imageRepository: ImageRepository, scheduler: SchedulerType) {
     self.repository = repository
-    self.movieImageRepository = movieImageRepository
+    self.imageRepository = imageRepository
     self.scheduler = scheduler
+  }
+
+  func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShowEntity]> {
+    return Observable.empty()
   }
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovieEntity]> {
@@ -40,7 +44,7 @@ final class ListMoviesService: ListMoviesInteractor {
       }.flatMap { trendingMovies -> Observable<TrendingMovieEntity> in
         return Observable.from(trendingMovies).flatMap { [unowned self] movie -> Observable<TrendingMovieEntity> in
           let tmdbId = movie.movie.ids.tmdb ?? -1
-          return self.movieImageRepository.fetchImages(for: tmdbId, posterSize: .w342, backdropSize: .w780)
+          return self.imageRepository.fetchImages(for: tmdbId, posterSize: .w342, backdropSize: .w780)
             .observeOn(self.scheduler)
             .delay(0.25, scheduler: self.scheduler)
             .flatMap { images -> Observable<(TrendingMovie, ImagesEntity)> in
