@@ -12,38 +12,36 @@
 
 import ObjectMapper
 
-public class BaseIds: ImmutableMappable, Hashable {
+public final class SeasonIds: ImmutableMappable, Hashable {
+  public let tvdb: Int
+  public let tmdb: Int
   public let trakt: Int
-  public let tmdb: Int?
-  public let imdb: String?
-
+  public let tvrage: Int?
+  
   public required init(map: Map) throws {
+    self.tvdb = try map.value("tvdb")
+    self.tmdb = try map.value("tmdb")
     self.trakt = try map.value("trakt")
-    self.tmdb = try? map.value("tmdb")
-    self.imdb = try? map.value("imdb")
+    self.tvrage = try? map.value("tvrage")
   }
-
+  
   public func mapping(map: Map) {
-    self.trakt >>> map["trakt"]
+    self.tvdb >>> map["tvdb"]
     self.tmdb >>> map["tmdb"]
-    self.imdb >>> map["imdb"]
+    self.trakt >>> map["trakt"]
+    self.tvrage >>> map["tvrage"]
   }
-
+  
   public var hashValue: Int {
-    var hash = trakt.hashValue
-
-    if let tmdbHash = tmdb?.hashValue {
-      hash = hash ^ tmdbHash
+    var hash = tvdb.hashValue ^ tmdb.hashValue ^ trakt.hashValue
+    if let tvrageHash = tvrage?.hashValue {
+      hash = hash ^ tvrageHash
     }
-
-    if let imdbHash = imdb?.hashValue {
-      hash = hash ^ imdbHash
-    }
-
+    
     return hash
   }
-
-  public static func == (lhs: BaseIds, rhs: BaseIds) -> Bool {
+  
+  public static func == (lhs: SeasonIds, rhs: SeasonIds) -> Bool {
     return lhs.hashValue == rhs.hashValue
   }
 }

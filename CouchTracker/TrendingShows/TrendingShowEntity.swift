@@ -10,14 +10,14 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-public enum Extended: String, Equatable {
-  case defaultMin = "min"
-  case full = "full"
-  case noSeasons = "noseasons"
-  case episodes = "episodes"
-  case fullEpisodes = "full,episodes"
+struct TrendingShowEntity: Hashable {
+  let show: ShowEntity
 
-  public static func == (lhs: Extended, rhs: Extended) -> Bool {
-    return lhs.rawValue == rhs.rawValue
+  var hashValue: Int {
+    return show.hashValue
+  }
+
+  static func == (lhs: TrendingShowEntity, rhs: TrendingShowEntity) -> Bool {
+    return lhs.hashValue == rhs.hashValue
   }
 }

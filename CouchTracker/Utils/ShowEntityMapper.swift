@@ -10,12 +10,14 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Moya
 import Trakt_Swift
 
-protocol TraktProvider: class {
-  var movies: RxMoyaProvider<Movies> { get }
-  var genres: RxMoyaProvider<Genres> { get }
-  var search: RxMoyaProvider<Search> { get }
-  var shows: RxMoyaProvider<Shows> { get }
+func entity(for show: Show, with genres: [Genre]? = nil) -> ShowEntity {
+  return ShowEntity(showIds: show.ids, title: show.title, overview: show.overview,
+             genres: genres, status: show.status, firstAired: show.firstAired)
+}
+
+func entity(for trendingShow: TrendingShow, with genres: [Genre]? = nil) -> TrendingShowEntity {
+  let show = entity(for: trendingShow.show, with: genres)
+  return TrendingShowEntity(show: show)
 }

@@ -16,7 +16,6 @@ import Trakt_Swift
 let traktProviderMock = TraktProviderMock()
 
 final class TraktProviderMock: TraktProvider {
-
   var movies: RxMoyaProvider<Movies> {
     return RxMoyaProvider<Movies>(stubClosure: MoyaProvider.immediatelyStub)
   }
@@ -27,6 +26,10 @@ final class TraktProviderMock: TraktProvider {
 
   var search: RxMoyaProvider<Search> {
     return RxMoyaProvider<Search>(stubClosure: MoyaProvider.immediatelyStub)
+  }
+
+  var shows: RxMoyaProvider<Shows> {
+    return RxMoyaProvider<Shows>(stubClosure: MoyaProvider.immediatelyStub)
   }
 
 }

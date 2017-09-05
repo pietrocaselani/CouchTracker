@@ -1,7 +1,7 @@
 /*
  Copyright 2017 ArcTouch LLC.
  All rights reserved.
- 
+
  This file, its contents, concepts, methods, behavior, and operation
  (collectively the "Software") are protected by trade secret, patent,
  and copyright laws. The use of the Software is governed by a license
@@ -10,20 +10,9 @@
  the license agreement.
  */
 
-import ObjectMapper
+import RxSwift
+import Trakt_Swift
 
-public class BaseTrendingEntity: ImmutableMappable, Hashable {
-  public let watchers: Int
-
-  public required init(map: Map) throws {
-    self.watchers = try map.value("watchers")
-  }
-
-  public var hashValue: Int {
-    return watchers.hashValue
-  }
-
-  public static func == (lhs: BaseTrendingEntity, rhs: BaseTrendingEntity) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-  }
+protocol TrendingShowRepository: class {
+  func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShow]>
 }

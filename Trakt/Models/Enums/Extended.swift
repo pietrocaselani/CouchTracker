@@ -10,11 +10,10 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import RxSwift
-
-protocol MovieImageRepository: class {
-  init(tmdbProvider: TMDBProvider, cofigurationRepository: ConfigurationRepository)
-
-  func fetchImages(for movieId: Int, posterSize: PosterImageSize?,
-                   backdropSize: BackdropImageSize?) -> Observable<ImagesEntity>
+public enum Extended: String {
+  case defaultMin = "min"
+  case full = "full"
+  case noSeasons = "noseasons"
+  case episodes = "episodes"
+  case fullEpisodes = "full,episodes"
 }
