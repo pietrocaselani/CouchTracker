@@ -14,12 +14,16 @@ import RxSwift
 import Trakt_Swift
 
 final class TrendingiOSPresenter: TrendingPresenter {
+  private static let limitPerPage = 25
+
   weak var view: TrendingView?
   private let interactor: TrendingInteractor
   private let router: TrendingRouter
   private let disposeBag = DisposeBag()
   private var movies = [TrendingMovieEntity]()
-  private var currentPage = 0
+  private var shows = [TrendingShowEntity]()
+  private var currentMoviesPage = 0
+  private var currentShowsPage = 0
 
   init(view: TrendingView, interactor: TrendingInteractor, router: TrendingRouter) {
     self.view = view
@@ -28,9 +32,12 @@ final class TrendingiOSPresenter: TrendingPresenter {
   }
 
   func fetchTrending(of type: TrendingType) {
-    if type == .movies {
-      fetchMovies()
+    guard type == .movies else {
+      fetchShows()
+      return
     }
+
+    fetchMovies()
   }
 
   func showDetailsOf(trending type: TrendingType, at index: Int) {
@@ -40,37 +47,57 @@ final class TrendingiOSPresenter: TrendingPresenter {
   }
 
   private func fetchMovies() {
-    interactor.fetchMovies(page: currentPage, limit: 25)
-      .do(onNext: { [unowned self] entities in
-        self.movies = entities
+    let observable = interactor.fetchMovies(page: currentMoviesPage, limit: TrendingiOSPresenter.limitPerPage)
+      .do(onNext: { [unowned self] in
+        self.movies = $0
       }).map { [unowned self] in self.transformToViewModels(entities: $0) }
-      .observeOn(MainScheduler.instance)
-      .subscribe(onNext: { viewModels in
-        guard let view = self.view else {
-          return
-        }
 
-        guard viewModels.count > 0 else {
-          view.showEmptyView()
-          return
-        }
+    subscribe(on: observable, for: .movies)
+  }
 
-        view.show(trending: viewModels)
-      }, onError: { [unowned self] error in
-        guard let moviesListError = error as? TrendingError else {
-          self.router.showError(message: error.localizedDescription)
-          return
-        }
+  private func fetchShows() {
+    let observable = interactor.fetchShows(page: currentShowsPage, limit: TrendingiOSPresenter.limitPerPage)
+      .do(onNext: { [unowned self] in
+        self.shows = $0
+      }).map { [unowned self] in self.transformToViewModels(entities: $0) }
 
-        self.router.showError(message: moviesListError.message)
-        }, onCompleted: {
-          guard self.movies.count == 0 else { return }
-          self.view?.showEmptyView()
-      }).disposed(by: disposeBag)
+    subscribe(on: observable, for: .shows)
+  }
+
+  private func subscribe(on observable: Observable<[TrendingViewModel]>, for type: TrendingType) {
+    observable.observeOn(MainScheduler.instance).subscribe(onNext: { [unowned self] in
+      guard let view = self.view else { return }
+
+      guard $0.count > 0 else {
+        view.showEmptyView()
+        return
+      }
+
+      view.show(trending: $0)
+    }, onError: { [unowned self] in
+      guard let moviesListError = $0 as? TrendingError else {
+        self.router.showError(message: $0.localizedDescription)
+        return
+      }
+
+      self.router.showError(message: moviesListError.message)
+    }, onCompleted: { [unowned self] in
+      guard let view = self.view else { return }
+
+      let viewModelsCount = type == .movies ? self.movies.count : self.shows.count
+
+      guard viewModelsCount == 0 else { return }
+
+      view.showEmptyView()
+    }).disposed(by: disposeBag)
   }
 
   private func transformToViewModels(entities: [TrendingMovieEntity]) -> [TrendingViewModel] {
     return entities.map { viewModel(for: $0.movie) }
+  }
+
+  private func transformToViewModels(entities: [TrendingShowEntity]) -> [TrendingViewModel] {
+    return entities.map { viewModel(for: $0.show) }
   }
 
   private func showDetailsOfMovie(at index: Int) {

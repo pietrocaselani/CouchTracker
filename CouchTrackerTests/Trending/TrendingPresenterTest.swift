@@ -22,8 +22,8 @@ final class TrendingPresenterTest: XCTestCase {
   let view = TrendingViewMock()
   let router = TrendingRouterMock()
 
-  func testTrendingPresenter_fetchSuccessWithEmptyData_andPresentNoMovies() {
-    let repository = EmptyListMoviesStoreMock()
+  func testTrendingPresenter_fetchMoviesSuccessWithEmptyData_andPresentNothing() {
+    let repository = EmptyTrendingRepositoryMock()
     let interactor = TrendingServiceMock(repository: repository, imageRepository: movieImageRepositoryMock)
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router)
 
@@ -33,7 +33,18 @@ final class TrendingPresenterTest: XCTestCase {
     XCTAssertFalse(view.invokedShow)
   }
 
-  func testTrendingPresenter_fetchFailure_andPresentError() {
+  func testTrendingPresenter_fetchShowsSuccessWithEmptyData_andPresentNothing() {
+    let repository = EmptyTrendingRepositoryMock()
+    let interactor = TrendingServiceMock(repository: repository, imageRepository: movieImageRepositoryMock)
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router)
+
+    presenter.fetchTrending(of: .shows)
+
+    XCTAssertTrue(view.invokedShowEmptyView)
+    XCTAssertFalse(view.invokedShow)
+  }
+
+  func testTrendingPresenter_fetchMoviesFailure_andPresentError() {
     let error = TrendingError.parseError("Invalid json")
     let repository = ErrorTrendingRepositoryMock(error: error)
     let interactor = TrendingServiceMock(repository: repository, imageRepository: movieImageRepositoryMock)
@@ -45,7 +56,19 @@ final class TrendingPresenterTest: XCTestCase {
     XCTAssertEqual(router.invokedShowErrorParameters?.message, "Invalid json")
   }
 
-  func testTrendingPresenter_fetchSuccess_andPresentMovies() {
+  func testTrendingPresenter_fetchShowsFailure_andPresentError() {
+    let error = TrendingError.parseError("Invalid json")
+    let repository = ErrorTrendingRepositoryMock(error: error)
+    let interactor = TrendingServiceMock(repository: repository, imageRepository: movieImageRepositoryMock)
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router)
+
+    presenter.fetchTrending(of: .shows)
+
+    XCTAssertTrue(router.invokedShowError)
+    XCTAssertEqual(router.invokedShowErrorParameters?.message, "Invalid json")
+  }
+
+  func testTrendingPresenter_fetchMoviesSuccess_andPresentMovies() {
     let movies = createMockMovies()
     let images = createImagesEntityMock()
     let repository = TrendingMoviesRepositoryMock(movies: movies)
@@ -59,10 +82,24 @@ final class TrendingPresenterTest: XCTestCase {
     let expectedViewModel = movies.map { TrendingViewModel(title: $0.movie.title ?? "TBA", imageLink: link) }
 
     XCTAssertTrue(view.invokedShow)
-    XCTAssertEqual(view.invokedShowParameters!.movies, expectedViewModel)
+    XCTAssertEqual(view.invokedShowParameters!.viewModels, expectedViewModel)
   }
 
-  func testTrendingPresenter_fetchSuccess_andPresentNoMovies() {
+  func testTrendingPresenter_fetchShowsSuccess_andPresentShows() {
+    let images = createImagesEntityMock()
+    let imagesRepository = createMovieImagesRepositoryMock(images)
+    let interactor = TrendingServiceMock(repository: trendingRepositoryMock, imageRepository: imagesRepository)
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router)
+
+    presenter.fetchTrending(of: .shows)
+
+    let expectedViewModels = createTrendingShowsMock().map { viewModel(for: $0.show) }
+
+    XCTAssertTrue(view.invokedShow)
+    XCTAssertEqual(view.invokedShowParameters!.viewModels, expectedViewModels)
+  }
+
+  func testTrendingPresenter_fetchMoviewSuccess_andPresentNoMovies() {
     let movies = [TrendingMovie]()
     let images = createImagesEntityMock()
     let repository = TrendingMoviesRepositoryMock(movies: movies)
@@ -76,7 +113,7 @@ final class TrendingPresenterTest: XCTestCase {
     XCTAssertFalse(view.invokedShow)
   }
 
-  func testTrendingPresenter_fetchFailure_andIsCustomError() {
+  func testTrendingPresenter_fetchMoviesFailure_andIsCustomError() {
     let userInfo = [NSLocalizedDescriptionKey: "Custom list movies error"]
     let error = NSError(domain: "com.arctouch.CouchTracker", code: 10, userInfo: userInfo)
     let interactor = TrendingServiceMock(repository: ErrorTrendingRepositoryMock(error: error), imageRepository: movieImageRepositoryMock)
@@ -89,7 +126,7 @@ final class TrendingPresenterTest: XCTestCase {
     XCTAssertEqual(router.invokedShowErrorParameters?.message, "Custom list movies error")
   }
 
-  func testTrendingPresenter_requestToShowDetails_notifyRouterToShowDetails() {
+  func testTrendingPresenter_requestToShowDetailsOfMovie_notifyRouterToShowDetails() {
     let movieIndex = 1
     let movies = createMockMovies()
     let images =  createImagesEntityMock()

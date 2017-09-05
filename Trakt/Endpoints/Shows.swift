@@ -61,4 +61,13 @@ extension Shows: TraktType {
       return ["hidden" : hidden, "specials" : specials, "count_specials" : countSpecials]
     }
   }
+
+  public var sampleData: Data {
+    switch self {
+    case .trending:
+      return stubbedResponse("trakt_shows_trending")
+    default:
+      return Data()
+    }
+  }
 }

@@ -14,6 +14,13 @@ import Foundation
 import RxSwift
 import Trakt_Swift
 
+let trendingRepositoryMock = TrendingRepositoryMock(traktProvider: traktProviderMock)
+
+func createTrendingShowsMock() -> [TrendingShow] {
+  let jsonArray = parseToJSONArray(data: Shows.trending(page: 0, limit: 10, extended: .full).sampleData)
+  return try! jsonArray.map { try TrendingShow(JSON: $0) }
+}
+
 final class TrendingViewMock: TrendingView {
   var presenter: TrendingPresenter!
   var searchView: SearchView!
@@ -24,7 +31,7 @@ final class TrendingViewMock: TrendingView {
   }
 
   var invokedShow = false
-  var invokedShowParameters: (movies: [TrendingViewModel], Void)?
+  var invokedShowParameters: (viewModels: [TrendingViewModel], Void)?
 
   func show(trending: [TrendingViewModel]) {
     invokedShow = true
@@ -70,7 +77,7 @@ final class TrendingRouterMock: TrendingRouter {
   }
 }
 
-final class EmptyListMoviesStoreMock: TrendingRepository {
+final class EmptyTrendingRepositoryMock: TrendingRepository {
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
     return Observable.empty()
   }
@@ -81,7 +88,6 @@ final class EmptyListMoviesStoreMock: TrendingRepository {
 }
 
 final class ErrorTrendingRepositoryMock: TrendingRepository {
-
   private let error: Error
 
   init(error: Error) {
@@ -93,7 +99,7 @@ final class ErrorTrendingRepositoryMock: TrendingRepository {
   }
 
   func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShow]> {
-    return Observable.empty()
+    return Observable.error(error)
   }
 }
 
@@ -114,19 +120,37 @@ final class TrendingMoviesRepositoryMock: TrendingRepository {
   }
 }
 
+final class TrendingRepositoryMock: TrendingRepository {
+  private let traktProvider: TraktProvider
+
+  init(traktProvider: TraktProvider) {
+    self.traktProvider = traktProvider
+  }
+
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
+    return traktProvider.movies.request(.trending(page: page, limit: limit, extended: .full))
+      .mapArray(TrendingMovie.self)
+  }
+
+  func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShow]> {
+    return traktProvider.shows.request(.trending(page: page, limit: limit, extended: .full))
+      .mapArray(TrendingShow.self)
+  }
+}
+
 final class TrendingServiceMock: TrendingInteractor {
 
-  let listMoviesRepo: TrendingRepository
-  let movieImageRepo: ImageRepository
+  let trendingRepo: TrendingRepository
+  let imageRepo: ImageRepository
 
   init(repository: TrendingRepository, imageRepository: ImageRepository) {
-    self.listMoviesRepo = repository
-    self.movieImageRepo = imageRepository
+    self.trendingRepo = repository
+    self.imageRepo = imageRepository
   }
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovieEntity]> {
-    let moviesObservable = listMoviesRepo.fetchMovies(page: page, limit: limit)
-    let imagesObservable = movieImageRepo.fetchImages(for: 30, posterSize: nil, backdropSize: nil)
+    let moviesObservable = trendingRepo.fetchMovies(page: page, limit: limit)
+    let imagesObservable = imageRepo.fetchImages(for: 30, posterSize: nil, backdropSize: nil)
 
     return Observable.combineLatest(moviesObservable, imagesObservable) { (movies, images) -> [TrendingMovieEntity] in
       return movies.map { entity(for: $0, with: images) }
@@ -134,6 +158,8 @@ final class TrendingServiceMock: TrendingInteractor {
   }
 
   func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShowEntity]> {
-    return Observable.empty()
+    return trendingRepo.fetchShows(page: page, limit: limit).map {
+      return $0.map { entity(for: $0) }
+    }
   }
 }

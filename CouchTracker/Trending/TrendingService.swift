@@ -16,7 +16,6 @@ import Trakt_Swift
 import TMDB_Swift
 
 final class TrendingService: TrendingInteractor {
-
   private let repository: TrendingRepository
   private let imageRepository: ImageRepository
   private let scheduler: SchedulerType
@@ -33,7 +32,10 @@ final class TrendingService: TrendingInteractor {
   }
 
   func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShowEntity]> {
-    return Observable.empty()
+    let observable = repository.fetchShows(page: page, limit: limit)
+      .observeOn(scheduler)
+      .map { [unowned self] in self.mapTrendingShowsToEntities($0) }
+    return observable
   }
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovieEntity]> {
@@ -46,7 +48,7 @@ final class TrendingService: TrendingInteractor {
           let tmdbId = movie.movie.ids.tmdb ?? -1
           return self.imageRepository.fetchImages(for: tmdbId, posterSize: .w342, backdropSize: .w780)
             .observeOn(self.scheduler)
-            .delay(0.25, scheduler: self.scheduler)
+            .delay(1, scheduler: self.scheduler)
             .flatMap { images -> Observable<(TrendingMovie, ImagesEntity)> in
               return Observable.just((movie, images))
             }.map { (trendingMovie, images) -> TrendingMovieEntity in
@@ -64,8 +66,12 @@ final class TrendingService: TrendingInteractor {
             return Observable.error(error)
           }
 
-          return self.fetchMovies(page: page, limit: limit).delay(10, scheduler: self.scheduler)
+          return self.fetchMovies(page: page, limit: limit).delay(2, scheduler: self.scheduler)
         }
       }
+  }
+
+  private func mapTrendingShowsToEntities(_ trendingShows: [TrendingShow]) -> [TrendingShowEntity] {
+    return trendingShows.map { entity(for: $0) }
   }
 }
