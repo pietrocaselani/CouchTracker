@@ -23,11 +23,11 @@ final class TrendingCell: UICollectionViewCell {
     titleLabel.text = movie.title
 
     guard let imageLink = movie.imageLink else {
-      coverImageView.image = nil
+      coverImageView.image = R.image.posterListPlaceholder()
       return
     }
 
-    coverImageView.kf.setImage(with: URL(string: imageLink))
+    coverImageView.kf.setImage(with: URL(string: imageLink), placeholder: R.image.posterListPlaceholder())
   }
 
   override func layoutSubviews() {
