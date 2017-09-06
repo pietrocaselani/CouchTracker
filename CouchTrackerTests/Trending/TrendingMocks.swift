@@ -31,19 +31,20 @@ final class TrendingViewMock: TrendingView {
   }
 
   var invokedShow = false
-  var invokedShowParameters: (viewModels: [TrendingViewModel], Void)?
 
-  func show(trending: [TrendingViewModel]) {
+  func showTrendingsView() {
     invokedShow = true
-    invokedShowParameters = (trending, ())
   }
 }
 
 final class TrendingPresenterMock: TrendingPresenter {
   let currentTrendingType = Variable<TrendingType>(.movies)
+  var dataSource: TrendingDataSource
   var invokedViewDidLoad = false
 
-  init(view: TrendingView, interactor: TrendingInteractor, router: TrendingRouter) {}
+  init(view: TrendingView, interactor: TrendingInteractor, router: TrendingRouter, dataSource: TrendingDataSource) {
+    self.dataSource = dataSource
+  }
 
   func viewDidLoad() {
     invokedViewDidLoad = true
@@ -56,6 +57,8 @@ final class TrendingPresenterMock: TrendingPresenter {
     invokedShowDetailsOfTrending = true
     invokedShowDetailsOfTrendingParameters = (index, ())
   }
+
+
 }
 
 final class TrendingRouterMock: TrendingRouter {
@@ -149,11 +152,8 @@ final class TrendingServiceMock: TrendingInteractor {
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovieEntity]> {
     let moviesObservable = trendingRepo.fetchMovies(page: page, limit: limit)
-    let imagesObservable = imageRepo.fetchImages(for: 30, posterSize: nil, backdropSize: nil)
 
-    return Observable.combineLatest(moviesObservable, imagesObservable) { (movies, images) -> [TrendingMovieEntity] in
-      return movies.map { entity(for: $0, with: images) }
-    }
+    return moviesObservable.map { $0.map { entity(for: $0) } }
   }
 
   func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShowEntity]> {
@@ -161,4 +161,8 @@ final class TrendingServiceMock: TrendingInteractor {
       return $0.map { entity(for: $0) }
     }
   }
+}
+
+final class TrendingDataSourceMock: TrendingDataSource {
+  var viewModels = [TrendingViewModel]()
 }

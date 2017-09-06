@@ -123,8 +123,7 @@ final class TrendingInteractorTest: XCTestCase {
     scheduler.start()
 
     let expectedMovies = movies.map { trendingMovie -> TrendingMovieEntity in
-      let images = createImagesMock(movieId: trendingMovie.movie.ids.tmdb ?? -1)
-      return entity(for: trendingMovie, with: entity(for: images, using: configurationMock))
+      return entity(for: trendingMovie)
     }
 
     let events: [Recorded<Event<[TrendingMovieEntity]>>] = [next(0, expectedMovies), completed(0)]

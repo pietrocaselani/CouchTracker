@@ -12,10 +12,20 @@ the license agreement.
 
 import Trakt_Swift
 
+extension ShowIds {
+  func tmdbModelType() -> TrendingViewModelType? {
+    var type: TrendingViewModelType? = nil
+    if let tmdbId = self.tmdb {
+      type = TrendingViewModelType.show(tmdbShowId: tmdbId)
+    }
+    return type
+  }
+}
+
 func viewModel(for show: ShowEntity, defaultTitle: String = "TBA".localized) -> TrendingViewModel {
-  return TrendingViewModel(title: show.title ?? defaultTitle, imageLink: nil)
+  return TrendingViewModel(title: show.title ?? defaultTitle, type: show.showIds.tmdbModelType())
 }
 
 func viewModel(for show: Show, defaultTitle: String = "TBA".localized) -> TrendingViewModel {
-  return TrendingViewModel(title: show.title ?? defaultTitle, imageLink: nil)
+  return TrendingViewModel(title: show.title ?? defaultTitle, type: show.ids.tmdbModelType())
 }

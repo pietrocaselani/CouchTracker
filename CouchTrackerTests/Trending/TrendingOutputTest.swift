@@ -16,13 +16,14 @@ final class TrendingOutputTest: XCTestCase {
 
   let view = TrendingViewMock()
   let router = TrendingRouterMock()
+  let dataSource = TrendingDataSourceMock()
   var presenter: TrendingPresenterMock!
 
   private func setupSearchOutputWithEmptyStore() -> SearchResultOutput {
     let repository = EmptyTrendingRepositoryMock()
     let interactor = TrendingService(repository: repository, imageRepository: movieImageRepositoryMock)
-    presenter = TrendingPresenterMock(view: view, interactor: interactor, router: router)
-    return TrendingSearchOutput(view: view, router: router, presenter: presenter)
+    presenter = TrendingPresenterMock(view: view, interactor: interactor, router: router, dataSource: dataSource)
+    return TrendingSearchOutput(view: view, router: router, presenter: presenter, dataSource: dataSource)
   }
 
   func testListMoviesOutput_receivesEmptyResults_shouldNotifyView() {
@@ -54,8 +55,10 @@ final class TrendingOutputTest: XCTestCase {
     let output = setupSearchOutputWithEmptyStore()
 
     let searchResults = createSearchResultsMock()
-    let viewModels = searchResults.map {
-      SearchResultViewModel(type: $0.type, movie: TrendingViewModel(title: $0.movie?.title ?? "", imageLink: nil))
+    let viewModels = searchResults.map { result -> SearchResultViewModel in
+      let type = result.movie?.ids.tmdbModelType()
+      let title = result.movie?.title ?? ""
+      return SearchResultViewModel(type: result.type, movie: TrendingViewModel(title: title, type: type))
     }
 
     output.handleSearch(results: viewModels)
@@ -63,6 +66,5 @@ final class TrendingOutputTest: XCTestCase {
     let expectedParameters = viewModels.flatMap { $0.movie }
 
     XCTAssertTrue(view.invokedShow)
-    XCTAssertEqual(view.invokedShowParameters!.viewModels, expectedParameters)
   }
 }

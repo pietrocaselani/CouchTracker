@@ -42,7 +42,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Mb-Ir-Pdd">
                                                     <rect key="frame" x="8" y="8" width="84" height="142"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qm8-CJ-hQh">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PosterListPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Qm8-CJ-hQh">
                                                             <rect key="frame" x="0.0" y="0.0" width="84" height="112"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8KI-6N-jvX">
@@ -51,9 +51,6 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingrid Goes West" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhV-eG-OcI">
                                                                     <rect key="frame" x="1" y="0.0" width="84" height="26.5"/>
                                                                     <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="Lo6-RC-sFt"/>
-                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -166,4 +163,7 @@
             <point key="canvasLocation" x="32.799999999999997" y="77.811094452773617"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="PosterListPlaceholder" width="100" height="150"/>
+    </resources>
 </document>

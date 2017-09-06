@@ -12,11 +12,20 @@ the license agreement.
 
 import Trakt_Swift
 
+extension MovieIds {
+  func tmdbModelType() -> TrendingViewModelType? {
+    var type: TrendingViewModelType? = nil
+    if let tmdbId = self.tmdb {
+      type = TrendingViewModelType.movie(tmdbMovieId: tmdbId)
+    }
+    return type
+  }
+}
+
 func viewModel(for movie: MovieEntity, defaultTitle: String = "TBA".localized) -> TrendingViewModel {
-  let image = movie.images.posterImage()
-  return TrendingViewModel(title: movie.title ?? defaultTitle, imageLink: image?.link)
+  return TrendingViewModel(title: movie.title ?? defaultTitle, type: movie.ids.tmdbModelType())
 }
 
 func viewModel(for movie: Movie, defaultTitle: String = "TBA".localized) -> TrendingViewModel {
-  return TrendingViewModel(title: movie.title ?? defaultTitle, imageLink: nil)
+  return TrendingViewModel(title: movie.title ?? defaultTitle, type: movie.ids.tmdbModelType())
 }

@@ -27,6 +27,7 @@ protocol MovieDetailsView: BaseView {
   var presenter: MovieDetailsPresenter! { get set }
 
   func show(details: MovieDetailsViewModel)
+  func show(images: MovieDetailsImageViewModel)
 }
 
 protocol MovieDetailsInteractor: class {
@@ -35,6 +36,7 @@ protocol MovieDetailsInteractor: class {
        imageRepository: ImageRepository, movieIds: MovieIds)
 
   func fetchDetails() -> Observable<MovieEntity>
+  func fetchImages() -> Observable<ImagesEntity>
 }
 
 protocol MovieDetailsRepository: class {

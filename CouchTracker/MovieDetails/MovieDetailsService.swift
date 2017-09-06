@@ -38,19 +38,21 @@ final class MovieDetailsService: MovieDetailsInteractor {
   }
 
   func fetchDetails() -> Observable<MovieEntity> {
-    let tmdbId = movieIds.tmdb ?? -1
-
     let detailsObservable = repository.fetchDetails(movieId: movieIds.slug)
     let genresObservable = genreRepository.fetchMoviesGenres()
-    let imagesObservable = imageRepository.fetchImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)
 
-    return Observable.combineLatest(detailsObservable, genresObservable, imagesObservable) {
+    return Observable.combineLatest(detailsObservable, genresObservable) {
       let movie = $0.0
       let movieGenres = $0.1.filter { genre -> Bool in
         return movie.genres?.contains(genre.slug) ?? false
       }
 
-      return entity(for: movie, with: $0.2, genres: movieGenres)
+      return entity(for: movie, with: movieGenres)
     }
+  }
+
+  func fetchImages() -> Observable<ImagesEntity> {
+    guard let tmdbId = movieIds.tmdb else { return Observable.empty() }
+    return imageRepository.fetchImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)
   }
 }

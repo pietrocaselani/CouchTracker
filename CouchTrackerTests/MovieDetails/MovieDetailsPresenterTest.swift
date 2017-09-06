@@ -41,9 +41,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
         tagline: movie.tagline ?? "",
         overview: movie.overview ?? "",
         genres: movieGenres.joined(separator: " | "),
-        releaseDate: movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!),
-        posterLink: imagesEntity.posterImage()?.link,
-        backdropLink: imagesEntity.backdropImage()?.link)
+        releaseDate: movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!))
 
     XCTAssertTrue(view.invokedShow)
     XCTAssertEqual(view.invokedShowParameters?.details, viewModel)

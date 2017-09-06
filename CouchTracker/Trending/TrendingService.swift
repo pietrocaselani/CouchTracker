@@ -39,33 +39,11 @@ final class TrendingService: TrendingInteractor {
   }
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovieEntity]> {
-    let moviesObservable = repository.fetchMovies(page: page, limit: limit).observeOn(scheduler).map {
-      $0.filter { $0.movie.ids.tmdb != nil }
-      }.flatMap { trendingMovies -> Observable<TrendingMovieEntity> in
-        return Observable.from(trendingMovies).flatMap { [unowned self] movie -> Observable<TrendingMovieEntity> in
-          guard let tmdbId = movie.movie.ids.tmdb else { fatalError("TMDB id is null What a terrible failure") }
-          return self.imageRepository.fetchImages(for: tmdbId, posterSize: .w342, backdropSize: .w780)
-            .observeOn(self.scheduler)
-            .flatMap { images -> Observable<(TrendingMovie, ImagesEntity)> in
-              return Observable.just((movie, images))
-            }.map { (trendingMovie, images) -> TrendingMovieEntity in
-              return entity(for: trendingMovie, with: images)
-          }
-        }
-      }.subscribeOn(scheduler)
-
-    return moviesObservable.toArray().flatMap { movies -> Observable<[TrendingMovieEntity]> in
-      return movies.count == 0 ? Observable.empty() : Observable.just(movies)
-      }.retryWhen { errorObservable -> Observable<[TrendingMovieEntity]> in
-        return errorObservable.flatMap { error -> Observable<[TrendingMovieEntity]> in
-          guard let moyaError = error as? MoyaError,
-            moyaError.response?.statusCode == TMDBError.toManyRequests.rawValue else {
-            return Observable.error(error)
-          }
-
-          return self.fetchMovies(page: page, limit: limit).delay(1, scheduler: self.scheduler)
-        }
+    return repository.fetchMovies(page: page, limit: limit).observeOn(scheduler).map {
+      $0.map { trendingMovie -> TrendingMovieEntity in
+        entity(for: trendingMovie)
       }
+    }
   }
 
   private func mapTrendingShowsToEntities(_ trendingShows: [TrendingShow]) -> [TrendingShowEntity] {

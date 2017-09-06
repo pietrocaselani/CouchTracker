@@ -29,6 +29,15 @@ final class MovieDetailsiOSPresenter: MovieDetailsPresenter {
   }
 
   func viewDidLoad() {
+    interactor.fetchImages()
+      .map { imagesEntity -> MovieDetailsImageViewModel in
+        let posterLink = imagesEntity.posterImage()?.link
+        let backdropLink = imagesEntity.backdropImage()?.link
+        return MovieDetailsImageViewModel(posterLink: posterLink, backdropLink: backdropLink)
+      }.observeOn(MainScheduler.instance).subscribe(onNext: { [unowned self] imagesViewModel in
+        self.view?.show(images: imagesViewModel)
+      }).disposed(by: disposeBag)
+
     interactor.fetchDetails()
       .map { [unowned self] in self.mapToViewModel($0) }
       .observeOn(MainScheduler.instance)
@@ -44,9 +53,6 @@ final class MovieDetailsiOSPresenter: MovieDetailsPresenter {
   }
 
   private func mapToViewModel(_ movie: MovieEntity) -> MovieDetailsViewModel {
-    let backdropLink = movie.images.backdropImage()?.link
-    let posterLink = movie.images.posterImage()?.link
-
     let releaseDate = movie.releaseDate?.parse() ?? "Unknown".localized
     let genres = movie.genres?.map { $0.name }.joined(separator: " | ")
 
@@ -55,8 +61,6 @@ final class MovieDetailsiOSPresenter: MovieDetailsPresenter {
       tagline: movie.tagline ?? "",
       overview: movie.overview ?? "",
       genres: genres ?? "",
-      releaseDate: releaseDate,
-      posterLink: posterLink,
-      backdropLink: backdropLink)
+      releaseDate: releaseDate)
   }
 }
