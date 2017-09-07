@@ -52,5 +52,4 @@ final class TrendingCellInteractorMock: TrendingCellInteractor {
 
     return Observable.empty()
   }
-
 }
