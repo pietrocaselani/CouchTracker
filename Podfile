@@ -9,6 +9,7 @@ def ios_pods
   pod 'R.swift', '3.3.0'
   pod 'Carlos', '0.9.1'
   pod 'Kingfisher', '3.12.1'
+  pod 'RxCocoa', '3.6.1'
 end
 
 def tests_shared_pods

@@ -15,7 +15,7 @@ import TMDB_Swift
 import Moya_ObjectMapper
 import Moya
 
-final class EmptyMovieImageRepositoryMock: MovieImageRepository {
+final class EmptyImageRepositoryMock: ImageRepository {
   init(tmdbProvider: TMDBProvider, cofigurationRepository: ConfigurationRepository) {}
 
   func fetchImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
@@ -23,7 +23,7 @@ final class EmptyMovieImageRepositoryMock: MovieImageRepository {
   }
 }
 
-final class MovieImagesRepositorySampleMock: MovieImageRepository {
+final class MovieImagesRepositorySampleMock: ImageRepository {
   private let images: ImagesEntity
 
   init(tmdbProvider: TMDBProvider, cofigurationRepository: ConfigurationRepository) {
@@ -40,7 +40,7 @@ final class MovieImagesRepositorySampleMock: MovieImageRepository {
   }
 }
 
-final class MovieImageRepositoryMock: MovieImageRepository {
+final class ImageRepositoryMock: ImageRepository {
   private let provider: RxMoyaProvider<Movies>
   private let configuration: ConfigurationRepository
 
@@ -52,10 +52,10 @@ final class MovieImageRepositoryMock: MovieImageRepository {
   func fetchImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
     let observable = configuration.fetchConfiguration().flatMap { [unowned self] config -> Observable<ImagesEntity> in
       return self.provider.request(.images(movieId: movieId)).mapObject(Images.self).map {
-        let pSize = posterSize ?? .w342
-        let bSize = backdropSize ?? .w300
+        let posterSize = posterSize ?? .w342
+        let backdropSize = backdropSize ?? .w300
 
-        return entity(for: $0, using: config, posterSize: pSize, backdropSize: bSize)
+        return ImagesEntityMapper.entity(for: $0, using: config, posterSize: posterSize, backdropSize: backdropSize)
       }
     }
 

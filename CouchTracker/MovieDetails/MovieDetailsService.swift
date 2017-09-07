@@ -17,12 +17,12 @@ final class MovieDetailsService: MovieDetailsInteractor {
 
   private let repository: MovieDetailsRepository
   private let genreRepository: GenreRepository
-  private let imageRepository: MovieImageRepository
+  private let imageRepository: ImageRepository
   private let movieIds: MovieIds
   private let scheduler: SchedulerType
 
   init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
-       imageRepository: MovieImageRepository, movieIds: MovieIds, scheduler: SchedulerType) {
+       imageRepository: ImageRepository, movieIds: MovieIds, scheduler: SchedulerType) {
     self.repository = repository
     self.genreRepository = genreRepository
     self.imageRepository = imageRepository
@@ -31,7 +31,7 @@ final class MovieDetailsService: MovieDetailsInteractor {
   }
 
   convenience init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
-                   imageRepository: MovieImageRepository, movieIds: MovieIds) {
+                   imageRepository: ImageRepository, movieIds: MovieIds) {
     let scheduler = SerialDispatchQueueScheduler(qos: DispatchQueue(label: "movieDetailsServiceQueue").qos)
     self.init(repository: repository, genreRepository: genreRepository,
               imageRepository: imageRepository, movieIds: movieIds, scheduler: scheduler)
@@ -50,7 +50,7 @@ final class MovieDetailsService: MovieDetailsInteractor {
         return movie.genres?.contains(genre.slug) ?? false
       }
 
-      return entity(for: movie, with: $0.2, genres: movieGenres)
+      return MovieEntityMapper.entity(for: movie, with: $0.2, genres: movieGenres)
     }
   }
 }

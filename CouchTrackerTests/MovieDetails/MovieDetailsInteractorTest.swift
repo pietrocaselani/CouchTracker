@@ -73,7 +73,8 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let moviesGenre = genres.filter { movie.genres?.contains($0.slug) ?? false }
 
     let images = try! Images(JSON: parseToJSONObject(data: Movies.images(movieId: movie.ids.tmdb ?? -1).sampleData))
-    let imagesEntity = entity(for: images, using: configurationMock, posterSize: .w780, backdropSize: .w780)
+    let imagesEntity = ImagesEntityMapper.entity(for: images, using: configurationMock,
+                                                 posterSize: .w780, backdropSize: .w780)
 
     let expectedMovie = MovieEntity(ids: movie.ids, title: movie.title, images: imagesEntity, genres: moviesGenre,
                 tagline: movie.tagline, overview: movie.overview, releaseDate: movie.released)

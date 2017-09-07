@@ -14,7 +14,7 @@ import Trakt_Swift
 
 struct SearchResultViewModel {
   let type: SearchType
-  let movie: MovieViewModel?
+  let movie: TrendingViewModel?
 }
 
 extension SearchResultViewModel: Hashable {

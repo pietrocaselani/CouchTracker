@@ -17,5 +17,5 @@ let configurationMock = try! Configuration(JSON: parseToJSONObject(data: Configu
 func createImagesEntityMock() -> ImagesEntity {
   let images = try! Images(JSON: parseToJSONObject(data: Movies.images(movieId: -1).sampleData))
 
-  return entity(for: images, using: configurationMock)
+  return ImagesEntityMapper.entity(for: images, using: configurationMock)
 }

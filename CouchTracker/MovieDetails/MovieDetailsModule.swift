@@ -20,7 +20,7 @@ final class MovieDetailsModule {
     let repository = MovieDetailsCacheRepository(traktProvider: traktProvider)
     let genreRepository = TraktGenreRepository(traktProvider: traktProvider)
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdbProvider)
-    let imageRespository = MovieImageCachedRepository(tmdbProvider: tmdbProvider,
+    let imageRespository = ImageCachedRepository(tmdbProvider: tmdbProvider,
                                                 cofigurationRepository: configurationRepository)
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
                                          imageRepository: imageRespository, movieIds: movieIds)

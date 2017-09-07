@@ -12,10 +12,10 @@ the license agreement.
 
 import TMDB_Swift
 
-let movieImageRepositoryRealMock = MovieImageRepositoryMock(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock)
-let movieImageRepositoryMock = EmptyMovieImageRepositoryMock(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock)
+let movieImageRepositoryRealMock = ImageRepositoryMock(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock)
+let movieImageRepositoryMock = EmptyImageRepositoryMock(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock)
 
-func createMovieImagesRepositoryMock(_ images: ImagesEntity) -> MovieImageRepository {
+func createMovieImagesRepositoryMock(_ images: ImagesEntity) -> ImageRepository {
   return MovieImagesRepositorySampleMock(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock, images: images)
 }
 

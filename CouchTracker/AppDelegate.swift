@@ -9,25 +9,25 @@
 import UIKit
 import Trakt_Swift
 import TMDB_Swift
+import Carlos
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
   var window: UIWindow?
-
   private let trakt = Trakt(clientId: "1aec4225ee175a6affce5ad374140c360fd5f0ab5113e6aa1c123bd4baeb082b")
   private let tmdb = TMDB(apiKey: "d2042fb7e51f1e8c94c015dacd5074f2")
-
-  private var listMoviesModule: ListMoviesModule!
+  private var listMoviesModule: TrendingModule!
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions
     launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+    Carlos.Logger.output = {_, _ in }
 
     UINavigationBar.appearance().barTintColor = UIColor.ctblack
     UINavigationBar.appearance().tintColor = UIColor.white
     UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.ctzircon]
 
-    let view = ListMoviesModule.setupModule(traktProvider: trakt, tmdbProvider: tmdb)
+    let view = TrendingModule.setupModule(traktProvider: trakt, tmdbProvider: tmdb)
 
     guard let viewController = view as? UIViewController else {
       fatalError("view should be an instance of UIViewController")
@@ -39,5 +39,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     return true
   }
-
 }

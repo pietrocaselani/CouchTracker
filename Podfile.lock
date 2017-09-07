@@ -24,6 +24,8 @@ PODS:
     - R.swift.Library (~> 3.0.2)
   - R.swift.Library (3.0.2)
   - Result (3.2.3)
+  - RxCocoa (3.6.1):
+    - RxSwift (~> 3.6)
   - RxSwift (3.6.1)
   - RxTest (3.6.1):
     - RxSwift (~> 3.6)
@@ -35,6 +37,7 @@ DEPENDENCIES:
   - Moya-ObjectMapper/RxSwift (= 2.3.2)
   - Moya/RxSwift (= 8.0.5)
   - R.swift (= 3.3.0)
+  - RxCocoa (= 3.6.1)
   - RxTest (= 3.6.1)
   - SwiftLint (= 0.21.0)
 
@@ -49,10 +52,11 @@ SPEC CHECKSUMS:
   R.swift: bde9704d50ff36820f49e266bc88ef545e1e9b36
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
   Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
+  RxCocoa: 84a08739ab186248c7f31ce4ee92d6f8a947d690
   RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
   RxTest: 1d00348a7848c91ab5bf5d197d2378aa6b2bb356
   SwiftLint: 6de8b2d15f43c482bdec2953b8cfd696faa876e8
 
-PODFILE CHECKSUM: 4bd1e033baa7d5370922d2cc8a7baf738b1813ce
+PODFILE CHECKSUM: 2742a16f46a5f2367ce487a5d5e40ab76c480c82
 
 COCOAPODS: 1.3.1

@@ -32,7 +32,7 @@ protocol MovieDetailsView: BaseView {
 protocol MovieDetailsInteractor: class {
 
   init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
-       imageRepository: MovieImageRepository, movieIds: MovieIds)
+       imageRepository: ImageRepository, movieIds: MovieIds)
 
   func fetchDetails() -> Observable<MovieEntity>
 }
