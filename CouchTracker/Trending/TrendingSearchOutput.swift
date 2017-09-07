@@ -16,11 +16,13 @@ final class TrendingSearchOutput: SearchResultOutput {
   private weak var view: TrendingView?
   private let router: TrendingRouter
   private let presenter: TrendingPresenter
+  private let dataSource: TrendingDataSource
 
-  init(view: TrendingView, router: TrendingRouter, presenter: TrendingPresenter) {
+  init(view: TrendingView, router: TrendingRouter, presenter: TrendingPresenter, dataSource: TrendingDataSource) {
     self.view = view
     self.router = router
     self.presenter = presenter
+    self.dataSource = dataSource
   }
 
   func handleEmptySearchResult() {
@@ -42,7 +44,10 @@ final class TrendingSearchOutput: SearchResultOutput {
   private func updateMovies(with results: [SearchResultViewModel]) {
     guard let view = view else { return }
 
-    view.show(trending: results.flatMap { $0.movie })
+    let viewModels = results.flatMap { $0.movie }
+
+    dataSource.viewModels = viewModels
+    view.showTrendingsView()
   }
 
   private func fetchTrendingMovies() {

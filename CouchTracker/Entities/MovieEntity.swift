@@ -16,7 +16,6 @@ import Foundation
 struct MovieEntity: Hashable {
   let ids: MovieIds
   let title: String?
-  let images: ImagesEntity
   let genres: [Genre]?
   let tagline: String?
   let overview: String?
@@ -40,8 +39,6 @@ struct MovieEntity: Hashable {
     if let releaseDateHash = releaseDate?.hashValue {
       hash = hash ^ releaseDateHash
     }
-
-    hash = hash ^ images.hashValue
 
     genres?.forEach { hash = hash ^ $0.hashValue }
 

@@ -38,9 +38,12 @@ final class TrendingModule {
     let interactor = TrendingService(repository: repository, imageRepository: imageRepository)
     let router = TrendingiOSRouter(viewController: viewController, traktProvider: traktProvider,
                                      tmdbProvider: tmdbProvider)
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router)
 
-    let searchOutput = TrendingSearchOutput(view: view, router: router, presenter: presenter)
+    let dataSource = TrendingCollectionViewDataSource(imageRepository: imageRepository)
+
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
+
+    let searchOutput = TrendingSearchOutput(view: view, router: router, presenter: presenter, dataSource: dataSource)
 
     view.presenter = presenter
 

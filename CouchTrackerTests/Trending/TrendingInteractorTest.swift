@@ -74,7 +74,7 @@ final class TrendingInteractorTest: XCTestCase {
     let connectionError = TrendingError.noConnection("There is no connection active")
 
     let repository = ErrorTrendingRepositoryMock(error: connectionError)
-    let interactor = TrendingService(repository: repository, imageRepository: movieImageRepositoryMock, scheduler: scheduler)
+    let interactor = TrendingService(repository: repository, imageRepository: imageRepositoryMock, scheduler: scheduler)
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(moviesObserver)
 
@@ -93,7 +93,7 @@ final class TrendingInteractorTest: XCTestCase {
     let connectionError = TrendingError.noConnection("There is no connection active")
 
     let repository = ErrorTrendingRepositoryMock(error: connectionError)
-    let interactor = TrendingService(repository: repository, imageRepository: movieImageRepositoryMock, scheduler: scheduler)
+    let interactor = TrendingService(repository: repository, imageRepository: imageRepositoryMock, scheduler: scheduler)
 
     let subscription = interactor.fetchShows(page: 0, limit: 10).subscribe(showsObserver)
 
@@ -112,7 +112,7 @@ final class TrendingInteractorTest: XCTestCase {
     let movies = createMockMovies()
 
     let repository = TrendingMoviesRepositoryMock(movies: movies)
-    let interactor = TrendingService(repository: repository, imageRepository: movieImageRepositoryRealMock, scheduler: scheduler)
+    let interactor = TrendingService(repository: repository, imageRepository: imageRepositoryRealMock, scheduler: scheduler)
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(moviesObserver)
 
@@ -123,9 +123,7 @@ final class TrendingInteractorTest: XCTestCase {
     scheduler.start()
 
     let expectedMovies = movies.map { trendingMovie -> TrendingMovieEntity in
-      let images = createImagesMock(movieId: trendingMovie.movie.ids.tmdb ?? -1)
-      return MovieEntityMapper.entity(for: trendingMovie,
-                                      with: ImagesEntityMapper.entity(for: images, using: configurationMock))
+      return MovieEntityMapper.entity(for: trendingMovie)
     }
 
     let events: [Recorded<Event<[TrendingMovieEntity]>>] = [next(0, expectedMovies), completed(0)]
@@ -136,7 +134,7 @@ final class TrendingInteractorTest: XCTestCase {
   func testTrendingInteractor_fetchShowsSuccessReceivesData_emitsEntitiesAndCompleted() {
     let repository = trendingRepositoryMock
     let interactor = TrendingService(repository: repository,
-                                     imageRepository: movieImageRepositoryRealMock, scheduler: scheduler)
+                                     imageRepository: imageRepositoryRealMock, scheduler: scheduler)
 
     let subscription = interactor.fetchShows(page: 0, limit: 10).subscribe(showsObserver)
 

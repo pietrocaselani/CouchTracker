@@ -38,16 +38,17 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsView {
     overviewLabel.text = details.overview
     releaseDateLabel.text = details.releaseDate
     genresLabel.text = details.genres
+  }
 
-    if let backdropLink = details.backdropLink {
+  func show(images: MovieDetailsImageViewModel) {
+    if let backdropLink = images.backdropLink {
       backdropImageView.kf.setImage(with: URL(string: backdropLink), placeholder: R.image.backdropPlaceholder(),
                                     options: nil, progressBlock: nil, completionHandler: nil)
     }
 
-    if let posterLink = details.posterLink {
+    if let posterLink = images.posterLink {
       posterImageView.kf.setImage(with: URL(string: posterLink), placeholder: R.image.posterPlacehoder(),
                                   options: nil, progressBlock: nil, completionHandler: nil)
     }
   }
-
 }

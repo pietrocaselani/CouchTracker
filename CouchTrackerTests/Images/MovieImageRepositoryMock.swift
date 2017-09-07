@@ -23,7 +23,7 @@ final class EmptyImageRepositoryMock: ImageRepository {
   }
 }
 
-final class MovieImagesRepositorySampleMock: ImageRepository {
+final class ImagesRepositorySampleMock: ImageRepository {
   private let images: ImagesEntity
 
   init(tmdbProvider: TMDBProvider, cofigurationRepository: ConfigurationRepository) {

@@ -15,14 +15,20 @@ import RxSwift
 import Trakt_Swift
 
 final class MovieDetailsViewMock: MovieDetailsView {
-  var invokedPresenterSetter = false
   var presenter: MovieDetailsPresenter!
   var invokedShow = false
   var invokedShowParameters: (details: MovieDetailsViewModel, Void)?
+  var invokedShowImages = false
+  var invokedShowImagesParameters: (images: MovieDetailsImageViewModel, Void)?
 
   func show(details: MovieDetailsViewModel) {
     invokedShow = true
     invokedShowParameters = (details, ())
+  }
+
+  func show(images: MovieDetailsImageViewModel) {
+    invokedShowImages = true
+    invokedShowImagesParameters = (images, ())
   }
 }
 
@@ -81,16 +87,19 @@ final class MovieDetailsServiceMock: MovieDetailsInteractor {
   func fetchDetails() -> Observable<MovieEntity> {
     let detailsObservable = repository.fetchDetails(movieId: movieIds.slug)
     let genresObservable = genreRepository.fetchMoviesGenres()
-    let imagesObservable = imageRepository.fetchImages(for: movieIds.tmdb ?? -1, posterSize: nil, backdropSize: nil)
 
-    return Observable.combineLatest(detailsObservable, genresObservable, imagesObservable) { [unowned self] (movie, genres, images) -> MovieEntity in
+    return Observable.combineLatest(detailsObservable, genresObservable) { (movie, genres) in
       let movieGenres = genres.filter { genre -> Bool in
         return movie.genres?.contains(genre.slug) ?? false
       }
 
-      return MovieEntity(ids: self.movieIds, title: movie.title, images: images, genres: movieGenres,
-                         tagline: movie.tagline, overview: movie.overview, releaseDate: movie.released)
+      return MovieEntityMapper.entity(for: movie, with: movieGenres)
     }
+  }
+
+  func fetchImages() -> Observable<ImagesEntity> {
+    guard let tmdbId = movieIds.tmdb else { return Observable.empty() }
+    return imageRepository.fetchImages(for: tmdbId, posterSize: nil, backdropSize: nil)
   }
 }
 

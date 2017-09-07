@@ -15,13 +15,9 @@ import RxCocoa
 import RxSwift
 
 final class TrendingViewController: UIViewController {
-
-  private typealias TrendingCellFactory = SimpleCollectionViewDataSource<TrendingViewModel>.CellFactory
-
   var presenter: TrendingPresenter!
   var searchView: SearchView!
 
-  fileprivate var dataSource: SimpleCollectionViewDataSource<TrendingViewModel>!
   private let disposeBag = DisposeBag()
 
   @IBOutlet weak var collectionView: UICollectionView!
@@ -36,48 +32,32 @@ final class TrendingViewController: UIViewController {
       fatalError("searchView should be an instance of UIView")
     }
 
+    guard let collectionViewDataSource = presenter.dataSource as? UICollectionViewDataSource else {
+      fatalError("dataSource should be an instance of UICollectionViewDataSource")
+    }
+
     trendingTypeSegmentedControl.setTitle(R.string.localizable.movies(), forSegmentAt: 0)
     trendingTypeSegmentedControl.setTitle(R.string.localizable.shows(), forSegmentAt: 1)
 
     trendingTypeSegmentedControl.rx.value
-        .map { $0 == 0 ? TrendingType.movies : TrendingType.shows }
-        .bind(to: presenter.currentTrendingType)
-        .disposed(by: disposeBag)
+      .map { $0 == 0 ? TrendingType.movies : TrendingType.shows }
+      .bind(to: presenter.currentTrendingType)
+      .disposed(by: disposeBag)
 
-    emptyLabel.text = "Sorry!\nNo movies to show right now"
+    emptyLabel.text = "No movies to show right now".localized
     collectionView.delegate = self
-
-    configureMoviesDataSource()
 
     searchContainer.addSubview(searchView)
 
+    collectionView.dataSource = collectionViewDataSource
+
     presenter.viewDidLoad()
-  }
-
-  private func configureMoviesDataSource() {
-    let cellFactory: TrendingCellFactory = { (collectionView, indexPath, model) -> UICollectionViewCell in
-
-      let identifier = R.reuseIdentifier.trendingCell
-
-      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) else {
-        fatalError("cell isn't an instance of TrendingCell.")
-      }
-
-      cell.configure(for: model)
-
-      return cell
-    }
-
-    dataSource = SimpleCollectionViewDataSource<TrendingViewModel>(cellFactory: cellFactory)
-    self.collectionView.dataSource = dataSource
   }
 }
 
 extension TrendingViewController: TrendingView {
-  func show(trending: [TrendingViewModel]) {
+  func showTrendingsView() {
     makeListVisible()
-
-    dataSource.elements = trending
     collectionView.reloadData()
   }
 

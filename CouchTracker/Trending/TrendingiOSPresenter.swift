@@ -17,6 +17,7 @@ final class TrendingiOSPresenter: TrendingPresenter {
   private static let limitPerPage = 25
 
   weak var view: TrendingView?
+  var dataSource: TrendingDataSource
   var currentTrendingType = Variable<TrendingType>(.movies)
 
   private let interactor: TrendingInteractor
@@ -27,10 +28,11 @@ final class TrendingiOSPresenter: TrendingPresenter {
   private var currentMoviesPage = 0
   private var currentShowsPage = 0
 
-  init(view: TrendingView, interactor: TrendingInteractor, router: TrendingRouter) {
+  init(view: TrendingView, interactor: TrendingInteractor, router: TrendingRouter, dataSource: TrendingDataSource) {
     self.view = view
     self.interactor = interactor
     self.router = router
+    self.dataSource = dataSource
   }
 
   func viewDidLoad() {
@@ -41,8 +43,8 @@ final class TrendingiOSPresenter: TrendingPresenter {
 
   private func loadTrendingMedia(of type: TrendingType) {
     switch type {
-      case .movies: fetchMovies()
-      case .shows: fetchShows()
+    case .movies: fetchMovies()
+    case .shows: fetchShows()
     }
   }
 
@@ -79,7 +81,9 @@ final class TrendingiOSPresenter: TrendingPresenter {
         return
       }
 
-      view.show(trending: $0)
+      self.dataSource.viewModels = $0
+
+      view.showTrendingsView()
       }, onError: { [unowned self] in
         guard let moviesListError = $0 as? TrendingError else {
           self.router.showError(message: $0.localizedDescription)

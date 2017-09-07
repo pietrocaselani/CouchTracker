@@ -23,7 +23,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let movie = createMovieDetailsMock()
     let repository = MovieDetailsStoreMock(movie: movie)
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
-                                             imageRepository: movieImageRepositoryRealMock, movieIds: movie.ids)
+                                             imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
     let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.viewDidLoad()
@@ -33,21 +33,52 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let genres = createMoviesGenresMock()
     let movieGenres = genres.filter { movie.genres?.contains($0.slug) ?? false }.map { $0.name }
 
-    let images = createImagesMock(movieId: movie.ids.tmdb ?? -1)
-    let imagesEntity = ImagesEntityMapper.entity(for: images, using: configurationMock,
-                                                 posterSize: .w342, backdropSize: .w300)
-
     let viewModel = MovieDetailsViewModel(
         title: movie.title ?? "TBA",
         tagline: movie.tagline ?? "",
         overview: movie.overview ?? "",
         genres: movieGenres.joined(separator: " | "),
-        releaseDate: movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!),
-        posterLink: imagesEntity.posterImage()?.link,
-        backdropLink: imagesEntity.backdropImage()?.link)
+        releaseDate: movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!))
 
     XCTAssertTrue(view.invokedShow)
     XCTAssertEqual(view.invokedShowParameters?.details, viewModel)
+  }
+
+  func testMovieDetailsPresenter_fetchImagesSuccess_andNotifyView() {
+    let movie = createMovieMock(for: "the-dark-knight-2008")
+    let repository = MovieDetailsStoreMock(movie: movie)
+    let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
+                                             imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
+    let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
+
+    presenter.viewDidLoad()
+
+    let posterLink = "https:/image.tmdb.org/t/p/w342/fpemzjF623QVTe98pCVlwwtFC5N.jpg"
+    let backdropLink = "https:/image.tmdb.org/t/p/w300/fCayJrkfRaCRCTh8GqN30f8oyQF.jpg"
+    let viewModel = MovieDetailsImageViewModel(posterLink: posterLink, backdropLink: backdropLink)
+
+    XCTAssertTrue(view.invokedShowImages)
+    XCTAssertEqual(view.invokedShowImagesParameters?.images, viewModel)
+  }
+
+  func testMovieDetailsPresenter_fetchImagesFailure_andDontNotifyView() {
+    let movie = createMovieMock(for: "the-dark-knight-2008")
+    let repository = MovieDetailsStoreMock(movie: movie)
+
+    let json: [String : Any?] = ["trakt": 23,
+                                 "slug": "1992-23",
+                                 "imdb": "tt0468569",
+                                 "tmdb": nil]
+
+    let movieIds = try! MovieIds(JSON: json)
+
+    let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
+                                             imageRepository: imageRepositoryRealMock, movieIds: movieIds)
+    let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
+
+    presenter.viewDidLoad()
+
+    XCTAssertFalse(view.invokedShowImages)
   }
 
   func testMovieDetailsPresenter_fetchFailure_andPresentErrorMessage() {
@@ -56,7 +87,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let detailsError = MovieDetailsError.noConnection(errorMessage)
     let repository = ErrorMovieDetailsStoreMock(error: detailsError)
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
-                                             imageRepository: movieImageRepositoryMock, movieIds: movie.ids)
+                                             imageRepository: imageRepositoryMock, movieIds: movie.ids)
     let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.viewDidLoad()
@@ -71,7 +102,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let error = NSError(domain: "com.arctouch.CouchTracker", code: 10, userInfo: [NSLocalizedDescriptionKey: errorMessage])
     let repository = ErrorMovieDetailsStoreMock(error: error)
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
-                                             imageRepository: movieImageRepositoryMock, movieIds: movie.ids)
+                                             imageRepository: imageRepositoryMock, movieIds: movie.ids)
     let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
 
     presenter.viewDidLoad()
