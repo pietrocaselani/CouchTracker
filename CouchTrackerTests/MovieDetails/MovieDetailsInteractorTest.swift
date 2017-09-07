@@ -21,6 +21,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
   private let scheduler: TestScheduler = TestScheduler(initialClock: 0)
   private var observer: TestableObserver<MovieEntity>!
   private var imagesObserver: TestableObserver<ImagesEntity>!
+  private var disposable: Disposable?
 
   override func setUp() {
     super.setUp()
@@ -31,6 +32,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
   override func tearDown() {
     observer = nil
+    disposable?.dispose()
     super.tearDown()
   }
 
@@ -61,11 +63,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
                                          imageRepository: imageRepository, movieIds: movieIds)
 
-    let disposable = interactor.fetchImages().subscribe(imagesObserver)
-
-    scheduler.scheduleAt(600) {
-      disposable.dispose()
-    }
+    disposable = interactor.fetchImages().subscribe(imagesObserver)
 
     scheduler.start()
 
@@ -83,11 +81,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
                                          imageRepository: imageRepository, movieIds: movie.ids)
 
-    let disposable = interactor.fetchImages().subscribe(imagesObserver)
-
-    scheduler.scheduleAt(600) {
-      disposable.dispose()
-    }
+    disposable = interactor.fetchImages().subscribe(imagesObserver)
 
     scheduler.start()
 
@@ -114,11 +108,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
                                          imageRepository: imageRepository, movieIds: movie.ids, scheduler: scheduler)
 
-    let subscription = interactor.fetchDetails().subscribe(observer)
-
-    scheduler.scheduleAt(600) {
-      subscription.dispose()
-    }
+    disposable = interactor.fetchDetails().subscribe(observer)
 
     scheduler.start()
 
@@ -135,11 +125,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
                                          imageRepository: imageRepositoryRealMock,
                                          movieIds: movie.ids, scheduler: scheduler)
 
-    let subscription = interactor.fetchDetails().subscribe(observer)
-
-    scheduler.scheduleAt(600) {
-      subscription.dispose()
-    }
+    disposable = interactor.fetchDetails().subscribe(observer)
 
     scheduler.start()
 
@@ -162,11 +148,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
                                          imageRepository: imageRepositoryMock,
                                          movieIds: movieIds, scheduler: scheduler)
 
-    let subscription = interactor.fetchDetails().subscribe(observer)
-
-    scheduler.scheduleAt(600) {
-      subscription.dispose()
-    }
+    disposable = interactor.fetchDetails().subscribe(observer)
 
     scheduler.start()
 
@@ -176,5 +158,4 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
     XCTAssertEqual(observer.events[0].value.error as! MovieDetailsError, connectionError)
   }
-
 }
