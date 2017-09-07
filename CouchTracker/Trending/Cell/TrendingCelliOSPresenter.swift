@@ -13,7 +13,6 @@ the license agreement.
 import RxSwift
 
 final class TrendingCelliOSPresenter: TrendingCellPresenter {
-
   private weak var view: TrendingCellView?
   private let interactor: TrendingCellInteractor
   private let viewModel: TrendingViewModel

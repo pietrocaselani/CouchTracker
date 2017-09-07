@@ -13,7 +13,6 @@ the license agreement.
 import RxSwift
 
 final class TrendingCellService: TrendingCellInteractor {
-
   private let imageRepository: ImageRepository
 
   init(imageRepository: ImageRepository) {
