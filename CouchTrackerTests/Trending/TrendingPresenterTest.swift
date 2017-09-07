@@ -25,7 +25,7 @@ final class TrendingPresenterTest: XCTestCase {
 
   func testTrendingPresenter_fetchMoviesSuccessWithEmptyData_andPresentNothing() {
     let repository = EmptyTrendingRepositoryMock()
-    let interactor = TrendingServiceMock(repository: repository, imageRepository: movieImageRepositoryMock)
+    let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
 
     presenter.viewDidLoad()
@@ -36,7 +36,7 @@ final class TrendingPresenterTest: XCTestCase {
 
   func testTrendingPresenter_fetchShowsSuccessWithEmptyData_andPresentNothing() {
     let repository = EmptyTrendingRepositoryMock()
-    let interactor = TrendingServiceMock(repository: repository, imageRepository: movieImageRepositoryMock)
+    let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
 
     presenter.currentTrendingType.value = .shows
@@ -44,12 +44,14 @@ final class TrendingPresenterTest: XCTestCase {
 
     XCTAssertTrue(view.invokedShowEmptyView)
     XCTAssertFalse(view.invokedShow)
+    XCTAssertFalse(dataSource.invokedSetViewModels)
+    XCTAssertTrue(dataSource.viewModels.isEmpty)
   }
 
   func testTrendingPresenter_fetchMoviesFailure_andPresentError() {
     let error = TrendingError.parseError("Invalid json")
     let repository = ErrorTrendingRepositoryMock(error: error)
-    let interactor = TrendingServiceMock(repository: repository, imageRepository: movieImageRepositoryMock)
+    let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
 
     presenter.viewDidLoad()
@@ -61,7 +63,7 @@ final class TrendingPresenterTest: XCTestCase {
   func testTrendingPresenter_fetchShowsFailure_andPresentError() {
     let error = TrendingError.parseError("Invalid json")
     let repository = ErrorTrendingRepositoryMock(error: error)
-    let interactor = TrendingServiceMock(repository: repository, imageRepository: movieImageRepositoryMock)
+    let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
 
     presenter.currentTrendingType.value = .shows
@@ -86,6 +88,8 @@ final class TrendingPresenterTest: XCTestCase {
     }
 
     XCTAssertTrue(view.invokedShow)
+    XCTAssertTrue(dataSource.invokedSetViewModels)
+    XCTAssertEqual(dataSource.viewModels, expectedViewModel)
   }
 
   func testTrendingPresenter_fetchShowsSuccess_andPresentShows() {
@@ -96,8 +100,6 @@ final class TrendingPresenterTest: XCTestCase {
 
     presenter.currentTrendingType.value = .shows
     presenter.viewDidLoad()
-
-    let expectedViewModels = createTrendingShowsMock().map { viewModel(for: $0.show) }
 
     XCTAssertTrue(view.invokedShow)
   }
@@ -119,7 +121,7 @@ final class TrendingPresenterTest: XCTestCase {
   func testTrendingPresenter_fetchMoviesFailure_andIsCustomError() {
     let userInfo = [NSLocalizedDescriptionKey: "Custom list movies error"]
     let error = NSError(domain: "com.arctouch.CouchTracker", code: 10, userInfo: userInfo)
-    let interactor = TrendingServiceMock(repository: ErrorTrendingRepositoryMock(error: error), imageRepository: movieImageRepositoryMock)
+    let interactor = TrendingServiceMock(repository: ErrorTrendingRepositoryMock(error: error), imageRepository: imageRepositoryMock)
 
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
 

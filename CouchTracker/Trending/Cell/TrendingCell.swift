@@ -20,7 +20,7 @@ final class TrendingCell: UICollectionViewCell, TrendingCellView {
 
   var presenter: TrendingCellPresenter! {
     didSet {
-      presenter.viewDidLoad()
+      presenter.viewWillAppear()
     }
   }
 

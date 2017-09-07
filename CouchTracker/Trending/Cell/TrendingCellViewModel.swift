@@ -10,6 +10,14 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-struct TrendingCellViewModel {
+struct TrendingCellViewModel: Hashable {
   let title: String
+
+  var hashValue: Int {
+    return title.hashValue
+  }
+
+  static func == (lhs: TrendingCellViewModel, rhs: TrendingCellViewModel) -> Bool {
+    return lhs.hashValue == rhs.hashValue
+  }
 }

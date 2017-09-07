@@ -164,5 +164,11 @@ final class TrendingServiceMock: TrendingInteractor {
 }
 
 final class TrendingDataSourceMock: TrendingDataSource {
-  var viewModels = [TrendingViewModel]()
+  var invokedSetViewModels = false
+
+  var viewModels = [TrendingViewModel]() {
+    didSet {
+      invokedSetViewModels = true
+    }
+  }
 }

@@ -74,7 +74,7 @@ final class TrendingInteractorTest: XCTestCase {
     let connectionError = TrendingError.noConnection("There is no connection active")
 
     let repository = ErrorTrendingRepositoryMock(error: connectionError)
-    let interactor = TrendingService(repository: repository, imageRepository: movieImageRepositoryMock, scheduler: scheduler)
+    let interactor = TrendingService(repository: repository, imageRepository: imageRepositoryMock, scheduler: scheduler)
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(moviesObserver)
 
@@ -93,7 +93,7 @@ final class TrendingInteractorTest: XCTestCase {
     let connectionError = TrendingError.noConnection("There is no connection active")
 
     let repository = ErrorTrendingRepositoryMock(error: connectionError)
-    let interactor = TrendingService(repository: repository, imageRepository: movieImageRepositoryMock, scheduler: scheduler)
+    let interactor = TrendingService(repository: repository, imageRepository: imageRepositoryMock, scheduler: scheduler)
 
     let subscription = interactor.fetchShows(page: 0, limit: 10).subscribe(showsObserver)
 
@@ -112,7 +112,7 @@ final class TrendingInteractorTest: XCTestCase {
     let movies = createMockMovies()
 
     let repository = TrendingMoviesRepositoryMock(movies: movies)
-    let interactor = TrendingService(repository: repository, imageRepository: movieImageRepositoryRealMock, scheduler: scheduler)
+    let interactor = TrendingService(repository: repository, imageRepository: imageRepositoryRealMock, scheduler: scheduler)
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(moviesObserver)
 
@@ -134,7 +134,7 @@ final class TrendingInteractorTest: XCTestCase {
   func testTrendingInteractor_fetchShowsSuccessReceivesData_emmitsEntitiesAndCompleted() {
     let repository = trendingRepositoryMock
     let interactor = TrendingService(repository: repository,
-                                     imageRepository: movieImageRepositoryRealMock, scheduler: scheduler)
+                                     imageRepository: imageRepositoryRealMock, scheduler: scheduler)
 
     let subscription = interactor.fetchShows(page: 0, limit: 10).subscribe(showsObserver)
 

@@ -25,7 +25,7 @@ extension MovieDetailsViewModel: Equatable, Hashable {
   }
 
   var hashValue: Int {
-    var hash = title.hashValue ^ releaseDate.hashValue ^ tagline.hashValue
+    let hash = title.hashValue ^ releaseDate.hashValue ^ tagline.hashValue
     return hash ^ overview.hashValue ^ genres.hashValue ^ releaseDate.hashValue
   }
 }

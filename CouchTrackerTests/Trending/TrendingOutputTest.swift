@@ -21,7 +21,7 @@ final class TrendingOutputTest: XCTestCase {
 
   private func setupSearchOutputWithEmptyStore() -> SearchResultOutput {
     let repository = EmptyTrendingRepositoryMock()
-    let interactor = TrendingService(repository: repository, imageRepository: movieImageRepositoryMock)
+    let interactor = TrendingService(repository: repository, imageRepository: imageRepositoryMock)
     presenter = TrendingPresenterMock(view: view, interactor: interactor, router: router, dataSource: dataSource)
     return TrendingSearchOutput(view: view, router: router, presenter: presenter, dataSource: dataSource)
   }
@@ -62,8 +62,6 @@ final class TrendingOutputTest: XCTestCase {
     }
 
     output.handleSearch(results: viewModels)
-
-    let expectedParameters = viewModels.flatMap { $0.movie }
 
     XCTAssertTrue(view.invokedShow)
   }

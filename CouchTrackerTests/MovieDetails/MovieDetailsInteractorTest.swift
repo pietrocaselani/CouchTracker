@@ -20,11 +20,13 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
   private let scheduler: TestScheduler = TestScheduler(initialClock: 0)
   private var observer: TestableObserver<MovieEntity>!
+  private var imagesObserver: TestableObserver<ImagesEntity>!
 
   override func setUp() {
     super.setUp()
 
     observer = scheduler.createObserver(MovieEntity.self)
+    imagesObserver = scheduler.createObserver(ImagesEntity.self)
   }
 
   override func tearDown() {
@@ -32,11 +34,83 @@ final class MovieDetailsInteractorTest: XCTestCase {
     super.tearDown()
   }
 
+  func testMovieDetailsInteractor_initWithDefaultScheduler() {
+    let movie = createMovieMock(for: "the-dark-knight-2008")
+    let repository = MovieDetailsStoreMock(movie: movie)
+    let genreRepository = GenreRepositoryMock()
+    let imageRepository = imageRepositoryMock
+    let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
+                                         imageRepository: imageRepository, movieIds: movie.ids)
+
+    XCTAssertNotNil(interactor)
+  }
+
+  func testMovieDetailsInteractor_fetchImagesReceivesEmptyData_emitsOnCompleted() {
+    let movie = createMovieMock(for: "the-dark-knight-2008")
+    let repository = MovieDetailsStoreMock(movie: movie)
+    let genreRepository = GenreRepositoryMock()
+    let imageRepository = imageRepositoryMock
+
+    let json: [String : Any?] = ["trakt": 23,
+                "slug": "1992-23",
+                "imdb": "tt0468569",
+                "tmdb": nil]
+
+    let movieIds = try! MovieIds(JSON: json)
+
+    let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
+                                         imageRepository: imageRepository, movieIds: movieIds)
+
+    let disposable = interactor.fetchImages().subscribe(imagesObserver)
+
+    scheduler.scheduleAt(600) {
+      disposable.dispose()
+    }
+
+    scheduler.start()
+
+    let events: [Recorded<Event<ImagesEntity>>] = [completed(0)]
+
+    XCTAssertEqual(imagesObserver.events, events)
+  }
+
+  func testMovieDetailsInteractor_fetchImagesReceivesData_emitsImagesAndOnCompleted() {
+    let movie = createMovieMock(for: "the-dark-knight-2008")
+    let repository = MovieDetailsStoreMock(movie: movie)
+    let genreRepository = GenreRepositoryMock()
+    let imageRepository = imageRepositoryRealMock
+
+    let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
+                                         imageRepository: imageRepository, movieIds: movie.ids)
+
+    let disposable = interactor.fetchImages().subscribe(imagesObserver)
+
+    scheduler.scheduleAt(600) {
+      disposable.dispose()
+    }
+
+    scheduler.start()
+
+    let backdrops = [ImageEntity(link: "https:/image.tmdb.org/t/p/w780/fCayJrkfRaCRCTh8GqN30f8oyQF.jpg",
+                                width: 1280, height: 720, iso6391: nil, aspectRatio: 1.77777777777778,
+                                voteAverage: 0, voteCount: 0)]
+
+    let posters = [ImageEntity(link: "https:/image.tmdb.org/t/p/w780/fpemzjF623QVTe98pCVlwwtFC5N.jpg",
+                                 width: 1200, height: 1800, iso6391: "en", aspectRatio: 0.666666666666667,
+                                 voteAverage: 0, voteCount: 0)]
+
+    let expectedImageEntity = ImagesEntity(identifier: 550, backdrops: backdrops, posters: posters)
+
+    let events: [Recorded<Event<ImagesEntity>>] = [next(0, expectedImageEntity), completed(0)]
+
+    XCTAssertEqual(imagesObserver.events, events)
+  }
+
   func testMovieDetailsInteractor_fetchSuccessWithEmptyData_andEmitsOnlyOnCompleted() {
     let movie = createMovieMock(for: "the-dark-knight-2008")
     let repository = MovieDetailsStoreMock(movie: createMovieDetailsMock())
     let genreRepository = GenreRepositoryMock()
-    let imageRepository = movieImageRepositoryMock
+    let imageRepository = imageRepositoryMock
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
                                          imageRepository: imageRepository, movieIds: movie.ids, scheduler: scheduler)
 
@@ -58,7 +132,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let repository = MovieDetailsStoreMock(movie: movie)
     let genreRepository = GenreRepositoryMock()
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
-                                         imageRepository: movieImageRepositoryRealMock,
+                                         imageRepository: imageRepositoryRealMock,
                                          movieIds: movie.ids, scheduler: scheduler)
 
     let subscription = interactor.fetchDetails().subscribe(observer)
@@ -85,7 +159,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let genreRepository = GenreRepositoryMock()
     let movieIds = createMovieDetailsMock().ids
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
-                                         imageRepository: movieImageRepositoryMock,
+                                         imageRepository: imageRepositoryMock,
                                          movieIds: movieIds, scheduler: scheduler)
 
     let subscription = interactor.fetchDetails().subscribe(observer)

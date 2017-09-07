@@ -22,7 +22,7 @@ protocol TrendingCellView: class {
 protocol TrendingCellPresenter: class {
   init(view: TrendingCellView, interactor: TrendingCellInteractor, viewModel: TrendingViewModel)
 
-  func viewDidLoad()
+  func viewWillAppear()
 }
 
 protocol TrendingCellInteractor: class {

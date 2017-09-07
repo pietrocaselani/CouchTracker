@@ -25,7 +25,7 @@ final class TrendingCelliOSPresenter: TrendingCellPresenter {
     self.viewModel = viewModel
   }
 
-  func viewDidLoad() {
+  func viewWillAppear() {
     view?.show(viewModel: TrendingCellViewModel(title: viewModel.title))
 
     guard let trendingType = viewModel.type else { return }

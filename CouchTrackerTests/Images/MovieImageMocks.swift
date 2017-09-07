@@ -11,12 +11,28 @@ the license agreement.
 */
 
 import TMDB_Swift
+import RxSwift
 
-let movieImageRepositoryRealMock = ImageRepositoryMock(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock)
-let movieImageRepositoryMock = EmptyImageRepositoryMock(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock)
+let imageRepositoryRealMock = ImageRepositoryMock(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock)
+let imageRepositoryMock = EmptyImageRepositoryMock(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock)
+
+final class ErrorImageRepositoryMock: ImageRepository {
+  private var error: Error!
+
+  convenience init(error: Error) {
+    self.init(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock)
+    self.error = error
+  }
+
+  init(tmdbProvider: TMDBProvider, cofigurationRepository: ConfigurationRepository) {}
+
+  func fetchImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
+    return Observable.error(error)
+  }
+}
 
 func createMovieImagesRepositoryMock(_ images: ImagesEntity) -> ImageRepository {
-  return MovieImagesRepositorySampleMock(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock, images: images)
+  return ImagesRepositorySampleMock(tmdbProvider: tmdbProviderMock, cofigurationRepository: configurationRepositoryMock, images: images)
 }
 
 func createTMDBConfigurationMock() -> Configuration {
