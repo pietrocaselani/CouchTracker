@@ -40,15 +40,12 @@ final class TrendingService: TrendingInteractor {
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovieEntity]> {
     let moviesObservable = repository.fetchMovies(page: page, limit: limit).observeOn(scheduler).map {
-      $0.filter {
-        $0.movie.ids.tmdb != nil
-      }
+      $0.filter { $0.movie.ids.tmdb != nil }
       }.flatMap { trendingMovies -> Observable<TrendingMovieEntity> in
         return Observable.from(trendingMovies).flatMap { [unowned self] movie -> Observable<TrendingMovieEntity> in
-          let tmdbId = movie.movie.ids.tmdb ?? -1
+          guard let tmdbId = movie.movie.ids.tmdb else { fatalError("TMDB id is null What a terrible failure") }
           return self.imageRepository.fetchImages(for: tmdbId, posterSize: .w342, backdropSize: .w780)
             .observeOn(self.scheduler)
-            .delay(1, scheduler: self.scheduler)
             .flatMap { images -> Observable<(TrendingMovie, ImagesEntity)> in
               return Observable.just((movie, images))
             }.map { (trendingMovie, images) -> TrendingMovieEntity in
@@ -66,7 +63,7 @@ final class TrendingService: TrendingInteractor {
             return Observable.error(error)
           }
 
-          return self.fetchMovies(page: page, limit: limit).delay(2, scheduler: self.scheduler)
+          return self.fetchMovies(page: page, limit: limit).delay(1, scheduler: self.scheduler)
         }
       }
   }

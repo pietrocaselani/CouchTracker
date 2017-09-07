@@ -46,6 +46,6 @@ final class TrendingSearchOutput: SearchResultOutput {
   }
 
   private func fetchTrendingMovies() {
-    self.presenter.fetchTrending(of: .movies)
+    self.presenter.viewDidLoad()
   }
 }

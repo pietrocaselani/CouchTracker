@@ -27,7 +27,7 @@ final class TrendingPresenterTest: XCTestCase {
     let interactor = TrendingServiceMock(repository: repository, imageRepository: movieImageRepositoryMock)
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router)
 
-    presenter.fetchTrending(of: .movies)
+    presenter.viewDidLoad()
 
     XCTAssertTrue(view.invokedShowEmptyView)
     XCTAssertFalse(view.invokedShow)
@@ -38,7 +38,8 @@ final class TrendingPresenterTest: XCTestCase {
     let interactor = TrendingServiceMock(repository: repository, imageRepository: movieImageRepositoryMock)
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router)
 
-    presenter.fetchTrending(of: .shows)
+    presenter.currentTrendingType.value = .shows
+    presenter.viewDidLoad()
 
     XCTAssertTrue(view.invokedShowEmptyView)
     XCTAssertFalse(view.invokedShow)
@@ -50,7 +51,7 @@ final class TrendingPresenterTest: XCTestCase {
     let interactor = TrendingServiceMock(repository: repository, imageRepository: movieImageRepositoryMock)
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router)
 
-    presenter.fetchTrending(of: .movies)
+    presenter.viewDidLoad()
 
     XCTAssertTrue(router.invokedShowError)
     XCTAssertEqual(router.invokedShowErrorParameters?.message, "Invalid json")
@@ -62,7 +63,8 @@ final class TrendingPresenterTest: XCTestCase {
     let interactor = TrendingServiceMock(repository: repository, imageRepository: movieImageRepositoryMock)
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router)
 
-    presenter.fetchTrending(of: .shows)
+    presenter.currentTrendingType.value = .shows
+    presenter.viewDidLoad()
 
     XCTAssertTrue(router.invokedShowError)
     XCTAssertEqual(router.invokedShowErrorParameters?.message, "Invalid json")
@@ -75,7 +77,7 @@ final class TrendingPresenterTest: XCTestCase {
     let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router)
 
-    presenter.fetchTrending(of: .movies)
+    presenter.viewDidLoad()
 
     let link = images.posterImage()?.link
 
@@ -91,7 +93,8 @@ final class TrendingPresenterTest: XCTestCase {
     let interactor = TrendingServiceMock(repository: trendingRepositoryMock, imageRepository: imagesRepository)
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router)
 
-    presenter.fetchTrending(of: .shows)
+    presenter.currentTrendingType.value = .shows
+    presenter.viewDidLoad()
 
     let expectedViewModels = createTrendingShowsMock().map { ShowViewModelMapper.viewModel(for: $0.show) }
 
@@ -107,7 +110,7 @@ final class TrendingPresenterTest: XCTestCase {
 
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router)
 
-    presenter.fetchTrending(of: .movies)
+    presenter.viewDidLoad()
 
     XCTAssertTrue(view.invokedShowEmptyView)
     XCTAssertFalse(view.invokedShow)
@@ -120,7 +123,7 @@ final class TrendingPresenterTest: XCTestCase {
 
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router)
 
-    presenter.fetchTrending(of: .movies)
+    presenter.viewDidLoad()
 
     XCTAssertTrue(router.invokedShowError)
     XCTAssertEqual(router.invokedShowErrorParameters?.message, "Custom list movies error")
@@ -134,8 +137,8 @@ final class TrendingPresenterTest: XCTestCase {
     let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router)
 
-    presenter.fetchTrending(of: .movies)
-    presenter.showDetailsOf(trending: .movies, at: movieIndex)
+    presenter.viewDidLoad()
+    presenter.showDetailsOfTrending(at: movieIndex)
 
     let expectedMovie = MovieEntityMapper.entity(for: movies[movieIndex], with: images)
 

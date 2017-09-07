@@ -1176,13 +1176,13 @@
 				644EE1501F55E8C10053D631 /* Entities */,
 				6406BED61F4DC353004661C4 /* Extensions */,
 				6406BEDE1F4DC353004661C4 /* Genres */,
+				392D90AE76ECBEC0ADB6941C /* Images */,
 				64BD42551F588F060059FFB7 /* ImagesSize.swift */,
 				647632481F44824900F277F1 /* Info.plist */,
 				647632451F44824900F277F1 /* LaunchScreen.storyboard */,
 				64BE63231F4F692B002E55EA /* Localizable.strings */,
 				64BE632E1F4F6F3F002E55EA /* Localizable.swift */,
 				6406BEBB1F4DBEFA004661C4 /* MovieDetails */,
-				392D90AE76ECBEC0ADB6941C /* Images */,
 				392D9630DA0E99CE058BF9BE /* Providers */,
 				64D2FFD91F44DFEA009E9ED3 /* R.generated.swift */,
 				648390E31F504EE500911BA0 /* Search */,
@@ -1971,6 +1971,7 @@
 				"${BUILT_PRODUCTS_DIR}/PiedPiper/PiedPiper.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1984,6 +1985,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PiedPiper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2202,6 +2204,7 @@
 				"${BUILT_PRODUCTS_DIR}/PiedPiper/PiedPiper.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -2215,6 +2218,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PiedPiper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,11 +19,12 @@ enum TrendingType {
 }
 
 protocol TrendingPresenter: class {
+  var currentTrendingType: Variable<TrendingType> { get }
+
   init(view: TrendingView, interactor: TrendingInteractor, router: TrendingRouter)
 
-  func fetchTrending(of type: TrendingType)
-
-  func showDetailsOf(trending type: TrendingType, at index: Int)
+  func viewDidLoad()
+  func showDetailsOfTrending(at index: Int)
 }
 
 protocol TrendingView: BaseView {

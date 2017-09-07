@@ -17,6 +17,8 @@ final class TrendingiOSPresenter: TrendingPresenter {
   private static let limitPerPage = 25
 
   weak var view: TrendingView?
+  var currentTrendingType = Variable<TrendingType>(.movies)
+
   private let interactor: TrendingInteractor
   private let router: TrendingRouter
   private let disposeBag = DisposeBag()
@@ -31,15 +33,21 @@ final class TrendingiOSPresenter: TrendingPresenter {
     self.router = router
   }
 
-  func fetchTrending(of type: TrendingType) {
+  func viewDidLoad() {
+    currentTrendingType.asObservable().subscribe(onNext: { [unowned self] newType in
+      self.loadTrendingMedia(of: newType)
+    }).disposed(by: disposeBag)
+  }
+
+  private func loadTrendingMedia(of type: TrendingType) {
     switch type {
       case .movies: fetchMovies()
       case .shows: fetchShows()
     }
   }
 
-  func showDetailsOf(trending type: TrendingType, at index: Int) {
-    if type == .movies {
+  func showDetailsOfTrending(at index: Int) {
+    if currentTrendingType.value == .movies {
       showDetailsOfMovie(at: index)
     }
   }

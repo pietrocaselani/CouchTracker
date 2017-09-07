@@ -1,16 +1,18 @@
 /*
-Copyright 2017 ArcTouch LLC.
-All rights reserved.
+ Copyright 2017 ArcTouch LLC.
+ All rights reserved.
 
-This file, its contents, concepts, methods, behavior, and operation
-(collectively the "Software") are protected by trade secret, patent,
-and copyright laws. The use of the Software is governed by a license
-agreement. Disclosure of the Software to third parties, in any form,
-in whole or in part, is expressly prohibited except as authorized by
-the license agreement.
-*/
+ This file, its contents, concepts, methods, behavior, and operation
+ (collectively the "Software") are protected by trade secret, patent,
+ and copyright laws. The use of the Software is governed by a license
+ agreement. Disclosure of the Software to third parties, in any form,
+ in whole or in part, is expressly prohibited except as authorized by
+ the license agreement.
+ */
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 final class TrendingViewController: UIViewController {
 
@@ -20,10 +22,12 @@ final class TrendingViewController: UIViewController {
   var searchView: SearchView!
 
   fileprivate var dataSource: SimpleCollectionViewDataSource<TrendingViewModel>!
+  private let disposeBag = DisposeBag()
 
   @IBOutlet weak var collectionView: UICollectionView!
   @IBOutlet weak var emptyLabel: UILabel!
   @IBOutlet weak var searchContainer: UIView!
+  @IBOutlet weak var trendingTypeSegmentedControl: UISegmentedControl!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,6 +36,14 @@ final class TrendingViewController: UIViewController {
       fatalError("searchView should be an instance of UIView")
     }
 
+    trendingTypeSegmentedControl.setTitle(R.string.localizable.movies(), forSegmentAt: 0)
+    trendingTypeSegmentedControl.setTitle(R.string.localizable.shows(), forSegmentAt: 1)
+
+    trendingTypeSegmentedControl.rx.value
+        .map { $0 == 0 ? TrendingType.movies : TrendingType.shows }
+        .bind(to: presenter.currentTrendingType)
+        .disposed(by: disposeBag)
+
     emptyLabel.text = "Sorry!\nNo movies to show right now"
     collectionView.delegate = self
 
@@ -39,7 +51,7 @@ final class TrendingViewController: UIViewController {
 
     searchContainer.addSubview(searchView)
 
-    presenter.fetchTrending(of: .movies)
+    presenter.viewDidLoad()
   }
 
   private func configureMoviesDataSource() {
@@ -82,6 +94,6 @@ extension TrendingViewController: TrendingView {
 
 extension TrendingViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    presenter.showDetailsOf(trending: .movies, at: indexPath.row)
+    presenter.showDetailsOfTrending(at: indexPath.row)
   }
 }

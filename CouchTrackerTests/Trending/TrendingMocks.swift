@@ -40,20 +40,19 @@ final class TrendingViewMock: TrendingView {
 }
 
 final class TrendingPresenterMock: TrendingPresenter {
-  var invokedFetchTrending = false
-  var invokedFetchTrendingParameters: (type: TrendingType, Void)?
+  let currentTrendingType = Variable<TrendingType>(.movies)
+  var invokedViewDidLoad = false
 
   init(view: TrendingView, interactor: TrendingInteractor, router: TrendingRouter) {}
 
-  func fetchTrending(of type: TrendingType) {
-    invokedFetchTrending = true
-    invokedFetchTrendingParameters = (type, ())
+  func viewDidLoad() {
+    invokedViewDidLoad = true
   }
 
   var invokedShowDetailsOfTrending = false
   var invokedShowDetailsOfTrendingParameters: (index: Int, Void)?
 
-  func showDetailsOf(trending type: TrendingType, at index: Int) {
+  func showDetailsOfTrending(at index: Int) {
     invokedShowDetailsOfTrending = true
     invokedShowDetailsOfTrendingParameters = (index, ())
   }
