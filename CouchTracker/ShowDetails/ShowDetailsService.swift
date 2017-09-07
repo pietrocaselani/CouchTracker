@@ -20,6 +20,6 @@ final class ShowDetailsService: ShowDetailsInteractor {
   }
 
   func fetchDetailsOfShow(with identifier: String) -> Single<ShowEntity> {
-    return repository.fetchDetailsOfShow(with: identifier, extended: .full).map { entity(for: $0) }
+    return repository.fetchDetailsOfShow(with: identifier, extended: .full).map { ShowEntityMapper.entity(for: $0) }
   }
 }

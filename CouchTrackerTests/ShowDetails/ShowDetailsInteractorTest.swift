@@ -57,7 +57,7 @@ final class ShowDetailsInteractorTest: XCTestCase {
 
     let json = parseToJSONObject(data: Shows.summary(showId: showId, extended: .full).sampleData)
     let show = try! Show(JSON: json)
-    let expectedEntity = entity(for: show)
+    let expectedEntity = ShowEntityMapper.entity(for: show)
 
     let disposable = interactor.fetchDetailsOfShow(with: showId).subscribe(onSuccess: { entity in
       XCTAssertEqual(entity, expectedEntity)
