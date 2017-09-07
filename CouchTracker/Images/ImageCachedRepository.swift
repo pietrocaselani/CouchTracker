@@ -35,7 +35,8 @@ final class ImageCachedRepository: ImageRepository {
     let imagesObservable = images(for: movieId)
 
     let observable = Observable.combineLatest(imagesObservable, configurationObservable) {
-      return entity(for: $0, using: $1, posterSize: posterSize ?? .w342, backdropSize: backdropSize ?? .w300)
+      return ImagesEntityMapper.entity(for: $0, using: $1,
+                                       posterSize: posterSize ?? .w342, backdropSize: backdropSize ?? .w300)
     }
 
     return observable

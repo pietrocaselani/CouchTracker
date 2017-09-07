@@ -93,7 +93,7 @@ final class MovieDetailsServiceMock: MovieDetailsInteractor {
         return movie.genres?.contains(genre.slug) ?? false
       }
 
-      return entity(for: movie, with: movieGenres)
+      return MovieEntityMapper.entity(for: movie, with: movieGenres)
     }
   }
 

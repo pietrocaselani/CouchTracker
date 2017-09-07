@@ -103,11 +103,11 @@ final class TrendingiOSPresenter: TrendingPresenter {
   }
 
   private func transformToViewModels(entities: [TrendingMovieEntity]) -> [TrendingViewModel] {
-    return entities.map { viewModel(for: $0.movie) }
+    return entities.map { MovieViewModelMapper.viewModel(for: $0.movie) }
   }
 
   private func transformToViewModels(entities: [TrendingShowEntity]) -> [TrendingViewModel] {
-    return entities.map { viewModel(for: $0.show) }
+    return entities.map { ShowViewModelMapper.viewModel(for: $0.show) }
   }
 
   private func showDetailsOfMovie(at index: Int) {

@@ -132,7 +132,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let genres = try! parseToJSONArray(data: Genres.list(.movies).sampleData).map { return try Genre(JSON: $0) }
     let moviesGenre = genres.filter { movie.genres?.contains($0.slug) ?? false }
 
-    let expectedMovie = entity(for: movie, with: moviesGenre)
+    let expectedMovie = MovieEntityMapper.entity(for: movie, with: moviesGenre)
 
     let events: [Recorded<Event<MovieEntity>>] = [next(0, expectedMovie), completed(0)]
 

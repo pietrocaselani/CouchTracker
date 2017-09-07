@@ -52,6 +52,7 @@ final class SearchiOSPresenter: SearchPresenter {
   }
 
   private func mapToViewModel(_ results: [SearchResult]) -> [SearchResultViewModel] {
-    return results.map { SearchResultViewModel(type: $0.type, movie: $0.movie.map { viewModel(for: $0) }) }
+    return results.map { SearchResultViewModel(type: $0.type,
+                                               movie: $0.movie.map { MovieViewModelMapper.viewModel(for: $0) }) }
   }
 }

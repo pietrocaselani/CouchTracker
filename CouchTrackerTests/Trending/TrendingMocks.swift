@@ -153,12 +153,12 @@ final class TrendingServiceMock: TrendingInteractor {
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovieEntity]> {
     let moviesObservable = trendingRepo.fetchMovies(page: page, limit: limit)
 
-    return moviesObservable.map { $0.map { entity(for: $0) } }
+    return moviesObservable.map { $0.map { MovieEntityMapper.entity(for: $0) } }
   }
 
   func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShowEntity]> {
     return trendingRepo.fetchShows(page: page, limit: limit).map {
-      return $0.map { entity(for: $0) }
+      return $0.map { ShowEntityMapper.entity(for: $0) }
     }
   }
 }

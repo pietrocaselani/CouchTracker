@@ -13,24 +13,28 @@ the license agreement.
 import TMDB_Swift
 import Foundation
 
-func entity(for images: Images, using configuration: Configuration,
-            posterSize: PosterImageSize = .w342, backdropSize: BackdropImageSize = .w780) -> ImagesEntity {
-  let baseURL = configuration.images.secureBaseURL as NSString
+final class ImagesEntityMapper {
+  private init() {}
 
-  let backdrops = images.backdrops.map { imageEntity(for: $0, with: baseURL, size: backdropSize.rawValue) }
-  let posters = images.posters.map { imageEntity(for: $0, with: baseURL, size: posterSize.rawValue) }
+  static func entity(for images: Images, using configuration: Configuration,
+                     posterSize: PosterImageSize = .w342, backdropSize: BackdropImageSize = .w780) -> ImagesEntity {
+    let baseURL = configuration.images.secureBaseURL as NSString
 
-  return ImagesEntity(identifier: images.identifier, backdrops: backdrops, posters: posters)
-}
+    let backdrops = images.backdrops.map { imageEntity(for: $0, with: baseURL, size: backdropSize.rawValue) }
+    let posters = images.posters.map { imageEntity(for: $0, with: baseURL, size: posterSize.rawValue) }
 
-func imageEntity(for image: Image, with baseURL: NSString, size: String) -> ImageEntity {
-  let link = (baseURL.appendingPathComponent(size) as NSString).appendingPathComponent(image.filePath)
+    return ImagesEntity(identifier: images.identifier, backdrops: backdrops, posters: posters)
+  }
 
-  return ImageEntity(link: link,
-                     width: image.width,
-                     height: image.height,
-                     iso6391: image.iso6391,
-                     aspectRatio: image.aspectRatio,
-                     voteAverage: image.voteAverage,
-                     voteCount: image.voteCount)
+  static func imageEntity(for image: Image, with baseURL: NSString, size: String) -> ImageEntity {
+    let link = (baseURL.appendingPathComponent(size) as NSString).appendingPathComponent(image.filePath)
+
+    return ImageEntity(link: link,
+                       width: image.width,
+                       height: image.height,
+                       iso6391: image.iso6391,
+                       aspectRatio: image.aspectRatio,
+                       voteAverage: image.voteAverage,
+                       voteCount: image.voteCount)
+  }
 }
