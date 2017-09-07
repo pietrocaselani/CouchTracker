@@ -12,12 +12,16 @@ the license agreement.
 
 import Trakt_Swift
 
-func entity(for show: Show, with genres: [Genre]? = nil) -> ShowEntity {
-  return ShowEntity(showIds: show.ids, title: show.title, overview: show.overview,
-             genres: genres, status: show.status, firstAired: show.firstAired)
-}
+final class ShowEntityMapper {
+  private init() {}
 
-func entity(for trendingShow: TrendingShow, with genres: [Genre]? = nil) -> TrendingShowEntity {
-  let show = entity(for: trendingShow.show, with: genres)
-  return TrendingShowEntity(show: show)
+  static func entity(for show: Show, with genres: [Genre]? = nil) -> ShowEntity {
+    return ShowEntity(showIds: show.ids, title: show.title, overview: show.overview,
+                      genres: genres, status: show.status, firstAired: show.firstAired)
+  }
+
+  static func entity(for trendingShow: TrendingShow, with genres: [Genre]? = nil) -> TrendingShowEntity {
+    let show = entity(for: trendingShow.show, with: genres)
+    return TrendingShowEntity(show: show)
+  }
 }

@@ -141,8 +141,8 @@ final class TrendingPresenterTest: XCTestCase {
 
     presenter.viewDidLoad()
     presenter.showDetailsOfTrending(at: movieIndex)
-
-    let expectedMovie = entity(for: movies[movieIndex])
+    
+    let expectedMovie = MovieEntityMapper.entity(for: movies[movieIndex])
 
     XCTAssertTrue(router.invokedShowDetails)
     XCTAssertEqual(router.invokedShowDetailsParameters?.movie, expectedMovie)

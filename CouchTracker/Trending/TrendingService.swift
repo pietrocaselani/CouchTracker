@@ -41,12 +41,12 @@ final class TrendingService: TrendingInteractor {
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovieEntity]> {
     return repository.fetchMovies(page: page, limit: limit).observeOn(scheduler).map {
       $0.map { trendingMovie -> TrendingMovieEntity in
-        entity(for: trendingMovie)
+        MovieEntityMapper.entity(for: trendingMovie)
       }
     }
   }
 
   private func mapTrendingShowsToEntities(_ trendingShows: [TrendingShow]) -> [TrendingShowEntity] {
-    return trendingShows.map { entity(for: $0) }
+    return trendingShows.map { ShowEntityMapper.entity(for: $0) }
   }
 }

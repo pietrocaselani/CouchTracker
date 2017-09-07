@@ -10,12 +10,14 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import TMDB_Swift
+import Trakt_Swift
 
-let configurationMock = try! Configuration(JSON: parseToJSONObject(data: ConfigurationService.configuration.sampleData))
-
-func createImagesEntityMock() -> ImagesEntity {
-  let images = try! Images(JSON: parseToJSONObject(data: Movies.images(movieId: -1).sampleData))
-
-  return ImagesEntityMapper.entity(for: images, using: configurationMock)
+extension ShowIds {
+  func tmdbModelType() -> TrendingViewModelType? {
+    var type: TrendingViewModelType? = nil
+    if let tmdbId = self.tmdb {
+      type = TrendingViewModelType.show(tmdbShowId: tmdbId)
+    }
+    return type
+  }
 }
