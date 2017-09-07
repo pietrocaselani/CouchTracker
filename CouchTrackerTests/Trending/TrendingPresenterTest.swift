@@ -93,7 +93,7 @@ final class TrendingPresenterTest: XCTestCase {
 
     presenter.fetchTrending(of: .shows)
 
-    let expectedViewModels = createTrendingShowsMock().map { viewModel(for: $0.show) }
+    let expectedViewModels = createTrendingShowsMock().map { ShowViewModelMapper.viewModel(for: $0.show) }
 
     XCTAssertTrue(view.invokedShow)
     XCTAssertEqual(view.invokedShowParameters!.viewModels, expectedViewModels)
@@ -137,7 +137,7 @@ final class TrendingPresenterTest: XCTestCase {
     presenter.fetchTrending(of: .movies)
     presenter.showDetailsOf(trending: .movies, at: movieIndex)
 
-    let expectedMovie = entity(for: movies[movieIndex], with: images)
+    let expectedMovie = MovieEntityMapper.entity(for: movies[movieIndex], with: images)
 
     XCTAssertTrue(router.invokedShowDetails)
     XCTAssertEqual(router.invokedShowDetailsParameters?.movie, expectedMovie)

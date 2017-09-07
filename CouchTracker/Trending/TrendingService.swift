@@ -52,7 +52,7 @@ final class TrendingService: TrendingInteractor {
             .flatMap { images -> Observable<(TrendingMovie, ImagesEntity)> in
               return Observable.just((movie, images))
             }.map { (trendingMovie, images) -> TrendingMovieEntity in
-              return entity(for: trendingMovie, with: images)
+              return MovieEntityMapper.entity(for: trendingMovie, with: images)
           }
         }
       }.subscribeOn(scheduler)
@@ -72,6 +72,6 @@ final class TrendingService: TrendingInteractor {
   }
 
   private func mapTrendingShowsToEntities(_ trendingShows: [TrendingShow]) -> [TrendingShowEntity] {
-    return trendingShows.map { entity(for: $0) }
+    return trendingShows.map { ShowEntityMapper.entity(for: $0) }
   }
 }

@@ -1,14 +1,14 @@
 /*
-Copyright 2017 ArcTouch LLC.
-All rights reserved.
+ Copyright 2017 ArcTouch LLC.
+ All rights reserved.
  
-This file, its contents, concepts, methods, behavior, and operation
-(collectively the "Software") are protected by trade secret, patent,
-and copyright laws. The use of the Software is governed by a license
-agreement. Disclosure of the Software to third parties, in any form,
-in whole or in part, is expressly prohibited except as authorized by
-the license agreement.
-*/
+ This file, its contents, concepts, methods, behavior, and operation
+ (collectively the "Software") are protected by trade secret, patent,
+ and copyright laws. The use of the Software is governed by a license
+ agreement. Disclosure of the Software to third parties, in any form,
+ in whole or in part, is expressly prohibited except as authorized by
+ the license agreement.
+ */
 
 import RxSwift
 import Trakt_Swift
@@ -32,12 +32,10 @@ final class TrendingiOSPresenter: TrendingPresenter {
   }
 
   func fetchTrending(of type: TrendingType) {
-    guard type == .movies else {
-      fetchShows()
-      return
+    switch type {
+      case .movies: fetchMovies()
+      case .shows: fetchShows()
     }
-
-    fetchMovies()
   }
 
   func showDetailsOf(trending type: TrendingType, at index: Int) {
@@ -74,30 +72,30 @@ final class TrendingiOSPresenter: TrendingPresenter {
       }
 
       view.show(trending: $0)
-    }, onError: { [unowned self] in
-      guard let moviesListError = $0 as? TrendingError else {
-        self.router.showError(message: $0.localizedDescription)
-        return
-      }
+      }, onError: { [unowned self] in
+        guard let moviesListError = $0 as? TrendingError else {
+          self.router.showError(message: $0.localizedDescription)
+          return
+        }
 
-      self.router.showError(message: moviesListError.message)
-    }, onCompleted: { [unowned self] in
-      guard let view = self.view else { return }
+        self.router.showError(message: moviesListError.message)
+      }, onCompleted: { [unowned self] in
+        guard let view = self.view else { return }
 
-      let viewModelsCount = type == .movies ? self.movies.count : self.shows.count
+        let viewModelsCount = type == .movies ? self.movies.count : self.shows.count
 
-      guard viewModelsCount == 0 else { return }
+        guard viewModelsCount == 0 else { return }
 
-      view.showEmptyView()
+        view.showEmptyView()
     }).disposed(by: disposeBag)
   }
 
   private func transformToViewModels(entities: [TrendingMovieEntity]) -> [TrendingViewModel] {
-    return entities.map { viewModel(for: $0.movie) }
+    return entities.map { MovieViewModelMapper.viewModel(for: $0.movie) }
   }
 
   private func transformToViewModels(entities: [TrendingShowEntity]) -> [TrendingViewModel] {
-    return entities.map { viewModel(for: $0.show) }
+    return entities.map { ShowViewModelMapper.viewModel(for: $0.show) }
   }
 
   private func showDetailsOfMovie(at index: Int) {

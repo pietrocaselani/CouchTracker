@@ -12,11 +12,15 @@ the license agreement.
 
 import Trakt_Swift
 
-func viewModel(for movie: MovieEntity, defaultTitle: String = "TBA".localized) -> TrendingViewModel {
-  let image = movie.images.posterImage()
-  return TrendingViewModel(title: movie.title ?? defaultTitle, imageLink: image?.link)
-}
+final class MovieViewModelMapper {
+  private init() {}
 
-func viewModel(for movie: Movie, defaultTitle: String = "TBA".localized) -> TrendingViewModel {
-  return TrendingViewModel(title: movie.title ?? defaultTitle, imageLink: nil)
+  static func viewModel(for movie: MovieEntity, defaultTitle: String = "TBA".localized) -> TrendingViewModel {
+    let image = movie.images.posterImage()
+    return TrendingViewModel(title: movie.title ?? defaultTitle, imageLink: image?.link)
+  }
+
+  static func viewModel(for movie: Movie, defaultTitle: String = "TBA".localized) -> TrendingViewModel {
+    return TrendingViewModel(title: movie.title ?? defaultTitle, imageLink: nil)
+  }
 }

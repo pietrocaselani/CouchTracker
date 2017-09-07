@@ -50,7 +50,7 @@ final class MovieDetailsService: MovieDetailsInteractor {
         return movie.genres?.contains(genre.slug) ?? false
       }
 
-      return entity(for: movie, with: $0.2, genres: movieGenres)
+      return MovieEntityMapper.entity(for: movie, with: $0.2, genres: movieGenres)
     }
   }
 }

@@ -12,10 +12,14 @@ the license agreement.
 
 import Trakt_Swift
 
-func viewModel(for show: ShowEntity, defaultTitle: String = "TBA".localized) -> TrendingViewModel {
-  return TrendingViewModel(title: show.title ?? defaultTitle, imageLink: nil)
-}
+final class ShowViewModelMapper {
+  private init() {}
 
-func viewModel(for show: Show, defaultTitle: String = "TBA".localized) -> TrendingViewModel {
-  return TrendingViewModel(title: show.title ?? defaultTitle, imageLink: nil)
+  static func viewModel(for show: ShowEntity, defaultTitle: String = "TBA".localized) -> TrendingViewModel {
+    return TrendingViewModel(title: show.title ?? defaultTitle, imageLink: nil)
+  }
+
+  static func viewModel(for show: Show, defaultTitle: String = "TBA".localized) -> TrendingViewModel {
+    return TrendingViewModel(title: show.title ?? defaultTitle, imageLink: nil)
+  }
 }

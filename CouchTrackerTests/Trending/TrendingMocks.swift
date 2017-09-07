@@ -153,13 +153,13 @@ final class TrendingServiceMock: TrendingInteractor {
     let imagesObservable = imageRepo.fetchImages(for: 30, posterSize: nil, backdropSize: nil)
 
     return Observable.combineLatest(moviesObservable, imagesObservable) { (movies, images) -> [TrendingMovieEntity] in
-      return movies.map { entity(for: $0, with: images) }
+      return movies.map { MovieEntityMapper.entity(for: $0, with: images) }
     }
   }
 
   func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShowEntity]> {
     return trendingRepo.fetchShows(page: page, limit: limit).map {
-      return $0.map { entity(for: $0) }
+      return $0.map { ShowEntityMapper.entity(for: $0) }
     }
   }
 }

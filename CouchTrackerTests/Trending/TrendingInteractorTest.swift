@@ -38,7 +38,7 @@ final class TrendingInteractorTest: XCTestCase {
     super.tearDown()
   }
 
-  func testTrendingInteractor_fetchMoviesSuccessReceivesNoData_emmitsOnlyCompleted() {
+  func testTrendingInteractor_fetchMoviesSuccessReceivesNoData_emitsOnlyCompleted() {
     let repository = EmptyTrendingRepositoryMock()
     let imageRepository = EmptyImageRepositoryMock(tmdbProvider: tmdbProviderMock,
                                                         cofigurationRepository: configurationRepositoryMock)
@@ -54,7 +54,7 @@ final class TrendingInteractorTest: XCTestCase {
     RXAssertEvents(moviesObserver, events)
   }
 
-  func testTrendingInteractor_fetchShowsSuccessReceivesNoData_emmitsOnlyCompleted() {
+  func testTrendingInteractor_fetchShowsSuccessReceivesNoData_emitsOnlyCompleted() {
     let repository = EmptyTrendingRepositoryMock()
     let imageRepository = EmptyImageRepositoryMock(tmdbProvider: tmdbProviderMock,
                                                    cofigurationRepository: configurationRepositoryMock)
@@ -70,7 +70,7 @@ final class TrendingInteractorTest: XCTestCase {
     RXAssertEvents(showsObserver, events)
   }
 
-  func testTrendingInteractor_fetchMoviesFailure_emmitsOnlyError() {
+  func testTrendingInteractor_fetchMoviesFailure_emitsOnlyError() {
     let connectionError = TrendingError.noConnection("There is no connection active")
 
     let repository = ErrorTrendingRepositoryMock(error: connectionError)
@@ -89,7 +89,7 @@ final class TrendingInteractorTest: XCTestCase {
     RXAssertEvents(moviesObserver, events)
   }
 
-  func testTrendingInteractor_fetchShowsFailure_emmitsOnlyError() {
+  func testTrendingInteractor_fetchShowsFailure_emitsOnlyError() {
     let connectionError = TrendingError.noConnection("There is no connection active")
 
     let repository = ErrorTrendingRepositoryMock(error: connectionError)
@@ -108,7 +108,7 @@ final class TrendingInteractorTest: XCTestCase {
     RXAssertEvents(showsObserver, events)
   }
 
-  func testTrendingInteractor_fetchMoviesSuccessReceivesData_emmitsEntitiesAndCompleted() {
+  func testTrendingInteractor_fetchMoviesSuccessReceivesData_emitsEntitiesAndCompleted() {
     let movies = createMockMovies()
 
     let repository = TrendingMoviesRepositoryMock(movies: movies)
@@ -124,7 +124,8 @@ final class TrendingInteractorTest: XCTestCase {
 
     let expectedMovies = movies.map { trendingMovie -> TrendingMovieEntity in
       let images = createImagesMock(movieId: trendingMovie.movie.ids.tmdb ?? -1)
-      return entity(for: trendingMovie, with: entity(for: images, using: configurationMock))
+      return MovieEntityMapper.entity(for: trendingMovie,
+                                      with: ImagesEntityMapper.entity(for: images, using: configurationMock))
     }
 
     let events: [Recorded<Event<[TrendingMovieEntity]>>] = [next(0, expectedMovies), completed(0)]
@@ -132,7 +133,7 @@ final class TrendingInteractorTest: XCTestCase {
     RXAssertEvents(moviesObserver, events)
   }
 
-  func testTrendingInteractor_fetchShowsSuccessReceivesData_emmitsEntitiesAndCompleted() {
+  func testTrendingInteractor_fetchShowsSuccessReceivesData_emitsEntitiesAndCompleted() {
     let repository = trendingRepositoryMock
     let interactor = TrendingService(repository: repository,
                                      imageRepository: movieImageRepositoryRealMock, scheduler: scheduler)
@@ -145,7 +146,7 @@ final class TrendingInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let expectedShows = createTrendingShowsMock().map { entity(for: $0) }
+    let expectedShows = createTrendingShowsMock().map { ShowEntityMapper.entity(for: $0) }
 
     let events: [Recorded<Event<[TrendingShowEntity]>>] = [next(0, expectedShows), completed(0)]
 

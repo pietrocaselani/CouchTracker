@@ -52,10 +52,10 @@ final class ImageRepositoryMock: ImageRepository {
   func fetchImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
     let observable = configuration.fetchConfiguration().flatMap { [unowned self] config -> Observable<ImagesEntity> in
       return self.provider.request(.images(movieId: movieId)).mapObject(Images.self).map {
-        let pSize = posterSize ?? .w342
-        let bSize = backdropSize ?? .w300
+        let posterSize = posterSize ?? .w342
+        let backdropSize = backdropSize ?? .w300
 
-        return entity(for: $0, using: config, posterSize: pSize, backdropSize: bSize)
+        return ImagesEntityMapper.entity(for: $0, using: config, posterSize: posterSize, backdropSize: backdropSize)
       }
     }
 

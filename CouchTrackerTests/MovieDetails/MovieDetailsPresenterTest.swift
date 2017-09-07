@@ -34,7 +34,8 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let movieGenres = genres.filter { movie.genres?.contains($0.slug) ?? false }.map { $0.name }
 
     let images = createImagesMock(movieId: movie.ids.tmdb ?? -1)
-    let imagesEntity = entity(for: images, using: configurationMock, posterSize: .w342, backdropSize: .w300)
+    let imagesEntity = ImagesEntityMapper.entity(for: images, using: configurationMock,
+                                                 posterSize: .w342, backdropSize: .w300)
 
     let viewModel = MovieDetailsViewModel(
         title: movie.title ?? "TBA",
