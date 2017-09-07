@@ -66,6 +66,8 @@ extension Shows: TraktType {
     switch self {
     case .trending:
       return stubbedResponse("trakt_shows_trending")
+    case .summary:
+      return stubbedResponse("trakt_shows_summary")
     default:
       return Data()
     }

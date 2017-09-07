@@ -16,7 +16,6 @@ import RxSwift
 import Trakt_Swift
 
 final class MovieDetailsCacheRepository: MovieDetailsRepository {
-
   private let cache: BasicCache<Movies, Movie>
 
   init(traktProvider: TraktProvider) {
