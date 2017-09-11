@@ -14,12 +14,12 @@ import RxSwift
 import Trakt_Swift
 
 func createMoviesGenresMock() -> [Genre] {
-  let jsonArray = parseToJSONArray(data: Genres.list(.movies).sampleData)
+  let jsonArray = JSONParser.toArray(data: Genres.list(.movies).sampleData)
   return try! jsonArray.map { try Genre(JSON: $0) }
 }
 
 func createShowsGenresMock() -> [Genre] {
-  let jsonArray = parseToJSONArray(data: Genres.list(.shows).sampleData)
+  let jsonArray = JSONParser.toArray(data: Genres.list(.shows).sampleData)
   return try! jsonArray.map { try Genre(JSON: $0) }
 }
 

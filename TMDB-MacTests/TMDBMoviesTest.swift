@@ -16,7 +16,7 @@ final class TMDBMoviesTest: XCTestCase {
 
   private let tmdb = TMDB(apiKey: "my_awesome_api_key")
 
-  func testTMDBMovies_images_parseJSONToModel() {
+  func testTMDBMovies_images_toJSONToModel() {
     let images = createMovieImagesMock()
 
     XCTAssertEqual(images.identifier, 550)

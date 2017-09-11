@@ -129,7 +129,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let genres = try! parseToJSONArray(data: Genres.list(.movies).sampleData).map { return try Genre(JSON: $0) }
+    let genres = try! JSONParser.toArray(data: Genres.list(.movies).sampleData).map { return try Genre(JSON: $0) }
     let moviesGenre = genres.filter { movie.genres?.contains($0.slug) ?? false }
 
     let expectedMovie = MovieEntityMapper.entity(for: movie, with: moviesGenre)
