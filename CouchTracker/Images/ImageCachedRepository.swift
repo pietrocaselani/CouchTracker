@@ -17,33 +17,53 @@ import TMDB_Swift
 
 final class ImageCachedRepository: ImageRepository {
 
-  private let cache: BasicCache<Movies, Images>
+  private let movieCache: BasicCache<Movies, Images>
+  private let showCache: BasicCache<Shows, Images>
   private let configurationRepository: ConfigurationRepository
 
   init(tmdbProvider: TMDBProvider, cofigurationRepository: ConfigurationRepository) {
     self.configurationRepository = cofigurationRepository
 
-    self.cache = MemoryCacheLevel<Movies, NSData>()
+    self.movieCache = MemoryCacheLevel<Movies, NSData>()
       .compose(DiskCacheLevel<Movies, NSData>())
       .compose(MoyaFetcher(provider: tmdbProvider.movies))
       .transformValues(JSONObjectTransfomer<Images>())
+
+    self.showCache = MemoryCacheLevel<Shows, NSData>()
+      .compose(DiskCacheLevel<Shows, NSData>())
+      .compose(MoyaFetcher(provider: tmdbProvider.shows))
+      .transformValues(JSONObjectTransfomer<Images>())
   }
 
-  func fetchImages(for movieId: Int, posterSize: PosterImageSize?,
-                   backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
-    let configurationObservable = configurationRepository.fetchConfiguration()
-    let imagesObservable = images(for: movieId)
+  func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?,
+                        backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
+    let imagesObservable = imagesForMovie(movieId)
 
-    let observable = Observable.combineLatest(imagesObservable, configurationObservable) {
+    return createImagesEntities(imagesObservable, posterSize: posterSize, backdropSize: backdropSize).asObservable()
+  }
+
+  func fetchShowImages(for showId: Int, posterSize: PosterImageSize?,
+                       backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
+    let imagesObservable = imagesForShow(showId)
+    return createImagesEntities(imagesObservable, posterSize: posterSize, backdropSize: backdropSize)
+  }
+
+  private func createImagesEntities(_ imagesObservable: Observable<Images>, posterSize: PosterImageSize?,
+                                    backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
+    let configurationObservable = configurationRepository.fetchConfiguration()
+
+    return Observable.combineLatest(imagesObservable, configurationObservable) {
       return ImagesEntityMapper.entity(for: $0, using: $1,
                                        posterSize: posterSize ?? .w342, backdropSize: backdropSize ?? .w300)
-    }
-
-    return observable
+      }.asSingle()
   }
 
-  private func images(for movieId: Int) -> Observable<Images> {
+  private func imagesForMovie(_ movieId: Int) -> Observable<Images> {
     let scheduler = SerialDispatchQueueScheduler(qos: .background)
-    return cache.get(.images(movieId: movieId)).asObservable().subscribeOn(scheduler).observeOn(scheduler)
+    return movieCache.get(.images(movieId: movieId)).asObservable().subscribeOn(scheduler).observeOn(scheduler)
+  }
+
+  private func imagesForShow(_ showId: Int) -> Observable<Images> {
+    return showCache.get(.images(showId: showId)).asObservable()
   }
 }

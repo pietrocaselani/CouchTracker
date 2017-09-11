@@ -44,18 +44,21 @@ final class ShowDetailsRepositoryMock: ShowDetailsRepository {
 
 final class ShowDetailsInteractorMock: ShowDetailsInteractor {
   private let genreRepository: GenreRepository
+  private let imageRepository: ImageRepository
   private let repository: ShowDetailsRepository
-  private let showId: String
+  private let showIds: ShowIds
 
-  init(showId: String, repository: ShowDetailsRepository, genreRepository: GenreRepository) {
-    self.showId = showId
+  init(showIds: ShowIds, repository: ShowDetailsRepository,
+       genreRepository: GenreRepository, imageRepository: ImageRepository) {
+    self.showIds = showIds
     self.repository = repository
     self.genreRepository = genreRepository
+    self.imageRepository = imageRepository
   }
 
   func fetchDetailsOfShow() -> Single<ShowEntity> {
     let genresObservable = genreRepository.fetchShowsGenres()
-    let showObservable = repository.fetchDetailsOfShow(with: showId, extended: .full).asObservable()
+    let showObservable = repository.fetchDetailsOfShow(with: showIds.slug, extended: .full).asObservable()
 
     return Observable.combineLatest(showObservable, genresObservable, resultSelector: { (show, genres) -> ShowEntity in
       let showGenres = genres.filter { genre -> Bool in
@@ -63,6 +66,10 @@ final class ShowDetailsInteractorMock: ShowDetailsInteractor {
       }
       return ShowEntityMapper.entity(for: show, with: showGenres)
     }).asSingle()
+  }
+
+  func fetchImages() -> Single<ImagesEntity> {
+    return Single.never()
   }
 }
 

@@ -14,19 +14,22 @@ import RxSwift
 import Trakt_Swift
 
 final class ShowDetailsService: ShowDetailsInteractor {
-  private let showId: String
+  private let showIds: ShowIds
   private let repository: ShowDetailsRepository
   private let genreRepository: GenreRepository
+  private let imageRepository: ImageRepository
 
-  init(showId: String, repository: ShowDetailsRepository, genreRepository: GenreRepository) {
-    self.showId = showId
+  init(showIds: ShowIds, repository: ShowDetailsRepository,
+       genreRepository: GenreRepository, imageRepository: ImageRepository) {
+    self.showIds = showIds
     self.repository = repository
     self.genreRepository = genreRepository
+    self.imageRepository = imageRepository
   }
 
   func fetchDetailsOfShow() -> Single<ShowEntity> {
     let genreObservable = genreRepository.fetchShowsGenres()
-    let showObservable = repository.fetchDetailsOfShow(with: showId, extended: .full).asObservable()
+    let showObservable = repository.fetchDetailsOfShow(with: showIds.slug, extended: .full).asObservable()
 
     return  Observable.combineLatest(showObservable, genreObservable) { (show, genres) -> ShowEntity in
       let showGenres = genres.filter { genre -> Bool in
@@ -35,5 +38,11 @@ final class ShowDetailsService: ShowDetailsInteractor {
 
       return ShowEntityMapper.entity(for: show, with: showGenres)
     }.asSingle()
+  }
+
+  func fetchImages() -> Single<ImagesEntity> {
+    guard let tmdbId = showIds.tmdb else { return Single.never() }
+
+    return imageRepository.fetchShowImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)
   }
 }

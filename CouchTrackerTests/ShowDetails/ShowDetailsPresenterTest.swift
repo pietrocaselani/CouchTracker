@@ -18,7 +18,10 @@ final class ShowDetailsPresenterTest: XCTestCase {
   private let router = ShowDetailsRouterMock()
 
   func testShowDetailsPresenterCreation() {
-    let interactor = ShowDetailsInteractorMock(showId: "game-of-thrones", repository: showDetailsRepositoryMock, genreRepository: GenreRepositoryMock())
+    let interactor = ShowDetailsInteractorMock(showIds: createTraktShowDetails().ids,
+                                               repository: showDetailsRepositoryMock,
+                                               genreRepository: GenreRepositoryMock(),
+                                               imageRepository: imageRepositoryMock)
     let presenter = ShowDetailsiOSPresenter(view: view, router: router, interactor: interactor)
     XCTAssertNotNil(presenter)
   }
@@ -28,7 +31,10 @@ final class ShowDetailsPresenterTest: XCTestCase {
     let userInfo = [NSLocalizedDescriptionKey: errorMessage]
     let showDetailsError = NSError(domain: "com.arctouch", code: 3, userInfo: userInfo)
     let repository = ShowDetailsRepositoryErrorMock(error: showDetailsError)
-    let errorInteractor = ShowDetailsInteractorMock(showId: "game-of-thrones", repository: repository, genreRepository: GenreRepositoryMock())
+    let errorInteractor = ShowDetailsInteractorMock(showIds: createTraktShowDetails().ids,
+                                                    repository: repository,
+                                                    genreRepository: GenreRepositoryMock(),
+                                                    imageRepository: imageRepositoryMock)
     let presenter = ShowDetailsiOSPresenter(view: view, router: router, interactor: errorInteractor)
 
     presenter.viewDidLoad()
@@ -38,7 +44,10 @@ final class ShowDetailsPresenterTest: XCTestCase {
   }
 
   func testShowDetailsPresenter_receivesDetails_notifyView() {
-    let interactor = ShowDetailsInteractorMock(showId: "game-of-thrones", repository: showDetailsRepositoryMock, genreRepository: GenreRepositoryMock())
+    let interactor = ShowDetailsInteractorMock(showIds: createTraktShowDetails().ids,
+                                               repository: showDetailsRepositoryMock,
+                                               genreRepository: GenreRepositoryMock(),
+                                               imageRepository: imageRepositoryMock)
     let presenter = ShowDetailsiOSPresenter(view: view, router: router, interactor: interactor)
 
     presenter.viewDidLoad()

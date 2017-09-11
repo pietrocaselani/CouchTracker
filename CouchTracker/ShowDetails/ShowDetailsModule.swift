@@ -15,11 +15,15 @@ import Trakt_Swift
 final class ShowDetailsModule {
   private init() {}
 
-  static func setupModule(traktProvider: TraktProvider, showIds: ShowIds) -> BaseView {
+  static func setupModule(traktProvider: TraktProvider, tmdbProvider: TMDBProvider, showIds: ShowIds) -> BaseView {
     let repository = ShowDetailsCacheRepository(traktProvider: traktProvider)
     let genreRepository = TraktGenreRepository(traktProvider: traktProvider)
+    let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdbProvider)
+    let imageRepository = ImageCachedRepository(tmdbProvider: tmdbProvider,
+                                                cofigurationRepository: configurationRepository)
 
-    let interactor = ShowDetailsService(showId: showIds.slug, repository: repository, genreRepository: genreRepository)
+    let interactor = ShowDetailsService(showIds: showIds, repository: repository,
+                                        genreRepository: genreRepository, imageRepository: imageRepository)
 
     guard let view = R.storyboard.showDetails.showDetailsViewController() else {
       fatalError("view should be an instance of ShowDetailsViewController")

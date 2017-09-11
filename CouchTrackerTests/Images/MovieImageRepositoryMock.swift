@@ -18,8 +18,12 @@ import Moya
 final class EmptyImageRepositoryMock: ImageRepository {
   init(tmdbProvider: TMDBProvider, cofigurationRepository: ConfigurationRepository) {}
 
-  func fetchImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
+  func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
     return Observable.empty()
+  }
+
+  func fetchShowImages(for showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
+    return Single.never()
   }
 }
 
@@ -35,23 +39,27 @@ final class ImagesRepositorySampleMock: ImageRepository {
     self.images = images
   }
 
-  func fetchImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
+  func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
     return Observable.just(images)
+  }
+
+  func fetchShowImages(for showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
+    return Single.just(images)
   }
 }
 
 final class ImageRepositoryMock: ImageRepository {
-  private let provider: RxMoyaProvider<Movies>
+  private let provider: TMDBProvider
   private let configuration: ConfigurationRepository
 
   init(tmdbProvider: TMDBProvider, cofigurationRepository: ConfigurationRepository) {
-    self.provider = tmdbProvider.movies
+    self.provider = tmdbProvider
     self.configuration = cofigurationRepository
   }
 
-  func fetchImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
+  func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
     let observable = configuration.fetchConfiguration().flatMap { [unowned self] config -> Observable<ImagesEntity> in
-      return self.provider.request(.images(movieId: movieId)).mapObject(Images.self).map {
+      return self.provider.movies.request(.images(movieId: movieId)).mapObject(Images.self).map {
         let posterSize = posterSize ?? .w342
         let backdropSize = backdropSize ?? .w300
 
@@ -60,5 +68,16 @@ final class ImageRepositoryMock: ImageRepository {
     }
 
     return observable
+  }
+
+  func fetchShowImages(for showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
+    let configurationObservable = configuration.fetchConfiguration()
+    let imagesObservable = provider.shows.request(.images(showId: showId)).mapObject(Images.self)
+
+    return Observable.combineLatest(imagesObservable, configurationObservable) {
+      let posterSize = posterSize ?? .w342
+      let backdropSize = backdropSize ?? .w300
+      return ImagesEntityMapper.entity(for: $0, using: $1, posterSize: posterSize, backdropSize: backdropSize)
+    }.asSingle()
   }
 }

@@ -35,7 +35,7 @@ final class TrendingiOSRouter: TrendingRouter {
 
   func showDetails(of show: TrendingShowEntity) {
     let showIds = show.show.ids
-    let view = ShowDetailsModule.setupModule(traktProvider: traktProvider, showIds: showIds)
+    let view = ShowDetailsModule.setupModule(traktProvider: traktProvider, tmdbProvider: tmdbProvider, showIds: showIds)
     present(view: view)
   }
 

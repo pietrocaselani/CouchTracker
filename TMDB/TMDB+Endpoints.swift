@@ -23,6 +23,10 @@ extension TMDB {
     return createProvider(forTarget: Movies.self)
   }
 
+  public var shows: RxMoyaProvider<Shows> {
+    return createProvider(forTarget: Shows.self)
+  }
+
   private func createProvider<T: TMDBType>(forTarget target: T.Type) -> RxMoyaProvider<T> {
     var plugins = [PluginType]()
 

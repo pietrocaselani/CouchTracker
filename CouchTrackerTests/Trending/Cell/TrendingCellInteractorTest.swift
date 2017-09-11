@@ -25,7 +25,7 @@ final class TrendingCellInteractorTest: XCTestCase {
     observer = scheduler.createObserver(URL.self)
   }
 
-  func testTrendingInteractor_fetchPosterImageURLForShowSuccess_emmitsOnCompleted() {
+  func testTrendingInteractor_fetchPosterImageURLForShowSuccess_emitsOnCompleted() {
     let type = TrendingViewModelType.show(tmdbShowId: 2)
     let interactor = TrendingCellService(imageRepository: imageRepositoryRealMock)
     let observable = interactor.fetchPosterImageURL(of: type, with: PosterImageSize.w92)
@@ -43,7 +43,7 @@ final class TrendingCellInteractorTest: XCTestCase {
     XCTAssertEqual(observer.events, events)
   }
 
-  func testTrendingInteractor_fetchPosterImageURLForMovieFailure_emmitsOnError() {
+  func testTrendingInteractor_fetchPosterImageURLForMovieFailure_emitsOnError() {
     let type = TrendingViewModelType.movie(tmdbMovieId: 4)
     let imageError = NSError(domain: "com.arctouch", code: 100, userInfo: nil)
     let interactor = TrendingCellService(imageRepository: ErrorImageRepositoryMock(error: imageError))
@@ -62,7 +62,7 @@ final class TrendingCellInteractorTest: XCTestCase {
     XCTAssertEqual(observer.events, events)
   }
 
-  func testTrendingInteractor_fetchPosterImageURLForMovieSuccessReceivesEmptyData_emmitsOnCompleted() {
+  func testTrendingInteractor_fetchPosterImageURLForMovieSuccessReceivesEmptyData_emitsOnCompleted() {
     let type = TrendingViewModelType.movie(tmdbMovieId: 4)
 
     let images = [ImageEntity]()
@@ -87,7 +87,7 @@ final class TrendingCellInteractorTest: XCTestCase {
     XCTAssertEqual(observer.events, events)
   }
 
-  func testTrendingInteractor_fetchPosterImageURLForMovieSuccessReceivesData_emmitsURL() {
+  func testTrendingInteractor_fetchPosterImageURLForMovieSuccessReceivesData_emitsURL() {
     let type = TrendingViewModelType.movie(tmdbMovieId: 4)
 
     let image = ImageEntity(link: "https://pc.com", width: 123, height: 321, iso6391: nil, aspectRatio: 2.1, voteAverage: 3.2, voteCount: 5)

@@ -22,7 +22,7 @@ final class TrendingCellService: TrendingCellInteractor {
   func fetchPosterImageURL(of type: TrendingViewModelType, with size: PosterImageSize?) -> Observable<URL> {
     guard case .movie(let tmdbId) = type else { return Observable.empty() }
 
-    return imageRepository.fetchImages(for: tmdbId, posterSize: size, backdropSize: nil)
+    return imageRepository.fetchMovieImages(for: tmdbId, posterSize: size, backdropSize: nil)
       .flatMap { images -> Observable<URL> in
         guard let imageLink = images.posterImage()?.link,
         let imageURL = URL(string: imageLink) else {
