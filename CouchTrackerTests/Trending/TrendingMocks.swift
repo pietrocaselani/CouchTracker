@@ -17,7 +17,7 @@ import Trakt_Swift
 let trendingRepositoryMock = TrendingRepositoryMock(traktProvider: traktProviderMock)
 
 func createTrendingShowsMock() -> [TrendingShow] {
-  let jsonArray = parseToJSONArray(data: Shows.trending(page: 0, limit: 10, extended: .full).sampleData)
+  let jsonArray = JSONParser.toArray(data: Shows.trending(page: 0, limit: 10, extended: .full).sampleData)
   return try! jsonArray.map { try TrendingShow(JSON: $0) }
 }
 

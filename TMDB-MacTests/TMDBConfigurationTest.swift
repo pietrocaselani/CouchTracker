@@ -38,7 +38,7 @@ final class TMDBConfigurationTest: XCTestCase {
     wait(for: [urlExpectation], timeout: 2)
   }
 
-  func testTMDBConfiguration_configurations_parseJSONToModel() {
+  func testTMDBConfiguration_configurations_toJSONToModel() {
     let configuration = createConfigurationsMock()
 
     XCTAssertEqual(configuration.images.secureBaseURL, "https://image.tmdb.org/t/p/")

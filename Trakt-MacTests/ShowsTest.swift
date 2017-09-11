@@ -45,7 +45,7 @@ final class ShowsTest: XCTestCase {
 
     scheduler.start()
 
-    let expectedShow = try! Show(JSON: parseToJSONObject(data: target.sampleData))
+    let expectedShow = try! Show(JSON: toObject(data: target.sampleData))
 
     let expectedEvents: [Recorded<Event<Show>>] = [next(0, expectedShow), completed(0)]
 
