@@ -88,6 +88,6 @@ final class ShowDetailsViewMock: ShowDetailsView {
 }
 
 func createTraktShowDetails() -> Show {
-  let json = parseToJSONObject(data: Shows.summary(showId: "game-of-thrones", extended: .full).sampleData)
+  let json = JSONParser.toObject(data: Shows.summary(showId: "game-of-thrones", extended: .full).sampleData)
   return try! Show(JSON: json)
 }

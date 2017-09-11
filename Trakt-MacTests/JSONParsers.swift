@@ -12,12 +12,12 @@ the license agreement.
 
 import Foundation
 
-func parseToJSONObject(data: Data) -> [String: AnyObject] {
+func toObject(data: Data) -> [String: AnyObject] {
   let options = JSONSerialization.ReadingOptions(rawValue: 0)
   return try! JSONSerialization.jsonObject(with: data, options: options) as! [String: AnyObject]
 }
 
-func parseToJSONArray(data: Data) -> [[String: AnyObject]] {
+func toArray(data: Data) -> [[String: AnyObject]] {
   let options = JSONSerialization.ReadingOptions(rawValue: 0)
   return try! JSONSerialization.jsonObject(with: data, options: options) as! [[String: AnyObject]]
 }
