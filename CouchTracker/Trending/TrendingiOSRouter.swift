@@ -26,17 +26,17 @@ final class TrendingiOSRouter: TrendingRouter {
   }
 
   func showDetails(of movie: TrendingMovieEntity) {
-    guard let navigationController = viewController?.navigationController else { return }
-
     let movieIds = movie.movie.ids
     let view = MovieDetailsModule.setupModule(traktProvider: traktProvider,
                                               tmdbProvider: tmdbProvider, movieIds: movieIds)
 
-    guard let viewController = view as? UIViewController else {
-      fatalError("view should be an instance of UIViewController")
-    }
+    present(view: view)
+  }
 
-    navigationController.pushViewController(viewController, animated: true)
+  func showDetails(of show: TrendingShowEntity) {
+    let showIds = show.show.ids
+    let view = ShowDetailsModule.setupModule(traktProvider: traktProvider, showIds: showIds)
+    present(view: view)
   }
 
   func showError(message: String) {
@@ -44,5 +44,15 @@ final class TrendingiOSRouter: TrendingRouter {
 
     let errorAlert = UIAlertController.createErrorAlert(message: message)
     viewController.present(errorAlert, animated: true)
+  }
+
+  private func present(view: BaseView) {
+    guard let navigationController = viewController?.navigationController else { return }
+
+    guard let viewController = view as? UIViewController else {
+      fatalError("view should be an instance of UIViewController")
+    }
+
+    navigationController.pushViewController(viewController, animated: true)
   }
 }

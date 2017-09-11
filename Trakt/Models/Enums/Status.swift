@@ -15,4 +15,5 @@ public enum Status: String {
   case returning = "returning series"
   case canceled = "canceled"
   case inProduction = "in production"
+  case inDevelopment = "planned"
 }

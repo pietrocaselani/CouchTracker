@@ -12,3 +12,8 @@
 "Movies"="Movies";
 "Shows"="Shows";
 "No movies to show right now"="Sorry!\nNo movies to show right now";
+"ended"="Ended";
+"returning series"="Continuing";
+"canceled"="Ended";
+"in production"="Airing soon";
+"planned"="In development";

@@ -16,11 +16,13 @@ struct ShowDetailsViewModel: Hashable {
   let network: String
   let genres: String
   let firstAired: String
+  let status: String
 
   var hashValue: Int {
     var hash = title.hashValue ^ overview.hashValue
     hash = hash ^ network.hashValue ^ genres.hashValue
-    return hash ^ firstAired.hashValue
+    hash = hash ^ firstAired.hashValue ^ status.hashValue
+    return hash
   }
 
   static func == (lhs: ShowDetailsViewModel, rhs: ShowDetailsViewModel) -> Bool {

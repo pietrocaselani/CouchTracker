@@ -144,7 +144,7 @@ final class TrendingPresenterTest: XCTestCase {
     
     let expectedMovie = MovieEntityMapper.entity(for: movies[movieIndex])
 
-    XCTAssertTrue(router.invokedShowDetails)
-    XCTAssertEqual(router.invokedShowDetailsParameters?.movie, expectedMovie)
+    XCTAssertTrue(router.invokedMovieDetails)
+    XCTAssertEqual(router.invokedMovieDetailsParameters?.movie, expectedMovie)
   }
 }

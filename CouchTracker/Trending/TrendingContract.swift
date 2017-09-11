@@ -38,6 +38,7 @@ protocol TrendingView: BaseView {
 
 protocol TrendingRouter: class {
   func showDetails(of movie: TrendingMovieEntity)
+  func showDetails(of show: TrendingShowEntity)
   func showError(message: String)
 }
 

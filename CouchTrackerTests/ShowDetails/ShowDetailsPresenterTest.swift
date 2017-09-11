@@ -59,7 +59,8 @@ final class ShowDetailsPresenterTest: XCTestCase {
                                        overview: show.overview ?? "",
                                        network: show.network ?? "Unknown".localized,
                                        genres: genres,
-                                       firstAired: firstAired)
+                                       firstAired: firstAired,
+                                       status: show.status?.rawValue.localized ?? "Unknown".localized)
 
     XCTAssertTrue(view.invokedShowDetails)
     XCTAssertEqual(view.invokedShowDetailsParameters?.details, details)
