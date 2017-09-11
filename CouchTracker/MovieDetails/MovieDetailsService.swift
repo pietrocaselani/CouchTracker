@@ -19,22 +19,13 @@ final class MovieDetailsService: MovieDetailsInteractor {
   private let genreRepository: GenreRepository
   private let imageRepository: ImageRepository
   private let movieIds: MovieIds
-  private let scheduler: SchedulerType
 
   init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
-       imageRepository: ImageRepository, movieIds: MovieIds, scheduler: SchedulerType) {
+       imageRepository: ImageRepository, movieIds: MovieIds) {
     self.repository = repository
     self.genreRepository = genreRepository
     self.imageRepository = imageRepository
     self.movieIds = movieIds
-    self.scheduler = scheduler
-  }
-
-  convenience init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
-                   imageRepository: ImageRepository, movieIds: MovieIds) {
-    let scheduler = SerialDispatchQueueScheduler(qos: DispatchQueue(label: "movieDetailsServiceQueue").qos)
-    self.init(repository: repository, genreRepository: genreRepository,
-              imageRepository: imageRepository, movieIds: movieIds, scheduler: scheduler)
   }
 
   func fetchDetails() -> Observable<MovieEntity> {

@@ -106,7 +106,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let genreRepository = GenreRepositoryMock()
     let imageRepository = imageRepositoryMock
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
-                                         imageRepository: imageRepository, movieIds: movie.ids, scheduler: scheduler)
+                                         imageRepository: imageRepository, movieIds: movie.ids)
 
     disposable = interactor.fetchDetails().subscribe(observer)
 
@@ -123,7 +123,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let genreRepository = GenreRepositoryMock()
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
                                          imageRepository: imageRepositoryRealMock,
-                                         movieIds: movie.ids, scheduler: scheduler)
+                                         movieIds: movie.ids)
 
     disposable = interactor.fetchDetails().subscribe(observer)
 
@@ -146,7 +146,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let movieIds = createMovieDetailsMock().ids
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
                                          imageRepository: imageRepositoryMock,
-                                         movieIds: movieIds, scheduler: scheduler)
+                                         movieIds: movieIds)
 
     disposable = interactor.fetchDetails().subscribe(observer)
 
