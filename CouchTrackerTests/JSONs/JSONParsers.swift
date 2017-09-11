@@ -12,15 +12,17 @@ the license agreement.
 
 import Foundation
 
-func parseToJSONArray(data: Data) -> [[String: AnyObject]] {
-  return parseJSON(data: data) as! [[String: AnyObject]]
-}
+final class JSONParser {
+  static func toArray(data: Data) -> [[String: AnyObject]] {
+    return toJSON(data: data) as! [[String: AnyObject]]
+  }
 
-func parseToJSONObject(data: Data) -> [String: AnyObject] {
-  return parseJSON(data: data) as! [String: AnyObject]
-}
+  static func toObject(data: Data) -> [String: AnyObject] {
+    return toJSON(data: data) as! [String: AnyObject]
+  }
 
-func parseJSON(data: Data) -> Any {
-  let options = JSONSerialization.ReadingOptions(rawValue: 0)
-  return try! JSONSerialization.jsonObject(with: data, options: options)
+  static func toJSON(data: Data) -> Any {
+    let options = JSONSerialization.ReadingOptions(rawValue: 0)
+    return try! JSONSerialization.jsonObject(with: data, options: options)
+  }
 }

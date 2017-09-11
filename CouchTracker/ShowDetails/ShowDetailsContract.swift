@@ -10,21 +10,17 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import XCTest
+import RxSwift
+import Trakt_Swift
 
-final class TMDBMoviesTest: XCTestCase {
+protocol ShowDetailsRepository: class {
+  init(traktProvider: TraktProvider)
 
-  private let tmdb = TMDB(apiKey: "my_awesome_api_key")
+  func fetchDetailsOfShow(with identifier: String, extended: Extended) -> Single<Show>
+}
 
-  func testTMDBMovies_images_toJSONToModel() {
-    let images = createMovieImagesMock()
+protocol ShowDetailsInteractor: class {
+  init(repository: ShowDetailsRepository)
 
-    XCTAssertEqual(images.identifier, 550)
-  }
-
-  func testTMDBMovies_imagesPath_buildCorrect() {
-    let path = Movies.images(movieId: 56).path
-
-    XCTAssertEqual(path, "movie/56/images")
-  }
+  func fetchDetailsOfShow(with identifier: String) -> Single<ShowEntity>
 }
