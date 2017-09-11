@@ -20,7 +20,23 @@ protocol ShowDetailsRepository: class {
 }
 
 protocol ShowDetailsInteractor: class {
-  init(repository: ShowDetailsRepository)
+  init(showId: String, repository: ShowDetailsRepository, genreRepository: GenreRepository)
 
-  func fetchDetailsOfShow(with identifier: String) -> Single<ShowEntity>
+  func fetchDetailsOfShow() -> Single<ShowEntity>
+}
+
+protocol ShowDetailsPresenter: class {
+  init(view: ShowDetailsView, router: ShowDetailsRouter, interactor: ShowDetailsInteractor)
+
+  func viewDidLoad()
+}
+
+protocol ShowDetailsRouter: class {
+  func showError(message: String)
+}
+
+protocol ShowDetailsView: class {
+  var presenter: ShowDetailsPresenter! { get set }
+
+  func show(details: ShowDetailsViewModel)
 }
