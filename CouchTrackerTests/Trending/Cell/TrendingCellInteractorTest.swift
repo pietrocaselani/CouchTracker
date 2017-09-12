@@ -25,7 +25,7 @@ final class TrendingCellInteractorTest: XCTestCase {
     observer = scheduler.createObserver(URL.self)
   }
 
-  func testTrendingInteractor_fetchPosterImageURLForShowSuccess_emitsOnCompleted() {
+  func testTrendingInteractor_fetchPosterImageURLForShowSuccess_emitsNextAndCompleted() {
     let type = TrendingViewModelType.show(tmdbShowId: 2)
     let interactor = TrendingCellService(imageRepository: imageRepositoryRealMock)
     let observable = interactor.fetchPosterImageURL(of: type, with: PosterImageSize.w92)
@@ -38,7 +38,9 @@ final class TrendingCellInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<URL>>] = [completed(0)]
+    let expectedURL = URL(string: "https:/image.tmdb.org/t/p/w92/2qg0MOwPD1G0FcYpDPeu6AOjh8i.jpg")!
+
+    let events: [Recorded<Event<URL>>] = [next(0, expectedURL), completed(0)]
 
     XCTAssertEqual(observer.events, events)
   }

@@ -1,14 +1,14 @@
 /*
-Copyright 2017 ArcTouch LLC.
-All rights reserved.
+ Copyright 2017 ArcTouch LLC.
+ All rights reserved.
  
-This file, its contents, concepts, methods, behavior, and operation
-(collectively the "Software") are protected by trade secret, patent,
-and copyright laws. The use of the Software is governed by a license
-agreement. Disclosure of the Software to third parties, in any form,
-in whole or in part, is expressly prohibited except as authorized by
-the license agreement.
-*/
+ This file, its contents, concepts, methods, behavior, and operation
+ (collectively the "Software") are protected by trade secret, patent,
+ and copyright laws. The use of the Software is governed by a license
+ agreement. Disclosure of the Software to third parties, in any form,
+ in whole or in part, is expressly prohibited except as authorized by
+ the license agreement.
+ */
 
 import Carlos
 import Moya
@@ -52,15 +52,20 @@ final class ImageCachedRepository: ImageRepository {
                                     backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
     let configurationObservable = configurationRepository.fetchConfiguration()
 
-    return Observable.combineLatest(imagesObservable, configurationObservable) {
+    let scheduler = SerialDispatchQueueScheduler(qos: .background)
+
+    let observable = Observable.combineLatest(imagesObservable, configurationObservable) {
       return ImagesEntityMapper.entity(for: $0, using: $1,
                                        posterSize: posterSize ?? .w342, backdropSize: backdropSize ?? .w300)
-      }.asSingle()
+    }
+
+    return observable.subscribeOn(scheduler)
+      .observeOn(scheduler)
+      .asSingle()
   }
 
   private func imagesForMovie(_ movieId: Int) -> Observable<Images> {
-    let scheduler = SerialDispatchQueueScheduler(qos: .background)
-    return movieCache.get(.images(movieId: movieId)).asObservable().subscribeOn(scheduler).observeOn(scheduler)
+    return movieCache.get(.images(movieId: movieId)).asObservable()
   }
 
   private func imagesForShow(_ showId: Int) -> Observable<Images> {

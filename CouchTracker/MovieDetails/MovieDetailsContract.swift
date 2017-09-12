@@ -27,7 +27,7 @@ protocol MovieDetailsView: BaseView {
   var presenter: MovieDetailsPresenter! { get set }
 
   func show(details: MovieDetailsViewModel)
-  func show(images: MovieDetailsImageViewModel)
+  func show(images: ImagesViewModel)
 }
 
 protocol MovieDetailsInteractor: class {
