@@ -144,9 +144,10 @@ extension TrendingiOSPresenter: SearchResultOutput {
     inSearchMode = true
     searchResults = results
 
-    if currentTrendingType.value == .movies {
-      handleMoviesSeachResults(results)
-    }
+    let viewModels = currentTrendingType.value == .movies ?
+      mapMoviesToViewModels(results) : mapShowsToViewModels(results)
+
+    present(viewModels: viewModels)
   }
 
   func handleError(message: String) {
@@ -156,24 +157,21 @@ extension TrendingiOSPresenter: SearchResultOutput {
 
   func searchCancelled() {
     inSearchMode = false
+    searchResults.removeAll()
     loadTrendingMedia(of: currentTrendingType.value)
   }
 
-  private func handleMoviesSeachResults(_ results: [SearchResult]) {
-    let movies = results.flatMap { result -> TrendingViewModel? in
+  private func mapMoviesToViewModels(_ results: [SearchResult]) -> [TrendingViewModel] {
+    return results.flatMap { result -> TrendingViewModel? in
       guard let movie = result.movie else { return nil }
       return MovieViewModelMapper.viewModel(for: movie)
     }
-
-    present(viewModels: movies)
   }
 
-  private func handleShowsSearchResult(_ results: [SearchResult]) {
-    let shows = results.flatMap { result -> TrendingViewModel? in
+  private func mapShowsToViewModels(_ results: [SearchResult]) -> [TrendingViewModel] {
+    return results.flatMap { result -> TrendingViewModel? in
       guard let show = result.show else { return nil }
       return ShowViewModelMapper.viewModel(for: show)
     }
-
-    present(viewModels: shows)
   }
 }
