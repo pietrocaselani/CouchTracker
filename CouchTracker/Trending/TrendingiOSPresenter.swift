@@ -21,12 +21,14 @@ final class TrendingiOSPresenter: TrendingPresenter {
   var currentTrendingType = Variable<TrendingType>(.movies)
 
   private let interactor: TrendingInteractor
-  private let router: TrendingRouter
   private let disposeBag = DisposeBag()
   private var movies = [TrendingMovieEntity]()
   private var shows = [TrendingShowEntity]()
   private var currentMoviesPage = 0
   private var currentShowsPage = 0
+  fileprivate let router: TrendingRouter
+  fileprivate var searchResults = [SearchResult]()
+  fileprivate var inSearchMode = false
 
   init(view: TrendingView, interactor: TrendingInteractor, router: TrendingRouter, dataSource: TrendingDataSource) {
     self.view = view
@@ -41,7 +43,7 @@ final class TrendingiOSPresenter: TrendingPresenter {
     }).disposed(by: disposeBag)
   }
 
-  private func loadTrendingMedia(of type: TrendingType) {
+  fileprivate func loadTrendingMedia(of type: TrendingType) {
     switch type {
     case .movies: fetchMovies()
     case .shows: fetchShows()
@@ -75,33 +77,29 @@ final class TrendingiOSPresenter: TrendingPresenter {
   }
 
   private func subscribe(on observable: Observable<[TrendingViewModel]>, for type: TrendingType) {
-    observable.observeOn(MainScheduler.instance).subscribe(onNext: { [unowned self] in
-      guard let view = self.view else { return }
-
-      guard $0.count > 0 else {
-        view.showEmptyView()
+    observable.asSingle().observeOn(MainScheduler.instance).subscribe(onSuccess: { [weak self] in
+      self?.present(viewModels: $0)
+    }) { [weak self] in
+      guard let moviesListError = $0 as? TrendingError else {
+        self?.router.showError(message: $0.localizedDescription)
         return
       }
 
-      self.dataSource.viewModels = $0
+      self?.router.showError(message: moviesListError.message)
+    }.disposed(by: disposeBag)
+  }
 
-      view.showTrendingsView()
-      }, onError: { [unowned self] in
-        guard let moviesListError = $0 as? TrendingError else {
-          self.router.showError(message: $0.localizedDescription)
-          return
-        }
+  fileprivate func present(viewModels: [TrendingViewModel]) {
+    guard let view = view else { return }
 
-        self.router.showError(message: moviesListError.message)
-      }, onCompleted: { [unowned self] in
-        guard let view = self.view else { return }
+    guard viewModels.count > 0 else {
+      view.showEmptyView()
+      return
+    }
 
-        let viewModelsCount = type == .movies ? self.movies.count : self.shows.count
+    self.dataSource.viewModels = viewModels
 
-        guard viewModelsCount == 0 else { return }
-
-        view.showEmptyView()
-    }).disposed(by: disposeBag)
+    view.showTrendingsView()
   }
 
   private func transformToViewModels(entities: [TrendingMovieEntity]) -> [TrendingViewModel] {
@@ -113,10 +111,69 @@ final class TrendingiOSPresenter: TrendingPresenter {
   }
 
   private func showDetailsOfMovie(at index: Int) {
-    router.showDetails(of: movies[index])
+    let movieEntity: MovieEntity
+    if inSearchMode {
+      guard let movie = searchResults[index].movie else { return }
+      movieEntity = MovieEntityMapper.entity(for: movie)
+    } else {
+      movieEntity = movies[index].movie
+    }
+
+    router.showDetails(of: movieEntity)
   }
 
   private func showDetailsOfShow(at index: Int) {
-    router.showDetails(of: shows[index])
+    let showEntity: ShowEntity
+    if inSearchMode {
+      guard let show = searchResults[index].show else { return }
+      showEntity = ShowEntityMapper.entity(for: show)
+    } else {
+      showEntity = shows[index].show
+    }
+    router.showDetails(of: showEntity)
+  }
+}
+
+extension TrendingiOSPresenter: SearchResultOutput {
+  func handleEmptySearchResult() {
+    inSearchMode = true
+    view?.showEmptyView()
+  }
+
+  func handleSearch(results: [SearchResult]) {
+    inSearchMode = true
+    searchResults = results
+
+    if currentTrendingType.value == .movies {
+      handleMoviesSeachResults(results)
+    }
+  }
+
+  func handleError(message: String) {
+    inSearchMode = true
+    router.showError(message: message)
+  }
+
+  func searchCancelled() {
+    inSearchMode = false
+    loadTrendingMedia(of: currentTrendingType.value)
+  }
+
+  private func handleMoviesSeachResults(_ results: [SearchResult]) {
+    let movies = results.flatMap { result -> TrendingViewModel? in
+      guard let movie = result.movie else { return nil }
+      return MovieViewModelMapper.viewModel(for: movie)
+    }
+
+    present(viewModels: movies)
+  }
+
+  private func handleShowsSearchResult(_ results: [SearchResult]) {
+    let shows = results.flatMap { result -> TrendingViewModel? in
+      guard let show = result.show else { return nil }
+      return ShowViewModelMapper.viewModel(for: show)
+    }
+
+    present(viewModels: shows)
   }
 }

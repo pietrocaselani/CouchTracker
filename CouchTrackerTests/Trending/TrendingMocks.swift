@@ -63,17 +63,17 @@ final class TrendingPresenterMock: TrendingPresenter {
 
 final class TrendingRouterMock: TrendingRouter {
   var invokedMovieDetails = false
-  var invokedMovieDetailsParameters: (movie: TrendingMovieEntity, Void)?
+  var invokedMovieDetailsParameters: (movie: MovieEntity, Void)?
 
-  func showDetails(of movie: TrendingMovieEntity) {
+  func showDetails(of movie: MovieEntity) {
     invokedMovieDetails = true
     invokedMovieDetailsParameters = (movie, ())
   }
 
   var invokedShowDetails = false
-  var invokedShowDetailsParameters: (show: TrendingShowEntity, Void)?
+  var invokedShowDetailsParameters: (show: ShowEntity, Void)?
 
-  func showDetails(of show: TrendingShowEntity) {
+  func showDetails(of show: ShowEntity) {
     invokedShowDetails = true
     invokedShowDetailsParameters = (show, ())
   }
@@ -89,11 +89,11 @@ final class TrendingRouterMock: TrendingRouter {
 
 final class EmptyTrendingRepositoryMock: TrendingRepository {
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
-    return Observable.empty()
+    return Observable.just([TrendingMovie]())
   }
 
   func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShow]> {
-    return Observable.empty()
+    return Observable.just([TrendingShow]())
   }
 }
 

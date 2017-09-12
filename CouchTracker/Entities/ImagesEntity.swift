@@ -17,13 +17,13 @@ struct ImagesEntity: Hashable {
 
   func posterImage() -> ImageEntity? {
     return posters.max(by: { (lhs, rhs) -> Bool in
-      return lhs.voteCount > rhs.voteCount
+      return lhs.voteCount > rhs.voteCount && lhs.voteAverage > rhs.voteAverage
     })
   }
 
   func backdropImage() -> ImageEntity? {
     return backdrops.max(by: { (lhs, rhs) -> Bool in
-      return lhs.voteCount > rhs.voteCount
+      return lhs.voteCount > rhs.voteCount && lhs.voteAverage > rhs.voteAverage
     })
   }
   var hashValue: Int {

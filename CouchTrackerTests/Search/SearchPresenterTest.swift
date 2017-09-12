@@ -35,13 +35,8 @@ final class SearchPresenterTest: XCTestCase {
 
     presenter.searchMovies(query: "Tron")
 
-    let viewModels = searchResultEntities.map { result -> SearchResultViewModel in
-      let movie = result.movie.map { MovieViewModelMapper.viewModel(for: $0) }
-      return SearchResultViewModel(type: result.type, movie: movie)
-    }
-
     XCTAssertTrue(output.invokedHandleSearch)
-    XCTAssertEqual(output.invokedHandleSearchParameters!.results, viewModels)
+    XCTAssertEqual(output.invokedHandleSearchParameters!.results, searchResultEntities)
   }
 
   func testSearchPresenter_performSearchReceivesNoData_notifyOutput() {

@@ -16,52 +16,60 @@ final class TrendingOutputTest: XCTestCase {
 
   let view = TrendingViewMock()
   let router = TrendingRouterMock()
-  let dataSource = TrendingDataSourceMock()
-  var presenter: TrendingPresenterMock!
+  let searchView = SearchViewMock()
+  var output: SearchResultOutput!
+  var searchPresenter: SearchPresenter!
 
-  private func setupSearchOutputWithEmptyStore() -> SearchResultOutput {
-    let repository = EmptyTrendingRepositoryMock()
-    let interactor = TrendingService(repository: repository, imageRepository: imageRepositoryMock)
-    presenter = TrendingPresenterMock(view: view, interactor: interactor, router: router, dataSource: dataSource)
-    return TrendingSearchOutput(view: view, router: router, presenter: presenter, dataSource: dataSource)
+  override func setUp() {
+    let dataSource = TrendingDataSourceMock()
+
+    let repository = trendingRepositoryMock
+    let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
+    output = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
+
+    let searchRepository = SearchRepositoryRealMock()
+    let searchInteractor = SearchInteractorMock(repository: searchRepository)
+
+    searchPresenter = SearchiOSPresenter(view: searchView, interactor: searchInteractor, resultOutput: output)
+
+    super.setUp()
+  }
+
+  override func tearDown() {
+    searchPresenter = nil
+
+    print("Tear down")
+
+    super.tearDown()
   }
 
   func testListMoviesOutput_receivesEmptyResults_shouldNotifyView() {
-    let output = setupSearchOutputWithEmptyStore()
-
-    output.handleEmptySearchResult()
+    searchPresenter.searchMovies(query: "No results")
 
     XCTAssertTrue(view.invokedShowEmptyView)
   }
 
-  func testListMoviesOutput_receivesCancel_shouldNotifyPresenter() {
-    let output = setupSearchOutputWithEmptyStore()
+  func testListMoviesOutput_receivesCancel_shouldNotifyView() {
+    searchPresenter.cancelSearch()
 
-    output.searchCancelled()
-
-    XCTAssertTrue(presenter.invokedViewDidLoad)
+    XCTAssertTrue(view.invokedShow)
   }
 
   func testListMoviesOutput_receivesError_shouldNotifyRouter() {
-    let output = setupSearchOutputWithEmptyStore()
+    let userInfo = [NSLocalizedDescriptionKey: "There is no active connection"]
+    let searchError = NSError(domain: "com.arctouch", code: 0, userInfo: userInfo)
+    let searchRepository = ErrorSearchStoreMock(error: searchError)
+    let searchInteractor = SearchService(repository: searchRepository)
+    searchPresenter = SearchiOSPresenter(view: searchView, interactor: searchInteractor, resultOutput: output)
 
-    output.handleError(message: "There is no active connection")
+    searchPresenter.searchMovies(query: "Cool movie")
 
     XCTAssertTrue(router.invokedShowError)
     XCTAssertEqual(router.invokedShowErrorParameters?.message, "There is no active connection")
   }
 
   func testListMoviesOutput_receivesResults_shoudShowOnView() {
-    let output = setupSearchOutputWithEmptyStore()
-
-    let searchResults = createSearchResultsMock()
-    let viewModels = searchResults.map { result -> SearchResultViewModel in
-      let type = result.movie?.ids.tmdbModelType()
-      let title = result.movie?.title ?? ""
-      return SearchResultViewModel(type: result.type, movie: TrendingViewModel(title: title, type: type))
-    }
-
-    output.handleSearch(results: viewModels)
+    searchPresenter.searchMovies(query: "TRON")
 
     XCTAssertTrue(view.invokedShow)
   }

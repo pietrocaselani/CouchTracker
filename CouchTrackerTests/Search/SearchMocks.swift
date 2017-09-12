@@ -10,6 +10,7 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
+import Moya
 import RxSwift
 import ObjectMapper
 import Trakt_Swift
@@ -33,9 +34,9 @@ final class SearchResultOutputMock: SearchResultOutput {
   }
 
   var invokedHandleSearch = false
-  var invokedHandleSearchParameters: (results: [SearchResultViewModel], Void)?
+  var invokedHandleSearchParameters: (results: [SearchResult], Void)?
 
-  func handleSearch(results: [SearchResultViewModel]) {
+  func handleSearch(results: [SearchResult]) {
     invokedHandleSearch = true
     invokedHandleSearchParameters = (results, ())
   }
@@ -62,9 +63,9 @@ final class EmptySearchStoreMock: SearchRepository {
 }
 
 final class ErrorSearchStoreMock: SearchRepository {
-  private let error: Error
+  private let error: Swift.Error
 
-  init(error: Error) {
+  init(error: Swift.Error) {
     self.error = error
   }
 
@@ -82,6 +83,39 @@ final class SearchStoreMock: SearchRepository {
 
   func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]> {
     return Observable.just(results).take(limit)
+  }
+}
+
+final class SearchInteractorMock: SearchInteractor {
+  private let repository: SearchRepository
+
+  init(repository: SearchRepository) {
+    self.repository = repository
+  }
+
+  func searchMovies(query: String) -> Observable<[SearchResult]> {
+    let lowercaseQuery = query.lowercased()
+
+    return repository.search(query: query, types: [.movie], page: 0, limit: 50).map { results -> [SearchResult] in
+      results.filter { result -> Bool in
+        let containsMovie = result.movie?.title?.lowercased().contains(lowercaseQuery) ?? false
+        let containsShow = result.show?.title?.lowercased().contains(lowercaseQuery) ?? false
+        return containsMovie || containsShow
+      }
+    }
+  }
+}
+
+final class SearchRepositoryRealMock: SearchRepository {
+  private let searchProvider: RxMoyaProvider<Search>
+
+  init() {
+    searchProvider = traktProviderMock.search
+  }
+
+  func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]> {
+    let target = Search.textQuery(types: types, query: query, page: page, limit: limit)
+    return searchProvider.request(target).mapArray(SearchResult.self)
   }
 }
 

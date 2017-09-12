@@ -21,7 +21,7 @@ protocol SearchView: BaseView {
 
 protocol SearchResultOutput: class {
   func handleEmptySearchResult()
-  func handleSearch(results: [SearchResultViewModel])
+  func handleSearch(results: [SearchResult])
   func handleError(message: String)
   func searchCancelled()
 }

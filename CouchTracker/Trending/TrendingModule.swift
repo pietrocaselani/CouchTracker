@@ -42,11 +42,9 @@ final class TrendingModule {
 
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
 
-    let searchOutput = TrendingSearchOutput(view: view, router: router, presenter: presenter, dataSource: dataSource)
-
     view.presenter = presenter
 
-    view.searchView = SearchModule.setupModule(traktProvider: traktProvider, resultsOutput: searchOutput)
+    view.searchView = SearchModule.setupModule(traktProvider: traktProvider, resultsOutput: presenter)
 
     return navigationController
   }

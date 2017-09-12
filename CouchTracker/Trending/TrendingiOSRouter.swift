@@ -25,16 +25,16 @@ final class TrendingiOSRouter: TrendingRouter {
     self.tmdbProvider = tmdbProvider
   }
 
-  func showDetails(of movie: TrendingMovieEntity) {
-    let movieIds = movie.movie.ids
+  func showDetails(of movie: MovieEntity) {
+    let movieIds = movie.ids
     let view = MovieDetailsModule.setupModule(traktProvider: traktProvider,
                                               tmdbProvider: tmdbProvider, movieIds: movieIds)
 
     present(view: view)
   }
 
-  func showDetails(of show: TrendingShowEntity) {
-    let showIds = show.show.ids
+  func showDetails(of show: ShowEntity) {
+    let showIds = show.ids
     let view = ShowDetailsModule.setupModule(traktProvider: traktProvider, tmdbProvider: tmdbProvider, showIds: showIds)
     present(view: view)
   }

@@ -31,17 +31,14 @@ final class SearchiOSPresenter: SearchPresenter {
 
   func searchMovies(query: String) {
     interactor.searchMovies(query: query)
-        .map { [unowned self] in
-          return self.mapToViewModel($0)
-        }
         .observeOn(MainScheduler.instance)
-        .subscribe(onNext: { [unowned self] viewModels in
-          guard viewModels.count > 0 else {
+        .subscribe(onNext: { [unowned self] results in
+          guard results.count > 0 else {
             self.output.handleEmptySearchResult()
             return
           }
 
-          self.output.handleSearch(results: viewModels)
+          self.output.handleSearch(results: results)
         }, onError: { [unowned self] error in
           self.output.handleError(message: error.localizedDescription)
         }).disposed(by: disposeBag)
@@ -49,10 +46,5 @@ final class SearchiOSPresenter: SearchPresenter {
 
   func cancelSearch() {
     self.output.searchCancelled()
-  }
-
-  private func mapToViewModel(_ results: [SearchResult]) -> [SearchResultViewModel] {
-    return results.map { SearchResultViewModel(type: $0.type,
-                                               movie: $0.movie.map { MovieViewModelMapper.viewModel(for: $0) }) }
   }
 }
