@@ -11,15 +11,29 @@ the license agreement.
 */
 
 import RxSwift
+import Trakt_Swift
 
 final class ShowDetailsService: ShowDetailsInteractor {
+  private let showId: String
   private let repository: ShowDetailsRepository
+  private let genreRepository: GenreRepository
 
-  init(repository: ShowDetailsRepository) {
+  init(showId: String, repository: ShowDetailsRepository, genreRepository: GenreRepository) {
+    self.showId = showId
     self.repository = repository
+    self.genreRepository = genreRepository
   }
 
-  func fetchDetailsOfShow(with identifier: String) -> Single<ShowEntity> {
-    return repository.fetchDetailsOfShow(with: identifier, extended: .full).map { ShowEntityMapper.entity(for: $0) }
+  func fetchDetailsOfShow() -> Single<ShowEntity> {
+    let genreObservable = genreRepository.fetchShowsGenres()
+    let showObservable = repository.fetchDetailsOfShow(with: showId, extended: .full).asObservable()
+
+    return  Observable.combineLatest(showObservable, genreObservable) { (show, genres) -> ShowEntity in
+      let showGenres = genres.filter { genre -> Bool in
+        return show.genres?.contains(where: { $0 == genre.slug }) ?? false
+      }
+
+      return ShowEntityMapper.entity(for: show, with: showGenres)
+    }.asSingle()
   }
 }

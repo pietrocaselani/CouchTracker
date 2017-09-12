@@ -17,6 +17,7 @@ struct ShowEntity: Hashable {
   let showIds: ShowIds
   let title: String?
   let overview: String?
+  let network: String?
   let genres: [Genre]?
   let status: Status?
   let firstAired: Date?
@@ -38,6 +39,10 @@ struct ShowEntity: Hashable {
 
     if let firstAiredHash = firstAired?.hashValue {
       hash = hash ^ firstAiredHash
+    }
+
+    if let networkHash = network?.hashValue {
+      hash = hash ^ networkHash
     }
 
     genres?.forEach { hash = hash ^ $0.hashValue }

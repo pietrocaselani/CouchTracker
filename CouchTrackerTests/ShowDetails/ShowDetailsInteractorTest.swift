@@ -21,18 +21,18 @@ final class ShowDetailsInteractorTest: XCTestCase {
   private let scheduler = TestScheduler(initialClock: 0)
 
   func testCanCreateShowDetailsInteractor() {
-    let interactor: ShowDetailsInteractor = ShowDetailsService(repository: showDetailsRepositoryMock)
+    let interactor: ShowDetailsInteractor = ShowDetailsService(showId: "cool show", repository: showDetailsRepositoryMock, genreRepository: GenreRepositoryMock())
     XCTAssertNotNil(interactor)
   }
 
   func testShowDetailsInteractor_fetchDetailsFailure_emmitsError() {
     let showError = NSError(domain: "com.arctouch", code: 4)
     let repository = ShowDetailsRepositoryErrorMock(error: showError)
-    let interactor = ShowDetailsService(repository: repository)
+    let interactor = ShowDetailsService(showId: "cool show", repository: repository, genreRepository: GenreRepositoryMock())
 
     let errorExpectation = expectation(description: "Expect interactor to emit an error")
 
-    let disposable = interactor.fetchDetailsOfShow(with: "cool show").subscribe(onSuccess: { show in
+    let disposable = interactor.fetchDetailsOfShow().subscribe(onSuccess: { show in
       XCTFail()
     }) { error in
       XCTAssertEqual(error as NSError, showError)
@@ -49,17 +49,17 @@ final class ShowDetailsInteractorTest: XCTestCase {
   }
 
   func testShowDetailsInteractor_fetchDetailsSuccess_emmitsShow() {
-    let interactor = ShowDetailsService(repository: showDetailsRepositoryMock)
+    let interactor = ShowDetailsService(showId: "cool show", repository: showDetailsRepositoryMock, genreRepository: GenreRepositoryMock())
 
     let showExpectation = expectation(description: "Expect interactor to emit a show")
 
-    let showId = "game-of-thrones"
+    let show = createTraktShowDetails()
+    let showGenres = createShowsGenresMock().filter { genre -> Bool in
+      show.genres?.contains(where: { $0 == genre.slug }) ?? false
+    }
+    let expectedEntity = ShowEntityMapper.entity(for: show, with: showGenres)
 
-    let json = JSONParser.toObject(data: Shows.summary(showId: showId, extended: .full).sampleData)
-    let show = try! Show(JSON: json)
-    let expectedEntity = ShowEntityMapper.entity(for: show)
-
-    let disposable = interactor.fetchDetailsOfShow(with: showId).subscribe(onSuccess: { entity in
+    let disposable = interactor.fetchDetailsOfShow().subscribe(onSuccess: { entity in
       XCTAssertEqual(entity, expectedEntity)
       showExpectation.fulfill()
     }) { _ in
