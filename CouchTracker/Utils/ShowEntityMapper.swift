@@ -16,7 +16,7 @@ final class ShowEntityMapper {
   private init() {}
 
   static func entity(for show: Show, with genres: [Genre]? = nil) -> ShowEntity {
-    return ShowEntity(showIds: show.ids, title: show.title,
+    return ShowEntity(ids: show.ids, title: show.title,
                       overview: show.overview, network: show.network,
                       genres: genres, status: show.status, firstAired: show.firstAired)
   }

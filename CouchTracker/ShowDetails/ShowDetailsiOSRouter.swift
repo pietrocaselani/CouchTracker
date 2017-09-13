@@ -12,7 +12,7 @@ the license agreement.
 
 import UIKit
 
-final class MovieDetailsiOSRouter: MovieDetailsRouter {
+final class ShowDetailsiOSRouter: ShowDetailsRouter {
   private weak var viewController: UIViewController?
 
   init(viewController: UIViewController) {

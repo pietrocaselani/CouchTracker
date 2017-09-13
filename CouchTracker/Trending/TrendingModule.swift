@@ -13,7 +13,6 @@
 import UIKit
 
 final class TrendingModule {
-
   private init() {}
 
   static func setupModule(traktProvider: TraktProvider, tmdbProvider: TMDBProvider) -> BaseView {

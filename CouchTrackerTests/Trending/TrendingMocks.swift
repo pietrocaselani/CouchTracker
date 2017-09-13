@@ -62,12 +62,20 @@ final class TrendingPresenterMock: TrendingPresenter {
 }
 
 final class TrendingRouterMock: TrendingRouter {
-  var invokedShowDetails = false
-  var invokedShowDetailsParameters: (movie: TrendingMovieEntity, Void)?
+  var invokedMovieDetails = false
+  var invokedMovieDetailsParameters: (movie: TrendingMovieEntity, Void)?
 
   func showDetails(of movie: TrendingMovieEntity) {
+    invokedMovieDetails = true
+    invokedMovieDetailsParameters = (movie, ())
+  }
+
+  var invokedShowDetails = false
+  var invokedShowDetailsParameters: (show: TrendingShowEntity, Void)?
+
+  func showDetails(of show: TrendingShowEntity) {
     invokedShowDetails = true
-    invokedShowDetailsParameters = (movie, ())
+    invokedShowDetailsParameters = (show, ())
   }
 
   var invokedShowError = false

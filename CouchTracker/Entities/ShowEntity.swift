@@ -14,7 +14,7 @@ import Trakt_Swift
 import Foundation
 
 struct ShowEntity: Hashable {
-  let showIds: ShowIds
+  let ids: ShowIds
   let title: String?
   let overview: String?
   let network: String?
@@ -23,7 +23,7 @@ struct ShowEntity: Hashable {
   let firstAired: Date?
 
   var hashValue: Int {
-    var hash = showIds.hashValue
+    var hash = ids.hashValue
 
     if let titleHash = title?.hashValue {
       hash = hash ^ titleHash

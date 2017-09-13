@@ -51,6 +51,8 @@ final class TrendingiOSPresenter: TrendingPresenter {
   func showDetailsOfTrending(at index: Int) {
     if currentTrendingType.value == .movies {
       showDetailsOfMovie(at: index)
+    } else {
+      showDetailsOfShow(at: index)
     }
   }
 
@@ -112,5 +114,9 @@ final class TrendingiOSPresenter: TrendingPresenter {
 
   private func showDetailsOfMovie(at index: Int) {
     router.showDetails(of: movies[index])
+  }
+
+  private func showDetailsOfShow(at index: Int) {
+    router.showDetails(of: shows[index])
   }
 }
