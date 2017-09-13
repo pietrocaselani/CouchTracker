@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import Moya
-import TMDB_Swift
+import TMDBSwift
 
 protocol TMDBProvider: class {
   var movies: RxMoyaProvider<Movies> { get }

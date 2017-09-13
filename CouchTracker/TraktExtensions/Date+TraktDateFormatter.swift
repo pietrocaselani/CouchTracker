@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import Foundation
-import Trakt_Swift
+import TraktSwift
 
 extension Date {
   func parse(using formatter: DateFormatter = TraktDateTransformer.dateTransformer.dateFormatter) -> String {

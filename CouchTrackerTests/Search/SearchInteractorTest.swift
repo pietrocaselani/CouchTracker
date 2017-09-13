@@ -13,7 +13,7 @@ the license agreement.
 import XCTest
 import RxTest
 import RxSwift
-import Trakt_Swift
+import TraktSwift
 
 final class SearchInteractorTest: XCTestCase {
   private let scheduler = TestScheduler(initialClock: 0)

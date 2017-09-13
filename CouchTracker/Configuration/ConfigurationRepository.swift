@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import RxSwift
-import TMDB_Swift
+import TMDBSwift
 
 protocol ConfigurationRepository: class {
   init(tmdbProvider: TMDBProvider)

@@ -10,7 +10,7 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import TMDB_Swift
+import TMDBSwift
 
 let configurationMock = try! Configuration(JSON: JSONParser.toObject(data: ConfigurationService.configuration.sampleData))
 

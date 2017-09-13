@@ -10,7 +10,7 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Trakt_Swift
+import TraktSwift
 import Foundation
 
 struct MovieEntity: Hashable {

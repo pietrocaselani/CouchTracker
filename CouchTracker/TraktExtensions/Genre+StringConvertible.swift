@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import Carlos
-import Trakt_Swift
+import TraktSwift
 
 extension Genres: StringConvertible {
   public func toString() -> String {

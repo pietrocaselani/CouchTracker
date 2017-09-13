@@ -13,7 +13,7 @@
 import Carlos
 import Moya
 import RxSwift
-import Trakt_Swift
+import TraktSwift
 
 final class MovieDetailsCacheRepository: MovieDetailsRepository {
   private let cache: BasicCache<Movies, Movie>

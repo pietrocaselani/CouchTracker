@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import Carlos
-import TMDB_Swift
+import TMDBSwift
 
 extension Shows: StringConvertible {
   public func toString() -> String {

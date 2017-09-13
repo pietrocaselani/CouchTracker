@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import XCTest
-import Trakt_Swift
+import TraktSwift
 
 final class SearchPresenterTest: XCTestCase {
   let output = SearchResultOutputMock()

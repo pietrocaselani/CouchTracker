@@ -45,8 +45,8 @@
 		640330451F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640330421F67FEBA001CCEDB /* ImagesViewModelMapper.swift */; };
 		640330461F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640330421F67FEBA001CCEDB /* ImagesViewModelMapper.swift */; };
 		6405C9FA1F549BE90039D6E6 /* Trakt.h in Headers */ = {isa = PBXBuildFile; fileRef = 6405C9EA1F549BE80039D6E6 /* Trakt.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6405C9FD1F549BE90039D6E6 /* Trakt_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6405C9E81F549BE80039D6E6 /* Trakt_Swift.framework */; };
-		6405C9FE1F549BE90039D6E6 /* Trakt_Swift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6405C9E81F549BE80039D6E6 /* Trakt_Swift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6405C9FD1F549BE90039D6E6 /* TraktSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6405C9E81F549BE80039D6E6 /* TraktSwift.framework */; };
+		6405C9FE1F549BE90039D6E6 /* TraktSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6405C9E81F549BE80039D6E6 /* TraktSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6405CA221F549C8B0039D6E6 /* Trakt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405CA081F549C8A0039D6E6 /* Trakt.swift */; };
 		6405CA231F549C8B0039D6E6 /* TraktType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405CA091F549C8A0039D6E6 /* TraktType.swift */; };
 		6405CA241F549C8B0039D6E6 /* IDType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405CA0A1F549C8A0039D6E6 /* IDType.swift */; };
@@ -83,7 +83,6 @@
 		6405E5031F5DE84600756E79 /* TrendingShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405E4F41F5DE72B00756E79 /* TrendingShowEntity.swift */; };
 		6405E5041F5DE84600756E79 /* TrendingShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405E4F41F5DE72B00756E79 /* TrendingShowEntity.swift */; };
 		6406BEB61F4DB69C004661C4 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEB21F4DB69C004661C4 /* BaseView.swift */; };
-		6406BEB71F4DB69C004661C4 /* SimpleCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEB31F4DB69C004661C4 /* SimpleCollectionViewDataSource.swift */; };
 		6406BEBA1F4DB6C5004661C4 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEB21F4DB69C004661C4 /* BaseView.swift */; };
 		6406BEC21F4DBEFA004661C4 /* MovieDetailsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEBC1F4DBEFA004661C4 /* MovieDetailsContract.swift */; };
 		6406BEC31F4DBEFA004661C4 /* MovieDetailsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEBD1F4DBEFA004661C4 /* MovieDetailsError.swift */; };
@@ -251,7 +250,7 @@
 		648687A71F4A3D6D005A0BA8 /* TrendingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486879D1F4A3B9C005A0BA8 /* TrendingError.swift */; };
 		6496D9AA1F56F1CF00B76E06 /* TraktProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6496D9A91F56F1CF00B76E06 /* TraktProviderMock.swift */; };
 		6496D9AB1F56F1CF00B76E06 /* TraktProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6496D9A91F56F1CF00B76E06 /* TraktProviderMock.swift */; };
-		64A459A01F54A8F0002C5CAC /* Trakt_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A459971F54A8F0002C5CAC /* Trakt_Swift.framework */; };
+		64A459A01F54A8F0002C5CAC /* TraktSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A459971F54A8F0002C5CAC /* TraktSwift.framework */; };
 		64A459A51F54A8F0002C5CAC /* TraktTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A459A41F54A8F0002C5CAC /* TraktTests.swift */; };
 		64A459A71F54A8F0002C5CAC /* Trakt_Mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 64A459991F54A8F0002C5CAC /* Trakt_Mac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64A459AE1F54A99A002C5CAC /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405CA0C1F549C8A0039D6E6 /* Genres.swift */; };
@@ -297,7 +296,7 @@
 		64A459D61F54A9C4002C5CAC /* TraktDateTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405CA1F1F549C8B0039D6E6 /* TraktDateTransformer.swift */; };
 		64A459D71F54A9C4002C5CAC /* TraktType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405CA091F549C8A0039D6E6 /* TraktType.swift */; };
 		64A459E41F54AE19002C5CAC /* TMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 64A459E21F54AE19002C5CAC /* TMDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64A45A031F54AE49002C5CAC /* TMDB_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A459FA1F54AE49002C5CAC /* TMDB_Swift.framework */; };
+		64A45A031F54AE49002C5CAC /* TMDBSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A459FA1F54AE49002C5CAC /* TMDBSwift.framework */; };
 		64A45A1A1F54AEF4002C5CAC /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A45A121F54AEF4002C5CAC /* Configuration.swift */; };
 		64A45A1B1F54AEF4002C5CAC /* ImagesConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A45A131F54AEF4002C5CAC /* ImagesConfiguration.swift */; };
 		64A45A1C1F54AEF4002C5CAC /* TMDB+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A45A141F54AEF4002C5CAC /* TMDB+Constants.swift */; };
@@ -361,7 +360,6 @@
 		64B1CC8F1F4F560E002A9FFD /* JSONObjectTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEFB1F4DC3F1004661C4 /* JSONObjectTransformer.swift */; };
 		64B1CC911F4F560E002A9FFD /* TrendingModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC751F4F55B0002A9FFD /* TrendingModule.swift */; };
 		64B1CC941F4F560E002A9FFD /* TrendingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486879D1F4A3B9C005A0BA8 /* TrendingError.swift */; };
-		64B1CC961F4F560E002A9FFD /* SimpleCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEB31F4DB69C004661C4 /* SimpleCollectionViewDataSource.swift */; };
 		64B1CC971F4F560E002A9FFD /* Future+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EE21F471D04009E37C9 /* Future+Rx.swift */; };
 		64B1CC991F4F560E002A9FFD /* MoyaFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03EDE1F471C32009E37C9 /* MoyaFetcher.swift */; };
 		64B1CC9A1F4F560E002A9FFD /* Genre+StringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BED71F4DC353004661C4 /* Genre+StringConvertible.swift */; };
@@ -622,7 +620,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6405C9FE1F549BE90039D6E6 /* Trakt_Swift.framework in Embed Frameworks */,
+				6405C9FE1F549BE90039D6E6 /* TraktSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -652,7 +650,7 @@
 		4AF82CEF656B3FDBDB4F613E /* Pods-TraktTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraktTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraktTests/Pods-TraktTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5FA5E5D147F9088F5D88235F /* Pods_CouchTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		640330421F67FEBA001CCEDB /* ImagesViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModelMapper.swift; sourceTree = "<group>"; };
-		6405C9E81F549BE80039D6E6 /* Trakt_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Trakt_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6405C9E81F549BE80039D6E6 /* TraktSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraktSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6405C9EA1F549BE80039D6E6 /* Trakt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trakt.h; sourceTree = "<group>"; };
 		6405C9EB1F549BE80039D6E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6405CA081F549C8A0039D6E6 /* Trakt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trakt.swift; sourceTree = "<group>"; };
@@ -682,7 +680,6 @@
 		6405E4F21F5DE59600756E79 /* TrendingContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingContract.swift; sourceTree = "<group>"; };
 		6405E4F41F5DE72B00756E79 /* TrendingShowEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingShowEntity.swift; sourceTree = "<group>"; };
 		6406BEB21F4DB69C004661C4 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
-		6406BEB31F4DB69C004661C4 /* SimpleCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		6406BEBC1F4DBEFA004661C4 /* MovieDetailsContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsContract.swift; sourceTree = "<group>"; };
 		6406BEBD1F4DBEFA004661C4 /* MovieDetailsError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsError.swift; sourceTree = "<group>"; };
 		6406BEC01F4DBEFA004661C4 /* MovieDetailsCacheRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsCacheRepository.swift; sourceTree = "<group>"; };
@@ -760,18 +757,18 @@
 		648391221F507F9500911BA0 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		6486879D1F4A3B9C005A0BA8 /* TrendingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingError.swift; sourceTree = "<group>"; };
 		6496D9A91F56F1CF00B76E06 /* TraktProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktProviderMock.swift; sourceTree = "<group>"; };
-		64A459971F54A8F0002C5CAC /* Trakt_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Trakt_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		64A459971F54A8F0002C5CAC /* TraktSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraktSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A459991F54A8F0002C5CAC /* Trakt_Mac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trakt_Mac.h; sourceTree = "<group>"; };
 		64A4599A1F54A8F0002C5CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64A4599F1F54A8F0002C5CAC /* Trakt-MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Trakt-MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A459A41F54A8F0002C5CAC /* TraktTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktTests.swift; sourceTree = "<group>"; };
 		64A459A61F54A8F0002C5CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		64A459E01F54AE19002C5CAC /* TMDB_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMDB_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		64A459E01F54AE19002C5CAC /* TMDBSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMDBSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A459E21F54AE19002C5CAC /* TMDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMDB.h; sourceTree = "<group>"; };
 		64A459E31F54AE19002C5CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64A459EF1F54AE38002C5CAC /* TMDB_Mac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMDB_Mac.h; sourceTree = "<group>"; };
 		64A459F01F54AE38002C5CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		64A459FA1F54AE49002C5CAC /* TMDB_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMDB_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		64A459FA1F54AE49002C5CAC /* TMDBSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMDBSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A45A021F54AE49002C5CAC /* TMDB-MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TMDB-MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A45A091F54AE49002C5CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64A45A121F54AEF4002C5CAC /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -893,7 +890,7 @@
 			files = (
 				F23089BF675566CBB1950BC8 /* Pods_CouchTracker.framework in Frameworks */,
 				258B0D6D4950307F743A995F /* Pods_CouchTracker.framework in Frameworks */,
-				6405C9FD1F549BE90039D6E6 /* Trakt_Swift.framework in Frameworks */,
+				6405C9FD1F549BE90039D6E6 /* TraktSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -918,7 +915,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64A459A01F54A8F0002C5CAC /* Trakt_Swift.framework in Frameworks */,
+				64A459A01F54A8F0002C5CAC /* TraktSwift.framework in Frameworks */,
 				284C5172CF91ECF91CA411AC /* Pods_Trakt_MacTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -943,7 +940,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64A45A031F54AE49002C5CAC /* TMDB_Swift.framework in Frameworks */,
+				64A45A031F54AE49002C5CAC /* TMDBSwift.framework in Frameworks */,
 				40ED579778448558B77152B2 /* Pods_TMDB_MacTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1270,11 +1267,11 @@
 				6476324D1F44824900F277F1 /* CouchTrackerTests.xctest */,
 				64B1CCC21F4F560E002A9FFD /* CouchTrackerUgly.app */,
 				64B1CCCE1F4F597D002A9FFD /* CouchTrackerFastTests.xctest */,
-				6405C9E81F549BE80039D6E6 /* Trakt_Swift.framework */,
-				64A459971F54A8F0002C5CAC /* Trakt_Swift.framework */,
+				6405C9E81F549BE80039D6E6 /* TraktSwift.framework */,
+				64A459971F54A8F0002C5CAC /* TraktSwift.framework */,
 				64A4599F1F54A8F0002C5CAC /* Trakt-MacTests.xctest */,
-				64A459E01F54AE19002C5CAC /* TMDB_Swift.framework */,
-				64A459FA1F54AE49002C5CAC /* TMDB_Swift.framework */,
+				64A459E01F54AE19002C5CAC /* TMDBSwift.framework */,
+				64A459FA1F54AE49002C5CAC /* TMDBSwift.framework */,
 				64A45A021F54AE49002C5CAC /* TMDB-MacTests.xctest */,
 			);
 			name = Products;
@@ -1403,7 +1400,6 @@
 				6483911A1F505F4100911BA0 /* MovieViewModelMapper.swift */,
 				642F6F541F5D74F10012F04F /* ShowEntityMapper.swift */,
 				644FCDDE1F5ED41F00346605 /* ShowViewModelMapper.swift */,
-				6406BEB31F4DB69C004661C4 /* SimpleCollectionViewDataSource.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1643,7 +1639,7 @@
 			);
 			name = Trakt;
 			productName = Trakt;
-			productReference = 6405C9E81F549BE80039D6E6 /* Trakt_Swift.framework */;
+			productReference = 6405C9E81F549BE80039D6E6 /* TraktSwift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		647632381F44824900F277F1 /* CouchTracker */ = {
@@ -1709,7 +1705,7 @@
 			);
 			name = "Trakt-Mac";
 			productName = "Trakt-Mac";
-			productReference = 64A459971F54A8F0002C5CAC /* Trakt_Swift.framework */;
+			productReference = 64A459971F54A8F0002C5CAC /* TraktSwift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		64A4599E1F54A8F0002C5CAC /* Trakt-MacTests */ = {
@@ -1750,7 +1746,7 @@
 			);
 			name = TMDB;
 			productName = TMDB;
-			productReference = 64A459E01F54AE19002C5CAC /* TMDB_Swift.framework */;
+			productReference = 64A459E01F54AE19002C5CAC /* TMDBSwift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		64A459F91F54AE49002C5CAC /* TMDB-Mac */ = {
@@ -1770,7 +1766,7 @@
 			);
 			name = "TMDB-Mac";
 			productName = "TMDB-Mac";
-			productReference = 64A459FA1F54AE49002C5CAC /* TMDB_Swift.framework */;
+			productReference = 64A459FA1F54AE49002C5CAC /* TMDBSwift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		64A45A011F54AE49002C5CAC /* TMDB-MacTests */ = {
@@ -2684,7 +2680,6 @@
 				64B1CC771F4F55B1002A9FFD /* TrendingModule.swift in Sources */,
 				64D29C321F55A936008E344E /* MovieDetailsiOSPresenter.swift in Sources */,
 				648687A21F4A3B9C005A0BA8 /* TrendingError.swift in Sources */,
-				6406BEB71F4DB69C004661C4 /* SimpleCollectionViewDataSource.swift in Sources */,
 				64B03EE31F471D04009E37C9 /* Future+Rx.swift in Sources */,
 				64D29C361F55A949008E344E /* TrendingCacheRepository.swift in Sources */,
 				640330431F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */,
@@ -3013,7 +3008,6 @@
 				642F6F571F5D74F10012F04F /* ShowEntityMapper.swift in Sources */,
 				64B1CC941F4F560E002A9FFD /* TrendingError.swift in Sources */,
 				64D29C421F55A9F5008E344E /* TrendingService.swift in Sources */,
-				64B1CC961F4F560E002A9FFD /* SimpleCollectionViewDataSource.swift in Sources */,
 				64B1CC971F4F560E002A9FFD /* Future+Rx.swift in Sources */,
 				64B1CC991F4F560E002A9FFD /* MoyaFetcher.swift in Sources */,
 				640330451F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */,
@@ -3268,7 +3262,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @loader_path/../Frameworks @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.Trakt;
-				PRODUCT_NAME = Trakt_Swift;
+				PRODUCT_NAME = TraktSwift;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -3321,7 +3315,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @loader_path/../Frameworks @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.Trakt;
-				PRODUCT_NAME = Trakt_Swift;
+				PRODUCT_NAME = TraktSwift;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -3520,7 +3514,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.arctouch.Trakt-Mac";
-				PRODUCT_NAME = Trakt_Swift;
+				PRODUCT_NAME = TraktSwift;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -3556,7 +3550,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.arctouch.Trakt-Mac";
-				PRODUCT_NAME = Trakt_Swift;
+				PRODUCT_NAME = TraktSwift;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -3645,7 +3639,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.TMDB;
-				PRODUCT_NAME = TMDB_Swift;
+				PRODUCT_NAME = TMDBSwift;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -3681,7 +3675,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.TMDB;
-				PRODUCT_NAME = TMDB_Swift;
+				PRODUCT_NAME = TMDBSwift;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3717,7 +3711,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.arctouch.TMDB-Mac";
-				PRODUCT_NAME = TMDB_Swift;
+				PRODUCT_NAME = TMDBSwift;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -3753,7 +3747,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.arctouch.TMDB-Mac";
-				PRODUCT_NAME = TMDB_Swift;
+				PRODUCT_NAME = TMDBSwift;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;

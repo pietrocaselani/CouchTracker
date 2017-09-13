@@ -13,7 +13,7 @@ the license agreement.
 import Carlos
 import Moya
 import RxSwift
-import Trakt_Swift
+import TraktSwift
 
 final class TraktGenreRepository: GenreRepository {
 

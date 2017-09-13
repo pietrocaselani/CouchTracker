@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import RxSwift
-import Trakt_Swift
+import TraktSwift
 
 func createMoviesGenresMock() -> [Genre] {
   let jsonArray = JSONParser.toArray(data: Genres.list(.movies).sampleData)

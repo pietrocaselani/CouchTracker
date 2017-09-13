@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import Moya
-import TMDB_Swift
+import TMDBSwift
 
 let tmdbProviderMock = TMDBProviderMock()
 

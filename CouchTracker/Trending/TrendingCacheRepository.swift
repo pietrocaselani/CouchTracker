@@ -14,7 +14,7 @@ import Carlos
 import Moya
 import PiedPiper
 import RxSwift
-import Trakt_Swift
+import TraktSwift
 
 final class TrendingCacheRepository: TrendingRepository {
 

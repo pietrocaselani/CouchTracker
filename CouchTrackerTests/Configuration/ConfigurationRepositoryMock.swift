@@ -12,7 +12,7 @@ the license agreement.
 
 import RxSwift
 import Moya
-import TMDB_Swift
+import TMDBSwift
 import Moya_ObjectMapper
 
 let configurationRepositoryMock = ConfigurationRepositoryMock(tmdbProvider: tmdbProviderMock)

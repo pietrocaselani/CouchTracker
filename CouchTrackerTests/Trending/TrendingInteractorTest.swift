@@ -13,7 +13,7 @@
 import XCTest
 import RxSwift
 import RxTest
-import Trakt_Swift
+import TraktSwift
 
 final class TrendingInteractorTest: XCTestCase {
 

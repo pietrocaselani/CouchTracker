@@ -12,7 +12,7 @@ the license agreement.
 
 import Foundation
 import RxSwift
-import Trakt_Swift
+import TraktSwift
 
 let trendingRepositoryMock = TrendingRepositoryMock(traktProvider: traktProviderMock)
 

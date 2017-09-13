@@ -13,7 +13,7 @@
 import Carlos
 import Moya
 import RxSwift
-import TMDB_Swift
+import TMDBSwift
 
 final class ImageCachedRepository: ImageRepository {
 

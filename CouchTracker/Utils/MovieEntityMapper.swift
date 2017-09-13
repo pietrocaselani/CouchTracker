@@ -10,7 +10,7 @@
  the license agreement.
  */
 
-import Trakt_Swift
+import TraktSwift
 import Foundation
 
 final class MovieEntityMapper {

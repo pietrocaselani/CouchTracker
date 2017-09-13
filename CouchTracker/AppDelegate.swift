@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import Trakt_Swift
-import TMDB_Swift
+import TraktSwift
+import TMDBSwift
 import Carlos
 
 @UIApplicationMain

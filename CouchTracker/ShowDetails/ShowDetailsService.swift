@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import RxSwift
-import Trakt_Swift
+import TraktSwift
 
 final class ShowDetailsService: ShowDetailsInteractor {
   private let showIds: ShowIds
