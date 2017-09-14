@@ -17,53 +17,64 @@ import TMDB_Swift
 
 final class ImageCachedRepository: ImageRepository {
 
-  private let movieCache: BasicCache<Movies, Images>
-  private let showCache: BasicCache<Shows, Images>
+  private let cache: BasicCache<String, Images>
+  private let showsProvider: RxMoyaProvider<Shows>
+  private let moviesProvider: RxMoyaProvider<Movies>
   private let configurationRepository: ConfigurationRepository
 
   init(tmdbProvider: TMDBProvider, cofigurationRepository: ConfigurationRepository) {
     self.configurationRepository = cofigurationRepository
+    self.showsProvider = tmdbProvider.shows
+    self.moviesProvider = tmdbProvider.movies
 
-    self.movieCache = MemoryCacheLevel<Movies, NSData>()
-      .compose(DiskCacheLevel<Movies, NSData>())
-      .compose(MoyaFetcher(provider: tmdbProvider.movies))
-      .transformValues(JSONObjectTransfomer<Images>())
-
-    self.showCache = MemoryCacheLevel<Shows, NSData>()
-      .compose(DiskCacheLevel<Shows, NSData>())
-      .compose(MoyaFetcher(provider: tmdbProvider.shows))
+    self.cache = MemoryCacheLevel<String, NSData>()
+      .compose(DiskCacheLevel<String, NSData>())
       .transformValues(JSONObjectTransfomer<Images>())
   }
 
   func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?,
                         backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
-    let imagesObservable = imagesForMovie(movieId)
+    let target = Movies.images(movieId: movieId)
 
-    return createImagesEntities(imagesObservable, posterSize: posterSize, backdropSize: backdropSize).asObservable()
+    let cacheObservable = imagesFromCache(with: target.toString())
+    let apiObservable = imagesFromAPI(using: moviesProvider, with: target)
+    let imagesObservable = cacheObservable.ifEmpty(switchTo: apiObservable)
+
+    return createImagesEntities(imagesObservable, posterSize: posterSize, backdropSize: backdropSize)
   }
 
   func fetchShowImages(for showId: Int, posterSize: PosterImageSize?,
                        backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
-    let imagesObservable = imagesForShow(showId)
-    return createImagesEntities(imagesObservable, posterSize: posterSize, backdropSize: backdropSize)
+    let target = Shows.images(showId: showId)
+
+    let cacheObservable = imagesFromCache(with: target.toString())
+    let apiObservable = showsProvider.request(target).mapObject(Images.self)
+    let imagesObservable = cacheObservable.ifEmpty(switchTo: apiObservable)
+
+    return createImagesEntities(imagesObservable, posterSize: posterSize, backdropSize: backdropSize).asSingle()
   }
 
   private func createImagesEntities(_ imagesObservable: Observable<Images>, posterSize: PosterImageSize?,
-                                    backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
+                                    backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
     let configurationObservable = configurationRepository.fetchConfiguration()
 
-    return Observable.combineLatest(imagesObservable, configurationObservable) {
+    let observable = Observable.combineLatest(imagesObservable, configurationObservable) {
       return ImagesEntityMapper.entity(for: $0, using: $1,
                                        posterSize: posterSize ?? .w342, backdropSize: backdropSize ?? .w300)
-      }.asSingle()
+      }
+
+    return observable
   }
 
-  private func imagesForMovie(_ movieId: Int) -> Observable<Images> {
+  private func imagesFromCache(with key: String) -> Observable<Images> {
     let scheduler = SerialDispatchQueueScheduler(qos: .background)
-    return movieCache.get(.images(movieId: movieId)).asObservable().subscribeOn(scheduler).observeOn(scheduler)
+    return cache.get(key).asObservable().subscribeOn(scheduler).observeOn(scheduler)
   }
 
-  private func imagesForShow(_ showId: Int) -> Observable<Images> {
-    return showCache.get(.images(showId: showId)).asObservable()
+  private func imagesFromAPI<T: TMDBType & StringConvertible>(using provider: RxMoyaProvider<T>,
+                                                              with target: T) -> Observable<Images> {
+    return provider.request(target).mapObject(Images.self).do(onNext: { [unowned self] images in
+      _ = self.cache.set(images, forKey: target.toString())
+    })
   }
 }
