@@ -58,18 +58,18 @@ final class ImageCachedRepository: ImageRepository {
                                     backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
     let configurationObservable = configurationRepository.fetchConfiguration()
 
-    let scheduler = SerialDispatchQueueScheduler(qos: .background)
-
     let observable = Observable.combineLatest(imagesObservable, configurationObservable) {
       return ImagesEntityMapper.entity(for: $0, using: $1,
                                        posterSize: posterSize ?? .w342, backdropSize: backdropSize ?? .w300)
-    }
+      }
+
+    let scheduler = SerialDispatchQueueScheduler(qos: .background)
 
     return observable.subscribeOn(scheduler).observeOn(scheduler)
   }
 
-  private func imagesForMovie(_ movieId: Int) -> Observable<Images> {
-    return movieCache.get(.images(movieId: movieId)).asObservable()
+  private func imagesFromCache(with key: String) -> Observable<Images> {
+    return cache.get(key).asObservable()
   }
 
   private func imagesFromAPI<T: TMDBType & StringConvertible>(using provider: RxMoyaProvider<T>,
