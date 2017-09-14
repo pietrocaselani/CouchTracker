@@ -10,7 +10,7 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-struct MovieDetailsImageViewModel: Hashable {
+struct ImagesViewModel: Hashable {
   let posterLink: String?
   let backdropLink: String?
 
@@ -28,7 +28,7 @@ struct MovieDetailsImageViewModel: Hashable {
     return hash
   }
 
-  static func == (lhs: MovieDetailsImageViewModel, rhs: MovieDetailsImageViewModel) -> Bool {
+  static func == (lhs: ImagesViewModel, rhs: ImagesViewModel) -> Bool {
     return lhs.hashValue == rhs.hashValue
   }
 }

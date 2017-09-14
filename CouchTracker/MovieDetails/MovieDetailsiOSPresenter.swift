@@ -15,9 +15,7 @@ import Foundation
 import Trakt_Swift
 
 final class MovieDetailsiOSPresenter: MovieDetailsPresenter {
-
   private let disposeBag = DisposeBag()
-
   private weak var view: MovieDetailsView?
   private let interactor: MovieDetailsInteractor
   private let router: MovieDetailsRouter
@@ -30,11 +28,8 @@ final class MovieDetailsiOSPresenter: MovieDetailsPresenter {
 
   func viewDidLoad() {
     interactor.fetchImages()
-      .map { imagesEntity -> MovieDetailsImageViewModel in
-        let posterLink = imagesEntity.posterImage()?.link
-        let backdropLink = imagesEntity.backdropImage()?.link
-        return MovieDetailsImageViewModel(posterLink: posterLink, backdropLink: backdropLink)
-      }.observeOn(MainScheduler.instance).subscribe(onNext: { [unowned self] imagesViewModel in
+      .map { ImagesViewModelMapper.viewModel(for: $0) }
+      .observeOn(MainScheduler.instance).subscribe(onNext: { [unowned self] imagesViewModel in
         self.view?.show(images: imagesViewModel)
       }).disposed(by: disposeBag)
 

@@ -74,4 +74,36 @@ final class ShowDetailsPresenterTest: XCTestCase {
     XCTAssertTrue(view.invokedShowDetails)
     XCTAssertEqual(view.invokedShowDetailsParameters?.details, details)
   }
+
+  func testShowDetailsPresenter_fetchImagesFailure_dontNotifyView() {
+    let userInfo = [NSLocalizedDescriptionKey: "Image not found"]
+    let imageError = NSError(domain: "com.arctouch", code: 404, userInfo: userInfo)
+
+    let interactor = ShowDetailsInteractorMock(showIds: createTraktShowDetails().ids,
+                                               repository: showDetailsRepositoryMock,
+                                               genreRepository: GenreRepositoryMock(),
+                                               imageRepository: ErrorImageRepositoryMock(error: imageError))
+    let presenter = ShowDetailsiOSPresenter(view: view, router: router, interactor: interactor)
+
+    presenter.viewDidLoad()
+
+    XCTAssertFalse(view.invokedShowImages)
+  }
+
+  func testShowDetailsPresenter_fetchImagesSuccess_notifyView() {
+    let interactor = ShowDetailsInteractorMock(showIds: createTraktShowDetails().ids,
+                                               repository: showDetailsRepositoryMock,
+                                               genreRepository: GenreRepositoryMock(),
+                                               imageRepository: imageRepositoryRealMock)
+    let presenter = ShowDetailsiOSPresenter(view: view, router: router, interactor: interactor)
+
+    presenter.viewDidLoad()
+
+    let posterLink = "https:/image.tmdb.org/t/p/w342/2qg0MOwPD1G0FcYpDPeu6AOjh8i.jpg"
+    let backdropLink = "https:/image.tmdb.org/t/p/w300/fZ8j6F8dxZPA8wE5sGS9oiKzXzM.jpg"
+    let expectedImagesViewModel = ImagesViewModel(posterLink: posterLink, backdropLink: backdropLink)
+
+    XCTAssertTrue(view.invokedShowImages)
+    XCTAssertEqual(view.invokedShowImagesParameters?.images, expectedImagesViewModel)
+  }
 }

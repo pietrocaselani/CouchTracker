@@ -41,4 +41,5 @@ protocol ShowDetailsView: class {
   var presenter: ShowDetailsPresenter! { get set }
 
   func show(details: ShowDetailsViewModel)
+  func show(images: ImagesViewModel)
 }

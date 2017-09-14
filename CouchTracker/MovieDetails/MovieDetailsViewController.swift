@@ -40,7 +40,7 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsView {
     genresLabel.text = details.genres
   }
 
-  func show(images: MovieDetailsImageViewModel) {
+  func show(images: ImagesViewModel) {
     if let backdropLink = images.backdropLink {
       backdropImageView.kf.setImage(with: URL(string: backdropLink), placeholder: R.image.backdropPlaceholder(),
                                     options: nil, progressBlock: nil, completionHandler: nil)

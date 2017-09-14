@@ -122,6 +122,7 @@
                         <outlet property="genresLabel" destination="vr3-wG-MXU" id="y0q-9W-pac"/>
                         <outlet property="networkLabel" destination="R6X-2T-cOV" id="XmR-CA-7yx"/>
                         <outlet property="overviewLabel" destination="ymb-QF-VDY" id="MiU-E7-ege"/>
+                        <outlet property="posterImageView" destination="oOP-eW-aXB" id="lgb-nX-iPn"/>
                         <outlet property="statusLabel" destination="UVr-dh-stw" id="zpl-6c-nn8"/>
                         <outlet property="titleLabel" destination="nGF-fc-hRz" id="6m1-h0-Tvt"/>
                     </connections>
