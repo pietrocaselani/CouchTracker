@@ -38,6 +38,27 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
     }
   }
 
+  func testAppConfigurationsUserDefaultsRepository_emitsAvailableLocales() {
+    //Given
+
+    //When
+    let single = repository.availableLocales()
+
+    //Then
+    let responseExpectation = expectation(description: "Expect all available locales")
+
+    let expectedLocales = Locale.preferredLanguages.map { Locale(identifier: $0) }
+
+    let disposable = single.subscribe(onSuccess: { locales in
+      responseExpectation.fulfill()
+      XCTAssertEqual(locales, expectedLocales)
+    })
+
+    _ = disposeBag.insert(disposable)
+
+    wait(for: [responseExpectation], timeout: 1)
+  }
+
   func testAppConfigurationsUserDefaultsRepository_retrievesEmptyLocale_emitsCurrentLocale() {
     //Given an empty repository
 
@@ -125,9 +146,7 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
 
   func testAppConfigurationsUserDefaultsRepository_updatesToken() {
     //Given
-    let date = Date(timeIntervalSince1970: 5)
-    let newToken = Token(accessToken: "accessToken1", expiresIn: date,
-                         refreshToken: "refresh1", tokenType: "type1", scope: "general")
+    let newToken = AppConfigurationsMock.createTraktTokenMock()
 
     //When
     let completable = repository.updateTrakt(token: newToken)

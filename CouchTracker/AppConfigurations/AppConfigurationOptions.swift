@@ -10,6 +10,7 @@
  the license agreement.
  */
 
-enum TokenError: String, Error {
-  case absent
+enum AppConfigurationOptions {
+  case connectToTrakt
+  case connectedToTrakt
 }
