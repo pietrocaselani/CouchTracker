@@ -71,6 +71,6 @@ final class SearchPresenterTest: XCTestCase {
 
     presenter.cancelSearch()
 
-    XCTAssertTrue(output.invokedSearchCancelled)
+    XCTAssertEqual(output.searchState, SearchState.notSearching)
   }
 }

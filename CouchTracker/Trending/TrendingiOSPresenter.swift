@@ -28,7 +28,7 @@ final class TrendingiOSPresenter: TrendingPresenter {
   private var currentShowsPage = 0
   fileprivate let router: TrendingRouter
   fileprivate var searchResults = [SearchResult]()
-  fileprivate var inSearchMode = false
+  fileprivate var searchState = SearchState.notSearching
 
   init(view: TrendingView, interactor: TrendingInteractor, router: TrendingRouter, dataSource: TrendingDataSource) {
     self.view = view
@@ -79,9 +79,9 @@ final class TrendingiOSPresenter: TrendingPresenter {
   private func subscribe(on observable: Observable<[TrendingViewModel]>, for type: TrendingType) {
     observable.asSingle().observeOn(MainScheduler.instance).subscribe(onSuccess: { [unowned self] in
       self.present(viewModels: $0)
-    }) { [unowned self] in
-      guard let moviesListError = $0 as? TrendingError else {
-        self.router.showError(message: $0.localizedDescription)
+    }) { [unowned self] error in
+      guard let moviesListError = error as? TrendingError else {
+        self.router.showError(message: error.localizedDescription)
         return
       }
 
@@ -97,7 +97,7 @@ final class TrendingiOSPresenter: TrendingPresenter {
       return
     }
 
-    self.dataSource.viewModels = viewModels
+    dataSource.viewModels = viewModels
 
     view.showTrendingsView()
   }
@@ -112,7 +112,7 @@ final class TrendingiOSPresenter: TrendingPresenter {
 
   private func showDetailsOfMovie(at index: Int) {
     let movieEntity: MovieEntity
-    if inSearchMode {
+    if searchState == .searching {
       guard let movie = searchResults[index].movie else { return }
       movieEntity = MovieEntityMapper.entity(for: movie)
     } else {
@@ -124,7 +124,7 @@ final class TrendingiOSPresenter: TrendingPresenter {
 
   private func showDetailsOfShow(at index: Int) {
     let showEntity: ShowEntity
-    if inSearchMode {
+    if searchState == .searching {
       guard let show = searchResults[index].show else { return }
       showEntity = ShowEntityMapper.entity(for: show)
     } else {
@@ -135,13 +135,20 @@ final class TrendingiOSPresenter: TrendingPresenter {
 }
 
 extension TrendingiOSPresenter: SearchResultOutput {
+  func searchChangedTo(state: SearchState) {
+    searchState = state
+
+    if state == .notSearching {
+      searchResults.removeAll()
+      loadTrendingMedia(of: currentTrendingType.value)
+    }
+  }
+
   func handleEmptySearchResult() {
-    inSearchMode = true
     view?.showEmptyView()
   }
 
   func handleSearch(results: [SearchResult]) {
-    inSearchMode = true
     searchResults = results
 
     let viewModels = currentTrendingType.value == .movies ?
@@ -151,14 +158,7 @@ extension TrendingiOSPresenter: SearchResultOutput {
   }
 
   func handleError(message: String) {
-    inSearchMode = true
     router.showError(message: message)
-  }
-
-  func searchCancelled() {
-    inSearchMode = false
-    searchResults.removeAll()
-    loadTrendingMedia(of: currentTrendingType.value)
   }
 
   private func mapMoviesToViewModels(_ results: [SearchResult]) -> [TrendingViewModel] {
