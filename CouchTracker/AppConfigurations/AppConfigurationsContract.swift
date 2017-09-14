@@ -12,11 +12,8 @@ the license agreement.
 
 import Foundation
 import TraktSwift
-import RxSwift
 
 protocol AppConfigurationsRepository: class {
-  func updatePreferredContent(locale: Locale) -> Completable
-  func preferredContentLocale() -> Single<Locale>
-  func updateTrakt(token: Token) -> Completable
-  func traktToken() -> Single<Token>
+  var preferredContentLocale: Locale { get set }
+  var traktToken: Token? { get set }
 }

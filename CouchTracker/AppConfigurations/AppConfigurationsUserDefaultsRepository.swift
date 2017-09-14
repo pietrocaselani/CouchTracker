@@ -12,7 +12,6 @@ the license agreement.
 
 import Foundation
 import TraktSwift
-import RxSwift
 
 final class AppConfigurationsUserDefaultsRepository: AppConfigurationsRepository {
   private static let localeKey = "preferredLocale"
@@ -23,51 +22,33 @@ final class AppConfigurationsUserDefaultsRepository: AppConfigurationsRepository
     self.userDefaults = userDefaults
   }
 
-  deinit {
-    print(#file, #function)
-  }
-
-  func updatePreferredContent(locale: Locale) -> Completable {
-    return Completable.create { [unowned self] completable -> Disposable in
-      self.userDefaults.set(locale.identifier, forKey: AppConfigurationsUserDefaultsRepository.localeKey)
-      completable(.completed)
-      return Disposables.create()
+  var preferredContentLocale: Locale {
+    get {
+      let localeIdentifier = userDefaults.string(forKey: AppConfigurationsUserDefaultsRepository.localeKey)
+      return localeIdentifier.flatMap { Locale(identifier: $0) } ?? Locale.current
+    }
+    set {
+      userDefaults.set(newValue.identifier, forKey: AppConfigurationsUserDefaultsRepository.localeKey)
     }
   }
 
-  func preferredContentLocale() -> Single<Locale> {
-    return Single.create(subscribe: { [unowned self] single -> Disposable in
-      let localeIdentifier = self.userDefaults.string(forKey: AppConfigurationsUserDefaultsRepository.localeKey)
-      let locale = localeIdentifier.flatMap { Locale(identifier: $0) } ?? Locale.current
+  var traktToken: Token? {
+    get {
+      let data = userDefaults.data(forKey: AppConfigurationsUserDefaultsRepository.traktTokenKey)
 
-      single(.success(locale))
-
-      return Disposables.create()
-    })
-  }
-
-  func updateTrakt(token: Token) -> Completable {
-    return Completable.create(subscribe: { [unowned self] completable -> Disposable in
-      let tokenData = NSKeyedArchiver.archivedData(withRootObject: token)
-      self.userDefaults.set(tokenData, forKey: AppConfigurationsUserDefaultsRepository.traktTokenKey)
-
-      completable(.completed)
-
-      return Disposables.create()
-    })
-  }
-
-  func traktToken() -> Single<Token> {
-    return Single.create(subscribe: { [unowned self] single -> Disposable in
-      let data = self.userDefaults.data(forKey: AppConfigurationsUserDefaultsRepository.traktTokenKey)
-
-      if let tokenData = data, let token = NSKeyedUnarchiver.unarchiveObject(with: tokenData) as? Token {
-        single(.success(token))
-      } else {
-        single(.error(TokenError.absent))
+      guard let tokenData = data, let token = NSKeyedUnarchiver.unarchiveObject(with: tokenData) as? Token else {
+        return nil
       }
 
-      return Disposables.create()
-    })
+      return token
+    }
+    set {
+      if let newToken = newValue {
+        let tokenData = NSKeyedArchiver.archivedData(withRootObject: newToken)
+        userDefaults.set(tokenData, forKey: AppConfigurationsUserDefaultsRepository.traktTokenKey)
+      } else {
+        userDefaults.removeObject(forKey: AppConfigurationsUserDefaultsRepository.traktTokenKey)
+      }
+    }
   }
 }
