@@ -31,7 +31,6 @@ protocol MovieDetailsView: BaseView {
 }
 
 protocol MovieDetailsInteractor: class {
-
   init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
        imageRepository: ImageRepository, movieIds: MovieIds)
 
