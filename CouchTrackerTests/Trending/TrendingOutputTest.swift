@@ -27,7 +27,7 @@ final class TrendingOutputTest: XCTestCase {
     let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
     output = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
 
-    let searchRepository = SearchRepositoryRealMock()
+    let searchRepository = SearchRepositoryAPIStubMock()
     let searchInteractor = SearchInteractorMock(repository: searchRepository)
 
     searchPresenter = SearchiOSPresenter(view: searchView, interactor: searchInteractor, resultOutput: output)

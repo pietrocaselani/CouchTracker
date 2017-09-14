@@ -30,6 +30,8 @@ final class SearchiOSPresenter: SearchPresenter {
   }
 
   func searchMovies(query: String) {
+    output.searchChangedTo(state: .searching)
+
     interactor.searchMovies(query: query)
         .observeOn(MainScheduler.instance)
         .subscribe(onNext: { [unowned self] results in
@@ -45,6 +47,6 @@ final class SearchiOSPresenter: SearchPresenter {
   }
 
   func cancelSearch() {
-    self.output.searchCancelled()
+    output.searchChangedTo(state: .notSearching)
   }
 }
