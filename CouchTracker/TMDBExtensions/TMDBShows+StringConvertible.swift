@@ -10,11 +10,11 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Moya
+import Carlos
 import TMDB_Swift
 
-protocol TMDBProvider: class {
-  var movies: RxMoyaProvider<Movies> { get }
-  var shows: RxMoyaProvider<Shows> { get }
-  var configuration: RxMoyaProvider<ConfigurationService> { get }
+extension Shows: StringConvertible {
+  public func toString() -> String {
+    return self.path
+  }
 }

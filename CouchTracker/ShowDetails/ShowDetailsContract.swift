@@ -20,9 +20,11 @@ protocol ShowDetailsRepository: class {
 }
 
 protocol ShowDetailsInteractor: class {
-  init(showId: String, repository: ShowDetailsRepository, genreRepository: GenreRepository)
+  init(showIds: ShowIds, repository: ShowDetailsRepository,
+       genreRepository: GenreRepository, imageRepository: ImageRepository)
 
   func fetchDetailsOfShow() -> Single<ShowEntity>
+  func fetchImages() -> Single<ImagesEntity>
 }
 
 protocol ShowDetailsPresenter: class {

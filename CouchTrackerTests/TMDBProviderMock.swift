@@ -20,6 +20,10 @@ final class TMDBProviderMock: TMDBProvider {
     return RxMoyaProvider<Movies>(stubClosure: MoyaProvider.immediatelyStub)
   }
 
+  var shows: RxMoyaProvider<Shows> {
+    return RxMoyaProvider<Shows>(stubClosure: MoyaProvider.immediatelyStub)
+  }
+
   var configuration: RxMoyaProvider<ConfigurationService> {
     return RxMoyaProvider<ConfigurationService>(stubClosure: MoyaProvider.immediatelyStub)
   }

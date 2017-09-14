@@ -53,6 +53,6 @@ final class MovieDetailsService: MovieDetailsInteractor {
 
   func fetchImages() -> Observable<ImagesEntity> {
     guard let tmdbId = movieIds.tmdb else { return Observable.empty() }
-    return imageRepository.fetchImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)
+    return imageRepository.fetchMovieImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)
   }
 }
