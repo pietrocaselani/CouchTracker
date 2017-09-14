@@ -12,7 +12,7 @@
 
 import Foundation
 import RxSwift
-import Trakt_Swift
+import TraktSwift
 
 final class MovieDetailsViewMock: MovieDetailsView {
   var presenter: MovieDetailsPresenter!

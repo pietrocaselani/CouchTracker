@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import Moya
-import Trakt_Swift
+import TraktSwift
 
 protocol TraktProvider: class {
   var movies: RxMoyaProvider<Movies> { get }

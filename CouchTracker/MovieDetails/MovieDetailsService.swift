@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import RxSwift
-import Trakt_Swift
+import TraktSwift
 
 final class MovieDetailsService: MovieDetailsInteractor {
 

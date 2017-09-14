@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import RxSwift
-import Trakt_Swift
+import TraktSwift
 
 let showDetailsRepositoryMock = ShowDetailsRepositoryMock(traktProvider: traktProviderMock)
 

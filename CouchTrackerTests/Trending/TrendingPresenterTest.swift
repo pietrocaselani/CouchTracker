@@ -13,7 +13,7 @@ the license agreement.
 import Moya
 import ObjectMapper
 import XCTest
-import Trakt_Swift
+import TraktSwift
 import RxTest
 
 final class TrendingPresenterTest: XCTestCase {

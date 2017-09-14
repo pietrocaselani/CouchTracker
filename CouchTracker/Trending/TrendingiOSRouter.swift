@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import UIKit
-import Trakt_Swift
+import TraktSwift
 
 final class TrendingiOSRouter: TrendingRouter {
 

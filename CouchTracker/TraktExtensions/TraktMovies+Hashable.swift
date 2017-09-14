@@ -6,7 +6,7 @@
 //  Copyright © 2017 ArcTouch LLC. All rights reserved.
 //
 
-import Trakt_Swift
+import TraktSwift
 
 extension Movies: Hashable {
   public var hashValue: Int {

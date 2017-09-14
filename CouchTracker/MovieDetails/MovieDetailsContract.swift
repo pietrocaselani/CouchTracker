@@ -11,7 +11,7 @@
  */
 
 import RxSwift
-import Trakt_Swift
+import TraktSwift
 
 protocol MovieDetailsRouter: class {
   func showError(message: String)

@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import Moya
-import Trakt_Swift
+import TraktSwift
 
 let traktProviderMock = TraktProviderMock()
 

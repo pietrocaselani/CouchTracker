@@ -14,7 +14,7 @@ import RxSwift
 import Carlos
 import Moya
 import Moya_ObjectMapper
-import Trakt_Swift
+import TraktSwift
 
 final class ShowDetailsCacheRepository: ShowDetailsRepository {
   private let cache: BasicCache<Shows, Show>

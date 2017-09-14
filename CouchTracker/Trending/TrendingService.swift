@@ -12,8 +12,8 @@
 
 import RxSwift
 import Moya
-import Trakt_Swift
-import TMDB_Swift
+import TraktSwift
+import TMDBSwift
 
 final class TrendingService: TrendingInteractor {
   private let repository: TrendingRepository

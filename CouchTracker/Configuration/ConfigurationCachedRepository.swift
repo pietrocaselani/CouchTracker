@@ -12,7 +12,7 @@ the license agreement.
 
 import Carlos
 import RxSwift
-import TMDB_Swift
+import TMDBSwift
 
 final class ConfigurationCachedRepository: ConfigurationRepository {
 
