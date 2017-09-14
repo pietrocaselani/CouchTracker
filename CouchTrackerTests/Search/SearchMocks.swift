@@ -49,10 +49,10 @@ final class SearchResultOutputMock: SearchResultOutput {
     invokedHandleErrorParameters = (message, ())
   }
 
-  var invokedSearchCancelled = false
+  var searchState = SearchState.notSearching
 
-  func searchCancelled() {
-    invokedSearchCancelled = true
+  func searchChangedTo(state: SearchState) {
+    searchState = state
   }
 }
 
@@ -106,7 +106,7 @@ final class SearchInteractorMock: SearchInteractor {
   }
 }
 
-final class SearchRepositoryRealMock: SearchRepository {
+final class SearchRepositoryAPIStubMock: SearchRepository {
   private let searchProvider: RxMoyaProvider<Search>
 
   init() {
