@@ -19,6 +19,10 @@ struct ImageEntity: Hashable {
   let voteAverage: Float
   let voteCount: Int
 
+  func isBest(then: ImageEntity) -> Bool {
+    return self.voteCount > then.voteCount && self.voteAverage > then.voteAverage
+  }
+
   var hashValue: Int {
     var hash = link.hashValue
     hash = hash ^ width.hashValue

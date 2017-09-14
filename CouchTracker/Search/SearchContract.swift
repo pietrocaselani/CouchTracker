@@ -20,10 +20,10 @@ protocol SearchView: BaseView {
 }
 
 protocol SearchResultOutput: class {
+  func searchChangedTo(state: SearchState)
   func handleEmptySearchResult()
   func handleSearch(results: [SearchResult])
   func handleError(message: String)
-  func searchCancelled()
 }
 
 protocol SearchPresenter: class {
