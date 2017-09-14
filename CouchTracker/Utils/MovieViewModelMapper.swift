@@ -10,7 +10,7 @@
  the license agreement.
  */
 
-import Trakt_Swift
+import TraktSwift
 
 final class MovieViewModelMapper {
   private init() {}

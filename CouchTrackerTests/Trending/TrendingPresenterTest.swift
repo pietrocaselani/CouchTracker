@@ -13,7 +13,7 @@ the license agreement.
 import Moya
 import ObjectMapper
 import XCTest
-import Trakt_Swift
+import TraktSwift
 import RxTest
 
 final class TrendingPresenterTest: XCTestCase {
@@ -142,7 +142,7 @@ final class TrendingPresenterTest: XCTestCase {
     presenter.viewDidLoad()
     presenter.showDetailsOfTrending(at: movieIndex)
     
-    let expectedMovie = MovieEntityMapper.entity(for: movies[movieIndex])
+    let expectedMovie = MovieEntityMapper.entity(for: movies[movieIndex].movie)
 
     XCTAssertTrue(router.invokedMovieDetails)
     XCTAssertEqual(router.invokedMovieDetailsParameters?.movie, expectedMovie)

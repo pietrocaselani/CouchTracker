@@ -12,21 +12,21 @@
 
 import Foundation
 import RxSwift
-import Trakt_Swift
+import TraktSwift
 
 final class MovieDetailsViewMock: MovieDetailsView {
   var presenter: MovieDetailsPresenter!
   var invokedShow = false
   var invokedShowParameters: (details: MovieDetailsViewModel, Void)?
   var invokedShowImages = false
-  var invokedShowImagesParameters: (images: MovieDetailsImageViewModel, Void)?
+  var invokedShowImagesParameters: (images: ImagesViewModel, Void)?
 
   func show(details: MovieDetailsViewModel) {
     invokedShow = true
     invokedShowParameters = (details, ())
   }
 
-  func show(images: MovieDetailsImageViewModel) {
+  func show(images: ImagesViewModel) {
     invokedShowImages = true
     invokedShowImagesParameters = (images, ())
   }

@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import RxSwift
-import Trakt_Swift
+import TraktSwift
 
 final class SearchService: SearchInteractor {
   private let repository: SearchRepository

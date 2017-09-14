@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import XCTest
-import Trakt_Swift
+import TraktSwift
 
 final class MovieDetailsPresenterTest: XCTestCase {
 
@@ -55,7 +55,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
     let posterLink = "https:/image.tmdb.org/t/p/w342/fpemzjF623QVTe98pCVlwwtFC5N.jpg"
     let backdropLink = "https:/image.tmdb.org/t/p/w300/fCayJrkfRaCRCTh8GqN30f8oyQF.jpg"
-    let viewModel = MovieDetailsImageViewModel(posterLink: posterLink, backdropLink: backdropLink)
+    let viewModel = ImagesViewModel(posterLink: posterLink, backdropLink: backdropLink)
 
     XCTAssertTrue(view.invokedShowImages)
     XCTAssertEqual(view.invokedShowImagesParameters?.images, viewModel)

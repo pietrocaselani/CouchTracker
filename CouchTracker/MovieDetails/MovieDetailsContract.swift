@@ -11,7 +11,7 @@
  */
 
 import RxSwift
-import Trakt_Swift
+import TraktSwift
 
 protocol MovieDetailsRouter: class {
   func showError(message: String)
@@ -27,7 +27,7 @@ protocol MovieDetailsView: BaseView {
   var presenter: MovieDetailsPresenter! { get set }
 
   func show(details: MovieDetailsViewModel)
-  func show(images: MovieDetailsImageViewModel)
+  func show(images: ImagesViewModel)
 }
 
 protocol MovieDetailsInteractor: class {

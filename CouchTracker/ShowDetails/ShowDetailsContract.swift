@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import RxSwift
-import Trakt_Swift
+import TraktSwift
 
 protocol ShowDetailsRepository: class {
   init(traktProvider: TraktProvider)
@@ -41,4 +41,5 @@ protocol ShowDetailsView: class {
   var presenter: ShowDetailsPresenter! { get set }
 
   func show(details: ShowDetailsViewModel)
+  func show(images: ImagesViewModel)
 }

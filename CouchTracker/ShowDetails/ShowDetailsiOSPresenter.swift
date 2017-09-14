@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import RxSwift
-import Trakt_Swift
+import TraktSwift
 
 final class ShowDetailsiOSPresenter: ShowDetailsPresenter {
   private weak var view: ShowDetailsView!
@@ -26,6 +26,14 @@ final class ShowDetailsiOSPresenter: ShowDetailsPresenter {
   }
 
   func viewDidLoad() {
+    interactor.fetchImages().map { ImagesViewModelMapper.viewModel(for: $0) }
+      .observeOn(MainScheduler.instance)
+      .subscribe(onSuccess: { [unowned self] in
+        self.view.show(images: $0)
+      }) { error in
+        print(error.localizedDescription)
+    }.disposed(by: disposeBag)
+
     interactor.fetchDetailsOfShow().map { [unowned self] in self.mapToViewModel($0) }
       .observeOn(MainScheduler.instance)
       .subscribe(onSuccess: { [unowned self] viewModel in

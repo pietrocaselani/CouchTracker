@@ -13,8 +13,8 @@
 import XCTest
 import RxSwift
 import RxTest
-import Trakt_Swift
-import TMDB_Swift
+import TraktSwift
+import TMDBSwift
 
 final class MovieDetailsInteractorTest: XCTestCase {
 

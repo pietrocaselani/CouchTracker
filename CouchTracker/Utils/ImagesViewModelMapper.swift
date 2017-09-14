@@ -10,25 +10,12 @@ in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
 
-import Trakt_Swift
+final class ImagesViewModelMapper {
+  private init() {}
 
-struct SearchResultViewModel {
-  let type: SearchType
-  let movie: TrendingViewModel?
-}
-
-extension SearchResultViewModel: Hashable {
-  var hashValue: Int {
-    var hash = type.hashValue
-
-    if let movieHash = movie?.hashValue {
-      hash ^= movieHash
-    }
-
-    return hash
-  }
-
-  static func == (lhs: SearchResultViewModel, rhs: SearchResultViewModel) -> Bool {
-    return lhs.hashValue == rhs.hashValue
+  static func viewModel(for entity: ImagesEntity) -> ImagesViewModel {
+    let posterLink = entity.posterImage()?.link
+    let backdropLink = entity.backdropImage()?.link
+    return ImagesViewModel(posterLink: posterLink, backdropLink: backdropLink)
   }
 }

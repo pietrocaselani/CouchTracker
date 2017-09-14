@@ -13,7 +13,7 @@
 import XCTest
 import RxSwift
 import RxTest
-import Trakt_Swift
+import TraktSwift
 
 final class TrendingInteractorTest: XCTestCase {
 
@@ -38,7 +38,7 @@ final class TrendingInteractorTest: XCTestCase {
     super.tearDown()
   }
 
-  func testTrendingInteractor_fetchMoviesSuccessReceivesNoData_emitsOnlyCompleted() {
+  func testTrendingInteractor_fetchMoviesSuccessReceivesNoData_emitsEmptyDataAndCompleted() {
     let repository = EmptyTrendingRepositoryMock()
     let imageRepository = EmptyImageRepositoryMock(tmdbProvider: tmdbProviderMock,
                                                         cofigurationRepository: configurationRepositoryMock)
@@ -49,7 +49,7 @@ final class TrendingInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<[TrendingMovieEntity]>>] = [completed(0)]
+    let events: [Recorded<Event<[TrendingMovieEntity]>>] = [next(0, [TrendingMovieEntity]()), completed(0)]
 
     RXAssertEvents(moviesObserver, events)
   }
@@ -65,7 +65,7 @@ final class TrendingInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<[TrendingShowEntity]>>] = [completed(0)]
+    let events: [Recorded<Event<[TrendingShowEntity]>>] = [next(0, [TrendingShowEntity]()), completed(0)]
 
     RXAssertEvents(showsObserver, events)
   }

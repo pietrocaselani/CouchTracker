@@ -11,7 +11,7 @@ the license agreement.
 */
 
 import RxSwift
-import Trakt_Swift
+import TraktSwift
 
 let showDetailsRepositoryMock = ShowDetailsRepositoryMock(traktProvider: traktProviderMock)
 
@@ -69,7 +69,9 @@ final class ShowDetailsInteractorMock: ShowDetailsInteractor {
   }
 
   func fetchImages() -> Single<ImagesEntity> {
-    return Single.never()
+    guard let tmdbId = showIds.tmdb else { return Single.never() }
+
+    return imageRepository.fetchShowImages(for: tmdbId, posterSize: nil, backdropSize: nil)
   }
 }
 
@@ -87,10 +89,17 @@ final class ShowDetailsViewMock: ShowDetailsView {
   var presenter: ShowDetailsPresenter!
   var invokedShowDetails = false
   var invokedShowDetailsParameters: (details: ShowDetailsViewModel, Void)?
+  var invokedShowImages = false
+  var invokedShowImagesParameters: (images: ImagesViewModel, Void)?
 
   func show(details: ShowDetailsViewModel) {
     invokedShowDetails = true
     invokedShowDetailsParameters = (details, ())
+  }
+
+  func show(images: ImagesViewModel) {
+    invokedShowImages = true
+    invokedShowImagesParameters = (images, ())
   }
 }
 
