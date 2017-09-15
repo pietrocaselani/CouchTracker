@@ -19,18 +19,7 @@ public final class Trakt {
 
   public private(set) var accessToken: Token? {
     didSet {
-      let index = self.plugins.index { (plugin) -> Bool in
-        plugin is AccessTokenPlugin
-      }
-
-      if let index = index {
-        plugins.remove(at: index)
-      }
-
-      if let token = accessToken {
-        plugins.append(AccessTokenPlugin(token: token.accessToken))
-        saveToken(token)
-      }
+      updateAccessTokenPlugin(accessToken)
     }
   }
 
@@ -44,10 +33,6 @@ public final class Trakt {
     self.redirectURL = redirectURL
 
     loadToken()
-  }
-
-  public func addPlugin(_ plugin: PluginType) {
-    plugins.append(plugin)
   }
 
   public func hasValidToken() -> Bool {
@@ -64,5 +49,16 @@ public final class Trakt {
   private func saveToken(_ token: Token) {
     let tokenData = NSKeyedArchiver.archivedData(withRootObject: token)
     UserDefaults.standard.set(tokenData, forKey: Trakt.accessTokenKey)
+  }
+
+  private func updateAccessTokenPlugin(_ token: Token?) {
+    if let index = self.plugins.index(where: { $0 is AccessTokenPlugin }) {
+      plugins.remove(at: index)
+    }
+
+    if let token = token {
+      plugins.append(AccessTokenPlugin(token: token.accessToken))
+      saveToken(token)
+    }
   }
 }
