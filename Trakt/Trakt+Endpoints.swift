@@ -29,14 +29,12 @@ extension Trakt {
     return createProvider(forTarget: Shows.self)
   }
 
+  public var users: RxMoyaProvider<Users> {
+    return createProvider(forTarget: Users.self)
+  }
+
   private func createProvider<T: TraktType>(forTarget target: T.Type) -> RxMoyaProvider<T> {
     let endpointClosure = createEndpointClosure(forTarget: target)
-
-    var plugins = [PluginType]()
-
-    #if DEBUG
-      plugins.append(NetworkLoggerPlugin())
-    #endif
 
     return RxMoyaProvider<T>(endpointClosure: endpointClosure, plugins: plugins)
   }

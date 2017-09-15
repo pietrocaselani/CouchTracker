@@ -15,6 +15,24 @@ import Moya
 public final class Trakt {
   let clientId: String
   let clientSecret, redirectURL: String?
+  var plugins = [PluginType]()
+
+  public private(set) var accessToken: Token? {
+    didSet {
+      let index = self.plugins.index { (plugin) -> Bool in
+        plugin is AccessTokenPlugin
+      }
+
+      if let index = index {
+        plugins.remove(at: index)
+      }
+
+      if let token = accessToken {
+        plugins.append(AccessTokenPlugin(token: token.accessToken))
+        saveToken(token)
+      }
+    }
+  }
 
   public convenience init(clientId: String) {
     self.init(clientId: clientId, clientSecret: nil, redirectURL: nil)
@@ -24,5 +42,27 @@ public final class Trakt {
     self.clientId = clientId
     self.clientSecret = clientSecret
     self.redirectURL = redirectURL
+
+    loadToken()
+  }
+
+  public func addPlugin(_ plugin: PluginType) {
+    plugins.append(plugin)
+  }
+
+  public func hasValidToken() -> Bool {
+    return accessToken?.expiresIn.compare(Date()) == .orderedDescending
+  }
+
+  private func loadToken() {
+    let tokenData = UserDefaults.standard.object(forKey: Trakt.accessTokenKey) as? Data
+    if let tokenData = tokenData, let token = NSKeyedUnarchiver.unarchiveObject(with: tokenData) as? Token {
+      self.accessToken = token
+    }
+  }
+
+  private func saveToken(_ token: Token) {
+    let tokenData = NSKeyedArchiver.archivedData(withRootObject: token)
+    UserDefaults.standard.set(tokenData, forKey: Trakt.accessTokenKey)
   }
 }
