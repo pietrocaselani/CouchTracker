@@ -26,7 +26,7 @@ protocol AppConfigurationsRouter: class {
 }
 
 protocol AppConfigurationsInteractor: class {
-  init(userRepository: UserRepository)
+  init(repository: AppConfigurationsRepository)
 
   func fetchLoginState() -> Observable<LoginState>
 }

@@ -22,7 +22,7 @@ struct AppConfigurationsViewModel: Hashable {
     return hash
   }
 
-  static func ==(lhs: AppConfigurationsViewModel, rhs: AppConfigurationsViewModel) -> Bool {
+  static func == (lhs: AppConfigurationsViewModel, rhs: AppConfigurationsViewModel) -> Bool {
     return lhs.hashValue == rhs.hashValue
   }
 }

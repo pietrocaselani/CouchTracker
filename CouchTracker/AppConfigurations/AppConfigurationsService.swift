@@ -11,6 +11,8 @@
  */
 
 import RxSwift
+import TraktSwift
+import Moya
 
 final class AppConfigurationsService: AppConfigurationsInteractor {
   private let repository: AppConfigurationsRepository
@@ -19,15 +21,15 @@ final class AppConfigurationsService: AppConfigurationsInteractor {
     self.repository = repository
   }
 
-  func traktToken() -> Single<TokenResult> {
-    return repository.traktToken().map { token -> TokenResult in
-      TokenResult.logged(token: token, user: "trakt username")
-      }.catchError { error -> Single<TokenResult> in
-        guard let tokenError = error as? TokenError else {
-          return Single.error(error)
-        }
+  func fetchLoginState() -> Observable<LoginState> {
+    return repository.fetchLoggedUser().map { user -> LoginState in
+      LoginState.logged(user: user)
+    }.catchError { error in
+      guard let moyaError = error as? MoyaError, moyaError.response?.statusCode == 401 else {
+        return Observable.error(error)
+      }
 
-        return Single.just(TokenResult.error(error: tokenError))
-      }.subscribeOn(SerialDispatchQueueScheduler(qos: .background))
+      return Observable.just(LoginState.notLogged)
+    }
   }
 }

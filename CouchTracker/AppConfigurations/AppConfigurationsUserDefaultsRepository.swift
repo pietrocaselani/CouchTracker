@@ -14,6 +14,7 @@ import Foundation
 import TraktSwift
 import RxSwift
 import Moya_ObjectMapper
+import ObjectMapper
 import Moya
 
 final class AppConfigurationsUserDefaultsRepository: AppConfigurationsRepository {
@@ -46,7 +47,7 @@ final class AppConfigurationsUserDefaultsRepository: AppConfigurationsRepository
     let apiObservable = fetchSettingsFromAPI()
     let cacheObservable = fetchSettingFromLocalStorage()
 
-    return cacheObservable.catchError { apiObservable }
+    return cacheObservable.catchError { _ in apiObservable }
         .ifEmpty(switchTo: apiObservable)
         .map { $0.user }
   }

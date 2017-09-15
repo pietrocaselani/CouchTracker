@@ -18,4 +18,5 @@ protocol TraktProvider: class {
   var genres: RxMoyaProvider<Genres> { get }
   var search: RxMoyaProvider<Search> { get }
   var shows: RxMoyaProvider<Shows> { get }
+  var users: RxMoyaProvider<Users> { get }
 }

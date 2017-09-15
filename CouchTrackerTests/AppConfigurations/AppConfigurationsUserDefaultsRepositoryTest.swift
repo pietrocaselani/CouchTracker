@@ -19,7 +19,7 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
 
   override func setUp() {
     clearUserDefaults(userDefaultsMock)
-    repository = AppConfigurationsUserDefaultsRepository(userDefaults: userDefaultsMock)
+    repository = AppConfigurationsUserDefaultsRepository(userDefaults: userDefaultsMock, traktProvider: traktProviderMock)
     super.setUp()
   }
 
@@ -38,21 +38,11 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
     //Given
 
     //When
-    let single = repository.availableLocales()
+    let locales = repository.preferredLocales
 
     //Then
-    let responseExpectation = expectation(description: "Expect all available locales")
-
     let expectedLocales = Locale.preferredLanguages.map { Locale(identifier: $0) }
-
-    let disposable = single.subscribe(onSuccess: { locales in
-      responseExpectation.fulfill()
-      XCTAssertEqual(locales, expectedLocales)
-    })
-
-    _ = disposeBag.insert(disposable)
-
-    wait(for: [responseExpectation], timeout: 1)
+    XCTAssertEqual(locales, expectedLocales)
   }
 
   func testAppConfigurationsUserDefaultsRepository_retrievesEmptyLocale_emitsCurrentLocale() {
@@ -87,26 +77,5 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
 
     //Then
     XCTAssertEqual(repository.preferredContentLocale, newLocale)
-  }
-
-  func testAppConfigurationsUserDefaultsRepository_retrivesTokenFromEmtyRepository_emmitsTokenAbsentError() {
-    //Given an empty repository
-
-    //When
-    let token = repository.traktToken
-
-    //Then
-    XCTAssertNil(token)
-  }
-
-  func testAppConfigurationsUserDefaultsRepository_updatesToken() {
-    //Given
-    let newToken = AppConfigurationsMock.createTraktTokenMock()
-
-    //When
-    repository.traktToken = newToken
-
-    //Then
-    XCTAssertEqual(repository.traktToken, newToken)
   }
 }

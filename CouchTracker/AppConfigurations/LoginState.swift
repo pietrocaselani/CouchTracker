@@ -9,4 +9,19 @@ agreement. Disclosure of the Software to third parties, in any form,
 in whole or in part, is expressly prohibited except as authorized by
 the license agreement.
 */
-import Foundation
+
+import TraktSwift
+
+enum LoginState: Equatable {
+  case logged(user: User)
+  case notLogged
+
+  static func == (lhs: LoginState, rhs: LoginState) -> Bool {
+    switch (lhs, rhs) {
+    case (.logged(let lhsUser), .logged(let rhsUser)):
+      return lhsUser == rhsUser
+    case (.notLogged, .notLogged): return true
+    default: return false
+    }
+  }
+}

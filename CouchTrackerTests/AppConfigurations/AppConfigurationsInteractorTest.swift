@@ -12,11 +12,15 @@
 
 import XCTest
 import RxSwift
+import RxTest
 
 final class AppConfigurationsInteractorTest: XCTestCase {
+  private let scheduler = TestScheduler(initialClock: 0)
   private var disposeBag: CompositeDisposable!
+  private var observer: TestableObserver<LoginState>!
 
   override func setUp() {
+    observer = scheduler.createObserver(LoginState.self)
     disposeBag = CompositeDisposable()
     super.setUp()
   }
@@ -34,62 +38,47 @@ final class AppConfigurationsInteractorTest: XCTestCase {
     let interactor = AppConfigurationsService(repository: repository)
 
     //When
-    let single = interactor.traktToken()
+    let observable = interactor.fetchLoginState()
 
     //Then
-    let responseExpectation = expectation(description: "Expect error with message: \(message)")
-
-    let disposable = single.subscribe(onError: { error in
-      responseExpectation.fulfill()
-      XCTAssertEqual(error.localizedDescription, genericError.localizedDescription)
-    })
-
+    let disposable = observable.subscribe(observer)
     _ = disposeBag.insert(disposable)
 
-    wait(for: [responseExpectation], timeout: 1)
+    let expectedEvents: [Recorded<Event<LoginState>>] = [error(0, genericError)]
+
+    XCTAssertEqual(observer.events, expectedEvents)
   }
 
   func testAppConfigurationsInteractor_fetchToken_emitsTokenError() {
     //Given an empty repository
-    let repository = AppConfigurationsRepositoryErrorMock(error: TokenError.absent)
+    let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users)
     let interactor = AppConfigurationsService(repository: repository)
 
     //When
-    let single = interactor.traktToken()
+    let observable = interactor.fetchLoginState()
 
     //Then
-    let responseExpectation = expectation(description: "Expect result with token error")
-
-    let disposable = single.subscribe(onSuccess: { result in
-      responseExpectation.fulfill()
-      XCTAssertEqual(result, TokenResult.error(error: TokenError.absent))
-    })
-
+    let disposable = observable.subscribe(observer)
     _ = disposeBag.insert(disposable)
 
-    wait(for: [responseExpectation], timeout: 1)
+    let expectedEvents = [next(0, LoginState.notLogged), completed(0)]
+    XCTAssertEqual(observer.events, expectedEvents)
   }
 
   func testAppConfigurationsInteractor_fetchToken_emmitsTokenSuccess() {
     //Given a repository with token
-    let repository = AppConfigurationsRepositoryMock()
-    let mockToken = AppConfigurationsMock.createTraktTokenMock()
-    repository.appToken = mockToken
+    let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users)
     let interactor = AppConfigurationsService(repository: repository)
 
     //When
-    let single = interactor.traktToken()
+    let observable = interactor.fetchLoginState()
 
     //Then
-    let responseExpectation = expectation(description: "Expect result with token")
-
-    let disposable = single.subscribe(onSuccess: { result in
-      responseExpectation.fulfill()
-      XCTAssertEqual(result, TokenResult.logged(token: mockToken, user: "trakt username"))
-    })
-
+    let disposable = observable.subscribe(observer)
     _ = disposeBag.insert(disposable)
 
-    wait(for: [responseExpectation], timeout: 1)
+    let expectedUser = AppConfigurationsMock.createUserMock()
+    let expectedEvents = [next(0, LoginState.logged(user: expectedUser)), completed(0)]
+    XCTAssertEqual(observer.events, expectedEvents)
   }
 }

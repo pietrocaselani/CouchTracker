@@ -32,4 +32,7 @@ final class TraktProviderMock: TraktProvider {
     return RxMoyaProvider<Shows>(stubClosure: MoyaProvider.immediatelyStub)
   }
 
+  var users: RxMoyaProvider<Users> {
+    return RxMoyaProvider<Users>(stubClosure: MoyaProvider.immediatelyStub)
+  }
 }

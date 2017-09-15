@@ -29,9 +29,8 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     presenter = AppConfigurationsiOSPresenter(view: view, interactor: interactor, router: router)
   }
 
-  private func setupModuleWithToken(_ token: Token?)  {
-    let repository = AppConfigurationsRepositoryMock()
-    repository.appToken = token
+  private func setupModule(empty: Bool = false)  {
+    let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users, isEmpty: empty)
     let interactor = AppConfigurationsInteractorMock(repository: repository)
     presenter = AppConfigurationsiOSPresenter(view: view, interactor: interactor, router: router)
   }
@@ -51,7 +50,6 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 
   func testAppConfigurationsPresenter_receivesTokenError_notifyView() {
     //Given
-    setUpModuleWithError(TokenError.absent)
 
     //When
     presenter.viewDidLoad()
@@ -66,10 +64,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 
   func testAppConfigurationsPresenter_receivesTokenSuccess_notifyView() {
     //Given
-    let repository = AppConfigurationsRepositoryMock()
-    repository.appToken = AppConfigurationsMock.createTraktTokenMock()
-    let interactor = AppConfigurationsInteractorMock(repository: repository)
-    presenter = AppConfigurationsiOSPresenter(view: view, interactor: interactor, router: router)
+    setupModule()
 
     //When
     presenter.viewDidLoad()
@@ -84,7 +79,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 
   func testAppConfigurationsPresenter_receivesEventAlreadyConnectedToTraktFromView_doesNothing() {
     //Given
-    setupModuleWithToken(AppConfigurationsMock.createTraktTokenMock())
+    setupModule()
 
     //When
     presenter.viewDidLoad()
@@ -96,7 +91,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 
   func testAppConfigurationsPresenter_receivesEventConnectToTraktFromView_notifyRouter() {
     //Given
-    setupModuleWithToken(nil)
+    setupModule(empty: true)
 
     //When
     presenter.viewDidLoad()

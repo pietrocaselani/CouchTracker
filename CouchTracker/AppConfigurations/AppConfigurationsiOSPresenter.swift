@@ -26,13 +26,14 @@ final class AppConfigurationsiOSPresenter: AppConfigurationsPresenter {
   }
 
   func viewDidLoad() {
-    interactor.traktToken().observeOn(MainScheduler.instance)
+    interactor.fetchLoginState()
       .map { [unowned self] in self.createViewModel($0) }
-      .subscribe(onSuccess: { [unowned self] viewModel in
+      .observeOn(MainScheduler.instance)
+      .subscribe(onNext: { [unowned self] viewModel in
         self.view.showConfigurations(models: viewModel)
-      }) { [unowned self] error in
+      }, onError: { error in
         self.router.showError(message: error.localizedDescription)
-      }.disposed(by: disposeBag)
+      }).disposed(by: disposeBag)
   }
 
   func optionSelectedAt(index: Int) {
@@ -40,15 +41,15 @@ final class AppConfigurationsiOSPresenter: AppConfigurationsPresenter {
     switch option {
     case .connectToTrakt:
       self.router.showTraktLogin()
-    default: break;
+    default: break
     }
   }
 
-  private func createViewModel(_ result: TokenResult) -> [AppConfigurationsViewModel] {
+  private func createViewModel(_ loginState: LoginState) -> [AppConfigurationsViewModel] {
     var configurations = [AppConfigurationViewModel]()
 
-    if case .logged(_, let username) = result {
-      configurations.append(AppConfigurationViewModel(title: "Connected".localized, subtitle: username))
+    if case .logged(let user) = loginState {
+      configurations.append(AppConfigurationViewModel(title: "Connected".localized, subtitle: user.name))
       options.append(AppConfigurationOptions.connectedToTrakt)
     } else {
       configurations.append(AppConfigurationViewModel(title: "Connect to Trakt".localized, subtitle: nil))
