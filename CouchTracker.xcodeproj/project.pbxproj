@@ -129,7 +129,6 @@
 		642F6F561F5D74F10012F04F /* ShowEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642F6F541F5D74F10012F04F /* ShowEntityMapper.swift */; };
 		642F6F571F5D74F10012F04F /* ShowEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642F6F541F5D74F10012F04F /* ShowEntityMapper.swift */; };
 		642F6F581F5D74F10012F04F /* ShowEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642F6F541F5D74F10012F04F /* ShowEntityMapper.swift */; };
-		64303EB01F671C740050C287 /* tmdb_show_images.json in Resources */ = {isa = PBXBuildFile; fileRef = 64303EAD1F671C740050C287 /* tmdb_show_images.json */; };
 		64303EB71F6726970050C287 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64303EB61F6726970050C287 /* ImagesViewModel.swift */; };
 		64303EB81F6726970050C287 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64303EB61F6726970050C287 /* ImagesViewModel.swift */; };
 		64303EB91F6726970050C287 /* ImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64303EB61F6726970050C287 /* ImagesViewModel.swift */; };
@@ -142,7 +141,6 @@
 		6442F9FC1F61A0E4008E3E12 /* ShowDetailsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6442F9FA1F61A0E4008E3E12 /* ShowDetailsContract.swift */; };
 		6442F9FD1F61A0E4008E3E12 /* ShowDetailsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6442F9FA1F61A0E4008E3E12 /* ShowDetailsContract.swift */; };
 		6442F9FE1F61A0E4008E3E12 /* ShowDetailsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6442F9FA1F61A0E4008E3E12 /* ShowDetailsContract.swift */; };
-		6442FA021F61A175008E3E12 /* trakt_shows_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 6442F9FF1F61A175008E3E12 /* trakt_shows_summary.json */; };
 		6442FA041F61A1E4008E3E12 /* ShowsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6442FA031F61A1E4008E3E12 /* ShowsTest.swift */; };
 		6442FA061F61A41B008E3E12 /* JSONParsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6442FA051F61A41B008E3E12 /* JSONParsers.swift */; };
 		644BF5011F6AFF220010CE35 /* SearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BF5001F6AFF220010CE35 /* SearchState.swift */; };
@@ -221,7 +219,6 @@
 		644EE1581F55E9460053D631 /* TrendingMovieEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644EE1561F55E9460053D631 /* TrendingMovieEntity.swift */; };
 		644EE1591F55E9460053D631 /* TrendingMovieEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644EE1561F55E9460053D631 /* TrendingMovieEntity.swift */; };
 		644EE15A1F55E9460053D631 /* TrendingMovieEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644EE1561F55E9460053D631 /* TrendingMovieEntity.swift */; };
-		644FCDDC1F5ED0A100346605 /* trakt_shows_trending.json in Resources */ = {isa = PBXBuildFile; fileRef = 644FCDDA1F5ED0A100346605 /* trakt_shows_trending.json */; };
 		644FCDDF1F5ED41F00346605 /* ShowViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FCDDE1F5ED41F00346605 /* ShowViewModelMapper.swift */; };
 		644FCDE01F5ED41F00346605 /* ShowViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FCDDE1F5ED41F00346605 /* ShowViewModelMapper.swift */; };
 		644FCDE11F5ED41F00346605 /* ShowViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FCDDE1F5ED41F00346605 /* ShowViewModelMapper.swift */; };
@@ -247,12 +244,6 @@
 		6476323D1F44824900F277F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6476323C1F44824900F277F1 /* AppDelegate.swift */; };
 		647632441F44824900F277F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 647632431F44824900F277F1 /* Assets.xcassets */; };
 		647632471F44824900F277F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 647632451F44824900F277F1 /* LaunchScreen.storyboard */; };
-		647B66301F587F1A00B38D2A /* trakt_search_textquery.json in Resources */ = {isa = PBXBuildFile; fileRef = 647B662D1F587F1A00B38D2A /* trakt_search_textquery.json */; };
-		647B66341F587F4E00B38D2A /* tmdb_configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 647B66311F587F4D00B38D2A /* tmdb_configuration.json */; };
-		647B66381F587F8900B38D2A /* tmdb_movie_images.json in Resources */ = {isa = PBXBuildFile; fileRef = 647B66351F587F8900B38D2A /* tmdb_movie_images.json */; };
-		647B663C1F587FBA00B38D2A /* tmdb_movie_images_20526.json in Resources */ = {isa = PBXBuildFile; fileRef = 647B66391F587FBA00B38D2A /* tmdb_movie_images_20526.json */; };
-		647B66401F58803B00B38D2A /* trakt_genres_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 647B663D1F58803B00B38D2A /* trakt_genres_shows.json */; };
-		647B66441F58807700B38D2A /* trakt_genres_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 647B66411F58807700B38D2A /* trakt_genres_movies.json */; };
 		647B66471F5888E000B38D2A /* MovieImageMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647B66461F5888E000B38D2A /* MovieImageMocks.swift */; };
 		647B66481F5889C800B38D2A /* MovieImageMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647B66461F5888E000B38D2A /* MovieImageMocks.swift */; };
 		648390D11F504E7600911BA0 /* MovieDetailsInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648390C51F504E7500911BA0 /* MovieDetailsInteractorTest.swift */; };
@@ -428,7 +419,6 @@
 		64B61D921F671603006442E1 /* TMDBShows+StringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B61D901F671603006442E1 /* TMDBShows+StringConvertible.swift */; };
 		64B61D941F67163A006442E1 /* TMDBShows+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B61D931F67163A006442E1 /* TMDBShows+Hashable.swift */; };
 		64B61D961F67163A006442E1 /* TMDBShows+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B61D931F67163A006442E1 /* TMDBShows+Hashable.swift */; };
-		64B61D971F67163A006442E1 /* TMDBShows+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B61D931F67163A006442E1 /* TMDBShows+Hashable.swift */; };
 		64BE62F61F4F5C20002E55EA /* GenreRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEEC1F4DC372004661C4 /* GenreRepositoryMock.swift */; };
 		64BE62FD1F4F5C20002E55EA /* RxAsserts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9CCADDD8B9EF1D8D74F7 /* RxAsserts.swift */; };
 		64BE63001F4F5C5F002E55EA /* TrendingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486879D1F4A3B9C005A0BA8 /* TrendingError.swift */; };
@@ -472,7 +462,16 @@
 		64C384101F6C137A00FC9930 /* AppConfigurationsMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C384041F6C134F00FC9930 /* AppConfigurationsMocks.swift */; };
 		64C384111F6C137A00FC9930 /* AppConfigurationsPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C384051F6C134F00FC9930 /* AppConfigurationsPresenterTest.swift */; };
 		64C384121F6C137A00FC9930 /* AppConfigurationsUserDefaultsRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C384061F6C134F00FC9930 /* AppConfigurationsUserDefaultsRepositoryTest.swift */; };
-		64C384141F6C3A9200FC9930 /* trakt_users_settings.json in Resources */ = {isa = PBXBuildFile; fileRef = 64C384131F6C3A9200FC9930 /* trakt_users_settings.json */; };
+		64C384251F6C55A900FC9930 /* trakt_search_textquery.json in Resources */ = {isa = PBXBuildFile; fileRef = 647B662D1F587F1A00B38D2A /* trakt_search_textquery.json */; };
+		64C384261F6C55A900FC9930 /* trakt_genres_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 647B663D1F58803B00B38D2A /* trakt_genres_shows.json */; };
+		64C384271F6C55A900FC9930 /* trakt_genres_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 647B66411F58807700B38D2A /* trakt_genres_movies.json */; };
+		64C384281F6C55A900FC9930 /* trakt_shows_trending.json in Resources */ = {isa = PBXBuildFile; fileRef = 644FCDDA1F5ED0A100346605 /* trakt_shows_trending.json */; };
+		64C384291F6C55A900FC9930 /* trakt_shows_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 6442F9FF1F61A175008E3E12 /* trakt_shows_summary.json */; };
+		64C3842A1F6C55A900FC9930 /* trakt_users_settings.json in Resources */ = {isa = PBXBuildFile; fileRef = 64C384131F6C3A9200FC9930 /* trakt_users_settings.json */; };
+		64C384371F6C56E100FC9930 /* tmdb_configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 647B66311F587F4D00B38D2A /* tmdb_configuration.json */; };
+		64C384381F6C56E100FC9930 /* tmdb_movie_images.json in Resources */ = {isa = PBXBuildFile; fileRef = 647B66351F587F8900B38D2A /* tmdb_movie_images.json */; };
+		64C384391F6C56E100FC9930 /* tmdb_movie_images_20526.json in Resources */ = {isa = PBXBuildFile; fileRef = 647B66391F587FBA00B38D2A /* tmdb_movie_images_20526.json */; };
+		64C3843A1F6C56E100FC9930 /* tmdb_show_images.json in Resources */ = {isa = PBXBuildFile; fileRef = 64303EAD1F671C740050C287 /* tmdb_show_images.json */; };
 		64CB309B1F6077B800FD6171 /* TrendingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB309A1F6077B800FD6171 /* TrendingCellViewModel.swift */; };
 		64CB309C1F6077B800FD6171 /* TrendingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB309A1F6077B800FD6171 /* TrendingCellViewModel.swift */; };
 		64D29C311F55A936008E344E /* MovieDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C2F1F55A936008E344E /* MovieDetailsService.swift */; };
@@ -657,19 +656,33 @@
 			remoteGlobalIDString = 64B1CC791F4F560E002A9FFD;
 			remoteInfo = CouchTrackerUgly;
 		};
-		64C384151F6C3ABF00FC9930 /* PBXContainerItemProxy */ = {
+		64C3842B1F6C55B900FC9930 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 647632311F44824900F277F1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 64A4599E1F54A8F0002C5CAC;
-			remoteInfo = "Trakt-MacTests";
+			remoteGlobalIDString = 64C3841E1F6C554C00FC9930;
+			remoteInfo = "Trakt-Tests-Resources";
 		};
-		64C384171F6C3ABF00FC9930 /* PBXContainerItemProxy */ = {
+		64C3843B1F6C571A00FC9930 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 647632311F44824900F277F1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 64A45A011F54AE49002C5CAC;
-			remoteInfo = "TMDB-MacTests";
+			remoteGlobalIDString = 64C384301F6C56D600FC9930;
+			remoteInfo = "TMDB-Tests-Resources";
+		};
+		64C3843D1F6C572000FC9930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 647632311F44824900F277F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64C3841E1F6C554C00FC9930;
+			remoteInfo = "Trakt-Tests-Resources";
+		};
+		64C3843F1F6C572000FC9930 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 647632311F44824900F277F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64C384301F6C56D600FC9930;
+			remoteInfo = "TMDB-Tests-Resources";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -894,6 +907,10 @@
 		64C384051F6C134F00FC9930 /* AppConfigurationsPresenterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigurationsPresenterTest.swift; sourceTree = "<group>"; };
 		64C384061F6C134F00FC9930 /* AppConfigurationsUserDefaultsRepositoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigurationsUserDefaultsRepositoryTest.swift; sourceTree = "<group>"; };
 		64C384131F6C3A9200FC9930 /* trakt_users_settings.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_users_settings.json; sourceTree = "<group>"; };
+		64C3841F1F6C554C00FC9930 /* Trakt-Tests-Resources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Trakt-Tests-Resources.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		64C384211F6C554D00FC9930 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64C384311F6C56D600FC9930 /* TMDB-Tests-Resources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TMDB-Tests-Resources.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		64C384331F6C56D600FC9930 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64CB309A1F6077B800FD6171 /* TrendingCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCellViewModel.swift; sourceTree = "<group>"; };
 		64D29C2F1F55A936008E344E /* MovieDetailsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsService.swift; sourceTree = "<group>"; };
 		64D29C301F55A936008E344E /* MovieDetailsiOSPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsiOSPresenter.swift; sourceTree = "<group>"; };
@@ -1039,6 +1056,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AFB185485EB040E4F014E77 /* Pods_CouchTrackerFastTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64C3841C1F6C554C00FC9930 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64C3842E1F6C56D600FC9930 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1364,6 +1395,8 @@
 				6476323B1F44824900F277F1 /* CouchTracker */,
 				64B1CCCF1F4F597D002A9FFD /* CouchTrackerFastTests */,
 				647632501F44824900F277F1 /* CouchTrackerTests */,
+				64C384201F6C554D00FC9930 /* Trakt-Tests-Resources */,
+				64C384321F6C56D600FC9930 /* TMDB-Tests-Resources */,
 				31C11952FDC8E067FC72DB57 /* Frameworks */,
 				35F4540E74D8632B2F76B8F1 /* Pods */,
 				6476323A1F44824900F277F1 /* Products */,
@@ -1392,6 +1425,8 @@
 				64A459E01F54AE19002C5CAC /* TMDBSwift.framework */,
 				64A459FA1F54AE49002C5CAC /* TMDBSwift.framework */,
 				64A45A021F54AE49002C5CAC /* TMDB-MacTests.xctest */,
+				64C3841F1F6C554C00FC9930 /* Trakt-Tests-Resources.bundle */,
+				64C384311F6C56D600FC9930 /* TMDB-Tests-Resources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1668,6 +1703,22 @@
 			path = AppConfigurations;
 			sourceTree = "<group>";
 		};
+		64C384201F6C554D00FC9930 /* Trakt-Tests-Resources */ = {
+			isa = PBXGroup;
+			children = (
+				64C384211F6C554D00FC9930 /* Info.plist */,
+			);
+			path = "Trakt-Tests-Resources";
+			sourceTree = "<group>";
+		};
+		64C384321F6C56D600FC9930 /* TMDB-Tests-Resources */ = {
+			isa = PBXGroup;
+			children = (
+				64C384331F6C56D600FC9930 /* Info.plist */,
+			);
+			path = "TMDB-Tests-Resources";
+			sourceTree = "<group>";
+		};
 		64D43BCD1F605DB9005CDBF7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1815,6 +1866,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				64C3843E1F6C572000FC9930 /* PBXTargetDependency */,
+				64C384401F6C572000FC9930 /* PBXTargetDependency */,
 				64B1CCC61F4F56D2002A9FFD /* PBXTargetDependency */,
 			);
 			name = CouchTrackerTests;
@@ -1961,8 +2014,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				64C384161F6C3ABF00FC9930 /* PBXTargetDependency */,
-				64C384181F6C3ABF00FC9930 /* PBXTargetDependency */,
+				64C3843C1F6C571A00FC9930 /* PBXTargetDependency */,
+				64C3842C1F6C55B900FC9930 /* PBXTargetDependency */,
 				64A45A431F54B2AE002C5CAC /* PBXTargetDependency */,
 				64A459D91F54AA0B002C5CAC /* PBXTargetDependency */,
 			);
@@ -1970,6 +2023,40 @@
 			productName = CouchTrackerFastTests;
 			productReference = 64B1CCCE1F4F597D002A9FFD /* CouchTrackerFastTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		64C3841E1F6C554C00FC9930 /* Trakt-Tests-Resources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64C384241F6C554D00FC9930 /* Build configuration list for PBXNativeTarget "Trakt-Tests-Resources" */;
+			buildPhases = (
+				64C3841B1F6C554C00FC9930 /* Sources */,
+				64C3841C1F6C554C00FC9930 /* Frameworks */,
+				64C3841D1F6C554C00FC9930 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Trakt-Tests-Resources";
+			productName = "Trakt-Tests-Resources";
+			productReference = 64C3841F1F6C554C00FC9930 /* Trakt-Tests-Resources.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		64C384301F6C56D600FC9930 /* TMDB-Tests-Resources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64C384341F6C56D600FC9930 /* Build configuration list for PBXNativeTarget "TMDB-Tests-Resources" */;
+			buildPhases = (
+				64C3842D1F6C56D600FC9930 /* Sources */,
+				64C3842E1F6C56D600FC9930 /* Frameworks */,
+				64C3842F1F6C56D600FC9930 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TMDB-Tests-Resources";
+			productName = "TMDB-Tests-Resources";
+			productReference = 64C384311F6C56D600FC9930 /* TMDB-Tests-Resources.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -2034,6 +2121,16 @@
 						CreatedOnToolsVersion = 9.0;
 						DevelopmentTeam = 3N8S6HR6EJ;
 					};
+					64C3841E1F6C554C00FC9930 = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = 3N8S6HR6EJ;
+						ProvisioningStyle = Automatic;
+					};
+					64C384301F6C56D600FC9930 = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = 3N8S6HR6EJ;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 647632341F44824900F277F1 /* Build configuration list for PBXProject "CouchTracker" */;
@@ -2060,6 +2157,8 @@
 				64A459DF1F54AE19002C5CAC /* TMDB */,
 				64A459F91F54AE49002C5CAC /* TMDB-Mac */,
 				64A45A011F54AE49002C5CAC /* TMDB-MacTests */,
+				64C3841E1F6C554C00FC9930 /* Trakt-Tests-Resources */,
+				64C384301F6C56D600FC9930 /* TMDB-Tests-Resources */,
 			);
 		};
 /* End PBXProject section */
@@ -2104,12 +2203,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				647B66301F587F1A00B38D2A /* trakt_search_textquery.json in Resources */,
-				647B66401F58803B00B38D2A /* trakt_genres_shows.json in Resources */,
-				647B66441F58807700B38D2A /* trakt_genres_movies.json in Resources */,
-				6442FA021F61A175008E3E12 /* trakt_shows_summary.json in Resources */,
-				64C384141F6C3A9200FC9930 /* trakt_users_settings.json in Resources */,
-				644FCDDC1F5ED0A100346605 /* trakt_shows_trending.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2131,10 +2224,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				647B66341F587F4E00B38D2A /* tmdb_configuration.json in Resources */,
-				64303EB01F671C740050C287 /* tmdb_show_images.json in Resources */,
-				647B663C1F587FBA00B38D2A /* tmdb_movie_images_20526.json in Resources */,
-				647B66381F587F8900B38D2A /* tmdb_movie_images.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2156,6 +2245,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64C3841D1F6C554C00FC9930 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64C384281F6C55A900FC9930 /* trakt_shows_trending.json in Resources */,
+				64C384251F6C55A900FC9930 /* trakt_search_textquery.json in Resources */,
+				64C384291F6C55A900FC9930 /* trakt_shows_summary.json in Resources */,
+				64C384261F6C55A900FC9930 /* trakt_genres_shows.json in Resources */,
+				64C3842A1F6C55A900FC9930 /* trakt_users_settings.json in Resources */,
+				64C384271F6C55A900FC9930 /* trakt_genres_movies.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64C3842F1F6C56D600FC9930 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64C384371F6C56E100FC9930 /* tmdb_configuration.json in Resources */,
+				64C3843A1F6C56E100FC9930 /* tmdb_show_images.json in Resources */,
+				64C384391F6C56E100FC9930 /* tmdb_movie_images_20526.json in Resources */,
+				64C384381F6C56E100FC9930 /* tmdb_movie_images.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3247,7 +3360,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				648390DD1F504E9A00911BA0 /* TrendingPresenterTest.swift in Sources */,
-				64B61D971F67163A006442E1 /* TMDBShows+Hashable.swift in Sources */,
 				6442F9F51F61751E008E3E12 /* TrendingCellPresenterTest.swift in Sources */,
 				64D29C4B1F55AA17008E344E /* SearchiOSPresenter.swift in Sources */,
 				6405E5031F5DE84600756E79 /* TrendingShowEntity.swift in Sources */,
@@ -3334,6 +3446,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		64C3841B1F6C554C00FC9930 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64C3842D1F6C56D600FC9930 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -3382,15 +3508,25 @@
 			target = 64B1CC791F4F560E002A9FFD /* CouchTrackerUgly */;
 			targetProxy = 64B1CCC51F4F56D2002A9FFD /* PBXContainerItemProxy */;
 		};
-		64C384161F6C3ABF00FC9930 /* PBXTargetDependency */ = {
+		64C3842C1F6C55B900FC9930 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 64A4599E1F54A8F0002C5CAC /* Trakt-MacTests */;
-			targetProxy = 64C384151F6C3ABF00FC9930 /* PBXContainerItemProxy */;
+			target = 64C3841E1F6C554C00FC9930 /* Trakt-Tests-Resources */;
+			targetProxy = 64C3842B1F6C55B900FC9930 /* PBXContainerItemProxy */;
 		};
-		64C384181F6C3ABF00FC9930 /* PBXTargetDependency */ = {
+		64C3843C1F6C571A00FC9930 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 64A45A011F54AE49002C5CAC /* TMDB-MacTests */;
-			targetProxy = 64C384171F6C3ABF00FC9930 /* PBXContainerItemProxy */;
+			target = 64C384301F6C56D600FC9930 /* TMDB-Tests-Resources */;
+			targetProxy = 64C3843B1F6C571A00FC9930 /* PBXContainerItemProxy */;
+		};
+		64C3843E1F6C572000FC9930 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64C3841E1F6C554C00FC9930 /* Trakt-Tests-Resources */;
+			targetProxy = 64C3843D1F6C572000FC9930 /* PBXContainerItemProxy */;
+		};
+		64C384401F6C572000FC9930 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64C384301F6C56D600FC9930 /* TMDB-Tests-Resources */;
+			targetProxy = 64C3843F1F6C572000FC9930 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -4084,6 +4220,114 @@
 			};
 			name = Release;
 		};
+		64C384221F6C554D00FC9930 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3N8S6HR6EJ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Trakt-Tests-Resources/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arctouch.Trakt-Tests-Resources";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		64C384231F6C554D00FC9930 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3N8S6HR6EJ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Trakt-Tests-Resources/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arctouch.Trakt-Tests-Resources";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		64C384351F6C56D600FC9930 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3N8S6HR6EJ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "TMDB-Tests-Resources/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arctouch.TMDB-Tests-Resources";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		64C384361F6C56D600FC9930 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3N8S6HR6EJ;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "TMDB-Tests-Resources/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.arctouch.TMDB-Tests-Resources";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -4182,6 +4426,24 @@
 			buildConfigurations = (
 				64B1CCD41F4F597D002A9FFD /* Debug */,
 				64B1CCD51F4F597D002A9FFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64C384241F6C554D00FC9930 /* Build configuration list for PBXNativeTarget "Trakt-Tests-Resources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64C384221F6C554D00FC9930 /* Debug */,
+				64C384231F6C554D00FC9930 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64C384341F6C56D600FC9930 /* Build configuration list for PBXNativeTarget "TMDB-Tests-Resources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64C384351F6C56D600FC9930 /* Debug */,
+				64C384361F6C56D600FC9930 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -33,7 +33,7 @@ public final class User: ImmutableMappable, Hashable {
     self.vip = try map.value("vip")
     self.vipExecuteProducer = try map.value("vip_ep")
     self.ids = try map.value("ids")
-    self.joinedAt = try map.value("joined_at")
+    self.joinedAt = try map.value("joined_at", using: TraktDateTransformer.dateTimeTransformer)
     self.location = try map.value("location")
     self.about = try map.value("about")
     self.gender = try map.value("gender")

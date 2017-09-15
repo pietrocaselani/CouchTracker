@@ -30,7 +30,7 @@ final class AppConfigurationsInteractorTest: XCTestCase {
     super.tearDown()
   }
 
-  func testAppConfigurationsInteractor_fetchToken_emitsGenericError() {
+  func testAppConfigurationsInteractor_fetchUserFailure_emitsGenericError() {
     //Given
     let message = "decrypt error"
     let genericError = NSError(domain: "com.arctouch", code: 203, userInfo: [NSLocalizedDescriptionKey: message])
@@ -49,9 +49,9 @@ final class AppConfigurationsInteractorTest: XCTestCase {
     XCTAssertEqual(observer.events, expectedEvents)
   }
 
-  func testAppConfigurationsInteractor_fetchToken_emitsTokenError() {
+  func testAppConfigurationsInteractor_fetchUserFailure_emitsNotLogged() {
     //Given an empty repository
-    let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users)
+    let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users, isEmpty: true)
     let interactor = AppConfigurationsService(repository: repository)
 
     //When
@@ -65,7 +65,7 @@ final class AppConfigurationsInteractorTest: XCTestCase {
     XCTAssertEqual(observer.events, expectedEvents)
   }
 
-  func testAppConfigurationsInteractor_fetchToken_emmitsTokenSuccess() {
+  func testAppConfigurationsInteractor_fetchUser_emitsUserLogged() {
     //Given a repository with token
     let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users)
     let interactor = AppConfigurationsService(repository: repository)

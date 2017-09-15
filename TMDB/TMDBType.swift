@@ -27,7 +27,8 @@ public extension TMDBType {
 }
 
 func stubbedResponse(_ filename: String) -> Data {
-  let bundle = Bundle(for: TMDB.self)
+  let resourcesPath = Bundle(for: TMDB.self).bundlePath
+  let bundle = Bundle(path: resourcesPath.appending("/../TMDB-Tests-Resources.bundle"))!
   guard let url = bundle.url(forResource: filename, withExtension: "json"),
     let data = try? Data(contentsOf: url) else {
       return Data()

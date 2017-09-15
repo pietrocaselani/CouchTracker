@@ -18,7 +18,12 @@ final class AppConfigurationsMock {
   private init() {}
 
   static func createUserMock() -> User {
-    return try! User(JSON: JSONParser.toObject(data: Users.settings.sampleData))
+    return try! Settings(JSON: JSONParser.toObject(data: Users.settings.sampleData)).user
+  }
+
+  static func createUnauthorizedErrorMock() -> MoyaError {
+    let response = Response(statusCode: 401, data: Data())
+    return MoyaError.statusCode(response)
   }
 }
 
@@ -84,7 +89,9 @@ final class AppConfigurationsRepositoryMock: AppConfigurationsRepository {
   }
 
   func fetchLoggedUser() -> Observable<User> {
-    guard !isEmpty else { return Observable.empty() }
+    guard !isEmpty else {
+      return Observable.error(AppConfigurationsMock.createUnauthorizedErrorMock())
+    }
     return usersProvider.request(.settings).mapObject(Settings.self).map { $0.user }
   }
 }

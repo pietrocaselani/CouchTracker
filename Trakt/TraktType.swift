@@ -31,7 +31,7 @@ public extension TraktType {
 
 func stubbedResponse(_ filename: String) -> Data {
   let resourcesPath = Bundle(for: Trakt.self).bundlePath
-  let bundle = Bundle(path: resourcesPath.appending("/Trakt-Mac.bundle"))!
+  let bundle = Bundle(path: resourcesPath.appending("/../Trakt-Tests-Resources.bundle"))!
   guard let url = bundle.url(forResource: filename, withExtension: "json"),
     let data = try? Data(contentsOf: url) else {
       return Data()

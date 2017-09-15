@@ -48,8 +48,9 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     XCTAssertEqual(router.invokedShowErrorMessageParameters?.message, message)
   }
 
-  func testAppConfigurationsPresenter_receivesTokenError_notifyView() {
+  func testAppConfigurationsPresenter_receivesUserNotLoggedError_notifyView() {
     //Given
+    setUpModuleWithError(AppConfigurationsMock.createUnauthorizedErrorMock())
 
     //When
     presenter.viewDidLoad()
@@ -62,7 +63,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     XCTAssertEqual(view.invokedShowConfigurationsParameters!.models, viewModels)
   }
 
-  func testAppConfigurationsPresenter_receivesTokenSuccess_notifyView() {
+  func testAppConfigurationsPresenter_receivesUserLogged_notifyView() {
     //Given
     setupModule()
 
@@ -70,7 +71,8 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     presenter.viewDidLoad()
 
     //Then
-    let connectToTraktViewModel = AppConfigurationViewModel(title: "Connected", subtitle: "trakt username")
+    let expectedUserName = AppConfigurationsMock.createUserMock().name
+    let connectToTraktViewModel = AppConfigurationViewModel(title: "Connected", subtitle: expectedUserName)
     let viewModels = [AppConfigurationsViewModel(title: "Main", configurations: [connectToTraktViewModel])]
 
     XCTAssertTrue(view.invokedShowConfigurations)
@@ -92,9 +94,10 @@ final class AppConfigurationsPresenterTest: XCTestCase {
   func testAppConfigurationsPresenter_receivesEventConnectToTraktFromView_notifyRouter() {
     //Given
     setupModule(empty: true)
+    presenter.viewDidLoad()
 
     //When
-    presenter.viewDidLoad()
+    sleep(1)
     presenter.optionSelectedAt(index: 0)
 
     //Then
