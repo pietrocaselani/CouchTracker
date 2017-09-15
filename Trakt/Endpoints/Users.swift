@@ -10,22 +10,4 @@
  the license agreement.
  */
 
-import TraktSwift
-
-enum TokenResult: Hashable {
-  case logged(token: Token, user: String)
-  case error(error: TokenError)
-
-  var hashValue: Int {
-    switch self {
-    case .logged(let token, let user):
-      return token.hashValue ^ user.hashValue
-    case .error(let error):
-      return error.hashValue
-    }
-  }
-
-  static func == (lhs: TokenResult, rhs: TokenResult) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-  }
-}
+ 

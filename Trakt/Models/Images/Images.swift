@@ -10,6 +10,4 @@
  the license agreement.
  */
 
-enum TokenError: String, Error {
-  case absent
-}
+ 

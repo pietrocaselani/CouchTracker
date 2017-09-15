@@ -13,61 +13,62 @@
 import Foundation
 import TraktSwift
 import RxSwift
+import Moya_ObjectMapper
+import Moya
 
 final class AppConfigurationsUserDefaultsRepository: AppConfigurationsRepository {
   private static let localeKey = "preferredLocale"
-  private static let traktTokenKey = "traktToken"
+  private static let traktUserKey = "traktUser"
   private let userDefaults: UserDefaults
+  private let userProvider: RxMoyaProvider<Users>
 
-  init(userDefaults: UserDefaults) {
+  init(userDefaults: UserDefaults, traktProvider: TraktProvider) {
     self.userDefaults = userDefaults
+    self.userProvider = traktProvider.users
   }
 
-  func availableLocales() -> Single<[Locale]> {
-    return Single.just(Locale.preferredLanguages.map { Locale(identifier: $0) })
+  var preferredLocales: [Locale] {
+    return Locale.preferredLanguages.map { Locale(identifier: $0) }
   }
 
-  func updatePreferredContent(locale: Locale) -> Completable {
-    return Completable.create { [unowned self] completable -> Disposable in
-      self.userDefaults.set(locale.identifier, forKey: AppConfigurationsUserDefaultsRepository.localeKey)
-      completable(.completed)
-      return Disposables.create()
+  var preferredContentLocale: Locale {
+    get {
+      let localeIdentifier = userDefaults.string(forKey: AppConfigurationsUserDefaultsRepository.localeKey)
+      return localeIdentifier.flatMap { Locale(identifier: $0) } ?? Locale.current
+    }
+    set {
+      userDefaults.set(newValue.identifier, forKey: AppConfigurationsUserDefaultsRepository.localeKey)
+      userDefaults.synchronize()
     }
   }
 
-  func preferredContentLocale() -> Single<Locale> {
-    return Single.create(subscribe: { [unowned self] single -> Disposable in
-      let localeIdentifier = self.userDefaults.string(forKey: AppConfigurationsUserDefaultsRepository.localeKey)
-      let locale = localeIdentifier.flatMap { Locale(identifier: $0) } ?? Locale.current
+  func fetchLoggedUser() -> Observable<User> {
+    let apiObservable = fetchSettingsFromAPI()
+    let cacheObservable = fetchSettingFromLocalStorage()
 
-      single(.success(locale))
-
-      return Disposables.create()
-    })
+    return cacheObservable.catchError { apiObservable }
+        .ifEmpty(switchTo: apiObservable)
+        .map { $0.user }
   }
 
-  func updateTrakt(token: Token) -> Completable {
-    return Completable.create(subscribe: { [unowned self] completable -> Disposable in
-      let tokenData = NSKeyedArchiver.archivedData(withRootObject: token)
-      self.userDefaults.set(tokenData, forKey: AppConfigurationsUserDefaultsRepository.traktTokenKey)
+  private func fetchSettingFromLocalStorage() -> Observable<Settings> {
+    guard let json = self.userDefaults.dictionary(forKey: AppConfigurationsUserDefaultsRepository.traktUserKey) else {
+      return Observable.empty()
+    }
 
-      completable(.completed)
-
-      return Disposables.create()
-    })
+    let map = Map(mappingType: .fromJSON, JSON: json)
+    do {
+      let settings = try Settings(map: map)
+      return Observable.just(settings)
+    } catch {
+      return Observable.error(error)
+    }
   }
 
-  func traktToken() -> Single<Token> {
-    return Single.create(subscribe: { [unowned self] single -> Disposable in
-      let data = self.userDefaults.data(forKey: AppConfigurationsUserDefaultsRepository.traktTokenKey)
-
-      if let tokenData = data, let token = NSKeyedUnarchiver.unarchiveObject(with: tokenData) as? Token {
-        single(.success(token))
-      } else {
-        single(.error(TokenError.absent))
-      }
-
-      return Disposables.create()
+  private func fetchSettingsFromAPI() -> Observable<Settings> {
+    return userProvider.request(.settings).mapObject(Settings.self).do(onNext: { [unowned self] settings in
+      self.userDefaults.set(settings.toJSON(), forKey: AppConfigurationsUserDefaultsRepository.traktUserKey)
+      self.userDefaults.synchronize()
     })
   }
 }

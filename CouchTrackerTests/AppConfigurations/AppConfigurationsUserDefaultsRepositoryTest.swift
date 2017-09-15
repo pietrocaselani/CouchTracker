@@ -11,24 +11,20 @@ the license agreement.
 */
 
 import XCTest
-import RxSwift
 import TraktSwift
 
 final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
   private let userDefaultsMock = UserDefaults(suiteName: "TestUserDefaults")!
   private var repository: AppConfigurationsUserDefaultsRepository!
-  private var disposeBag: CompositeDisposable!
 
   override func setUp() {
     clearUserDefaults(userDefaultsMock)
-    disposeBag = CompositeDisposable()
     repository = AppConfigurationsUserDefaultsRepository(userDefaults: userDefaultsMock)
     super.setUp()
   }
 
   override func tearDown() {
     repository = nil
-    disposeBag.dispose()
     super.tearDown()
   }
 
@@ -63,19 +59,10 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
     //Given an empty repository
 
     //When
-    let single = repository.preferredContentLocale()
+    let locale = repository.preferredContentLocale
 
     //Then
-    let responseExpectation = expectation(description: "Expect for current locale")
-
-    let disposable = single.subscribe(onSuccess: { locale in
-      responseExpectation.fulfill()
-      XCTAssertEqual(locale, Locale.current)
-    })
-
-    _ = disposeBag.insert(disposable)
-
-    wait(for: [responseExpectation], timeout: 1)
+    XCTAssertEqual(locale, Locale.current)
   }
 
   func testAppConfigurationsUserDefaultsRepository_retrivesLocale_emitsSavedLocale() {
@@ -83,20 +70,11 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
     userDefaultsMock.set("es_CO", forKey: "preferredLocale")
 
     //When
-    let single = repository.preferredContentLocale()
+    let locale = repository.preferredContentLocale
 
     //Then
-    let responseExpectation = expectation(description: "Expect locale to be Spanish (Colombia)")
     let expectedLocale = Locale(identifier: "es_CO")
-
-    let disposable = single.subscribe(onSuccess: { locale in
-      responseExpectation.fulfill()
-      XCTAssertEqual(locale, expectedLocale)
-    })
-
-    _ = disposeBag.insert(disposable)
-
-    wait(for: [responseExpectation], timeout: 1)
+    XCTAssertEqual(locale, expectedLocale)
   }
 
   func testAppConfigurationsUserDefaultsRepository_updatesLocale() {
@@ -105,43 +83,20 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
     let newLocale = Locale(identifier: "th_TH")
 
     //When
-    let completable = repository.updatePreferredContent(locale: newLocale)
+    repository.preferredContentLocale = newLocale
 
     //Then
-    let responseExpcetation = expectation(description: "Expect on completed event")
-
-    let disposable = completable.subscribe(onCompleted: { [unowned self] in
-      responseExpcetation.fulfill()
-
-      let disposable = self.repository.preferredContentLocale().subscribe(onSuccess: { locale in
-        XCTAssertEqual(locale, newLocale)
-      })
-      _ = self.disposeBag.insert(disposable)
-    })
-
-    _ = disposeBag.insert(disposable)
-
-    wait(for: [responseExpcetation], timeout: 1)
+    XCTAssertEqual(repository.preferredContentLocale, newLocale)
   }
 
   func testAppConfigurationsUserDefaultsRepository_retrivesTokenFromEmtyRepository_emmitsTokenAbsentError() {
     //Given an empty repository
 
     //When
-    let single = repository.traktToken()
+    let token = repository.traktToken
 
     //Then
-    let responseExpectation = expectation(description: "Expect token absent error")
-
-    let disposable = single.subscribe(onSuccess: nil) { error in
-      responseExpectation.fulfill()
-      XCTAssert(error is TokenError)
-      XCTAssertEqual(error as! TokenError, TokenError.absent)
-    }
-
-    _ = disposeBag.insert(disposable)
-
-    wait(for: [responseExpectation], timeout: 1)
+    XCTAssertNil(token)
   }
 
   func testAppConfigurationsUserDefaultsRepository_updatesToken() {
@@ -149,21 +104,9 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
     let newToken = AppConfigurationsMock.createTraktTokenMock()
 
     //When
-    let completable = repository.updateTrakt(token: newToken)
+    repository.traktToken = newToken
 
     //Then
-    let responseExpectation = expectation(description: "Expect to save the new token")
-
-    let disposable = completable.subscribe(onCompleted: { [unowned self] in
-      responseExpectation.fulfill()
-      let anotherDisposable = self.repository.traktToken().subscribe(onSuccess: { savedToken in
-        XCTAssertEqual(savedToken, newToken)
-      })
-      _ = self.disposeBag.insert(anotherDisposable)
-    })
-
-    _ = self.disposeBag.insert(disposable)
-
-    wait(for: [responseExpectation], timeout: 1)
+    XCTAssertEqual(repository.traktToken, newToken)
   }
 }

@@ -15,11 +15,9 @@ import TraktSwift
 import RxSwift
 
 protocol AppConfigurationsRepository: class {
-  func availableLocales() -> Single<[Locale]>
-  func updatePreferredContent(locale: Locale) -> Completable
-  func preferredContentLocale() -> Single<Locale>
-  func updateTrakt(token: Token) -> Completable
-  func traktToken() -> Single<Token>
+  var preferredLocales: [Locale] { get }
+  var preferredContentLocale: Locale { get set }
+  func fetchLoggedUser() -> Observable<User>
 }
 
 protocol AppConfigurationsRouter: class {
@@ -28,9 +26,9 @@ protocol AppConfigurationsRouter: class {
 }
 
 protocol AppConfigurationsInteractor: class {
-  init(repository: AppConfigurationsRepository)
+  init(userRepository: UserRepository)
 
-  func traktToken() -> Single<TokenResult>
+  func fetchLoginState() -> Observable<LoginState>
 }
 
 protocol AppConfigurationsPresenter: class {
