@@ -24,4 +24,20 @@ final class TraktTests: XCTestCase {
 
     XCTAssertEqual(endpoint.httpHeaderFields!, expectedHeaders)
   }
+
+  func testTrakt_receivesRedirectURL_createsOAuthURL() {
+    //Given
+    let clientId = "my_awesome_client_id"
+    let clientSecret = "my_awesome_client_secret"
+    let redirectURL = "my_awesome_url"
+    let trakt = Trakt(clientId: clientId, clientSecret: clientSecret, redirectURL: redirectURL)
+
+    //When
+    let url = trakt.oauthURL
+
+    //Then
+    let link = "https://trakt.tv/oauth/authorize?response_type=code&client_id=\(clientId)&redirect_uri=\(redirectURL)"
+    let expectedURL = URL(string: link)
+    XCTAssertEqual(url, expectedURL)
+  }
 }
