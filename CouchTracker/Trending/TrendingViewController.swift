@@ -55,7 +55,8 @@ final class TrendingViewController: UIViewController {
 
     let settingsItem = UIBarButtonItem(image: R.image.settings(), style: .plain, target: nil, action: nil)
     settingsItem.rx.tap.subscribe(onNext: { [unowned self] _ in
-      self.presenter.showAppSettings()
+      guard let settingsPresentable = self.presenter as? AppConfigurationsPresentable else { return }
+      settingsPresentable.showAppSettings()
     }).disposed(by: disposeBag)
 
     self.navigationItem.rightBarButtonItem = settingsItem

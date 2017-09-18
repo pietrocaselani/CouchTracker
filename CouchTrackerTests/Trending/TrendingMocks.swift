@@ -65,7 +65,7 @@ final class TrendingPresenterMock: TrendingPresenter {
   }
 }
 
-final class TrendingRouterMock: TrendingRouter {
+final class TrendingRouterMock: TrendingRouter, AppConfigurationsPresentable {
   var invokedMovieDetails = false
   var invokedMovieDetailsParameters: (movie: MovieEntity, Void)?
 

@@ -43,3 +43,7 @@ protocol AppConfigurationsView: class {
 
   func showConfigurations(models: [AppConfigurationsViewModel])
 }
+
+protocol AppConfigurationsPresentable: class {
+  func showAppSettings()
+}
