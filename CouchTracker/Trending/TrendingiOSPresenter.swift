@@ -58,6 +58,10 @@ final class TrendingiOSPresenter: TrendingPresenter {
     }
   }
 
+  func showAppSettings() {
+    router.showAppSettings()
+  }
+
   private func fetchMovies() {
     let observable = interactor.fetchMovies(page: currentMoviesPage, limit: TrendingiOSPresenter.limitPerPage)
       .do(onNext: { [unowned self] in

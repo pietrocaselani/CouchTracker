@@ -38,7 +38,7 @@ final class ImageCachedRepository: ImageRepository {
 
     let cacheObservable = imagesFromCache(with: target.toString())
     let apiObservable = imagesFromAPI(using: moviesProvider, with: target)
-    let imagesObservable = cacheObservable.ifEmpty(switchTo: apiObservable)
+    let imagesObservable = createImagesObservable(cacheObservable, apiObservable)
 
     return createImagesEntities(imagesObservable, posterSize: posterSize, backdropSize: backdropSize)
   }
@@ -49,9 +49,19 @@ final class ImageCachedRepository: ImageRepository {
 
     let cacheObservable = imagesFromCache(with: target.toString())
     let apiObservable = imagesFromAPI(using: showsProvider, with: target)
-    let imagesObservable = cacheObservable.ifEmpty(switchTo: apiObservable)
+    let imagesObservable = createImagesObservable(cacheObservable, apiObservable)
 
     return createImagesEntities(imagesObservable, posterSize: posterSize, backdropSize: backdropSize).asSingle()
+  }
+
+  private func createImagesObservable(_ cacheObservable: Observable<Images>,
+                                      _ apiObservable: Observable<Images>) -> Observable<Images> {
+    let imagesObservable = cacheObservable.catchError { error -> Observable<Images> in
+      print(error)
+      return apiObservable
+    }.ifEmpty(switchTo: apiObservable)
+
+    return imagesObservable
   }
 
   private func createImagesEntities(_ imagesObservable: Observable<Images>, posterSize: PosterImageSize?,

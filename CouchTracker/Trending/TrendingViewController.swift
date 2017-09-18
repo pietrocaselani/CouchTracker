@@ -52,6 +52,13 @@ final class TrendingViewController: UIViewController {
     collectionView.dataSource = collectionViewDataSource
 
     presenter.viewDidLoad()
+
+    let settingsItem = UIBarButtonItem(image: R.image.settings(), style: .plain, target: nil, action: nil)
+    settingsItem.rx.tap.subscribe(onNext: { [unowned self] _ in
+      self.presenter.showAppSettings()
+    }).disposed(by: disposeBag)
+
+    self.navigationItem.rightBarButtonItem = settingsItem
   }
 }
 

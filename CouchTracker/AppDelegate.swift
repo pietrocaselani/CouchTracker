@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().barTintColor = UIColor.ctblack
     UINavigationBar.appearance().tintColor = UIColor.white
     UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.ctzircon]
+    UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self]).textColor = UIColor.ctzircon
 
     let view = TrendingModule.setupModule(traktProvider: trakt, tmdbProvider: tmdb)
 

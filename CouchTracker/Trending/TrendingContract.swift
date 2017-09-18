@@ -26,6 +26,7 @@ protocol TrendingPresenter: class {
 
   func viewDidLoad()
   func showDetailsOfTrending(at index: Int)
+  func showAppSettings()
 }
 
 protocol TrendingView: BaseView {
@@ -40,6 +41,7 @@ protocol TrendingRouter: class {
   func showDetails(of movie: MovieEntity)
   func showDetails(of show: ShowEntity)
   func showError(message: String)
+  func showAppSettings()
 }
 
 protocol TrendingInteractor: class {
