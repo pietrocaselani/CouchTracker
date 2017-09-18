@@ -15,7 +15,6 @@ import TraktSwift
 import RxSwift
 
 final class TrendingiOSRouter: TrendingRouter, AppConfigurationsPresentable {
-
   private weak var viewController: UIViewController?
   private let traktProvider: TraktProvider
   private let tmdbProvider: TMDBProvider

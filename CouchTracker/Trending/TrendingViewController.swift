@@ -15,6 +15,7 @@ import RxCocoa
 import RxSwift
 
 final class TrendingViewController: UIViewController {
+  var appConfigurationsPresentable: AppConfigurationsPresentable!
   var presenter: TrendingPresenter!
   var searchView: SearchView!
 
@@ -55,8 +56,7 @@ final class TrendingViewController: UIViewController {
 
     let settingsItem = UIBarButtonItem(image: R.image.settings(), style: .plain, target: nil, action: nil)
     settingsItem.rx.tap.subscribe(onNext: { [unowned self] _ in
-      guard let settingsPresentable = self.presenter as? AppConfigurationsPresentable else { return }
-      settingsPresentable.showAppSettings()
+      self.appConfigurationsPresentable.showAppSettings()
     }).disposed(by: disposeBag)
 
     self.navigationItem.rightBarButtonItem = settingsItem

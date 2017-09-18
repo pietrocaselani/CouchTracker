@@ -43,6 +43,7 @@ final class TrendingModule {
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
 
     view.presenter = presenter
+    view.appConfigurationsPresentable = presenter
 
     view.searchView = SearchModule.setupModule(traktProvider: traktProvider, resultsOutput: presenter)
 

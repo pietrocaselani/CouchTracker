@@ -22,6 +22,7 @@ func createTrendingShowsMock() -> [TrendingShow] {
 }
 
 final class TrendingViewMock: TrendingView {
+  var appConfigurationsPresentable: AppConfigurationsPresentable!
   var presenter: TrendingPresenter!
   var searchView: SearchView!
   var invokedShowEmptyView = false
