@@ -11,5 +11,8 @@ the license agreement.
 */
 
 import TraktSwift
+import Foundation
 
-extension Trakt: TraktProvider {}
+extension Trakt: TraktProvider {
+  var oauthURL: URL? { return self.oauthURL }
+}

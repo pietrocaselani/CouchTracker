@@ -19,4 +19,5 @@ protocol TraktProvider: class {
   var search: RxMoyaProvider<Search> { get }
   var shows: RxMoyaProvider<Shows> { get }
   var users: RxMoyaProvider<Users> { get }
+  var oauthURL: URL? { get }
 }

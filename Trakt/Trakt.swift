@@ -15,6 +15,7 @@ import Moya
 public final class Trakt {
   let clientId: String
   let clientSecret, redirectURL: String?
+  let oauthURL: URL?
   var plugins = [PluginType]()
 
   public private(set) var accessToken: Token? {
@@ -31,6 +32,20 @@ public final class Trakt {
     self.clientId = clientId
     self.clientSecret = clientSecret
     self.redirectURL = redirectURL
+
+    if let redirectURL = redirectURL {
+      let url = Trakt.siteURL.appendingPathComponent(Trakt.OAuth2AuthorizationPath)
+      var componenets = URLComponents(url: url, resolvingAgainstBaseURL: false)
+
+      let responseTypeItem = URLQueryItem(name: "response_type", value: "code")
+      let clientIdItem = URLQueryItem(name: "client_id", value: clientId)
+      let redirectURIItem = URLQueryItem(name: "redirect_uri", value: redirectURL)
+      componenets?.queryItems = [responseTypeItem, clientIdItem, redirectURIItem]
+
+      self.oauthURL = componenets?.url
+    } else {
+      self.oauthURL = nil
+    }
 
     loadToken()
   }

@@ -16,6 +16,8 @@ import TraktSwift
 let traktProviderMock = TraktProviderMock()
 
 final class TraktProviderMock: TraktProvider {
+  var oauthURL: URL?
+
   var movies: RxMoyaProvider<Movies> {
     return RxMoyaProvider<Movies>(stubClosure: MoyaProvider.immediatelyStub)
   }
@@ -34,5 +36,9 @@ final class TraktProviderMock: TraktProvider {
 
   var users: RxMoyaProvider<Users> {
     return RxMoyaProvider<Users>(stubClosure: MoyaProvider.immediatelyStub)
+  }
+
+  init(oauthURL: URL? = nil) {
+    self.oauthURL = oauthURL
   }
 }

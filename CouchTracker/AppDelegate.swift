@@ -14,8 +14,9 @@ import Carlos
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
-  private let trakt = Trakt(clientId: "1aec4225ee175a6affce5ad374140c360fd5f0ab5113e6aa1c123bd4baeb082b")
-  private let tmdb = TMDB(apiKey: "d2042fb7e51f1e8c94c015dacd5074f2")
+  private let trakt = Trakt(clientId: TraktSecrets.clientId,
+                            clientSecret: TraktSecrets.clientSecret, redirectURL: TraktSecrets.redirectURL)
+  private let tmdb = TMDB(apiKey: TMDBSecrets.apiKey)
   private var listMoviesModule: TrendingModule!
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions
