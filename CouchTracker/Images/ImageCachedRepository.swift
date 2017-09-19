@@ -57,7 +57,6 @@ final class ImageCachedRepository: ImageRepository {
   private func createImagesObservable(_ cacheObservable: Observable<Images>,
                                       _ apiObservable: Observable<Images>) -> Observable<Images> {
     let imagesObservable = cacheObservable.catchError { error -> Observable<Images> in
-      print(error)
       return apiObservable
     }.ifEmpty(switchTo: apiObservable)
 

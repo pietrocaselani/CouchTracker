@@ -12,6 +12,7 @@
 
 import RxSwift
 import Foundation
+import TraktSwift
 
 protocol TraktLoginInteractor: class {
   init?(traktProvider: TraktProvider)
@@ -27,6 +28,7 @@ protocol TraktLoginPresenter: class {
 
 protocol TraktLoginView: class {
   var presenter: TraktLoginPresenter! { get set }
+  var policyDecider: TraktLoginPolicyDecider! { get set }
 
   func loadLogin(using url: URL)
 }
@@ -34,4 +36,10 @@ protocol TraktLoginView: class {
 protocol TraktLoginOutput: class {
   func loggedInSuccessfully()
   func logInFail(message: String)
+}
+
+protocol TraktLoginPolicyDecider: class {
+  init(loginOutput: TraktLoginOutput)
+
+  func allowedToProceed(with request: URLRequest) -> Observable<AuthenticationResult>
 }

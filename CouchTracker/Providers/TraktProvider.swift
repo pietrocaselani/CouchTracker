@@ -11,6 +11,7 @@ the license agreement.
 */
 
 import Moya
+import RxSwift
 import TraktSwift
 
 protocol TraktProvider: class {
@@ -19,5 +20,8 @@ protocol TraktProvider: class {
   var search: RxMoyaProvider<Search> { get }
   var shows: RxMoyaProvider<Shows> { get }
   var users: RxMoyaProvider<Users> { get }
-  var oauthURL: URL? { get }
+  var authentication: RxMoyaProvider<Authentication> { get }
+  var oauth: URL? { get }
+
+  func finishesAuthentication(with request: URLRequest) -> Observable<AuthenticationResult>
 }

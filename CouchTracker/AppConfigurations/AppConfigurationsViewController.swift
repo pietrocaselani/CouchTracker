@@ -30,7 +30,7 @@ final class AppConfigurationsViewController: UIViewController, AppConfigurations
   }
 
   func showConfigurations(models: [AppConfigurationsViewModel]) {
-    configurationSections.append(contentsOf: models)
+    configurationSections = models
     tableView.reloadData()
   }
 

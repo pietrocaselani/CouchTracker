@@ -21,9 +21,9 @@ final class AppConfigurationsService: AppConfigurationsInteractor {
     self.repository = repository
   }
 
-  func fetchLoginState() -> Observable<LoginState> {
-    return repository.fetchLoggedUser().map { user -> LoginState in
-      LoginState.logged(user: user)
+  func fetchLoginState(forced: Bool) -> Observable<LoginState> {
+    return repository.fetchLoggedUser(forced: forced).map { user -> LoginState in
+      return LoginState.logged(user: user)
     }.catchError { error in
       guard let moyaError = error as? MoyaError, moyaError.response?.statusCode == 401 else {
         return Observable.error(error)
