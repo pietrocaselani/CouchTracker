@@ -27,12 +27,13 @@ final class TraktTokenPolicyDecider: TraktLoginPolicyDecider {
   }
 
   func allowedToProceed(with request: URLRequest) -> Observable<AuthenticationResult> {
-    return trakt.finishesAuthentication(with: request).do(onNext: { [unowned self] result in
-      if result == AuthenticationResult.authenticated {
-        self.output.loggedInSuccessfully()
-      }
-    }, onError: { [unowned self] error in
-      self.output.logInFail(message: error.localizedDescription)
-    })
+    return trakt.finishesAuthentication(with: request)
+      .do(onNext: { [unowned self] result in
+        if result == AuthenticationResult.authenticated {
+          self.output.loggedInSuccessfully()
+        }
+        }, onError: { [unowned self] error in
+          self.output.logInFail(message: error.localizedDescription)
+      })
   }
 }

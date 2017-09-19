@@ -46,7 +46,7 @@ final class TraktLoginInteractorMock: TraktLoginInteractor {
   private let url: URL
 
   init(traktProvider: TraktProvider) {
-    guard let oauthURL = traktProvider.oauthURL else {
+    guard let oauthURL = traktProvider.oauth else {
       fatalError("Impossible to create oauthURL without a redirect URL.")
     }
 
@@ -59,6 +59,7 @@ final class TraktLoginInteractorMock: TraktLoginInteractor {
 }
 
 final class TraktLoginViewMock: TraktLoginView {
+  var policyDecider: TraktLoginPolicyDecider!
   var presenter: TraktLoginPresenter!
 
   var invokedLoadLogin = false

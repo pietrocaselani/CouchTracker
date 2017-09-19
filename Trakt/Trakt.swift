@@ -18,6 +18,7 @@ public final class Trakt {
   let clientId: String
   let clientSecret, redirectURL: String?
   var plugins = [PluginType]()
+  let userDefaults: UserDefaults
   public let oauthURL: URL?
 
   public private(set) var accessToken: Token? {
@@ -26,11 +27,16 @@ public final class Trakt {
     }
   }
 
-  public convenience init(clientId: String) {
+  public var hasValidToken: Bool {
+    return accessToken?.expiresIn.compare(Date()) == .orderedDescending
+  }
+
+  public convenience init(clientId: String, userDefaults: UserDefaults = UserDefaults.standard) {
     self.init(clientId: clientId, clientSecret: nil, redirectURL: nil)
   }
 
-  public init(clientId: String, clientSecret: String?, redirectURL: String?) {
+  public init(clientId: String, clientSecret: String?,
+              redirectURL: String?, userDefaults: UserDefaults = UserDefaults.standard) {
     self.clientId = clientId
     self.clientSecret = clientSecret
     self.redirectURL = redirectURL
@@ -48,6 +54,8 @@ public final class Trakt {
     } else {
       self.oauthURL = nil
     }
+
+    self.userDefaults = userDefaults
 
     loadToken()
   }
@@ -82,12 +90,8 @@ public final class Trakt {
     }
   }
 
-  public func hasValidToken() -> Bool {
-    return accessToken?.expiresIn.compare(Date()) == .orderedDescending
-  }
-
   private func loadToken() {
-    let tokenData = UserDefaults.standard.object(forKey: Trakt.accessTokenKey) as? Data
+    let tokenData = userDefaults.object(forKey: Trakt.accessTokenKey) as? Data
     if let tokenData = tokenData, let token = NSKeyedUnarchiver.unarchiveObject(with: tokenData) as? Token {
       self.accessToken = token
     }
@@ -95,7 +99,7 @@ public final class Trakt {
 
   private func saveToken(_ token: Token) {
     let tokenData = NSKeyedArchiver.archivedData(withRootObject: token)
-    UserDefaults.standard.set(tokenData, forKey: Trakt.accessTokenKey)
+    userDefaults.set(tokenData, forKey: Trakt.accessTokenKey)
   }
 
   private func updateAccessTokenPlugin(_ token: Token?) {
