@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.ctzircon]
     UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self]).textColor = UIColor.ctzircon
 
-    let view = TrendingModule.setupModule(traktProvider: trakt, tmdbProvider: tmdb)
+    let view = AppFlowModule.setupModule(traktProvider: trakt, tmdbProvider: tmdb)
 
     guard let viewController = view as? UIViewController else {
       fatalError("view should be an instance of UIViewController")
