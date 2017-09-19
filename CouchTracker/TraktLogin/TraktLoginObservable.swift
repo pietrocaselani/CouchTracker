@@ -10,11 +10,8 @@
  the license agreement.
  */
 
-protocol ShowsManagerInteractor: class {
-}
+import RxSwift
 
-protocol ShowsManagerPresenter: class {
-}
-
-protocol ShowsManagerView: class {
+protocol TraktLoginObservable {
+  func observe() -> Observable<TraktLoginState>
 }

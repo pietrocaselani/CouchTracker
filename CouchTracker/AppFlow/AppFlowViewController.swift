@@ -12,12 +12,4 @@
 
 import UIKit
 
-final class AppFlowViewController: UITabBarController {
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    title = "Shows"
-  }
-  
-}
+final class AppFlowViewController: UITabBarController {}

@@ -10,11 +10,18 @@
  the license agreement.
  */
 
-protocol ShowsManagerInteractor: class {
-}
+final class CompositeLoginOutput: TraktLoginOutput {
+  private let outputs: [TraktLoginOutput]
 
-protocol ShowsManagerPresenter: class {
-}
+  init(outputs: [TraktLoginOutput]) {
+    self.outputs = outputs
+  }
 
-protocol ShowsManagerView: class {
+  func loggedInSuccessfully() {
+    outputs.forEach { $0.loggedInSuccessfully() }
+  }
+
+  func logInFail(message: String) {
+    outputs.forEach { $0.logInFail(message: message) }
+  }
 }

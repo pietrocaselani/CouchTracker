@@ -10,11 +10,6 @@
  the license agreement.
  */
 
-protocol ShowsManagerInteractor: class {
-}
-
-protocol ShowsManagerPresenter: class {
-}
-
-protocol ShowsManagerView: class {
+protocol TraktLoginOutputProvider: class {
+  var loginOutput: TraktLoginOutput { get }
 }

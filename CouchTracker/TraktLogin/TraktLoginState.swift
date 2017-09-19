@@ -10,11 +10,7 @@
  the license agreement.
  */
 
-protocol ShowsManagerInteractor: class {
-}
-
-protocol ShowsManagerPresenter: class {
-}
-
-protocol ShowsManagerView: class {
+enum TraktLoginState: Int {
+  case logged
+  case notLogged
 }

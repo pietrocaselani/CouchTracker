@@ -15,8 +15,9 @@ import UIKit
 final class AppFlowModule {
   private init() {}
 
-  static func setupModule(traktProvider: TraktProvider, tmdbProvider: TMDBProvider) -> BaseView {
-    let trendingView = TrendingModule.setupModule(traktProvider: traktProvider, tmdbProvider: tmdbProvider)
+  static func setupModule() -> BaseView {
+    let trendingView = TrendingModule.setupModule()
+
     guard let trendingViewController = trendingView as? UIViewController else {
       fatalError("trendingView should be an instance of UIViewController")
     }
