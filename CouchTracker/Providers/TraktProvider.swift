@@ -21,6 +21,8 @@ protocol TraktProvider: class {
   var shows: RxMoyaProvider<Shows> { get }
   var users: RxMoyaProvider<Users> { get }
   var authentication: RxMoyaProvider<Authentication> { get }
+  var episodes: RxMoyaProvider<Episodes> { get }
+  var sync: RxMoyaProvider<Sync> { get }
   var oauth: URL? { get }
   var isAuthenticated: Bool { get }
 
