@@ -44,3 +44,5 @@ Logs/
 .scannerwork
 .vscode
 .env
+Pods/
+Podfile.lock

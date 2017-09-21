@@ -37,6 +37,14 @@ extension Trakt {
     return createProvider(forTarget: Authentication.self)
   }
 
+  public var sync: RxMoyaProvider<Sync> {
+    return createProvider(forTarget: Sync.self)
+  }
+
+  public var episodes: RxMoyaProvider<Episodes> {
+    return createProvider(forTarget: Episodes.self)
+  }
+
   private func createProvider<T: TraktType>(forTarget target: T.Type) -> RxMoyaProvider<T> {
     let endpointClosure = createEndpointClosure(forTarget: target)
 

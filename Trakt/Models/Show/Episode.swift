@@ -18,7 +18,8 @@ public final class Episode: StandardMediaEntity {
   public let number: Int
   public let ids: EpisodeIds
   public let absoluteNumber: Int?
-  public var firstAired: Date?
+  public let firstAired: Date?
+  public let runtime: Int?
 
   public required init(map: Map) throws {
     self.season = try map.value("season")
@@ -26,6 +27,7 @@ public final class Episode: StandardMediaEntity {
     self.ids = try map.value("ids")
     self.absoluteNumber = try? map.value("number_abs")
     self.firstAired = try? map.value("first_aired", using: TraktDateTransformer.dateTimeTransformer)
+    self.runtime = try? map.value("runtime")
     try super.init(map: map)
   }
 
