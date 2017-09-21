@@ -13,18 +13,6 @@
 import RxSwift
 import TraktSwift
 
-private struct ShowProgress {
-  var baseShow: BaseShow?
-  var detailShow: BaseShow?
-  var episode: Episode?
-
-  fileprivate init(baseShow: BaseShow? = nil, detailShow: BaseShow? = nil, episode: Episode? = nil) {
-    self.baseShow = baseShow
-    self.detailShow = detailShow
-    self.episode = episode
-  }
-}
-
 final class ShowsProgressService: ShowsProgressInteractor {
   private let repository: ShowsProgressRepository
 
@@ -32,23 +20,16 @@ final class ShowsProgressService: ShowsProgressInteractor {
     self.repository = repository
   }
 
-  func fetchWatchedShowsProgress() -> Observable<ShowProgressEntity> {
-    let observable = repository.fetchWatchedShows(extended: .full)
-
-    return observable.flatMap { baseShows -> Observable<BaseShow> in
-      return Observable.from(baseShows)
-      }.map { baseShow -> ShowProgress in
-        return ShowProgress(baseShow: baseShow)
-      }.flatMap { showProgress -> Observable<ShowProgress> in
-        return self.fetchProgressForShow(showProgress)
-      }.flatMap { showProgress -> Observable<ShowProgress> in
-        return self.fetchNextEpisodeDetails(showProgress)
-      }.flatMap { showProgress -> Observable<ShowProgressEntity> in
-        return self.convertToEntityObservable(showProgress)
-    }
+  func fetchWatchedShowsProgress() -> Observable<WatchedShowEntity> {
+    return repository.fetchWatchedShows(extended: .full)
+      .flatMap { Observable.from($0) }
+      .map { WatchedShowBuilder(baseShow: $0) }
+      .flatMap { [unowned self] in self.fetchProgressForShow($0) }
+      .flatMap { [unowned self] in self.fetchNextEpisodeDetails($0) }
+      .flatMap { [unowned self] in self.convertToEntityObservable($0) }
   }
 
-  private func fetchProgressForShow( _ showProgress: ShowProgress) -> Observable<ShowProgress> {
+  private func fetchProgressForShow( _ showProgress: WatchedShowBuilder) -> Observable<WatchedShowBuilder> {
     guard let showId = showProgress.baseShow?.show?.ids.slug else { return Observable.empty() }
     var showProgress = showProgress
 
@@ -60,7 +41,7 @@ final class ShowsProgressService: ShowsProgressInteractor {
     }
   }
 
-  private func fetchNextEpisodeDetails(_ showProgress: ShowProgress) -> Observable<ShowProgress> {
+  private func fetchNextEpisodeDetails(_ showProgress: WatchedShowBuilder) -> Observable<WatchedShowBuilder> {
     guard let showId = showProgress.baseShow?.show?.ids.slug else { return Observable.empty() }
 
     guard let episode = showProgress.detailShow?.nextEpisode else { return Observable.just(showProgress) }
@@ -75,19 +56,31 @@ final class ShowsProgressService: ShowsProgressInteractor {
     }
   }
 
-  private func convertToEntityObservable(_ showProgress: ShowProgress) -> Observable<ShowProgressEntity> {
+  private func convertToEntityObservable(_ showProgress: WatchedShowBuilder) -> Observable<WatchedShowEntity> {
     guard let show = showProgress.baseShow?.show else { return Observable.empty() }
 
     let showEntity = ShowEntityMapper.entity(for: show)
-    let episodeEntity = showProgress.episode.map { EpisodeEntityMapper.episodeProgress(for: $0) }
+    let episodeEntity = showProgress.episode.map { EpisodeEntityMapper.entity(for: $0) }
 
     let aired = showProgress.detailShow?.aired ?? 0
     let completed = showProgress.detailShow?.completed ?? 0
 
-    let entity = ShowProgressEntity(show: showEntity,
+    let entity = WatchedShowEntity(show: showEntity,
                                     aired: aired,
                                     completed: completed,
                                     nextEpisode: episodeEntity)
     return Observable.just(entity)
+  }
+}
+
+private struct WatchedShowBuilder {
+  var baseShow: BaseShow?
+  var detailShow: BaseShow?
+  var episode: Episode?
+
+  fileprivate init(baseShow: BaseShow? = nil, detailShow: BaseShow? = nil, episode: Episode? = nil) {
+    self.baseShow = baseShow
+    self.detailShow = detailShow
+    self.episode = episode
   }
 }

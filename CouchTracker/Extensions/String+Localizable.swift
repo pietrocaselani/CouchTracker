@@ -16,4 +16,12 @@ extension String: Localizable {
   var localized: String {
     return NSLocalizedString(self, comment: "")
   }
+
+  func localized(_ args: CVarArg...) -> String {
+    let a = withVaList(args) { list -> NSString in
+      return NSString(format: self.localized, arguments: list)
+    }
+
+    return a as String 
+  }
 }

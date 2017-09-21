@@ -11,13 +11,12 @@
  */
 
 import RxSwift
-import TraktSwift
 
 final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
   private weak var view: ShowsProgressView?
   private let interactor: ShowsProgressInteractor
   private let disposeBag = DisposeBag()
-  private var entities = [ShowProgressEntity]()
+  private var entities = [WatchedShowEntity]()
 
   init(view: ShowsProgressView, interactor: ShowsProgressInteractor) {
     self.view = view
@@ -26,31 +25,32 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
 
   func viewDidLoad() {
     interactor.fetchWatchedShowsProgress()
-      .do(onNext: { [unowned self] entity in
-        self.entities.append(entity)
-      }).map { [unowned self] in self.mapToViewModel($0) }
+      .do(onNext: { [unowned self] in self.entities.append($0) })
+      .map { [unowned self] in self.mapToViewModel($0) }
       .observeOn(MainScheduler.instance)
-      .subscribe(onNext: { [unowned self] viewModel in
-        self.view?.showNew(viewModel: viewModel)
-      }, onError: { error in
-        print(error)
+      .subscribe(onNext: { [unowned self] in
+        self.view?.showNew(viewModel: $0)
+      }, onError: {
+        print($0)
       }, onCompleted: { [unowned self] in
         self.view?.updateFinished()
       }).disposed(by: disposeBag)
   }
 
-  private func mapToViewModel(_ entity: ShowProgressEntity) -> ShowProgressViewModel {
-    let status: String
+  private func mapToViewModel(_ entity: WatchedShowEntity) -> WatchedShowViewModel {
+    let nextEpisodeTitle = entity.nextEpisode.map { "\($0.season)x\($0.number) \($0.title)" }
+    let nextEpisodeDate = entity.nextEpisode.flatMap { $0.firstAired?.shortString() }
+    let showStatus = entity.show.status?.rawValue.localized
 
-    if let nextEpisode = entity.nextEpisode {
-      status = nextEpisode.firstAired?.shortString() ?? entity.show.status?.rawValue.localized ?? "Unknown".localized
-    } else {
-      status = entity.show.status?.rawValue.localized ?? "Unknown".localized
-    }
+    let status = (nextEpisodeDate ?? showStatus) ?? "Unknown".localized
 
-    return ShowProgressViewModel(title: entity.show.title ?? "TBA".localized,
-                                 nextEpisode: entity.nextEpisode?.title,
+    let x = String(entity.aired - entity.completed)
+    let episodesRemaining = "episodes remaining".localized(x)
+
+    return WatchedShowViewModel(title: entity.show.title ?? "TBA".localized,
+                                 nextEpisode: nextEpisodeTitle,
                                  networkInfo: entity.show.network ?? "Unknown",
+                                 episodesRemaining: episodesRemaining,
                                  status: status,
                                  tmdbId: entity.show.ids.tmdb)
   }

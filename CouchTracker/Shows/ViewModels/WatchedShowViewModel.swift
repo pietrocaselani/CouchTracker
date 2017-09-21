@@ -10,13 +10,13 @@
  the license agreement.
  */
 
-import TraktSwift
 import Foundation
 
-struct EpisodeEntity {
-  let ids: EpisodeIds
+struct WatchedShowViewModel {
   let title: String
-  let number: Int
-  let season: Int
-  let firstAired: Date?
+  let nextEpisode: String?
+  let networkInfo: String
+  let episodesRemaining: String
+  let status: String
+  let tmdbId: Int?
 }

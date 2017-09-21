@@ -24,9 +24,10 @@
                                 <color key="textColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="55L-9O-VdF">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="55L-9O-VdF">
+                                <rect key="frame" x="0.0" y="0.0" width="365" height="667"/>
                                 <color key="backgroundColor" red="0.1764705882" green="0.1764705882" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.1764705882" green="0.1764705882" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShowProgressCell" textLabel="8JM-9M-4hR" detailTextLabel="emK-S7-rwp" style="IBUITableViewCellStyleSubtitle" id="d8F-lt-6R4">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -42,7 +43,7 @@
                                                     <color key="textColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="emK-S7-rwp">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="emK-S7-rwp">
                                                     <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -67,7 +68,7 @@
                             <constraint firstItem="XIP-jN-973" firstAttribute="centerY" secondItem="FnX-o8-98z" secondAttribute="centerY" id="LUi-H5-IBO"/>
                             <constraint firstItem="XIP-jN-973" firstAttribute="centerX" secondItem="FnX-o8-98z" secondAttribute="centerX" id="bOO-hW-qqr"/>
                             <constraint firstItem="55L-9O-VdF" firstAttribute="top" secondItem="g7d-4J-QeI" secondAttribute="top" id="cPv-EL-ftX"/>
-                            <constraint firstItem="FnX-o8-98z" firstAttribute="trailing" secondItem="55L-9O-VdF" secondAttribute="trailing" id="nQr-S2-DGj"/>
+                            <constraint firstItem="FnX-o8-98z" firstAttribute="trailing" secondItem="55L-9O-VdF" secondAttribute="trailing" constant="10" id="nQr-S2-DGj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FnX-o8-98z"/>
                     </view>

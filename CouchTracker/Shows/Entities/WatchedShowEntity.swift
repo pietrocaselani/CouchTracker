@@ -10,9 +10,9 @@
  the license agreement.
  */
 
-struct ShowProgressEntity {
+struct WatchedShowEntity {
   let show: ShowEntity
   let aired: Int
   let completed: Int
-  let nextEpisode: EpisodeProgressEntity?
+  let nextEpisode: EpisodeEntity?
 }

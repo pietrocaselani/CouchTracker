@@ -15,8 +15,8 @@ import TraktSwift
 final class EpisodeEntityMapper {
   private init() {}
 
-  static func episodeProgress(for episode: Episode) -> EpisodeProgressEntity {
-    return EpisodeProgressEntity(ids: episode.ids,
+  static func entity(for episode: Episode) -> EpisodeEntity {
+    return EpisodeEntity(ids: episode.ids,
                                  title: episode.title ?? "TBA".localized,
                                  number: episode.number,
                                  season: episode.season,

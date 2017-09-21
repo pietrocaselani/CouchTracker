@@ -25,7 +25,7 @@ protocol ShowsProgressRepository: class {
 protocol ShowsProgressInteractor: class {
   init(repository: ShowsProgressRepository)
 
-  func fetchWatchedShowsProgress() -> Observable<ShowProgressEntity>
+  func fetchWatchedShowsProgress() -> Observable<WatchedShowEntity>
 }
 
 protocol ShowsProgressPresenter: class {
@@ -37,6 +37,6 @@ protocol ShowsProgressPresenter: class {
 protocol ShowsProgressView: class {
   var presenter: ShowsProgressPresenter! { get set }
 
-  func showNew(viewModel: ShowProgressViewModel)
+  func showNew(viewModel: WatchedShowViewModel)
   func updateFinished()
 }

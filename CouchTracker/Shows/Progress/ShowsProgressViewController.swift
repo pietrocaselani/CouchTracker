@@ -14,7 +14,7 @@ import UIKit
 
 final class ShowsProgressViewController: UIViewController, ShowsProgressView {
   var presenter: ShowsProgressPresenter!
-  fileprivate var viewModels = [ShowProgressViewModel]()
+  fileprivate var viewModels = [WatchedShowViewModel]()
 
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var infoLabel: UILabel!
@@ -25,11 +25,10 @@ final class ShowsProgressViewController: UIViewController, ShowsProgressView {
     presenter.viewDidLoad()
   }
 
-  func showNew(viewModel: ShowProgressViewModel) {
+  func showNew(viewModel: WatchedShowViewModel) {
 		showList()
     viewModels.append(viewModel)
-		let newIndexPath = IndexPath(row: viewModels.count - 1, section: 0)
-		tableView.insertRows(at: [newIndexPath], with: .automatic)
+		tableView.insertRows(at: [IndexPath(row: viewModels.count - 1, section: 0)], with: .automatic)
   }
 
   func updateFinished() {
@@ -67,7 +66,12 @@ extension ShowsProgressViewController: UITableViewDataSource {
 		let viewModel = viewModels[indexPath.row]
 
 		cell.textLabel?.text = viewModel.title
-		cell.detailTextLabel?.text = viewModel.status
+
+    if let nextEpisode = viewModel.nextEpisode {
+      cell.detailTextLabel?.text = "\(viewModel.episodesRemaining) - \(nextEpisode)"
+    } else {
+      cell.detailTextLabel?.text = "\(viewModel.episodesRemaining)"
+    }
 
 		return cell
 	}
