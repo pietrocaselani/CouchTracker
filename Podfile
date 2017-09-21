@@ -16,14 +16,6 @@ def tests_shared_pods
   pod 'RxTest', '3.6.1'
 end
 
-target 'CouchTrackerUgly' do
-  platform :ios, '9.0'
-  use_frameworks!
-  inhibit_all_warnings!
-
-  ios_pods
-end
-
 target 'CouchTrackerFastTests' do
   platform :osx, '10.11'
   use_frameworks!

@@ -50,7 +50,7 @@ final class TrendingiOSRouter: TrendingRouter, AppConfigurationsPresentable {
   func showAppSettings() {
     guard let currentViewController = viewController else { return }
 
-    let configurationsView = AppConfigurationsModule.setupModule(traktProvider: traktProvider)
+    let configurationsView = AppConfigurationsModule.setupModule()
 
     guard let configurationsViewController = configurationsView as? UIViewController else {
       fatalError("configurationsView should be an instance of UIViewController")

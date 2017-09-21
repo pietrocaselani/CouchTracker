@@ -22,6 +22,7 @@ protocol TraktProvider: class {
   var users: RxMoyaProvider<Users> { get }
   var authentication: RxMoyaProvider<Authentication> { get }
   var oauth: URL? { get }
+  var isAuthenticated: Bool { get }
 
   func finishesAuthentication(with request: URLRequest) -> Observable<AuthenticationResult>
 }
