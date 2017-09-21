@@ -14,8 +14,6 @@ import Carlos
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
-  private let trakt = Trakt(clientId: "1aec4225ee175a6affce5ad374140c360fd5f0ab5113e6aa1c123bd4baeb082b")
-  private let tmdb = TMDB(apiKey: "d2042fb7e51f1e8c94c015dacd5074f2")
   private var listMoviesModule: TrendingModule!
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions
@@ -28,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.ctzircon]
     UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self]).textColor = UIColor.ctzircon
 
-    let view = TrendingModule.setupModule(traktProvider: trakt, tmdbProvider: tmdb)
+    let view = AppFlowModule.setupModule()
 
     guard let viewController = view as? UIViewController else {
       fatalError("view should be an instance of UIViewController")

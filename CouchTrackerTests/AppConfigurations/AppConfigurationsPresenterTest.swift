@@ -57,7 +57,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 
     //Then
     let connectToTraktViewModel = AppConfigurationViewModel(title: "Connect to Trakt", subtitle: nil)
-    let viewModels = [AppConfigurationsViewModel(title: "Main", configurations: [connectToTraktViewModel])]
+    let viewModels = [AppConfigurationsViewModel(title: "Trakt", configurations: [connectToTraktViewModel])]
 
     XCTAssertTrue(view.invokedShowConfigurations)
     XCTAssertEqual(view.invokedShowConfigurationsParameters!.models, viewModels)
@@ -73,7 +73,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     //Then
     let expectedUserName = AppConfigurationsMock.createUserMock().name
     let connectToTraktViewModel = AppConfigurationViewModel(title: "Connected", subtitle: expectedUserName)
-    let viewModels = [AppConfigurationsViewModel(title: "Main", configurations: [connectToTraktViewModel])]
+    let viewModels = [AppConfigurationsViewModel(title: "Trakt", configurations: [connectToTraktViewModel])]
 
     XCTAssertTrue(view.invokedShowConfigurations)
     XCTAssertEqual(view.invokedShowConfigurationsParameters!.models, viewModels)

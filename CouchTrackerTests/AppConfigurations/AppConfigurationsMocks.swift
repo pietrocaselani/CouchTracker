@@ -34,8 +34,8 @@ final class AppConfigurationsInteractorMock: AppConfigurationsInteractor {
     self.repository = repository
   }
 
-  func fetchLoginState() -> Observable<LoginState> {
-    return repository.fetchLoggedUser().map { user -> LoginState in
+  func fetchLoginState(forced: Bool) -> Observable<LoginState> {
+    return repository.fetchLoggedUser(forced: forced).map { user -> LoginState in
       LoginState.logged(user: user)
       }.catchError { error in
         guard let moyaError = error as? MoyaError, moyaError.response?.statusCode == 401 else {
@@ -63,7 +63,7 @@ final class AppConfigurationsRouterMock: AppConfigurationsRouter {
   var invokedShowErrorMessage = false
   var invokedShowErrorMessageParameters: (message: String, Void)?
 
-  func showTraktLogin() {
+  func showTraktLogin(output: TraktLoginOutput) {
     invokedShowTraktLogin = true
   }
 
@@ -88,7 +88,7 @@ final class AppConfigurationsRepositoryMock: AppConfigurationsRepository {
     return Locale.preferredLanguages.map { Locale(identifier: $0) }
   }
 
-  func fetchLoggedUser() -> Observable<User> {
+  func fetchLoggedUser(forced: Bool) -> Observable<User> {
     guard !isEmpty else {
       return Observable.error(AppConfigurationsMock.createUnauthorizedErrorMock())
     }
@@ -108,7 +108,7 @@ final class AppConfigurationsRepositoryErrorMock: AppConfigurationsRepository {
 
   var preferredContentLocale: Locale
 
-  func fetchLoggedUser() -> Observable<User> {
+  func fetchLoggedUser(forced: Bool) -> Observable<User> {
     return Observable.error(error)
   }
 }
