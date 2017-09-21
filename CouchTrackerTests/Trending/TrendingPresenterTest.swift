@@ -147,4 +147,55 @@ final class TrendingPresenterTest: XCTestCase {
     XCTAssertTrue(router.invokedMovieDetails)
     XCTAssertEqual(router.invokedMovieDetailsParameters?.movie, expectedMovie)
   }
+
+  func testTrendingPresenter_requestToShowDetailsOfShow_notifyRouterToShowDetails() {
+    let showIndex = 1
+    let shows = createTrendingShowsMock()
+    let images = createImagesEntityMock()
+    let repository = TrendingShowsRepositoryMock(shows: shows)
+    let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
+
+    presenter.currentTrendingType.value = .shows
+    presenter.viewDidLoad()
+    presenter.showDetailsOfTrending(at: 1)
+
+    let expectedShow = ShowEntityMapper.entity(for: shows[showIndex].show)
+
+    XCTAssertTrue(router.invokedShowDetails)
+    XCTAssertEqual(router.invokedShowDetailsParameters?.show, expectedShow)
+  }
+
+  func testTrendingPresenter_requestToShowAppSettings_notifyRouter() {
+    let repository = EmptyTrendingRepositoryMock()
+    let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
+
+    presenter.showAppSettings()
+
+    XCTAssertTrue(router.invokedShowAppSettings)
+  }
+
+  func testTrendingPresenter_requestToShowSearchMovie_notifyRouter() {
+    //Given
+    let searchResultEntities = createSearchResultsMock()
+    let searchView = SearchViewMock()
+    let searchRepository = SearchStoreMock(results: searchResultEntities)
+    let searchInteractor = SearchInteractorMock(repository: searchRepository)
+
+    let view = TrendingViewMock()
+    let repository = EmptyTrendingRepositoryMock()
+    let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
+    let router = TrendingRouterMock()
+    let dataSource = TrendingDataSourceMock()
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
+    let searchPresenter = SearchiOSPresenter(view: searchView, interactor: searchInteractor, resultOutput: presenter)
+
+    //When
+    searchPresenter.searchMovies(query: "Tron")
+    presenter.showDetailsOfTrending(at: 0)
+
+    //Then
+    XCTAssertTrue(router.invokedMovieDetails)
+  }
 }

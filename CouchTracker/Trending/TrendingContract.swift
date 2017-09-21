@@ -30,6 +30,7 @@ protocol TrendingPresenter: class {
 
 protocol TrendingView: BaseView {
   var presenter: TrendingPresenter! { get set }
+  var appConfigurationsPresentable: AppConfigurationsPresentable! { get set }
   var searchView: SearchView! { get set }
 
   func showEmptyView()

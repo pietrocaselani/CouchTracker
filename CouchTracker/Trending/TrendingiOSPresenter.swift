@@ -13,7 +13,7 @@
 import RxSwift
 import TraktSwift
 
-final class TrendingiOSPresenter: TrendingPresenter {
+final class TrendingiOSPresenter: TrendingPresenter, AppConfigurationsPresentable {
   private static let limitPerPage = 25
 
   weak var view: TrendingView?
@@ -56,6 +56,12 @@ final class TrendingiOSPresenter: TrendingPresenter {
     } else {
       showDetailsOfShow(at: index)
     }
+  }
+
+  func showAppSettings() {
+    guard let settingsPresentable = router as? AppConfigurationsPresentable else { return }
+
+    settingsPresentable.showAppSettings()
   }
 
   private func fetchMovies() {

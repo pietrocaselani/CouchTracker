@@ -17,18 +17,18 @@ import RxSwift
 protocol AppConfigurationsRepository: class {
   var preferredLocales: [Locale] { get }
   var preferredContentLocale: Locale { get set }
-  func fetchLoggedUser() -> Observable<User>
+  func fetchLoggedUser(forced: Bool) -> Observable<User>
 }
 
 protocol AppConfigurationsRouter: class {
-  func showTraktLogin()
+  func showTraktLogin(output: TraktLoginOutput)
   func showError(message: String)
 }
 
 protocol AppConfigurationsInteractor: class {
   init(repository: AppConfigurationsRepository)
 
-  func fetchLoginState() -> Observable<LoginState>
+  func fetchLoginState(forced: Bool) -> Observable<LoginState>
 }
 
 protocol AppConfigurationsPresenter: class {
@@ -42,4 +42,8 @@ protocol AppConfigurationsView: class {
   var presenter: AppConfigurationsPresenter! { get set }
 
   func showConfigurations(models: [AppConfigurationsViewModel])
+}
+
+protocol AppConfigurationsPresentable: class {
+  func showAppSettings()
 }

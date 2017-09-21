@@ -15,7 +15,7 @@ import RxSwift
 final class AppConfigurationsiOSPresenter: AppConfigurationsPresenter {
   private weak var view: AppConfigurationsView!
   private let interactor: AppConfigurationsInteractor
-  private let router: AppConfigurationsRouter
+  fileprivate let router: AppConfigurationsRouter
   private let disposeBag = DisposeBag()
   private var options = [AppConfigurationOptions]()
 
@@ -26,23 +26,27 @@ final class AppConfigurationsiOSPresenter: AppConfigurationsPresenter {
   }
 
   func viewDidLoad() {
-    interactor.fetchLoginState()
-      .map { [unowned self] in self.createViewModel($0) }
-      .observeOn(MainScheduler.instance)
-      .subscribe(onNext: { [unowned self] viewModel in
-        self.view.showConfigurations(models: viewModel)
-      }, onError: { error in
-        self.router.showError(message: error.localizedDescription)
-      }).disposed(by: disposeBag)
+    updateView()
   }
 
   func optionSelectedAt(index: Int) {
     let option = options[index]
     switch option {
     case .connectToTrakt:
-      self.router.showTraktLogin()
+      self.router.showTraktLogin(output: self)
     default: break
     }
+  }
+
+  fileprivate func updateView(forced: Bool = false) {
+    interactor.fetchLoginState(forced: forced)
+      .map { [unowned self] in self.createViewModel($0) }
+      .observeOn(MainScheduler.instance)
+      .subscribe(onNext: { [unowned self] viewModel in
+        self.view.showConfigurations(models: viewModel)
+        }, onError: { error in
+          self.router.showError(message: error.localizedDescription)
+      }).disposed(by: disposeBag)
   }
 
   private func createViewModel(_ loginState: LoginState) -> [AppConfigurationsViewModel] {
@@ -56,6 +60,16 @@ final class AppConfigurationsiOSPresenter: AppConfigurationsPresenter {
       options.append(AppConfigurationOptions.connectToTrakt)
     }
 
-    return [AppConfigurationsViewModel(title: "Main".localized, configurations: configurations)]
+    return [AppConfigurationsViewModel(title: "Trakt", configurations: configurations)]
+  }
+}
+
+extension AppConfigurationsiOSPresenter: TraktLoginOutput {
+  func loggedInSuccessfully() {
+    updateView(forced: true)
+  }
+
+  func logInFail(message: String) {
+    router.showError(message: message)
   }
 }

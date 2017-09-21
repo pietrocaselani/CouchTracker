@@ -1,6 +1,0 @@
-framework module Carlos {
-  umbrella header "Carlos-umbrella.h"
-
-  export *
-  module * { export * }
-}

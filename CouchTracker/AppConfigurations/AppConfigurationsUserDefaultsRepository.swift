@@ -21,11 +21,11 @@ final class AppConfigurationsUserDefaultsRepository: AppConfigurationsRepository
   private static let localeKey = "preferredLocale"
   private static let traktUserKey = "traktUser"
   private let userDefaults: UserDefaults
-  private let userProvider: RxMoyaProvider<Users>
+  private let trakt: TraktProvider
 
   init(userDefaults: UserDefaults, traktProvider: TraktProvider) {
     self.userDefaults = userDefaults
-    self.userProvider = traktProvider.users
+    self.trakt = traktProvider
   }
 
   var preferredLocales: [Locale] {
@@ -43,13 +43,15 @@ final class AppConfigurationsUserDefaultsRepository: AppConfigurationsRepository
     }
   }
 
-  func fetchLoggedUser() -> Observable<User> {
-    let apiObservable = fetchSettingsFromAPI()
-    let cacheObservable = fetchSettingFromLocalStorage()
+  func fetchLoggedUser(forced: Bool) -> Observable<User> {
+    let apiObservable = fetchSettingsFromAPI().map { $0.user }
+
+    guard !forced else { return apiObservable }
+
+    let cacheObservable = fetchSettingFromLocalStorage().map { $0.user }
 
     return cacheObservable.catchError { _ in apiObservable }
-        .ifEmpty(switchTo: apiObservable)
-        .map { $0.user }
+      .ifEmpty(switchTo: apiObservable)
   }
 
   private func fetchSettingFromLocalStorage() -> Observable<Settings> {
@@ -67,9 +69,12 @@ final class AppConfigurationsUserDefaultsRepository: AppConfigurationsRepository
   }
 
   private func fetchSettingsFromAPI() -> Observable<Settings> {
-    return userProvider.request(.settings).mapObject(Settings.self).do(onNext: { [unowned self] settings in
-      self.userDefaults.set(settings.toJSON(), forKey: AppConfigurationsUserDefaultsRepository.traktUserKey)
-      self.userDefaults.synchronize()
-    })
+    return trakt.users.request(.settings)
+      .filterSuccessfulStatusCodes()
+      .mapObject(Settings.self)
+      .do(onNext: { [unowned self] settings in
+        self.userDefaults.set(settings.toJSON(), forKey: AppConfigurationsUserDefaultsRepository.traktUserKey)
+        self.userDefaults.synchronize()
+      })
   }
 }

@@ -22,6 +22,7 @@ func createTrendingShowsMock() -> [TrendingShow] {
 }
 
 final class TrendingViewMock: TrendingView {
+  var appConfigurationsPresentable: AppConfigurationsPresentable!
   var presenter: TrendingPresenter!
   var searchView: SearchView!
   var invokedShowEmptyView = false
@@ -58,10 +59,14 @@ final class TrendingPresenterMock: TrendingPresenter {
     invokedShowDetailsOfTrendingParameters = (index, ())
   }
 
+  var invokedShowAppSettings = false
 
+  func showAppSettings() {
+    invokedShowAppSettings = true
+  }
 }
 
-final class TrendingRouterMock: TrendingRouter {
+final class TrendingRouterMock: TrendingRouter, AppConfigurationsPresentable {
   var invokedMovieDetails = false
   var invokedMovieDetailsParameters: (movie: MovieEntity, Void)?
 
@@ -84,6 +89,12 @@ final class TrendingRouterMock: TrendingRouter {
   func showError(message: String) {
     invokedShowError = true
     invokedShowErrorParameters = (message, ())
+  }
+
+  var invokedShowAppSettings = false
+
+  func showAppSettings() {
+    invokedShowAppSettings = true
   }
 }
 
@@ -114,7 +125,6 @@ final class ErrorTrendingRepositoryMock: TrendingRepository {
 }
 
 final class TrendingMoviesRepositoryMock: TrendingRepository {
-
   private let movies: [TrendingMovie]
 
   init(movies: [TrendingMovie]) {
@@ -127,6 +137,22 @@ final class TrendingMoviesRepositoryMock: TrendingRepository {
 
   func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShow]> {
     return Observable.empty()
+  }
+}
+
+final class TrendingShowsRepositoryMock: TrendingRepository {
+  private let shows: [TrendingShow]
+
+  init(shows: [TrendingShow]) {
+    self.shows = shows
+  }
+
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
+    return Observable.empty()
+  }
+
+  func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShow]> {
+    return Observable.just(shows).take(limit)
   }
 }
 
