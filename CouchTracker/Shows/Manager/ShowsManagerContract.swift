@@ -10,20 +10,11 @@
  the license agreement.
  */
 
-import RxSwift
+protocol ShowsManagerInteractor: class {
+}
 
-final class TraktLoginService: TraktLoginInteractor {
-  private let oauthURL: URL
+protocol ShowsManagerPresenter: class {
+}
 
-  init?(traktProvider: TraktProvider) {
-    guard let url = traktProvider.oauth else {
-      return nil
-    }
-
-    self.oauthURL = url
-  }
-
-  func fetchLoginURL() -> Single<URL> {
-    return Single.just(oauthURL)
-  }
+protocol ShowsManagerView: class {
 }

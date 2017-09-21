@@ -12,11 +12,23 @@ the license agreement.
 
 import Moya
 import TraktSwift
+import RxSwift
 
 let traktProviderMock = TraktProviderMock()
 
 final class TraktProviderMock: TraktProvider {
-  var oauthURL: URL?
+  private let error: Swift.Error?
+
+  func finishesAuthentication(with request: URLRequest) -> Observable<AuthenticationResult> {
+    guard let error = error else {
+      let result = oauth != nil ? AuthenticationResult.authenticated : AuthenticationResult.undetermined
+      return Observable.just(result)
+    }
+
+    return Observable.error(error)
+  }
+
+  var oauth: URL?
 
   var movies: RxMoyaProvider<Movies> {
     return RxMoyaProvider<Movies>(stubClosure: MoyaProvider.immediatelyStub)
@@ -38,7 +50,16 @@ final class TraktProviderMock: TraktProvider {
     return RxMoyaProvider<Users>(stubClosure: MoyaProvider.immediatelyStub)
   }
 
-  init(oauthURL: URL? = nil) {
-    self.oauthURL = oauthURL
+  var authentication: RxMoyaProvider<Authentication> {
+    return RxMoyaProvider<Authentication>(stubClosure: MoyaProvider.immediatelyStub)
+  }
+
+  var isAuthenticated: Bool {
+    return oauth != nil
+  }
+
+  init(oauthURL: URL? = nil, error: Swift.Error? = nil) {
+    self.oauth = oauthURL
+    self.error = error
   }
 }

@@ -10,20 +10,18 @@
  the license agreement.
  */
 
-import RxSwift
+final class CompositeLoginOutput: TraktLoginOutput {
+  private let outputs: [TraktLoginOutput]
 
-final class TraktLoginService: TraktLoginInteractor {
-  private let oauthURL: URL
-
-  init?(traktProvider: TraktProvider) {
-    guard let url = traktProvider.oauth else {
-      return nil
-    }
-
-    self.oauthURL = url
+  init(outputs: [TraktLoginOutput]) {
+    self.outputs = outputs
   }
 
-  func fetchLoginURL() -> Single<URL> {
-    return Single.just(oauthURL)
+  func loggedInSuccessfully() {
+    outputs.forEach { $0.loggedInSuccessfully() }
+  }
+
+  func logInFail(message: String) {
+    outputs.forEach { $0.logInFail(message: message) }
   }
 }

@@ -10,20 +10,12 @@
  the license agreement.
  */
 
-import RxSwift
+import UIKit
 
-final class TraktLoginService: TraktLoginInteractor {
-  private let oauthURL: URL
+final class ShowsManagerViewController: UIViewController {
+  override func awakeFromNib() {
+    super.awakeFromNib()
 
-  init?(traktProvider: TraktProvider) {
-    guard let url = traktProvider.oauth else {
-      return nil
-    }
-
-    self.oauthURL = url
-  }
-
-  func fetchLoginURL() -> Single<URL> {
-    return Single.just(oauthURL)
+    title = "Shows"
   }
 }

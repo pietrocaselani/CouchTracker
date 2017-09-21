@@ -10,20 +10,13 @@
  the license agreement.
  */
 
-import RxSwift
+final class ShowsManagerModule {
+  private init() {}
 
-final class TraktLoginService: TraktLoginInteractor {
-  private let oauthURL: URL
-
-  init?(traktProvider: TraktProvider) {
-    guard let url = traktProvider.oauth else {
-      return nil
+  static func setupModule() -> BaseView {
+    guard let view = R.storyboard.showsManager.showsManagerViewController() else {
+      fatalError("Can't instantiate ShowsManagerViewController from Storyboard")
     }
-
-    self.oauthURL = url
-  }
-
-  func fetchLoginURL() -> Single<URL> {
-    return Single.just(oauthURL)
+    return view
   }
 }

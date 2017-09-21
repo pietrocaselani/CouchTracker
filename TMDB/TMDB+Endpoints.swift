@@ -28,9 +28,7 @@ extension TMDB {
   }
 
   private func createProvider<T: TMDBType>(forTarget target: T.Type) -> RxMoyaProvider<T> {
-    var plugins = [PluginType]()
-
-    plugins.append(NetworkLoggerPlugin())
+    let plugins = [PluginType]()
 
     let requestClosure = createRequestClosure(forTarget: target)
 
