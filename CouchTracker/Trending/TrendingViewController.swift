@@ -15,6 +15,7 @@ import RxCocoa
 import RxSwift
 
 final class TrendingViewController: UIViewController {
+  var appConfigurationsPresentable: AppConfigurationsPresentable!
   var presenter: TrendingPresenter!
   var searchView: SearchView!
 
@@ -24,6 +25,12 @@ final class TrendingViewController: UIViewController {
   @IBOutlet weak var emptyLabel: UILabel!
   @IBOutlet weak var searchContainer: UIView!
   @IBOutlet weak var trendingTypeSegmentedControl: UISegmentedControl!
+
+  override func awakeFromNib() {
+    super.awakeFromNib()
+
+    title = "Trending"
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -52,6 +59,13 @@ final class TrendingViewController: UIViewController {
     collectionView.dataSource = collectionViewDataSource
 
     presenter.viewDidLoad()
+
+    let settingsItem = UIBarButtonItem(image: R.image.settings(), style: .plain, target: nil, action: nil)
+    settingsItem.rx.tap.subscribe(onNext: { [unowned self] _ in
+      self.appConfigurationsPresentable.showAppSettings()
+    }).disposed(by: disposeBag)
+
+    self.navigationItem.rightBarButtonItem = settingsItem
   }
 }
 

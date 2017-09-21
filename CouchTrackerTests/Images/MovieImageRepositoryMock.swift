@@ -48,6 +48,7 @@ final class ImagesRepositorySampleMock: ImageRepository {
   }
 }
 
+
 final class ImageRepositoryMock: ImageRepository {
   private let provider: TMDBProvider
   private let configuration: ConfigurationRepository

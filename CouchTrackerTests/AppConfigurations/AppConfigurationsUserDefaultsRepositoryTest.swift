@@ -19,7 +19,7 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
 
   override func setUp() {
     clearUserDefaults(userDefaultsMock)
-    repository = AppConfigurationsUserDefaultsRepository(userDefaults: userDefaultsMock)
+    repository = AppConfigurationsUserDefaultsRepository(userDefaults: userDefaultsMock, traktProvider: traktProviderMock)
     super.setUp()
   }
 
@@ -32,6 +32,17 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
     for (key, _) in userDefaults.dictionaryRepresentation() {
       userDefaults.removeObject(forKey: key)
     }
+  }
+
+  func testAppConfigurationsUserDefaultsRepository_emitsAvailableLocales() {
+    //Given
+
+    //When
+    let locales = repository.preferredLocales
+
+    //Then
+    let expectedLocales = Locale.preferredLanguages.map { Locale(identifier: $0) }
+    XCTAssertEqual(locales, expectedLocales)
   }
 
   func testAppConfigurationsUserDefaultsRepository_retrievesEmptyLocale_emitsCurrentLocale() {
@@ -66,28 +77,5 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
 
     //Then
     XCTAssertEqual(repository.preferredContentLocale, newLocale)
-  }
-
-  func testAppConfigurationsUserDefaultsRepository_retrivesTokenFromEmtyRepository_emmitsTokenAbsentError() {
-    //Given an empty repository
-
-    //When
-    let token = repository.traktToken
-
-    //Then
-    XCTAssertNil(token)
-  }
-
-  func testAppConfigurationsUserDefaultsRepository_updatesToken() {
-    //Given
-    let date = Date(timeIntervalSince1970: 5)
-    let newToken = Token(accessToken: "accessToken1", expiresIn: date,
-                         refreshToken: "refresh1", tokenType: "type1", scope: "general")
-
-    //When
-    repository.traktToken = newToken
-
-    //Then
-    XCTAssertEqual(repository.traktToken, newToken)
   }
 }

@@ -1,25 +1,35 @@
 /*
-Copyright 2017 ArcTouch LLC.
-All rights reserved.
+ Copyright 2017 ArcTouch LLC.
+ All rights reserved.
  
-This file, its contents, concepts, methods, behavior, and operation
-(collectively the "Software") are protected by trade secret, patent,
-and copyright laws. The use of the Software is governed by a license
-agreement. Disclosure of the Software to third parties, in any form,
-in whole or in part, is expressly prohibited except as authorized by
-the license agreement.
-*/
+ This file, its contents, concepts, methods, behavior, and operation
+ (collectively the "Software") are protected by trade secret, patent,
+ and copyright laws. The use of the Software is governed by a license
+ agreement. Disclosure of the Software to third parties, in any form,
+ in whole or in part, is expressly prohibited except as authorized by
+ the license agreement.
+ */
 
 import Foundation
 import TraktSwift
+import RxSwift
+import Moya_ObjectMapper
+import ObjectMapper
+import Moya
 
 final class AppConfigurationsUserDefaultsRepository: AppConfigurationsRepository {
   private static let localeKey = "preferredLocale"
-  private static let traktTokenKey = "traktToken"
+  private static let traktUserKey = "traktUser"
   private let userDefaults: UserDefaults
+  private let trakt: TraktProvider
 
-  init(userDefaults: UserDefaults) {
+  init(userDefaults: UserDefaults, traktProvider: TraktProvider) {
     self.userDefaults = userDefaults
+    self.trakt = traktProvider
+  }
+
+  var preferredLocales: [Locale] {
+    return Locale.preferredLanguages.map { Locale(identifier: $0) }
   }
 
   var preferredContentLocale: Locale {
@@ -29,26 +39,42 @@ final class AppConfigurationsUserDefaultsRepository: AppConfigurationsRepository
     }
     set {
       userDefaults.set(newValue.identifier, forKey: AppConfigurationsUserDefaultsRepository.localeKey)
+      userDefaults.synchronize()
     }
   }
 
-  var traktToken: Token? {
-    get {
-      let data = userDefaults.data(forKey: AppConfigurationsUserDefaultsRepository.traktTokenKey)
+  func fetchLoggedUser(forced: Bool) -> Observable<User> {
+    let apiObservable = fetchSettingsFromAPI().map { $0.user }
 
-      guard let tokenData = data, let token = NSKeyedUnarchiver.unarchiveObject(with: tokenData) as? Token else {
-        return nil
-      }
+    guard !forced else { return apiObservable }
 
-      return token
+    let cacheObservable = fetchSettingFromLocalStorage().map { $0.user }
+
+    return cacheObservable.catchError { _ in apiObservable }
+      .ifEmpty(switchTo: apiObservable)
+  }
+
+  private func fetchSettingFromLocalStorage() -> Observable<Settings> {
+    guard let json = self.userDefaults.dictionary(forKey: AppConfigurationsUserDefaultsRepository.traktUserKey) else {
+      return Observable.empty()
     }
-    set {
-      if let newToken = newValue {
-        let tokenData = NSKeyedArchiver.archivedData(withRootObject: newToken)
-        userDefaults.set(tokenData, forKey: AppConfigurationsUserDefaultsRepository.traktTokenKey)
-      } else {
-        userDefaults.removeObject(forKey: AppConfigurationsUserDefaultsRepository.traktTokenKey)
-      }
+
+    let map = Map(mappingType: .fromJSON, JSON: json)
+    do {
+      let settings = try Settings(map: map)
+      return Observable.just(settings)
+    } catch {
+      return Observable.error(error)
     }
+  }
+
+  private func fetchSettingsFromAPI() -> Observable<Settings> {
+    return trakt.users.request(.settings)
+      .filterSuccessfulStatusCodes()
+      .mapObject(Settings.self)
+      .do(onNext: { [unowned self] settings in
+        self.userDefaults.set(settings.toJSON(), forKey: AppConfigurationsUserDefaultsRepository.traktUserKey)
+        self.userDefaults.synchronize()
+      })
   }
 }

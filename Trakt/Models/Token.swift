@@ -64,11 +64,6 @@ public final class Token: NSObject, ImmutableMappable, NSCoding {
     self.scope >>> map["scope"]
   }
 
-  public override func isEqual(to object: Any?) -> Bool {
-    guard let anotherToken = object as? Token else { return false }
-    return self == anotherToken
-  }
-
   public override func isEqual(_ object: Any?) -> Bool {
     guard let anotherToken = object as? Token else { return false }
     return self == anotherToken
