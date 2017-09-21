@@ -26,6 +26,12 @@ final class TrendingViewController: UIViewController {
   @IBOutlet weak var searchContainer: UIView!
   @IBOutlet weak var trendingTypeSegmentedControl: UISegmentedControl!
 
+  override func awakeFromNib() {
+    super.awakeFromNib()
+
+    title = "Trending"
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 

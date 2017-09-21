@@ -25,6 +25,7 @@ final class TraktLoginViewController: UIViewController, TraktLoginView {
     super.viewDidLoad()
 
     webView = WKWebView(frame: view.bounds)
+    webView.translatesAutoresizingMaskIntoConstraints = false
     webView.navigationDelegate = self
     view.addSubview(webView)
 

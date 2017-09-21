@@ -15,7 +15,7 @@ import UIKit
 final class TrendingModule {
   private init() {}
 
-  static func setupModule(traktProvider: TraktProvider, tmdbProvider: TMDBProvider) -> BaseView {
+  static func setupModule() -> BaseView {
     guard let navigationController =
     R.storyboard.trending().instantiateInitialViewController() as? UINavigationController else {
       fatalError("viewController should be an instance of UINavigationController")
@@ -29,14 +29,17 @@ final class TrendingModule {
       fatalError("view should be an instance of UIViewController")
     }
 
+    let traktProvider = Environment.instance.trakt
+    let tmdbProvider = Environment.instance.tmdb
+
     let repository = TrendingCacheRepository(traktProvider: traktProvider)
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdbProvider)
     let imageRepository = ImageCachedRepository(tmdbProvider: tmdbProvider,
-                                                          cofigurationRepository: configurationRepository)
+                                                cofigurationRepository: configurationRepository)
 
     let interactor = TrendingService(repository: repository, imageRepository: imageRepository)
-    let router = TrendingiOSRouter(viewController: viewController, traktProvider: traktProvider,
-                                     tmdbProvider: tmdbProvider)
+    let router = TrendingiOSRouter(viewController: viewController,
+                                   traktProvider: traktProvider, tmdbProvider: tmdbProvider)
 
     let dataSource = TrendingCollectionViewDataSource(imageRepository: imageRepository)
 

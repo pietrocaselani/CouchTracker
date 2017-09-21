@@ -54,6 +54,10 @@ final class TraktProviderMock: TraktProvider {
     return RxMoyaProvider<Authentication>(stubClosure: MoyaProvider.immediatelyStub)
   }
 
+  var isAuthenticated: Bool {
+    return oauth != nil
+  }
+
   init(oauthURL: URL? = nil, error: Swift.Error? = nil) {
     self.oauth = oauthURL
     self.error = error

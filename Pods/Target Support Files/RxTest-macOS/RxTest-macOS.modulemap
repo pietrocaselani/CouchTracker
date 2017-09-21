@@ -1,6 +1,0 @@
-framework module RxTest {
-  umbrella header "RxTest-macOS-umbrella.h"
-
-  export *
-  module * { export * }
-}

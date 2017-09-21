@@ -24,9 +24,11 @@ final class AppConfigurationsiOSRouter: AppConfigurationsRouter {
   func showTraktLogin(output: TraktLoginOutput) {
     guard let navigationController = viewController.navigationController else { return }
 
-    let innerOutput = PopNavigationControllerOutput(viewController: viewController, output: output)
+    let popviewControllerOutput = PopNavigationControllerOutput(viewController: viewController)
 
-    let loginView = TraktLoginModule.setupModule(traktProvider: traktProvider, loginOutput: innerOutput)
+    let outputs = CompositeLoginOutput(outputs: [popviewControllerOutput, output])
+
+    let loginView = TraktLoginModule.setupModule(loginOutput: outputs)
 
     guard let loginViewController = loginView as? UIViewController else {
       fatalError("loginView should be an instance of UIViewController")
@@ -42,24 +44,18 @@ final class AppConfigurationsiOSRouter: AppConfigurationsRouter {
 }
 
 private class PopNavigationControllerOutput: TraktLoginOutput {
-  private let delegateOutput: TraktLoginOutput
   private let viewController: UIViewController
 
-  init(viewController: UIViewController, output: TraktLoginOutput) {
-    self.delegateOutput = output
+  init(viewController: UIViewController) {
     self.viewController = viewController
   }
 
   func loggedInSuccessfully() {
     popViewController()
-
-    delegateOutput.loggedInSuccessfully()
   }
 
   func logInFail(message: String) {
     popViewController()
-
-    delegateOutput.logInFail(message: message)
   }
 
   private func popViewController() {

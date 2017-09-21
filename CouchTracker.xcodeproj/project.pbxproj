@@ -423,6 +423,31 @@
 		64CB309B1F6077B800FD6171 /* TrendingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB309A1F6077B800FD6171 /* TrendingCellViewModel.swift */; };
 		64CC085D1F714F33004D164A /* TraktTokenPolicyDeciderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC085C1F714F33004D164A /* TraktTokenPolicyDeciderTest.swift */; };
 		64CC085E1F714F33004D164A /* TraktTokenPolicyDeciderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC085C1F714F33004D164A /* TraktTokenPolicyDeciderTest.swift */; };
+		64CC08611F71616E004D164A /* ShowsManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08601F71616E004D164A /* ShowsManagerContract.swift */; };
+		64CC08621F71616E004D164A /* ShowsManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08601F71616E004D164A /* ShowsManagerContract.swift */; };
+		64CC08631F71616E004D164A /* ShowsManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08601F71616E004D164A /* ShowsManagerContract.swift */; };
+		64CC08871F717205004D164A /* AppFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08861F717205004D164A /* AppFlowViewController.swift */; };
+		64CC08891F717249004D164A /* ShowsManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08881F717249004D164A /* ShowsManagerViewController.swift */; };
+		64CC088B1F717298004D164A /* AppFlowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC088A1F717298004D164A /* AppFlowModule.swift */; };
+		64CC088D1F717330004D164A /* ShowsManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC088C1F717330004D164A /* ShowsManagerModule.swift */; };
+		64CC08911F7174F5004D164A /* ShowsManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC08901F7174F5004D164A /* ShowsManager.storyboard */; };
+		64CC08931F717597004D164A /* AppFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC08921F717597004D164A /* AppFlow.storyboard */; };
+		64CC08951F7188E1004D164A /* TraktLoginStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08941F7188E1004D164A /* TraktLoginStore.swift */; };
+		64CC08961F7188E1004D164A /* TraktLoginStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08941F7188E1004D164A /* TraktLoginStore.swift */; };
+		64CC08971F7188E1004D164A /* TraktLoginStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08941F7188E1004D164A /* TraktLoginStore.swift */; };
+		64CC08991F718BE2004D164A /* TraktLoginState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08981F718BE2004D164A /* TraktLoginState.swift */; };
+		64CC089A1F718BE2004D164A /* TraktLoginState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08981F718BE2004D164A /* TraktLoginState.swift */; };
+		64CC089B1F718BE2004D164A /* TraktLoginState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08981F718BE2004D164A /* TraktLoginState.swift */; };
+		64CC089D1F718F63004D164A /* TraktLoginStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC089C1F718F63004D164A /* TraktLoginStoreTest.swift */; };
+		64CC089E1F718F63004D164A /* TraktLoginStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC089C1F718F63004D164A /* TraktLoginStoreTest.swift */; };
+		64CC08A51F71939C004D164A /* TraktLoginObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08A41F71939C004D164A /* TraktLoginObservable.swift */; };
+		64CC08A61F71939C004D164A /* TraktLoginObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08A41F71939C004D164A /* TraktLoginObservable.swift */; };
+		64CC08A71F71939C004D164A /* TraktLoginObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08A41F71939C004D164A /* TraktLoginObservable.swift */; };
+		64CC08A91F71944A004D164A /* TraktLoginOutputProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08A81F719444004D164A /* TraktLoginOutputProvider.swift */; };
+		64CC08AA1F71944A004D164A /* TraktLoginOutputProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08A81F719444004D164A /* TraktLoginOutputProvider.swift */; };
+		64CC08AB1F71944B004D164A /* TraktLoginOutputProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08A81F719444004D164A /* TraktLoginOutputProvider.swift */; };
+		64CC08AD1F719B85004D164A /* CompositeLoginOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08AC1F719B85004D164A /* CompositeLoginOutput.swift */; };
+		64CC08B11F71A0D1004D164A /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08B01F71A0D1004D164A /* Environment.swift */; };
 		64D29C311F55A936008E344E /* MovieDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C2F1F55A936008E344E /* MovieDetailsService.swift */; };
 		64D29C321F55A936008E344E /* MovieDetailsiOSPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C301F55A936008E344E /* MovieDetailsiOSPresenter.swift */; };
 		64D29C361F55A949008E344E /* TrendingCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C331F55A948008E344E /* TrendingCacheRepository.swift */; };
@@ -835,6 +860,20 @@
 		64C384331F6C56D600FC9930 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64CB309A1F6077B800FD6171 /* TrendingCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCellViewModel.swift; sourceTree = "<group>"; };
 		64CC085C1F714F33004D164A /* TraktTokenPolicyDeciderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktTokenPolicyDeciderTest.swift; sourceTree = "<group>"; };
+		64CC08601F71616E004D164A /* ShowsManagerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerContract.swift; sourceTree = "<group>"; };
+		64CC08861F717205004D164A /* AppFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowViewController.swift; sourceTree = "<group>"; };
+		64CC08881F717249004D164A /* ShowsManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerViewController.swift; sourceTree = "<group>"; };
+		64CC088A1F717298004D164A /* AppFlowModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowModule.swift; sourceTree = "<group>"; };
+		64CC088C1F717330004D164A /* ShowsManagerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerModule.swift; sourceTree = "<group>"; };
+		64CC08901F7174F5004D164A /* ShowsManager.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowsManager.storyboard; sourceTree = "<group>"; };
+		64CC08921F717597004D164A /* AppFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppFlow.storyboard; sourceTree = "<group>"; };
+		64CC08941F7188E1004D164A /* TraktLoginStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginStore.swift; sourceTree = "<group>"; };
+		64CC08981F718BE2004D164A /* TraktLoginState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginState.swift; sourceTree = "<group>"; };
+		64CC089C1F718F63004D164A /* TraktLoginStoreTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginStoreTest.swift; sourceTree = "<group>"; };
+		64CC08A41F71939C004D164A /* TraktLoginObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginObservable.swift; sourceTree = "<group>"; };
+		64CC08A81F719444004D164A /* TraktLoginOutputProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginOutputProvider.swift; sourceTree = "<group>"; };
+		64CC08AC1F719B85004D164A /* CompositeLoginOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeLoginOutput.swift; sourceTree = "<group>"; };
+		64CC08B01F71A0D1004D164A /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		64D29C2F1F55A936008E344E /* MovieDetailsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsService.swift; sourceTree = "<group>"; };
 		64D29C301F55A936008E344E /* MovieDetailsiOSPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsiOSPresenter.swift; sourceTree = "<group>"; };
 		64D29C331F55A948008E344E /* TrendingCacheRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCacheRepository.swift; sourceTree = "<group>"; };
@@ -1320,7 +1359,11 @@
 				6454D15B1F70359E008C4E5F /* TraktLoginContract.swift */,
 				6454D16B1F703B4D008C4E5F /* TraktLoginiOSPresenter.swift */,
 				6454D1821F704BED008C4E5F /* TraktLoginModule.swift */,
+				64CC08A41F71939C004D164A /* TraktLoginObservable.swift */,
+				64CC08A81F719444004D164A /* TraktLoginOutputProvider.swift */,
 				6454D1601F7037DF008C4E5F /* TraktLoginService.swift */,
+				64CC08981F718BE2004D164A /* TraktLoginState.swift */,
+				64CC08941F7188E1004D164A /* TraktLoginStore.swift */,
 				6454D17A1F704A1D008C4E5F /* TraktLoginViewController.swift */,
 				6454D1851F705222008C4E5F /* TraktTokenPolicyDecider.swift */,
 			);
@@ -1333,6 +1376,7 @@
 				6454D1741F703FC3008C4E5F /* TraktLoginInteractorTest.swift */,
 				6454D1711F703D17008C4E5F /* TraktLoginMocks.swift */,
 				6454D1771F704192008C4E5F /* TraktLoginPresenterTest.swift */,
+				64CC089C1F718F63004D164A /* TraktLoginStoreTest.swift */,
 				64CC085C1F714F33004D164A /* TraktTokenPolicyDeciderTest.swift */,
 			);
 			path = TraktLogin;
@@ -1384,6 +1428,7 @@
 			children = (
 				644BF5051F6B07AF0010CE35 /* AppConfigurations */,
 				6476323C1F44824900F277F1 /* AppDelegate.swift */,
+				64CC08851F7171E7004D164A /* AppFlow */,
 				647632431F44824900F277F1 /* Assets.xcassets */,
 				6406BEB21F4DB69C004661C4 /* BaseView.swift */,
 				64B03EDD1F471C27009E37C9 /* Carlos */,
@@ -1402,11 +1447,13 @@
 				64D2FFD91F44DFEA009E9ED3 /* R.generated.swift */,
 				648390E31F504EE500911BA0 /* Search */,
 				6442F9F91F618FED008E3E12 /* ShowDetails */,
+				64CC085F1F716155004D164A /* Shows */,
 				6423EA8A1F56004D00F3899C /* TMDBExtensions */,
 				6423EA841F56000100F3899C /* TraktExtensions */,
 				6454D15A1F703587008C4E5F /* TraktLogin */,
 				64B03ECE1F4715D2009E37C9 /* Trending */,
 				648391141F505E3F00911BA0 /* Utils */,
+				64CC08B01F71A0D1004D164A /* Environment.swift */,
 			);
 			path = CouchTracker;
 			sourceTree = "<group>";
@@ -1509,6 +1556,7 @@
 				644FCDDE1F5ED41F00346605 /* ShowViewModelMapper.swift */,
 				6454D1681F703AF1008C4E5F /* TMDBSecrets.swift */,
 				6454D1651F703A8D008C4E5F /* TraktSecrets.swift */,
+				64CC08AC1F719B85004D164A /* CompositeLoginOutput.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1669,6 +1717,35 @@
 				64C384331F6C56D600FC9930 /* Info.plist */,
 			);
 			path = "TMDB-Tests-Resources";
+			sourceTree = "<group>";
+		};
+		64CC085F1F716155004D164A /* Shows */ = {
+			isa = PBXGroup;
+			children = (
+				64CC08821F7170CB004D164A /* Manager */,
+			);
+			path = Shows;
+			sourceTree = "<group>";
+		};
+		64CC08821F7170CB004D164A /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				64CC08601F71616E004D164A /* ShowsManagerContract.swift */,
+				64CC08881F717249004D164A /* ShowsManagerViewController.swift */,
+				64CC088C1F717330004D164A /* ShowsManagerModule.swift */,
+				64CC08901F7174F5004D164A /* ShowsManager.storyboard */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		64CC08851F7171E7004D164A /* AppFlow */ = {
+			isa = PBXGroup;
+			children = (
+				64CC08861F717205004D164A /* AppFlowViewController.swift */,
+				64CC088A1F717298004D164A /* AppFlowModule.swift */,
+				64CC08921F717597004D164A /* AppFlow.storyboard */,
+			);
+			path = AppFlow;
 			sourceTree = "<group>";
 		};
 		64D43BCD1F605DB9005CDBF7 /* Cell */ = {
@@ -2103,7 +2180,9 @@
 				64BE63251F4F692B002E55EA /* Localizable.strings in Resources */,
 				6406BF031F4DC41F004661C4 /* MovieDetails.storyboard in Resources */,
 				64B03EDC1F471BC1009E37C9 /* Trending.storyboard in Resources */,
+				64CC08931F717597004D164A /* AppFlow.storyboard in Resources */,
 				647632471F44824900F277F1 /* LaunchScreen.storyboard in Resources */,
+				64CC08911F7174F5004D164A /* ShowsManager.storyboard in Resources */,
 				6467FC2D1F66D038000D1AEE /* ShowDetails.storyboard in Resources */,
 				647632441F44824900F277F1 /* Assets.xcassets in Resources */,
 				64D491591F6FE5D200EA0C80 /* AppConfigurations.storyboard in Resources */,
@@ -2737,6 +2816,7 @@
 				64D29C371F55A949008E344E /* TrendingiOSPresenter.swift in Sources */,
 				6406BEC71F4DBEFA004661C4 /* MovieDetailsViewModel.swift in Sources */,
 				64BE632F1F4F6F3F002E55EA /* Localizable.swift in Sources */,
+				64CC08A91F71944A004D164A /* TraktLoginOutputProvider.swift in Sources */,
 				6423EA8C1F56007300F3899C /* TMDBMovies+StringConvertible.swift in Sources */,
 				644BF5141F6B07B00010CE35 /* AppConfigurationsUserDefaultsRepository.swift in Sources */,
 				6406BEE31F4DC353004661C4 /* Genres+Hashable.swift in Sources */,
@@ -2750,6 +2830,7 @@
 				6406BEFD1F4DC3F1004661C4 /* JSONObjectTransformer.swift in Sources */,
 				642F6F501F5D722B0012F04F /* ShowEntity.swift in Sources */,
 				642F6F551F5D74F10012F04F /* ShowEntityMapper.swift in Sources */,
+				64CC08891F717249004D164A /* ShowsManagerViewController.swift in Sources */,
 				6454D17B1F704A1D008C4E5F /* TraktLoginViewController.swift in Sources */,
 				6467FC2A1F66D00D000D1AEE /* ShowDetailsViewController.swift in Sources */,
 				64B1CC771F4F55B1002A9FFD /* TrendingModule.swift in Sources */,
@@ -2757,12 +2838,18 @@
 				648687A21F4A3B9C005A0BA8 /* TrendingError.swift in Sources */,
 				64B03EE31F471D04009E37C9 /* Future+Rx.swift in Sources */,
 				64D29C361F55A949008E344E /* TrendingCacheRepository.swift in Sources */,
+				64CC088D1F717330004D164A /* ShowsManagerModule.swift in Sources */,
 				640330431F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */,
 				644FCDDF1F5ED41F00346605 /* ShowViewModelMapper.swift in Sources */,
+				64CC08991F718BE2004D164A /* TraktLoginState.swift in Sources */,
 				648391231F507F9500911BA0 /* SearchBarView.swift in Sources */,
+				64CC08611F71616E004D164A /* ShowsManagerContract.swift in Sources */,
+				64CC08951F7188E1004D164A /* TraktLoginStore.swift in Sources */,
 				6405E4FD1F5DE83E00756E79 /* TrendingViewModel.swift in Sources */,
 				644BF5121F6B07B00010CE35 /* AppConfigurationsiOSRouter.swift in Sources */,
 				64B03EDF1F471C32009E37C9 /* MoyaFetcher.swift in Sources */,
+				64CC08B11F71A0D1004D164A /* Environment.swift in Sources */,
+				64CC08871F717205004D164A /* AppFlowViewController.swift in Sources */,
 				64D29C3A1F55A957008E344E /* TraktGenreRepository.swift in Sources */,
 				64D29C3F1F55A96D008E344E /* SearchService.swift in Sources */,
 				64FD8E701F61BEA100111223 /* ShowDetailsCacheRepository.swift in Sources */,
@@ -2790,7 +2877,9 @@
 				6406BEC21F4DBEFA004661C4 /* MovieDetailsContract.swift in Sources */,
 				6405E5011F5DE84500756E79 /* TrendingShowEntity.swift in Sources */,
 				64B61D941F67163A006442E1 /* TMDBShows+Hashable.swift in Sources */,
+				64CC088B1F717298004D164A /* AppFlowModule.swift in Sources */,
 				64D29C311F55A936008E344E /* MovieDetailsService.swift in Sources */,
+				64CC08A51F71939C004D164A /* TraktLoginObservable.swift in Sources */,
 				64E806361F5DC74700773F26 /* Shows+Hashable.swift in Sources */,
 				64B03EF11F472A5C009E37C9 /* Data+JSON.swift in Sources */,
 				64A5DCD01F56E4B9006853A2 /* ImagesMock.swift in Sources */,
@@ -2799,6 +2888,7 @@
 				64DF605B1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift in Sources */,
 				6476323D1F44824900F277F1 /* AppDelegate.swift in Sources */,
 				644EE13F1F55D5F00053D631 /* ConfigurationCachedRepository.swift in Sources */,
+				64CC08AD1F719B85004D164A /* CompositeLoginOutput.swift in Sources */,
 				64B1CC741F4F55A9002A9FFD /* GenreRepository.swift in Sources */,
 				64D29C381F55A949008E344E /* TrendingService.swift in Sources */,
 				64DA35401F50914A005BF4E3 /* SearchModule.swift in Sources */,
@@ -2839,6 +2929,7 @@
 				64D29C501F55AA25008E344E /* MovieDetailsService.swift in Sources */,
 				644EE1581F55E9460053D631 /* TrendingMovieEntity.swift in Sources */,
 				64C2D0161F60A35300A064E2 /* TrendingCellViewModel.swift in Sources */,
+				64CC08AA1F71944A004D164A /* TraktLoginOutputProvider.swift in Sources */,
 				6442F9FC1F61A0E4008E3E12 /* ShowDetailsContract.swift in Sources */,
 				64B1CCC91F4F58BA002A9FFD /* Date+TraktDateFormatter.swift in Sources */,
 				64B1CCC81F4F589F002A9FFD /* GenreRepository.swift in Sources */,
@@ -2851,7 +2942,9 @@
 				644EE13B1F55D4E20053D631 /* ConfigurationRepository.swift in Sources */,
 				64D29C441F55A9FC008E344E /* TrendingiOSPresenter.swift in Sources */,
 				64C3840A1F6C134F00FC9930 /* AppConfigurationsUserDefaultsRepositoryTest.swift in Sources */,
+				64CC089A1F718BE2004D164A /* TraktLoginState.swift in Sources */,
 				647B66471F5888E000B38D2A /* MovieImageMocks.swift in Sources */,
+				64CC08961F7188E1004D164A /* TraktLoginStore.swift in Sources */,
 				644BF5211F6B07E20010CE35 /* AppConfigurationOptions.swift in Sources */,
 				64A5DCD11F56E4B9006853A2 /* ImagesMock.swift in Sources */,
 				6483911C1F505F4100911BA0 /* MovieViewModelMapper.swift in Sources */,
@@ -2909,13 +3002,16 @@
 				6454D1751F703FC3008C4E5F /* TraktLoginInteractorTest.swift in Sources */,
 				6405E4FA1F5DE7C900756E79 /* TrendingContract.swift in Sources */,
 				64D29C661F55AD8D008E344E /* Trakt+APIProvider.swift in Sources */,
+				64CC08A61F71939C004D164A /* TraktLoginObservable.swift in Sources */,
 				648390D11F504E7600911BA0 /* MovieDetailsInteractorTest.swift in Sources */,
 				392D9633B6766B4443D60643 /* RxAsserts.swift in Sources */,
 				64BE63351F4F6F63002E55EA /* String+Localizable.swift in Sources */,
 				392D94FA41B7F4F6C37AE81A /* TrendingOutputTest.swift in Sources */,
 				644BF5231F6B07E20010CE35 /* AppConfigurationsiOSPresenter.swift in Sources */,
 				6405E5021F5DE84500756E79 /* TrendingShowEntity.swift in Sources */,
+				64CC08621F71616E004D164A /* ShowsManagerContract.swift in Sources */,
 				6454D15D1F70359E008C4E5F /* TraktLoginContract.swift in Sources */,
+				64CC089D1F718F63004D164A /* TraktLoginStoreTest.swift in Sources */,
 				6454D1781F704192008C4E5F /* TraktLoginPresenterTest.swift in Sources */,
 				392D9CAB8901302FCB6F2C14 /* TMDBProvider.swift in Sources */,
 				645EEEDC1F61AB8A0034EB66 /* ShowDetailsInteractorTest.swift in Sources */,
@@ -3121,6 +3217,7 @@
 				64CC085E1F714F33004D164A /* TraktTokenPolicyDeciderTest.swift in Sources */,
 				6426243A1F56E15A00560660 /* MovieImageRepositoryMock.swift in Sources */,
 				64BE631B1F4F5E43002E55EA /* GenreRepository.swift in Sources */,
+				64CC089B1F718BE2004D164A /* TraktLoginState.swift in Sources */,
 				648390E21F504EA500911BA0 /* SearchMocks.swift in Sources */,
 				644BF5291F6B07E30010CE35 /* AppConfigurationOptions.swift in Sources */,
 				64BE63191F4F5E04002E55EA /* BaseView.swift in Sources */,
@@ -3152,6 +3249,7 @@
 				648390DB1F504E9100911BA0 /* TrendingInteractorTest.swift in Sources */,
 				64C2D0111F60A34600A064E2 /* TrendingCellContract.swift in Sources */,
 				648390E01F504EA500911BA0 /* MovieDetailsPresenterTest.swift in Sources */,
+				64CC08AB1F71944B004D164A /* TraktLoginOutputProvider.swift in Sources */,
 				64A5DCD31F56E4B9006853A2 /* ImagesMock.swift in Sources */,
 				64D29C4F1F55AA22008E344E /* MovieDetailsiOSPresenter.swift in Sources */,
 				64BE63041F4F5C5F002E55EA /* MovieDetailsContract.swift in Sources */,
@@ -3159,10 +3257,12 @@
 				64BE63051F4F5C5F002E55EA /* MovieDetailsError.swift in Sources */,
 				644EE15A1F55E9460053D631 /* TrendingMovieEntity.swift in Sources */,
 				6454D1731F703D17008C4E5F /* TraktLoginMocks.swift in Sources */,
+				64CC089E1F718F63004D164A /* TraktLoginStoreTest.swift in Sources */,
 				644BF5041F6AFF5F0010CE35 /* SearchState.swift in Sources */,
 				64C2D01B1F60A4BC00A064E2 /* TrendingCellInteractorTest.swift in Sources */,
 				6454D1791F704192008C4E5F /* TraktLoginPresenterTest.swift in Sources */,
 				648391051F504F6500911BA0 /* SearchContract.swift in Sources */,
+				64CC08A71F71939C004D164A /* TraktLoginObservable.swift in Sources */,
 				64C2D0171F60A35300A064E2 /* TrendingCellViewModel.swift in Sources */,
 				64EC3A6D1F66B9230046A186 /* ShowDetailsViewModel.swift in Sources */,
 				64BE63081F4F5C5F002E55EA /* MovieDetailsViewModel.swift in Sources */,
@@ -3176,7 +3276,9 @@
 				6496D9AB1F56F1CF00B76E06 /* TraktProviderMock.swift in Sources */,
 				64BE63321F4F6F3F002E55EA /* Localizable.swift in Sources */,
 				6454D15F1F70359E008C4E5F /* TraktLoginContract.swift in Sources */,
+				64CC08971F7188E1004D164A /* TraktLoginStore.swift in Sources */,
 				64BE62F61F4F5C20002E55EA /* GenreRepositoryMock.swift in Sources */,
+				64CC08631F71616E004D164A /* ShowsManagerContract.swift in Sources */,
 				64A5DCC91F56E2DF006853A2 /* ImagesEntityMapper.swift in Sources */,
 				645EEEE51F61AEA10034EB66 /* ShowDetailsMocks.swift in Sources */,
 				64D29C4C1F55AA17008E344E /* SearchService.swift in Sources */,
