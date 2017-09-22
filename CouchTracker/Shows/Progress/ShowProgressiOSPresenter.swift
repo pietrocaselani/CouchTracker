@@ -39,7 +39,7 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
 
   private func mapToViewModel(_ entity: WatchedShowEntity) -> WatchedShowViewModel {
     let nextEpisodeTitle = entity.nextEpisode.map { "\($0.season)x\($0.number) \($0.title)" }
-    let nextEpisodeDate = entity.nextEpisode.flatMap { $0.firstAired?.shortString() }
+    let nextEpisodeDate = entity.nextEpisode?.firstAired?.shortString()
     let showStatus = entity.show.status?.rawValue.localized
 
     let status = (nextEpisodeDate ?? showStatus) ?? "Unknown".localized
