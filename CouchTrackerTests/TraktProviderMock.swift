@@ -54,6 +54,14 @@ final class TraktProviderMock: TraktProvider {
     return RxMoyaProvider<Authentication>(stubClosure: MoyaProvider.immediatelyStub)
   }
 
+  var episodes: RxMoyaProvider<Episodes> {
+    return RxMoyaProvider<Episodes>(stubClosure: MoyaProvider.immediatelyStub)
+  }
+
+  var sync: RxMoyaProvider<Sync> {
+    return RxMoyaProvider<Sync>(stubClosure: MoyaProvider.immediatelyStub)
+  }
+
   var isAuthenticated: Bool {
     return oauth != nil
   }

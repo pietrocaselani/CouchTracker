@@ -167,12 +167,12 @@
 		644E90461F72E18E0089CD70 /* ShowsProgressContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90451F72E18E0089CD70 /* ShowsProgressContract.swift */; };
 		644E90471F72E18E0089CD70 /* ShowsProgressContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90451F72E18E0089CD70 /* ShowsProgressContract.swift */; };
 		644E90481F72E18E0089CD70 /* ShowsProgressContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90451F72E18E0089CD70 /* ShowsProgressContract.swift */; };
-		644E904A1F72E5C40089CD70 /* ShowProgressEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90491F72E5C40089CD70 /* ShowProgressEntity.swift */; };
-		644E904B1F72E5C40089CD70 /* ShowProgressEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90491F72E5C40089CD70 /* ShowProgressEntity.swift */; };
-		644E904C1F72E5C40089CD70 /* ShowProgressEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90491F72E5C40089CD70 /* ShowProgressEntity.swift */; };
-		644E905A1F72EF7E0089CD70 /* ShowProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90591F72EF7E0089CD70 /* ShowProgressViewModel.swift */; };
-		644E905B1F72EF7E0089CD70 /* ShowProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90591F72EF7E0089CD70 /* ShowProgressViewModel.swift */; };
-		644E905C1F72EF7E0089CD70 /* ShowProgressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90591F72EF7E0089CD70 /* ShowProgressViewModel.swift */; };
+		644E904A1F72E5C40089CD70 /* WatchedShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90491F72E5C40089CD70 /* WatchedShowEntity.swift */; };
+		644E904B1F72E5C40089CD70 /* WatchedShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90491F72E5C40089CD70 /* WatchedShowEntity.swift */; };
+		644E904C1F72E5C40089CD70 /* WatchedShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90491F72E5C40089CD70 /* WatchedShowEntity.swift */; };
+		644E905A1F72EF7E0089CD70 /* WatchedShowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90591F72EF7E0089CD70 /* WatchedShowViewModel.swift */; };
+		644E905B1F72EF7E0089CD70 /* WatchedShowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90591F72EF7E0089CD70 /* WatchedShowViewModel.swift */; };
+		644E905C1F72EF7E0089CD70 /* WatchedShowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90591F72EF7E0089CD70 /* WatchedShowViewModel.swift */; };
 		644E905E1F72F3EA0089CD70 /* ShowsProgressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E905D1F72F3EA0089CD70 /* ShowsProgressService.swift */; };
 		644E905F1F72F3EA0089CD70 /* ShowsProgressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E905D1F72F3EA0089CD70 /* ShowsProgressService.swift */; };
 		644E90601F72F3EA0089CD70 /* ShowsProgressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E905D1F72F3EA0089CD70 /* ShowsProgressService.swift */; };
@@ -806,8 +806,8 @@
 		644E903D1F72985C0089CD70 /* ShowsNow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowsNow.storyboard; sourceTree = "<group>"; };
 		644E903F1F72986B0089CD70 /* ShowsNowModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsNowModule.swift; sourceTree = "<group>"; };
 		644E90451F72E18E0089CD70 /* ShowsProgressContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressContract.swift; sourceTree = "<group>"; };
-		644E90491F72E5C40089CD70 /* ShowProgressEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressEntity.swift; sourceTree = "<group>"; };
-		644E90591F72EF7E0089CD70 /* ShowProgressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressViewModel.swift; sourceTree = "<group>"; };
+		644E90491F72E5C40089CD70 /* WatchedShowEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedShowEntity.swift; sourceTree = "<group>"; };
+		644E90591F72EF7E0089CD70 /* WatchedShowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedShowViewModel.swift; sourceTree = "<group>"; };
 		644E905D1F72F3EA0089CD70 /* ShowsProgressService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressService.swift; sourceTree = "<group>"; };
 		644E90611F7306070089CD70 /* EpisodeProgressEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeProgressEntity.swift; sourceTree = "<group>"; };
 		644EE12E1F55B46E0053D631 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
@@ -1431,7 +1431,7 @@
 		644E90511F72E7AB0089CD70 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				644E90491F72E5C40089CD70 /* ShowProgressEntity.swift */,
+				644E90491F72E5C40089CD70 /* WatchedShowEntity.swift */,
 				644E90611F7306070089CD70 /* EpisodeProgressEntity.swift */,
 			);
 			path = Entities;
@@ -1440,7 +1440,7 @@
 		644E90581F72EF120089CD70 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				644E90591F72EF7E0089CD70 /* ShowProgressViewModel.swift */,
+				644E90591F72EF7E0089CD70 /* WatchedShowViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -3047,7 +3047,7 @@
 				64B61D911F671603006442E1 /* TMDBShows+StringConvertible.swift in Sources */,
 				64B61D881F66FB34006442E1 /* ShowDetailsiOSRouter.swift in Sources */,
 				6406BEE21F4DC353004661C4 /* Genre+StringConvertible.swift in Sources */,
-				644E905A1F72EF7E0089CD70 /* ShowProgressViewModel.swift in Sources */,
+				644E905A1F72EF7E0089CD70 /* WatchedShowViewModel.swift in Sources */,
 				64D29C401F55A96D008E344E /* APISearchRepository.swift in Sources */,
 				64CB90B61F7291650026B139 /* ShowsProgressViewController.swift in Sources */,
 				64A5DCC61F56E2DF006853A2 /* ImagesEntityMapper.swift in Sources */,
@@ -3114,7 +3114,7 @@
 				6454D1611F7037DF008C4E5F /* TraktLoginService.swift in Sources */,
 				392D94C57DC58E4F1ECA81A2 /* ImagesEntity.swift in Sources */,
 				392D95338515531370936B48 /* ImageEntity.swift in Sources */,
-				644E904A1F72E5C40089CD70 /* ShowProgressEntity.swift in Sources */,
+				644E904A1F72E5C40089CD70 /* WatchedShowEntity.swift in Sources */,
 				644BF5151F6B07B00010CE35 /* AppConfigurationsViewModel.swift in Sources */,
 				64D43BD21F605DFB005CDBF7 /* TrendingCellContract.swift in Sources */,
 				392D965A215A77454BDE43DC /* LoginState.swift in Sources */,
@@ -3191,7 +3191,7 @@
 				64303EB81F6726970050C287 /* ImagesViewModel.swift in Sources */,
 				64EC3A661F66B3B30046A186 /* ShowDetailsiOSPresenter.swift in Sources */,
 				642624391F56E15A00560660 /* MovieImageRepositoryMock.swift in Sources */,
-				644E905B1F72EF7E0089CD70 /* ShowProgressViewModel.swift in Sources */,
+				644E905B1F72EF7E0089CD70 /* WatchedShowViewModel.swift in Sources */,
 				644EE14B1F55E0340053D631 /* TMDBProviderMock.swift in Sources */,
 				64A5DCD61F56E57B006853A2 /* JSONParsers.swift in Sources */,
 				644BF5221F6B07E20010CE35 /* AppConfigurationsContract.swift in Sources */,
@@ -3216,7 +3216,7 @@
 				392D9633B6766B4443D60643 /* RxAsserts.swift in Sources */,
 				64BE63351F4F6F63002E55EA /* String+Localizable.swift in Sources */,
 				392D94FA41B7F4F6C37AE81A /* TrendingOutputTest.swift in Sources */,
-				644E904B1F72E5C40089CD70 /* ShowProgressEntity.swift in Sources */,
+				644E904B1F72E5C40089CD70 /* WatchedShowEntity.swift in Sources */,
 				644BF5231F6B07E20010CE35 /* AppConfigurationsiOSPresenter.swift in Sources */,
 				6405E5021F5DE84500756E79 /* TrendingShowEntity.swift in Sources */,
 				64CC08621F71616E004D164A /* ShowsManagerContract.swift in Sources */,
@@ -3443,7 +3443,7 @@
 				644EE1551F55E8D20053D631 /* MovieEntity.swift in Sources */,
 				64A5DCCE1F56E3FC006853A2 /* MovieEntityMapper.swift in Sources */,
 				64BE631A1F4F5E43002E55EA /* Date+TraktDateFormatter.swift in Sources */,
-				644E904C1F72E5C40089CD70 /* ShowProgressEntity.swift in Sources */,
+				644E904C1F72E5C40089CD70 /* WatchedShowEntity.swift in Sources */,
 				64EC3A681F66B3B30046A186 /* ShowDetailsiOSPresenter.swift in Sources */,
 				64C384121F6C137A00FC9930 /* AppConfigurationsUserDefaultsRepositoryTest.swift in Sources */,
 				644E90601F72F3EA0089CD70 /* ShowsProgressService.swift in Sources */,
@@ -3507,7 +3507,7 @@
 				64C3840F1F6C137A00FC9930 /* AppConfigurationsInteractorTest.swift in Sources */,
 				644BF52A1F6B07E30010CE35 /* AppConfigurationsContract.swift in Sources */,
 				6405E5001F5DE83F00756E79 /* TrendingViewModel.swift in Sources */,
-				644E905C1F72EF7E0089CD70 /* ShowProgressViewModel.swift in Sources */,
+				644E905C1F72EF7E0089CD70 /* WatchedShowViewModel.swift in Sources */,
 				6442F9F81F617648008E3E12 /* TrendingCellMocks.swift in Sources */,
 				648390DC1F504E9600911BA0 /* TrendingMocks.swift in Sources */,
 				64C2D0151F60A35000A064E2 /* TrendingCellService.swift in Sources */,
