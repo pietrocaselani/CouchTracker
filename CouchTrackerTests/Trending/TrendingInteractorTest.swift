@@ -42,7 +42,7 @@ final class TrendingInteractorTest: XCTestCase {
     let repository = EmptyTrendingRepositoryMock()
     let imageRepository = EmptyImageRepositoryMock(tmdbProvider: tmdbProviderMock,
                                                         cofigurationRepository: configurationRepositoryMock)
-    let interactor = TrendingService(repository: repository, imageRepository: imageRepository, scheduler: scheduler)
+    let interactor = TrendingService(repository: repository, imageRepository: imageRepository)
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(moviesObserver)
     subscription.disposed(by: disposeBag)
@@ -58,7 +58,7 @@ final class TrendingInteractorTest: XCTestCase {
     let repository = EmptyTrendingRepositoryMock()
     let imageRepository = EmptyImageRepositoryMock(tmdbProvider: tmdbProviderMock,
                                                    cofigurationRepository: configurationRepositoryMock)
-    let interactor = TrendingService(repository: repository, imageRepository: imageRepository, scheduler: scheduler)
+    let interactor = TrendingService(repository: repository, imageRepository: imageRepository)
 
     let subscription = interactor.fetchShows(page: 0, limit: 10).subscribe(showsObserver)
     subscription.disposed(by: disposeBag)
@@ -74,7 +74,7 @@ final class TrendingInteractorTest: XCTestCase {
     let connectionError = TrendingError.noConnection("There is no connection active")
 
     let repository = ErrorTrendingRepositoryMock(error: connectionError)
-    let interactor = TrendingService(repository: repository, imageRepository: imageRepositoryMock, scheduler: scheduler)
+    let interactor = TrendingService(repository: repository, imageRepository: imageRepositoryMock)
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(moviesObserver)
 
@@ -93,7 +93,7 @@ final class TrendingInteractorTest: XCTestCase {
     let connectionError = TrendingError.noConnection("There is no connection active")
 
     let repository = ErrorTrendingRepositoryMock(error: connectionError)
-    let interactor = TrendingService(repository: repository, imageRepository: imageRepositoryMock, scheduler: scheduler)
+    let interactor = TrendingService(repository: repository, imageRepository: imageRepositoryMock)
 
     let subscription = interactor.fetchShows(page: 0, limit: 10).subscribe(showsObserver)
 
@@ -112,7 +112,7 @@ final class TrendingInteractorTest: XCTestCase {
     let movies = createMockMovies()
 
     let repository = TrendingMoviesRepositoryMock(movies: movies)
-    let interactor = TrendingService(repository: repository, imageRepository: imageRepositoryRealMock, scheduler: scheduler)
+    let interactor = TrendingService(repository: repository, imageRepository: imageRepositoryRealMock)
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(moviesObserver)
 
@@ -133,8 +133,7 @@ final class TrendingInteractorTest: XCTestCase {
 
   func testTrendingInteractor_fetchShowsSuccessReceivesData_emitsEntitiesAndCompleted() {
     let repository = trendingRepositoryMock
-    let interactor = TrendingService(repository: repository,
-                                     imageRepository: imageRepositoryRealMock, scheduler: scheduler)
+    let interactor = TrendingService(repository: repository, imageRepository: imageRepositoryRealMock)
 
     let subscription = interactor.fetchShows(page: 0, limit: 10).subscribe(showsObserver)
 

@@ -18,35 +18,27 @@ import TMDBSwift
 final class TrendingService: TrendingInteractor {
   private let repository: TrendingRepository
   private let imageRepository: ImageRepository
-  private let scheduler: SchedulerType
 
-  convenience init(repository: TrendingRepository, imageRepository: ImageRepository) {
-    let scheduler = SerialDispatchQueueScheduler(qos: DispatchQueue(label: "listMoviesServiceQueue").qos)
-    self.init(repository: repository, imageRepository: imageRepository, scheduler: scheduler)
-  }
-
-  init(repository: TrendingRepository, imageRepository: ImageRepository, scheduler: SchedulerType) {
+  init(repository: TrendingRepository, imageRepository: ImageRepository) {
     self.repository = repository
     self.imageRepository = imageRepository
-    self.scheduler = scheduler
   }
 
   func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShowEntity]> {
-    let observable = repository.fetchShows(page: page, limit: limit)
-      .observeOn(scheduler)
+    return repository.fetchShows(page: page, limit: limit)
       .map { [unowned self] in self.mapTrendingShowsToEntities($0) }
-    return observable
   }
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovieEntity]> {
-    return repository.fetchMovies(page: page, limit: limit).observeOn(scheduler).map {
-      $0.map { trendingMovie -> TrendingMovieEntity in
-        MovieEntityMapper.entity(for: trendingMovie)
-      }
-    }
+    return repository.fetchMovies(page: page, limit: limit)
+      .map { [unowned self] in self.mapTrendingMoviesToEntities($0) }
   }
 
   private func mapTrendingShowsToEntities(_ trendingShows: [TrendingShow]) -> [TrendingShowEntity] {
     return trendingShows.map { ShowEntityMapper.entity(for: $0) }
+  }
+
+  private func mapTrendingMoviesToEntities(_ trendingMovies: [TrendingMovie]) -> [TrendingMovieEntity] {
+    return trendingMovies.map { MovieEntityMapper.entity(for: $0) }
   }
 }
