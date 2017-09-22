@@ -41,10 +41,11 @@ final class ShowsManageriOSRouter: ShowsManagerRouter {
   }
 
   private func moduleViewFor(option: ShowsManagerOption) -> BaseView {
-    if option == .progress { return ShowsProgressModule.setupModule() }
-
-    if option == .now { return ShowsNowModule.setupModule() }
-
-    fatalError("Not implemented yet!")
+    switch option {
+    case .progress:
+      return ShowsProgressModule.setupModule()
+    case .now:
+      return ShowsNowModule.setupModule()
+    }
   }
 }
