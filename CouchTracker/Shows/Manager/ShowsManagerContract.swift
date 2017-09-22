@@ -13,8 +13,6 @@
 enum ShowsManagerOption: String {
   case progress
   case now
-  case soon
-  case recent
 }
 
 protocol ShowsManagerRouter: class {
