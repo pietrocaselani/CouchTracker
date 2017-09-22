@@ -58,6 +58,11 @@ extension Sync: TraktType {
   }
 
   public var sampleData: Data {
-    return "".utf8Encoded
+    switch self {
+    case .watched(let type, _):
+      return type == .shows ? stubbedResponse("trakt_sync_watchedshows") : Data()
+    default:
+      return Data()
+    }
   }
 }

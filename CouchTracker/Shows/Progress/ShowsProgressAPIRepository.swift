@@ -18,11 +18,15 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
   private let scheduler: SchedulerType
   private let cache: AnyCache<Int, NSData>
 
-  init(trakt: TraktProvider, cache: AnyCache<Int, NSData>) {
+  convenience init(trakt: TraktProvider, cache: AnyCache<Int, NSData>) {
+    let scheduler = ConcurrentDispatchQueueScheduler(queue: DispatchQueue(label: "showsProgressQueue"))
+    self.init(trakt: trakt, cache: cache, scheduler: scheduler)
+  }
+
+  init(trakt: TraktProvider, cache: AnyCache<Int, NSData>, scheduler: SchedulerType) {
     self.trakt = trakt
     self.cache = cache
-    let queue = DispatchQueue(label: "showsProgressQueue")
-    scheduler = ConcurrentDispatchQueueScheduler(queue: queue)
+    self.scheduler = scheduler
   }
 
   func fetchWatchedShows(update: Bool, extended: Extended) -> Observable<[BaseShow]> {
