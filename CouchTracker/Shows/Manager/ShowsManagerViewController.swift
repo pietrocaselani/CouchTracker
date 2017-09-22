@@ -27,6 +27,11 @@ final class ShowsManagerViewController: UITableViewController, ShowsManagerView 
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    guard presenter != nil else {
+      fatalError("ShowsManagerViewController was loaded without a presenter")
+    }
+
     self.tableView.tableFooterView = UIView()
     presenter.viewDidLoad()
   }

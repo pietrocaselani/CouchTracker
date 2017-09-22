@@ -18,8 +18,6 @@ extension String: Localizable {
   }
 
   func localized(_ args: CVarArg...) -> String {
-    return withVaList(args) { list -> NSString in
-      return NSString(format: self.localized, arguments: list)
-    } as String
+    return withVaList(args) { NSString(format: self.localized, arguments: $0) as String }
   }
 }
