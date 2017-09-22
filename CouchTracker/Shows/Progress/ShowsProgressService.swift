@@ -20,43 +20,42 @@ final class ShowsProgressService: ShowsProgressInteractor {
     self.repository = repository
   }
 
-  func fetchWatchedShowsProgress() -> Observable<WatchedShowEntity> {
-    return repository.fetchWatchedShows(extended: .full)
+  func fetchWatchedShowsProgress(update: Bool) -> Observable<WatchedShowEntity> {
+    return repository.fetchWatchedShows(update: update, extended: .full)
       .flatMap { Observable.from($0) }
       .map { WatchedShowBuilder(baseShow: $0) }
-      .flatMap { [unowned self] in self.fetchProgressForShow($0) }
-      .flatMap { [unowned self] in self.fetchNextEpisodeDetails($0) }
-      .flatMap { [unowned self] in self.convertToEntityObservable($0) }
+      .flatMap { [unowned self] in self.fetchProgressForShow(update: update, $0) }
+      .flatMap { [unowned self] in self.fetchNextEpisodeDetails(update: update, $0) }
+      .flatMap { [unowned self] in self.convertToEntityObservable(showProgress: $0) }
   }
 
-  private func fetchProgressForShow( _ showProgress: WatchedShowBuilder) -> Observable<WatchedShowBuilder> {
-    guard let showId = showProgress.baseShow?.show?.ids.slug else { return Observable.empty() }
-    var showProgress = showProgress
+  private func fetchProgressForShow(update: Bool, _ builder: WatchedShowBuilder) -> Observable<WatchedShowBuilder> {
+    guard let showId = builder.baseShow?.show?.ids.slug else { return Observable.empty() }
 
-    let observable = repository.fetchShowProgress(showId: showId, hidden: false, specials: false, countSpecials: false)
+    let observable = repository.fetchShowProgress(update: update, showId: showId,
+                                                  hidden: false, specials: false, countSpecials: false)
 
     return observable.map {
-      showProgress.detailShow = $0
-      return showProgress
+      builder.detailShow = $0
+      return builder
     }
   }
 
-  private func fetchNextEpisodeDetails(_ showProgress: WatchedShowBuilder) -> Observable<WatchedShowBuilder> {
-    guard let showId = showProgress.baseShow?.show?.ids.slug else { return Observable.empty() }
+  private func fetchNextEpisodeDetails(update: Bool, _ builder: WatchedShowBuilder) -> Observable<WatchedShowBuilder> {
+    guard let showId = builder.baseShow?.show?.ids.slug else { return Observable.empty() }
 
-    guard let episode = showProgress.detailShow?.nextEpisode else { return Observable.just(showProgress) }
-    var showProgress = showProgress
+    guard let episode = builder.detailShow?.nextEpisode else { return Observable.just(builder) }
 
-    let observable = repository.fetchDetailsOf(episodeNumber: episode.number,
+    let observable = repository.fetchDetailsOf(update: update, episodeNumber: episode.number,
                                                on: episode.season, of: showId, extended: .full)
 
     return observable.map {
-      showProgress.episode = $0
-      return showProgress
+      builder.episode = $0
+      return builder
     }
   }
 
-  private func convertToEntityObservable(_ showProgress: WatchedShowBuilder) -> Observable<WatchedShowEntity> {
+  private func convertToEntityObservable(showProgress: WatchedShowBuilder) -> Observable<WatchedShowEntity> {
     guard let show = showProgress.baseShow?.show else { return Observable.empty() }
 
     let showEntity = ShowEntityMapper.entity(for: show)
@@ -66,14 +65,14 @@ final class ShowsProgressService: ShowsProgressInteractor {
     let completed = showProgress.detailShow?.completed ?? 0
 
     let entity = WatchedShowEntity(show: showEntity,
-                                    aired: aired,
-                                    completed: completed,
-                                    nextEpisode: episodeEntity)
+                                   aired: aired,
+                                   completed: completed,
+                                   nextEpisode: episodeEntity)
     return Observable.just(entity)
   }
 }
 
-private struct WatchedShowBuilder {
+private class WatchedShowBuilder {
   var baseShow: BaseShow?
   var detailShow: BaseShow?
   var episode: Episode?

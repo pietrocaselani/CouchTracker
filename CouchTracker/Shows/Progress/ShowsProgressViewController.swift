@@ -11,9 +11,13 @@
  */
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 final class ShowsProgressViewController: UIViewController, ShowsProgressView {
   var presenter: ShowsProgressPresenter!
+  private let disposeBag = DisposeBag()
+  private var shouldReloadViewModels = false
   fileprivate var viewModels = [WatchedShowViewModel]()
 
 	@IBOutlet weak var tableView: UITableView!
@@ -23,10 +27,20 @@ final class ShowsProgressViewController: UIViewController, ShowsProgressView {
     super.viewDidLoad()
 
     presenter.viewDidLoad()
+
+    let refreshItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: nil, action: nil)
+    refreshItem.rx.tap.asDriver().drive(onNext: { [unowned self] in
+      self.viewModels.removeAll()
+      self.tableView.reloadData()
+      self.presenter.updateShows()
+    }).disposed(by: disposeBag)
+
+    self.navigationItem.rightBarButtonItem = refreshItem
   }
 
   func showNew(viewModel: WatchedShowViewModel) {
 		showList()
+
     viewModels.append(viewModel)
 		tableView.insertRows(at: [IndexPath(row: viewModels.count - 1, section: 0)], with: .automatic)
   }
@@ -70,7 +84,7 @@ extension ShowsProgressViewController: UITableViewDataSource {
     if let nextEpisode = viewModel.nextEpisode {
       cell.detailTextLabel?.text = "\(viewModel.episodesRemaining) - \(nextEpisode)"
     } else {
-      cell.detailTextLabel?.text = "\(viewModel.episodesRemaining)"
+      cell.detailTextLabel?.text = "\(viewModel.episodesRemaining) - \(viewModel.status)"
     }
 
 		return cell

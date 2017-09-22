@@ -11,6 +11,8 @@
  */
 
 import UIKit
+import Carlos
+import TraktSwift
 
 final class ShowsProgressModule {
   private init() {}
@@ -25,7 +27,11 @@ final class ShowsProgressModule {
     }
 
     let trakt = Environment.instance.trakt
-    let repository = ShowsProgressAPIRepository(trakt: trakt)
+
+    let carlosCache = CarlosCache(basicCache: MemoryCacheLevel<Int, NSData>().compose(DiskCacheLevel()))
+    let cache = AnyCache(carlosCache)
+
+    let repository = ShowsProgressAPIRepository(trakt: trakt, cache: cache)
     let interactor = ShowsProgressService(repository: repository)
     let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor)
 

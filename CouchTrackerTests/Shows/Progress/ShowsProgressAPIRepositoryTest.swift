@@ -10,11 +10,8 @@
  the license agreement.
  */
 
-final class ShowsManageriOSModuleSetup: ShowsManagerModulesSetup {
-  var options: [ShowsManagerOption] {
-    let progress = ShowsManagerOption.progress
-    let now = ShowsManagerOption.now
+import XCTest
 
-    return [progress, now]
-  }
+final class ShowsProgressAPIRepositoryTest: XCTestCase {
+  
 }

@@ -10,11 +10,16 @@
  the license agreement.
  */
 
-final class ShowsManageriOSModuleSetup: ShowsManagerModulesSetup {
-  var options: [ShowsManagerOption] {
-    let progress = ShowsManagerOption.progress
-    let now = ShowsManagerOption.now
+import RxSwift
 
-    return [progress, now]
+final class TraktLoginObservableMock: TraktLoginObservable {
+  let stateSubject: BehaviorSubject<TraktLoginState>
+
+  init(state: TraktLoginState) {
+    self.stateSubject = BehaviorSubject(value: state)
+  }
+
+  func observe() -> Observable<TraktLoginState> {
+    return stateSubject.asObservable()
   }
 }
