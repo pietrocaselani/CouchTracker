@@ -12,10 +12,16 @@
 
 import ObjectMapper
 
-public class BaseIds: ImmutableMappable, Hashable {
+public class BaseIds: ImmutableMappable, Hashable, CustomStringConvertible {
   public let trakt: Int
   public let tmdb: Int?
   public let imdb: String?
+
+  public init(trakt: Int, tmdb: Int?, imdb: String?) {
+    self.trakt = trakt
+    self.tmdb = tmdb
+    self.imdb = imdb
+  }
 
   public required init(map: Map) throws {
     self.trakt = try map.value("trakt")
@@ -45,5 +51,9 @@ public class BaseIds: ImmutableMappable, Hashable {
 
   public static func == (lhs: BaseIds, rhs: BaseIds) -> Bool {
     return lhs.hashValue == rhs.hashValue
+  }
+
+  public var description: String {
+    return "trakt: \(trakt), tmdb: \(tmdb), imdb: \(imdb)"
   }
 }

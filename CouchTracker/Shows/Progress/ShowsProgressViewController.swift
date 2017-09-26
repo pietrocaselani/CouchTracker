@@ -27,6 +27,8 @@ final class ShowsProgressViewController: UIViewController, ShowsProgressView {
 
     presenter.viewDidLoad()
 
+    //TODO: Put view models to presenter
+
     let refreshItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: nil, action: nil)
     refreshItem.rx.tap.asDriver().drive(onNext: { [unowned self] in
       self.viewModels.removeAll()

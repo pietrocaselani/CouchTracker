@@ -118,7 +118,7 @@ final class TraktTests: XCTestCase {
     }
 
     //Then
-    wait(for: [responseExpectation], timeout: 1)
+    wait(for: [responseExpectation], timeout: 2)
   }
 
   func testTrakt_withoutTraktSecret_authenticationFails() {

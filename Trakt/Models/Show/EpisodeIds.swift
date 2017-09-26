@@ -15,6 +15,12 @@ import ObjectMapper
 public final class EpisodeIds: BaseIds {
   public let tvdb: Int
   public let tvrage: Int?
+
+  public init(trakt: Int, tmdb: Int?, imdb: String?, tvdb: Int, tvrage: Int?) {
+    self.tvdb = tvdb
+    self.tvrage = tvrage
+    super.init(trakt: trakt, tmdb: tmdb, imdb: imdb)
+  }
   
   public required init(map: Map) throws {
     self.tvdb = try map.value("tvdb")
@@ -33,5 +39,9 @@ public final class EpisodeIds: BaseIds {
       hash = hash ^ tvrageHash
     }
     return hash
+  }
+
+  public override var description: String {
+    return "\(super.description), tvdb: \(tvdb), tvrage: \(tvrage)"
   }
 }

@@ -11,6 +11,7 @@
  */
 
 import TraktSwift
+import RxSwift
 
 final class ShowsProgressMocks {
   private init() {}
@@ -28,5 +29,25 @@ final class ShowsProgressMocks {
   static func createEpisodeMock(_ showId: String) -> Episode {
     let json = JSONParser.toObject(data: Episodes.summary(showId: showId, season: 1, episode: 1, extended: .full).sampleData)
     return try! Episode(JSON: json)
+  }
+
+  final class ShowsProgressRepositoryMock: ShowsProgressRepository {
+    private let trakt: TraktProvider
+
+    init(trakt: TraktProvider, cache: AnyCache<Int, NSData>) {
+      self.trakt = trakt
+    }
+
+    func fetchWatchedShows(update: Bool, extended: Extended) -> Observable<[BaseShow]> {
+      return trakt.sync.request(.watched(type: .shows, extended: extended)).mapArray(BaseShow.self)
+    }
+
+    func fetchShowProgress(update: Bool, showId: String, hidden: Bool, specials: Bool, countSpecials: Bool) -> Observable<BaseShow> {
+      return trakt.shows.request(.watchedProgress(showId: showId, hidden: hidden, specials: specials, countSpecials: countSpecials)).mapObject(BaseShow.self)
+    }
+
+    func fetchDetailsOf(update: Bool, episodeNumber: Int, on seasonNumber: Int, of showId: String, extended: Extended) -> Observable<Episode> {
+      return trakt.episodes.request(.summary(showId: showId, season: seasonNumber, episode: episodeNumber, extended: extended)).mapObject(Episode.self)
+    }
   }
 }
