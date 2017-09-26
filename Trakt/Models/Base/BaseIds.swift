@@ -54,6 +54,6 @@ public class BaseIds: ImmutableMappable, Hashable, CustomStringConvertible {
   }
 
   public var description: String {
-    return "trakt: \(trakt), tmdb: \(tmdb), imdb: \(imdb)"
+    return "trakt: \(trakt), tmdb: \(String(describing: tmdb)), imdb: \(String(describing: imdb))"
   }
 }

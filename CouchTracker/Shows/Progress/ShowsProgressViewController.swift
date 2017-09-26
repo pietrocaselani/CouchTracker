@@ -17,8 +17,6 @@ import RxSwift
 final class ShowsProgressViewController: UIViewController, ShowsProgressView {
   var presenter: ShowsProgressPresenter!
   private let disposeBag = DisposeBag()
-  private var shouldReloadViewModels = false
-  fileprivate var viewModels = [WatchedShowViewModel]()
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var infoLabel: UILabel!
 
@@ -27,26 +25,22 @@ final class ShowsProgressViewController: UIViewController, ShowsProgressView {
 
     presenter.viewDidLoad()
 
-    //TODO: Put view models to presenter
-
     let refreshItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: nil, action: nil)
     refreshItem.rx.tap.asDriver().drive(onNext: { [unowned self] in
-      self.viewModels.removeAll()
-      self.tableView.reloadData()
       self.presenter.updateShows()
+      self.tableView.reloadData()
     }).disposed(by: disposeBag)
 
     self.navigationItem.rightBarButtonItem = refreshItem
   }
 
-  func showNew(viewModel: WatchedShowViewModel) {
+  func newViewModelAvailable(at index: Int) {
     showList()
-    viewModels.append(viewModel)
-    tableView.insertRows(at: [IndexPath(row: viewModels.count - 1, section: 0)], with: .automatic)
+    tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
   }
 
   func updateFinished() {
-    if viewModels.isEmpty {
+    if presenter.viewModelsCount() == 0 {
       showInfoLabel()
     }
   }
@@ -68,7 +62,7 @@ final class ShowsProgressViewController: UIViewController, ShowsProgressView {
 
 extension ShowsProgressViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return viewModels.count
+    return presenter.viewModelsCount()
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,7 +71,7 @@ extension ShowsProgressViewController: UITableViewDataSource {
       fatalError("Can't dequeue cell with identifier \(identifier.identifier) on ShowsProgressViewController")
     }
 
-    let viewModel = viewModels[indexPath.row]
+    let viewModel = presenter.viewModel(for: indexPath.row)
 
     cell.textLabel?.text = viewModel.title
 

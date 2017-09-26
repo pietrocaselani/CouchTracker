@@ -17,6 +17,7 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
   private let interactor: ShowsProgressInteractor
   private let disposeBag = DisposeBag()
   private var entities = [WatchedShowEntity]()
+  private var viewModels = [WatchedShowViewModel]()
 
   init(view: ShowsProgressView, interactor: ShowsProgressInteractor) {
     self.view = view
@@ -31,16 +32,29 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
     fetchShows(update: true)
   }
 
+  func viewModelsCount() -> Int {
+    return viewModels.count
+  }
+
+  func viewModel(for index: Int) -> WatchedShowViewModel {
+    return viewModels[index]
+  }
+
   private func fetchShows(update: Bool) {
     interactor.fetchWatchedShowsProgress(update: update)
-      .do(onNext: { [unowned self] in self.entities.append($0) })
-      .map { [unowned self] in self.mapToViewModel($0) }
-      .observeOn(MainScheduler.instance)
-      .subscribe(onNext: { [unowned self] in
-        self.view?.showNew(viewModel: $0)
-        }, onError: {
-          print($0)
-      }, onCompleted: { [unowned self] in
+      .do(onNext: { [unowned self] in
+        self.entities.append($0)
+      }).map { [unowned self] entity in
+        self.mapToViewModel(entity)
+      }.observeOn(MainScheduler.instance)
+      .do(onNext: { [unowned self] viewModel in
+        self.viewModels.append(viewModel)
+      })
+      .subscribe(onNext: { [unowned self] _ in
+        self.view?.newViewModelAvailable(at: self.viewModelsCount() - 1 )
+      }, onError: { error in
+        print(error)
+      }, onCompleted: {
         self.view?.updateFinished()
       }).disposed(by: disposeBag)
   }

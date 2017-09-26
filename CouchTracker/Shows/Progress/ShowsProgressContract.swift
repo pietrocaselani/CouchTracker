@@ -34,11 +34,13 @@ protocol ShowsProgressPresenter: class {
 
   func viewDidLoad()
   func updateShows()
+  func viewModelsCount() -> Int
+  func viewModel(for index: Int) -> WatchedShowViewModel
 }
 
 protocol ShowsProgressView: class {
   var presenter: ShowsProgressPresenter! { get set }
 
-  func showNew(viewModel: WatchedShowViewModel)
+  func newViewModelAvailable(at index: Int)
   func updateFinished()
 }
