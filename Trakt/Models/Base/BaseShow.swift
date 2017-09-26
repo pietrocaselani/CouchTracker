@@ -39,11 +39,48 @@ public final class BaseShow: ImmutableMappable, Hashable {
   }
 
   public var hashValue: Int {
-    return 0
+    var hash = 11
+
+    if let showHash = show?.hashValue {
+      hash = hash ^ showHash
+    }
+
+    seasons?.forEach { hash = hash ^ $0.hashValue }
+
+    if let lastCollectedAtHash = lastCollectedAt?.hashValue {
+      hash = hash ^ lastCollectedAtHash
+    }
+
+    if let listedAtHash = listedAt?.hashValue {
+      hash = hash ^ listedAtHash
+    }
+
+    if let playsHash = plays?.hashValue {
+      hash = hash ^ playsHash
+    }
+
+    if let lastWatchedAtHash = lastWatchedAt?.hashValue {
+      hash = hash ^ lastWatchedAtHash
+    }
+
+    if let airedHash = aired?.hashValue {
+      hash = hash ^ airedHash
+    }
+
+    if let completedHash = completed?.hashValue {
+      hash = hash ^ completedHash
+    }
+
+    hiddenSeasons?.forEach { hash = hash ^ $0.hashValue }
+
+    if let nextEpisodeHash = nextEpisode?.hashValue {
+      hash = hash ^ nextEpisodeHash
+    }
+
+    return hash
   }
 
   public static func == (lhs: BaseShow, rhs: BaseShow) -> Bool {
-    return false
+    return lhs.hashValue == rhs.hashValue
   }
-
 }

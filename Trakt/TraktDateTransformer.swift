@@ -13,8 +13,6 @@ the license agreement.
 import ObjectMapper
 
 public struct TraktDateTransformer: TransformType {
-  public static var datesWrong = [String]()
-
   public typealias Object = Date
   public typealias JSON = String
 
@@ -33,7 +31,6 @@ public struct TraktDateTransformer: TransformType {
   public func transformFromJSON(_ value: Any?) -> Date? {
     if let stringDate = value as? String {
       let resultDate = dateFormatter.date(from: stringDate)
-      TraktDateTransformer.datesWrong.append(stringDate)
       return resultDate
     }
 
