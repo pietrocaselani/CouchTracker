@@ -536,6 +536,14 @@
 		64CC08AB1F71944B004D164A /* TraktLoginOutputProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08A81F719444004D164A /* TraktLoginOutputProvider.swift */; };
 		64CC08AD1F719B85004D164A /* CompositeLoginOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08AC1F719B85004D164A /* CompositeLoginOutput.swift */; };
 		64CC08B11F71A0D1004D164A /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08B01F71A0D1004D164A /* Environment.swift */; };
+		64CCE3361F7A9C6200CD2B9C /* RxMoyaProvider+RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CCE3351F7A9C6200CD2B9C /* RxMoyaProvider+RequestData.swift */; };
+		64CCE3371F7A9C6200CD2B9C /* RxMoyaProvider+RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CCE3351F7A9C6200CD2B9C /* RxMoyaProvider+RequestData.swift */; };
+		64CCE3381F7A9C6200CD2B9C /* RxMoyaProvider+RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CCE3351F7A9C6200CD2B9C /* RxMoyaProvider+RequestData.swift */; };
+		64CCE33A1F7AC0D300CD2B9C /* Observable+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CCE3391F7AC0D300CD2B9C /* Observable+Cache.swift */; };
+		64CCE33B1F7AC0D300CD2B9C /* Observable+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CCE3391F7AC0D300CD2B9C /* Observable+Cache.swift */; };
+		64CCE33C1F7AC0D300CD2B9C /* Observable+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CCE3391F7AC0D300CD2B9C /* Observable+Cache.swift */; };
+		64CCE33D1F7ACA8500CD2B9C /* TMDBSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A459E01F54AE19002C5CAC /* TMDBSwift.framework */; };
+		64CCE33E1F7ACAA600CD2B9C /* TMDBSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64A459E01F54AE19002C5CAC /* TMDBSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		64D29C311F55A936008E344E /* MovieDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C2F1F55A936008E344E /* MovieDetailsService.swift */; };
 		64D29C321F55A936008E344E /* MovieDetailsiOSPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C301F55A936008E344E /* MovieDetailsiOSPresenter.swift */; };
 		64D29C361F55A949008E344E /* TrendingCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C331F55A948008E344E /* TrendingCacheRepository.swift */; };
@@ -712,6 +720,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				64CCE33E1F7ACAA600CD2B9C /* TMDBSwift.framework in Embed Frameworks */,
 				6405C9FE1F549BE90039D6E6 /* TraktSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -996,6 +1005,8 @@
 		64CC08A81F719444004D164A /* TraktLoginOutputProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginOutputProvider.swift; sourceTree = "<group>"; };
 		64CC08AC1F719B85004D164A /* CompositeLoginOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeLoginOutput.swift; sourceTree = "<group>"; };
 		64CC08B01F71A0D1004D164A /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		64CCE3351F7A9C6200CD2B9C /* RxMoyaProvider+RequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxMoyaProvider+RequestData.swift"; sourceTree = "<group>"; };
+		64CCE3391F7AC0D300CD2B9C /* Observable+Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Cache.swift"; sourceTree = "<group>"; };
 		64D29C2F1F55A936008E344E /* MovieDetailsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsService.swift; sourceTree = "<group>"; };
 		64D29C301F55A936008E344E /* MovieDetailsiOSPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsiOSPresenter.swift; sourceTree = "<group>"; };
 		64D29C331F55A948008E344E /* TrendingCacheRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCacheRepository.swift; sourceTree = "<group>"; };
@@ -1071,6 +1082,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64CCE33D1F7ACA8500CD2B9C /* TMDBSwift.framework in Frameworks */,
 				6454D1811F704AC0008C4E5F /* WebKit.framework in Frameworks */,
 				F23089BF675566CBB1950BC8 /* Pods_CouchTracker.framework in Frameworks */,
 				258B0D6D4950307F743A995F /* Pods_CouchTracker.framework in Frameworks */,
@@ -1327,14 +1339,16 @@
 		6406BED61F4DC353004661C4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				645B83871F73FC04009DDF53 /* Date+Presentable.swift */,
+				6434CA861F7548D500EA3AD8 /* Int+StringConvertible.swift */,
 				64DF60551F61D3A200E1B0CC /* MovieIds+TMDBType.swift */,
+				64CCE3391F7AC0D300CD2B9C /* Observable+Cache.swift */,
+				64CCE3351F7A9C6200CD2B9C /* RxMoyaProvider+RequestData.swift */,
 				64DF605A1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift */,
 				64BE63331F4F6F63002E55EA /* String+Localizable.swift */,
 				64BE63201F4F6893002E55EA /* UIAlertController+Error.swift */,
 				6406BEDB1F4DC353004661C4 /* UIColor+CouchTracker.swift */,
 				64BE633B1F4F7ED7002E55EA /* UIViewController+BaseView.swift */,
-				645B83871F73FC04009DDF53 /* Date+Presentable.swift */,
-				6434CA861F7548D500EA3AD8 /* Int+StringConvertible.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2304,12 +2318,12 @@
 						CreatedOnToolsVersion = 9.0;
 						DevelopmentTeam = 3N8S6HR6EJ;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					647632381F44824900F277F1 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 3N8S6HR6EJ;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -2337,6 +2351,7 @@
 						CreatedOnToolsVersion = 9.0;
 						DevelopmentTeam = 3N8S6HR6EJ;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Manual;
 					};
 					64A459F91F54AE49002C5CAC = {
 						CreatedOnToolsVersion = 9.0;
@@ -3131,6 +3146,7 @@
 				64B61D941F67163A006442E1 /* TMDBShows+Hashable.swift in Sources */,
 				64CC088B1F717298004D164A /* AppFlowModule.swift in Sources */,
 				64D29C311F55A936008E344E /* MovieDetailsService.swift in Sources */,
+				64CCE33A1F7AC0D300CD2B9C /* Observable+Cache.swift in Sources */,
 				64CC08A51F71939C004D164A /* TraktLoginObservable.swift in Sources */,
 				64B03EF11F472A5C009E37C9 /* Data+JSON.swift in Sources */,
 				64A5DCD01F56E4B9006853A2 /* ImagesMock.swift in Sources */,
@@ -3158,6 +3174,7 @@
 				644EE1571F55E9460053D631 /* TrendingMovieEntity.swift in Sources */,
 				64BE63341F4F6F63002E55EA /* String+Localizable.swift in Sources */,
 				392D9A1DD54F1131A5D41137 /* TMDBProvider.swift in Sources */,
+				64CCE3361F7A9C6200CD2B9C /* RxMoyaProvider+RequestData.swift in Sources */,
 				392D98D1F350EE017D21155F /* TraktProvider.swift in Sources */,
 				392D979BD2F51500BE2E35E9 /* ConfigurationService+StringConvertible.swift in Sources */,
 				64CB309B1F6077B800FD6171 /* TrendingCellViewModel.swift in Sources */,
@@ -3276,6 +3293,7 @@
 				6405E4FA1F5DE7C900756E79 /* TrendingContract.swift in Sources */,
 				64D29C661F55AD8D008E344E /* Trakt+APIProvider.swift in Sources */,
 				64CC08A61F71939C004D164A /* TraktLoginObservable.swift in Sources */,
+				64CCE33B1F7AC0D300CD2B9C /* Observable+Cache.swift in Sources */,
 				644E905F1F72F3EA0089CD70 /* ShowsProgressService.swift in Sources */,
 				648390D11F504E7600911BA0 /* MovieDetailsInteractorTest.swift in Sources */,
 				392D9633B6766B4443D60643 /* RxAsserts.swift in Sources */,
@@ -3297,6 +3315,7 @@
 				392D9FF0AB84D5A5E1B1DB3D /* ImageEntity.swift in Sources */,
 				6454D1721F703D17008C4E5F /* TraktLoginMocks.swift in Sources */,
 				64A5DCCC1F56E3FC006853A2 /* MovieEntityMapper.swift in Sources */,
+				64CCE3371F7A9C6200CD2B9C /* RxMoyaProvider+RequestData.swift in Sources */,
 				64C384071F6C134F00FC9930 /* AppConfigurationsInteractorTest.swift in Sources */,
 				392D922B43E247106F2EF3D3 /* LoginState.swift in Sources */,
 			);
@@ -3554,6 +3573,7 @@
 				648390DB1F504E9100911BA0 /* TrendingInteractorTest.swift in Sources */,
 				64C2D0111F60A34600A064E2 /* TrendingCellContract.swift in Sources */,
 				648390E01F504EA500911BA0 /* MovieDetailsPresenterTest.swift in Sources */,
+				64CCE3381F7A9C6200CD2B9C /* RxMoyaProvider+RequestData.swift in Sources */,
 				64CC08AB1F71944B004D164A /* TraktLoginOutputProvider.swift in Sources */,
 				64A5DCD31F56E4B9006853A2 /* ImagesMock.swift in Sources */,
 				64D29C4F1F55AA22008E344E /* MovieDetailsiOSPresenter.swift in Sources */,
@@ -3590,6 +3610,7 @@
 				64CC08631F71616E004D164A /* ShowsManagerContract.swift in Sources */,
 				64A5DCC91F56E2DF006853A2 /* ImagesEntityMapper.swift in Sources */,
 				6434CA621F752E3F00EA3AD8 /* ShowsManagerPresenterTest.swift in Sources */,
+				64CCE33C1F7AC0D300CD2B9C /* Observable+Cache.swift in Sources */,
 				645EEEE51F61AEA10034EB66 /* ShowDetailsMocks.swift in Sources */,
 				64D29C4C1F55AA17008E344E /* SearchService.swift in Sources */,
 				64BE62FD1F4F5C20002E55EA /* RxAsserts.swift in Sources */,
@@ -3720,7 +3741,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 3N8S6HR6EJ;
@@ -3746,7 +3767,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.Trakt;
 				PRODUCT_NAME = TraktSwift;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -3773,10 +3794,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 3N8S6HR6EJ;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -3799,7 +3820,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.Trakt;
 				PRODUCT_NAME = TraktSwift;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_VERSION = 3.0;
@@ -3910,12 +3931,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 3N8S6HR6EJ;
 				INFOPLIST_FILE = CouchTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.ctapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "81107c8f-d4fd-41f2-b2dc-61dcaeb47701";
+				PROVISIONING_PROFILE_SPECIFIER = "ArcTouch Enterprise Dev";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -3927,12 +3951,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3N8S6HR6EJ;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CouchTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.ctapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -4109,6 +4135,8 @@
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 3N8S6HR6EJ;
@@ -4122,6 +4150,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.TMDB;
 				PRODUCT_NAME = TMDBSwift;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -4145,9 +4174,10 @@
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 3N8S6HR6EJ;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -4158,6 +4188,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.TMDB;
 				PRODUCT_NAME = TMDBSwift;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

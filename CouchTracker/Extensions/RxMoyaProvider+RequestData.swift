@@ -1,7 +1,7 @@
 /*
  Copyright 2017 ArcTouch LLC.
  All rights reserved.
-
+ 
  This file, its contents, concepts, methods, behavior, and operation
  (collectively the "Software") are protected by trade secret, patent,
  and copyright laws. The use of the Software is governed by a license
@@ -10,11 +10,15 @@
  the license agreement.
  */
 
-public enum WatchedType: String, Equatable {
-  case movies
-  case shows
+import Moya
+import RxSwift
 
-  public static func ==(lhs: WatchedType, rhs: WatchedType) -> Bool {
-    return lhs.rawValue == rhs.rawValue
+extension RxMoyaProvider {
+  func requestData(_ token: Target) -> Observable<NSData> {
+    return self.request(token).map { $0.data as NSData }
+  }
+
+  func requestDataSafety(_ token: Target) -> Observable<NSData> {
+    return self.request(token).filterSuccessfulStatusAndRedirectCodes().map { $0.data as NSData }
   }
 }

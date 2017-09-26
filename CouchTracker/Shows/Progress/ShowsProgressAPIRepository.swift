@@ -12,6 +12,7 @@
 
 import TraktSwift
 import RxSwift
+import Moya
 
 final class ShowsProgressAPIRepository: ShowsProgressRepository {
   private let trakt: TraktProvider
@@ -29,12 +30,13 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
     let target = Sync.watched(type: .shows, extended: extended)
     let cacheKey = target.hashValue
 
-    let api = trakt.sync.request(target)
-      .observeOn(scheduler)
-      .filterSuccessfulStatusAndRedirectCodes()
-      .map { $0.data as NSData }
+    let api = trakt.sync.requestDataSafety(target).observeOn(scheduler).cache(cache, key: cacheKey)
 
-    return fetchFromCacheOrAPI(api: api, cacheKey: cacheKey, force: update).mapArray(BaseShow.self)
+    guard update else {
+      return fetchFromCacheFirst(api: api, cacheKey: cacheKey).mapArray(BaseShow.self)
+    }
+
+    return api.mapArray(BaseShow.self)
   }
 
   func fetchShowProgress(update: Bool, showId: String, hidden: Bool,
@@ -42,12 +44,13 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
     let target = Shows.watchedProgress(showId: showId, hidden: hidden, specials: specials, countSpecials: countSpecials)
     let cacheKey = target.hashValue
 
-    let api = trakt.shows.request(target)
-      .observeOn(scheduler)
-      .filterSuccessfulStatusAndRedirectCodes()
-      .map { $0.data as NSData }
+    let api = trakt.shows.requestDataSafety(target).observeOn(scheduler).cache(cache, key: cacheKey)
 
-    return fetchFromCacheOrAPI(api: api, cacheKey: cacheKey, force: update).mapObject(BaseShow.self)
+    guard update else {
+      return fetchFromCacheFirst(api: api, cacheKey: cacheKey).mapObject(BaseShow.self)
+    }
+
+    return api.mapObject(BaseShow.self)
   }
 
   func fetchDetailsOf(update: Bool, episodeNumber: Int, on seasonNumber: Int,
@@ -55,23 +58,16 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
     let target = Episodes.summary(showId: showId, season: seasonNumber, episode: episodeNumber, extended: extended)
     let cacheKey = target.hashValue
 
-    let api = trakt.episodes.request(target)
-      .observeOn(scheduler)
-      .filterSuccessfulStatusAndRedirectCodes()
-      .map { $0.data as NSData }
+    let api = trakt.episodes.requestDataSafety(target).observeOn(scheduler).cache(cache, key: cacheKey)
 
-    return fetchFromCacheOrAPI(api: api, cacheKey: cacheKey, force: update).mapObject(Episode.self)
-  }
-
-  private func fetchFromCacheOrAPI(api: Observable<NSData>, cacheKey: Int, force update: Bool) -> Observable<NSData> {
-    let apiObservable = api.do(onNext: { [unowned self] data in
-      _ = self.cache.set(data, for: cacheKey)
-    })
-
-    if update {
-      return apiObservable
+    guard update else {
+      return fetchFromCacheFirst(api: api, cacheKey: cacheKey).mapObject(Episode.self)
     }
 
-    return cache.get(cacheKey).observeOn(scheduler).ifEmpty(switchTo: apiObservable).subscribeOn(scheduler)
+    return api.mapObject(Episode.self)
+  }
+
+  private func fetchFromCacheFirst(api: Observable<NSData>, cacheKey: Int) -> Observable<NSData> {
+    return cache.get(cacheKey).observeOn(scheduler).ifEmpty(switchTo: api).subscribeOn(scheduler)
   }
 }

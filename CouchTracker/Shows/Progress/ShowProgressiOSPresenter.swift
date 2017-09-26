@@ -52,11 +52,11 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
     let episodesRemaining = "episodes remaining".localized(String(entity.aired - entity.completed))
 
     return WatchedShowViewModel(title: entity.show.title ?? "TBA".localized,
-                                 nextEpisode: nextEpisodeTitle,
-                                 networkInfo: entity.show.network ?? "Unknown",
-                                 episodesRemaining: episodesRemaining,
-                                 status: status,
-                                 tmdbId: entity.show.ids.tmdb)
+                                nextEpisode: nextEpisodeTitle,
+                                networkInfo: entity.show.network ?? "Unknown",
+                                episodesRemaining: episodesRemaining,
+                                status: status,
+                                tmdbId: entity.show.ids.tmdb)
   }
 
   private func statusFor(entity: WatchedShowEntity) -> String {
