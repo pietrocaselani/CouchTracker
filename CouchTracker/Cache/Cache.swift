@@ -10,11 +10,12 @@
  the license agreement.
  */
 
-final class ShowsManageriOSModuleSetup: ShowsManagerModulesSetup {
-  var options: [ShowsManagerOption] {
-    let progress = ShowsManagerOption.progress
-    let now = ShowsManagerOption.now
+import RxSwift
 
-    return [progress, now]
-  }
+protocol Cache {
+  associatedtype Key: Hashable
+  associatedtype Value
+
+  func get(_ key: Key) -> Observable<Value>
+  func set(_ value: Value, for key: Key) -> Completable
 }

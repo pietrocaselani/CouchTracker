@@ -24,14 +24,22 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
   }
 
   func viewDidLoad() {
-    interactor.fetchWatchedShowsProgress()
+    fetchShows(update: false)
+  }
+
+  func updateShows() {
+    fetchShows(update: true)
+  }
+
+  private func fetchShows(update: Bool) {
+    interactor.fetchWatchedShowsProgress(update: update)
       .do(onNext: { [unowned self] in self.entities.append($0) })
       .map { [unowned self] in self.mapToViewModel($0) }
       .observeOn(MainScheduler.instance)
       .subscribe(onNext: { [unowned self] in
         self.view?.showNew(viewModel: $0)
-      }, onError: {
-        print($0)
+        }, onError: {
+          print($0)
       }, onCompleted: { [unowned self] in
         self.view?.updateFinished()
       }).disposed(by: disposeBag)
@@ -39,19 +47,27 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
 
   private func mapToViewModel(_ entity: WatchedShowEntity) -> WatchedShowViewModel {
     let nextEpisodeTitle = entity.nextEpisode.map { "\($0.season)x\($0.number) \($0.title)" }
-    let nextEpisodeDate = entity.nextEpisode?.firstAired?.shortString()
-    let showStatus = entity.show.status?.rawValue.localized
+    let status = statusFor(entity: entity)
 
-    let status = (nextEpisodeDate ?? showStatus) ?? "Unknown".localized
-
-    let x = String(entity.aired - entity.completed)
-    let episodesRemaining = "episodes remaining".localized(x)
+    let episodesRemaining = "episodes remaining".localized(String(entity.aired - entity.completed))
 
     return WatchedShowViewModel(title: entity.show.title ?? "TBA".localized,
-                                 nextEpisode: nextEpisodeTitle,
-                                 networkInfo: entity.show.network ?? "Unknown",
-                                 episodesRemaining: episodesRemaining,
-                                 status: status,
-                                 tmdbId: entity.show.ids.tmdb)
+                                nextEpisode: nextEpisodeTitle,
+                                networkInfo: entity.show.network ?? "Unknown",
+                                episodesRemaining: episodesRemaining,
+                                status: status,
+                                tmdbId: entity.show.ids.tmdb)
+  }
+
+  private func statusFor(entity: WatchedShowEntity) -> String {
+    if let nextEpisodeDate = entity.nextEpisode?.firstAired?.shortString() {
+      return nextEpisodeDate
+    }
+
+    if let showStatus = entity.show.status?.rawValue.localized {
+      return showStatus
+    }
+
+    return "Unknown".localized
   }
 }

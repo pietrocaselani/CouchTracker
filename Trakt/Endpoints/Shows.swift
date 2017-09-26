@@ -68,6 +68,8 @@ extension Shows: TraktType {
       return stubbedResponse("trakt_shows_trending")
     case .summary:
       return stubbedResponse("trakt_shows_summary")
+    case .watchedProgress:
+      return stubbedResponse("trakt_shows_watchedprogress")
     default:
       return Data()
     }

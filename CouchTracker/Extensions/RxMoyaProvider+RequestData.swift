@@ -10,11 +10,15 @@
  the license agreement.
  */
 
-final class ShowsManageriOSModuleSetup: ShowsManagerModulesSetup {
-  var options: [ShowsManagerOption] {
-    let progress = ShowsManagerOption.progress
-    let now = ShowsManagerOption.now
+import Moya
+import RxSwift
 
-    return [progress, now]
+extension RxMoyaProvider {
+  func requestData(_ token: Target) -> Observable<NSData> {
+    return self.request(token).map { $0.data as NSData }
+  }
+
+  func requestDataSafety(_ token: Target) -> Observable<NSData> {
+    return self.request(token).filterSuccessfulStatusAndRedirectCodes().map { $0.data as NSData }
   }
 }

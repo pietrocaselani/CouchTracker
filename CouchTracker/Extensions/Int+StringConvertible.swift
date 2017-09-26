@@ -10,11 +10,10 @@
  the license agreement.
  */
 
-final class ShowsManageriOSModuleSetup: ShowsManagerModulesSetup {
-  var options: [ShowsManagerOption] {
-    let progress = ShowsManagerOption.progress
-    let now = ShowsManagerOption.now
+import Carlos
 
-    return [progress, now]
+extension Int: StringConvertible {
+  public func toString() -> String {
+    return String(self)
   }
 }

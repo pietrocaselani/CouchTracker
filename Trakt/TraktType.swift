@@ -12,7 +12,7 @@ the license agreement.
 
 import Moya
 
-public protocol TraktType: TargetType {}
+public protocol TraktType: TargetType, Hashable {}
 
 public extension TraktType {
 
@@ -26,6 +26,22 @@ public extension TraktType {
 
   public var sampleData: Data {
     return "".utf8Encoded
+  }
+
+  public var hashValue: Int {
+    let typeName = String(reflecting: self)
+
+    var hash = typeName.hashValue ^ path.hashValue ^ method.hashValue
+
+    parameters?.forEach { (key, _) in
+      hash ^= key.hashValue
+    }
+
+    return hash
+  }
+
+  public static func == (lhs: Self, rhs: Self) -> Bool {
+    return lhs.hashValue == rhs.hashValue
   }
 }
 
