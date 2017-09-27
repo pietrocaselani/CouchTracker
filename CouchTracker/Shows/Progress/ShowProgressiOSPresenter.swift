@@ -29,6 +29,7 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
   }
 
   func updateShows() {
+    viewModels.removeAll()
     fetchShows(update: true)
   }
 
