@@ -47,6 +47,36 @@ final class ShowsProgressMocks {
     return WatchedShowEntity(show: show, aired: 65, completed: 60, nextEpisode: nextEpisode)
   }
 
+  static func mockWatchedShowEntityWithoutNextEpisode() -> WatchedShowEntity {
+    let dateTransformer = TraktDateTransformer.dateTimeTransformer
+
+    let ids = ShowIds(trakt: 46263, tmdb: 46533, imdb: "tt2149175", slug: "the-americans-2013", tvdb: 261690, tvrage: 30449)
+    let show = ShowEntity(ids: ids,
+                          title: "The Americans 2",
+                          overview: "The Americans is a period drama about the complex marriage of two KGB spies posing as Americans.",
+                          network: "FX (US)",
+                          genres: nil,
+                          status: Status.returning,
+                          firstAired: dateTransformer.transformFromJSON("2013-01-30T00:00:00.000Z"))
+    return WatchedShowEntity(show: show, aired: 65, completed: 65, nextEpisode: nil)
+  }
+
+  static func mockWatchedShowEntityWithoutNextEpisodeDate() -> WatchedShowEntity {
+    let dateTransformer = TraktDateTransformer.dateTimeTransformer
+
+    let ids = ShowIds(trakt: 46263, tmdb: 46533, imdb: "tt2149175", slug: "the-americans-2013", tvdb: 261690, tvrage: 30449)
+    let show = ShowEntity(ids: ids,
+                          title: "The Americans",
+                          overview: "The Americans is a period drama about...",
+                          network: "FX (US)",
+                          genres: nil,
+                          status: Status.returning,
+                          firstAired: dateTransformer.transformFromJSON("2013-01-30T00:00:00.000Z"))
+    let episodeIds = EpisodeIds(trakt: 73640, tmdb: 63056, imdb: "tt1480055", tvdb: 3254641, tvrage: 1065008299)
+    let nextEpisode = EpisodeEntity(ids: episodeIds, title: "Winter Is Coming", number: 1, season: 1, firstAired: nil)
+    return WatchedShowEntity(show: show, aired: 65, completed: 60, nextEpisode: nextEpisode)
+  }
+
   final class ShowsProgressRepositoryMock: ShowsProgressRepository {
     private let trakt: TraktProvider
 
@@ -64,6 +94,47 @@ final class ShowsProgressMocks {
 
     func fetchDetailsOf(update: Bool, episodeNumber: Int, on seasonNumber: Int, of showId: String, extended: Extended) -> Observable<Episode> {
       return trakt.episodes.request(.summary(showId: showId, season: seasonNumber, episode: episodeNumber, extended: extended)).mapObject(Episode.self)
+    }
+  }
+
+  final class ShowsProgressViewMock: ShowsProgressView {
+    var presenter: ShowsProgressPresenter!
+    var updateFinishedInvoked = false
+    var showEmptyViewInvoked = false
+    var newViewModelAvailableInvoked = false
+    var newViewModelAvailableParameters = [Int]()
+
+    func newViewModelAvailable(at index: Int) {
+      newViewModelAvailableInvoked = true
+      newViewModelAvailableParameters.append(index)
+    }
+
+    func updateFinished() {
+      updateFinishedInvoked = true
+    }
+
+    func showEmptyView() {
+      showEmptyViewInvoked = true
+    }
+  }
+
+  final class EmptyShowsProgressInteractorMock: ShowsProgressInteractor {
+    init(repository: ShowsProgressRepository) {}
+
+    func fetchWatchedShowsProgress(update: Bool) -> Observable<WatchedShowEntity> {
+      return Observable.empty()
+    }
+  }
+
+  final class ShowsProgressInteractorMock: ShowsProgressInteractor {
+    init(repository: ShowsProgressRepository) {}
+
+    func fetchWatchedShowsProgress(update: Bool) -> Observable<WatchedShowEntity> {
+      let entity1 = ShowsProgressMocks.mockWatchedShowEntity()
+      let entity2 = ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode()
+      let entity3 = ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisodeDate()
+
+      return Observable.from([entity1, entity2, entity3])
     }
   }
 }
