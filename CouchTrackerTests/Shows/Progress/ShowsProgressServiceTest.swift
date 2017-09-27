@@ -34,18 +34,7 @@ final class ShowsProgressServiceTest: XCTestCase {
     _ = interactor.fetchWatchedShowsProgress(update: false).subscribe(observer)
 
     //Then
-    let ids = ShowIds(trakt: 46263, tmdb: 46533, imdb: "tt2149175", slug: "the-americans-2013", tvdb: 261690, tvrage: 30449)
-    let show = ShowEntity(ids: ids,
-                          title: "The Americans",
-                          overview: "The Americans is a period drama about the complex marriage of two KGB spies posing as Americans in suburban Washington D.C. shortly after Ronald Reagan is elected President. The arranged marriage of Philip and Elizabeth Jennings, who have two children - 13-year-old Paige and 10-year-old Henry, who know nothing about their parents' true identity - grows more passionate and genuine by the day, but is constantly tested by the escalation of the Cold War and the intimate, dangerous and darkly funny relationships they must maintain with a network of spies and informants under their control.",
-                          network: "FX (US)",
-                          genres: nil,
-                          status: Status.returning,
-                          firstAired: TraktDateTransformer.dateTimeTransformer.transformFromJSON("2013-01-30T00:00:00.000Z"))
-    let episodeIds = EpisodeIds(trakt: 73640, tmdb: 63056, imdb: "tt1480055", tvdb: 3254641, tvrage: 1065008299)
-    let nextEpisode = EpisodeEntity(ids: episodeIds, title: "Winter Is Coming", number: 1, season: 1, firstAired: TraktDateTransformer.dateTimeTransformer.transformFromJSON("2011-04-18T01:00:00.000Z"))
-    let entity = WatchedShowEntity(show: show, aired: 65, completed: 60, nextEpisode: nextEpisode)
-
+    let entity = ShowsProgressMocks.mockWatchedShowEntity()
     let expectedEvents = [next(0, entity), completed(0)]
 
     XCTAssertEqual(observer.events, expectedEvents)
