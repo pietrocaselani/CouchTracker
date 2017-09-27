@@ -10,9 +10,23 @@
  the license agreement.
  */
 
-struct WatchedShowEntity {
+struct WatchedShowEntity: Hashable {
   let show: ShowEntity
   let aired: Int
   let completed: Int
   let nextEpisode: EpisodeEntity?
+
+  var hashValue: Int {
+    var hash = show.hashValue ^ aired.hashValue ^ completed.hashValue
+
+    if let nextEpisodeHash = nextEpisode?.hashValue {
+      hash ^= nextEpisodeHash
+    }
+
+    return hash
+  }
+
+  static func == (lhs: WatchedShowEntity, rhs: WatchedShowEntity) -> Bool {
+    return lhs.hashValue == rhs.hashValue
+  }
 }

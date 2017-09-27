@@ -16,6 +16,13 @@ public final class ShowIds: BaseIds {
   public let slug: String
   public let tvdb: Int
   public let tvrage: Int?
+
+  public init(trakt: Int, tmdb: Int?, imdb: String?, slug: String, tvdb: Int, tvrage: Int?) {
+    self.slug = slug
+    self.tvdb = tvdb
+    self.tvrage = tvrage
+    super.init(trakt: trakt, tmdb: tmdb, imdb: imdb)
+  }
   
   public required init(map: Map) throws {
     self.slug = try map.value("slug")
@@ -36,5 +43,9 @@ public final class ShowIds: BaseIds {
       hash = hash ^ tvrageHash
     }
     return hash
+  }
+
+  public override var description: String {
+    return "\(super.description), slug: \(slug), tvdb: \(tvdb), tvrage: \(tvrage)"
   }
 }
