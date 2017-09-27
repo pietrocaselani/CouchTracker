@@ -40,9 +40,11 @@ final class ShowsProgressViewController: UIViewController, ShowsProgressView {
   }
 
   func updateFinished() {
-    if presenter.viewModelsCount() == 0 {
-      showInfoLabel()
-    }
+    showList()
+  }
+
+  func showEmptyView() {
+    showInfoLabel()
   }
 
   private func showList() {

@@ -43,4 +43,5 @@ protocol ShowsProgressView: class {
 
   func newViewModelAvailable(at index: Int)
   func updateFinished()
+  func showEmptyView()
 }

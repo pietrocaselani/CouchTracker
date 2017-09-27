@@ -55,8 +55,14 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
         self.view?.newViewModelAvailable(at: self.viewModelsCount() - 1 )
       }, onError: { error in
         print(error)
-      }, onCompleted: {
-        self.view?.updateFinished()
+      }, onCompleted: { [unowned self] in
+        guard let view = self.view else { return }
+
+        view.updateFinished()
+
+        if self.viewModelsCount() == 0 {
+          view.showEmptyView()
+        }
       }).disposed(by: disposeBag)
   }
 
