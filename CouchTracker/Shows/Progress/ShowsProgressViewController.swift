@@ -13,6 +13,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import ActionSheetPicker_3_0
 
 final class ShowsProgressViewController: UIViewController, ShowsProgressView {
   var presenter: ShowsProgressPresenter!
@@ -23,6 +24,16 @@ final class ShowsProgressViewController: UIViewController, ShowsProgressView {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    guard presenter != nil else {
+      fatalError("view loaded without a presenter")
+    }
+
+    guard let dataSource = presenter.dataSource as? UITableViewDataSource else {
+      fatalError("dataSource should be an instance of UITableViewDataSource")
+    }
+
+    tableView.dataSource = dataSource
+
     presenter.viewDidLoad()
 
     let refreshItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: nil, action: nil)
@@ -31,7 +42,17 @@ final class ShowsProgressViewController: UIViewController, ShowsProgressView {
       self.tableView.reloadData()
     }).disposed(by: disposeBag)
 
-    self.navigationItem.rightBarButtonItem = refreshItem
+    let filterItem = UIBarButtonItem(image: R.image.filter(), style: .plain, target: nil, action: nil)
+    filterItem.rx.tap.asDriver().drive(onNext: { [unowned self] in
+      self.presenter.handleFilter()
+    }).disposed(by: disposeBag)
+
+    let directionItem = UIBarButtonItem(image: R.image.direction(), style: .plain, target: nil, action: nil)
+    directionItem.rx.tap.asDriver().drive(onNext: { [unowned self] in
+      self.presenter.handleDirection()
+    }).disposed(by: disposeBag)
+
+    self.navigationItem.rightBarButtonItems = [filterItem, directionItem, refreshItem]
   }
 
   func newViewModelAvailable(at index: Int) {
@@ -47,6 +68,25 @@ final class ShowsProgressViewController: UIViewController, ShowsProgressView {
     showInfoLabel()
   }
 
+  func reloadList() {
+    tableView.reloadData()
+  }
+
+  func showOptions(for sorting: [String], for filtering: [String], currentSort: Int, currentFilter: Int) {
+    let title = "Sort & Filter"
+    let rows = [sorting, filtering]
+    let initial = [currentSort, currentFilter]
+
+    let picker = ActionSheetMultipleStringPicker(title: title, rows: rows, initialSelection: initial, doneBlock: { [unowned self] (_, indexes, _) in
+      let sortIndex = (indexes?[0] as? Int) ?? 0
+      let filterIndex = (indexes?[1] as? Int) ?? 0
+      self.presenter.changeSort(to: sortIndex, filter: filterIndex)
+      }, cancel: { _ in
+    }, origin: self.view)
+
+    picker?.show()
+  }
+
   private func showList() {
     if !tableView.isHidden {
       infoLabel.isHidden = true
@@ -59,30 +99,5 @@ final class ShowsProgressViewController: UIViewController, ShowsProgressView {
       infoLabel.isHidden = false
       tableView.isHidden = true
     }
-  }
-}
-
-extension ShowsProgressViewController: UITableViewDataSource {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return presenter.viewModelsCount()
-  }
-
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let identifier = R.reuseIdentifier.showProgressCell
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) else {
-      fatalError("Can't dequeue cell with identifier \(identifier.identifier) on ShowsProgressViewController")
-    }
-
-    let viewModel = presenter.viewModel(for: indexPath.row)
-
-    cell.textLabel?.text = viewModel.title
-
-    if let nextEpisode = viewModel.nextEpisode {
-      cell.detailTextLabel?.text = "\(viewModel.episodesRemaining) - \(nextEpisode)"
-    } else {
-      cell.detailTextLabel?.text = "\(viewModel.episodesRemaining) - \(viewModel.status)"
-    }
-
-    return cell
   }
 }
