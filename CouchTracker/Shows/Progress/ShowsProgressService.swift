@@ -30,9 +30,9 @@ final class ShowsProgressService: ShowsProgressInteractor {
   }
 
   private func fetchProgressForShow(update: Bool, _ builder: WatchedShowBuilder) -> Observable<WatchedShowBuilder> {
-    guard let showId = builder.baseShow?.show?.ids.slug else { return Observable.empty() }
+    guard let showId = builder.baseShow?.show?.ids.trakt else { return Observable.empty() }
 
-    let observable = repository.fetchShowProgress(update: update, showId: showId,
+    let observable = repository.fetchShowProgress(update: update, showId: String(showId),
                                                   hidden: false, specials: false, countSpecials: false)
 
     return observable.map {
@@ -64,10 +64,13 @@ final class ShowsProgressService: ShowsProgressInteractor {
     let aired = showProgress.detailShow?.aired ?? 0
     let completed = showProgress.detailShow?.completed ?? 0
 
+    let lastWatched = showProgress.detailShow?.lastWatchedAt
+
     let entity = WatchedShowEntity(show: showEntity,
                                    aired: aired,
                                    completed: completed,
-                                   nextEpisode: episodeEntity)
+                                   nextEpisode: episodeEntity,
+                                   lastWatched: lastWatched)
     return Observable.just(entity)
   }
 }

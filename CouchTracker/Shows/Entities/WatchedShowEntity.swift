@@ -10,17 +10,24 @@
  the license agreement.
  */
 
+import Foundation
+
 struct WatchedShowEntity: Hashable {
   let show: ShowEntity
   let aired: Int
   let completed: Int
   let nextEpisode: EpisodeEntity?
+  let lastWatched: Date?
 
   var hashValue: Int {
     var hash = show.hashValue ^ aired.hashValue ^ completed.hashValue
 
     if let nextEpisodeHash = nextEpisode?.hashValue {
       hash ^= nextEpisodeHash
+    }
+
+    if let lastWatchedHash = lastWatched?.hashValue {
+      hash ^= lastWatchedHash
     }
 
     return hash

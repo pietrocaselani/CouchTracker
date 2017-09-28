@@ -10,6 +10,7 @@ def ios_pods
   pod 'Carlos', '0.9.1'
   pod 'Kingfisher', '3.12.1'
   pod 'RxCocoa', '3.6.1'
+  pod 'ActionSheetPicker-3.0', '2.2.0'
 end
 
 def tests_shared_pods

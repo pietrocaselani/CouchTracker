@@ -27,13 +27,18 @@ final class ShowsProgressModule {
     }
 
     let trakt = Environment.instance.trakt
+    let tmdb = Environment.instance.tmdb
 
     let carlosCache = CarlosCache(basicCache: MemoryCacheLevel<Int, NSData>().compose(DiskCacheLevel()))
     let cache = AnyCache(carlosCache)
 
+    let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
+    let imageRepository = ImageCachedRepository(tmdbProvider: tmdb, cofigurationRepository: configurationRepository)
+
+    let dataSource = ShowsProgressTableViewDataSource(imageRepository: imageRepository)
     let repository = ShowsProgressAPIRepository(trakt: trakt, cache: cache)
     let interactor = ShowsProgressService(repository: repository)
-    let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor)
+    let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor, dataSource: dataSource)
 
     view.presenter = presenter
 

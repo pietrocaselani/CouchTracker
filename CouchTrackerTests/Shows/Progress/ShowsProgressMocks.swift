@@ -44,7 +44,7 @@ final class ShowsProgressMocks {
                           firstAired: dateTransformer.transformFromJSON("2013-01-30T00:00:00.000Z"))
     let episodeIds = EpisodeIds(trakt: 73640, tmdb: 63056, imdb: "tt1480055", tvdb: 3254641, tvrage: 1065008299)
     let nextEpisode = EpisodeEntity(ids: episodeIds, title: "Winter Is Coming", number: 1, season: 1, firstAired: dateTransformer.transformFromJSON("2011-04-18T01:00:00.000Z"))
-    return WatchedShowEntity(show: show, aired: 65, completed: 60, nextEpisode: nextEpisode)
+    return WatchedShowEntity(show: show, aired: 65, completed: 60, nextEpisode: nextEpisode, lastWatched: dateTransformer.transformFromJSON("2017-09-21T12:28:21.000Z"))
   }
 
   static func mockWatchedShowEntityWithoutNextEpisode() -> WatchedShowEntity {
@@ -58,7 +58,7 @@ final class ShowsProgressMocks {
                           genres: nil,
                           status: Status.returning,
                           firstAired: dateTransformer.transformFromJSON("2013-01-30T00:00:00.000Z"))
-    return WatchedShowEntity(show: show, aired: 65, completed: 65, nextEpisode: nil)
+    return WatchedShowEntity(show: show, aired: 65, completed: 65, nextEpisode: nil, lastWatched: dateTransformer.transformFromJSON("2017-09-21T12:28:21.000Z"))
   }
 
   static func mockWatchedShowEntityWithoutNextEpisodeDate() -> WatchedShowEntity {
@@ -74,7 +74,7 @@ final class ShowsProgressMocks {
                           firstAired: dateTransformer.transformFromJSON("2013-01-30T00:00:00.000Z"))
     let episodeIds = EpisodeIds(trakt: 73640, tmdb: 63056, imdb: "tt1480055", tvdb: 3254641, tvrage: 1065008299)
     let nextEpisode = EpisodeEntity(ids: episodeIds, title: "Winter Is Coming", number: 1, season: 1, firstAired: nil)
-    return WatchedShowEntity(show: show, aired: 65, completed: 60, nextEpisode: nextEpisode)
+    return WatchedShowEntity(show: show, aired: 65, completed: 60, nextEpisode: nextEpisode, lastWatched: dateTransformer.transformFromJSON("2017-09-21T12:28:21.000Z"))
   }
 
   final class ShowsProgressRepositoryMock: ShowsProgressRepository {
@@ -103,6 +103,9 @@ final class ShowsProgressMocks {
     var showEmptyViewInvoked = false
     var newViewModelAvailableInvoked = false
     var newViewModelAvailableParameters = [Int]()
+    var reloadListInvoked = false
+    var showOptionsInvoked = false
+    var showOptionsParameters: (sorting: [String], filtering: [String], currentSort: Int, currentFilter: Int)?
 
     func newViewModelAvailable(at index: Int) {
       newViewModelAvailableInvoked = true
@@ -115,6 +118,15 @@ final class ShowsProgressMocks {
 
     func showEmptyView() {
       showEmptyViewInvoked = true
+    }
+
+    func reloadList() {
+      reloadListInvoked = true
+    }
+
+    func showOptions(for sorting: [String], for filtering: [String], currentSort: Int, currentFilter: Int) {
+      showOptionsInvoked = true
+      showOptionsParameters = (sorting, filtering, currentSort, currentFilter)
     }
   }
 
@@ -135,6 +147,33 @@ final class ShowsProgressMocks {
       let entity3 = ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisodeDate()
 
       return Observable.from([entity1, entity2, entity3])
+    }
+  }
+
+  final class ShowProgressDataSourceMock: ShowsProgressDataSource {
+    var addInvoked = false
+    var addParameters = [WatchedShowViewModel]()
+    var updateInvoked = false
+    var setInvoked = false
+    var setParameters = [WatchedShowViewModel]()
+
+    func add(viewModel: WatchedShowViewModel) {
+      addInvoked = true
+      addParameters.append(viewModel)
+    }
+
+    func viewModelCount() -> Int {
+      return addParameters.count
+    }
+
+    func update() {
+      addParameters.removeAll()
+      updateInvoked = true
+    }
+
+    func set(viewModels: [WatchedShowViewModel]) {
+      setInvoked = true
+      setParameters = viewModels
     }
   }
 }
