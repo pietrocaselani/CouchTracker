@@ -26,6 +26,10 @@ struct WatchedShowEntity: Hashable {
       hash ^= nextEpisodeHash
     }
 
+    if let lastWatchedHash = lastWatched?.hashValue {
+      hash ^= lastWatchedHash
+    }
+
     return hash
   }
 

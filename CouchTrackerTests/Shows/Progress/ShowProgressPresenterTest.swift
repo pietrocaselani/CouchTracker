@@ -15,11 +15,12 @@ import XCTest
 final class ShowsProgressPresenterTest: XCTestCase {
   private let view = ShowsProgressMocks.ShowsProgressViewMock()
   private let repository = ShowsProgressMocks.ShowsProgressRepositoryMock(trakt: traktProviderMock, cache: AnyCache(CacheMock()))
+  private let dataSource = ShowsProgressMocks.ShowProgressDataSourceMock()
 
   func testShowsProgressPresenter_receivesEmptyData_notifyView() {
     //Given
     let interactor = ShowsProgressMocks.EmptyShowsProgressInteractorMock(repository: repository)
-    let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor)
+    let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor, dataSource: dataSource)
 
     //When
     presenter.viewDidLoad()
@@ -27,13 +28,13 @@ final class ShowsProgressPresenterTest: XCTestCase {
     //Then
     XCTAssertTrue(view.showEmptyViewInvoked)
     XCTAssertTrue(view.updateFinishedInvoked)
-    XCTAssertEqual(presenter.viewModelsCount(), 0)
+    XCTAssertEqual(dataSource.viewModelCount(), 0)
   }
 
   func testShowsProgressPresenter_receivesData_notifyView() {
     //Given
     let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository)
-    let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor)
+    let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor, dataSource: dataSource)
 
     //When
     presenter.viewDidLoad()
@@ -42,13 +43,13 @@ final class ShowsProgressPresenterTest: XCTestCase {
     XCTAssertTrue(view.newViewModelAvailableInvoked)
     XCTAssertEqual(view.newViewModelAvailableParameters, [0, 1, 2])
     XCTAssertTrue(view.updateFinishedInvoked)
-    XCTAssertEqual(presenter.viewModelsCount(), 3)
+    XCTAssertEqual(dataSource.viewModelCount(), 3)
   }
 
   func testShowsProgressPresenter_forceUpdate_reloadView() {
     //Given
     let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository)
-    let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor)
+    let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor, dataSource: dataSource)
     presenter.viewDidLoad()
 
     //When
@@ -58,6 +59,6 @@ final class ShowsProgressPresenterTest: XCTestCase {
     XCTAssertTrue(view.newViewModelAvailableInvoked)
     XCTAssertEqual(view.newViewModelAvailableParameters, [0, 1, 2, 0, 1, 2])
     XCTAssertTrue(view.updateFinishedInvoked)
-    XCTAssertEqual(presenter.viewModelsCount(), 3)
+    XCTAssertEqual(dataSource.viewModelCount(), 3)
   }
 }
