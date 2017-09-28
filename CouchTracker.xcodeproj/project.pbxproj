@@ -94,6 +94,13 @@
 		6406BF031F4DC41F004661C4 /* MovieDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6406BF001F4DC41F004661C4 /* MovieDetails.storyboard */; };
 		6406BF041F4DC41F004661C4 /* MovieDetailsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BF011F4DC41F004661C4 /* MovieDetailsModule.swift */; };
 		6406BF051F4DC41F004661C4 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BF021F4DC41F004661C4 /* MovieDetailsViewController.swift */; };
+		6418AAFC1F7C1D1600D4D83C /* ShowsProgressTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418AAFB1F7C1D1600D4D83C /* ShowsProgressTableViewDataSource.swift */; };
+		641B9D201F7D3DC900C26D10 /* ShowProgressSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D1F1F7D3DC900C26D10 /* ShowProgressSort.swift */; };
+		641B9D221F7D3DE600C26D10 /* ShowProgressFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D211F7D3DE600C26D10 /* ShowProgressFilter.swift */; };
+		641B9D231F7D412B00C26D10 /* ShowProgressSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D1F1F7D3DC900C26D10 /* ShowProgressSort.swift */; };
+		641B9D241F7D412B00C26D10 /* ShowProgressSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D1F1F7D3DC900C26D10 /* ShowProgressSort.swift */; };
+		641B9D251F7D413000C26D10 /* ShowProgressFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D211F7D3DE600C26D10 /* ShowProgressFilter.swift */; };
+		641B9D261F7D413100C26D10 /* ShowProgressFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D211F7D3DE600C26D10 /* ShowProgressFilter.swift */; };
 		6421C0791F66F7E70043FB82 /* ShowDetailsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6421C0781F66F7E70043FB82 /* ShowDetailsModule.swift */; };
 		6423EA8C1F56007300F3899C /* TMDBMovies+StringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6423EA8B1F56007300F3899C /* TMDBMovies+StringConvertible.swift */; };
 		6423EA901F5600A900F3899C /* TMDBMovies+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6423EA8F1F5600A900F3899C /* TMDBMovies+Hashable.swift */; };
@@ -313,6 +320,18 @@
 		645EEEE51F61AEA10034EB66 /* ShowDetailsMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645EEEE31F61AEA10034EB66 /* ShowDetailsMocks.swift */; };
 		6467FC2A1F66D00D000D1AEE /* ShowDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6467FC291F66D00D000D1AEE /* ShowDetailsViewController.swift */; };
 		6467FC2D1F66D038000D1AEE /* ShowDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6467FC2C1F66D038000D1AEE /* ShowDetails.storyboard */; };
+		646896311F7BFECB00F95649 /* ShowProgressPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896301F7BFECB00F95649 /* ShowProgressPresenterTest.swift */; };
+		646896321F7BFECB00F95649 /* ShowProgressPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896301F7BFECB00F95649 /* ShowProgressPresenterTest.swift */; };
+		646896341F7C11EE00F95649 /* ShowProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896331F7C11EE00F95649 /* ShowProgressCell.swift */; };
+		646896371F7C123D00F95649 /* ShowProgressCellContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896361F7C123D00F95649 /* ShowProgressCellContract.swift */; };
+		646896391F7C12A400F95649 /* ShowProgressCelliOSPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896381F7C12A400F95649 /* ShowProgressCelliOSPresenter.swift */; };
+		6468963A1F7C12A400F95649 /* ShowProgressCelliOSPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896381F7C12A400F95649 /* ShowProgressCelliOSPresenter.swift */; };
+		6468963B1F7C12A400F95649 /* ShowProgressCelliOSPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896381F7C12A400F95649 /* ShowProgressCelliOSPresenter.swift */; };
+		6468963C1F7C12D400F95649 /* ShowProgressCellContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896361F7C123D00F95649 /* ShowProgressCellContract.swift */; };
+		6468963D1F7C12D400F95649 /* ShowProgressCellContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896361F7C123D00F95649 /* ShowProgressCellContract.swift */; };
+		6468963F1F7C132C00F95649 /* ShowProgressCellService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6468963E1F7C132C00F95649 /* ShowProgressCellService.swift */; };
+		646896401F7C132C00F95649 /* ShowProgressCellService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6468963E1F7C132C00F95649 /* ShowProgressCellService.swift */; };
+		646896411F7C132C00F95649 /* ShowProgressCellService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6468963E1F7C132C00F95649 /* ShowProgressCellService.swift */; };
 		646C938B1F59E4920032772F /* Shows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646C938A1F59E4920032772F /* Shows.swift */; };
 		646C938C1F59E4920032772F /* Shows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646C938A1F59E4920032772F /* Shows.swift */; };
 		646C938D1F59E4920032772F /* Shows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646C938A1F59E4920032772F /* Shows.swift */; };
@@ -806,6 +825,9 @@
 		6406BF001F4DC41F004661C4 /* MovieDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MovieDetails.storyboard; sourceTree = "<group>"; };
 		6406BF011F4DC41F004661C4 /* MovieDetailsModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsModule.swift; sourceTree = "<group>"; };
 		6406BF021F4DC41F004661C4 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
+		6418AAFB1F7C1D1600D4D83C /* ShowsProgressTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressTableViewDataSource.swift; sourceTree = "<group>"; };
+		641B9D1F1F7D3DC900C26D10 /* ShowProgressSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressSort.swift; sourceTree = "<group>"; };
+		641B9D211F7D3DE600C26D10 /* ShowProgressFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressFilter.swift; sourceTree = "<group>"; };
 		6421C0781F66F7E70043FB82 /* ShowDetailsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsModule.swift; sourceTree = "<group>"; };
 		6423EA8B1F56007300F3899C /* TMDBMovies+StringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TMDBMovies+StringConvertible.swift"; sourceTree = "<group>"; };
 		6423EA8F1F5600A900F3899C /* TMDBMovies+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TMDBMovies+Hashable.swift"; sourceTree = "<group>"; };
@@ -901,6 +923,11 @@
 		645EEEE31F61AEA10034EB66 /* ShowDetailsMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsMocks.swift; sourceTree = "<group>"; };
 		6467FC291F66D00D000D1AEE /* ShowDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsViewController.swift; sourceTree = "<group>"; };
 		6467FC2C1F66D038000D1AEE /* ShowDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowDetails.storyboard; sourceTree = "<group>"; };
+		646896301F7BFECB00F95649 /* ShowProgressPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressPresenterTest.swift; sourceTree = "<group>"; };
+		646896331F7C11EE00F95649 /* ShowProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCell.swift; sourceTree = "<group>"; };
+		646896361F7C123D00F95649 /* ShowProgressCellContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellContract.swift; sourceTree = "<group>"; };
+		646896381F7C12A400F95649 /* ShowProgressCelliOSPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCelliOSPresenter.swift; sourceTree = "<group>"; };
+		6468963E1F7C132C00F95649 /* ShowProgressCellService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellService.swift; sourceTree = "<group>"; };
 		646C938A1F59E4920032772F /* Shows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shows.swift; sourceTree = "<group>"; };
 		646C938E1F59E4DA0032772F /* Period.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		6474F1271F705C91006DA798 /* AuthenticationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResult.swift; sourceTree = "<group>"; };
@@ -1427,6 +1454,7 @@
 				6434CA6A1F75347D00EA3AD8 /* ShowsProgressAPIRepositoryTest.swift */,
 				6434CA8F1F757AE900EA3AD8 /* ShowsProgressMocks.swift */,
 				64CCE33F1F7AD2A300CD2B9C /* ShowsProgressServiceTest.swift */,
+				646896301F7BFECB00F95649 /* ShowProgressPresenterTest.swift */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -1611,6 +1639,17 @@
 				645B835E1F73EA1D009DDF53 /* SyncStats.swift */,
 			);
 			path = Sync;
+			sourceTree = "<group>";
+		};
+		646896351F7C11F400F95649 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				646896331F7C11EE00F95649 /* ShowProgressCell.swift */,
+				646896361F7C123D00F95649 /* ShowProgressCellContract.swift */,
+				646896381F7C12A400F95649 /* ShowProgressCelliOSPresenter.swift */,
+				6468963E1F7C132C00F95649 /* ShowProgressCellService.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		647632301F44824900F277F1 = {
@@ -1965,12 +2004,16 @@
 		64CB90B21F7290C90026B139 /* Progress */ = {
 			isa = PBXGroup;
 			children = (
+				646896351F7C11F400F95649 /* Cell */,
+				641B9D211F7D3DE600C26D10 /* ShowProgressFilter.swift */,
 				645B83831F73F18E009DDF53 /* ShowProgressiOSPresenter.swift */,
+				641B9D1F1F7D3DC900C26D10 /* ShowProgressSort.swift */,
 				64CB90B31F7291400026B139 /* ShowsProgress.storyboard */,
+				645B83501F73E8A0009DDF53 /* ShowsProgressAPIRepository.swift */,
 				644E90451F72E18E0089CD70 /* ShowsProgressContract.swift */,
 				64CB90BF1F72944D0026B139 /* ShowsProgressModule.swift */,
-				645B83501F73E8A0009DDF53 /* ShowsProgressAPIRepository.swift */,
 				644E905D1F72F3EA0089CD70 /* ShowsProgressService.swift */,
+				6418AAFB1F7C1D1600D4D83C /* ShowsProgressTableViewDataSource.swift */,
 				64CB90B51F7291650026B139 /* ShowsProgressViewController.swift */,
 			);
 			path = Progress;
@@ -2787,6 +2830,7 @@
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper-iOS/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/Carlos/Carlos.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/PiedPiper/PiedPiper.framework",
@@ -2801,6 +2845,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Carlos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PiedPiper.framework",
@@ -3129,7 +3174,9 @@
 				64D29C361F55A949008E344E /* TrendingCacheRepository.swift in Sources */,
 				64CC088D1F717330004D164A /* ShowsManagerModule.swift in Sources */,
 				640330431F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */,
+				641B9D221F7D3DE600C26D10 /* ShowProgressFilter.swift in Sources */,
 				644FCDDF1F5ED41F00346605 /* ShowViewModelMapper.swift in Sources */,
+				6468963F1F7C132C00F95649 /* ShowProgressCellService.swift in Sources */,
 				64CC08991F718BE2004D164A /* TraktLoginState.swift in Sources */,
 				648391231F507F9500911BA0 /* SearchBarView.swift in Sources */,
 				64CC08611F71616E004D164A /* ShowsManagerContract.swift in Sources */,
@@ -3160,6 +3207,7 @@
 				645B834D1F73E2A8009DDF53 /* EpisodeEntityMapper.swift in Sources */,
 				6406BF041F4DC41F004661C4 /* MovieDetailsModule.swift in Sources */,
 				64D491561F6FE4DF00EA0C80 /* AppConfigurationsViewController.swift in Sources */,
+				646896371F7C123D00F95649 /* ShowProgressCellContract.swift in Sources */,
 				64A5DCCB1F56E3FC006853A2 /* MovieEntityMapper.swift in Sources */,
 				64A5DCD51F56E57B006853A2 /* JSONParsers.swift in Sources */,
 				6406BEE51F4DC353004661C4 /* TraktMovies+StringConvertible.swift in Sources */,
@@ -3167,6 +3215,8 @@
 				6454D16C1F703B4D008C4E5F /* TraktLoginiOSPresenter.swift in Sources */,
 				6423EA901F5600A900F3899C /* TMDBMovies+Hashable.swift in Sources */,
 				644BF50F1F6B07B00010CE35 /* AppConfigurationOptions.swift in Sources */,
+				6418AAFC1F7C1D1600D4D83C /* ShowsProgressTableViewDataSource.swift in Sources */,
+				641B9D201F7D3DC900C26D10 /* ShowProgressSort.swift in Sources */,
 				6405E4F51F5DE7B800756E79 /* TrendingCell.swift in Sources */,
 				644E90401F72986B0089CD70 /* ShowsNowModule.swift in Sources */,
 				645B83881F73FC04009DDF53 /* Date+Presentable.swift in Sources */,
@@ -3182,9 +3232,11 @@
 				64A5DCD01F56E4B9006853A2 /* ImagesMock.swift in Sources */,
 				64B1CC711F4F559F002A9FFD /* Trakt+APIProvider.swift in Sources */,
 				645B83511F73E8A0009DDF53 /* ShowsProgressAPIRepository.swift in Sources */,
+				646896341F7C11EE00F95649 /* ShowProgressCell.swift in Sources */,
 				6421C0791F66F7E70043FB82 /* ShowDetailsModule.swift in Sources */,
 				64DF605B1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift in Sources */,
 				6476323D1F44824900F277F1 /* AppDelegate.swift in Sources */,
+				646896391F7C12A400F95649 /* ShowProgressCelliOSPresenter.swift in Sources */,
 				644EE13F1F55D5F00053D631 /* ConfigurationCachedRepository.swift in Sources */,
 				64CC08AD1F719B85004D164A /* CompositeLoginOutput.swift in Sources */,
 				64B1CC741F4F55A9002A9FFD /* GenreRepository.swift in Sources */,
@@ -3280,18 +3332,21 @@
 				64C2D0141F60A34F00A064E2 /* TrendingCellService.swift in Sources */,
 				640330441F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */,
 				645EEEE41F61AEA10034EB66 /* ShowDetailsMocks.swift in Sources */,
+				646896311F7BFECB00F95649 /* ShowProgressPresenterTest.swift in Sources */,
 				6434CA7C1F75429200EA3AD8 /* Cache.swift in Sources */,
 				645B83521F73E8A0009DDF53 /* ShowsProgressAPIRepository.swift in Sources */,
 				64CC085D1F714F33004D164A /* TraktTokenPolicyDeciderTest.swift in Sources */,
 				6434CA6B1F75347D00EA3AD8 /* ShowsProgressAPIRepositoryTest.swift in Sources */,
 				644BF5251F6B07E20010CE35 /* AppConfigurationsUserDefaultsRepository.swift in Sources */,
 				644EE1431F55DEB50053D631 /* TMDB+APIProvider.swift in Sources */,
+				6468963C1F7C12D400F95649 /* ShowProgressCellContract.swift in Sources */,
 				6442F9F71F617648008E3E12 /* TrendingCellMocks.swift in Sources */,
 				642F6F561F5D74F10012F04F /* ShowEntityMapper.swift in Sources */,
 				6434CA5E1F752BD200EA3AD8 /* ShowsManagerMocks.swift in Sources */,
 				644EE1471F55DF9F0053D631 /* ConfigurationRepositoryMock.swift in Sources */,
 				6434CA921F757C5B00EA3AD8 /* Data+JSON.swift in Sources */,
 				6454D1871F705222008C4E5F /* TraktTokenPolicyDecider.swift in Sources */,
+				641B9D231F7D412B00C26D10 /* ShowProgressSort.swift in Sources */,
 				6406BEED1F4DC372004661C4 /* GenreRepositoryMock.swift in Sources */,
 				64BE63301F4F6F3F002E55EA /* Localizable.swift in Sources */,
 				64C2D0101F60A34500A064E2 /* TrendingCellContract.swift in Sources */,
@@ -3306,6 +3361,7 @@
 				644BF5021F6AFF5E0010CE35 /* SearchState.swift in Sources */,
 				64303EB81F6726970050C287 /* ImagesViewModel.swift in Sources */,
 				64EC3A661F66B3B30046A186 /* ShowDetailsiOSPresenter.swift in Sources */,
+				641B9D251F7D413000C26D10 /* ShowProgressFilter.swift in Sources */,
 				642624391F56E15A00560660 /* MovieImageRepositoryMock.swift in Sources */,
 				644E905B1F72EF7E0089CD70 /* WatchedShowViewModel.swift in Sources */,
 				644EE14B1F55E0340053D631 /* TMDBProviderMock.swift in Sources */,
@@ -3327,7 +3383,9 @@
 				6405E4FA1F5DE7C900756E79 /* TrendingContract.swift in Sources */,
 				64D29C661F55AD8D008E344E /* Trakt+APIProvider.swift in Sources */,
 				64CC08A61F71939C004D164A /* TraktLoginObservable.swift in Sources */,
+				6468963A1F7C12A400F95649 /* ShowProgressCelliOSPresenter.swift in Sources */,
 				64CCE33B1F7AC0D300CD2B9C /* Observable+Cache.swift in Sources */,
+				646896401F7C132C00F95649 /* ShowProgressCellService.swift in Sources */,
 				644E905F1F72F3EA0089CD70 /* ShowsProgressService.swift in Sources */,
 				648390D11F504E7600911BA0 /* MovieDetailsInteractorTest.swift in Sources */,
 				392D9633B6766B4443D60643 /* RxAsserts.swift in Sources */,
@@ -3564,6 +3622,7 @@
 				644E904C1F72E5C40089CD70 /* WatchedShowEntity.swift in Sources */,
 				64EC3A681F66B3B30046A186 /* ShowDetailsiOSPresenter.swift in Sources */,
 				64C384121F6C137A00FC9930 /* AppConfigurationsUserDefaultsRepositoryTest.swift in Sources */,
+				6468963D1F7C12D400F95649 /* ShowProgressCellContract.swift in Sources */,
 				644E90601F72F3EA0089CD70 /* ShowsProgressService.swift in Sources */,
 				644EE14C1F55E0340053D631 /* TMDBProviderMock.swift in Sources */,
 				6454D1891F705222008C4E5F /* TraktTokenPolicyDecider.swift in Sources */,
@@ -3580,6 +3639,7 @@
 				644FCDE21F5ED41F00346605 /* ShowViewModelMapper.swift in Sources */,
 				640330461F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */,
 				644BF52E1F6B07E30010CE35 /* AppConfigurationsViewModel.swift in Sources */,
+				646896321F7BFECB00F95649 /* ShowProgressPresenterTest.swift in Sources */,
 				64C384111F6C137A00FC9930 /* AppConfigurationsPresenterTest.swift in Sources */,
 				64F05BF91F69527E00E3B861 /* ImagesSize.swift in Sources */,
 				64C2D0131F60A34C00A064E2 /* TrendingCelliOSPresenter.swift in Sources */,
@@ -3592,6 +3652,7 @@
 				64EC3A631F66B2AB0046A186 /* ShowDetailsPresenterTest.swift in Sources */,
 				648390DF1F504EA500911BA0 /* MovieDetailsMocks.swift in Sources */,
 				64D29C461F55A9FD008E344E /* TrendingiOSPresenter.swift in Sources */,
+				641B9D241F7D412B00C26D10 /* ShowProgressSort.swift in Sources */,
 				648391211F50606100911BA0 /* SearchPresenterTest.swift in Sources */,
 				6434CA671F752ED400EA3AD8 /* TraktLoginObservableMock.swift in Sources */,
 				648390E11F504EA500911BA0 /* SearchInteractorTest.swift in Sources */,
@@ -3612,8 +3673,10 @@
 				64CC08AB1F71944B004D164A /* TraktLoginOutputProvider.swift in Sources */,
 				64A5DCD31F56E4B9006853A2 /* ImagesMock.swift in Sources */,
 				64D29C4F1F55AA22008E344E /* MovieDetailsiOSPresenter.swift in Sources */,
+				646896411F7C132C00F95649 /* ShowProgressCellService.swift in Sources */,
 				64BE63041F4F5C5F002E55EA /* MovieDetailsContract.swift in Sources */,
 				64303EBA1F6726970050C287 /* ImagesViewModel.swift in Sources */,
+				641B9D261F7D413100C26D10 /* ShowProgressFilter.swift in Sources */,
 				64BE63051F4F5C5F002E55EA /* MovieDetailsError.swift in Sources */,
 				644EE15A1F55E9460053D631 /* TrendingMovieEntity.swift in Sources */,
 				6454D1731F703D17008C4E5F /* TraktLoginMocks.swift in Sources */,
@@ -3660,6 +3723,7 @@
 				392D95562220D505394FD0FF /* TrendingOutputTest.swift in Sources */,
 				645B834F1F73E2A8009DDF53 /* EpisodeEntityMapper.swift in Sources */,
 				645EEEE21F61ADE30034EB66 /* ShowDetailsService.swift in Sources */,
+				6468963B1F7C12A400F95649 /* ShowProgressCelliOSPresenter.swift in Sources */,
 				645B83861F73F18E009DDF53 /* ShowProgressiOSPresenter.swift in Sources */,
 				64C384101F6C137A00FC9930 /* AppConfigurationsMocks.swift in Sources */,
 				6423EA931F56091400F3899C /* ImagesEntity.swift in Sources */,

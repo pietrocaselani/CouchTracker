@@ -30,12 +30,14 @@ protocol ShowsProgressInteractor: class {
 }
 
 protocol ShowsProgressPresenter: class {
-  init(view: ShowsProgressView, interactor: ShowsProgressInteractor)
+  var dataSource: ShowsProgressDataSource { get }
+  init(view: ShowsProgressView, interactor: ShowsProgressInteractor, dataSource: ShowsProgressDataSource)
 
   func viewDidLoad()
   func updateShows()
-  func viewModelsCount() -> Int
-  func viewModel(for index: Int) -> WatchedShowViewModel
+  func handleFilter()
+  func handleDirection()
+  func changeSort(to index: Int, filter: Int)
 }
 
 protocol ShowsProgressView: class {
@@ -44,4 +46,13 @@ protocol ShowsProgressView: class {
   func newViewModelAvailable(at index: Int)
   func updateFinished()
   func showEmptyView()
+  func reloadList()
+  func showOptions(for sorting: [String], for filtering: [String], currentSort: Int, currentFilter: Int)
+}
+
+protocol ShowsProgressDataSource: class {
+  func add(viewModel: WatchedShowViewModel)
+  func viewModelCount() -> Int
+  func update()
+  func set(viewModels: [WatchedShowViewModel])
 }
