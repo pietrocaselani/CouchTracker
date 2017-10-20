@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  CouchTracker
+
+  Created by Pietro Caselani on 8/24/17.
+  Copyright © 2017 ArcTouch LLC. All rights reserved.
+*/
+"TBA"="TBA";
+"Unknown"="Desconhecido";
+"Error"="Erro";
+"Type a movie name"="Digite o nome de um filme";
+"Movies"="Filmes";
+"Shows"="Séries";
+"No movies to show right now"="Desculpe!\nNenhum filme neste momento";
+"ended"="Finalizada";
+"returning series"="Em exibição";
+"canceled"="Finalizada";
+"in production"="Começando logo";
+"planned"="Em desenvolvimento";
+"Settings"="Configurações";
+"short date format"="dd de MMM";
+"episodes remaining"="%@ remaining";

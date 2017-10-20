@@ -1,0 +1,5 @@
+included:
+  - CouchTracker
+excluded:
+  - Pods
+  - R.generated.swift
