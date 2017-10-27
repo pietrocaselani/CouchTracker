@@ -1,13 +1,5 @@
-//
-//  AppDelegate.swift
-//  CouchTracker
-//
-//  Created by Pietro Caselani on 8/16/17.
-//  Copyright © 2017 ArcTouch LLC. All rights reserved.
-//
-
 import UIKit
-import TraktSwift
+import Trakt
 import TMDBSwift
 import Carlos
 

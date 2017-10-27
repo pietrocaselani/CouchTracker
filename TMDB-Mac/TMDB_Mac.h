@@ -1,11 +1,3 @@
-//
-//  TMDB_Mac.h
-//  TMDB-Mac
-//
-//  Created by Pietro Caselani on 8/28/17.
-//  Copyright © 2017 ArcTouch LLC. All rights reserved.
-//
-
 #import <Cocoa/Cocoa.h>
 
 //! Project version number for TMDB_Mac.

@@ -1,6 +1,6 @@
 import RxSwift
 import Foundation
-import TraktSwift
+import Trakt
 
 final class MovieDetailsiOSPresenter: MovieDetailsPresenter {
   private let disposeBag = DisposeBag()

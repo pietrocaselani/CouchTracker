@@ -1,4 +1,4 @@
-import TraktSwift
+import Trakt
 import RxSwift
 
 final class ShowsProgressMocks {
