@@ -1,5 +1,5 @@
 import RxSwift
-import TraktSwift
+import Trakt
 import Moya
 
 final class AppConfigurationsService: AppConfigurationsInteractor {

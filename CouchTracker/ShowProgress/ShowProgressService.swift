@@ -1,5 +1,5 @@
 import RxSwift
-import TraktSwift
+import Trakt
 
 final class ShowProgressService: ShowProgressInteractor {
   private let repository: ShowProgressRepository

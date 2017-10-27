@@ -1,6 +1,6 @@
 import UIKit
 import Carlos
-import TraktSwift
+import Trakt
 
 final class ShowsProgressModule {
   private init() {}

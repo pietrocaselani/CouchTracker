@@ -1,11 +1,3 @@
-//
-//  TMDB.h
-//  TMDB
-//
-//  Created by Pietro Caselani on 8/28/17.
-//  Copyright © 2017 ArcTouch LLC. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 
 //! Project version number for TMDB.

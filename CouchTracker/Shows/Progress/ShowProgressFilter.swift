@@ -1,4 +1,4 @@
-import TraktSwift
+import Trakt
 
 enum ShowProgressFilter: String {
   case none

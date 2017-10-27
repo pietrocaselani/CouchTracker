@@ -1,7 +1,7 @@
 import UIKit
 import WebKit
 import RxSwift
-import TraktSwift
+import Trakt
 
 final class TraktLoginViewController: UIViewController, TraktLoginView {
   fileprivate let disposeBag = DisposeBag()
