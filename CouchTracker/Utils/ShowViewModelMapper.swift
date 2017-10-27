@@ -1,4 +1,4 @@
-import TraktSwift
+import Trakt
 
 final class ShowViewModelMapper {
   private init() {}

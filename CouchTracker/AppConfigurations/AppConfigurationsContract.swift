@@ -1,5 +1,5 @@
 import Foundation
-import TraktSwift
+import Trakt
 import RxSwift
 
 protocol AppConfigurationsRepository: class {

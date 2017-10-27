@@ -1,4 +1,4 @@
-import TraktSwift
+import Trakt
 import TMDBSwift
 import TVDBSwift
 import Carlos

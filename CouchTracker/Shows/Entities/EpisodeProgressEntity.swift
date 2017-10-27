@@ -1,4 +1,4 @@
-import TraktSwift
+import Trakt
 import Foundation
 
 struct EpisodeEntity: Hashable {
