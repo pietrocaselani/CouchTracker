@@ -1,5 +1,5 @@
 import XCTest
-import TraktSwift
+import Trakt
 
 final class AppConfigurationsPresenterTest: XCTestCase {
   private let cache = CacheMock()

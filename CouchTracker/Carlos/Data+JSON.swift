@@ -1,11 +1,3 @@
-//
-//  Data+JSON.swift
-//  CouchTracker
-//
-//  Created by Pietro Caselani on 8/18/17.
-//  Copyright © 2017 ArcTouch LLC. All rights reserved.
-//
-
 import Foundation
 import RxSwift
 import ObjectMapper

@@ -1,11 +1,3 @@
-//
-//  TVDB_Mac.h
-//  TVDB-Mac
-//
-//  Created by Pietro Caselani on 9/29/17.
-//  Copyright © 2017 ArcTouch LLC. All rights reserved.
-//
-
 #import <Cocoa/Cocoa.h>
 
 //! Project version number for TVDB_Mac.
