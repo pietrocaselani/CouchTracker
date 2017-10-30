@@ -1,6 +1,4 @@
 import UIKit
-import Trakt
-import TMDBSwift
 import Carlos
 
 @UIApplicationMain
