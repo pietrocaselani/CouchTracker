@@ -558,6 +558,13 @@
 			remoteGlobalIDString = 64E129821F7E83BD00E5A378;
 			remoteInfo = TVDB;
 		};
+		64B801A31FA78BFC004A6EEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 647632311F44824900F277F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64E1298F1F7E83E800E5A378;
+			remoteInfo = "TVDB-Mac";
+		};
 		64E129A21F7E840700E5A378 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 647632311F44824900F277F1 /* Project object */;
@@ -1814,6 +1821,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				64B801A41FA78BFC004A6EEE /* PBXTargetDependency */,
 				644F517F1F858D7F00DE80E0 /* PBXTargetDependency */,
 			);
 			name = CouchTrackerFastTests;
@@ -2066,7 +2074,7 @@
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper-iOS/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/TMDB-iOS/TMDBSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Trakt-iOS/Trakt.framework",
+				"${BUILT_PRODUCTS_DIR}/Trakt-iOS/TraktSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -2078,7 +2086,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TMDBSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Trakt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TraktSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2100,7 +2108,7 @@
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper-macOS/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-macOS/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/TMDB-macOS/TMDBSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Trakt-macOS/Trakt.framework",
+				"${BUILT_PRODUCTS_DIR}/Trakt-macOS/TraktSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -2112,7 +2120,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TMDBSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Trakt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TraktSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2206,7 +2214,7 @@
 				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/TMDB-iOS/TMDBSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Trakt-iOS/Trakt.framework",
+				"${BUILT_PRODUCTS_DIR}/Trakt-iOS/TraktSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/Carlos/Carlos.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -2223,7 +2231,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TMDBSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Trakt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TraktSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Carlos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -2404,7 +2412,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxSwift-macOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxTest-macOS/RxTest.framework",
 				"${BUILT_PRODUCTS_DIR}/TMDB-macOS/TMDBSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Trakt-macOS/Trakt.framework",
+				"${BUILT_PRODUCTS_DIR}/Trakt-macOS/TraktSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -2416,7 +2424,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TMDBSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Trakt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TraktSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2985,6 +2993,11 @@
 			isa = PBXTargetDependency;
 			target = 64E129821F7E83BD00E5A378 /* TVDB */;
 			targetProxy = 644F518F1F858ED300DE80E0 /* PBXContainerItemProxy */;
+		};
+		64B801A41FA78BFC004A6EEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64E1298F1F7E83E800E5A378 /* TVDB-Mac */;
+			targetProxy = 64B801A31FA78BFC004A6EEE /* PBXContainerItemProxy */;
 		};
 		64E129A31F7E840700E5A378 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

@@ -1,5 +1,5 @@
 import RxSwift
-import Trakt
+import TraktSwift
 
 protocol ShowDetailsRepository: class {
   init(traktProvider: TraktProvider)

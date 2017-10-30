@@ -1,5 +1,5 @@
 import RxSwift
-import Trakt
+import TraktSwift
 
 final class TraktTokenPolicyDecider: TraktLoginPolicyDecider {
   private let trakt: TraktProvider

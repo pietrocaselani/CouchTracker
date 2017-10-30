@@ -1,5 +1,5 @@
 import XCTest
-import Trakt
+import TraktSwift
 
 final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
   private let userDefaultsMock = UserDefaults(suiteName: "TestUserDefaults")!

@@ -1,6 +1,6 @@
 import Foundation
 import RxSwift
-import Trakt
+import TraktSwift
 
 let trendingRepositoryMock = TrendingRepositoryMock(traktProvider: traktProviderMock)
 

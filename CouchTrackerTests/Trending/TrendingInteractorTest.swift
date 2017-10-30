@@ -1,7 +1,7 @@
 import XCTest
 import RxSwift
 import RxTest
-import Trakt
+import TraktSwift
 
 final class TrendingInteractorTest: XCTestCase {
 

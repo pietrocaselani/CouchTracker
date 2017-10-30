@@ -1,4 +1,4 @@
-import Trakt
+import TraktSwift
 
 extension MovieIds {
   func tmdbModelType() -> TrendingViewModelType? {

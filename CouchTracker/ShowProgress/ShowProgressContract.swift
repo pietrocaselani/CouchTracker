@@ -1,5 +1,5 @@
 import RxSwift
-import Trakt
+import TraktSwift
 
 protocol ShowProgressRepository: class {
   func fetchShowProgress(update: Bool, showId: String, hidden: Bool,

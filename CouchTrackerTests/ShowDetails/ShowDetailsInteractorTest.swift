@@ -2,7 +2,7 @@ import XCTest
 import RxTest
 import RxSwift
 import ObjectMapper
-import Trakt
+import TraktSwift
 
 final class ShowDetailsInteractorTest: XCTestCase {
   private let scheduler = TestScheduler(initialClock: 0)

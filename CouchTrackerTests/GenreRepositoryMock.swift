@@ -1,5 +1,5 @@
 import RxSwift
-import Trakt
+import TraktSwift
 
 func createMoviesGenresMock() -> [Genre] {
   let jsonArray = JSONParser.toArray(data: Genres.list(.movies).sampleData)

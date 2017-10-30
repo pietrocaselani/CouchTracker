@@ -1,5 +1,5 @@
 import RxSwift
-import Trakt
+import TraktSwift
 
 let showDetailsRepositoryMock = ShowDetailsRepositoryMock(traktProvider: traktProviderMock)
 

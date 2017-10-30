@@ -1,5 +1,5 @@
 import XCTest
-import Trakt
+import TraktSwift
 
 final class SearchPresenterTest: XCTestCase {
   let output = SearchResultOutputMock()

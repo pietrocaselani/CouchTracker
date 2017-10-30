@@ -1,5 +1,5 @@
 import Foundation
-import Trakt
+import TraktSwift
 
 extension Date {
   func parse(using formatter: DateFormatter = TraktDateTransformer.dateTransformer.dateFormatter) -> String {

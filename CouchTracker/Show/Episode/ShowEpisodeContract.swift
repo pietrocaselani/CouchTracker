@@ -1,5 +1,5 @@
 import RxSwift
-import Trakt
+import TraktSwift
 
 protocol ShowEpisodeRepository: class {
   func addToHistory(items: SyncItems) -> Single<SyncResponse>

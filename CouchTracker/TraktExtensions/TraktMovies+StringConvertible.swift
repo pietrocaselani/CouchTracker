@@ -1,5 +1,5 @@
 import Carlos
-import Trakt
+import TraktSwift
 
 extension Movies: StringConvertible {
   public func toString() -> String {

@@ -1,6 +1,6 @@
 import RxSwift
 import Moya
-import Trakt
+import TraktSwift
 import TMDBSwift
 
 final class TrendingService: TrendingInteractor {

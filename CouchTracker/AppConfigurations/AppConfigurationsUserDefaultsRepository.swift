@@ -1,5 +1,5 @@
 import Foundation
-import Trakt
+import TraktSwift
 import RxSwift
 import Moya_ObjectMapper
 import ObjectMapper

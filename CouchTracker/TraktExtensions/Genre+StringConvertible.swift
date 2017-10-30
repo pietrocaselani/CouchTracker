@@ -1,5 +1,5 @@
 import Carlos
-import Trakt
+import TraktSwift
 
 extension Genres: StringConvertible {
   public func toString() -> String {

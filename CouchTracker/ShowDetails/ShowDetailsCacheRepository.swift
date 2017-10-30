@@ -2,7 +2,7 @@ import RxSwift
 import Carlos
 import Moya
 import Moya_ObjectMapper
-import Trakt
+import TraktSwift
 
 final class ShowDetailsCacheRepository: ShowDetailsRepository {
   private let cache: BasicCache<Shows, Show>
