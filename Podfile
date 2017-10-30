@@ -4,6 +4,7 @@ def common_pods
   pod 'Moya-ObjectMapper/RxSwift', '2.3.2'
   pod 'Trakt', :path => '../Trakt-Swift'
   pod 'TMDB', :path => '../TMDB-Swift'
+  pod 'TVDB', :path => '../TVDB-Swift'
 end
 
 def ios_pods
@@ -36,27 +37,6 @@ target 'CouchTracker' do
   ios_pods
 
   target 'CouchTrackerTests' do
-    inherit! :search_paths
-    tests_shared_pods
-  end
-end
-
-target 'TVDB' do
-  platform :ios, '9.0'
-  use_frameworks!
-  inhibit_all_warnings!
-
-  common_pods
-end
-
-target 'TVDB-Mac' do
-  platform :osx, '10.11'
-  use_frameworks!
-  inhibit_all_warnings!
-
-  common_pods
-
-  target 'TVDB_MacTests' do
     inherit! :search_paths
     tests_shared_pods
   end
