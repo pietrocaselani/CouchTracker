@@ -54,16 +54,6 @@
                ReferencedContainer = "container:CouchTracker.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "64E1299B1F7E840700E5A378"
-               BuildableName = "TVDB_MacTests.xctest"
-               BlueprintName = "TVDB_MacTests"
-               ReferencedContainer = "container:CouchTracker.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
@@ -106,6 +96,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "64B1CCCD1F4F597D002A9FFD"
+            BuildableName = "CouchTrackerFastTests.xctest"
+            BlueprintName = "CouchTrackerFastTests"
+            ReferencedContainer = "container:CouchTracker.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
