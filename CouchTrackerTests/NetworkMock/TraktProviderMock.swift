@@ -1,5 +1,5 @@
 import Moya
-import Trakt
+import TraktSwift
 import RxSwift
 
 let traktProviderMock = TraktProviderMock()

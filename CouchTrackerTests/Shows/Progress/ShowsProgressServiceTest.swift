@@ -1,7 +1,7 @@
 import XCTest
 import RxSwift
 import RxTest
-import Trakt
+import TraktSwift
 
 final class ShowsProgressServiceTest: XCTestCase {
   private let repository = ShowsProgressMocks.ShowsProgressRepositoryMock(trakt: traktProviderMock, cache: AnyCache(CacheMock()))

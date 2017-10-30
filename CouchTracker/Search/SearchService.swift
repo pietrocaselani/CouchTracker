@@ -1,5 +1,5 @@
 import RxSwift
-import Trakt
+import TraktSwift
 
 final class SearchService: SearchInteractor {
   private let repository: SearchRepository

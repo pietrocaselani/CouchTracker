@@ -1,5 +1,5 @@
 import RxSwift
-import Trakt
+import TraktSwift
 
 protocol ShowsProgressRepository: class {
   init(trakt: TraktProvider, cache: AnyCache<Int, NSData>)

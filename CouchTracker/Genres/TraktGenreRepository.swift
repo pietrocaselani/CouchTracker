@@ -1,7 +1,7 @@
 import Carlos
 import Moya
 import RxSwift
-import Trakt
+import TraktSwift
 
 final class TraktGenreRepository: GenreRepository {
 

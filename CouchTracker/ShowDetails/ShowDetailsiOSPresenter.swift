@@ -1,5 +1,5 @@
 import RxSwift
-import Trakt
+import TraktSwift
 
 final class ShowDetailsiOSPresenter: ShowDetailsPresenter {
   private weak var view: ShowDetailsView!

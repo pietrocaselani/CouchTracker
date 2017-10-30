@@ -1,5 +1,5 @@
 import RxSwift
-import Trakt
+import TraktSwift
 
 final class TrendingiOSPresenter: TrendingPresenter, AppConfigurationsPresentable {
   private static let limitPerPage = 25

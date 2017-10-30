@@ -1,4 +1,4 @@
-import Trakt
+import TraktSwift
 
 enum LoginState: Equatable {
   case logged(user: User)

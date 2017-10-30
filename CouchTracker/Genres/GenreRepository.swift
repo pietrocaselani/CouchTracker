@@ -1,5 +1,5 @@
 import RxSwift
-import Trakt
+import TraktSwift
 
 protocol GenreRepository {
   func fetchMoviesGenres() -> Observable<[Genre]>

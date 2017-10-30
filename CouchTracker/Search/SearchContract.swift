@@ -1,5 +1,5 @@
 import RxSwift
-import Trakt
+import TraktSwift
 
 protocol SearchView: BaseView {
   var presenter: SearchPresenter! { get set }

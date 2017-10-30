@@ -1,6 +1,6 @@
 import Moya
 import RxSwift
-import Trakt
+import TraktSwift
 
 protocol TraktProvider: class {
   var movies: RxMoyaProvider<Movies> { get }

@@ -1,4 +1,4 @@
-import Trakt
+import TraktSwift
 import Carlos
 
 extension Shows: StringConvertible {

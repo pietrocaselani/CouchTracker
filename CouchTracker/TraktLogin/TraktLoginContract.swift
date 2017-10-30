@@ -1,6 +1,6 @@
 import RxSwift
 import Foundation
-import Trakt
+import TraktSwift
 
 protocol TraktLoginInteractor: class {
   init?(traktProvider: TraktProvider)

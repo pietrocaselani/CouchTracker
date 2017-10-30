@@ -1,5 +1,5 @@
 import RxSwift
-import Trakt
+import TraktSwift
 
 final class SearchiOSPresenter: SearchPresenter {
   private weak var view: SearchView?

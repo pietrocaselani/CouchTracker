@@ -1,5 +1,5 @@
 import RxSwift
-import Trakt
+import TraktSwift
 
 final class MovieDetailsService: MovieDetailsInteractor {
 

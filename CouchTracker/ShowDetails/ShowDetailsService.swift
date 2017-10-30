@@ -1,5 +1,5 @@
 import RxSwift
-import Trakt
+import TraktSwift
 
 final class ShowDetailsService: ShowDetailsInteractor {
   private let showIds: ShowIds

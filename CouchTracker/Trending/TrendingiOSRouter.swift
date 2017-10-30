@@ -1,5 +1,5 @@
 import UIKit
-import Trakt
+import TraktSwift
 import RxSwift
 
 final class TrendingiOSRouter: TrendingRouter, AppConfigurationsPresentable {

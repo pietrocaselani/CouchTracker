@@ -1,7 +1,7 @@
 import Moya
 import RxSwift
 import ObjectMapper
-import Trakt
+import TraktSwift
 
 final class SearchViewMock: SearchView {
   var presenter: SearchPresenter!

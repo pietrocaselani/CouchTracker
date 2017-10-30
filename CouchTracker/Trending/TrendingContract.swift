@@ -1,5 +1,5 @@
 import RxSwift
-import Trakt
+import TraktSwift
 
 enum TrendingType {
   case movies

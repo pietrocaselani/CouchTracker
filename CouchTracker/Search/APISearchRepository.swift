@@ -1,7 +1,7 @@
 import RxSwift
 import Moya
 import Moya_ObjectMapper
-import Trakt
+import TraktSwift
 
 final class APISearchRepository: SearchRepository {
 

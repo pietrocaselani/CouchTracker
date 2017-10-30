@@ -1,7 +1,7 @@
 import Moya
 import ObjectMapper
 import XCTest
-import Trakt
+import TraktSwift
 import RxTest
 
 final class TrendingPresenterTest: XCTestCase {
