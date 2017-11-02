@@ -56,7 +56,7 @@ final class ImageRepositoryMock: ImageRepository {
 
   func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
     let observable = configuration.fetchConfiguration().flatMap { [unowned self] config -> Observable<ImagesEntity> in
-      return self.provider.movies.request(.images(movieId: movieId)).mapObject(Images.self).map {
+      return self.provider.movies.request(.images(movieId: movieId)).map(Images.self).map {
         let posterSize = posterSize ?? .w342
         let backdropSize = backdropSize ?? .w300
 
@@ -69,7 +69,7 @@ final class ImageRepositoryMock: ImageRepository {
 
   func fetchShowImages(for showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
     let configurationObservable = configuration.fetchConfiguration()
-    let imagesObservable = provider.shows.request(.images(showId: showId)).mapObject(Images.self)
+    let imagesObservable = provider.shows.request(.images(showId: showId)).map(Images.self)
 
     return Observable.combineLatest(imagesObservable, configurationObservable) {
       let posterSize = posterSize ?? .w342

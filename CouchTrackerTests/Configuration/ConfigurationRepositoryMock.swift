@@ -6,13 +6,13 @@ import Moya_ObjectMapper
 let configurationRepositoryMock = ConfigurationRepositoryMock(tmdbProvider: tmdbProviderMock)
 
 final class ConfigurationRepositoryMock: ConfigurationRepository {
-  private let provider: RxMoyaProvider<ConfigurationService>
+  private let provider: MoyaProvider<ConfigurationService>
 
   init(tmdbProvider: TMDBProvider) {
     self.provider = tmdbProvider.configuration
   }
 
   func fetchConfiguration() -> Observable<Configuration> {
-    return provider.request(.configuration).mapObject(Configuration.self)
+    return provider.request(.configuration).map(Configuration.self)
   }
 }

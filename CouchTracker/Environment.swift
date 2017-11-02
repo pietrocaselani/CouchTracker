@@ -1,7 +1,6 @@
 import TraktSwift
 import TMDBSwift
 import TVDBSwift
-import Carlos
 import Moya
 
 final class Environment {
@@ -30,10 +29,9 @@ final class Environment {
     self.loginObservable = traktLoginStore
     self.defaultOutput = traktLoginStore.loginOutput
 
-    let carlosMemoryCache = MemoryCacheLevel<Int, NSData>()
-    let carlosDiskCache = carlosMemoryCache.compose(DiskCacheLevel())
+    let uglyCache = AnyCache(UglyMemoryCache())
 
-    self.memoryCache = AnyCache(CarlosCache(basicCache: carlosMemoryCache.normalize()))
-    self.diskCache = AnyCache(CarlosCache(basicCache: carlosDiskCache))
+    self.memoryCache = uglyCache
+    self.diskCache = uglyCache
   }
 }

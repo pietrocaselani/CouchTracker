@@ -95,7 +95,7 @@ final class SearchInteractorMock: SearchInteractor {
 }
 
 final class SearchRepositoryAPIStubMock: SearchRepository {
-  private let searchProvider: RxMoyaProvider<Search>
+  private let searchProvider: MoyaProvider<Search>
 
   init() {
     searchProvider = traktProviderMock.search
@@ -103,7 +103,7 @@ final class SearchRepositoryAPIStubMock: SearchRepository {
 
   func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]> {
     let target = Search.textQuery(types: types, query: query, page: page, limit: limit)
-    return searchProvider.request(target).mapArray(SearchResult.self)
+    return searchProvider.request(target).map([SearchResult].self)
   }
 }
 

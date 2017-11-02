@@ -20,9 +20,8 @@ final class MovieDetailsService: MovieDetailsInteractor {
     let detailsObservable = repository.fetchDetails(movieId: movieIds.slug)
     let genresObservable = genreRepository.fetchMoviesGenres()
 
-    return Observable.combineLatest(detailsObservable, genresObservable) {
-      let movie = $0.0
-      let movieGenres = $0.1.filter { genre -> Bool in
+    return Observable.combineLatest(detailsObservable, genresObservable) { (movie, genres) -> MovieEntity in
+      let movieGenres = genres.filter { genre -> Bool in
         return movie.genres?.contains(genre.slug) ?? false
       }
 

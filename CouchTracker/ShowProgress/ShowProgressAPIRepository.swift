@@ -20,35 +20,14 @@ final class ShowProgressAPIRepository: ShowProgressRepository {
   func fetchShowProgress(update: Bool, showId: String, hidden: Bool,
                          specials: Bool, countSpecials: Bool) -> Observable<BaseShow> {
     let target = Shows.watchedProgress(showId: showId, hidden: hidden, specials: specials, countSpecials: countSpecials)
-    let cacheKey = target.hashValue
 
-    let api = trakt.shows.requestDataSafety(target).observeOn(scheduler)
-
-    guard update else {
-      return fetchFromCacheFirst(api: api, cacheKey: cacheKey).mapObject(BaseShow.self)
-    }
-
-    return api.mapObject(BaseShow.self)
+    return trakt.shows.rx.request(target).map(BaseShow.self).asObservable()
   }
 
   func fetchDetailsOf(update: Bool, episodeNumber: Int, on seasonNumber: Int,
                       of showId: String, extended: Extended) -> Observable<Episode> {
     let target = Episodes.summary(showId: showId, season: seasonNumber, episode: episodeNumber, extended: extended)
-    let cacheKey = target.hashValue
 
-    let api = trakt.episodes.requestDataSafety(target).observeOn(scheduler).cache(cache, key: cacheKey)
-
-    guard update else {
-      return fetchFromCacheFirst(api: api, cacheKey: cacheKey).mapObject(Episode.self)
-    }
-
-    return api.mapObject(Episode.self)
-  }
-
-  private func fetchFromCacheFirst(api: Observable<NSData>, cacheKey: Int) -> Observable<NSData> {
-    return cache.get(cacheKey).observeOn(scheduler)
-      .ifEmpty(switchTo: api)
-      .catchError { _ in api }
-      .subscribeOn(scheduler)
+    return trakt.episodes.rx.request(target).map(Episode.self).asObservable()
   }
 }

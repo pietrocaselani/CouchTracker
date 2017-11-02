@@ -4,7 +4,7 @@ import TVDBSwift
 let tvdbProviderMock = TVDBProviderMock()
 
 final class TVDBProviderMock: TVDBProvider {
-  var episodes: RxMoyaProvider<Episodes> {
-    return RxMoyaProvider<Episodes>(stubClosure: MoyaProvider.immediatelyStub)
+  var episodes: MoyaProvider<Episodes> {
+    return MoyaProvider<Episodes>(stubClosure: MoyaProvider.immediatelyStub)
   }
 }

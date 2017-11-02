@@ -39,7 +39,7 @@
       </PreActions>
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6476324C1F44824900F277F1"

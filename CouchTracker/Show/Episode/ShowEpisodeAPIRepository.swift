@@ -15,18 +15,16 @@ final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
   }
 
   func addToHistory(items: SyncItems) -> Single<SyncResponse> {
-    return trakt.sync.request(.addToHistory(items: items))
+    return trakt.sync.rx.request(.addToHistory(items: items))
       .observeOn(scheduler)
       .filterSuccessfulStatusAndRedirectCodes()
-      .mapObject(SyncResponse.self)
-      .asSingle()
+      .map(SyncResponse.self)
   }
 
   func removeFromHistory(items: SyncItems) -> Single<SyncResponse> {
-    return trakt.sync.request(.removeFromHistory(items: items))
+    return trakt.sync.rx.request(.removeFromHistory(items: items))
       .observeOn(scheduler)
       .filterSuccessfulStatusAndRedirectCodes()
-      .mapObject(SyncResponse.self)
-      .asSingle()
+      .map(SyncResponse.self)
   }
 }
