@@ -26,7 +26,7 @@ final class ShowDetailsRepositoryMock: ShowDetailsRepository {
   }
 
   func fetchDetailsOfShow(with identifier: String, extended: Extended) -> Single<Show> {
-    return provider.shows.request(.summary(showId: identifier, extended: extended)).mapObject(Show.self).asSingle()
+    return provider.shows.request(.summary(showId: identifier, extended: extended)).map(Show.self).asSingle()
   }
 }
 

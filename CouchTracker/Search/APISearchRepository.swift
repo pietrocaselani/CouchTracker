@@ -1,11 +1,10 @@
 import RxSwift
 import Moya
-import Moya_ObjectMapper
 import TraktSwift
 
 final class APISearchRepository: SearchRepository {
 
-  private let provider: RxMoyaProvider<Search>
+  private let provider: MoyaProvider<Search>
 
   init(traktProvider: TraktProvider) {
     self.provider = traktProvider.search
@@ -16,9 +15,10 @@ final class APISearchRepository: SearchRepository {
 
     let scheduler = ConcurrentDispatchQueueScheduler(qos: .background)
 
-    return provider.request(target)
+    return provider.rx.request(target)
       .subscribeOn(scheduler)
       .observeOn(scheduler)
-      .mapArray(SearchResult.self)
+      .map([SearchResult].self)
+      .asObservable()
   }
 }

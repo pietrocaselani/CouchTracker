@@ -4,7 +4,7 @@ struct AnyCache<K: Hashable, V>: Cache {
   typealias Key = K
   typealias Value = V
 
-  private let getClosure: (Key) -> Observable<Value>
+  private let getClosure: (Key) -> Maybe<Value>
   private let setClosure: (Value, Key) -> Completable
   private let clearClosure: () -> Void
 
@@ -14,7 +14,7 @@ struct AnyCache<K: Hashable, V>: Cache {
     self.clearClosure = { return cache.clear() }
   }
 
-  func get(_ key: Key) -> Observable<Value> {
+  func get(_ key: Key) -> Maybe<Value> {
     return getClosure(key)
   }
 

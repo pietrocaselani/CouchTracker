@@ -73,15 +73,15 @@ final class ShowsProgressMocks {
     }
 
     func fetchWatchedShows(update: Bool, extended: Extended) -> Observable<[BaseShow]> {
-      return trakt.sync.request(.watched(type: .shows, extended: extended)).mapArray(BaseShow.self)
+      return trakt.sync.request(.watched(type: .shows, extended: extended)).map([BaseShow].self)
     }
 
     func fetchShowProgress(update: Bool, showId: String, hidden: Bool, specials: Bool, countSpecials: Bool) -> Observable<BaseShow> {
-      return trakt.shows.request(.watchedProgress(showId: showId, hidden: hidden, specials: specials, countSpecials: countSpecials)).mapObject(BaseShow.self)
+      return trakt.shows.request(.watchedProgress(showId: showId, hidden: hidden, specials: specials, countSpecials: countSpecials)).map(BaseShow.self)
     }
 
     func fetchDetailsOf(update: Bool, episodeNumber: Int, on seasonNumber: Int, of showId: String, extended: Extended) -> Observable<Episode> {
-      return trakt.episodes.request(.summary(showId: showId, season: seasonNumber, episode: episodeNumber, extended: extended)).mapObject(Episode.self)
+      return trakt.episodes.request(.summary(showId: showId, season: seasonNumber, episode: episodeNumber, extended: extended)).map(Episode.self)
     }
   }
 

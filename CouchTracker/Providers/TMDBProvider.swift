@@ -2,8 +2,8 @@ import Moya
 import TMDBSwift
 
 protocol TMDBProvider: class {
-  var movies: RxMoyaProvider<Movies> { get }
-  var shows: RxMoyaProvider<Shows> { get }
-  var configuration: RxMoyaProvider<ConfigurationService> { get }
-  var episodes: RxMoyaProvider<Episodes> { get }
+  var movies: MoyaProvider<Movies> { get }
+  var shows: MoyaProvider<Shows> { get }
+  var configuration: MoyaProvider<ConfigurationService> { get }
+  var episodes: MoyaProvider<Episodes> { get }
 }

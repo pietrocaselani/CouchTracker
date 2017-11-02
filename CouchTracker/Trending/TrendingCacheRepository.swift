@@ -1,43 +1,45 @@
-import Carlos
 import Moya
-import PiedPiper
 import RxSwift
 import TraktSwift
 
 final class TrendingCacheRepository: TrendingRepository {
+//  private let moviesCache: BasicCache<Movies, [TrendingMovie]>
+//  private let showsCache: BasicCache<Shows, [TrendingShow]>
 
-  private let moviesCache: BasicCache<Movies, [TrendingMovie]>
-  private let showsCache: BasicCache<Shows, [TrendingShow]>
+	private let traktProvider: TraktProvider
 
-  init(traktProvider: TraktProvider) {
-    let moviesProvider = traktProvider.movies
-    let showsProvider = traktProvider.shows
+	init(traktProvider: TraktProvider) {
+		self.traktProvider = traktProvider
+//    let moviesProvider = traktProvider.movies
+//    let showsProvider = traktProvider.shows
+//    self.moviesCache = MemoryCacheLevel<Movies, NSData>()
+//      .compose(DiskCacheLevel<Movies, NSData>())
+//      .compose(MoyaFetcher(provider: moviesProvider))
+//      .transformValues(JSONArrayTransfomer<TrendingMovie>())
+//
+//    self.showsCache = MemoryCacheLevel<Shows, NSData>()
+//      .compose(DiskCacheLevel<Shows, NSData>())
+//      .compose(MoyaFetcher(provider: showsProvider))
+//      .transformValues(JSONArrayTransfomer<TrendingShow>())
+	}
 
-    self.moviesCache = MemoryCacheLevel<Movies, NSData>()
-      .compose(DiskCacheLevel<Movies, NSData>())
-      .compose(MoyaFetcher(provider: moviesProvider))
-      .transformValues(JSONArrayTransfomer<TrendingMovie>())
+	func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
+		let scheduler = SerialDispatchQueueScheduler(qos: .background)
 
-    self.showsCache = MemoryCacheLevel<Shows, NSData>()
-      .compose(DiskCacheLevel<Shows, NSData>())
-      .compose(MoyaFetcher(provider: showsProvider))
-      .transformValues(JSONArrayTransfomer<TrendingShow>())
-  }
+		return traktProvider.movies.rx.request(.trending(page: page, limit: limit, extended: .full))
+				.asObservable()
+				.subscribeOn(scheduler)
+				.observeOn(scheduler)
+				.map([TrendingMovie].self)
+	}
 
-  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
-    let scheduler = SerialDispatchQueueScheduler(qos: .background)
-    return moviesCache.get(.trending(page: page, limit: limit, extended: .full))
-      .asObservable()
-      .subscribeOn(scheduler)
-      .observeOn(scheduler)
-  }
+	func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShow]> {
+		let scheduler = SerialDispatchQueueScheduler(qos: .background)
 
-  func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShow]> {
-    let scheduler = SerialDispatchQueueScheduler(qos: .background)
-
-    return showsCache.get(.trending(page: page, limit: limit, extended: .full))
-      .asObservable()
-      .subscribeOn(scheduler)
-      .observeOn(scheduler)
-  }
+		return traktProvider.shows.rx.request(.trending(page: page, limit: limit, extended: .full))
+				.asObservable()
+				.subscribeOn(scheduler)
+				.observeOn(scheduler)
+				.map([TrendingShow].self)
+	}
 }

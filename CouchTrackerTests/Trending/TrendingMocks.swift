@@ -153,12 +153,12 @@ final class TrendingRepositoryMock: TrendingRepository {
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
     return traktProvider.movies.request(.trending(page: page, limit: limit, extended: .full))
-      .mapArray(TrendingMovie.self)
+      .map([TrendingMovie].self)
   }
 
   func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShow]> {
     return traktProvider.shows.request(.trending(page: page, limit: limit, extended: .full))
-      .mapArray(TrendingShow.self)
+      .map([TrendingShow].self)
   }
 }
 

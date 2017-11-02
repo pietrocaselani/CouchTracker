@@ -3,16 +3,16 @@ import RxSwift
 import TraktSwift
 
 protocol TraktProvider: class {
-  var movies: RxMoyaProvider<Movies> { get }
-  var genres: RxMoyaProvider<Genres> { get }
-  var search: RxMoyaProvider<Search> { get }
-  var shows: RxMoyaProvider<Shows> { get }
-  var users: RxMoyaProvider<Users> { get }
-  var authentication: RxMoyaProvider<Authentication> { get }
-  var episodes: RxMoyaProvider<Episodes> { get }
-  var sync: RxMoyaProvider<Sync> { get }
+  var movies: MoyaProvider<Movies> { get }
+  var genres: MoyaProvider<Genres> { get }
+  var search: MoyaProvider<Search> { get }
+  var shows: MoyaProvider<Shows> { get }
+  var users: MoyaProvider<Users> { get }
+  var authentication: MoyaProvider<Authentication> { get }
+  var episodes: MoyaProvider<Episodes> { get }
+  var sync: MoyaProvider<Sync> { get }
   var oauth: URL? { get }
   var isAuthenticated: Bool { get }
 
-  func finishesAuthentication(with request: URLRequest) -> Observable<AuthenticationResult>
+  func finishesAuthentication(with request: URLRequest) -> Single<AuthenticationResult>
 }

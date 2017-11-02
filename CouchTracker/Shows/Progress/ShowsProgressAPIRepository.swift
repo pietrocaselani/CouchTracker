@@ -20,22 +20,9 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
 
   func fetchWatchedShows(update: Bool, extended: Extended) -> Observable<[BaseShow]> {
     let target = Sync.watched(type: .shows, extended: extended)
-    let cacheKey = target.hashValue
 
-    let api = trakt.sync.requestDataSafety(target).observeOn(scheduler).cache(cache, key: cacheKey)
+    let api = trakt.sync.rx.request(target).observeOn(scheduler)
 
-    guard update else {
-      return fetchFromCacheFirst(api: api, cacheKey: cacheKey).mapArray(BaseShow.self)
-    }
-
-    return api.mapArray(BaseShow.self)
-  }
-
-  private func fetchFromCacheFirst(api: Observable<NSData>, cacheKey: Int) -> Observable<NSData> {
-    return cache.get(cacheKey)
-      .observeOn(scheduler)
-      .ifEmpty(switchTo: api)
-      .catchError { _ in api }
-      .subscribeOn(scheduler)
+    return api.map([BaseShow].self).asObservable()
   }
 }

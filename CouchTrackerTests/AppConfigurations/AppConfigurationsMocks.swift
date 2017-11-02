@@ -66,9 +66,9 @@ final class AppConfigurationsRouterMock: AppConfigurationsRouter {
 }
 
 final class AppConfigurationsRepositoryMock: AppConfigurationsRepository {
-  private let usersProvider: RxMoyaProvider<Users>
+  private let usersProvider: MoyaProvider<Users>
   private let isEmpty: Bool
-  init(usersProvider: RxMoyaProvider<Users>, isEmpty: Bool = false) {
+  init(usersProvider: MoyaProvider<Users>, isEmpty: Bool = false) {
     self.usersProvider = usersProvider
     self.isEmpty = isEmpty
     preferredContentLocale = Locale.current
@@ -84,7 +84,7 @@ final class AppConfigurationsRepositoryMock: AppConfigurationsRepository {
     guard !isEmpty else {
       return Observable.error(AppConfigurationsMock.createUnauthorizedErrorMock())
     }
-    return usersProvider.request(.settings).mapObject(Settings.self).map { $0.user }
+    return usersProvider.request(.settings).map(Settings.self).map { $0.user }
   }
 }
 
