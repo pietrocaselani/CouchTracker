@@ -26,7 +26,7 @@ final class ShowDetailsRepositoryMock: ShowDetailsRepository {
   }
 
   func fetchDetailsOfShow(with identifier: String, extended: Extended) -> Single<Show> {
-    return provider.shows.request(.summary(showId: identifier, extended: extended)).map(Show.self).asSingle()
+    return provider.shows.rx.request(.summary(showId: identifier, extended: extended)).map(Show.self)
   }
 }
 
@@ -92,6 +92,5 @@ final class ShowDetailsViewMock: ShowDetailsView {
 }
 
 func createTraktShowDetails() -> Show {
-  let json = JSONParser.toObject(data: Shows.summary(showId: "game-of-thrones", extended: .full).sampleData)
-  return try! Show(JSON: json)
+  return try! JSONDecoder().decode(Show.self, from: Shows.summary(showId: "game-of-thrones", extended: .full).sampleData)
 }

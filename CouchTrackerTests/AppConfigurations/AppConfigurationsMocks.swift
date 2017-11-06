@@ -6,7 +6,7 @@ final class AppConfigurationsMock {
   private init() {}
 
   static func createUserMock() -> User {
-    return try! Settings(JSON: JSONParser.toObject(data: Users.settings.sampleData)).user
+    return try! JSONDecoder().decode(Settings.self, from: Users.settings.sampleData).user
   }
 
   static func createUnauthorizedErrorMock() -> MoyaError {
@@ -84,7 +84,7 @@ final class AppConfigurationsRepositoryMock: AppConfigurationsRepository {
     guard !isEmpty else {
       return Observable.error(AppConfigurationsMock.createUnauthorizedErrorMock())
     }
-    return usersProvider.request(.settings).map(Settings.self).map { $0.user }
+    return usersProvider.rx.request(.settings).map(Settings.self).map { $0.user }.asObservable()
   }
 }
 

@@ -1,7 +1,6 @@
 import RxSwift
 import Moya
 import TMDBSwift
-import Moya_ObjectMapper
 
 let configurationRepositoryMock = ConfigurationRepositoryMock(tmdbProvider: tmdbProviderMock)
 
@@ -13,6 +12,6 @@ final class ConfigurationRepositoryMock: ConfigurationRepository {
   }
 
   func fetchConfiguration() -> Observable<Configuration> {
-    return provider.request(.configuration).map(Configuration.self)
+    return provider.rx.request(.configuration).map(Configuration.self).asObservable()
   }
 }

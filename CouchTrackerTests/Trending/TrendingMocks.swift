@@ -5,8 +5,7 @@ import TraktSwift
 let trendingRepositoryMock = TrendingRepositoryMock(traktProvider: traktProviderMock)
 
 func createTrendingShowsMock() -> [TrendingShow] {
-  let jsonArray = JSONParser.toArray(data: Shows.trending(page: 0, limit: 10, extended: .full).sampleData)
-  return try! jsonArray.map { try TrendingShow(JSON: $0) }
+  return try! JSONDecoder().decode([TrendingShow].self, from: Shows.trending(page: 0, limit: 10, extended: .full).sampleData)
 }
 
 final class TrendingViewMock: TrendingView {
@@ -152,13 +151,13 @@ final class TrendingRepositoryMock: TrendingRepository {
   }
 
   func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
-    return traktProvider.movies.request(.trending(page: page, limit: limit, extended: .full))
-      .map([TrendingMovie].self)
+    return traktProvider.movies.rx.request(.trending(page: page, limit: limit, extended: .full))
+      .map([TrendingMovie].self).asObservable()
   }
 
   func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShow]> {
-    return traktProvider.shows.request(.trending(page: page, limit: limit, extended: .full))
-      .map([TrendingShow].self)
+    return traktProvider.shows.rx.request(.trending(page: page, limit: limit, extended: .full))
+      .map([TrendingShow].self).asObservable()
   }
 }
 

@@ -1,6 +1,5 @@
 import RxSwift
 import TMDBSwift
-import Moya_ObjectMapper
 import Moya
 
 final class EmptyImageRepositoryMock: ImageRepository {
@@ -55,8 +54,8 @@ final class ImageRepositoryMock: ImageRepository {
   }
 
   func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
-    let observable = configuration.fetchConfiguration().flatMap { [unowned self] config -> Observable<ImagesEntity> in
-      return self.provider.movies.request(.images(movieId: movieId)).map(Images.self).map {
+    let observable = configuration.fetchConfiguration().asObservable().flatMap { [unowned self] config -> Observable<ImagesEntity> in
+      return self.provider.movies.rx.request(.images(movieId: movieId)).asObservable().map(Images.self).map {
         let posterSize = posterSize ?? .w342
         let backdropSize = backdropSize ?? .w300
 
@@ -69,12 +68,12 @@ final class ImageRepositoryMock: ImageRepository {
 
   func fetchShowImages(for showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
     let configurationObservable = configuration.fetchConfiguration()
-    let imagesObservable = provider.shows.request(.images(showId: showId)).map(Images.self)
+    let imagesObservable = provider.shows.rx.request(.images(showId: showId)).map(Images.self).asObservable()
 
-    return Observable.combineLatest(imagesObservable, configurationObservable) {
+    return Observable.combineLatest(imagesObservable, configurationObservable) { images, configuration -> ImagesEntity in
       let posterSize = posterSize ?? .w342
       let backdropSize = backdropSize ?? .w300
-      return ImagesEntityMapper.entity(for: $0, using: $1, posterSize: posterSize, backdropSize: backdropSize)
+      return ImagesEntityMapper.entity(for: images, using: configuration, posterSize: posterSize, backdropSize: backdropSize)
     }.asSingle()
   }
 

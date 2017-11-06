@@ -1,5 +1,4 @@
 import Moya
-import ObjectMapper
 import XCTest
 import TraktSwift
 import RxTest

@@ -32,11 +32,9 @@ func createMovieImagesRepositoryMock(_ images: ImagesEntity) -> ImageRepository 
 }
 
 func createTMDBConfigurationMock() -> Configuration {
-  let jsonObject = JSONParser.toObject(data: ConfigurationService.configuration.sampleData)
-  return try! Configuration(JSON: jsonObject)
+  return try! JSONDecoder().decode(Configuration.self, from: ConfigurationService.configuration.sampleData)
 }
 
 func createImagesMock(movieId: Int) -> Images {
-  let jsonObject = JSONParser.toObject(data: Movies.images(movieId: movieId).sampleData)
-  return try! Images(JSON: jsonObject)
+  return try! JSONDecoder().decode(Images.self, from: Movies.images(movieId: movieId).sampleData)
 }

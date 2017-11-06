@@ -1,6 +1,5 @@
 import Moya
 import RxSwift
-import ObjectMapper
 import TraktSwift
 
 final class SearchViewMock: SearchView {
@@ -103,15 +102,12 @@ final class SearchRepositoryAPIStubMock: SearchRepository {
 
   func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]> {
     let target = Search.textQuery(types: types, query: query, page: page, limit: limit)
-    return searchProvider.request(target).map([SearchResult].self)
+    return searchProvider.rx.request(target).map([SearchResult].self).asObservable()
   }
 }
 
 func createSearchResultsMock() -> [SearchResult] {
   let data = Search.textQuery(types: [.movie], query: "Tron", page: 0, limit: 100).sampleData
-  let options = JSONSerialization.ReadingOptions(rawValue: 0)
 
-  let array = try! JSONSerialization.jsonObject(with: data, options: options) as! [[String: AnyObject]]
-
-  return array.map { ObjectMapper.Map(mappingType: .fromJSON, JSON: $0) }.map { try! SearchResult(map: $0) }
+  return try! JSONDecoder().decode([SearchResult].self, from: data)
 }

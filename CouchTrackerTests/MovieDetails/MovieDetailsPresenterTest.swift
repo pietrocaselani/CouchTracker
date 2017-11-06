@@ -53,12 +53,9 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let movie = createMovieMock(for: "the-dark-knight-2008")
     let repository = MovieDetailsStoreMock(movie: movie)
 
-    let json: [String : Any?] = ["trakt": 23,
-                                 "slug": "1992-23",
-                                 "imdb": "tt0468569",
-                                 "tmdb": nil]
+    let json = "{\"trakt\": 4,\"slug\": \"the-dark-knight-2008\",\"imdb\": \"tt0468569\",\"tmdb\": null}".data(using: .utf8)!
 
-    let movieIds = try! MovieIds(JSON: json)
+    let movieIds = try! JSONDecoder().decode(MovieIds.self, from: json)
 
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
                                              imageRepository: imageRepositoryRealMock, movieIds: movieIds)

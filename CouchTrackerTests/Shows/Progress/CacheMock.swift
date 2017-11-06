@@ -13,10 +13,10 @@ class CacheMock: Cache {
     self.entries = entries
   }
 
-  func get(_ key: Int) -> Observable<NSData> {
+  func get(_ key: Int) -> Maybe<NSData> {
     getInvoked = true
-    guard let value = entries[key] else { return Observable.empty() }
-    return Observable.just(value)
+    guard let value = entries[key] else { return Maybe.empty() }
+    return Maybe.just(value)
   }
 
   func set(_ value: NSData, for key: Int) -> Completable {
@@ -38,8 +38,8 @@ final class CacheErrorMock: CacheMock {
     super.init(entries: entries)
   }
 
-  override func get(_ key: Int) -> Observable<NSData> {
+  override func get(_ key: Int) -> Maybe<NSData> {
     _ = super.get(key)
-    return Observable.error(error)
+    return Maybe.error(error)
   }
 }
