@@ -32,6 +32,8 @@
 		640330431F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640330421F67FEBA001CCEDB /* ImagesViewModelMapper.swift */; };
 		640330441F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640330421F67FEBA001CCEDB /* ImagesViewModelMapper.swift */; };
 		640330461F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640330421F67FEBA001CCEDB /* ImagesViewModelMapper.swift */; };
+		640373111FABA80E005023D5 /* trakt_movies_trending.json in Resources */ = {isa = PBXBuildFile; fileRef = 640373101FABA80E005023D5 /* trakt_movies_trending.json */; };
+		640373131FABA8CD005023D5 /* trakt_movies_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 640373121FABA8CD005023D5 /* trakt_movies_summary.json */; };
 		6405E4F51F5DE7B800756E79 /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405E4F01F5DE4F900756E79 /* TrendingCell.swift */; };
 		6405E4F91F5DE7C900756E79 /* TrendingContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405E4F21F5DE59600756E79 /* TrendingContract.swift */; };
 		6405E4FA1F5DE7C900756E79 /* TrendingContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405E4F21F5DE59600756E79 /* TrendingContract.swift */; };
@@ -538,6 +540,8 @@
 		59441E4C8DE29AF103016522 /* Pods_TVDB_MacTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TVDB_MacTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FA5E5D147F9088F5D88235F /* Pods_CouchTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		640330421F67FEBA001CCEDB /* ImagesViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModelMapper.swift; sourceTree = "<group>"; };
+		640373101FABA80E005023D5 /* trakt_movies_trending.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_movies_trending.json; sourceTree = "<group>"; };
+		640373121FABA8CD005023D5 /* trakt_movies_summary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_movies_summary.json; sourceTree = "<group>"; };
 		6405E4ED1F5DE4D400756E79 /* TrendingMovieEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrendingMovieEntity.swift; path = CouchTracker/Entities/TrendingMovieEntity.swift; sourceTree = SOURCE_ROOT; };
 		6405E4F01F5DE4F900756E79 /* TrendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
 		6405E4F11F5DE4F900756E79 /* TrendingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewModel.swift; sourceTree = "<group>"; };
@@ -1362,6 +1366,8 @@
 				64B801C41FA79362004A6EEE /* trakt_episodes_summary.json */,
 				64B801C51FA79362004A6EEE /* trakt_genres_movies.json */,
 				64B801C31FA79362004A6EEE /* trakt_genres_shows.json */,
+				640373121FABA8CD005023D5 /* trakt_movies_summary.json */,
+				640373101FABA80E005023D5 /* trakt_movies_trending.json */,
 				64B801C61FA79362004A6EEE /* trakt_search_textquery.json */,
 				64B801C71FA79362004A6EEE /* trakt_shows_summary.json */,
 				64B801C11FA79362004A6EEE /* trakt_shows_trending.json */,
@@ -1761,9 +1767,11 @@
 				64B801D61FA79369004A6EEE /* trakt_search_textquery.json in Resources */,
 				64B801DA1FA79369004A6EEE /* trakt_sync_watchedshows.json in Resources */,
 				64B801D31FA79369004A6EEE /* trakt_episodes_summary.json in Resources */,
+				640373131FABA8CD005023D5 /* trakt_movies_summary.json in Resources */,
 				64B801D91FA79369004A6EEE /* trakt_shows_watchedprogress.json in Resources */,
 				64B801D81FA79369004A6EEE /* trakt_shows_trending.json in Resources */,
 				64B801D71FA79369004A6EEE /* trakt_shows_summary.json in Resources */,
+				640373111FABA80E005023D5 /* trakt_movies_trending.json in Resources */,
 				64B801D41FA79369004A6EEE /* trakt_genres_movies.json in Resources */,
 				64B801DB1FA79369004A6EEE /* trakt_users_settings.json in Resources */,
 				64B801D51FA79369004A6EEE /* trakt_genres_shows.json in Resources */,

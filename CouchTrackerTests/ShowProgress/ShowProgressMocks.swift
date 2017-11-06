@@ -9,12 +9,12 @@ final class ShowProgressMocks {
   final class ShowProgressRepositoryMock: ShowProgressRepository {
     func fetchShowProgress(update: Bool, showId: String, hidden: Bool, specials: Bool, countSpecials: Bool) -> Observable<BaseShow> {
       let target = Shows.watchedProgress(showId: showId, hidden: hidden, specials: specials, countSpecials: countSpecials)
-      return traktProviderMock.shows.requestDataSafety(target).map(BaseShow.self)
+      return traktProviderMock.shows.rx.request(target).map(BaseShow.self).asObservable()
     }
 
     func fetchDetailsOf(update: Bool, episodeNumber: Int, on seasonNumber: Int, of showId: String, extended: Extended) -> Observable<Episode> {
       let target = Episodes.summary(showId: showId, season: seasonNumber, episode: episodeNumber, extended: extended)
-      return traktProviderMock.episodes.requestDataSafety(target).map(Episode.self)
+      return traktProviderMock.episodes.rx.request(target).map(Episode.self).asObservable()
     }
   }
 

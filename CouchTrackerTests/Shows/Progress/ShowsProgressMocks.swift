@@ -5,18 +5,17 @@ final class ShowsProgressMocks {
   private init() {}
 
   static func createWatchedShowsMock() -> [BaseShow] {
-    let array = JSONParser.toArray(data: Sync.watched(type: .shows, extended: .full).sampleData)
-    return array.map { try! BaseShow(JSON: $0) }
+    return try! JSONDecoder().decode([BaseShow].self, from: Sync.watched(type: .shows, extended: .full).sampleData)
   }
 
   static func createShowMock(_ showId: String) -> BaseShow? {
-    let json = JSONParser.toObject(data: Shows.watchedProgress(showId: showId, hidden: false, specials: false, countSpecials: false).sampleData)
-    return BaseShow(JSON: json)
+    let data = Shows.watchedProgress(showId: showId, hidden: false, specials: false, countSpecials: false).sampleData
+    return try? JSONDecoder().decode(BaseShow.self, from: data)
   }
 
   static func createEpisodeMock(_ showId: String) -> Episode {
-    let json = JSONParser.toObject(data: Episodes.summary(showId: showId, season: 1, episode: 1, extended: .full).sampleData)
-    return try! Episode(JSON: json)
+    let data = Episodes.summary(showId: showId, season: 1, episode: 1, extended: .full).sampleData
+    return try! JSONDecoder().decode(Episode.self, from: data)
   }
 
   static func mockWatchedShowEntity() -> WatchedShowEntity {
@@ -73,15 +72,15 @@ final class ShowsProgressMocks {
     }
 
     func fetchWatchedShows(update: Bool, extended: Extended) -> Observable<[BaseShow]> {
-      return trakt.sync.request(.watched(type: .shows, extended: extended)).map([BaseShow].self)
+      return trakt.sync.rx.request(.watched(type: .shows, extended: extended)).map([BaseShow].self).asObservable()
     }
 
     func fetchShowProgress(update: Bool, showId: String, hidden: Bool, specials: Bool, countSpecials: Bool) -> Observable<BaseShow> {
-      return trakt.shows.request(.watchedProgress(showId: showId, hidden: hidden, specials: specials, countSpecials: countSpecials)).map(BaseShow.self)
+      return trakt.shows.rx.request(.watchedProgress(showId: showId, hidden: hidden, specials: specials, countSpecials: countSpecials)).map(BaseShow.self).asObservable()
     }
 
     func fetchDetailsOf(update: Bool, episodeNumber: Int, on seasonNumber: Int, of showId: String, extended: Extended) -> Observable<Episode> {
-      return trakt.episodes.request(.summary(showId: showId, season: seasonNumber, episode: episodeNumber, extended: extended)).map(Episode.self)
+      return trakt.episodes.rx.request(.summary(showId: showId, season: seasonNumber, episode: episodeNumber, extended: extended)).map(Episode.self).asObservable()
     }
   }
 

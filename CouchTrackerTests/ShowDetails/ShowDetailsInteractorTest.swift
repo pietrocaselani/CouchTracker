@@ -1,7 +1,6 @@
 import XCTest
 import RxTest
 import RxSwift
-import ObjectMapper
 import TraktSwift
 
 final class ShowDetailsInteractorTest: XCTestCase {

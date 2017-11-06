@@ -92,8 +92,7 @@ final class MovieDetailsServiceMock: MovieDetailsInteractor {
 }
 
 func createMockMovies() -> [TrendingMovie] {
-  let jsonArray = JSONParser.toArray(data: Movies.trending(page: 0, limit: 50, extended: .full).sampleData)
-  return try! jsonArray.map { try TrendingMovie(JSON: $0) }
+  return try! JSONDecoder().decode([TrendingMovie].self, from: Movies.trending(page: 0, limit: 50, extended: .full).sampleData)
 }
 
 func createMovieMock(for movieId: String) -> Movie {
@@ -105,8 +104,7 @@ func createMovieMock(for movieId: String) -> Movie {
 }
 
 func createMovieDetailsMock(for movieId: String) -> Movie {
-  let jsonObject = JSONParser.toObject(data: Movies.summary(movieId: movieId, extended: .full).sampleData)
-  return try! Movie(JSON: jsonObject)
+  return try! JSONDecoder().decode(Movie.self, from: Movies.summary(movieId: movieId, extended: .full).sampleData)
 }
 
 func createMovieDetailsMock() -> Movie {

@@ -41,12 +41,9 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let genreRepository = GenreRepositoryMock()
     let imageRepository = imageRepositoryMock
 
-    let json: [String : Any?] = ["trakt": 23,
-                "slug": "1992-23",
-                "imdb": "tt0468569",
-                "tmdb": nil]
+    let json = "{\"trakt\": 23,\"slug\": \"1992-23\",\"imdb\": \"tt0468569\",\"tmdb\": null}".data(using: .utf8)!
 
-    let movieIds = try! MovieIds(JSON: json)
+    let movieIds = try! JSONDecoder().decode(MovieIds.self, from: json)
 
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
                                          imageRepository: imageRepository, movieIds: movieIds)
@@ -117,7 +114,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let genres = try! JSONParser.toArray(data: Genres.list(.movies).sampleData).map { return try Genre(JSON: $0) }
+    let genres = try! JSONDecoder().decode([Genre].self, from: Genres.list(.movies).sampleData)
     let moviesGenre = genres.filter { movie.genres?.contains($0.slug) ?? false }
 
     let expectedMovie = MovieEntityMapper.entity(for: movie, with: moviesGenre)

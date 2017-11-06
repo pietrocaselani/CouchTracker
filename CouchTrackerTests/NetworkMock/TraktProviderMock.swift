@@ -7,13 +7,13 @@ let traktProviderMock = TraktProviderMock()
 final class TraktProviderMock: TraktProvider {
   private let error: Swift.Error?
 
-  func finishesAuthentication(with request: URLRequest) -> Observable<AuthenticationResult> {
+  func finishesAuthentication(with request: URLRequest) -> Single<AuthenticationResult> {
     guard let error = error else {
       let result = oauth != nil ? AuthenticationResult.authenticated : AuthenticationResult.undetermined
-      return Observable.just(result)
+      return Single.just(result)
     }
 
-    return Observable.error(error)
+    return Single.error(error)
   }
 
   var oauth: URL?
