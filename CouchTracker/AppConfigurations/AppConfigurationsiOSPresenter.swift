@@ -41,9 +41,8 @@ final class AppConfigurationsiOSPresenter: AppConfigurationsPresenter {
 
   private func createViewModel(_ loginState: LoginState) -> [AppConfigurationsViewModel] {
     let traktConfigs = traktConfigurations(loginState)
-    let advancedConfigs = advancedConfigurations()
 
-    return [traktConfigs, advancedConfigs]
+    return [traktConfigs]
   }
 
   private func traktConfigurations(_ loginState: LoginState) -> AppConfigurationsViewModel {
@@ -58,12 +57,6 @@ final class AppConfigurationsiOSPresenter: AppConfigurationsPresenter {
     }
 
     return AppConfigurationsViewModel(title: "Trakt", configurations: configurations)
-  }
-
-  private func advancedConfigurations() -> AppConfigurationsViewModel {
-    let configurations = AppConfigurationViewModel(title: "Delete cache", subtitle: nil)
-    options.append(AppConfigurationOptions.deleteCache)
-    return AppConfigurationsViewModel(title: "Advanced", configurations: [configurations])
   }
 }
 
