@@ -17,17 +17,17 @@ final class Environment {
     let trakt = Trakt(clientId: Secrets.Trakt.clientId,
                        clientSecret: Secrets.Trakt.clientSecret,
                        redirectURL: Secrets.Trakt.redirectURL)
-    self.tmdb = TMDB(apiKey: Secrets.TMDB.apiKey)
-    self.tvdb = TVDB(apiKey: Secrets.TVDB.apiKey)
+    self.tmdb = TMDBWrapperProvider(tmdb: TMDB(apiKey: Secrets.TMDB.apiKey))
+    self.tvdb = TVDBWrapperProvider(tvdb: TVDB(apiKey: Secrets.TVDB.apiKey))
 
 //    trakt.addPlugin(NetworkLoggerPlugin(verbose: true, cURL: false))
-
-    self.trakt = trakt
 
     let traktLoginStore = TraktLoginStore(trakt: trakt)
 
     self.loginObservable = traktLoginStore
     self.defaultOutput = traktLoginStore.loginOutput
+
+    self.trakt = TraktWrapperProvider(trakt: trakt, loginObservable: traktLoginStore)
 
     let uglyCache = AnyCache(UglyMemoryCache())
 

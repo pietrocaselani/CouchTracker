@@ -19,10 +19,12 @@ final class TrendingCelliOSPresenter: TrendingCellPresenter {
 
     interactor.fetchPosterImageURL(of: trendingType, with: .w185)
       .observeOn(MainScheduler.instance)
-      .subscribe(onNext: { [unowned self] imageURL in
+      .subscribe(onNext: { imageURL in
         guard let view = self.view else { return }
 
         view.showPosterImage(with: imageURL)
+      }, onError: { error in
+        print(error)
       }).disposed(by: disposeBag)
   }
 }

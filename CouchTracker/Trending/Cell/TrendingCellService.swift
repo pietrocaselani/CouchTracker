@@ -11,11 +11,11 @@ final class TrendingCellService: TrendingCellInteractor {
     let imagesObservable: Observable<ImagesEntity>
 
     switch type {
-      case .movie(let tmdbMovieId):
-        imagesObservable = imageRepository.fetchMovieImages(for: tmdbMovieId, posterSize: size, backdropSize: nil)
-      case .show(let tmdbShowId):
-        let single = imageRepository.fetchShowImages(for: tmdbShowId, posterSize: size, backdropSize: nil)
-        imagesObservable = single.asObservable()
+    case .movie(let tmdbMovieId):
+      imagesObservable = imageRepository.fetchMovieImages(for: tmdbMovieId, posterSize: size, backdropSize: nil)
+    case .show(let tmdbShowId):
+      let single = imageRepository.fetchShowImages(for: tmdbShowId, posterSize: size, backdropSize: nil)
+      imagesObservable = single.asObservable()
     }
 
     return imagesObservable.flatMap { images -> Observable<URL> in

@@ -19,7 +19,7 @@ final class AppConfigurationsModule {
     let userDefaults = UserDefaults.standard
     let repository = AppConfigurationsUserDefaultsRepository(userDefaults: userDefaults, traktProvider: traktProvider)
     let interactor = AppConfigurationsService(repository: repository, memoryCache: memoryCache, diskCache: diskCache)
-    let router = AppConfigurationsiOSRouter(viewController: view, traktProvider: traktProvider)
+    let router = AppConfigurationsiOSRouter(viewController: view)
     let presenter = AppConfigurationsiOSPresenter(view: view, interactor: interactor, router: router)
 
     view.presenter = presenter
