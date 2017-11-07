@@ -73,14 +73,14 @@ final class TrendingiOSPresenter: TrendingPresenter, AppConfigurationsPresentabl
   private func subscribe(on observable: Observable<[TrendingViewModel]>, for type: TrendingType) {
     observable.asSingle().observeOn(MainScheduler.instance).subscribe(onSuccess: { [unowned self] in
       self.present(viewModels: $0)
-    }) { [unowned self] error in
-      guard let moviesListError = error as? TrendingError else {
-        self.router.showError(message: error.localizedDescription)
-        return
-      }
+      }, onError: { error in
+        guard let moviesListError = error as? TrendingError else {
+          self.router.showError(message: error.localizedDescription)
+          return
+        }
 
-      self.router.showError(message: moviesListError.message)
-    }.disposed(by: disposeBag)
+        self.router.showError(message: moviesListError.message)
+    }).disposed(by: disposeBag)
   }
 
   fileprivate func present(viewModels: [TrendingViewModel]) {

@@ -4,7 +4,7 @@ import RxSwift
 
 let traktProviderMock = TraktProviderMock()
 
-final class TraktProviderMock: TraktProvider {
+final class TraktProviderMock: TraktProvider, TraktAuthenticationProvider {
   private let error: Swift.Error?
 
   func finishesAuthentication(with request: URLRequest) -> Single<AuthenticationResult> {

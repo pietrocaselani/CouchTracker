@@ -3,7 +3,7 @@ import RxSwift
 final class TraktLoginStore: TraktLoginOutputProvider, TraktLoginObservable {
   var loginOutput: TraktLoginOutput
 
-  init(trakt: TraktProvider) {
+  init(trakt: TraktAuthenticationProvider) {
     let initialState = trakt.isAuthenticated ? TraktLoginState.logged : TraktLoginState.notLogged
     let loginState = BehaviorSubject(value: initialState)
     self.loginOutput = TraktLoginStoreOutput(loginState)

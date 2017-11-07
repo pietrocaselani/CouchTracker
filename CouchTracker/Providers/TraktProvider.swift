@@ -12,7 +12,6 @@ protocol TraktProvider: class {
   var episodes: MoyaProvider<Episodes> { get }
   var sync: MoyaProvider<Sync> { get }
   var oauth: URL? { get }
-  var isAuthenticated: Bool { get }
 
   func finishesAuthentication(with request: URLRequest) -> Single<AuthenticationResult>
 }

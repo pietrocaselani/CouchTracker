@@ -2,11 +2,9 @@ import UIKit
 
 final class AppConfigurationsiOSRouter: AppConfigurationsRouter {
   private let viewController: UIViewController
-  private let traktProvider: TraktProvider
 
-  init(viewController: UIViewController, traktProvider: TraktProvider) {
+  init(viewController: UIViewController) {
     self.viewController = viewController
-    self.traktProvider = traktProvider
   }
 
   func showTraktLogin(output: TraktLoginOutput) {
