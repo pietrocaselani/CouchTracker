@@ -319,6 +319,8 @@
 		648830241FB2263B00BB217D /* TraktTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648830221FB2263700BB217D /* TraktTests.swift */; };
 		6496D9AA1F56F1CF00B76E06 /* TraktProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6496D9A91F56F1CF00B76E06 /* TraktProviderMock.swift */; };
 		6496D9AB1F56F1CF00B76E06 /* TraktProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6496D9A91F56F1CF00B76E06 /* TraktProviderMock.swift */; };
+		649F56D31FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F56D21FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift */; };
+		649F56D51FB3214F004B13B0 /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */; };
 		64A5DCC61F56E2DF006853A2 /* ImagesEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5DCC51F56E2DF006853A2 /* ImagesEntityMapper.swift */; };
 		64A5DCC71F56E2DF006853A2 /* ImagesEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5DCC51F56E2DF006853A2 /* ImagesEntityMapper.swift */; };
 		64A5DCC91F56E2DF006853A2 /* ImagesEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5DCC51F56E2DF006853A2 /* ImagesEntityMapper.swift */; };
@@ -470,8 +472,6 @@
 		64DF605C1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DF605A1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift */; };
 		64DF605E1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DF605A1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift */; };
 		64EB979C1FB2090500C96E43 /* TraktWrapperProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB979B1FB2090500C96E43 /* TraktWrapperProvider.swift */; };
-		64EB979D1FB2090500C96E43 /* TraktWrapperProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB979B1FB2090500C96E43 /* TraktWrapperProvider.swift */; };
-		64EB979E1FB2090500C96E43 /* TraktWrapperProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB979B1FB2090500C96E43 /* TraktWrapperProvider.swift */; };
 		64EB97A01FB20C8E00C96E43 /* TraktAuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB979F1FB20C8E00C96E43 /* TraktAuthenticationProvider.swift */; };
 		64EB97A11FB20C8E00C96E43 /* TraktAuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB979F1FB20C8E00C96E43 /* TraktAuthenticationProvider.swift */; };
 		64EB97A21FB20C8E00C96E43 /* TraktAuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB979F1FB20C8E00C96E43 /* TraktAuthenticationProvider.swift */; };
@@ -693,6 +693,8 @@
 		6488301F1FB2250C00BB217D /* trakt_sync_watched_shows.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_sync_watched_shows.json; sourceTree = "<group>"; };
 		648830221FB2263700BB217D /* TraktTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktTests.swift; sourceTree = "<group>"; };
 		6496D9A91F56F1CF00B76E06 /* TraktProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktProviderMock.swift; sourceTree = "<group>"; };
+		649F56D21FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseWriterMoyaPlugin.swift; sourceTree = "<group>"; };
+		649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCacheMoyaPlugin.swift; sourceTree = "<group>"; };
 		64A5DCC51F56E2DF006853A2 /* ImagesEntityMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesEntityMapper.swift; sourceTree = "<group>"; };
 		64A5DCCA1F56E3FC006853A2 /* MovieEntityMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEntityMapper.swift; sourceTree = "<group>"; };
 		64A5DCCF1F56E4B9006853A2 /* ImagesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesMock.swift; sourceTree = "<group>"; };
@@ -1420,6 +1422,8 @@
 				64343E1D1F7EB3B7004557E4 /* Secrets.swift */,
 				642F6F541F5D74F10012F04F /* ShowEntityMapper.swift */,
 				644FCDDE1F5ED41F00346605 /* ShowViewModelMapper.swift */,
+				649F56D21FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift */,
+				649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1699,8 +1703,8 @@
 				TargetAttributes = {
 					647632381F44824900F277F1 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 3N8S6HR6EJ;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = B5RPM7SE3L;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -2071,6 +2075,7 @@
 				641B9D2C1F7D664C00C26D10 /* ShowManageriOSPresenter.swift in Sources */,
 				644BF5131F6B07B00010CE35 /* AppConfigurationsService.swift in Sources */,
 				64BE63391F4F71DC002E55EA /* MovieDetailsiOSRouter.swift in Sources */,
+				649F56D31FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift in Sources */,
 				64D2FFDA1F44DFEA009E9ED3 /* R.generated.swift in Sources */,
 				64D43BCB1F605DB0005CDBF7 /* TrendingCelliOSPresenter.swift in Sources */,
 				64D29C371F55A949008E344E /* TrendingiOSPresenter.swift in Sources */,
@@ -2092,6 +2097,7 @@
 				6454D17B1F704A1D008C4E5F /* TraktLoginViewController.swift in Sources */,
 				6467FC2A1F66D00D000D1AEE /* ShowDetailsViewController.swift in Sources */,
 				6434C39F1F835CE6009B5A9F /* ShowProgressContract.swift in Sources */,
+				649F56D51FB3214F004B13B0 /* NoCacheMoyaPlugin.swift in Sources */,
 				642074141FAA382700923248 /* UglyMemoryCache.swift in Sources */,
 				64B1CC771F4F55B1002A9FFD /* TrendingModule.swift in Sources */,
 				648830181FB2151B00BB217D /* TVDBWrapperProvider.swift in Sources */,
@@ -2275,7 +2281,6 @@
 				64D29C481F55AA16008E344E /* SearchService.swift in Sources */,
 				64C2D0141F60A34F00A064E2 /* TrendingCellService.swift in Sources */,
 				640330441F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */,
-				64EB979D1FB2090500C96E43 /* TraktWrapperProvider.swift in Sources */,
 				645EEEE41F61AEA10034EB66 /* ShowDetailsMocks.swift in Sources */,
 				646896311F7BFECB00F95649 /* ShowProgressPresenterTest.swift in Sources */,
 				641B9D4B1F7D964500C26D10 /* ShowEpisodeContract.swift in Sources */,
@@ -2383,7 +2388,6 @@
 				64A5DCCE1F56E3FC006853A2 /* MovieEntityMapper.swift in Sources */,
 				64BE631A1F4F5E43002E55EA /* Date+TraktDateFormatter.swift in Sources */,
 				644E904C1F72E5C40089CD70 /* WatchedShowEntity.swift in Sources */,
-				64EB979E1FB2090500C96E43 /* TraktWrapperProvider.swift in Sources */,
 				64EC3A681F66B3B30046A186 /* ShowDetailsiOSPresenter.swift in Sources */,
 				64C384121F6C137A00FC9930 /* AppConfigurationsUserDefaultsRepositoryTest.swift in Sources */,
 				6468963D1F7C12D400F95649 /* ShowProgressCellContract.swift in Sources */,
@@ -2676,15 +2680,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 3N8S6HR6EJ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B5RPM7SE3L;
 				INFOPLIST_FILE = CouchTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.ctapp;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.couchtracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "81107c8f-d4fd-41f2-b2dc-61dcaeb47701";
-				PROVISIONING_PROFILE_SPECIFIER = "ArcTouch Enterprise Dev";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -2696,12 +2701,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B5RPM7SE3L;
 				INFOPLIST_FILE = CouchTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.ctapp;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.couchtracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;

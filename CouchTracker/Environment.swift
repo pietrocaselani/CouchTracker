@@ -21,6 +21,8 @@ final class Environment {
     self.tvdb = TVDBWrapperProvider(tvdb: TVDB(apiKey: Secrets.TVDB.apiKey))
 
 //    trakt.addPlugin(NetworkLoggerPlugin(verbose: true, cURL: false))
+    trakt.addPlugin(ResponseWriterMoyaPlugin())
+    trakt.addPlugin(NoCacheMoyaPlugin())
 
     let traktLoginStore = TraktLoginStore(trakt: trakt)
 
