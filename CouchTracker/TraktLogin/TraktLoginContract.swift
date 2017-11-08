@@ -29,5 +29,5 @@ protocol TraktLoginOutput: class {
 protocol TraktLoginPolicyDecider: class {
   init(loginOutput: TraktLoginOutput)
 
-  func allowedToProceed(with request: URLRequest) -> Observable<AuthenticationResult>
+  func allowedToProceed(with request: URLRequest) -> Single<AuthenticationResult>
 }
