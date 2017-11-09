@@ -105,7 +105,6 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     presenter.viewDidLoad()
 
     //When
-    sleep(1)
     presenter.optionSelectedAt(index: 0)
 
     //Then

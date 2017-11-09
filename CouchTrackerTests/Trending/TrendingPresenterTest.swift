@@ -180,7 +180,6 @@ final class TrendingPresenterTest: XCTestCase {
     searchPresenter.searchMovies(query: "Tron")
 
     //When
-    sleep(1)
     presenter.showDetailsOfTrending(at: 0)
 
     //Then
