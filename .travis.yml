@@ -1,0 +1,12 @@
+# references:
+# * http://www.objc.io/issue-6/travis-ci.html
+# * https://github.com/supermarin/xcpretty#usage
+
+osx_image: xcode9
+language: objective-c
+
+before_install:
+- bash setup.sh
+- git remote set-url origin "https://${GITHUB_TOKEN}@github.com/pietrocaselani/CouchTracker.git"
+script:
+- bash ci/travis.sh
