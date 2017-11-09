@@ -1,0 +1,36 @@
+fastlane_version "2.64.0"
+
+desc "Run bundle exec pod install --repo-update"
+lane :pods do
+  cocoapods(podfile: ".", repo_update: true)
+end
+
+desc "Run CouchTrackerFastTests"
+lane :tests do
+	pods
+	scan(workspace: "CouchTracker.xcworkspace",
+		scheme: "CouchTrackerFastTests",
+		clean: false,
+		code_coverage: true,
+		output_directory: "./reports/")
+end
+
+desc "Run tests and linters"
+lane :lint do
+	tests
+	slather(cobertura_xml: true,
+			travis: true,
+			scheme: "CouchTrackerFastTests",
+			output_directory: "./reports",
+			verbose: true,
+			proj: "CouchTracker.xcodeproj",
+			workspace: "CouchTracker.xcworkspace")
+    sh("cd .. && lizard . -l swift --xml > ./reports/lizard-report.xml")
+    swiftlint(output_file: "./reports/swiftlint.txt", ignore_exit_status: true)
+end
+
+desc "Run tests and linters then upload metrics to sonar"
+lane :upload_sonar do
+	lint
+	sonar(sonar_login: ENV["SONAR_LOGIN"])
+end
