@@ -46,3 +46,4 @@ Logs/
 .env
 Pods/
 *.lock
+.env
