@@ -17,7 +17,7 @@ final class ImageCachedRepository: ImageRepository {
 	}
 
 	init(tmdb: TMDBProvider, tvdb: TVDBProvider,
-			 cofigurationRepository: ConfigurationRepository, cache: AnyCache<Int, NSData>) {
+	     cofigurationRepository: ConfigurationRepository, cache: AnyCache<Int, NSData>) {
 		self.configurationRepository = cofigurationRepository
 		self.tmdb = tmdb
 		self.tvdb = tvdb
@@ -25,7 +25,7 @@ final class ImageCachedRepository: ImageRepository {
 	}
 
 	func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?,
-												backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
+	                      backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
 		let target = Movies.images(movieId: movieId)
 
 		let apiObservable = imagesFromAPI(using: tmdb.movies, with: target)
@@ -34,7 +34,7 @@ final class ImageCachedRepository: ImageRepository {
 	}
 
 	func fetchShowImages(for showId: Int, posterSize: PosterImageSize?,
-											 backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
+	                     backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
 		let target = Shows.images(showId: showId)
 
 		let apiObservable = imagesFromAPI(using: tmdb.shows, with: target)
@@ -55,15 +55,15 @@ final class ImageCachedRepository: ImageRepository {
 	}
 
 	private func fetchEpisodeImageFromTMDB(_ showId: Int, _ season: Int,
-																				 _ number: Int, _ size: StillImageSize) -> Observable<URL> {
+	                                       _ number: Int, _ size: StillImageSize) -> Observable<URL> {
 		let target = TMDBEpisodes.images(showId: showId, season: season, episode: number)
 
 		let apiObservable = imagesFromAPI(using: tmdb.episodes, with: target)
 
 		let observable = createImagesEntities(apiObservable,
-																					posterSize: nil,
-																					backdropSize: nil,
-																					stillSize: size)
+		                                      posterSize: nil,
+		                                      backdropSize: nil,
+		                                      stillSize: size)
 
 		return observable.flatMap { entity -> Observable<URL> in
 			guard let link = entity.stillImage()?.link, let url = URL(string: link) else {
@@ -93,20 +93,20 @@ final class ImageCachedRepository: ImageRepository {
 	}
 
 	private func createImagesObservable(_ cacheObservable: Observable<Images>,
-																			_ apiObservable: Observable<Images>) -> Observable<Images> {
+	                                    _ apiObservable: Observable<Images>) -> Observable<Images> {
 		return cacheObservable.catchError { _ in apiObservable }.ifEmpty(switchTo: apiObservable)
 	}
 
 	private func createImagesEntities(_ imagesObservable: Observable<Images>, posterSize: PosterImageSize? = nil,
-																		backdropSize: BackdropImageSize? = nil,
-																		stillSize: StillImageSize? = nil) -> Observable<ImagesEntity> {
+	                                  backdropSize: BackdropImageSize? = nil,
+	                                  stillSize: StillImageSize? = nil) -> Observable<ImagesEntity> {
 		let configurationObservable = configurationRepository.fetchConfiguration()
 
 		let observable = Observable.combineLatest(imagesObservable, configurationObservable) {
 			return ImagesEntityMapper.entity(for: $0, using: $1,
-																			 posterSize: posterSize ?? .w342,
-																			 backdropSize: backdropSize ?? .w300,
-																			 stillSize: stillSize ?? .w300)
+			                                 posterSize: posterSize ?? .w342,
+			                                 backdropSize: backdropSize ?? .w300,
+			                                 stillSize: stillSize ?? .w300)
 		}
 
 		let scheduler = SerialDispatchQueueScheduler(qos: .background)

@@ -18,17 +18,17 @@ final class ShowDetailsiOSPresenter: ShowDetailsPresenter {
       .observeOn(MainScheduler.instance)
       .subscribe(onSuccess: { [unowned self] in
         self.view.show(images: $0)
-      }) { error in
-        print(error.localizedDescription)
-    }.disposed(by: disposeBag)
+        }, onError: { error in
+          print(error.localizedDescription)
+      }).disposed(by: disposeBag)
 
     interactor.fetchDetailsOfShow().map { [unowned self] in self.mapToViewModel($0) }
       .observeOn(MainScheduler.instance)
       .subscribe(onSuccess: { [unowned self] viewModel in
         self.view.show(details: viewModel)
-      }) { [unowned self] error in
-        self.router.showError(message: error.localizedDescription)
-    }.disposed(by: disposeBag)
+        }, onError: { [unowned self] error in
+          self.router.showError(message: error.localizedDescription)
+      }).disposed(by: disposeBag)
   }
 
   private func mapToViewModel(_ show: ShowEntity) -> ShowDetailsViewModel {
