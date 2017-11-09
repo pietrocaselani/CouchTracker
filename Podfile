@@ -1,8 +1,8 @@
 def common_pods
   pod 'SwiftLint', '0.23.1'
-  pod 'Trakt', :path => '../Trakt-Swift'
-  pod 'TMDB', :path => '../TMDB-Swift'
-  pod 'TVDB', :path => '../TVDB-Swift'
+  pod 'Trakt', :git => 'https://github.com/pietrocaselani/Trakt-Swift.git'
+  pod 'TMDB', :path => 'https://github.com/pietrocaselani/TMDB-Swift.git'
+  pod 'TVDB', :path => 'https://github.com/pietrocaselani/TVDB-Swift.git'
   pod 'Cache', '4.1.2'
 end
 
