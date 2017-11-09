@@ -18,37 +18,14 @@ final class TraktProviderMock: TraktProvider, TraktAuthenticationProvider {
 
   var oauth: URL?
 
-  var movies: MoyaProvider<Movies> {
-    return MoyaProvider<Movies>(stubClosure: MoyaProvider.immediatelyStub)
-  }
-
-  var genres: MoyaProvider<Genres> {
-    return MoyaProvider<Genres>(stubClosure: MoyaProvider.immediatelyStub)
-  }
-
-  var search: MoyaProvider<Search> {
-    return MoyaProvider<Search>(stubClosure: MoyaProvider.immediatelyStub)
-  }
-
-  var shows: MoyaProvider<Shows> {
-    return MoyaProvider<Shows>(stubClosure: MoyaProvider.immediatelyStub)
-  }
-
-  var users: MoyaProvider<Users> {
-    return MoyaProvider<Users>(stubClosure: MoyaProvider.immediatelyStub)
-  }
-
-  var authentication: MoyaProvider<Authentication> {
-    return MoyaProvider<Authentication>(stubClosure: MoyaProvider.immediatelyStub)
-  }
-
-  var sync: MoyaProvider<Sync> {
-    return MoyaProvider<Sync>(stubClosure: MoyaProvider.immediatelyStub)
-  }
-
-  var episodes: MoyaProvider<Episodes> {
-    return MoyaProvider<Episodes>(stubClosure: MoyaProvider.immediatelyStub)
-  }
+  var movies: MoyaProvider<Movies> = MoyaProvider<Movies>(stubClosure: MoyaProvider.immediatelyStub)
+  var genres: MoyaProvider<Genres> = MoyaProvider<Genres>(stubClosure: MoyaProvider.immediatelyStub)
+  var search: MoyaProvider<Search> = MoyaProvider<Search>(stubClosure: MoyaProvider.immediatelyStub)
+  var shows: MoyaProvider<Shows> = MoyaProvider<Shows>(stubClosure: MoyaProvider.immediatelyStub)
+  var users: MoyaProvider<Users> = MoyaProvider<Users>(stubClosure: MoyaProvider.immediatelyStub)
+  var authentication: MoyaProvider<Authentication> = MoyaProvider<Authentication>(stubClosure: MoyaProvider.immediatelyStub)
+  var sync: MoyaProvider<Sync> = MoyaProvider<Sync>(stubClosure: MoyaProvider.immediatelyStub)
+  var episodes: MoyaProvider<Episodes> = MoyaProvider<Episodes>(stubClosure: MoyaProvider.immediatelyStub)
 
   var isAuthenticated: Bool {
     return oauth != nil
