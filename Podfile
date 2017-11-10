@@ -1,3 +1,5 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
 def common_pods
   pod 'SwiftLint', '0.23.1'
   pod 'Trakt', :git => 'https://github.com/pietrocaselani/Trakt-Swift.git'
