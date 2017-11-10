@@ -6,7 +6,7 @@ final class TraktTokenPolicyDecider: TraktLoginPolicyDecider {
   private let output: TraktLoginOutput
 
   init(loginOutput: TraktLoginOutput) {
-    fatalError("Not implemented! Use init(loginOutput: traktProvider:)")
+    Swift.fatalError("Not implemented! Use init(loginOutput: traktProvider:)")
   }
 
   init(loginOutput: TraktLoginOutput, traktProvider: TraktProvider) {
