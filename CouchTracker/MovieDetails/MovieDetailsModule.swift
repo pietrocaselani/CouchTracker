@@ -22,7 +22,7 @@ final class MovieDetailsModule {
     let viewController = R.storyboard.movieDetails.movieDetailsViewController()
 
     guard let view = viewController else {
-      fatalError("viewController should be an instance of MovieDetailsView")
+      Swift.fatalError("viewController should be an instance of MovieDetailsView")
     }
 
     let router = MovieDetailsiOSRouter(viewController: view)

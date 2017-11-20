@@ -14,23 +14,28 @@ final class Environment {
   let memoryCache: AnyCache<Int, NSData>
 
   private init() {
-    let traktQueue = DispatchQueue(label: "CallbackQueue", qos: .background)
+    let moyaQueue = DispatchQueue(label: "CallbackQueue", qos: .background)
 
     let traktBuilder = TraktBuilder {
       $0.clientId = Secrets.Trakt.clientId
       $0.clientSecret = Secrets.Trakt.clientSecret
       $0.redirectURL = Secrets.Trakt.redirectURL
-      $0.callbackQueue = traktQueue
+      $0.callbackQueue = moyaQueue
       $0.plugins = [NoCacheMoyaPlugin(), ResponseWriterMoyaPlugin()]
     }
 
-    let trakt = Trakt(builder: traktBuilder)
-    self.tmdb = TMDBWrapperProvider(tmdb: TMDB(apiKey: Secrets.TMDB.apiKey))
-    self.tvdb = TVDBWrapperProvider(tvdb: TVDB(apiKey: Secrets.TVDB.apiKey))
+    let tvdbBuilder = TVDBBuilder {
+      $0.apiKey = Secrets.TVDB.apiKey
+      $0.callbackQueue = moyaQueue
+    }
 
-    let traktLoginStore = TraktLoginStore(trakt: trakt)
+    let trakt = Trakt(builder: traktBuilder)
 
     self.trakt = trakt
+    self.tmdb = TMDB(apiKey: Secrets.TMDB.apiKey)
+    self.tvdb = TVDB(builder: tvdbBuilder)
+
+    let traktLoginStore = TraktLoginStore(trakt: trakt)
 
     self.loginObservable = traktLoginStore
     self.defaultOutput = traktLoginStore.loginOutput
