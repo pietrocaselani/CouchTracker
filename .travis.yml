@@ -11,3 +11,5 @@ before_install:
 - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/pietrocaselani/CouchTracker.git"
 script:
 - bash ci/travis.sh
+notifications:
+  email: false
