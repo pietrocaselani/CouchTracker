@@ -9,6 +9,10 @@ Keep track of your favorite movies and tv shows on your iPhone
 
 Run the following commands
 
-1. `cd CouchTracker && bundle install && bundle exec pod install`
+* `cd CouchTracker && bundle install && bundle exec pod install`
 
-2. `Open CouchTracker.xcworkspace`
+* `Open CouchTracker.xcworkspace`
+
+* This project uses the [Trakt API](https://trakt.docs.apiary.io/), [TMDB API](https://developers.themoviedb.org/3/getting-started) and [TVDB API](https://api.thetvdb.com/swagger)
+
+* To run the app, plase update the file at `CouchTracker/Utils/Secrets.swift` with yours API keys
