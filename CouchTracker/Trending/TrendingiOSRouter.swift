@@ -36,7 +36,7 @@ final class TrendingiOSRouter: TrendingRouter, AppConfigurationsPresentable {
     let configurationsView = AppConfigurationsModule.setupModule()
 
     guard let configurationsViewController = configurationsView as? UIViewController else {
-      fatalError("configurationsView should be an instance of UIViewController")
+      Swift.fatalError("configurationsView should be an instance of UIViewController")
     }
 
     configurationsViewController.modalPresentationStyle = .overCurrentContext
@@ -56,7 +56,7 @@ final class TrendingiOSRouter: TrendingRouter, AppConfigurationsPresentable {
     guard let navigationController = viewController?.navigationController else { return }
 
     guard let viewController = view as? UIViewController else {
-      fatalError("view should be an instance of UIViewController")
+      Swift.fatalError("view should be an instance of UIViewController")
     }
 
     navigationController.pushViewController(viewController, animated: true)

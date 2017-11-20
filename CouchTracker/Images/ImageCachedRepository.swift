@@ -13,7 +13,7 @@ final class ImageCachedRepository: ImageRepository {
 	private let tvdb: TVDBProvider
 
 	init(tmdb: TMDBProvider, tvdb: TVDBProvider, cofigurationRepository: ConfigurationRepository) {
-		fatalError("Please, use init(tmdb: tvdb: configurationRepository: cache:)")
+		Swift.fatalError("Please, use init(tmdb: tvdb: configurationRepository: cache:)")
 	}
 
 	init(tmdb: TMDBProvider, tvdb: TVDBProvider,

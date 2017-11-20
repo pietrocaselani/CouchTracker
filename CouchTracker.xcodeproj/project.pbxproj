@@ -308,12 +308,6 @@
 		648687A21F4A3B9C005A0BA8 /* TrendingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486879D1F4A3B9C005A0BA8 /* TrendingError.swift */; };
 		648687A71F4A3D6D005A0BA8 /* TrendingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6486879D1F4A3B9C005A0BA8 /* TrendingError.swift */; };
 		648830161FB2150000BB217D /* Trakt+APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC6F1F4F559F002A9FFD /* Trakt+APIProvider.swift */; };
-		648830181FB2151B00BB217D /* TVDBWrapperProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648830171FB2151B00BB217D /* TVDBWrapperProvider.swift */; };
-		648830191FB2151B00BB217D /* TVDBWrapperProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648830171FB2151B00BB217D /* TVDBWrapperProvider.swift */; };
-		6488301A1FB2151B00BB217D /* TVDBWrapperProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648830171FB2151B00BB217D /* TVDBWrapperProvider.swift */; };
-		6488301C1FB2157F00BB217D /* TMDBWrapperProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6488301B1FB2157F00BB217D /* TMDBWrapperProvider.swift */; };
-		6488301D1FB2157F00BB217D /* TMDBWrapperProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6488301B1FB2157F00BB217D /* TMDBWrapperProvider.swift */; };
-		6488301E1FB2157F00BB217D /* TMDBWrapperProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6488301B1FB2157F00BB217D /* TMDBWrapperProvider.swift */; };
 		648830201FB2250C00BB217D /* trakt_sync_watched_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 6488301F1FB2250C00BB217D /* trakt_sync_watched_shows.json */; };
 		6496D9AA1F56F1CF00B76E06 /* TraktProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6496D9A91F56F1CF00B76E06 /* TraktProviderMock.swift */; };
 		6496D9AB1F56F1CF00B76E06 /* TraktProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6496D9A91F56F1CF00B76E06 /* TraktProviderMock.swift */; };
@@ -681,8 +675,6 @@
 		6483911F1F50606100911BA0 /* SearchPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenterTest.swift; sourceTree = "<group>"; };
 		648391221F507F9500911BA0 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		6486879D1F4A3B9C005A0BA8 /* TrendingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingError.swift; sourceTree = "<group>"; };
-		648830171FB2151B00BB217D /* TVDBWrapperProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBWrapperProvider.swift; sourceTree = "<group>"; };
-		6488301B1FB2157F00BB217D /* TMDBWrapperProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBWrapperProvider.swift; sourceTree = "<group>"; };
 		6488301F1FB2250C00BB217D /* trakt_sync_watched_shows.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_sync_watched_shows.json; sourceTree = "<group>"; };
 		6496D9A91F56F1CF00B76E06 /* TraktProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktProviderMock.swift; sourceTree = "<group>"; };
 		649F56D21FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseWriterMoyaPlugin.swift; sourceTree = "<group>"; };
@@ -1021,7 +1013,6 @@
 				644EE1411F55DEB50053D631 /* TMDB+APIProvider.swift */,
 				6423EA8F1F5600A900F3899C /* TMDBMovies+Hashable.swift */,
 				64B61D931F67163A006442E1 /* TMDBShows+Hashable.swift */,
-				6488301B1FB2157F00BB217D /* TMDBWrapperProvider.swift */,
 			);
 			path = TMDB;
 			sourceTree = "<group>";
@@ -1418,7 +1409,6 @@
 			isa = PBXGroup;
 			children = (
 				64343E201F7EB48A004557E4 /* TVDB+APIProvider.swift */,
-				648830171FB2151B00BB217D /* TVDBWrapperProvider.swift */,
 			);
 			path = TVDB;
 			sourceTree = "<group>";
@@ -2035,7 +2025,6 @@
 				641B9D481F7D8EF700C26D10 /* ShowsProgressiOSRouter.swift in Sources */,
 				6454D1831F704BED008C4E5F /* TraktLoginModule.swift in Sources */,
 				644BF5111F6B07B00010CE35 /* AppConfigurationsiOSPresenter.swift in Sources */,
-				6488301C1FB2157F00BB217D /* TMDBWrapperProvider.swift in Sources */,
 				648390E71F504EE500911BA0 /* SearchContract.swift in Sources */,
 				6442F9FB1F61A0E4008E3E12 /* ShowDetailsContract.swift in Sources */,
 				644E90621F7306070089CD70 /* EpisodeProgressEntity.swift in Sources */,
@@ -2069,7 +2058,6 @@
 				649F56D51FB3214F004B13B0 /* NoCacheMoyaPlugin.swift in Sources */,
 				642074141FAA382700923248 /* UglyMemoryCache.swift in Sources */,
 				64B1CC771F4F55B1002A9FFD /* TrendingModule.swift in Sources */,
-				648830181FB2151B00BB217D /* TVDBWrapperProvider.swift in Sources */,
 				64D29C321F55A936008E344E /* MovieDetailsiOSPresenter.swift in Sources */,
 				648687A21F4A3B9C005A0BA8 /* TrendingError.swift in Sources */,
 				641B9D521F7D9E8500C26D10 /* ShowEpisodeService.swift in Sources */,
@@ -2235,7 +2223,6 @@
 				64C384091F6C134F00FC9930 /* AppConfigurationsPresenterTest.swift in Sources */,
 				64CCE3401F7AD2A300CD2B9C /* ShowsProgressServiceTest.swift in Sources */,
 				6496D9AA1F56F1CF00B76E06 /* TraktProviderMock.swift in Sources */,
-				6488301D1FB2157F00BB217D /* TMDBWrapperProvider.swift in Sources */,
 				644FCDE01F5ED41F00346605 /* ShowViewModelMapper.swift in Sources */,
 				6454D1621F7037DF008C4E5F /* TraktLoginService.swift in Sources */,
 				644BF5241F6B07E20010CE35 /* AppConfigurationsService.swift in Sources */,
@@ -2267,7 +2254,6 @@
 				6454D1871F705222008C4E5F /* TraktTokenPolicyDecider.swift in Sources */,
 				641B9D231F7D412B00C26D10 /* ShowProgressSort.swift in Sources */,
 				6406BEED1F4DC372004661C4 /* GenreRepositoryMock.swift in Sources */,
-				648830191FB2151B00BB217D /* TVDBWrapperProvider.swift in Sources */,
 				64BE63301F4F6F3F002E55EA /* Localizable.swift in Sources */,
 				64343E121F7EB128004557E4 /* TVDBProvider.swift in Sources */,
 				64C2D0101F60A34500A064E2 /* TrendingCellContract.swift in Sources */,
@@ -2413,14 +2399,12 @@
 				64C2D0111F60A34600A064E2 /* TrendingCellContract.swift in Sources */,
 				648390E01F504EA500911BA0 /* MovieDetailsPresenterTest.swift in Sources */,
 				6434C3A11F835CE6009B5A9F /* ShowProgressContract.swift in Sources */,
-				6488301A1FB2151B00BB217D /* TVDBWrapperProvider.swift in Sources */,
 				64CC08AB1F71944B004D164A /* TraktLoginOutputProvider.swift in Sources */,
 				64A5DCD31F56E4B9006853A2 /* ImagesMock.swift in Sources */,
 				64D29C4F1F55AA22008E344E /* MovieDetailsiOSPresenter.swift in Sources */,
 				642074161FAA382700923248 /* UglyMemoryCache.swift in Sources */,
 				646896411F7C132C00F95649 /* ShowProgressCellService.swift in Sources */,
 				64BE63041F4F5C5F002E55EA /* MovieDetailsContract.swift in Sources */,
-				6488301E1FB2157F00BB217D /* TMDBWrapperProvider.swift in Sources */,
 				64303EBA1F6726970050C287 /* ImagesViewModel.swift in Sources */,
 				641B9D541F7D9E8500C26D10 /* ShowEpisodeService.swift in Sources */,
 				641B9D261F7D413100C26D10 /* ShowProgressFilter.swift in Sources */,

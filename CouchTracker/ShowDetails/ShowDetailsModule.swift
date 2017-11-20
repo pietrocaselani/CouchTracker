@@ -21,7 +21,7 @@ final class ShowDetailsModule {
                                         genreRepository: genreRepository, imageRepository: imageRepository)
 
     guard let view = R.storyboard.showDetails.showDetailsViewController() else {
-      fatalError("view should be an instance of ShowDetailsViewController")
+      Swift.fatalError("view should be an instance of ShowDetailsViewController")
     }
 
     let router = ShowDetailsiOSRouter(viewController: view)

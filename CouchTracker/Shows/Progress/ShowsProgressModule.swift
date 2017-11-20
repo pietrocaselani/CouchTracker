@@ -10,7 +10,7 @@ final class ShowsProgressModule {
 
   static func setupModule() -> BaseView {
     guard let view = R.storyboard.showsProgress.showsProgressViewController() else {
-      fatalError("Can't instantiate showsProgressController from Shows storyboard")
+      Swift.fatalError("Can't instantiate showsProgressController from Shows storyboard")
     }
 
     let trakt = Environment.instance.trakt
