@@ -2,16 +2,17 @@ import RxSwift
 
 final class ShowsManageriOSPresenter: ShowsManagerPresenter {
   private weak var view: ShowsManagerView?
-  private let router: ShowsManagerRouter
   private let loginObservable: TraktLoginObservable
   private let disposeBag = DisposeBag()
+  private let defaultIndex: Int
+  private let modules: [ShowManagerModulePage]
   private let options: [ShowsManagerOption]
 
-  init(view: ShowsManagerView, router: ShowsManagerRouter,
-       loginObservable: TraktLoginObservable, moduleSetup: ShowsManagerModulesSetup) {
+  init(view: ShowsManagerView, loginObservable: TraktLoginObservable, moduleSetup: ShowsManagerDataSource) {
     self.view = view
-    self.router = router
     self.loginObservable = loginObservable
+    self.modules = moduleSetup.modulePages()
+    self.defaultIndex = moduleSetup.defaultModuleIndex()
     self.options = moduleSetup.options
   }
 
@@ -20,19 +21,13 @@ final class ShowsManageriOSPresenter: ShowsManagerPresenter {
       .distinctUntilChanged()
       .observeOn(MainScheduler.instance)
       .subscribe(onNext: { [unowned self] loginState in
+        guard let view = self.view else { return }
+
         if loginState == .notLogged {
-          self.router.showNeedsLogin()
+          view.showNeedsTraktLogin()
         } else {
-          guard let view = self.view else { return }
-
-          let titles = self.options.map { $0.rawValue.localized }
-
-          view.showOptionsSelection(with: titles)
+          view.show(pages: self.modules, withDefault: self.defaultIndex)
         }
       }).disposed(by: disposeBag)
-  }
-
-  func showOption(at index: Int) {
-    router.show(option: options[index])
   }
 }

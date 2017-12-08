@@ -13,9 +13,8 @@ final class ShowsManagerModule {
     }
 
     let loginObservable = Environment.instance.loginObservable
-    let router = ShowsManageriOSRouter(viewController: showsManagerView)
     let modulesSetup = ShowsManageriOSModuleSetup()
-    let presenter = ShowsManageriOSPresenter(view: showsManagerView, router: router,
+    let presenter = ShowsManageriOSPresenter(view: showsManagerView,
                                              loginObservable: loginObservable, moduleSetup: modulesSetup)
 
     showsManagerView.presenter = presenter

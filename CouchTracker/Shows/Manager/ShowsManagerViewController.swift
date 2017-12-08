@@ -1,16 +1,20 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import Tabman
+import Pageboy
 
-final class ShowsManagerViewController: UITableViewController, ShowsManagerView {
+final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
   var presenter: ShowsManagerPresenter!
   private let disposeBag = DisposeBag()
-  private var titles = [String]()
+  private var moduleViews: [BaseView]?
+  private var defaultPageIndex = 0
 
   override func awakeFromNib() {
     super.awakeFromNib()
 
     self.title = R.string.localizable.shows()
+    self.dataSource = self
   }
 
   override func viewDidLoad() {
@@ -20,31 +24,34 @@ final class ShowsManagerViewController: UITableViewController, ShowsManagerView 
       fatalError("ShowsManagerViewController was loaded without a presenter")
     }
 
-    self.tableView.tableFooterView = UIView()
     presenter.viewDidLoad()
   }
 
-  func showOptionsSelection(with titles: [String]) {
-    self.titles = titles
-    self.tableView.reloadData()
+  func show(pages: [ShowManagerModulePage], withDefault index: Int) {
+    moduleViews = pages.map { $0.page }
+    defaultPageIndex = index
+
+    self.bar.items = pages.map { Item(title: $0.title) }
+
+    self.reloadPages()
   }
 
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return titles.count
+  func showNeedsTraktLogin() {
+    print("Please, Login on Trakt.tv")
+  }
+}
+
+extension ShowsManagerViewController: PageboyViewControllerDataSource {
+  func numberOfViewControllers(in pageboyViewController: PageboyViewController) -> Int {
+    return moduleViews?.count ?? 0
   }
 
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let identifier = R.reuseIdentifier.showsManagerCell
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) else {
-      fatalError("What a terrible failure")
-    }
-
-    cell.textLabel?.text = titles[indexPath.row]
-
-    return cell
+  func viewController(for pageboyViewController: PageboyViewController,
+                      at index: PageboyViewController.PageIndex) -> UIViewController? {
+    return moduleViews?[index] as? UIViewController
   }
 
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    presenter.showOption(at: indexPath.row)
+  func defaultPage(for pageboyViewController: PageboyViewController) -> PageboyViewController.Page? {
+    return Page.at(index: defaultPageIndex)
   }
 }

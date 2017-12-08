@@ -3,25 +3,29 @@ enum ShowsManagerOption: String {
   case now
 }
 
-protocol ShowsManagerRouter: class {
-  func showNeedsLogin()
-  func show(option: ShowsManagerOption)
-}
-
 protocol ShowsManagerPresenter: class {
-  init(view: ShowsManagerView, router: ShowsManagerRouter,
-       loginObservable: TraktLoginObservable, moduleSetup: ShowsManagerModulesSetup)
+  init(view: ShowsManagerView, loginObservable: TraktLoginObservable, moduleSetup: ShowsManagerDataSource)
 
   func viewDidLoad()
-  func showOption(at index: Int)
 }
 
 protocol ShowsManagerView: class {
   var presenter: ShowsManagerPresenter! { get set }
 
-  func showOptionsSelection(with titles: [String])
+  func show(pages: [ShowManagerModulePage], withDefault index: Int)
+
+  func showNeedsTraktLogin()
 }
 
-protocol ShowsManagerModulesSetup: class {
+protocol ShowsManagerDataSource: class {
   var options: [ShowsManagerOption] { get }
+
+  func modulePages() -> [ShowManagerModulePage]
+
+  func defaultModuleIndex() -> Int
+}
+
+struct ShowManagerModulePage {
+  let page: BaseView
+  let title: String
 }
