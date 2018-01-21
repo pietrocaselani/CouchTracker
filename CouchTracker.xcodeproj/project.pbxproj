@@ -458,6 +458,7 @@
 		64DF605B1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DF605A1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift */; };
 		64DF605C1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DF605A1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift */; };
 		64DF605E1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DF605A1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift */; };
+		64E7EECC201509D70008F488 /* Tabman+CouchTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E7EECB201509D70008F488 /* Tabman+CouchTracker.swift */; };
 		64EB97A01FB20C8E00C96E43 /* TraktAuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB979F1FB20C8E00C96E43 /* TraktAuthenticationProvider.swift */; };
 		64EB97A11FB20C8E00C96E43 /* TraktAuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB979F1FB20C8E00C96E43 /* TraktAuthenticationProvider.swift */; };
 		64EB97A21FB20C8E00C96E43 /* TraktAuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EB979F1FB20C8E00C96E43 /* TraktAuthenticationProvider.swift */; };
@@ -765,6 +766,7 @@
 		64DA35421F50917A005BF4E3 /* SearchBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarView.xib; sourceTree = "<group>"; };
 		64DF60551F61D3A200E1B0CC /* MovieIds+TMDBType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieIds+TMDBType.swift"; sourceTree = "<group>"; };
 		64DF605A1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShowIds+TMDBType.swift"; sourceTree = "<group>"; };
+		64E7EECB201509D70008F488 /* Tabman+CouchTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tabman+CouchTracker.swift"; sourceTree = "<group>"; };
 		64EB979F1FB20C8E00C96E43 /* TraktAuthenticationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktAuthenticationProvider.swift; sourceTree = "<group>"; };
 		64EC3A611F66B2AB0046A186 /* ShowDetailsPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsPresenterTest.swift; sourceTree = "<group>"; };
 		64EC3A641F66B3B30046A186 /* ShowDetailsiOSPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsiOSPresenter.swift; sourceTree = "<group>"; };
@@ -925,6 +927,7 @@
 				64BE63201F4F6893002E55EA /* UIAlertController+Error.swift */,
 				6406BEDB1F4DC353004661C4 /* UIColor+CouchTracker.swift */,
 				64BE633B1F4F7ED7002E55EA /* UIViewController+BaseView.swift */,
+				64E7EECB201509D70008F488 /* Tabman+CouchTracker.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2067,6 +2070,7 @@
 				64D29C361F55A949008E344E /* TrendingCacheRepository.swift in Sources */,
 				64CC088D1F717330004D164A /* ShowsManagerModule.swift in Sources */,
 				640330431F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */,
+				64E7EECC201509D70008F488 /* Tabman+CouchTracker.swift in Sources */,
 				641B9D221F7D3DE600C26D10 /* ShowProgressFilter.swift in Sources */,
 				644FCDDF1F5ED41F00346605 /* ShowViewModelMapper.swift in Sources */,
 				6468963F1F7C132C00F95649 /* ShowProgressCellService.swift in Sources */,
