@@ -6,13 +6,21 @@ final class AppConfigurationsViewController: UIViewController, AppConfigurations
 
   @IBOutlet weak var tableView: UITableView!
 
+  override func awakeFromNib() {
+    super.awakeFromNib()
+
+    title = R.string.localizable.settings()
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    guard presenter != nil else {
+      fatalError("AppConfigurationsViewController was loaded without a presenter")
+    }
+
     tableView.dataSource = self
     tableView.delegate = self
-
-    title = R.string.localizable.settings()
 
     presenter.viewDidLoad()
   }

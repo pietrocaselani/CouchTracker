@@ -15,7 +15,12 @@ final class AppFlowModule {
       fatalError("showsView should be an instance of UIViewController")
     }
 
-    let viewControllers = [trendingViewController, showsViewController]
+    let appConfigurationsView = AppConfigurationsModule.setupModule()
+    guard let appConfigurationsViewController = appConfigurationsView as? UIViewController else {
+      fatalError("appConfigurationsView should be an instance of UIViewController")
+    }
+
+    let viewControllers = [trendingViewController, showsViewController, appConfigurationsViewController]
 
     guard let appFlowViewController = R.storyboard.appFlow.appFlowViewController() else {
       fatalError("Can't instantiate AppFlowViewController from Storyboard")
