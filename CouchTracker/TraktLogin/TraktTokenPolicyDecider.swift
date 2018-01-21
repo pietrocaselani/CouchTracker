@@ -17,7 +17,7 @@ final class TraktTokenPolicyDecider: TraktLoginPolicyDecider {
   func allowedToProceed(with request: URLRequest) -> Single<AuthenticationResult> {
     return trakt.finishesAuthentication(with: request)
       .observeOn(MainScheduler.instance)
-      .do(onNext: { [unowned self] result in
+      .do(onSuccess: { [unowned self] result in
         if result == AuthenticationResult.authenticated {
           self.output.loggedInSuccessfully()
         }
