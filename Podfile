@@ -13,7 +13,7 @@ def ios_pods
   pod 'Kingfisher', '4.2.0'
   pod 'RxCocoa', '4.0.0'
   pod 'ActionSheetPicker-3.0', '2.2.0'
-  pod 'Tabman', '1.0.8'
+  pod 'Tabman', '1.4.0'
 end
 
 def tests_shared_pods
