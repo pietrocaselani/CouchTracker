@@ -17,6 +17,7 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
     self.navigationItem.title = nil
     self.dataSource = self
     self.delegate = self
+    self.bar.defaultCTAppearance()
   }
 
   override func viewDidLoad() {
@@ -25,8 +26,6 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
     guard presenter != nil else {
       fatalError("ShowsManagerViewController was loaded without a presenter")
     }
-
-    self.bar.defaultCTAppearance()
 
     presenter.viewDidLoad()
   }
@@ -41,7 +40,14 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
   }
 
   func showNeedsTraktLogin() {
-    print("Please, Login on Trakt.tv")
+    let message = "You need to log in on Trakt to use this screen"
+    let alert = UIAlertController(title: "Trakt", message: message, preferredStyle: .alert)
+
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+      alert.dismiss(animated: true, completion: nil)
+    }))
+
+    self.present(alert, animated: true, completion: nil)
   }
 
   override func pageboyViewController(_ pageboyViewController: PageboyViewController, didScrollToPageAt index: Int,
