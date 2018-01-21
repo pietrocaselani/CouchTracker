@@ -924,10 +924,10 @@
 				64DF60551F61D3A200E1B0CC /* MovieIds+TMDBType.swift */,
 				64DF605A1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift */,
 				64BE63331F4F6F63002E55EA /* String+Localizable.swift */,
+				64E7EECB201509D70008F488 /* Tabman+CouchTracker.swift */,
 				64BE63201F4F6893002E55EA /* UIAlertController+Error.swift */,
 				6406BEDB1F4DC353004661C4 /* UIColor+CouchTracker.swift */,
 				64BE633B1F4F7ED7002E55EA /* UIViewController+BaseView.swift */,
-				64E7EECB201509D70008F488 /* Tabman+CouchTracker.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
