@@ -24,6 +24,8 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
       fatalError("ShowsManagerViewController was loaded without a presenter")
     }
 
+    self.bar.defaultCTAppearance()
+
     presenter.viewDidLoad()
   }
 
