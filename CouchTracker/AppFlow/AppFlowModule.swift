@@ -4,9 +4,9 @@ final class AppFlowModule {
   private init() {}
 
   static func setupModule() -> BaseView {
-    let trendingView = TrendingModule.setupModule()
+    let trendingMoviesView = TrendingModule.setupModule(for: .movies)
 
-    guard let trendingViewController = trendingView as? UIViewController else {
+    guard let trendingMoviesViewController = trendingMoviesView as? UIViewController else {
       fatalError("trendingView should be an instance of UIViewController")
     }
 
@@ -20,7 +20,7 @@ final class AppFlowModule {
       fatalError("appConfigurationsView should be an instance of UIViewController")
     }
 
-    let viewControllers = [trendingViewController, showsViewController, appConfigurationsViewController]
+    let viewControllers = [trendingMoviesViewController, showsViewController, appConfigurationsViewController]
 
     guard let appFlowViewController = R.storyboard.appFlow.appFlowViewController() else {
       fatalError("Can't instantiate AppFlowViewController from Storyboard")

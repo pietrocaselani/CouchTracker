@@ -1,13 +1,13 @@
 import RxSwift
 import TraktSwift
 
-final class TrendingiOSPresenter: TrendingPresenter, AppConfigurationsPresentable {
+final class TrendingiOSPresenter: TrendingPresenter {
   private static let limitPerPage = 25
 
   weak var view: TrendingView?
   var dataSource: TrendingDataSource
-  var currentTrendingType = Variable<TrendingType>(.movies)
 
+  private let trendingType: TrendingType
   private let interactor: TrendingInteractor
   private let disposeBag = DisposeBag()
   private var movies = [TrendingMovieEntity]()
@@ -15,41 +15,30 @@ final class TrendingiOSPresenter: TrendingPresenter, AppConfigurationsPresentabl
   private var currentMoviesPage = 0
   private var currentShowsPage = 0
   fileprivate let router: TrendingRouter
-  fileprivate var searchResults = [SearchResult]()
-  fileprivate var searchState = SearchState.notSearching
 
-  init(view: TrendingView, interactor: TrendingInteractor, router: TrendingRouter, dataSource: TrendingDataSource) {
+  init(view: TrendingView, interactor: TrendingInteractor,
+       router: TrendingRouter, dataSource: TrendingDataSource, type: TrendingType) {
     self.view = view
     self.interactor = interactor
     self.router = router
     self.dataSource = dataSource
+    self.trendingType = type
   }
 
   func viewDidLoad() {
-    currentTrendingType.asObservable().subscribe(onNext: { [unowned self] newType in
-      self.loadTrendingMedia(of: newType)
-    }).disposed(by: disposeBag)
-  }
-
-  fileprivate func loadTrendingMedia(of type: TrendingType) {
-    switch type {
-    case .movies: fetchMovies()
-    case .shows: fetchShows()
+    if trendingType == .movies {
+      fetchMovies()
+    } else {
+      fetchShows()
     }
   }
 
   func showDetailsOfTrending(at index: Int) {
-    if currentTrendingType.value == .movies {
+    if trendingType == .movies {
       showDetailsOfMovie(at: index)
     } else {
       showDetailsOfShow(at: index)
     }
-  }
-
-  func showAppSettings() {
-    guard let settingsPresentable = router as? AppConfigurationsPresentable else { return }
-
-    settingsPresentable.showAppSettings()
   }
 
   private func fetchMovies() {
@@ -105,67 +94,13 @@ final class TrendingiOSPresenter: TrendingPresenter, AppConfigurationsPresentabl
   }
 
   private func showDetailsOfMovie(at index: Int) {
-    let movieEntity: MovieEntity
-    if searchState == .searching {
-      guard let movie = searchResults[index].movie else { return }
-      movieEntity = MovieEntityMapper.entity(for: movie)
-    } else {
-      movieEntity = movies[index].movie
-    }
+    let movieEntity = movies[index].movie
 
     router.showDetails(of: movieEntity)
   }
 
   private func showDetailsOfShow(at index: Int) {
-    let showEntity: ShowEntity
-    if searchState == .searching {
-      guard let show = searchResults[index].show else { return }
-      showEntity = ShowEntityMapper.entity(for: show)
-    } else {
-      showEntity = shows[index].show
-    }
+    let showEntity = shows[index].show
     router.showDetails(of: showEntity)
-  }
-}
-
-extension TrendingiOSPresenter: SearchResultOutput {
-  func searchChangedTo(state: SearchState) {
-    searchState = state
-
-    if state == .notSearching {
-      searchResults.removeAll()
-      loadTrendingMedia(of: currentTrendingType.value)
-    }
-  }
-
-  func handleEmptySearchResult() {
-    view?.showEmptyView()
-  }
-
-  func handleSearch(results: [SearchResult]) {
-    searchResults = results
-
-    let viewModels = currentTrendingType.value == .movies ?
-      mapMoviesToViewModels(results) : mapShowsToViewModels(results)
-
-    present(viewModels: viewModels)
-  }
-
-  func handleError(message: String) {
-    router.showError(message: message)
-  }
-
-  private func mapMoviesToViewModels(_ results: [SearchResult]) -> [TrendingViewModel] {
-    return results.flatMap { result -> TrendingViewModel? in
-      guard let movie = result.movie else { return nil }
-      return MovieViewModelMapper.viewModel(for: movie)
-    }
-  }
-
-  private func mapShowsToViewModels(_ results: [SearchResult]) -> [TrendingViewModel] {
-    return results.flatMap { result -> TrendingViewModel? in
-      guard let show = result.show else { return nil }
-      return ShowViewModelMapper.viewModel(for: show)
-    }
   }
 }

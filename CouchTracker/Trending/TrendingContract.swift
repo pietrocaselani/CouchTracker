@@ -7,10 +7,10 @@ enum TrendingType {
 }
 
 protocol TrendingPresenter: class {
-  var currentTrendingType: Variable<TrendingType> { get }
   var dataSource: TrendingDataSource { get }
 
-  init(view: TrendingView, interactor: TrendingInteractor, router: TrendingRouter, dataSource: TrendingDataSource)
+  init(view: TrendingView, interactor: TrendingInteractor,
+       router: TrendingRouter, dataSource: TrendingDataSource, type: TrendingType)
 
   func viewDidLoad()
   func showDetailsOfTrending(at index: Int)
@@ -18,8 +18,6 @@ protocol TrendingPresenter: class {
 
 protocol TrendingView: BaseView {
   var presenter: TrendingPresenter! { get set }
-  var appConfigurationsPresentable: AppConfigurationsPresentable! { get set }
-  var searchView: SearchView! { get set }
 
   func showEmptyView()
   func showTrendingsView()

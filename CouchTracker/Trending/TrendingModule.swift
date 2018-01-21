@@ -3,7 +3,7 @@ import UIKit
 final class TrendingModule {
   private init() {}
 
-  static func setupModule() -> BaseView {
+  static func setupModule(for trendingType: TrendingType) -> BaseView {
     guard let navigationController =
     R.storyboard.trending().instantiateInitialViewController() as? UINavigationController else {
       fatalError("viewController should be an instance of UINavigationController")
@@ -34,12 +34,10 @@ final class TrendingModule {
 
     let dataSource = TrendingCollectionViewDataSource(imageRepository: imageRepository)
 
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor,
+                                         router: router, dataSource: dataSource, type: trendingType)
 
     view.presenter = presenter
-    view.appConfigurationsPresentable = presenter
-
-    view.searchView = SearchModule.setupModule(traktProvider: traktProvider, resultsOutput: presenter)
 
     return navigationController
   }
