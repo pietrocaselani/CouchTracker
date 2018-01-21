@@ -14,7 +14,9 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
     super.awakeFromNib()
 
     self.title = R.string.localizable.shows()
+    self.navigationItem.title = nil
     self.dataSource = self
+    self.delegate = self
   }
 
   override func viewDidLoad() {
@@ -40,6 +42,17 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
 
   func showNeedsTraktLogin() {
     print("Please, Login on Trakt.tv")
+  }
+
+  override func pageboyViewController(_ pageboyViewController: PageboyViewController, didScrollToPageAt index: Int,
+                                      direction: PageboyViewController.NavigationDirection, animated: Bool) {
+    super.pageboyViewController(pageboyViewController, didScrollToPageAt: index,
+                                direction: direction, animated: animated)
+
+    let currentViewController = self.viewController(for: pageboyViewController, at: index)
+
+    self.navigationItem.leftBarButtonItems = currentViewController?.navigationItem.leftBarButtonItems
+    self.navigationItem.rightBarButtonItems = currentViewController?.navigationItem.rightBarButtonItems
   }
 }
 
