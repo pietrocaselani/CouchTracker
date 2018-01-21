@@ -2,7 +2,7 @@ import UIKit
 import TraktSwift
 import RxSwift
 
-final class TrendingiOSRouter: TrendingRouter, AppConfigurationsPresentable {
+final class TrendingiOSRouter: TrendingRouter {
   private weak var viewController: UIViewController?
   private let disposeBag = DisposeBag()
 
@@ -28,28 +28,6 @@ final class TrendingiOSRouter: TrendingRouter, AppConfigurationsPresentable {
 
     let errorAlert = UIAlertController.createErrorAlert(message: message)
     viewController.present(errorAlert, animated: true)
-  }
-
-  func showAppSettings() {
-    guard let currentViewController = viewController else { return }
-
-    let configurationsView = AppConfigurationsModule.setupModule()
-
-    guard let configurationsViewController = configurationsView as? UIViewController else {
-      Swift.fatalError("configurationsView should be an instance of UIViewController")
-    }
-
-    configurationsViewController.modalPresentationStyle = .overCurrentContext
-
-    let closeButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
-    closeButton.rx.tap.subscribe(onNext: { _ in
-      currentViewController.dismiss(animated: true, completion: nil)
-    }).disposed(by: disposeBag)
-
-    let navigationController = configurationsViewController as? UINavigationController
-    navigationController?.topViewController?.navigationItem.leftBarButtonItem = closeButton
-
-    currentViewController.present(configurationsViewController, animated: true, completion: nil)
   }
 
   private func present(view: BaseView) {

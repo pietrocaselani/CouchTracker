@@ -4,12 +4,7 @@ final class TrendingModule {
   private init() {}
 
   static func setupModule(for trendingType: TrendingType) -> BaseView {
-    guard let navigationController =
-    R.storyboard.trending().instantiateInitialViewController() as? UINavigationController else {
-      fatalError("viewController should be an instance of UINavigationController")
-    }
-
-    guard let view = navigationController.topViewController as? TrendingView else {
+    guard let view = R.storyboard.trending().instantiateInitialViewController() as? TrendingView else {
       fatalError("topViewController should be an instance of TrendingView")
     }
 
@@ -39,6 +34,6 @@ final class TrendingModule {
 
     view.presenter = presenter
 
-    return navigationController
+    return view
   }
 }

@@ -2,8 +2,9 @@ final class ShowsManageriOSModuleSetup: ShowsManagerDataSource {
   var options: [ShowsManagerOption] {
     let progress = ShowsManagerOption.progress
     let now = ShowsManagerOption.now
+    let trending = ShowsManagerOption.trending
 
-    return [progress, now]
+    return [progress, now, trending]
   }
 
   func modulePages() -> [ShowManagerModulePage] {
@@ -28,6 +29,8 @@ final class ShowsManageriOSModuleSetup: ShowsManagerDataSource {
       return "Progress"
     case .now:
       return "Now"
+    case .trending:
+      return "Trending"
     }
   }
 
@@ -37,6 +40,8 @@ final class ShowsManageriOSModuleSetup: ShowsManagerDataSource {
       return ShowsProgressModule.setupModule()
     case .now:
       return ShowsNowModule.setupModule()
+    case .trending:
+      return TrendingModule.setupModule(for: .shows)
     }
   }
 }

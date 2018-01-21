@@ -1,6 +1,7 @@
 enum ShowsManagerOption: String {
   case progress
   case now
+  case trending
 }
 
 protocol ShowsManagerPresenter: class {

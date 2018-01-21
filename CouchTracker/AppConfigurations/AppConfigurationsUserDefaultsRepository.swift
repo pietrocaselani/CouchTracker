@@ -57,7 +57,7 @@ final class AppConfigurationsUserDefaultsRepository: AppConfigurationsRepository
 		return trakt.users.rx.request(.settings)
 				.filterSuccessfulStatusCodes()
 				.map(Settings.self)
-				.do(onNext: { [unowned self] settings in
+				.do(onSuccess: { [unowned self] settings in
 					let data = try JSONEncoder().encode(settings)
 					self.userDefaults.set(data, forKey: AppConfigurationsUserDefaultsRepository.traktUserKey)
 					self.userDefaults.synchronize()
