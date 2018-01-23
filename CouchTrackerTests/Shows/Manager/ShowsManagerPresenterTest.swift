@@ -2,14 +2,18 @@ import XCTest
 
 final class ShowsManagerPresenterTest: XCTestCase {
   private let view = ShowsManagerViewMock()
-  private let router = ShowsManagerRouterMock()
-  private let moduleSetup = ShowsManageriOSModuleSetup()
+  private var moduleSetup: ShowsManagerDataSourceMock!
   private var presenter: ShowsManagerPresenter!
 
   private func setupWithLoginState(_ loginState: TraktLoginState) {
+    let page1 = ShowManagerModulePage(page: BaseViewMock(), title: "Page1")
+    let page2 = ShowManagerModulePage(page: BaseViewMock(), title: "Page2")
+    let page3 = ShowManagerModulePage(page: BaseViewMock(), title: "Page3")
+
+    moduleSetup = ShowsManagerDataSourceMock(modulePages: [page1, page2, page3])
+
     let loginObservable = TraktLoginObservableMock(state: loginState)
-    presenter = ShowsManageriOSPresenter(view: view, router: router,
-                                         loginObservable: loginObservable, moduleSetup: moduleSetup)
+    presenter = ShowsManageriOSPresenter(view: view, loginObservable: loginObservable, moduleSetup: moduleSetup)
   }
 
   func testShowsManagerPresenter_notLoggedOnTrakt_notifyRouter() {
@@ -20,7 +24,7 @@ final class ShowsManagerPresenterTest: XCTestCase {
     presenter.viewDidLoad()
 
     //Then
-    XCTAssertTrue(router.showNeedsLoginInvoked)
+    XCTAssertTrue(view.showNeedsTraktLoginInvoked)
   }
 
   func testShowsManagerPresenter_loggedInOnTrakt_sentOptionsTitleToView() {
@@ -31,27 +35,13 @@ final class ShowsManagerPresenterTest: XCTestCase {
     presenter.viewDidLoad()
 
     //Then
-    let expectedTitles = ["progress", "now"]
-    XCTAssertTrue(view.showOptionsSelectionInvoked)
+    XCTAssertTrue(view.showPagesInvoked)
 
-    if view.showOptionsSelectionParameters == nil {
+    if view.showPagesParameters == nil {
       XCTFail("Parameters can't be nil")
     } else {
-      XCTAssertEqual(view.showOptionsSelectionParameters!, expectedTitles)
+      XCTAssertEqual(view.showPagesParameters?.index, 0)
     }
 
-  }
-
-  func testShowsManagerPresenter_optionIsSelected_notifyRouter() {
-    //Given
-    setupWithLoginState(.logged)
-
-    //When
-    presenter.viewDidLoad()
-    presenter.showOption(at: 1)
-
-    //Then
-    XCTAssertTrue(router.showOptionInvoked)
-    XCTAssertEqual(router.showOptionParameters, ShowsManagerOption.now)
   }
 }

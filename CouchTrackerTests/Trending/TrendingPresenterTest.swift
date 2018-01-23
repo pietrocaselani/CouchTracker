@@ -13,7 +13,7 @@ final class TrendingPresenterTest: XCTestCase {
   func testTrendingPresenter_fetchMoviesSuccessWithEmptyData_andPresentNothing() {
     let repository = EmptyTrendingRepositoryMock()
     let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
 
     presenter.viewDidLoad()
 
@@ -24,9 +24,8 @@ final class TrendingPresenterTest: XCTestCase {
   func testTrendingPresenter_fetchShowsSuccessWithEmptyData_andPresentNothing() {
     let repository = EmptyTrendingRepositoryMock()
     let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)
 
-    presenter.currentTrendingType.value = .shows
     presenter.viewDidLoad()
 
     XCTAssertTrue(view.invokedShowEmptyView)
@@ -39,7 +38,7 @@ final class TrendingPresenterTest: XCTestCase {
     let error = TrendingError.parseError("Invalid json")
     let repository = ErrorTrendingRepositoryMock(error: error)
     let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
 
     presenter.viewDidLoad()
 
@@ -51,9 +50,8 @@ final class TrendingPresenterTest: XCTestCase {
     let error = TrendingError.parseError("Invalid json")
     let repository = ErrorTrendingRepositoryMock(error: error)
     let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)
 
-    presenter.currentTrendingType.value = .shows
     presenter.viewDidLoad()
 
     XCTAssertTrue(router.invokedShowError)
@@ -65,7 +63,7 @@ final class TrendingPresenterTest: XCTestCase {
     let images = createImagesEntityMock()
     let repository = TrendingMoviesRepositoryMock(movies: movies)
     let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
 
     presenter.viewDidLoad()
 
@@ -83,9 +81,8 @@ final class TrendingPresenterTest: XCTestCase {
     let images = createImagesEntityMock()
     let imagesRepository = createMovieImagesRepositoryMock(images)
     let interactor = TrendingServiceMock(repository: trendingRepositoryMock, imageRepository: imagesRepository)
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)
 
-    presenter.currentTrendingType.value = .shows
     presenter.viewDidLoad()
 
     XCTAssertTrue(view.invokedShow)
@@ -97,7 +94,7 @@ final class TrendingPresenterTest: XCTestCase {
     let repository = TrendingMoviesRepositoryMock(movies: movies)
     let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
 
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
 
     presenter.viewDidLoad()
 
@@ -110,7 +107,7 @@ final class TrendingPresenterTest: XCTestCase {
     let error = NSError(domain: "com.arctouch.CouchTracker", code: 10, userInfo: userInfo)
     let interactor = TrendingServiceMock(repository: ErrorTrendingRepositoryMock(error: error), imageRepository: imageRepositoryMock)
 
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
 
     presenter.viewDidLoad()
 
@@ -124,7 +121,7 @@ final class TrendingPresenterTest: XCTestCase {
     let images =  createImagesEntityMock()
     let repository = TrendingMoviesRepositoryMock(movies: movies)
     let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
 
     presenter.viewDidLoad()
     presenter.showDetailsOfTrending(at: movieIndex)
@@ -141,9 +138,8 @@ final class TrendingPresenterTest: XCTestCase {
     let images = createImagesEntityMock()
     let repository = TrendingShowsRepositoryMock(shows: shows)
     let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
+    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)
 
-    presenter.currentTrendingType.value = .shows
     presenter.viewDidLoad()
     presenter.showDetailsOfTrending(at: 1)
 
@@ -151,38 +147,5 @@ final class TrendingPresenterTest: XCTestCase {
 
     XCTAssertTrue(router.invokedShowDetails)
     XCTAssertEqual(router.invokedShowDetailsParameters?.show, expectedShow)
-  }
-
-  func testTrendingPresenter_requestToShowAppSettings_notifyRouter() {
-    let repository = EmptyTrendingRepositoryMock()
-    let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
-
-    presenter.showAppSettings()
-
-    XCTAssertTrue(router.invokedShowAppSettings)
-  }
-
-  func testTrendingPresenter_requestToShowSearchMovie_notifyRouter() {
-    //Given
-    let searchResultEntities = createSearchResultsMock()
-    let searchView = SearchViewMock()
-    let searchRepository = SearchStoreMock(results: searchResultEntities)
-    let searchInteractor = SearchInteractorMock(repository: searchRepository)
-
-    let view = TrendingViewMock()
-    let repository = EmptyTrendingRepositoryMock()
-    let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
-    let router = TrendingRouterMock()
-    let dataSource = TrendingDataSourceMock()
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource)
-    let searchPresenter = SearchiOSPresenter(view: searchView, interactor: searchInteractor, resultOutput: presenter)
-    searchPresenter.searchMovies(query: "Tron")
-
-    //When
-    presenter.showDetailsOfTrending(at: 0)
-
-    //Then
-    XCTAssertTrue(router.invokedMovieDetails)
   }
 }

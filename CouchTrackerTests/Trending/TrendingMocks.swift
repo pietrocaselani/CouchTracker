@@ -29,9 +29,12 @@ final class TrendingPresenterMock: TrendingPresenter {
   let currentTrendingType = Variable<TrendingType>(.movies)
   var dataSource: TrendingDataSource
   var invokedViewDidLoad = false
+  var type: TrendingType
 
-  init(view: TrendingView, interactor: TrendingInteractor, router: TrendingRouter, dataSource: TrendingDataSource) {
+  init(view: TrendingView, interactor: TrendingInteractor, router: TrendingRouter,
+       dataSource: TrendingDataSource, type: TrendingType) {
     self.dataSource = dataSource
+    self.type = type
   }
 
   func viewDidLoad() {
@@ -44,12 +47,6 @@ final class TrendingPresenterMock: TrendingPresenter {
   func showDetailsOfTrending(at index: Int) {
     invokedShowDetailsOfTrending = true
     invokedShowDetailsOfTrendingParameters = (index, ())
-  }
-
-  var invokedShowAppSettings = false
-
-  func showAppSettings() {
-    invokedShowAppSettings = true
   }
 }
 

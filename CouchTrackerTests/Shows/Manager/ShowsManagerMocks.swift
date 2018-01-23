@@ -1,25 +1,27 @@
 final class ShowsManagerViewMock: ShowsManagerView {
   var presenter: ShowsManagerPresenter!
-  var showOptionsSelectionInvoked = false
-  var showOptionsSelectionParameters: [String]?
+  var showNeedsTraktLoginInvoked = false
+  var showPagesInvoked = false
+  var showPagesParameters: (pages: [ShowManagerModulePage], index: Int)? = nil
 
-  func showOptionsSelection(with titles: [String]) {
-    showOptionsSelectionInvoked = true
-    showOptionsSelectionParameters = titles
+  func show(pages: [ShowManagerModulePage], withDefault index: Int) {
+    showPagesInvoked = true
+    showPagesParameters = (pages, index)
+  }
+
+  func showNeedsTraktLogin() {
+    showNeedsTraktLoginInvoked = true
   }
 }
 
-final class ShowsManagerRouterMock: ShowsManagerRouter {
-  var showNeedsLoginInvoked = false
-  var showOptionInvoked = false
-  var showOptionParameters: ShowsManagerOption?
+final class ShowsManagerDataSourceMock: ShowsManagerDataSource {
+  var options: [ShowsManagerOption]
+  var modulePages: [ShowManagerModulePage]
+  var defaultModuleIndex: Int
 
-  func showNeedsLogin() {
-    showNeedsLoginInvoked = true
-  }
-
-  func show(option: ShowsManagerOption) {
-    showOptionInvoked = true
-    showOptionParameters = option
+  init(options: [ShowsManagerOption] = [.progress, .now, .trending], modulePages: [ShowManagerModulePage], index: Int = 0) {
+    self.options = options
+    self.modulePages = modulePages
+    self.defaultModuleIndex = index
   }
 }
