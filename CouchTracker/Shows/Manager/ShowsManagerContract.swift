@@ -20,10 +20,8 @@ protocol ShowsManagerView: class {
 
 protocol ShowsManagerDataSource: class {
   var options: [ShowsManagerOption] { get }
-
-  func modulePages() -> [ShowManagerModulePage]
-
-  func defaultModuleIndex() -> Int
+  var modulePages: [ShowManagerModulePage] { get }
+  var defaultModuleIndex: Int { get }
 }
 
 struct ShowManagerModulePage {

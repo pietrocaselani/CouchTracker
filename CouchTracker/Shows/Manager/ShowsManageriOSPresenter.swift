@@ -11,8 +11,8 @@ final class ShowsManageriOSPresenter: ShowsManagerPresenter {
   init(view: ShowsManagerView, loginObservable: TraktLoginObservable, moduleSetup: ShowsManagerDataSource) {
     self.view = view
     self.loginObservable = loginObservable
-    self.modules = moduleSetup.modulePages()
-    self.defaultIndex = moduleSetup.defaultModuleIndex()
+    self.modules = moduleSetup.modulePages
+    self.defaultIndex = moduleSetup.defaultModuleIndex
     self.options = moduleSetup.options
   }
 
