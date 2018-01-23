@@ -38,6 +38,15 @@
 		4F6DC41D201549C100AA0DC8 /* MoviesManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC41C201549C100AA0DC8 /* MoviesManagerModule.swift */; };
 		4F7B09542016B53B001F6C50 /* BaseViewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7B09532016B53B001F6C50 /* BaseViewMock.swift */; };
 		4F7B09552016B540001F6C50 /* BaseViewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7B09532016B53B001F6C50 /* BaseViewMock.swift */; };
+		4F7B09562016B719001F6C50 /* ConfigurationCachedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644EE13E1F55D5F00053D631 /* ConfigurationCachedRepository.swift */; };
+		4F7B09572016B756001F6C50 /* TraktGenreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C391F55A957008E344E /* TraktGenreRepository.swift */; };
+		4F7B09582016B756001F6C50 /* ImageCachedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9639185F354505ABB8D3 /* ImageCachedRepository.swift */; };
+		4F7B09592016B756001F6C50 /* MovieDetailsCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEC01F4DBEFA004661C4 /* MovieDetailsCacheRepository.swift */; };
+		4F7B095A2016B7B7001F6C50 /* APISearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C3D1F55A96C008E344E /* APISearchRepository.swift */; };
+		4F7B095B2016B7B7001F6C50 /* ShowDetailsCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FD8E6F1F61BEA100111223 /* ShowDetailsCacheRepository.swift */; };
+		4F7B095C2016B7B7001F6C50 /* TrendingCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C331F55A948008E344E /* TrendingCacheRepository.swift */; };
+		4F7B095D2016B7B7001F6C50 /* CompositeLoginOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08AC1F719B85004D164A /* CompositeLoginOutput.swift */; };
+		4F7B095E2016B7B7001F6C50 /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */; };
 		5AFB185485EB040E4F014E77 /* Pods_CouchTrackerFastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 939B7E4F3BDEEABB056F9AEE /* Pods_CouchTrackerFastTests.framework */; };
 		640330431F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640330421F67FEBA001CCEDB /* ImagesViewModelMapper.swift */; };
 		640330441F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640330421F67FEBA001CCEDB /* ImagesViewModelMapper.swift */; };
@@ -2375,6 +2384,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F7B095A2016B7B7001F6C50 /* APISearchRepository.swift in Sources */,
+				4F7B095B2016B7B7001F6C50 /* ShowDetailsCacheRepository.swift in Sources */,
+				4F7B095C2016B7B7001F6C50 /* TrendingCacheRepository.swift in Sources */,
+				644EE15A1F55E9460053D631 /* TrendingMovieEntity.swift in Sources */,
+				4F7B095D2016B7B7001F6C50 /* CompositeLoginOutput.swift in Sources */,
+				4F7B095E2016B7B7001F6C50 /* NoCacheMoyaPlugin.swift in Sources */,
+				4F7B09572016B756001F6C50 /* TraktGenreRepository.swift in Sources */,
+				4F7B09582016B756001F6C50 /* ImageCachedRepository.swift in Sources */,
+				4F7B09592016B756001F6C50 /* MovieDetailsCacheRepository.swift in Sources */,
+				4F7B09562016B719001F6C50 /* ConfigurationCachedRepository.swift in Sources */,
 				648390DD1F504E9A00911BA0 /* TrendingPresenterTest.swift in Sources */,
 				644E90481F72E18E0089CD70 /* ShowsProgressContract.swift in Sources */,
 				4F7B09552016B540001F6C50 /* BaseViewMock.swift in Sources */,
@@ -2457,7 +2476,6 @@
 				641B9D541F7D9E8500C26D10 /* ShowEpisodeService.swift in Sources */,
 				641B9D261F7D413100C26D10 /* ShowProgressFilter.swift in Sources */,
 				64BE63051F4F5C5F002E55EA /* MovieDetailsError.swift in Sources */,
-				644EE15A1F55E9460053D631 /* TrendingMovieEntity.swift in Sources */,
 				6454D1731F703D17008C4E5F /* TraktLoginMocks.swift in Sources */,
 				64CC089E1F718F63004D164A /* TraktLoginStoreTest.swift in Sources */,
 				64CCE3411F7AD2A300CD2B9C /* ShowsProgressServiceTest.swift in Sources */,
