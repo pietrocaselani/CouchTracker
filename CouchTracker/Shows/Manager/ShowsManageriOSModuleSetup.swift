@@ -1,47 +1,47 @@
 final class ShowsManageriOSModuleSetup: ShowsManagerDataSource {
-  var options: [ShowsManagerOption] {
-    let progress = ShowsManagerOption.progress
-    let now = ShowsManagerOption.now
-    let trending = ShowsManagerOption.trending
+	var options: [ShowsManagerOption] {
+		let progress = ShowsManagerOption.progress
+		let now = ShowsManagerOption.now
+		let trending = ShowsManagerOption.trending
 
-    return [progress, now, trending]
-  }
+		return [progress, now, trending]
+	}
 
-  func modulePages() -> [ShowManagerModulePage] {
-    let pages = options.map { option -> ShowManagerModulePage in
-      let view = moduleViewFor(option: option)
-      let name = moduleNameFor(option: option)
+	var modulePages: [ShowManagerModulePage] {
+		let pages = options.map { option -> ShowManagerModulePage in
+			let view = moduleViewFor(option: option)
+			let name = moduleNameFor(option: option)
 
-      return ShowManagerModulePage(page: view, title: name)
-    }
+			return ShowManagerModulePage(page: view, title: name)
+		}
 
-    return pages
-  }
+		return pages
+	}
 
-  func defaultModuleIndex() -> Int {
-    //TODO inject app config repository or something like that, to get the last selected module
-    return 0
-  }
+	var defaultModuleIndex: Int {
+		//TODO inject app config repository or something like that, to get the last selected module
+		return 0
+	}
 
-  private func moduleNameFor(option: ShowsManagerOption) -> String {
-    switch option {
-    case .progress:
-      return "Progress"
-    case .now:
-      return "Now"
-    case .trending:
-      return "Trending"
-    }
-  }
+	private func moduleNameFor(option: ShowsManagerOption) -> String {
+		switch option {
+		case .progress:
+			return "Progress"
+		case .now:
+			return "Now"
+		case .trending:
+			return "Trending"
+		}
+	}
 
-  private func moduleViewFor(option: ShowsManagerOption) -> BaseView {
-    switch option {
-    case .progress:
-      return ShowsProgressModule.setupModule()
-    case .now:
-      return ShowsNowModule.setupModule()
-    case .trending:
-      return TrendingModule.setupModule(for: .shows)
-    }
-  }
+	private func moduleViewFor(option: ShowsManagerOption) -> BaseView {
+		switch option {
+		case .progress:
+			return ShowsProgressModule.setupModule()
+		case .now:
+			return ShowsNowModule.setupModule()
+		case .trending:
+			return TrendingModule.setupModule(for: .shows)
+		}
+	}
 }
