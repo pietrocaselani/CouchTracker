@@ -40,9 +40,9 @@ final class Environment {
     self.loginObservable = traktLoginStore
     self.defaultOutput = traktLoginStore.loginOutput
 
-    let uglyCache = AnyCache(UglyMemoryCache())
+    let simpleCache = AnyCache(SimpleMemoryCache())
 
-    self.memoryCache = uglyCache
-    self.diskCache = uglyCache
+    self.memoryCache = simpleCache
+    self.diskCache = simpleCache
   }
 }
