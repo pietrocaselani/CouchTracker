@@ -1,7 +1,7 @@
 import Foundation
 import RxSwift
 
-final class UglyMemoryCache: Cache {
+final class SimpleMemoryCache: Cache {
   typealias Key = Int
   typealias Value = NSData
 
