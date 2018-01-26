@@ -114,9 +114,9 @@
 		641B9D521F7D9E8500C26D10 /* ShowEpisodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D511F7D9E8500C26D10 /* ShowEpisodeService.swift */; };
 		641B9D531F7D9E8500C26D10 /* ShowEpisodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D511F7D9E8500C26D10 /* ShowEpisodeService.swift */; };
 		641B9D541F7D9E8500C26D10 /* ShowEpisodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D511F7D9E8500C26D10 /* ShowEpisodeService.swift */; };
-		642074141FAA382700923248 /* UglyMemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642074131FAA382700923248 /* UglyMemoryCache.swift */; };
-		642074151FAA382700923248 /* UglyMemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642074131FAA382700923248 /* UglyMemoryCache.swift */; };
-		642074161FAA382700923248 /* UglyMemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642074131FAA382700923248 /* UglyMemoryCache.swift */; };
+		642074141FAA382700923248 /* SimpleMemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642074131FAA382700923248 /* SimpleMemoryCache.swift */; };
+		642074151FAA382700923248 /* SimpleMemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642074131FAA382700923248 /* SimpleMemoryCache.swift */; };
+		642074161FAA382700923248 /* SimpleMemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642074131FAA382700923248 /* SimpleMemoryCache.swift */; };
 		6421C0791F66F7E70043FB82 /* ShowDetailsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6421C0781F66F7E70043FB82 /* ShowDetailsModule.swift */; };
 		6423EA901F5600A900F3899C /* TMDBMovies+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6423EA8F1F5600A900F3899C /* TMDBMovies+Hashable.swift */; };
 		6423EA931F56091400F3899C /* ImagesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9B38999C1C359F37014E /* ImagesEntity.swift */; };
@@ -601,7 +601,7 @@
 		641B9D491F7D964500C26D10 /* ShowEpisodeContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeContract.swift; sourceTree = "<group>"; };
 		641B9D4D1F7D9C6D00C26D10 /* ShowEpisodeAPIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeAPIRepository.swift; sourceTree = "<group>"; };
 		641B9D511F7D9E8500C26D10 /* ShowEpisodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeService.swift; sourceTree = "<group>"; };
-		642074131FAA382700923248 /* UglyMemoryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UglyMemoryCache.swift; sourceTree = "<group>"; };
+		642074131FAA382700923248 /* SimpleMemoryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMemoryCache.swift; sourceTree = "<group>"; };
 		6421C0781F66F7E70043FB82 /* ShowDetailsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsModule.swift; sourceTree = "<group>"; };
 		6423EA8F1F5600A900F3899C /* TMDBMovies+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TMDBMovies+Hashable.swift"; sourceTree = "<group>"; };
 		642624381F56E15A00560660 /* MovieImageRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieImageRepositoryMock.swift; sourceTree = "<group>"; };
@@ -1110,7 +1110,7 @@
 			children = (
 				6434CA7A1F75429200EA3AD8 /* Cache.swift */,
 				6434CA821F7542EA00EA3AD8 /* AnyCache.swift */,
-				642074131FAA382700923248 /* UglyMemoryCache.swift */,
+				642074131FAA382700923248 /* SimpleMemoryCache.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -1446,11 +1446,11 @@
 				640330421F67FEBA001CCEDB /* ImagesViewModelMapper.swift */,
 				64A5DCCA1F56E3FC006853A2 /* MovieEntityMapper.swift */,
 				6483911A1F505F4100911BA0 /* MovieViewModelMapper.swift */,
+				649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */,
+				649F56D21FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift */,
 				64343E1D1F7EB3B7004557E4 /* Secrets.swift */,
 				642F6F541F5D74F10012F04F /* ShowEntityMapper.swift */,
 				644FCDDE1F5ED41F00346605 /* ShowViewModelMapper.swift */,
-				649F56D21FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift */,
-				649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2111,7 +2111,7 @@
 				6467FC2A1F66D00D000D1AEE /* ShowDetailsViewController.swift in Sources */,
 				6434C39F1F835CE6009B5A9F /* ShowProgressContract.swift in Sources */,
 				649F56D51FB3214F004B13B0 /* NoCacheMoyaPlugin.swift in Sources */,
-				642074141FAA382700923248 /* UglyMemoryCache.swift in Sources */,
+				642074141FAA382700923248 /* SimpleMemoryCache.swift in Sources */,
 				64B1CC771F4F55B1002A9FFD /* TrendingModule.swift in Sources */,
 				64D29C321F55A936008E344E /* MovieDetailsiOSPresenter.swift in Sources */,
 				648687A21F4A3B9C005A0BA8 /* TrendingError.swift in Sources */,
@@ -2351,7 +2351,7 @@
 				644EE1531F55E8D20053D631 /* MovieEntity.swift in Sources */,
 				64C2D0121F60A34C00A064E2 /* TrendingCelliOSPresenter.swift in Sources */,
 				6454D1751F703FC3008C4E5F /* TraktLoginInteractorTest.swift in Sources */,
-				642074151FAA382700923248 /* UglyMemoryCache.swift in Sources */,
+				642074151FAA382700923248 /* SimpleMemoryCache.swift in Sources */,
 				6405E4FA1F5DE7C900756E79 /* TrendingContract.swift in Sources */,
 				64D29C661F55AD8D008E344E /* Trakt+APIProvider.swift in Sources */,
 				64CC08A61F71939C004D164A /* TraktLoginObservable.swift in Sources */,
@@ -2474,7 +2474,7 @@
 				64CC08AB1F71944B004D164A /* TraktLoginOutputProvider.swift in Sources */,
 				64A5DCD31F56E4B9006853A2 /* ImagesMock.swift in Sources */,
 				64D29C4F1F55AA22008E344E /* MovieDetailsiOSPresenter.swift in Sources */,
-				642074161FAA382700923248 /* UglyMemoryCache.swift in Sources */,
+				642074161FAA382700923248 /* SimpleMemoryCache.swift in Sources */,
 				646896411F7C132C00F95649 /* ShowProgressCellService.swift in Sources */,
 				64BE63041F4F5C5F002E55EA /* MovieDetailsContract.swift in Sources */,
 				64303EBA1F6726970050C287 /* ImagesViewModel.swift in Sources */,
