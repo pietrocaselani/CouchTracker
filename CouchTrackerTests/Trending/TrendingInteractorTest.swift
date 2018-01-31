@@ -99,7 +99,7 @@ final class TrendingInteractorTest: XCTestCase {
   }
 
   func testTrendingInteractor_fetchMoviesSuccessReceivesData_emitsEntitiesAndCompleted() {
-    let movies = createMockMovies()
+    let movies = TraktEntitiesMock.createMockMovies()
 
     let repository = TrendingMoviesRepositoryMock(movies: movies)
     let interactor = TrendingService(repository: repository, imageRepository: imageRepositoryRealMock)
@@ -133,7 +133,7 @@ final class TrendingInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let expectedShows = createTrendingShowsMock().map { ShowEntityMapper.entity(for: $0) }
+    let expectedShows = TraktEntitiesMock.createTrendingShowsMock().map { ShowEntityMapper.entity(for: $0) }
 
     let events: [Recorded<Event<[TrendingShowEntity]>>] = [next(0, expectedShows), completed(0)]
 

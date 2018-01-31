@@ -44,7 +44,7 @@ final class SearchPresenterTest: XCTestCase {
 
   func testSearchPresenter_performSearchFailure_outputsErrorMessage() {
     let userInfo = [NSLocalizedDescriptionKey: "There is no active connection"]
-    let error = NSError(domain: "com.arctouch.CouchTracker", code: 10, userInfo: userInfo)
+    let error = NSError(domain: "io.github.pietrocaselani.CouchTracker", code: 10, userInfo: userInfo)
     let store = ErrorSearchStoreMock(error: error)
     let interactor = SearchService(repository: store)
     let presenter = SearchiOSPresenter(view: view, interactor: interactor, resultOutput: output)

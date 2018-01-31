@@ -37,7 +37,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
   func testAppConfigurationsPresenter_receivesGenericError_notifyRouter() {
     //Given
     let message = "decrypt error"
-    setUpModuleWithError(NSError(domain: "com.arctouch", code: 203, userInfo: [NSLocalizedDescriptionKey: message]))
+    setUpModuleWithError(NSError(domain: "io.github.pietrocaselani", code: 203, userInfo: [NSLocalizedDescriptionKey: message]))
 
     //When
     presenter.viewDidLoad()

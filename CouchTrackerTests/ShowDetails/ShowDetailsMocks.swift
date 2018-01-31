@@ -7,7 +7,7 @@ final class ShowDetailsRepositoryErrorMock: ShowDetailsRepository {
   private let error: Error
 
   init(traktProvider: TraktProvider = traktProviderMock) {
-    self.error = NSError(domain: "com.arctouch", code: 120)
+    self.error = NSError(domain: "io.github.pietrocaselani", code: 120)
   }
 
   init(traktProvider: TraktProvider = traktProviderMock, error: Error) {
@@ -89,8 +89,4 @@ final class ShowDetailsViewMock: ShowDetailsView {
     invokedShowImages = true
     invokedShowImagesParameters = (images, ())
   }
-}
-
-func createTraktShowDetails() -> Show {
-  return try! JSONDecoder().decode(Show.self, from: Shows.summary(showId: "game-of-thrones", extended: .full).sampleData)
 }

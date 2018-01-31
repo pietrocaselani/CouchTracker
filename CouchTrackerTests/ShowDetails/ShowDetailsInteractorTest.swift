@@ -7,10 +7,10 @@ final class ShowDetailsInteractorTest: XCTestCase {
   private let scheduler = TestScheduler(initialClock: 0)
 
   func testShowDetailsInteractor_fetchDetailsFailure_emitsError() {
-    let showError = NSError(domain: "com.arctouch", code: 4)
+    let showError = NSError(domain: "io.github.pietrocaselani", code: 4)
     let repository = ShowDetailsRepositoryErrorMock(error: showError)
 
-    let interactor = ShowDetailsService(showIds: createTraktShowDetails().ids,
+    let interactor = ShowDetailsService(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
                                         repository: repository,
                                         genreRepository: GenreRepositoryMock(),
                                         imageRepository: imageRepositoryMock)
@@ -34,15 +34,15 @@ final class ShowDetailsInteractorTest: XCTestCase {
   }
 
   func testShowDetailsInteractor_fetchDetailsSuccess_emitsShow() {
-    let interactor = ShowDetailsService(showIds: createTraktShowDetails().ids,
+    let interactor = ShowDetailsService(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
                                         repository: showDetailsRepositoryMock,
                                         genreRepository: GenreRepositoryMock(),
                                         imageRepository: imageRepositoryMock)
 
     let showExpectation = expectation(description: "Expect interactor to emit a show")
 
-    let show = createTraktShowDetails()
-    let showGenres = createShowsGenresMock().filter { genre -> Bool in
+    let show = TraktEntitiesMock.createTraktShowDetails()
+    let showGenres = TraktEntitiesMock.createShowsGenresMock().filter { genre -> Bool in
       show.genres?.contains(where: { $0 == genre.slug }) ?? false
     }
     let expectedEntity = ShowEntityMapper.entity(for: show, with: showGenres)
@@ -62,8 +62,8 @@ final class ShowDetailsInteractorTest: XCTestCase {
   }
 
   func testShowDetailsInteractor_fetchImagesFailure_emitsError() {
-    let showError = NSError(domain: "com.arctouch", code: 4)
-    let interactor = ShowDetailsService(showIds: createTraktShowDetails().ids,
+    let showError = NSError(domain: "io.github.pietrocaselani", code: 4)
+    let interactor = ShowDetailsService(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
                                         repository: showDetailsRepositoryMock,
                                         genreRepository: GenreRepositoryMock(),
                                         imageRepository: ErrorImageRepositoryMock(error: showError))
@@ -87,7 +87,7 @@ final class ShowDetailsInteractorTest: XCTestCase {
   }
 
   func testShowDetailsInteractor_fetchImagesSuccess_emitsData() {
-    let interactor = ShowDetailsService(showIds: createTraktShowDetails().ids,
+    let interactor = ShowDetailsService(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
                                         repository: showDetailsRepositoryMock,
                                         genreRepository: GenreRepositoryMock(),
                                         imageRepository: imageRepositoryRealMock)

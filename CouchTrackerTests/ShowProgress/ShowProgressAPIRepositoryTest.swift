@@ -68,7 +68,7 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
     //Given
     let target = Shows.watchedProgress(showId: "fake show", hidden: false, specials: false, countSpecials: false)
     cache = CacheErrorMock(entries: [target.hashValue: target.sampleData as NSData],
-                           error: NSError(domain: "com.arctouch", code: 501, userInfo: nil))
+                           error: NSError(domain: "io.github.pietrocaselani", code: 501, userInfo: nil))
     let repository = ShowProgressAPIRepository(trakt: traktProviderMock, schedulers: scheduler)
 
     //When

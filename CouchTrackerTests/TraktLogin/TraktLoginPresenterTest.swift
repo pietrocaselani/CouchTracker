@@ -9,7 +9,7 @@ final class TraktLoginPresenterTest: XCTestCase {
     //Given
     let message = "Invalid Trakt parameters"
     let userInfo = [NSLocalizedDescriptionKey: message]
-    let genericError = NSError(domain: "com.arctouch", code: 50, userInfo: userInfo)
+    let genericError = NSError(domain: "io.github.pietrocaselani", code: 50, userInfo: userInfo)
     let interactor = TraktLoginErrorInteractorMock(error: genericError)
     let presenter = TraktLoginiOSPresenter(view: view, interactor: interactor, output: output)
 

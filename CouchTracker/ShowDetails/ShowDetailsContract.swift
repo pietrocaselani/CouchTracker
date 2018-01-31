@@ -1,7 +1,8 @@
 import RxSwift
 import TraktSwift
 
-protocol ShowDetailsRepository: class {
+protocol
+    ShowDetailsRepository: class {
   func fetchDetailsOfShow(with identifier: String, extended: Extended) -> Single<Show>
 }
 

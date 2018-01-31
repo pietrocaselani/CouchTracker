@@ -23,7 +23,7 @@ final class AppConfigurationsInteractorTest: XCTestCase {
   func testAppConfigurationsInteractor_fetchUserFailure_emitsGenericError() {
     //Given
     let message = "decrypt error"
-    let genericError = NSError(domain: "com.arctouch", code: 203, userInfo: [NSLocalizedDescriptionKey: message])
+    let genericError = NSError(domain: "io.github.pietrocaselani", code: 203, userInfo: [NSLocalizedDescriptionKey: message])
     let repository = AppConfigurationsRepositoryErrorMock(error: genericError)
     let interactor = AppConfigurationsService(repository: repository, memoryCache: memoryCache, diskCache: diskCache)
 
