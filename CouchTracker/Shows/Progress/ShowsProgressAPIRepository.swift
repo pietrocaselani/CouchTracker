@@ -4,24 +4,18 @@ import Moya
 
 final class ShowsProgressAPIRepository: ShowsProgressRepository {
   private let trakt: TraktProvider
-  private let scheduler: SchedulerType
-  private let cache: AnyCache<Int, NSData>
+  private let schedulers: Schedulers
 
-  convenience init(trakt: TraktProvider, cache: AnyCache<Int, NSData>) {
-    let scheduler = ConcurrentDispatchQueueScheduler(queue: DispatchQueue(label: "showsProgressQueue"))
-    self.init(trakt: trakt, cache: cache, scheduler: scheduler)
-  }
-
-  init(trakt: TraktProvider, cache: AnyCache<Int, NSData>, scheduler: SchedulerType) {
+  init(trakt: TraktProvider,
+       schedulers: Schedulers) {
     self.trakt = trakt
-    self.cache = cache
-    self.scheduler = scheduler
+    self.schedulers = schedulers
   }
 
   func fetchWatchedShows(update: Bool, extended: Extended) -> Observable<[BaseShow]> {
     let target = Sync.watched(type: .shows, extended: extended)
 
-    let api = trakt.sync.rx.request(target).observeOn(scheduler)
+    let api = trakt.sync.rx.request(target).observeOn(schedulers.networkScheduler)
 
     return api.map([BaseShow].self).asObservable()
   }

@@ -7,15 +7,14 @@ final class ShowDetailsModule {
     let trakt = Environment.instance.trakt
     let tmdb = Environment.instance.tmdb
     let tvdb = Environment.instance.tvdb
-    let cache = Environment.instance.diskCache
+    let schedulers = Environment.instance.schedulers
 
-    let repository = ShowDetailsCacheRepository(traktProvider: trakt)
-    let genreRepository = TraktGenreRepository(traktProvider: trakt)
+    let repository = ShowDetailsCacheRepository(traktProvider: trakt, schedulers: schedulers)
+    let genreRepository = TraktGenreRepository(traktProvider: trakt, schedulers: schedulers)
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
                                                 tvdb: tvdb,
-                                                cofigurationRepository: configurationRepository,
-                                                cache: cache)
+                                                cofigurationRepository: configurationRepository)
 
     let interactor = ShowDetailsService(showIds: showIds, repository: repository,
                                         genreRepository: genreRepository, imageRepository: imageRepository)

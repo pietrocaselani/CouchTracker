@@ -16,22 +16,22 @@ final class ShowsProgressModule {
     let trakt = Environment.instance.trakt
     let tmdb = Environment.instance.tmdb
     let tvdb = Environment.instance.tvdb
-    let diskCache = Environment.instance.diskCache
-    let memoryCache = Environment.instance.memoryCache
+    let schedulers = Environment.instance.schedulers
 
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
                                                 tvdb: tvdb,
-                                                cofigurationRepository: configurationRepository,
-                                                cache: diskCache)
+                                                cofigurationRepository: configurationRepository)
 
-    let showProgressRepository = ShowProgressAPIRepository(trakt: trakt, cache: memoryCache)
+    let showProgressRepository = ShowProgressAPIRepository(trakt: trakt, schedulers: schedulers)
     let showProgressInteractor = ShowProgressService(repository: showProgressRepository)
 
     let router = ShowsProgressiOSRouter(viewController: view)
     let dataSource = ShowsProgressTableViewDataSource(imageRepository: imageRepository)
-    let repository = ShowsProgressAPIRepository(trakt: trakt, cache: memoryCache)
-    let interactor = ShowsProgressService(repository: repository, showProgressInteractor: showProgressInteractor)
+    let repository = ShowsProgressAPIRepository(trakt: trakt, schedulers: schedulers)
+    let interactor = ShowsProgressService(repository: repository,
+                                          showProgressInteractor: showProgressInteractor,
+                                          schedulers: schedulers)
     let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor,
                                               dataSource: dataSource, router: router)
 

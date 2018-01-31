@@ -4,14 +4,14 @@ import RxTest
 import TraktSwift
 
 final class ShowProgressAPIRepositoryTest: XCTestCase {
-  private var scheduler: TestScheduler!
+  private var scheduler: TestSchedulers!
   private var cache: CacheMock!
   private var observer: TestableObserver<BaseShow>!
   private var episodeObserver: TestableObserver<Episode>!
 
   override func setUp() {
     super.setUp()
-    scheduler = TestScheduler(initialClock: 0)
+    scheduler = TestSchedulers()
     cache = CacheMock()
     observer = scheduler.createObserver(BaseShow.self)
     episodeObserver = scheduler.createObserver(Episode.self)
@@ -24,13 +24,13 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
   }
 
   func testShowProgressRepository_canInitWithDefaultScheduler() {
-    let repository = ShowProgressAPIRepository(trakt: traktProviderMock, cache: AnyCache(cache))
+    let repository = ShowProgressAPIRepository(trakt: traktProviderMock, schedulers: scheduler)
     XCTAssertNotNil(repository)
   }
 
   func testShowProgressRepository_cacheIsEmpty_forceUpdate_fetchShowProgressFromAPIAndSaveOnCache() {
     //Given
-    let repository = ShowProgressAPIRepository(trakt: traktProviderMock, cache: AnyCache(cache), scheduler: scheduler)
+    let repository = ShowProgressAPIRepository(trakt: traktProviderMock, schedulers: scheduler)
 
     //When
     _ = repository.fetchShowProgress(update: true, showId: "fake show", hidden: false, specials: false, countSpecials: false).subscribe(observer)
@@ -38,7 +38,7 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
 
     //Then
     let expectedShow = ShowsProgressMocks.createShowMock("fake show")!
-    let expectedEvents = [next(0, expectedShow), completed(0)]
+    let expectedEvents = [next(1, expectedShow), completed(2)]
 
     XCTAssertEqual(observer.events, expectedEvents)
 //    XCTAssertFalse(cache.getInvoked)
@@ -49,7 +49,7 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
     //Given
     let target = Shows.watchedProgress(showId: "fake show", hidden: false, specials: false, countSpecials: false)
     cache = CacheMock(entries: [target.hashValue: target.sampleData as NSData])
-    let repository = ShowProgressAPIRepository(trakt: traktProviderMock, cache: AnyCache(cache), scheduler: scheduler)
+    let repository = ShowProgressAPIRepository(trakt: traktProviderMock, schedulers: scheduler)
 
     //When
     _ = repository.fetchShowProgress(update: false, showId: "fake show", hidden: false, specials: false, countSpecials: false).subscribe(observer)
@@ -57,7 +57,7 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
 
     //Then
     let expectedShow = ShowsProgressMocks.createShowMock("fake show")!
-    let expectedEvents = [next(0, expectedShow), completed(0)]
+    let expectedEvents = [next(1, expectedShow), completed(2)]
 
     XCTAssertEqual(observer.events, expectedEvents)
 //    XCTAssertTrue(cache.getInvoked)
@@ -69,7 +69,7 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
     let target = Shows.watchedProgress(showId: "fake show", hidden: false, specials: false, countSpecials: false)
     cache = CacheErrorMock(entries: [target.hashValue: target.sampleData as NSData],
                            error: NSError(domain: "com.arctouch", code: 501, userInfo: nil))
-    let repository = ShowProgressAPIRepository(trakt: traktProviderMock, cache: AnyCache(cache), scheduler: scheduler)
+    let repository = ShowProgressAPIRepository(trakt: traktProviderMock, schedulers: scheduler)
 
     //When
     _ = repository.fetchShowProgress(update: false, showId: "fake show", hidden: false, specials: false, countSpecials: false).subscribe(observer)
@@ -77,7 +77,7 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
 
     //Then
     let expectedShow = ShowsProgressMocks.createShowMock("fake show")!
-    let expectedEvents = [next(0, expectedShow), completed(0)]
+    let expectedEvents = [next(1, expectedShow), completed(2)]
 
     XCTAssertEqual(observer.events, expectedEvents)
 //    XCTAssertTrue(cache.getInvoked)
@@ -86,7 +86,7 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
 
   func testShowProgressRepository_fetchDetailsWithEmptyCache_hitsOnAPIAndSavesOnCache() {
     //Given
-    let repository = ShowProgressAPIRepository(trakt: traktProviderMock, cache: AnyCache(cache), scheduler: scheduler)
+    let repository = ShowProgressAPIRepository(trakt: traktProviderMock, schedulers: scheduler)
 
     //When
     _ = repository.fetchDetailsOf(update: false, episodeNumber: 1, on: 1, of: "the-americans", extended: .full).subscribe(episodeObserver)
@@ -94,7 +94,7 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
 
     //Then
     let expectedEpisode = ShowsProgressMocks.createEpisodeMock("the-americans")
-    let expectedEvents = [next(0, expectedEpisode), completed(0)]
+    let expectedEvents = [next(1, expectedEpisode), completed(2)]
 
     XCTAssertEqual(episodeObserver.events, expectedEvents)
 //    XCTAssertTrue(cache.getInvoked)
@@ -106,7 +106,7 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
     //Given
     let target = Episodes.summary(showId: "the-americans", season: 1, episode: 1, extended: .full)
     cache = CacheMock(entries: [target.hashValue: target.sampleData as NSData])
-    let repository = ShowProgressAPIRepository(trakt: traktProviderMock, cache: AnyCache(cache), scheduler: scheduler)
+    let repository = ShowProgressAPIRepository(trakt: traktProviderMock, schedulers: scheduler)
 
     //When
     _ = repository.fetchDetailsOf(update: true, episodeNumber: 1, on: 1, of: "the-americans", extended: .full).subscribe(episodeObserver)
@@ -114,7 +114,7 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
 
     //Then
     let expectedShow = ShowsProgressMocks.createEpisodeMock("the-americans")
-    let expectedEvents = [next(0, expectedShow), completed(0)]
+    let expectedEvents = [next(1, expectedShow), completed(2)]
 
     XCTAssertEqual(episodeObserver.events, expectedEvents)
 //    XCTAssertFalse(cache.getInvoked)

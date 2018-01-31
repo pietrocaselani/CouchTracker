@@ -121,7 +121,7 @@ final class ShowsProgressMocks {
   }
 
   final class EmptyShowsProgressInteractorMock: ShowsProgressInteractor {
-    init(repository: ShowsProgressRepository, showProgressInteractor: ShowProgressInteractor) {}
+    init(repository: ShowsProgressRepository, showProgressInteractor: ShowProgressInteractor, schedulers: Schedulers) {}
 
     func fetchWatchedShowsProgress(update: Bool) -> Observable<WatchedShowEntity> {
       return Observable.empty()
@@ -129,7 +129,7 @@ final class ShowsProgressMocks {
   }
 
   final class ShowsProgressInteractorMock: ShowsProgressInteractor {
-    init(repository: ShowsProgressRepository, showProgressInteractor: ShowProgressInteractor) {}
+    init(repository: ShowsProgressRepository, showProgressInteractor: ShowProgressInteractor, schedulers: Schedulers) {}
 
     func fetchWatchedShowsProgress(update: Bool) -> Observable<WatchedShowEntity> {
       let entity1 = ShowsProgressMocks.mockWatchedShowEntity()

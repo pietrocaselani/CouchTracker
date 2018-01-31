@@ -7,15 +7,14 @@ final class MovieDetailsModule {
     let trakt = Environment.instance.trakt
     let tmdb = Environment.instance.tmdb
     let tvdb = Environment.instance.tvdb
-    let cache = Environment.instance.diskCache
+    let schedulers = Environment.instance.schedulers
 
-    let repository = MovieDetailsCacheRepository(traktProvider: trakt)
-    let genreRepository = TraktGenreRepository(traktProvider: trakt)
+    let repository = MovieDetailsCacheRepository(traktProvider: trakt, schedulers: schedulers)
+    let genreRepository = TraktGenreRepository(traktProvider: trakt, schedulers: schedulers)
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRespository = ImageCachedRepository(tmdb: tmdb,
                                                  tvdb: tvdb,
-                                                 cofigurationRepository: configurationRepository,
-                                                 cache: cache)
+                                                 cofigurationRepository: configurationRepository)
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
                                          imageRepository: imageRespository, movieIds: movieIds)
 

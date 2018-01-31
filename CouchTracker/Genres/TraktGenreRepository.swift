@@ -4,9 +4,11 @@ import TraktSwift
 
 final class TraktGenreRepository: GenreRepository {
   private let traktProvider: TraktProvider
+  private let schedulers: Schedulers
 
-  init(traktProvider: TraktProvider) {
+  init(traktProvider: TraktProvider, schedulers: Schedulers) {
     self.traktProvider = traktProvider
+    self.schedulers = schedulers
   }
 
   func fetchMoviesGenres() -> Observable<[Genre]> {
@@ -18,6 +20,9 @@ final class TraktGenreRepository: GenreRepository {
   }
 
   private func fetchGenres(mediaType: GenreType) -> Observable<[Genre]> {
-    return traktProvider.genres.rx.request(.list(mediaType)).map([Genre].self).asObservable()
+    return traktProvider.genres.rx.request(.list(mediaType))
+      .observeOn(schedulers.networkScheduler)
+      .map([Genre].self)
+      .asObservable()
   }
 }

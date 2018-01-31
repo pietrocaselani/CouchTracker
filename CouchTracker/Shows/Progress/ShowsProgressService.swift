@@ -4,25 +4,21 @@ import TraktSwift
 final class ShowsProgressService: ShowsProgressInteractor {
   private let repository: ShowsProgressRepository
   private let showProgressInteractor: ShowProgressInteractor
-  private let scheduler: SchedulerType
+  private let schedulers: Schedulers
 
-  convenience init(repository: ShowsProgressRepository, showProgressInteractor: ShowProgressInteractor) {
-    let scheduler = ConcurrentDispatchQueueScheduler(queue: DispatchQueue(label: "ShowsProgressServiceQueue"))
-    self.init(repository: repository, showProgressInteractor: showProgressInteractor, scheduler: scheduler)
-  }
-
-  init(repository: ShowsProgressRepository, showProgressInteractor: ShowProgressInteractor, scheduler: SchedulerType) {
+  init(repository: ShowsProgressRepository,
+       showProgressInteractor: ShowProgressInteractor,
+       schedulers: Schedulers) {
     self.repository = repository
     self.showProgressInteractor = showProgressInteractor
-    self.scheduler = scheduler
+    self.schedulers = schedulers
   }
 
   func fetchWatchedShowsProgress(update: Bool) -> Observable<WatchedShowEntity> {
     return repository.fetchWatchedShows(update: update, extended: .full)
       .flatMap { Observable.from($0) }
       .flatMap { [unowned self] in self.fetchShowProgress(update, $0) }
-      .subscribeOn(scheduler)
-      .observeOn(scheduler)
+      .observeOn(schedulers.networkScheduler)
   }
 
   private func fetchShowProgress(_ update: Bool, _ baseShow: BaseShow) -> Observable<WatchedShowEntity> {
@@ -30,8 +26,7 @@ final class ShowsProgressService: ShowsProgressInteractor {
 
     return showProgressInteractor.fetchShowProgress(update: update, ids: show.ids)
       .flatMap { [unowned self] in return self.mapToEntity(baseShow, builder: $0) }
-      .subscribeOn(scheduler)
-      .observeOn(scheduler)
+      .observeOn(schedulers.networkScheduler)
   }
 
   private func mapToEntity(_ baseShow: BaseShow, builder: WatchedShowBuilder) -> Observable<WatchedShowEntity> {
