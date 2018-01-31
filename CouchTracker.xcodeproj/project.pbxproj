@@ -1719,7 +1719,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0830;
-				ORGANIZATIONNAME = "ArcTouch LLC";
+				ORGANIZATIONNAME = "Pietro Caselani";
 				TargetAttributes = {
 					647632381F44824900F277F1 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -2749,7 +2749,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CouchTrackerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTrackerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.CouchTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -2767,7 +2767,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CouchTrackerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTrackerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.CouchTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -2795,7 +2795,7 @@
 				INFOPLIST_FILE = CouchTrackerFastTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTrackerFastTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.CouchTrackerFastTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -2823,7 +2823,7 @@
 				INFOPLIST_FILE = CouchTrackerFastTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = com.arctouch.CouchTrackerFastTests;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.CouchTrackerFastTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
