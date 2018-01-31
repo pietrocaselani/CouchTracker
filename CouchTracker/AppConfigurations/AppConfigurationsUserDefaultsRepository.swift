@@ -58,9 +58,11 @@ final class AppConfigurationsUserDefaultsRepository: AppConfigurationsRepository
 				.filterSuccessfulStatusCodes()
 				.map(Settings.self)
 				.do(onSuccess: { [unowned self] settings in
-					let data = try JSONEncoder().encode(settings)
+					let encoder = JSONEncoder()
+					encoder.dateEncodingStrategy = .formatted(TraktDateTransformer.dateTimeTransformer.dateFormatter)
+
+					let data = try encoder.encode(settings)
 					self.userDefaults.set(data, forKey: AppConfigurationsUserDefaultsRepository.traktUserKey)
-					self.userDefaults.synchronize()
 				})
 				.asObservable()
 	}

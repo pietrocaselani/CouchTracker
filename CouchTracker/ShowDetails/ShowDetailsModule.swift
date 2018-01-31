@@ -9,7 +9,7 @@ final class ShowDetailsModule {
     let tvdb = Environment.instance.tvdb
     let schedulers = Environment.instance.schedulers
 
-    let repository = ShowDetailsCacheRepository(traktProvider: trakt, schedulers: schedulers)
+    let repository = ShowDetailsAPIRepository(traktProvider: trakt, schedulers: schedulers)
     let genreRepository = TraktGenreRepository(traktProvider: trakt, schedulers: schedulers)
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
