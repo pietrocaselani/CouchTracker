@@ -44,4 +44,8 @@ final class TraktEntitiesMock {
 	static func createTraktShowDetails() -> Show {
 		return try! jsonDecoder.decode(Show.self, from: Shows.summary(showId: "game-of-thrones", extended: .full).sampleData)
 	}
+
+	static func createUserSettingsMock() -> Settings {
+		return try! jsonDecoder.decode(Settings.self, from: Users.settings.sampleData)
+	}
 }
