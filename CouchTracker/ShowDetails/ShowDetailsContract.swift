@@ -2,8 +2,6 @@ import RxSwift
 import TraktSwift
 
 protocol ShowDetailsRepository: class {
-  init(traktProvider: TraktProvider)
-
   func fetchDetailsOfShow(with identifier: String, extended: Extended) -> Single<Show>
 }
 

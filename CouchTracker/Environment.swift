@@ -12,21 +12,22 @@ final class Environment {
   let defaultOutput: TraktLoginOutput
   let diskCache: AnyCache<Int, NSData>
   let memoryCache: AnyCache<Int, NSData>
+  let schedulers: Schedulers
 
   private init() {
-    let moyaQueue = DispatchQueue(label: "CallbackQueue", qos: .background)
+    let schedulers = DefaultSchedulers()
 
     let traktBuilder = TraktBuilder {
       $0.clientId = Secrets.Trakt.clientId
       $0.clientSecret = Secrets.Trakt.clientSecret
       $0.redirectURL = Secrets.Trakt.redirectURL
-      $0.callbackQueue = moyaQueue
+      $0.callbackQueue = schedulers.networkQueue
       $0.plugins = [NoCacheMoyaPlugin(), ResponseWriterMoyaPlugin()]
     }
 
     let tvdbBuilder = TVDBBuilder {
       $0.apiKey = Secrets.TVDB.apiKey
-      $0.callbackQueue = moyaQueue
+      $0.callbackQueue = schedulers.networkQueue
     }
 
     let trakt = Trakt(builder: traktBuilder)
@@ -34,6 +35,8 @@ final class Environment {
     self.trakt = trakt
     self.tmdb = TMDB(apiKey: Secrets.TMDB.apiKey)
     self.tvdb = TVDB(builder: tvdbBuilder)
+
+    self.schedulers = schedulers
 
     let traktLoginStore = TraktLoginStore(trakt: trakt)
 

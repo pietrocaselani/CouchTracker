@@ -9,7 +9,7 @@ final class ShowsProgressPresenterTest: XCTestCase {
 
   func testShowsProgressPresenter_receivesEmptyData_notifyView() {
     //Given
-    let interactor = ShowsProgressMocks.EmptyShowsProgressInteractorMock(repository: repository, showProgressInteractor: showProgressInteractor)
+    let interactor = ShowsProgressMocks.EmptyShowsProgressInteractorMock(repository: repository, showProgressInteractor: showProgressInteractor, schedulers: TestSchedulers())
     let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor, dataSource: dataSource, router: router)
 
     //When
@@ -23,7 +23,7 @@ final class ShowsProgressPresenterTest: XCTestCase {
 
   func testShowsProgressPresenter_receivesData_notifyView() {
     //Given
-    let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, showProgressInteractor: showProgressInteractor)
+    let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, showProgressInteractor: showProgressInteractor, schedulers: TestSchedulers())
     let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor, dataSource: dataSource, router: router)
 
     //When
@@ -38,7 +38,7 @@ final class ShowsProgressPresenterTest: XCTestCase {
 
   func testShowsProgressPresenter_forceUpdate_reloadView() {
     //Given
-    let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, showProgressInteractor: showProgressInteractor)
+    let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, showProgressInteractor: showProgressInteractor, schedulers: TestSchedulers())
     let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor, dataSource: dataSource, router: router)
     presenter.viewDidLoad()
 

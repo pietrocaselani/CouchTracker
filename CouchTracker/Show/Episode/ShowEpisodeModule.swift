@@ -9,20 +9,18 @@ final class ShowEpisodeModule {
     let trakt = Environment.instance.trakt
     let tmdb = Environment.instance.tmdb
     let tvdb = Environment.instance.tvdb
-    let diskCache = Environment.instance.diskCache
-    let memoryCache = Environment.instance.memoryCache
+    let schedulers = Environment.instance.schedulers
 
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
 
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
                                                 tvdb: tvdb,
-                                                cofigurationRepository: configurationRepository,
-                                                cache: diskCache)
+                                                cofigurationRepository: configurationRepository)
 
-    let showProgressRepository = ShowProgressAPIRepository(trakt: trakt, cache: memoryCache)
+    let showProgressRepository = ShowProgressAPIRepository(trakt: trakt, schedulers: schedulers)
     let showProgressInteractor = ShowProgressService(repository: showProgressRepository)
 
-    let repository = ShowEpisodeAPIRepository(trakt: trakt)
+    let repository = ShowEpisodeAPIRepository(trakt: trakt, schedulers: schedulers)
 
     let interactor = ShowEpisodeService(repository: repository,
                                         showProgressInteractor: showProgressInteractor,

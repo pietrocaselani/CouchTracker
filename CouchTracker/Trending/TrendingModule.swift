@@ -15,14 +15,13 @@ final class TrendingModule {
     let traktProvider = Environment.instance.trakt
     let tmdb = Environment.instance.tmdb
     let tvdb = Environment.instance.tvdb
-    let diskCache = Environment.instance.diskCache
+    let schedulers = Environment.instance.schedulers
 
-    let repository = TrendingCacheRepository(traktProvider: traktProvider)
+    let repository = TrendingCacheRepository(traktProvider: traktProvider, schedulers: schedulers)
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
                                                 tvdb: tvdb,
-                                                cofigurationRepository: configurationRepository,
-                                                cache: diskCache)
+                                                cofigurationRepository: configurationRepository)
 
     let interactor = TrendingService(repository: repository, imageRepository: imageRepository)
     let router = TrendingiOSRouter(viewController: viewController)

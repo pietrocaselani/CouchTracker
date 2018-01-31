@@ -8,20 +8,13 @@ final class ImageCachedRepository: ImageRepository {
 	typealias TVDBEpisodes = TVDBSwift.Episodes
 
 	private let configurationRepository: ConfigurationRepository
-	private let cache: AnyCache<Int, NSData>
 	private let tmdb: TMDBProvider
 	private let tvdb: TVDBProvider
 
 	init(tmdb: TMDBProvider, tvdb: TVDBProvider, cofigurationRepository: ConfigurationRepository) {
-		Swift.fatalError("Please, use init(tmdb: tvdb: configurationRepository: cache:)")
-	}
-
-	init(tmdb: TMDBProvider, tvdb: TVDBProvider,
-	     cofigurationRepository: ConfigurationRepository, cache: AnyCache<Int, NSData>) {
 		self.configurationRepository = cofigurationRepository
 		self.tmdb = tmdb
 		self.tvdb = tvdb
-		self.cache = cache
 	}
 
 	func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?,
@@ -90,11 +83,6 @@ final class ImageCachedRepository: ImageRepository {
 
 	private func tvdbBaseURLFor(size: TVDBEpisodeImageSize?) -> URL {
 		return (size ?? .normal) == .normal ? TVDB.bannersImageURL : TVDB.smallBannersImageURL
-	}
-
-	private func createImagesObservable(_ cacheObservable: Observable<Images>,
-	                                    _ apiObservable: Observable<Images>) -> Observable<Images> {
-		return cacheObservable.catchError { _ in apiObservable }.ifEmpty(switchTo: apiObservable)
 	}
 
 	private func createImagesEntities(_ imagesObservable: Observable<Images>, posterSize: PosterImageSize? = nil,

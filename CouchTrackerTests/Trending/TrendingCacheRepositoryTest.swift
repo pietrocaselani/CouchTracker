@@ -4,7 +4,7 @@ import RxSwift
 import TraktSwift
 
 final class TrendingCacheRepositoryTest: XCTestCase {
-	private let scheduler = TestScheduler(initialClock: 0)
+	private let scheduler = TestSchedulers()
 	private let disposeBag = DisposeBag()
 	private var repository: TrendingCacheRepository!
 	private var moviesObserver: TestableObserver<[TrendingMovie]>!
@@ -15,7 +15,7 @@ final class TrendingCacheRepositoryTest: XCTestCase {
 
 		moviesObserver = scheduler.createObserver([TrendingMovie].self)
 		showsObserver = scheduler.createObserver([TrendingShow].self)
-		repository = TrendingCacheRepository(traktProvider: traktProviderMock, scheduler: scheduler)
+		repository = TrendingCacheRepository(traktProvider: traktProviderMock, schedulers: scheduler)
 	}
 
 	func testFetchMoviesEmitMoviesAndComplete() {

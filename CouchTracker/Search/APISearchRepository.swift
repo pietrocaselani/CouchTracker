@@ -4,19 +4,18 @@ import TraktSwift
 
 final class APISearchRepository: SearchRepository {
   private let trakt: TraktProvider
-  private let scheduler: SchedulerType
+  private let schedulers: Schedulers
 
-  init(traktProvider: TraktProvider, scheduler: SchedulerType = ConcurrentDispatchQueueScheduler(qos: .background)) {
+  init(traktProvider: TraktProvider, schedulers: Schedulers) {
     self.trakt = traktProvider
-    self.scheduler = scheduler
+    self.schedulers = schedulers
   }
 
   func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]> {
     let target = Search.textQuery(types: types, query: query, page: page, limit: limit)
 
     return trakt.search.rx.request(target)
-      .subscribeOn(scheduler)
-      .observeOn(scheduler)
+      .observeOn(schedulers.networkScheduler)
       .map([SearchResult].self)
       .asObservable()
   }
