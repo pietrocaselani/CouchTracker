@@ -8,7 +8,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
   let genreRepository = GenreRepositoryMock()
 
   func testMovieDetailsPresenter_fetchSuccess_andPresentMovieDetails() {
-    let movie = createMovieDetailsMock()
+    let movie = TraktEntitiesMock.createMovieDetailsMock()
     let repository = MovieDetailsStoreMock(movie: movie)
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
                                              imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
@@ -18,7 +18,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
     let dateFormatter = TraktDateTransformer.dateTransformer.dateFormatter
 
-    let genres = createMoviesGenresMock()
+    let genres = TraktEntitiesMock.createMoviesGenresMock()
     let movieGenres = genres.filter { movie.genres?.contains($0.slug) ?? false }.map { $0.name }
 
     let viewModel = MovieDetailsViewModel(
@@ -33,7 +33,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
   }
 
   func testMovieDetailsPresenter_fetchImagesSuccess_andNotifyView() {
-    let movie = createMovieMock(for: "the-dark-knight-2008")
+    let movie = TraktEntitiesMock.createMovieMock(for: "the-dark-knight-2008")
     let repository = MovieDetailsStoreMock(movie: movie)
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
                                              imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
@@ -50,7 +50,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
   }
 
   func testMovieDetailsPresenter_fetchImagesFailure_andDontNotifyView() {
-    let movie = createMovieMock(for: "the-dark-knight-2008")
+    let movie = TraktEntitiesMock.createMovieMock(for: "the-dark-knight-2008")
     let repository = MovieDetailsStoreMock(movie: movie)
 
     let json = "{\"trakt\": 4,\"slug\": \"the-dark-knight-2008\",\"imdb\": \"tt0468569\",\"tmdb\": null}".data(using: .utf8)!
@@ -67,7 +67,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
   }
 
   func testMovieDetailsPresenter_fetchFailure_andPresentErrorMessage() {
-    let movie = createMovieDetailsMock()
+    let movie = TraktEntitiesMock.createMovieDetailsMock()
     let errorMessage = "There is no active connection"
     let detailsError = MovieDetailsError.noConnection(errorMessage)
     let repository = ErrorMovieDetailsStoreMock(error: detailsError)
@@ -82,9 +82,9 @@ final class MovieDetailsPresenterTest: XCTestCase {
   }
 
   func testMovieDetailsPresenter_fetchFailure_andIsCustomError() {
-    let movie = createMovieDetailsMock()
+    let movie = TraktEntitiesMock.createMovieDetailsMock()
     let errorMessage = "Custom details error"
-    let error = NSError(domain: "com.arctouch.CouchTracker", code: 10, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+    let error = NSError(domain: "io.github.pietrocaselani.CouchTracker", code: 10, userInfo: [NSLocalizedDescriptionKey: errorMessage])
     let repository = ErrorMovieDetailsStoreMock(error: error)
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
                                              imageRepository: imageRepositoryMock, movieIds: movie.ids)

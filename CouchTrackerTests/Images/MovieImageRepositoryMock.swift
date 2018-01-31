@@ -2,6 +2,10 @@ import RxSwift
 import TMDBSwift
 import Moya
 
+func createMovieImagesRepositoryMock(_ images: ImagesEntity) -> ImageRepository {
+  return ImagesRepositorySampleMock(tmdb: tmdbProviderMock, tvdb: tvdbProviderMock, cofigurationRepository: configurationRepositoryMock, images: images)
+}
+
 final class EmptyImageRepositoryMock: ImageRepository {
   init(tmdb: TMDBProvider, tvdb: TVDBProvider, cofigurationRepository: ConfigurationRepository) {}
 
@@ -42,7 +46,6 @@ final class ImagesRepositorySampleMock: ImageRepository {
     return Observable.empty()
   }
 }
-
 
 final class ImageRepositoryMock: ImageRepository {
   private let provider: TMDBProvider

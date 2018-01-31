@@ -59,8 +59,8 @@ final class TrendingPresenterTest: XCTestCase {
   }
 
   func testTrendingPresenter_fetchMoviesSuccess_andPresentMovies() {
-    let movies = createMockMovies()
-    let images = createImagesEntityMock()
+    let movies = TraktEntitiesMock.createMockMovies()
+    let images = TMDBEntitiesMock.createImagesEntityMock()
     let repository = TrendingMoviesRepositoryMock(movies: movies)
     let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
@@ -78,7 +78,7 @@ final class TrendingPresenterTest: XCTestCase {
   }
 
   func testTrendingPresenter_fetchShowsSuccess_andPresentShows() {
-    let images = createImagesEntityMock()
+    let images = TMDBEntitiesMock.createImagesEntityMock()
     let imagesRepository = createMovieImagesRepositoryMock(images)
     let interactor = TrendingServiceMock(repository: trendingRepositoryMock, imageRepository: imagesRepository)
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)
@@ -90,7 +90,7 @@ final class TrendingPresenterTest: XCTestCase {
 
   func testTrendingPresenter_fetchMoviewSuccess_andPresentNoMovies() {
     let movies = [TrendingMovie]()
-    let images = createImagesEntityMock()
+    let images = TMDBEntitiesMock.createImagesEntityMock()
     let repository = TrendingMoviesRepositoryMock(movies: movies)
     let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
 
@@ -104,7 +104,7 @@ final class TrendingPresenterTest: XCTestCase {
 
   func testTrendingPresenter_fetchMoviesFailure_andIsCustomError() {
     let userInfo = [NSLocalizedDescriptionKey: "Custom list movies error"]
-    let error = NSError(domain: "com.arctouch.CouchTracker", code: 10, userInfo: userInfo)
+    let error = NSError(domain: "io.github.pietrocaselani.CouchTracker", code: 10, userInfo: userInfo)
     let interactor = TrendingServiceMock(repository: ErrorTrendingRepositoryMock(error: error), imageRepository: imageRepositoryMock)
 
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
@@ -117,8 +117,8 @@ final class TrendingPresenterTest: XCTestCase {
 
   func testTrendingPresenter_requestToShowDetailsOfMovie_notifyRouterToShowDetails() {
     let movieIndex = 1
-    let movies = createMockMovies()
-    let images =  createImagesEntityMock()
+    let movies = TraktEntitiesMock.createMockMovies()
+    let images = TMDBEntitiesMock.createImagesEntityMock()
     let repository = TrendingMoviesRepositoryMock(movies: movies)
     let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
@@ -134,8 +134,8 @@ final class TrendingPresenterTest: XCTestCase {
 
   func testTrendingPresenter_requestToShowDetailsOfShow_notifyRouterToShowDetails() {
     let showIndex = 1
-    let shows = createTrendingShowsMock()
-    let images = createImagesEntityMock()
+    let shows = TraktEntitiesMock.createTrendingShowsMock()
+    let images = TMDBEntitiesMock.createImagesEntityMock()
     let repository = TrendingShowsRepositoryMock(shows: shows)
     let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
     let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)

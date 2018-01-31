@@ -90,23 +90,3 @@ final class MovieDetailsServiceMock: MovieDetailsInteractor {
     return imageRepository.fetchMovieImages(for: tmdbId, posterSize: nil, backdropSize: nil)
   }
 }
-
-func createMockMovies() -> [TrendingMovie] {
-  return try! JSONDecoder().decode([TrendingMovie].self, from: Movies.trending(page: 0, limit: 50, extended: .full).sampleData)
-}
-
-func createMovieMock(for movieId: String) -> Movie {
-  let movies = createMockMovies()
-
-  let trendingMovie = movies.first { $0.movie.ids.slug == movieId }
-
-  return trendingMovie?.movie ?? createMovieDetailsMock(for: movieId)
-}
-
-func createMovieDetailsMock(for movieId: String) -> Movie {
-  return try! JSONDecoder().decode(Movie.self, from: Movies.summary(movieId: movieId, extended: .full).sampleData)
-}
-
-func createMovieDetailsMock() -> Movie {
-  return createMovieDetailsMock(for: "tron-legacy-2010")
-}

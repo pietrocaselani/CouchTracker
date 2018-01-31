@@ -26,15 +26,3 @@ final class ErrorImageRepositoryMock: ImageRepository {
     return Observable.empty()
   }
 }
-
-func createMovieImagesRepositoryMock(_ images: ImagesEntity) -> ImageRepository {
-  return ImagesRepositorySampleMock(tmdb: tmdbProviderMock, tvdb: tvdbProviderMock, cofigurationRepository: configurationRepositoryMock, images: images)
-}
-
-func createTMDBConfigurationMock() -> Configuration {
-  return try! JSONDecoder().decode(Configuration.self, from: ConfigurationService.configuration.sampleData)
-}
-
-func createImagesMock(movieId: Int) -> Images {
-  return try! JSONDecoder().decode(Images.self, from: Movies.images(movieId: movieId).sampleData)
-}

@@ -23,7 +23,7 @@ final class TrendingCacheRepositoryTest: XCTestCase {
 
 		scheduler.start()
 
-		let expectedMovies = createTrendingMoviesMock()
+		let expectedMovies = TraktEntitiesMock.createTrendingMoviesMock()
 		let expectedEvents: [Recorded<Event<[TrendingMovie]>>] = [next(0, expectedMovies), completed(0)]
 
 		RXAssertEvents(moviesObserver, expectedEvents)
@@ -34,7 +34,7 @@ final class TrendingCacheRepositoryTest: XCTestCase {
 
 		scheduler.start()
 
-		let expectedShows = createTrendingShowsMock()
+		let expectedShows = TraktEntitiesMock.createTrendingShowsMock()
 		let expectedEvents: [Recorded<Event<[TrendingShow]>>] = [next(0, expectedShows), completed(0)]
 
 		RXAssertEvents(showsObserver, expectedEvents)

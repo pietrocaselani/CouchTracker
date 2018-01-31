@@ -19,7 +19,8 @@ final class ShowsManagerDataSourceMock: ShowsManagerDataSource {
   var modulePages: [ShowManagerModulePage]
   var defaultModuleIndex: Int
 
-  init(options: [ShowsManagerOption] = [.progress, .now, .trending], modulePages: [ShowManagerModulePage], index: Int = 0) {
+  init(options: [ShowsManagerOption] = [.progress, .now, .trending],
+       modulePages: [ShowManagerModulePage], index: Int = 0) {
     self.options = options
     self.modulePages = modulePages
     self.defaultModuleIndex = index

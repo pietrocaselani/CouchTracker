@@ -12,7 +12,7 @@ final class TraktTokenPolicyDeciderTest: XCTestCase {
   func testTraktTokenPolicyDecider_receivesError_notifyOutput() {
     //Given
     let errorMessage = "Trakt is offline :("
-    let genericError = NSError(domain: "com.arctouch", code: 305, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+    let genericError = NSError(domain: "io.github.pietrocaselani", code: 305, userInfo: [NSLocalizedDescriptionKey: errorMessage])
     setupPolicyDecider(TraktProviderMock(oauthURL: nil, error: genericError))
 
     //When

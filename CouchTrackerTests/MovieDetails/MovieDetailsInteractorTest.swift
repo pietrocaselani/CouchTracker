@@ -25,7 +25,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
   }
 
   func testMovieDetailsInteractor_initWithDefaultScheduler() {
-    let movie = createMovieMock(for: "the-dark-knight-2008")
+    let movie = TraktEntitiesMock.createMovieMock(for: "the-dark-knight-2008")
     let repository = MovieDetailsStoreMock(movie: movie)
     let genreRepository = GenreRepositoryMock()
     let imageRepository = imageRepositoryMock
@@ -36,7 +36,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
   }
 
   func testMovieDetailsInteractor_fetchImagesReceivesEmptyData_emitsOnCompleted() {
-    let movie = createMovieMock(for: "the-dark-knight-2008")
+    let movie = TraktEntitiesMock.createMovieMock(for: "the-dark-knight-2008")
     let repository = MovieDetailsStoreMock(movie: movie)
     let genreRepository = GenreRepositoryMock()
     let imageRepository = imageRepositoryMock
@@ -58,7 +58,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
   }
 
   func testMovieDetailsInteractor_fetchImagesReceivesData_emitsImagesAndOnCompleted() {
-    let movie = createMovieMock(for: "the-dark-knight-2008")
+    let movie = TraktEntitiesMock.createMovieMock(for: "the-dark-knight-2008")
     let repository = MovieDetailsStoreMock(movie: movie)
     let genreRepository = GenreRepositoryMock()
     let imageRepository = imageRepositoryRealMock
@@ -86,8 +86,8 @@ final class MovieDetailsInteractorTest: XCTestCase {
   }
 
   func testMovieDetailsInteractor_fetchSuccessWithEmptyData_andEmitsOnlyOnCompleted() {
-    let movie = createMovieMock(for: "the-dark-knight-2008")
-    let repository = MovieDetailsStoreMock(movie: createMovieDetailsMock())
+    let movie = TraktEntitiesMock.createMovieMock(for: "the-dark-knight-2008")
+    let repository = MovieDetailsStoreMock(movie: TraktEntitiesMock.createMovieDetailsMock())
     let genreRepository = GenreRepositoryMock()
     let imageRepository = imageRepositoryMock
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
@@ -103,7 +103,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
   }
 
   func testMovieDetailsInteractor_fetchSuccessDetails_andEmitsDetailsAndOnCompleted() {
-    let movie = createMovieDetailsMock()
+    let movie = TraktEntitiesMock.createMovieDetailsMock()
     let repository = MovieDetailsStoreMock(movie: movie)
     let genreRepository = GenreRepositoryMock()
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
@@ -128,7 +128,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let connectionError = MovieDetailsError.noConnection("There is no connection active")
     let repository = ErrorMovieDetailsStoreMock(error: connectionError)
     let genreRepository = GenreRepositoryMock()
-    let movieIds = createMovieDetailsMock().ids
+    let movieIds = TraktEntitiesMock.createMovieDetailsMock().ids
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
                                          imageRepository: imageRepositoryMock,
                                          movieIds: movieIds)

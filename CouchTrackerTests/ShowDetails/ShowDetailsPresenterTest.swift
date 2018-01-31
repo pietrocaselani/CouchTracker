@@ -6,7 +6,7 @@ final class ShowDetailsPresenterTest: XCTestCase {
   private let router = ShowDetailsRouterMock()
 
   func testShowDetailsPresenterCreation() {
-    let interactor = ShowDetailsInteractorMock(showIds: createTraktShowDetails().ids,
+    let interactor = ShowDetailsInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
                                                repository: showDetailsRepositoryMock,
                                                genreRepository: GenreRepositoryMock(),
                                                imageRepository: imageRepositoryMock)
@@ -17,9 +17,9 @@ final class ShowDetailsPresenterTest: XCTestCase {
   func testShowDetailsPresenter_receivesError_notifyRouter() {
     let errorMessage = "Unknow error"
     let userInfo = [NSLocalizedDescriptionKey: errorMessage]
-    let showDetailsError = NSError(domain: "com.arctouch", code: 3, userInfo: userInfo)
+    let showDetailsError = NSError(domain: "io.github.pietrocaselani", code: 3, userInfo: userInfo)
     let repository = ShowDetailsRepositoryErrorMock(error: showDetailsError)
-    let errorInteractor = ShowDetailsInteractorMock(showIds: createTraktShowDetails().ids,
+    let errorInteractor = ShowDetailsInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
                                                     repository: repository,
                                                     genreRepository: GenreRepositoryMock(),
                                                     imageRepository: imageRepositoryMock)
@@ -32,7 +32,7 @@ final class ShowDetailsPresenterTest: XCTestCase {
   }
 
   func testShowDetailsPresenter_receivesDetails_notifyView() {
-    let interactor = ShowDetailsInteractorMock(showIds: createTraktShowDetails().ids,
+    let interactor = ShowDetailsInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
                                                repository: showDetailsRepositoryMock,
                                                genreRepository: GenreRepositoryMock(),
                                                imageRepository: imageRepositoryMock)
@@ -40,9 +40,9 @@ final class ShowDetailsPresenterTest: XCTestCase {
 
     presenter.viewDidLoad()
 
-    let traktShow = createTraktShowDetails()
+    let traktShow = TraktEntitiesMock.createTraktShowDetails()
 
-    let showGenres = createShowsGenresMock().filter { genre -> Bool in
+    let showGenres = TraktEntitiesMock.createShowsGenresMock().filter { genre -> Bool in
       let contains = traktShow.genres?.contains(where: { showGenre -> Bool in
         return genre.slug == showGenre
       })
@@ -65,9 +65,9 @@ final class ShowDetailsPresenterTest: XCTestCase {
 
   func testShowDetailsPresenter_fetchImagesFailure_dontNotifyView() {
     let userInfo = [NSLocalizedDescriptionKey: "Image not found"]
-    let imageError = NSError(domain: "com.arctouch", code: 404, userInfo: userInfo)
+    let imageError = NSError(domain: "io.github.pietrocaselani", code: 404, userInfo: userInfo)
 
-    let interactor = ShowDetailsInteractorMock(showIds: createTraktShowDetails().ids,
+    let interactor = ShowDetailsInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
                                                repository: showDetailsRepositoryMock,
                                                genreRepository: GenreRepositoryMock(),
                                                imageRepository: ErrorImageRepositoryMock(error: imageError))
@@ -79,7 +79,7 @@ final class ShowDetailsPresenterTest: XCTestCase {
   }
 
   func testShowDetailsPresenter_fetchImagesSuccess_notifyView() {
-    let interactor = ShowDetailsInteractorMock(showIds: createTraktShowDetails().ids,
+    let interactor = ShowDetailsInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
                                                repository: showDetailsRepositoryMock,
                                                genreRepository: GenreRepositoryMock(),
                                                imageRepository: imageRepositoryRealMock)

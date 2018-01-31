@@ -4,14 +4,6 @@ import TraktSwift
 
 let trendingRepositoryMock = TrendingRepositoryMock(traktProvider: traktProviderMock)
 
-func createTrendingShowsMock() -> [TrendingShow] {
-	return try! JSONDecoder().decode([TrendingShow].self, from: Shows.trending(page: 0, limit: 10, extended: .full).sampleData)
-}
-
-func createTrendingMoviesMock() -> [TrendingMovie] {
-	return try! JSONDecoder().decode([TrendingMovie].self, from: Movies.trending(page: 0, limit: 10, extended: .full).sampleData)
-}
-
 final class TrendingViewMock: TrendingView {
 	var appConfigurationsPresentable: AppConfigurationsPresentable!
 	var presenter: TrendingPresenter!

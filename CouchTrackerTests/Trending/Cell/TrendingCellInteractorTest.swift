@@ -35,7 +35,7 @@ final class TrendingCellInteractorTest: XCTestCase {
 
   func testTrendingInteractor_fetchPosterImageURLForMovieFailure_emitsOnError() {
     let type = TrendingViewModelType.movie(tmdbMovieId: 4)
-    let imageError = NSError(domain: "com.arctouch", code: 100, userInfo: nil)
+    let imageError = NSError(domain: "io.github.pietrocaselani", code: 100, userInfo: nil)
     let interactor = TrendingCellService(imageRepository: ErrorImageRepositoryMock(error: imageError))
     let observable = interactor.fetchPosterImageURL(of: type, with: PosterImageSize.w92)
 

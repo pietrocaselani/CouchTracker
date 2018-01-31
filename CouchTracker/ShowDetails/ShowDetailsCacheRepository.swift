@@ -2,7 +2,7 @@ import RxSwift
 import Moya
 import TraktSwift
 
-final class ShowDetailsCacheRepository: ShowDetailsRepository {
+final class ShowDetailsAPIRepository: ShowDetailsRepository {
   private let traktProvider: TraktProvider
   private let schedulers: Schedulers
 
