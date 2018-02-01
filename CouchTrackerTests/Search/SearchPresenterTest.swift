@@ -16,7 +16,7 @@ final class SearchPresenterTest: XCTestCase {
   }
 
   func testSearchPresenter_performSearchSuccess_outputsTheResults() {
-    let searchResultEntities = createSearchResultsMock()
+    let searchResultEntities = TraktEntitiesMock.createSearchResultsMock()
     let store = SearchStoreMock(results: searchResultEntities)
     let interactor = SearchService(repository: store)
     let presenter = SearchiOSPresenter(view: view, interactor: interactor, resultOutput: output)

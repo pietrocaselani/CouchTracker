@@ -2,19 +2,16 @@ import RxSwift
 import TraktSwift
 
 protocol ShowProgressRepository: class {
-  func fetchShowProgress(update: Bool, showId: String, hidden: Bool,
-                         specials: Bool, countSpecials: Bool) -> Observable<BaseShow>
-  func fetchDetailsOf(update: Bool, episodeNumber: Int, on seasonNumber: Int,
+  func fetchShowProgress(showId: String, hidden: Bool, specials: Bool, countSpecials: Bool) -> Observable<BaseShow>
+  func fetchDetailsOf(episodeNumber: Int, on seasonNumber: Int,
                       of showId: String, extended: Extended) -> Observable<Episode>
 }
 
 protocol ShowProgressInteractor: class {
-  init(repository: ShowProgressRepository)
-
-  func fetchShowProgress(update: Bool, ids: ShowIds) -> Observable<WatchedShowBuilder>
+  func fetchShowProgress(ids: ShowIds) -> Observable<WatchedShowBuilder>
 }
 
-class WatchedShowBuilder {
+final class WatchedShowBuilder: Hashable {
   let ids: ShowIds
   var detailShow: BaseShow?
   var episode: Episode?
@@ -42,5 +39,23 @@ class WatchedShowBuilder {
                                    nextEpisode: episodeEntity,
                                    lastWatched: lastWatched)
     return entity
+  }
+
+  var hashValue: Int {
+    var hash = ids.hashValue
+
+    if let show = detailShow {
+      hash ^= show.hashValue
+    }
+
+    if let episode = episode {
+      hash ^= episode.hashValue
+    }
+
+    return hash
+  }
+
+  static func ==(lhs: WatchedShowBuilder, rhs: WatchedShowBuilder) -> Bool {
+    return lhs.hashValue == rhs.hashValue
   }
 }

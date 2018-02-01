@@ -25,7 +25,7 @@ final class ShowEpisodeService: ShowEpisodeInteractor {
       repository.addToHistory(items: items) : repository.removeFromHistory(items: items)
 
     return single.flatMap { [unowned self] _ in
-      let showEntityObservable = self.showProgressInteractor.fetchShowProgress(update: true, ids: episode.showIds)
+      let showEntityObservable = self.showProgressInteractor.fetchShowProgress(ids: episode.showIds)
 
       return showEntityObservable.map { SyncResult.success(show: $0.createEntity(using: show.show)) }.asSingle()
       }.catchError { Single.just(SyncResult.fail(error: $0)) }

@@ -1,8 +1,33 @@
 import TraktSwift
 
 final class TraktEntitiesMock {
+  static func decodeTraktJSON<T: Codable>(with name: String) -> T {
+    let data = traktDataForJSON(with: name)
+    return try! jsonDecoder.decode(T.self, from: data)
+  }
+
+  static func traktDataForJSON(with name: String) -> Data {
+    let resourcesPath = Bundle(for: Trakt.self).bundlePath
+
+    let bundle = findBundleUsing(resourcesPath: resourcesPath)
+
+    let url = bundle.url(forResource: name, withExtension: "json")
+
+    guard let fileURL = url, let data = try? Data(contentsOf: fileURL) else {
+      return Data()
+    }
+
+    return data
+  }
+
 	static var jsonDecoder: JSONDecoder {
 		return JSONDecoder()
+	}
+
+	static func createSearchResultsMock() -> [SearchResult] {
+		let data = Search.textQuery(types: [.movie], query: "Tron", page: 0, limit: 100).sampleData
+
+		return try! jsonDecoder.decode([SearchResult].self, from: data)
 	}
 
 	static func createMoviesGenresMock() -> [Genre] {
@@ -48,4 +73,19 @@ final class TraktEntitiesMock {
 	static func createUserSettingsMock() -> Settings {
 		return try! jsonDecoder.decode(Settings.self, from: Users.settings.sampleData)
 	}
+
+  private static func findBundleUsing(resourcesPath: String) -> Bundle {
+    var path = "/../"
+
+    var bundle: Bundle? = nil
+    var attempt = 0
+
+    repeat {
+      bundle = Bundle(path: resourcesPath.appending("\(path)TraktTestsResources.bundle"))
+      path.append("../")
+      attempt += 1
+    } while bundle == nil && attempt < 5
+
+    return bundle!
+  }
 }

@@ -24,7 +24,7 @@ final class ShowsProgressService: ShowsProgressInteractor {
   private func fetchShowProgress(_ update: Bool, _ baseShow: BaseShow) -> Observable<WatchedShowEntity> {
     guard let show = baseShow.show else { return Observable.empty() }
 
-    return showProgressInteractor.fetchShowProgress(update: update, ids: show.ids)
+    return showProgressInteractor.fetchShowProgress(ids: show.ids)
       .flatMap { [unowned self] in return self.mapToEntity(baseShow, builder: $0) }
       .observeOn(schedulers.networkScheduler)
   }

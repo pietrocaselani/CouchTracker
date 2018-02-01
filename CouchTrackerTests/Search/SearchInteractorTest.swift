@@ -31,7 +31,7 @@ final class SearchInteractorTest: XCTestCase {
   }
 
   func testSearchInteractor_fetchSuccessReceivesData_andEmitDataAndOnCompleted() {
-    let results = createSearchResultsMock()
+    let results = TraktEntitiesMock.createSearchResultsMock()
 
     let interactor = SearchService(repository: SearchStoreMock(results: results))
     let disposable = interactor.searchMovies(query: "Tron").subscribe(observer)

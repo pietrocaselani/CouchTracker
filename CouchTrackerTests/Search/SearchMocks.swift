@@ -105,9 +105,3 @@ final class SearchRepositoryAPIStubMock: SearchRepository {
     return searchProvider.rx.request(target).map([SearchResult].self).asObservable()
   }
 }
-
-func createSearchResultsMock() -> [SearchResult] {
-  let data = Search.textQuery(types: [.movie], query: "Tron", page: 0, limit: 100).sampleData
-
-  return try! JSONDecoder().decode([SearchResult].self, from: data)
-}
