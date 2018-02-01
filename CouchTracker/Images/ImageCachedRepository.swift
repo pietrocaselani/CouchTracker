@@ -10,11 +10,16 @@ final class ImageCachedRepository: ImageRepository {
 	private let configurationRepository: ConfigurationRepository
 	private let tmdb: TMDBProvider
 	private let tvdb: TVDBProvider
+	private let schedulers: Schedulers
 
-	init(tmdb: TMDBProvider, tvdb: TVDBProvider, cofigurationRepository: ConfigurationRepository) {
+	init(tmdb: TMDBProvider,
+	     tvdb: TVDBProvider,
+	     cofigurationRepository: ConfigurationRepository,
+	     schedulers: Schedulers) {
 		self.configurationRepository = cofigurationRepository
 		self.tmdb = tmdb
 		self.tvdb = tvdb
+		self.schedulers = schedulers
 	}
 
 	func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?,
@@ -97,9 +102,7 @@ final class ImageCachedRepository: ImageRepository {
 			                                 stillSize: stillSize ?? .w300)
 		}
 
-		let scheduler = SerialDispatchQueueScheduler(qos: .background)
-
-		return observable.subscribeOn(scheduler).observeOn(scheduler)
+		return observable.observeOn(schedulers.networkScheduler)
 	}
 
 	private func imagesFromAPI<T: TMDBType>(using provider: MoyaProvider<T>, with target: T) -> Observable<Images> {
