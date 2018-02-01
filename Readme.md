@@ -15,4 +15,4 @@ Run the following commands
 
 * This project uses the [Trakt API](https://trakt.docs.apiary.io/), [TMDB API](https://developers.themoviedb.org/3/getting-started) and [TVDB API](https://api.thetvdb.com/swagger)
 
-* To run the app, plase update the file at `CouchTracker/Utils/Secrets.swift` with yours API keys
+* To run the app, please update the file at `CouchTracker/Utils/Secrets.swift` with yours API keys
