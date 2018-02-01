@@ -1,0 +1,368 @@
+{
+    "aired": 65,
+    "completed": 60,
+    "last_watched_at": "2017-09-21T12:28:21.000Z",
+    "seasons": [
+        {
+            "number": 1,
+            "aired": 13,
+            "completed": 13,
+            "episodes": [
+                {
+                    "number": 1,
+                    "completed": true,
+                    "last_watched_at": "2013-12-25T17:36:43.000Z"
+                },
+                {
+                    "number": 2,
+                    "completed": true,
+                    "last_watched_at": "2013-12-25T17:36:43.000Z"
+                },
+                {
+                    "number": 3,
+                    "completed": true,
+                    "last_watched_at": "2013-12-25T17:36:43.000Z"
+                },
+                {
+                    "number": 4,
+                    "completed": true,
+                    "last_watched_at": "2013-12-25T17:36:43.000Z"
+                },
+                {
+                    "number": 5,
+                    "completed": true,
+                    "last_watched_at": "2013-12-25T17:36:43.000Z"
+                },
+                {
+                    "number": 6,
+                    "completed": true,
+                    "last_watched_at": "2013-12-25T17:36:43.000Z"
+                },
+                {
+                    "number": 7,
+                    "completed": true,
+                    "last_watched_at": "2013-12-25T17:36:43.000Z"
+                },
+                {
+                    "number": 8,
+                    "completed": true,
+                    "last_watched_at": "2013-12-25T17:36:43.000Z"
+                },
+                {
+                    "number": 9,
+                    "completed": true,
+                    "last_watched_at": "2013-12-25T17:36:43.000Z"
+                },
+                {
+                    "number": 10,
+                    "completed": true,
+                    "last_watched_at": "2013-12-25T17:36:43.000Z"
+                },
+                {
+                    "number": 11,
+                    "completed": true,
+                    "last_watched_at": "2013-12-25T17:36:43.000Z"
+                },
+                {
+                    "number": 12,
+                    "completed": true,
+                    "last_watched_at": "2013-12-25T17:36:43.000Z"
+                },
+                {
+                    "number": 13,
+                    "completed": true,
+                    "last_watched_at": "2013-12-25T17:36:43.000Z"
+                }
+            ]
+        },
+        {
+            "number": 2,
+            "aired": 13,
+            "completed": 13,
+            "episodes": [
+                {
+                    "number": 1,
+                    "completed": true,
+                    "last_watched_at": "2014-03-02T05:17:26.000Z"
+                },
+                {
+                    "number": 2,
+                    "completed": true,
+                    "last_watched_at": "2014-03-25T04:45:14.000Z"
+                },
+                {
+                    "number": 3,
+                    "completed": true,
+                    "last_watched_at": "2014-08-17T06:37:35.000Z"
+                },
+                {
+                    "number": 4,
+                    "completed": true,
+                    "last_watched_at": "2014-08-17T19:15:21.000Z"
+                },
+                {
+                    "number": 5,
+                    "completed": true,
+                    "last_watched_at": "2014-08-17T23:18:58.000Z"
+                },
+                {
+                    "number": 6,
+                    "completed": true,
+                    "last_watched_at": "2014-08-18T00:46:30.000Z"
+                },
+                {
+                    "number": 7,
+                    "completed": true,
+                    "last_watched_at": "2014-08-18T01:28:50.000Z"
+                },
+                {
+                    "number": 8,
+                    "completed": true,
+                    "last_watched_at": "2014-08-19T03:32:51.000Z"
+                },
+                {
+                    "number": 9,
+                    "completed": true,
+                    "last_watched_at": "2014-08-24T22:15:40.000Z"
+                },
+                {
+                    "number": 10,
+                    "completed": true,
+                    "last_watched_at": "2014-08-24T23:08:22.000Z"
+                },
+                {
+                    "number": 11,
+                    "completed": true,
+                    "last_watched_at": "2014-08-25T00:56:28.000Z"
+                },
+                {
+                    "number": 12,
+                    "completed": true,
+                    "last_watched_at": "2014-08-25T01:47:49.000Z"
+                },
+                {
+                    "number": 13,
+                    "completed": true,
+                    "last_watched_at": "2014-08-25T02:40:31.000Z"
+                }
+            ]
+        },
+        {
+            "number": 3,
+            "aired": 13,
+            "completed": 13,
+            "episodes": [
+                {
+                    "number": 1,
+                    "completed": true,
+                    "last_watched_at": "2015-08-01T23:23:54.000Z"
+                },
+                {
+                    "number": 2,
+                    "completed": true,
+                    "last_watched_at": "2015-08-02T03:45:05.000Z"
+                },
+                {
+                    "number": 3,
+                    "completed": true,
+                    "last_watched_at": "2015-08-02T17:09:31.000Z"
+                },
+                {
+                    "number": 4,
+                    "completed": true,
+                    "last_watched_at": "2015-08-02T20:40:03.000Z"
+                },
+                {
+                    "number": 5,
+                    "completed": true,
+                    "last_watched_at": "2015-08-03T01:57:33.000Z"
+                },
+                {
+                    "number": 6,
+                    "completed": true,
+                    "last_watched_at": "2015-08-06T01:38:59.000Z"
+                },
+                {
+                    "number": 7,
+                    "completed": true,
+                    "last_watched_at": "2015-08-06T13:11:15.000Z"
+                },
+                {
+                    "number": 8,
+                    "completed": true,
+                    "last_watched_at": "2015-08-07T01:59:42.000Z"
+                },
+                {
+                    "number": 9,
+                    "completed": true,
+                    "last_watched_at": "2015-08-10T00:09:57.000Z"
+                },
+                {
+                    "number": 10,
+                    "completed": true,
+                    "last_watched_at": "2015-08-10T01:04:01.000Z"
+                },
+                {
+                    "number": 11,
+                    "completed": true,
+                    "last_watched_at": "2015-08-10T01:51:24.000Z"
+                },
+                {
+                    "number": 12,
+                    "completed": true,
+                    "last_watched_at": "2015-08-11T22:35:19.000Z"
+                },
+                {
+                    "number": 13,
+                    "completed": true,
+                    "last_watched_at": "2015-08-12T02:32:34.000Z"
+                }
+            ]
+        },
+        {
+            "number": 4,
+            "aired": 13,
+            "completed": 13,
+            "episodes": [
+                {
+                    "number": 1,
+                    "completed": true,
+                    "last_watched_at": "2017-01-02T23:28:23.000Z"
+                },
+                {
+                    "number": 2,
+                    "completed": true,
+                    "last_watched_at": "2017-01-03T00:09:37.000Z"
+                },
+                {
+                    "number": 3,
+                    "completed": true,
+                    "last_watched_at": "2017-01-03T23:48:08.000Z"
+                },
+                {
+                    "number": 4,
+                    "completed": true,
+                    "last_watched_at": "2017-01-04T23:32:29.000Z"
+                },
+                {
+                    "number": 5,
+                    "completed": true,
+                    "last_watched_at": "2017-01-10T15:28:34.000Z"
+                },
+                {
+                    "number": 6,
+                    "completed": true,
+                    "last_watched_at": "2017-01-11T03:27:52.000Z"
+                },
+                {
+                    "number": 7,
+                    "completed": true,
+                    "last_watched_at": "2017-01-11T04:34:46.000Z"
+                },
+                {
+                    "number": 8,
+                    "completed": true,
+                    "last_watched_at": "2017-01-11T05:24:57.000Z"
+                },
+                {
+                    "number": 9,
+                    "completed": true,
+                    "last_watched_at": "2017-01-11T06:21:38.000Z"
+                },
+                {
+                    "number": 10,
+                    "completed": true,
+                    "last_watched_at": "2017-01-11T23:39:09.000Z"
+                },
+                {
+                    "number": 11,
+                    "completed": true,
+                    "last_watched_at": "2017-01-13T07:33:47.000Z"
+                },
+                {
+                    "number": 12,
+                    "completed": true,
+                    "last_watched_at": "2017-01-13T07:34:07.000Z"
+                },
+                {
+                    "number": 13,
+                    "completed": true,
+                    "last_watched_at": "2017-01-13T07:34:11.000Z"
+                }
+            ]
+        },
+        {
+            "number": 5,
+            "aired": 13,
+            "completed": 8,
+            "episodes": [
+                {
+                    "number": 1,
+                    "completed": true,
+                    "last_watched_at": "2017-09-18T02:11:57.000Z"
+                },
+                {
+                    "number": 2,
+                    "completed": true,
+                    "last_watched_at": "2017-09-18T03:01:02.000Z"
+                },
+                {
+                    "number": 3,
+                    "completed": true,
+                    "last_watched_at": "2017-09-18T23:49:04.000Z"
+                },
+                {
+                    "number": 4,
+                    "completed": true,
+                    "last_watched_at": "2017-09-19T04:25:30.000Z"
+                },
+                {
+                    "number": 5,
+                    "completed": true,
+                    "last_watched_at": "2017-09-19T23:44:44.000Z"
+                },
+                {
+                    "number": 6,
+                    "completed": true,
+                    "last_watched_at": "2017-09-19T23:44:58.000Z"
+                },
+                {
+                    "number": 7,
+                    "completed": true,
+                    "last_watched_at": "2017-09-20T02:28:31.000Z"
+                },
+                {
+                    "number": 8,
+                    "completed": true,
+                    "last_watched_at": "2017-09-21T12:28:21.000Z"
+                },
+                {
+                    "number": 9,
+                    "completed": false,
+                    "last_watched_at": null
+                },
+                {
+                    "number": 10,
+                    "completed": false,
+                    "last_watched_at": null
+                },
+                {
+                    "number": 11,
+                    "completed": false,
+                    "last_watched_at": null
+                },
+                {
+                    "number": 12,
+                    "completed": false,
+                    "last_watched_at": null
+                },
+                {
+                    "number": 13,
+                    "completed": false,
+                    "last_watched_at": null
+                }
+            ]
+        }
+    ],
+    "hidden_seasons": []
+}

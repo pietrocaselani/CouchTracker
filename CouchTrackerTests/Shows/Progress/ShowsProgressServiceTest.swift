@@ -14,8 +14,7 @@ final class ShowsProgressServiceTest: XCTestCase {
 
     observer = scheduler.createObserver(WatchedShowEntity.self)
 
-    let cache = AnyCache(CacheMock())
-    repository = ShowsProgressMocks.ShowsProgressRepositoryMock(trakt: traktProviderMock, cache: cache)
+    repository = ShowsProgressMocks.ShowsProgressRepositoryMock(trakt: traktProviderMock)
   }
 
   func testShowsProgressService_fetchWatchedProgress() {
@@ -32,4 +31,5 @@ final class ShowsProgressServiceTest: XCTestCase {
 
     XCTAssertEqual(observer.events, expectedEvents)
   }
+
 }

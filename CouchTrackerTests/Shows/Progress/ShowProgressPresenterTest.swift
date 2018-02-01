@@ -3,7 +3,7 @@ import XCTest
 final class ShowsProgressPresenterTest: XCTestCase {
   private let view = ShowsProgressMocks.ShowsProgressViewMock()
   private let router = ShowsProgressMocks.ShowsProgressRouterMock()
-  private let repository = ShowsProgressMocks.ShowsProgressRepositoryMock(trakt: traktProviderMock, cache: AnyCache(CacheMock()))
+  private let repository = ShowsProgressMocks.ShowsProgressRepositoryMock(trakt: traktProviderMock)
   private let dataSource = ShowsProgressMocks.ShowProgressDataSourceMock()
   private let showProgressInteractor = ShowProgressMocks.ShowProgressServiceMock(repository: ShowProgressMocks.showProgressRepository)
 

@@ -67,7 +67,7 @@ final class ShowsProgressMocks {
   final class ShowsProgressRepositoryMock: ShowsProgressRepository {
     private let trakt: TraktProvider
 
-    init(trakt: TraktProvider, cache: AnyCache<Int, NSData>) {
+    init(trakt: TraktProvider) {
       self.trakt = trakt
     }
 
