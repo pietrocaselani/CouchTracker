@@ -13,7 +13,7 @@ final class ShowEpisodeService: ShowEpisodeInteractor {
     self.imageRepository = imageRepository
   }
 
-  func fetchImageURL(for episode: EpisodeEntity) -> Single<URL> {
+  func fetchImageURL(for episode: EpisodeImageInput) -> Single<URL> {
     let size = EpisodeImageSizes(tvdb: .normal, tmdb: .w300)
     return imageRepository.fetchEpisodeImages(for: episode, size: size).asSingle()
   }

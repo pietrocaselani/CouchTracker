@@ -21,7 +21,8 @@ final class ShowsProgressModule {
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
                                                 tvdb: tvdb,
-                                                cofigurationRepository: configurationRepository)
+                                                cofigurationRepository: configurationRepository,
+                                                schedulers: schedulers)
 
     let showProgressRepository = ShowProgressAPIRepository(trakt: trakt, schedulers: schedulers)
     let showProgressInteractor = ShowProgressService(repository: showProgressRepository)

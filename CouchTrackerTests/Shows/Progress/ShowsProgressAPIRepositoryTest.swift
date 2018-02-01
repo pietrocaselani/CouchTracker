@@ -53,7 +53,7 @@ final class ShowsProgressAPIRepositoryTest: XCTestCase {
 
   func testShowsProgressRepository_fetchesShowsFromCache_cantHitOnAPI() {
     //Given
-    let target = Sync.watched(type: .shows, extended: .full)
+//    let target = Sync.watched(type: .shows, extended: .full)
 //    let entriesCache = CacheMock(entries: [target.hashValue: target.sampleData as NSData])
     let repository = ShowsProgressAPIRepository(trakt: trakt, schedulers: schedulers)
     let observer = schedulers.createObserver([BaseShow].self)

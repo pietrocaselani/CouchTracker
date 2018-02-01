@@ -21,7 +21,8 @@ final class TrendingModule {
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
                                                 tvdb: tvdb,
-                                                cofigurationRepository: configurationRepository)
+                                                cofigurationRepository: configurationRepository,
+                                                schedulers: schedulers)
 
     let interactor = TrendingService(repository: repository, imageRepository: imageRepository)
     let router = TrendingiOSRouter(viewController: viewController)

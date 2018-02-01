@@ -17,7 +17,7 @@ final class EmptyImageRepositoryMock: ImageRepository {
     return Single.never()
   }
 
-  func fetchEpisodeImages(for episode: EpisodeEntity, size: EpisodeImageSizes?) -> Observable<URL> {
+  func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Observable<URL> {
     return Observable.empty()
   }
 }
@@ -42,7 +42,7 @@ final class ImagesRepositorySampleMock: ImageRepository {
     return Single.just(images)
   }
 
-  func fetchEpisodeImages(for episode: EpisodeEntity, size: EpisodeImageSizes?) -> Observable<URL> {
+  func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Observable<URL> {
     return Observable.empty()
   }
 }
@@ -80,7 +80,7 @@ final class ImageRepositoryMock: ImageRepository {
     }.asSingle()
   }
 
-  func fetchEpisodeImages(for episode: EpisodeEntity, size: EpisodeImageSizes?) -> Observable<URL> {
+  func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Observable<URL> {
     return Observable.empty()
   }
 }

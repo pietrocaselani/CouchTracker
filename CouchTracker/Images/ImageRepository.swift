@@ -5,5 +5,5 @@ protocol ImageRepository: class {
                         backdropSize: BackdropImageSize?) -> Observable<ImagesEntity>
   func fetchShowImages(for showId: Int, posterSize: PosterImageSize?,
                        backdropSize: BackdropImageSize?) -> Single<ImagesEntity>
-  func fetchEpisodeImages(for episode: EpisodeEntity, size: EpisodeImageSizes?) -> Observable<URL>
+  func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Observable<URL>
 }
