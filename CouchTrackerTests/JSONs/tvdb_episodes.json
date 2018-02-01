@@ -1,0 +1,65 @@
+{
+  "data": {
+    "id": 3254641,
+    "airedSeason": 1,
+    "airedSeasonID": 364731,
+    "airedEpisodeNumber": 1,
+    "episodeName": "Winter Is Coming",
+    "firstAired": "2011-04-17",
+    "guestStars": [
+                   "Donald Sumpter",
+                   "Jamie Sives",
+                   "Ron Donachie",
+                   "Joseph Mawle",
+                   "Roger Allam",
+                   "Dar Salim",
+                   "Esmé Bianco",
+                   "Susan Brown",
+                   "Bronson Webb",
+                   "John Standing",
+                   "Rob Ostlere",
+                   "Dermot Keaney",
+                   "Art Parkinson",
+                   "Callum Wharry",
+                   "Aimee Richardson",
+                   "Kristian Nairn",
+                   "Rania Zouari",
+                   "Ian Whyte",
+                   "Spencer Wilding"
+                   ],
+    "director": "Tim Van Patten",
+    "directors": [
+                  "Tim Van Patten"
+                  ],
+    "writers": [
+                "David Benioff",
+                "D. B. Weiss"
+                ],
+    "overview": "Ned Stark, Lord of Winterfell learns that his mentor, Jon Arryn, has died and that King Robert is on his way north to offer Ned Arryn’s position as the King’s Hand. Across the Narrow Sea in Pentos, Viserys Targaryen plans to wed his sister Daenerys to the nomadic Dothraki warrior leader, Khal Drogo to forge an alliance to take the throne.",
+    "language": {
+      "episodeName": "en",
+      "overview": "en"
+    },
+    "productionCode": "",
+    "showUrl": "",
+    "lastUpdated": 1433646412,
+    "dvdDiscid": "",
+    "dvdSeason": 1,
+    "dvdEpisodeNumber": 1,
+    "dvdChapter": null,
+    "absoluteNumber": 1,
+    "filename": "episodes/121361/3254641.jpg",
+    "seriesId": 121361,
+    "lastUpdatedBy": 434798,
+    "airsAfterSeason": null,
+    "airsBeforeSeason": null,
+    "airsBeforeEpisode": null,
+    "thumbAuthor": 235,
+    "thumbAdded": "2015-05-03 06:38:07",
+    "thumbWidth": "400",
+    "thumbHeight": "225",
+    "imdbId": "tt1480055",
+    "siteRating": 7.8,
+    "siteRatingCount": 679
+  }
+}
