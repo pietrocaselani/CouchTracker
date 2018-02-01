@@ -55,7 +55,7 @@ final class WatchedShowBuilder: Hashable {
     return hash
   }
 
-  static func ==(lhs: WatchedShowBuilder, rhs: WatchedShowBuilder) -> Bool {
+  static func == (lhs: WatchedShowBuilder, rhs: WatchedShowBuilder) -> Bool {
     return lhs.hashValue == rhs.hashValue
   }
 }
