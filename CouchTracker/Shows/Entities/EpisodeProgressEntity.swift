@@ -1,7 +1,7 @@
 import TraktSwift
 import Foundation
 
-struct EpisodeEntity: Hashable {
+struct EpisodeEntity: Hashable, EpisodeImageInput {
   let ids: EpisodeIds
   let showIds: ShowIds
   let title: String
@@ -10,6 +10,14 @@ struct EpisodeEntity: Hashable {
   let season: Int
   let firstAired: Date?
   let lastWatched: Date?
+
+  var tvdb: Int {
+    return showIds.tvdb
+  }
+
+  var tmdb: Int? {
+    return ids.tmdb
+  }
 
   var hashValue: Int {
     var hash = ids.hashValue ^ title.hashValue ^ number.hashValue ^ season.hashValue

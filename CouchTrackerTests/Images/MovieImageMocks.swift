@@ -22,7 +22,7 @@ final class ErrorImageRepositoryMock: ImageRepository {
     return Single.error(error)
   }
 
-  func fetchEpisodeImages(for episode: EpisodeEntity, size: EpisodeImageSizes?) -> Observable<URL> {
+  func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Observable<URL> {
     return Observable.empty()
   }
 }

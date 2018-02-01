@@ -40,10 +40,10 @@ final class ImageCachedRepository: ImageRepository {
 		return createImagesEntities(apiObservable, posterSize: posterSize, backdropSize: backdropSize).asSingle()
 	}
 
-	func fetchEpisodeImages(for episode: EpisodeEntity, size: EpisodeImageSizes?) -> Observable<URL> {
-		let tvdbObservable = fetchEpisodeImageFromTVDB(episode.ids.tvdb, size?.tvdb ?? .normal)
+	func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes? = nil) -> Observable<URL> {
+		let tvdbObservable = fetchEpisodeImageFromTVDB(episode.tvdb, size?.tvdb ?? .normal)
 
-		guard let tmdbId = episode.showIds.tmdb else {
+		guard let tmdbId = episode.tmdb else {
 			return tvdbObservable
 		}
 

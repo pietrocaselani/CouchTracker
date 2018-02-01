@@ -11,27 +11,34 @@
 		392D90F1C41D70B4AF960597 /* TraktEntitiesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D91617733B7EB5EBA114A /* TraktEntitiesMock.swift */; };
 		392D922B43E247106F2EF3D3 /* LoginState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D935BE7CF67E13FA1C821 /* LoginState.swift */; };
 		392D922DF10F1941A06FA554 /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9C8588003600B65A2EE7 /* ImageRepository.swift */; };
+		392D9384CB05518814D70C27 /* EpisodeImageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9D5DF615DE80C9E7CE4F /* EpisodeImageInput.swift */; };
 		392D93DE0557D965D77E87A5 /* ImageCachedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9639185F354505ABB8D3 /* ImageCachedRepository.swift */; };
 		392D94094EB036ECB0061A99 /* TraktProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D980BC37D71470843481C /* TraktProvider.swift */; };
 		392D94C57DC58E4F1ECA81A2 /* ImagesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9B38999C1C359F37014E /* ImagesEntity.swift */; };
 		392D951BEE3334C99765C1AE /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9C8588003600B65A2EE7 /* ImageRepository.swift */; };
 		392D952D8AE52619CEE34C85 /* TraktErrorProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9DF8E4C2F246D55BAA99 /* TraktErrorProviderMock.swift */; };
 		392D95338515531370936B48 /* ImageEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9763C4A563BA44D78E12 /* ImageEntity.swift */; };
+		392D957D2899E94CA600F836 /* TMDBErrorProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D92AFB8979ABE5F428209 /* TMDBErrorProviderMock.swift */; };
 		392D959EA31C4C13F201B9B4 /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9C8588003600B65A2EE7 /* ImageRepository.swift */; };
 		392D95AB169395D1E7EC6E01 /* TMDBEntitiesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9BABD8EC967502B827CF /* TMDBEntitiesMock.swift */; };
 		392D9633B6766B4443D60643 /* RxAsserts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9CCADDD8B9EF1D8D74F7 /* RxAsserts.swift */; };
 		392D965A215A77454BDE43DC /* LoginState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D935BE7CF67E13FA1C821 /* LoginState.swift */; };
 		392D96AFA2123BBE45289134 /* TraktErrorProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9DF8E4C2F246D55BAA99 /* TraktErrorProviderMock.swift */; };
 		392D96D940E8D6DF72B1A063 /* ImageCachedRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9E7DA1784272F1B961AD /* ImageCachedRepositoryTest.swift */; };
+		392D97A668BFBC7643EDF568 /* TMDBErrorProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D92AFB8979ABE5F428209 /* TMDBErrorProviderMock.swift */; };
+		392D9865CDAFE2CD111702A9 /* EpisodeImageInputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9F587912BD02D318BCD6 /* EpisodeImageInputMock.swift */; };
 		392D98D1F350EE017D21155F /* TraktProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D980BC37D71470843481C /* TraktProvider.swift */; };
 		392D997722E7E59536607768 /* ImageCachedRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9E7DA1784272F1B961AD /* ImageCachedRepositoryTest.swift */; };
 		392D9A1DD54F1131A5D41137 /* TMDBProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9D4CE78A30D125591157 /* TMDBProvider.swift */; };
 		392D9B4C5816B7FBE116064A /* TMDBProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9D4CE78A30D125591157 /* TMDBProvider.swift */; };
+		392D9B5602C6F9CFE2F490F1 /* EpisodeImageInputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9F587912BD02D318BCD6 /* EpisodeImageInputMock.swift */; };
 		392D9BDAB732E54F77D3F4BB /* TMDBEntitiesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9BABD8EC967502B827CF /* TMDBEntitiesMock.swift */; };
 		392D9BE44E5502E84E7A7DB7 /* TraktProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D980BC37D71470843481C /* TraktProvider.swift */; };
 		392D9C7D002D380975348E62 /* ImagesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9B38999C1C359F37014E /* ImagesEntity.swift */; };
 		392D9CAB8901302FCB6F2C14 /* TMDBProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9D4CE78A30D125591157 /* TMDBProvider.swift */; };
+		392D9D1993F8C9834FFBC0D8 /* EpisodeImageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9D5DF615DE80C9E7CE4F /* EpisodeImageInput.swift */; };
 		392D9D323096C40E5AEF26BA /* LoginState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D935BE7CF67E13FA1C821 /* LoginState.swift */; };
+		392D9ECB74DB0D737B5F9790 /* EpisodeImageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9D5DF615DE80C9E7CE4F /* EpisodeImageInput.swift */; };
 		392D9F9B46768E7E781923DE /* TraktEntitiesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D91617733B7EB5EBA114A /* TraktEntitiesMock.swift */; };
 		392D9FF0AB84D5A5E1B1DB3D /* ImageEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9763C4A563BA44D78E12 /* ImageEntity.swift */; };
 		4F6DC40D201544E200AA0DC8 /* MoviesManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC40C201544E200AA0DC8 /* MoviesManagerContract.swift */; };
@@ -558,6 +565,7 @@
 		21101C0B2363E828A0DA0151 /* Pods-CouchTrackerUgly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerUgly.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerUgly/Pods-CouchTrackerUgly.release.xcconfig"; sourceTree = "<group>"; };
 		2D51FA3E8D17203E8608B2E7 /* Pods_TMDB_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMDB_Mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		392D91617733B7EB5EBA114A /* TraktEntitiesMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktEntitiesMock.swift; sourceTree = "<group>"; };
+		392D92AFB8979ABE5F428209 /* TMDBErrorProviderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBErrorProviderMock.swift; sourceTree = "<group>"; };
 		392D935BE7CF67E13FA1C821 /* LoginState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginState.swift; sourceTree = "<group>"; };
 		392D9639185F354505ABB8D3 /* ImageCachedRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCachedRepository.swift; sourceTree = "<group>"; usesTabs = 1; };
 		392D9763C4A563BA44D78E12 /* ImageEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEntity.swift; sourceTree = "<group>"; };
@@ -567,8 +575,10 @@
 		392D9C8588003600B65A2EE7 /* ImageRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRepository.swift; sourceTree = "<group>"; };
 		392D9CCADDD8B9EF1D8D74F7 /* RxAsserts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxAsserts.swift; sourceTree = "<group>"; };
 		392D9D4CE78A30D125591157 /* TMDBProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBProvider.swift; sourceTree = "<group>"; };
+		392D9D5DF615DE80C9E7CE4F /* EpisodeImageInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeImageInput.swift; sourceTree = "<group>"; };
 		392D9DF8E4C2F246D55BAA99 /* TraktErrorProviderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktErrorProviderMock.swift; sourceTree = "<group>"; };
 		392D9E7DA1784272F1B961AD /* ImageCachedRepositoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCachedRepositoryTest.swift; sourceTree = "<group>"; };
+		392D9F587912BD02D318BCD6 /* EpisodeImageInputMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeImageInputMock.swift; sourceTree = "<group>"; };
 		3B3EB9009A3B523D8632A924 /* Pods_CouchTrackerUgly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerUgly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AF82CEF656B3FDBDB4F613E /* Pods-TraktTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraktTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraktTests/Pods-TraktTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4F6DC40C201544E200AA0DC8 /* MoviesManagerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerContract.swift; sourceTree = "<group>"; };
@@ -931,6 +941,7 @@
 				392D9C8588003600B65A2EE7 /* ImageRepository.swift */,
 				392D9639185F354505ABB8D3 /* ImageCachedRepository.swift */,
 				64303EB61F6726970050C287 /* ImagesViewModel.swift */,
+				392D9D5DF615DE80C9E7CE4F /* EpisodeImageInput.swift */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1378,6 +1389,7 @@
 				642624381F56E15A00560660 /* MovieImageRepositoryMock.swift */,
 				647B66461F5888E000B38D2A /* MovieImageMocks.swift */,
 				392D9E7DA1784272F1B961AD /* ImageCachedRepositoryTest.swift */,
+				392D9F587912BD02D318BCD6 /* EpisodeImageInputMock.swift */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1389,6 +1401,7 @@
 				6496D9A91F56F1CF00B76E06 /* TraktProviderMock.swift */,
 				64268C321F7ED3920005FCE2 /* TVDBProviderMock.swift */,
 				392D9DF8E4C2F246D55BAA99 /* TraktErrorProviderMock.swift */,
+				392D92AFB8979ABE5F428209 /* TMDBErrorProviderMock.swift */,
 			);
 			path = NetworkMock;
 			sourceTree = "<group>";
@@ -2259,6 +2272,7 @@
 				644BF5151F6B07B00010CE35 /* AppConfigurationsViewModel.swift in Sources */,
 				64D43BD21F605DFB005CDBF7 /* TrendingCellContract.swift in Sources */,
 				392D965A215A77454BDE43DC /* LoginState.swift in Sources */,
+				392D9ECB74DB0D737B5F9790 /* EpisodeImageInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2416,6 +2430,9 @@
 				392D90F1C41D70B4AF960597 /* TraktEntitiesMock.swift in Sources */,
 				392D96AFA2123BBE45289134 /* TraktErrorProviderMock.swift in Sources */,
 				392D997722E7E59536607768 /* ImageCachedRepositoryTest.swift in Sources */,
+				392D957D2899E94CA600F836 /* TMDBErrorProviderMock.swift in Sources */,
+				392D9384CB05518814D70C27 /* EpisodeImageInput.swift in Sources */,
+				392D9B5602C6F9CFE2F490F1 /* EpisodeImageInputMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2581,6 +2598,9 @@
 				392D9F9B46768E7E781923DE /* TraktEntitiesMock.swift in Sources */,
 				392D952D8AE52619CEE34C85 /* TraktErrorProviderMock.swift in Sources */,
 				392D96D940E8D6DF72B1A063 /* ImageCachedRepositoryTest.swift in Sources */,
+				392D97A668BFBC7643EDF568 /* TMDBErrorProviderMock.swift in Sources */,
+				392D9D1993F8C9834FFBC0D8 /* EpisodeImageInput.swift in Sources */,
+				392D9865CDAFE2CD111702A9 /* EpisodeImageInputMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

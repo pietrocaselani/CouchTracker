@@ -10,7 +10,7 @@ protocol ShowEpisodeInteractor: class {
   init(repository: ShowEpisodeRepository,
        showProgressInteractor: ShowProgressInteractor, imageRepository: ImageRepository)
 
-  func fetchImageURL(for episode: EpisodeEntity) -> Single<URL>
+  func fetchImageURL(for episode: EpisodeImageInput) -> Single<URL>
   func toggleWatch(for episode: EpisodeEntity, of show: WatchedShowEntity) -> Single<SyncResult>
 }
 

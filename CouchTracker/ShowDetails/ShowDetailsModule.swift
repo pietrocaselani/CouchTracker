@@ -14,7 +14,8 @@ final class ShowDetailsModule {
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
                                                 tvdb: tvdb,
-                                                cofigurationRepository: configurationRepository)
+                                                cofigurationRepository: configurationRepository,
+                                                schedulers: schedulers)
 
     let interactor = ShowDetailsService(showIds: showIds, repository: repository,
                                         genreRepository: genreRepository, imageRepository: imageRepository)
