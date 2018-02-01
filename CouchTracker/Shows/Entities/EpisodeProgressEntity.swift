@@ -12,11 +12,11 @@ struct EpisodeEntity: Hashable, EpisodeImageInput {
   let lastWatched: Date?
 
   var tvdb: Int {
-    return showIds.tvdb
+    return ids.tvdb
   }
 
   var tmdb: Int? {
-    return ids.tmdb
+    return showIds.tmdb
   }
 
   var hashValue: Int {

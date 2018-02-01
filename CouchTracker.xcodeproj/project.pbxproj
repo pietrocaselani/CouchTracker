@@ -139,6 +139,8 @@
 		641D497C20223660002A4EAD /* TestSchedulers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D497A20223660002A4EAD /* TestSchedulers.swift */; };
 		641D49BD20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D49BC20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift */; };
 		641D49BE20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D49BC20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift */; };
+		641D49BF20235642002A4EAD /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */; };
+		641D49CB20235727002A4EAD /* tvdb_episodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 641D49CA20235727002A4EAD /* tvdb_episodes.json */; };
 		642074141FAA382700923248 /* SimpleMemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642074131FAA382700923248 /* SimpleMemoryCache.swift */; };
 		642074151FAA382700923248 /* SimpleMemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642074131FAA382700923248 /* SimpleMemoryCache.swift */; };
 		642074161FAA382700923248 /* SimpleMemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642074131FAA382700923248 /* SimpleMemoryCache.swift */; };
@@ -524,6 +526,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		641D49CC20235746002A4EAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 647632311F44824900F277F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 641D49C3202356AA002A4EAD;
+			remoteInfo = TVDBTestsResources;
+		};
 		644F51791F858D0F00DE80E0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 647632311F44824900F277F1 /* Project object */;
@@ -633,6 +642,9 @@
 		641D497820222F40002A4EAD /* DefaultSchedulers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSchedulers.swift; sourceTree = "<group>"; };
 		641D497A20223660002A4EAD /* TestSchedulers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSchedulers.swift; sourceTree = "<group>"; };
 		641D49BC20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsRepositoryTest.swift; sourceTree = "<group>"; };
+		641D49C4202356AA002A4EAD /* TVDBTestsResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVDBTestsResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		641D49C6202356AA002A4EAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		641D49CA20235727002A4EAD /* tvdb_episodes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = tvdb_episodes.json; path = ../../../../../ArcTouch/tvdb_episodes.json; sourceTree = "<group>"; };
 		642074131FAA382700923248 /* SimpleMemoryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMemoryCache.swift; sourceTree = "<group>"; };
 		6421C0781F66F7E70043FB82 /* ShowDetailsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsModule.swift; sourceTree = "<group>"; };
 		6423EA8F1F5600A900F3899C /* TMDBMovies+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TMDBMovies+Hashable.swift"; sourceTree = "<group>"; };
@@ -850,6 +862,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		641D49C1202356AA002A4EAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		647632361F44824900F277F1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1085,6 +1104,14 @@
 			path = Seasons;
 			sourceTree = "<group>";
 		};
+		641D49C5202356AA002A4EAD /* TVDBTestsResources */ = {
+			isa = PBXGroup;
+			children = (
+				641D49C6202356AA002A4EAD /* Info.plist */,
+			);
+			path = TVDBTestsResources;
+			sourceTree = "<group>";
+		};
 		6423EA8A1F56004D00F3899C /* TMDB */ = {
 			isa = PBXGroup;
 			children = (
@@ -1294,6 +1321,7 @@
 				647632501F44824900F277F1 /* CouchTrackerTests */,
 				64B801BC1FA7933F004A6EEE /* TraktTestsResources */,
 				64B801E31FA7947F004A6EEE /* TMDBTestsResources */,
+				641D49C5202356AA002A4EAD /* TVDBTestsResources */,
 				31C11952FDC8E067FC72DB57 /* Frameworks */,
 				35F4540E74D8632B2F76B8F1 /* Pods */,
 				6476323A1F44824900F277F1 /* Products */,
@@ -1311,6 +1339,7 @@
 				64B1CCCE1F4F597D002A9FFD /* CouchTrackerFastTests.xctest */,
 				64B801BB1FA7933F004A6EEE /* TraktTestsResources.bundle */,
 				64B801E21FA7947F004A6EEE /* TMDBTestsResources.bundle */,
+				641D49C4202356AA002A4EAD /* TVDBTestsResources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1447,6 +1476,7 @@
 				64B801C21FA79362004A6EEE /* trakt_shows_watchedprogress.json */,
 				6488301F1FB2250C00BB217D /* trakt_sync_watched_shows.json */,
 				64B801C91FA79363004A6EEE /* trakt_users_settings.json */,
+				641D49CA20235727002A4EAD /* tvdb_episodes.json */,
 			);
 			path = JSONs;
 			sourceTree = "<group>";
@@ -1647,6 +1677,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		641D49C3202356AA002A4EAD /* TVDBTestsResources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 641D49C7202356AA002A4EAD /* Build configuration list for PBXNativeTarget "TVDBTestsResources" */;
+			buildPhases = (
+				641D49C0202356AA002A4EAD /* Sources */,
+				641D49C1202356AA002A4EAD /* Frameworks */,
+				641D49C2202356AA002A4EAD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TVDBTestsResources;
+			productName = TVDBTestsResources;
+			productReference = 641D49C4202356AA002A4EAD /* TVDBTestsResources.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		647632381F44824900F277F1 /* CouchTracker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 647632561F44824900F277F1 /* Build configuration list for PBXNativeTarget "CouchTracker" */;
@@ -1705,6 +1752,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				641D49CD20235746002A4EAD /* PBXTargetDependency */,
 				64B801F81FA794B2004A6EEE /* PBXTargetDependency */,
 				64B801DD1FA793F9004A6EEE /* PBXTargetDependency */,
 			);
@@ -1757,6 +1805,10 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Pietro Caselani";
 				TargetAttributes = {
+					641D49C3202356AA002A4EAD = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Manual;
+					};
 					647632381F44824900F277F1 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = B5RPM7SE3L;
@@ -1808,11 +1860,20 @@
 				64B1CCCD1F4F597D002A9FFD /* CouchTrackerFastTests */,
 				64B801BA1FA7933F004A6EEE /* TraktTestsResources */,
 				64B801E11FA7947F004A6EEE /* TMDBTestsResources */,
+				641D49C3202356AA002A4EAD /* TVDBTestsResources */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		641D49C2202356AA002A4EAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				641D49CB20235727002A4EAD /* tvdb_episodes.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		647632371F44824900F277F1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2106,6 +2167,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		641D49C0202356AA002A4EAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		647632351F44824900F277F1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2330,6 +2398,7 @@
 				6454D1621F7037DF008C4E5F /* TraktLoginService.swift in Sources */,
 				644BF5241F6B07E20010CE35 /* AppConfigurationsService.swift in Sources */,
 				645B83891F73FC04009DDF53 /* Date+Presentable.swift in Sources */,
+				641D49BF20235642002A4EAD /* NoCacheMoyaPlugin.swift in Sources */,
 				645EEEE01F61ADE30034EB66 /* ShowDetailsService.swift in Sources */,
 				648390D41F504E7600911BA0 /* TrendingInteractorTest.swift in Sources */,
 				64F05BF71F69527D00E3B861 /* ImagesSize.swift in Sources */,
@@ -2621,6 +2690,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		641D49CD20235746002A4EAD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 641D49C3202356AA002A4EAD /* TVDBTestsResources */;
+			targetProxy = 641D49CC20235746002A4EAD /* PBXContainerItemProxy */;
+		};
 		644F517A1F858D0F00DE80E0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 647632381F44824900F277F1 /* CouchTracker */;
@@ -2659,6 +2733,62 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		641D49C8202356AA002A4EAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TVDBTestsResources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.TVDBTestsResources;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		641D49C9202356AA002A4EAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TVDBTestsResources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.TVDBTestsResources;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 		647632541F44824900F277F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3000,6 +3130,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		641D49C7202356AA002A4EAD /* Build configuration list for PBXNativeTarget "TVDBTestsResources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				641D49C8202356AA002A4EAD /* Debug */,
+				641D49C9202356AA002A4EAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		647632341F44824900F277F1 /* Build configuration list for PBXProject "CouchTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

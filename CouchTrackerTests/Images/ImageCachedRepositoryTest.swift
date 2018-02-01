@@ -140,4 +140,53 @@ final class ImageCachedRepositoryTest: XCTestCase {
 
 		XCTAssertEqual(episodeObserver.events, expectedEvents)
 	}
+
+	func testImageCachedRepository_fetchEpisodeImages_fromTVDB_withEmptyTMDBId_withDefaultSizes() {
+		let input = EpisodeImageInputMock(tmdb: nil, tvdb: 3254641, season: 1, number: 1)
+
+		_ = repository.fetchEpisodeImages(for: input).subscribe(episodeObserver)
+
+		scheduler.start()
+
+		let expectedURL = URL(string: "https://www.thetvdb.com/banners/episodes/121361/3254641.jpg")!
+
+		let expectedEvents = [next(0, expectedURL), completed(0)]
+
+		XCTAssertEqual(episodeObserver.events, expectedEvents)
+	}
+
+	func testImageCachedRepository_fetchEpisodeImages_fromTVDB_withEmptyTMDBId_withSpecificSizes() {
+		let input = EpisodeImageInputMock(tmdb: nil, tvdb: 3254641, season: 1, number: 1)
+
+		let sizes = EpisodeImageSizes(tvdb: .small, tmdb: .w92)
+
+		_ = repository.fetchEpisodeImages(for: input, size: sizes).subscribe(episodeObserver)
+
+		scheduler.start()
+
+		let expectedURL = URL(string: "https://www.thetvdb.com/banners/_cache/episodes/121361/3254641.jpg")!
+
+		let expectedEvents = [next(0, expectedURL), completed(0)]
+
+		XCTAssertEqual(episodeObserver.events, expectedEvents)
+	}
+
+	func testImageCachedRepository_fetchEpisodeImages_fromTVDB_becauseTMDBThrowsError_withSpecificSizes() {
+		let repository = ImageCachedRepository(tmdb: TMDBErrorProviderMock(), tvdb: tvdbProviderMock,
+				cofigurationRepository: configurationRepositoryMock, schedulers: scheduler)
+
+		let input = EpisodeImageInputMock(tmdb: 1399, tvdb: 3254641, season: 1, number: 1)
+
+		let sizes = EpisodeImageSizes(tvdb: .small, tmdb: .w92)
+
+		_ = repository.fetchEpisodeImages(for: input, size: sizes).subscribe(episodeObserver)
+
+		scheduler.start()
+
+		let expectedURL = URL(string: "https://www.thetvdb.com/banners/_cache/episodes/121361/3254641.jpg")!
+
+		let expectedEvents = [next(1, expectedURL), completed(1)]
+
+		XCTAssertEqual(episodeObserver.events, expectedEvents)
+	}
 }
