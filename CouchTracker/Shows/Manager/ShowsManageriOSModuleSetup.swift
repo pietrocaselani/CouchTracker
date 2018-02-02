@@ -7,12 +7,12 @@ final class ShowsManageriOSModuleSetup: ShowsManagerDataSource {
 		return [progress, now, trending]
 	}
 
-	var modulePages: [ShowManagerModulePage] {
-		let pages = options.map { option -> ShowManagerModulePage in
+	var modulePages: [ModulePage] {
+		let pages = options.map { option -> ModulePage in
 			let view = moduleViewFor(option: option)
 			let name = moduleNameFor(option: option)
 
-			return ShowManagerModulePage(page: view, title: name)
+			return ModulePage(page: view, title: name)
 		}
 
 		return pages

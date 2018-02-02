@@ -121,7 +121,6 @@
 		641B9D2E1F7D664C00C26D10 /* ShowManageriOSPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D2B1F7D664C00C26D10 /* ShowManageriOSPresenter.swift */; };
 		641B9D2F1F7D665600C26D10 /* ShowManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D291F7D5C4C00C26D10 /* ShowManagerContract.swift */; };
 		641B9D301F7D665600C26D10 /* ShowManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D291F7D5C4C00C26D10 /* ShowManagerContract.swift */; };
-		641B9D321F7D71D900C26D10 /* ShowManageriOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D311F7D71D900C26D10 /* ShowManageriOSRouter.swift */; };
 		641B9D351F7D72AE00C26D10 /* ShowOverviewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D341F7D72AE00C26D10 /* ShowOverviewModule.swift */; };
 		641B9D3A1F7D7AB300C26D10 /* ShowEpisodeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D391F7D7AB300C26D10 /* ShowEpisodeModule.swift */; };
 		641B9D3D1F7D7C2800C26D10 /* ShowSeasonsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D3C1F7D7C2800C26D10 /* ShowSeasonsModule.swift */; };
@@ -203,6 +202,9 @@
 		6434CA911F757AE900EA3AD8 /* ShowsProgressMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA8F1F757AE900EA3AD8 /* ShowsProgressMocks.swift */; };
 		6434CA981F75808A00EA3AD8 /* CacheMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA971F75808A00EA3AD8 /* CacheMock.swift */; };
 		6434CA991F75808A00EA3AD8 /* CacheMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA971F75808A00EA3AD8 /* CacheMock.swift */; };
+		643E918C20249C340048C0F2 /* ModulePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E918B20249C340048C0F2 /* ModulePage.swift */; };
+		643E918D20249C340048C0F2 /* ModulePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E918B20249C340048C0F2 /* ModulePage.swift */; };
+		643E918E20249C340048C0F2 /* ModulePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E918B20249C340048C0F2 /* ModulePage.swift */; };
 		6442F9F41F61751E008E3E12 /* TrendingCellPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6442F9F31F61751E008E3E12 /* TrendingCellPresenterTest.swift */; };
 		6442F9F51F61751E008E3E12 /* TrendingCellPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6442F9F31F61751E008E3E12 /* TrendingCellPresenterTest.swift */; };
 		6442F9F71F617648008E3E12 /* TrendingCellMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6442F9F61F617648008E3E12 /* TrendingCellMocks.swift */; };
@@ -639,7 +641,6 @@
 		641B9D211F7D3DE600C26D10 /* ShowProgressFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressFilter.swift; sourceTree = "<group>"; };
 		641B9D291F7D5C4C00C26D10 /* ShowManagerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManagerContract.swift; sourceTree = "<group>"; };
 		641B9D2B1F7D664C00C26D10 /* ShowManageriOSPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManageriOSPresenter.swift; sourceTree = "<group>"; };
-		641B9D311F7D71D900C26D10 /* ShowManageriOSRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManageriOSRouter.swift; sourceTree = "<group>"; };
 		641B9D341F7D72AE00C26D10 /* ShowOverviewModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOverviewModule.swift; sourceTree = "<group>"; };
 		641B9D391F7D7AB300C26D10 /* ShowEpisodeModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeModule.swift; sourceTree = "<group>"; };
 		641B9D3C1F7D7C2800C26D10 /* ShowSeasonsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSeasonsModule.swift; sourceTree = "<group>"; };
@@ -682,6 +683,7 @@
 		6434CA821F7542EA00EA3AD8 /* AnyCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCache.swift; sourceTree = "<group>"; };
 		6434CA8F1F757AE900EA3AD8 /* ShowsProgressMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressMocks.swift; sourceTree = "<group>"; };
 		6434CA971F75808A00EA3AD8 /* CacheMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheMock.swift; sourceTree = "<group>"; };
+		643E918B20249C340048C0F2 /* ModulePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulePage.swift; sourceTree = "<group>"; };
 		6442F9F31F61751E008E3E12 /* TrendingCellPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCellPresenterTest.swift; sourceTree = "<group>"; };
 		6442F9F61F617648008E3E12 /* TrendingCellMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCellMocks.swift; sourceTree = "<group>"; };
 		6442F9FA1F61A0E4008E3E12 /* ShowDetailsContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsContract.swift; sourceTree = "<group>"; };
@@ -1065,10 +1067,10 @@
 		641B9D271F7D5C3000C26D10 /* Show */ = {
 			isa = PBXGroup;
 			children = (
-				641B9D3B1F7D7C1900C26D10 /* Seasons */,
 				641B9D381F7D7A9B00C26D10 /* Episode */,
-				641B9D331F7D729F00C26D10 /* Overview */,
 				641B9D281F7D5C3C00C26D10 /* Manager */,
+				641B9D331F7D729F00C26D10 /* Overview */,
+				641B9D3B1F7D7C1900C26D10 /* Seasons */,
 			);
 			path = Show;
 			sourceTree = "<group>";
@@ -1080,7 +1082,6 @@
 				641B9D291F7D5C4C00C26D10 /* ShowManagerContract.swift */,
 				641B9D3E1F7D7CEF00C26D10 /* ShowManageriOSModuleSetup.swift */,
 				641B9D2B1F7D664C00C26D10 /* ShowManageriOSPresenter.swift */,
-				641B9D311F7D71D900C26D10 /* ShowManageriOSRouter.swift */,
 				641B9D401F7D7D5B00C26D10 /* ShowManagerModule.swift */,
 				641B9D441F7D7DBB00C26D10 /* ShowManagerViewController.swift */,
 			);
@@ -1280,11 +1281,12 @@
 		644EE1501F55E8C10053D631 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				644EE1511F55E8D20053D631 /* MovieEntity.swift */,
-				644EE1561F55E9460053D631 /* TrendingMovieEntity.swift */,
-				392D9B38999C1C359F37014E /* ImagesEntity.swift */,
 				392D9763C4A563BA44D78E12 /* ImageEntity.swift */,
+				392D9B38999C1C359F37014E /* ImagesEntity.swift */,
+				643E918B20249C340048C0F2 /* ModulePage.swift */,
+				644EE1511F55E8D20053D631 /* MovieEntity.swift */,
 				642F6F4F1F5D722B0012F04F /* ShowEntity.swift */,
+				644EE1561F55E9460053D631 /* TrendingMovieEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -2235,7 +2237,6 @@
 				642F6F501F5D722B0012F04F /* ShowEntity.swift in Sources */,
 				642F6F551F5D74F10012F04F /* ShowEntityMapper.swift in Sources */,
 				64CC08891F717249004D164A /* ShowsManagerViewController.swift in Sources */,
-				641B9D321F7D71D900C26D10 /* ShowManageriOSRouter.swift in Sources */,
 				6454D17B1F704A1D008C4E5F /* TraktLoginViewController.swift in Sources */,
 				6467FC2A1F66D00D000D1AEE /* ShowDetailsViewController.swift in Sources */,
 				6434C39F1F835CE6009B5A9F /* ShowProgressContract.swift in Sources */,
@@ -2337,6 +2338,7 @@
 				64B1CC721F4F559F002A9FFD /* Date+TraktDateFormatter.swift in Sources */,
 				64CB90BE1F7294290026B139 /* ShowsManageriOSModuleSetup.swift in Sources */,
 				6406BEC61F4DBEFA004661C4 /* MovieDetailsCacheRepository.swift in Sources */,
+				643E918C20249C340048C0F2 /* ModulePage.swift in Sources */,
 				641B9D411F7D7D5B00C26D10 /* ShowManagerModule.swift in Sources */,
 				645B83841F73F18E009DDF53 /* ShowProgressiOSPresenter.swift in Sources */,
 				4F6DC4192015499B00AA0DC8 /* MoviesManageriOSPresenter.swift in Sources */,
@@ -2498,6 +2500,7 @@
 				6475674B1F8693F900F14DE0 /* ShowProgressAPIRepositoryTest.swift in Sources */,
 				64BE63351F4F6F63002E55EA /* String+Localizable.swift in Sources */,
 				644E904B1F72E5C40089CD70 /* WatchedShowEntity.swift in Sources */,
+				643E918D20249C340048C0F2 /* ModulePage.swift in Sources */,
 				644BF5231F6B07E20010CE35 /* AppConfigurationsiOSPresenter.swift in Sources */,
 				6405E5021F5DE84500756E79 /* TrendingShowEntity.swift in Sources */,
 				64CC08621F71616E004D164A /* ShowsManagerContract.swift in Sources */,
@@ -2672,6 +2675,7 @@
 				6475674C1F8693F900F14DE0 /* ShowProgressAPIRepositoryTest.swift in Sources */,
 				644E90641F7306070089CD70 /* EpisodeProgressEntity.swift in Sources */,
 				644BF52B1F6B07E30010CE35 /* AppConfigurationsiOSPresenter.swift in Sources */,
+				643E918E20249C340048C0F2 /* ModulePage.swift in Sources */,
 				64BE63371F4F6F63002E55EA /* String+Localizable.swift in Sources */,
 				645B834F1F73E2A8009DDF53 /* EpisodeEntityMapper.swift in Sources */,
 				645EEEE21F61ADE30034EB66 /* ShowDetailsService.swift in Sources */,

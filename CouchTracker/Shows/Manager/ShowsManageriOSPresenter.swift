@@ -5,7 +5,7 @@ final class ShowsManageriOSPresenter: ShowsManagerPresenter {
   private let loginObservable: TraktLoginObservable
   private let disposeBag = DisposeBag()
   private let defaultIndex: Int
-  private let modules: [ShowManagerModulePage]
+  private let modules: [ModulePage]
   private let options: [ShowsManagerOption]
 
   init(view: ShowsManagerView, loginObservable: TraktLoginObservable, moduleSetup: ShowsManagerDataSource) {
