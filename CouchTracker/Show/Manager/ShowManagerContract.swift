@@ -4,23 +4,24 @@ enum ShowManagerOption: String {
   case seasons
 }
 
-protocol ShowManagerRouter: class {
-  func show(option: ShowManagerOption)
-}
-
 protocol ShowManagerPresenter: class {
-  init(view: ShowManagerView, router: ShowManagerRouter, moduleSetup: ShowManagerModulesSetup)
+  init(view: ShowManagerView, dataSource: ShowManagerDataSource)
 
   func viewDidLoad()
-  func showOption(at index: Int)
+}
+
+protocol ShowManagerDataSource: class {
+  init(show: WatchedShowEntity)
+
+  var showTitle: String? { get }
+  var options: [ShowManagerOption] { get }
+  var modulePages: [ModulePage] { get }
+  var defaultModuleIndex: Int { get }
 }
 
 protocol ShowManagerView: class {
   var presenter: ShowManagerPresenter! { get set }
+  var title: String? { get set }
 
-  func showOptionsSelection(with titles: [String])
-}
-
-protocol ShowManagerModulesSetup: class {
-  var options: [ShowManagerOption] { get }
+  func show(pages: [ModulePage], withDefault index: Int)
 }

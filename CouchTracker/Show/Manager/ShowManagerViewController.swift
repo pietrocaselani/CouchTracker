@@ -1,8 +1,19 @@
 import UIKit
+import Tabman
+import Pageboy
 
-final class ShowManagerViewController: UITableViewController, ShowManagerView {
+final class ShowManagerViewController: TabmanViewController, ShowManagerView {
   var presenter: ShowManagerPresenter!
-  private var titles = [String]()
+  private var moduleViews: [BaseView]?
+  private var defaultPageIndex = 0
+
+  override func awakeFromNib() {
+    super.awakeFromNib()
+
+    self.dataSource = self
+    self.delegate = self
+    self.bar.defaultCTAppearance()
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -14,27 +25,28 @@ final class ShowManagerViewController: UITableViewController, ShowManagerView {
     presenter.viewDidLoad()
   }
 
-  func showOptionsSelection(with titles: [String]) {
-    self.titles = titles
-    self.tableView.reloadData()
+  func show(pages: [ModulePage], withDefault index: Int) {
+    self.moduleViews = pages.map { $0.page }
+    self.defaultPageIndex = index
+    self.bar.items = pages.map { Item(title: $0.title) }
+
+    self.reloadPages()
+  }
+}
+
+extension ShowManagerViewController: PageboyViewControllerDataSource {
+
+  func numberOfViewControllers(in pageboyViewController: PageboyViewController) -> Int {
+    return moduleViews?.count ?? 0
   }
 
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return titles.count
+  func viewController(for pageboyViewController: PageboyViewController,
+                      at index: PageboyViewController.PageIndex) -> UIViewController? {
+    return moduleViews?[index] as? UIViewController
   }
 
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let identifier = R.reuseIdentifier.showManagerCell
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) else {
-      fatalError("Unable to dequeue ShowManager cell")
-    }
-
-    cell.textLabel?.text = titles[indexPath.row]
-
-    return cell
+  func defaultPage(for pageboyViewController: PageboyViewController) -> PageboyViewController.Page? {
+    return Page.at(index: defaultPageIndex)
   }
 
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    presenter.showOption(at: indexPath.row)
-  }
 }

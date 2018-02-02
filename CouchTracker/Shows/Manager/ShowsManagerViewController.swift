@@ -1,12 +1,9 @@
 import UIKit
-import RxCocoa
-import RxSwift
 import Tabman
 import Pageboy
 
 final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
   var presenter: ShowsManagerPresenter!
-  private let disposeBag = DisposeBag()
   private var moduleViews: [BaseView]?
   private var defaultPageIndex = 0
 
@@ -30,7 +27,7 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
     presenter.viewDidLoad()
   }
 
-  func show(pages: [ShowManagerModulePage], withDefault index: Int) {
+  func show(pages: [ModulePage], withDefault index: Int) {
     moduleViews = pages.map { $0.page }
     defaultPageIndex = index
 

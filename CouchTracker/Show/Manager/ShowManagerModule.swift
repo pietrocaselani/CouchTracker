@@ -4,16 +4,16 @@ final class ShowManagerModule {
   private init() {}
 
   static func setupModule(for show: WatchedShowEntity) -> BaseView {
-    guard let view = R.storyboard.showManager.showManagerViewController() else {
-      fatalError("Can't instantiate ShowManagerViewController from Storyboard")
+    let initialView = R.storyboard.showManager().instantiateInitialViewController()
+    guard let showManagerView = initialView as? ShowManagerViewController else {
+      fatalError("topViewController should be an instance of ShowsManagerViewController")
     }
 
-    let router = ShowManageriOSRouter(viewController: view, entity: show)
-    let moduleSetup = ShowManageriOSModuleSetup()
-    let presenter = ShowManageriOSPresenter(view: view, router: router, moduleSetup: moduleSetup)
+    let dataSource = ShowManageriOSModuleSetup(show: show)
+    let presenter = ShowManageriOSPresenter(view: showManagerView, dataSource: dataSource)
 
-    view.presenter = presenter
+    showManagerView.presenter = presenter
 
-    return view
+    return showManagerView
   }
 }
