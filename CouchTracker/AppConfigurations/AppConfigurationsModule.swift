@@ -13,12 +13,11 @@ final class AppConfigurationsModule {
     }
 
     let traktProvider = Environment.instance.trakt
-    let memoryCache = Environment.instance.memoryCache
-    let diskCache = Environment.instance.diskCache
-
     let userDefaults = UserDefaults.standard
-    let repository = AppConfigurationsUserDefaultsRepository(userDefaults: userDefaults, traktProvider: traktProvider)
-    let interactor = AppConfigurationsService(repository: repository, memoryCache: memoryCache, diskCache: diskCache)
+
+    let dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaults)
+    let repository = AppConfigurationsDefaultRepository(dataSource: dataSource, traktProvider: traktProvider)
+    let interactor = AppConfigurationsService(repository: repository)
     let router = AppConfigurationsiOSRouter(viewController: view)
     let presenter = AppConfigurationsiOSPresenter(view: view, interactor: interactor, router: router)
 

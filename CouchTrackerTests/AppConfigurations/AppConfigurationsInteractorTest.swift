@@ -25,7 +25,7 @@ final class AppConfigurationsInteractorTest: XCTestCase {
     let message = "decrypt error"
     let genericError = NSError(domain: "io.github.pietrocaselani", code: 203, userInfo: [NSLocalizedDescriptionKey: message])
     let repository = AppConfigurationsRepositoryErrorMock(error: genericError)
-    let interactor = AppConfigurationsService(repository: repository, memoryCache: memoryCache, diskCache: diskCache)
+    let interactor = AppConfigurationsService(repository: repository)
 
     //When
     let observable = interactor.fetchLoginState(forced: false)
@@ -42,7 +42,7 @@ final class AppConfigurationsInteractorTest: XCTestCase {
   func testAppConfigurationsInteractor_fetchUserFailure_emitsNotLogged() {
     //Given an empty repository
     let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users, isEmpty: true)
-    let interactor = AppConfigurationsService(repository: repository, memoryCache: memoryCache, diskCache: diskCache)
+    let interactor = AppConfigurationsService(repository: repository)
 
     //When
     let observable = interactor.fetchLoginState(forced: false)
@@ -58,7 +58,7 @@ final class AppConfigurationsInteractorTest: XCTestCase {
   func testAppConfigurationsInteractor_fetchUser_emitsUserLogged() {
     //Given a repository with token
     let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users)
-    let interactor = AppConfigurationsService(repository: repository, memoryCache: memoryCache, diskCache: diskCache)
+    let interactor = AppConfigurationsService(repository: repository)
 
     //When
     let observable = interactor.fetchLoginState(forced: false)

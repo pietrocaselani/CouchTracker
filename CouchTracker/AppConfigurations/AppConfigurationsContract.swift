@@ -3,9 +3,14 @@ import TraktSwift
 import RxSwift
 
 protocol AppConfigurationsRepository: class {
-  var preferredLocales: [Locale] { get }
-  var preferredContentLocale: Locale { get set }
+  init(dataSource: AppConfigurationsDataSource)
+
   func fetchLoggedUser(forced: Bool) -> Observable<User>
+}
+
+protocol AppConfigurationsDataSource: class {
+  func save(settings: Settings) throws
+  func fetchSettings() -> Observable<Settings>
 }
 
 protocol AppConfigurationsRouter: class {
@@ -14,10 +19,9 @@ protocol AppConfigurationsRouter: class {
 }
 
 protocol AppConfigurationsInteractor: class {
-  init(repository: AppConfigurationsRepository, memoryCache: AnyCache<Int, NSData>, diskCache: AnyCache<Int, NSData>)
+  init(repository: AppConfigurationsRepository)
 
   func fetchLoginState(forced: Bool) -> Observable<LoginState>
-  func deleteCache()
 }
 
 protocol AppConfigurationsPresenter: class {
