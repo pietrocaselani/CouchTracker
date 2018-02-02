@@ -251,9 +251,9 @@
 		644E905E1F72F3EA0089CD70 /* ShowsProgressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E905D1F72F3EA0089CD70 /* ShowsProgressService.swift */; };
 		644E905F1F72F3EA0089CD70 /* ShowsProgressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E905D1F72F3EA0089CD70 /* ShowsProgressService.swift */; };
 		644E90601F72F3EA0089CD70 /* ShowsProgressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E905D1F72F3EA0089CD70 /* ShowsProgressService.swift */; };
-		644E90621F7306070089CD70 /* EpisodeProgressEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90611F7306070089CD70 /* EpisodeProgressEntity.swift */; };
-		644E90631F7306070089CD70 /* EpisodeProgressEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90611F7306070089CD70 /* EpisodeProgressEntity.swift */; };
-		644E90641F7306070089CD70 /* EpisodeProgressEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90611F7306070089CD70 /* EpisodeProgressEntity.swift */; };
+		644E90621F7306070089CD70 /* EpisodeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90611F7306070089CD70 /* EpisodeEntity.swift */; };
+		644E90631F7306070089CD70 /* EpisodeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90611F7306070089CD70 /* EpisodeEntity.swift */; };
+		644E90641F7306070089CD70 /* EpisodeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90611F7306070089CD70 /* EpisodeEntity.swift */; };
 		644EE13A1F55D4E20053D631 /* ConfigurationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644EE1391F55D4E20053D631 /* ConfigurationRepository.swift */; };
 		644EE13B1F55D4E20053D631 /* ConfigurationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644EE1391F55D4E20053D631 /* ConfigurationRepository.swift */; };
 		644EE13D1F55D4E20053D631 /* ConfigurationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644EE1391F55D4E20053D631 /* ConfigurationRepository.swift */; };
@@ -273,6 +273,24 @@
 		644FCDDF1F5ED41F00346605 /* ShowViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FCDDE1F5ED41F00346605 /* ShowViewModelMapper.swift */; };
 		644FCDE01F5ED41F00346605 /* ShowViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FCDDE1F5ED41F00346605 /* ShowViewModelMapper.swift */; };
 		644FCDE21F5ED41F00346605 /* ShowViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FCDDE1F5ED41F00346605 /* ShowViewModelMapper.swift */; };
+		645322EB2024C76100449B0A /* ShowIdsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322EA2024C76100449B0A /* ShowIdsRealm.swift */; };
+		645322EC2024C76100449B0A /* ShowIdsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322EA2024C76100449B0A /* ShowIdsRealm.swift */; };
+		645322ED2024C76100449B0A /* ShowIdsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322EA2024C76100449B0A /* ShowIdsRealm.swift */; };
+		645322EF2024CD0100449B0A /* GenreRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322EE2024CD0100449B0A /* GenreRealm.swift */; };
+		645322F02024CD0100449B0A /* GenreRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322EE2024CD0100449B0A /* GenreRealm.swift */; };
+		645322F12024CD0100449B0A /* GenreRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322EE2024CD0100449B0A /* GenreRealm.swift */; };
+		645322F32024CD6200449B0A /* ShowEntityRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322F22024CD6200449B0A /* ShowEntityRealm.swift */; };
+		645322F42024CD6200449B0A /* ShowEntityRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322F22024CD6200449B0A /* ShowEntityRealm.swift */; };
+		645322F52024CD6200449B0A /* ShowEntityRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322F22024CD6200449B0A /* ShowEntityRealm.swift */; };
+		645322F72024CF5000449B0A /* WatchedShowEntityRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322F62024CF5000449B0A /* WatchedShowEntityRealm.swift */; };
+		645322F82024CF5000449B0A /* WatchedShowEntityRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322F62024CF5000449B0A /* WatchedShowEntityRealm.swift */; };
+		645322F92024CF5000449B0A /* WatchedShowEntityRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322F62024CF5000449B0A /* WatchedShowEntityRealm.swift */; };
+		645322FB2024CF7200449B0A /* EpisodeEntityRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322FA2024CF7200449B0A /* EpisodeEntityRealm.swift */; };
+		645322FC2024CF7200449B0A /* EpisodeEntityRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322FA2024CF7200449B0A /* EpisodeEntityRealm.swift */; };
+		645322FD2024CF7200449B0A /* EpisodeEntityRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322FA2024CF7200449B0A /* EpisodeEntityRealm.swift */; };
+		645322FF2024CF9F00449B0A /* EpisodeIdsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322FE2024CF9F00449B0A /* EpisodeIdsRealm.swift */; };
+		645323002024CF9F00449B0A /* EpisodeIdsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322FE2024CF9F00449B0A /* EpisodeIdsRealm.swift */; };
+		645323012024CF9F00449B0A /* EpisodeIdsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322FE2024CF9F00449B0A /* EpisodeIdsRealm.swift */; };
 		6454D1581F6FF1FE008C4E5F /* AppConfigurationsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D1571F6FF1FE008C4E5F /* AppConfigurationsModule.swift */; };
 		6454D15C1F70359E008C4E5F /* TraktLoginContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D15B1F70359E008C4E5F /* TraktLoginContract.swift */; };
 		6454D15D1F70359E008C4E5F /* TraktLoginContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D15B1F70359E008C4E5F /* TraktLoginContract.swift */; };
@@ -704,7 +722,7 @@
 		644E90491F72E5C40089CD70 /* WatchedShowEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedShowEntity.swift; sourceTree = "<group>"; };
 		644E90591F72EF7E0089CD70 /* WatchedShowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedShowViewModel.swift; sourceTree = "<group>"; };
 		644E905D1F72F3EA0089CD70 /* ShowsProgressService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressService.swift; sourceTree = "<group>"; };
-		644E90611F7306070089CD70 /* EpisodeProgressEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeProgressEntity.swift; sourceTree = "<group>"; };
+		644E90611F7306070089CD70 /* EpisodeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeEntity.swift; sourceTree = "<group>"; };
 		644EE1391F55D4E20053D631 /* ConfigurationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationRepository.swift; sourceTree = "<group>"; };
 		644EE13E1F55D5F00053D631 /* ConfigurationCachedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCachedRepository.swift; sourceTree = "<group>"; };
 		644EE1411F55DEB50053D631 /* TMDB+APIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TMDB+APIProvider.swift"; sourceTree = "<group>"; };
@@ -713,6 +731,12 @@
 		644EE1511F55E8D20053D631 /* MovieEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEntity.swift; sourceTree = "<group>"; };
 		644EE1561F55E9460053D631 /* TrendingMovieEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingMovieEntity.swift; sourceTree = "<group>"; };
 		644FCDDE1F5ED41F00346605 /* ShowViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowViewModelMapper.swift; sourceTree = "<group>"; };
+		645322EA2024C76100449B0A /* ShowIdsRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowIdsRealm.swift; sourceTree = "<group>"; };
+		645322EE2024CD0100449B0A /* GenreRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreRealm.swift; sourceTree = "<group>"; };
+		645322F22024CD6200449B0A /* ShowEntityRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEntityRealm.swift; sourceTree = "<group>"; };
+		645322F62024CF5000449B0A /* WatchedShowEntityRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedShowEntityRealm.swift; sourceTree = "<group>"; };
+		645322FA2024CF7200449B0A /* EpisodeEntityRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeEntityRealm.swift; sourceTree = "<group>"; };
+		645322FE2024CF9F00449B0A /* EpisodeIdsRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeIdsRealm.swift; sourceTree = "<group>"; };
 		6454D1571F6FF1FE008C4E5F /* AppConfigurationsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsModule.swift; sourceTree = "<group>"; };
 		6454D15B1F70359E008C4E5F /* TraktLoginContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginContract.swift; sourceTree = "<group>"; };
 		6454D1601F7037DF008C4E5F /* TraktLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginService.swift; sourceTree = "<group>"; };
@@ -1188,6 +1212,19 @@
 			path = Cache;
 			sourceTree = "<group>";
 		};
+		643E91912024C1BB0048C0F2 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				645322FA2024CF7200449B0A /* EpisodeEntityRealm.swift */,
+				645322FE2024CF9F00449B0A /* EpisodeIdsRealm.swift */,
+				645322EE2024CD0100449B0A /* GenreRealm.swift */,
+				645322F22024CD6200449B0A /* ShowEntityRealm.swift */,
+				645322EA2024C76100449B0A /* ShowIdsRealm.swift */,
+				645322F62024CF5000449B0A /* WatchedShowEntityRealm.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		6442F9F91F618FED008E3E12 /* ShowDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -1248,7 +1285,7 @@
 			isa = PBXGroup;
 			children = (
 				644E90491F72E5C40089CD70 /* WatchedShowEntity.swift */,
-				644E90611F7306070089CD70 /* EpisodeProgressEntity.swift */,
+				644E90611F7306070089CD70 /* EpisodeEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1386,6 +1423,7 @@
 				4F6DC40A2015448800AA0DC8 /* Movies */,
 				392D9630DA0E99CE058BF9BE /* Providers */,
 				64D2FFD91F44DFEA009E9ED3 /* R.generated.swift */,
+				643E91912024C1BB0048C0F2 /* Realm */,
 				641D497420222EDC002A4EAD /* Schedulers.swift */,
 				648390E31F504EE500911BA0 /* Search */,
 				641B9D271F7D5C3000C26D10 /* Show */,
@@ -2216,6 +2254,7 @@
 				64DF60561F61D3A200E1B0CC /* MovieIds+TMDBType.swift in Sources */,
 				4F6DC40D201544E200AA0DC8 /* MoviesManagerContract.swift in Sources */,
 				64EC3A651F66B3B30046A186 /* ShowDetailsiOSPresenter.swift in Sources */,
+				645322EF2024CD0100449B0A /* GenreRealm.swift in Sources */,
 				6406BF051F4DC41F004661C4 /* MovieDetailsViewController.swift in Sources */,
 				6483911B1F505F4100911BA0 /* MovieViewModelMapper.swift in Sources */,
 				64F05BF61F69527C00E3B861 /* ImagesSize.swift in Sources */,
@@ -2225,7 +2264,8 @@
 				644BF5111F6B07B00010CE35 /* AppConfigurationsiOSPresenter.swift in Sources */,
 				648390E71F504EE500911BA0 /* SearchContract.swift in Sources */,
 				6442F9FB1F61A0E4008E3E12 /* ShowDetailsContract.swift in Sources */,
-				644E90621F7306070089CD70 /* EpisodeProgressEntity.swift in Sources */,
+				644E90621F7306070089CD70 /* EpisodeEntity.swift in Sources */,
+				645322EB2024C76100449B0A /* ShowIdsRealm.swift in Sources */,
 				645EEEDF1F61ADE30034EB66 /* ShowDetailsService.swift in Sources */,
 				6406BEC31F4DBEFA004661C4 /* MovieDetailsError.swift in Sources */,
 				641B9D2C1F7D664C00C26D10 /* ShowManageriOSPresenter.swift in Sources */,
@@ -2261,6 +2301,7 @@
 				64D29C361F55A949008E344E /* TrendingCacheRepository.swift in Sources */,
 				64CC088D1F717330004D164A /* ShowsManagerModule.swift in Sources */,
 				640330431F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */,
+				645322FF2024CF9F00449B0A /* EpisodeIdsRealm.swift in Sources */,
 				64E7EECC201509D70008F488 /* Tabman+CouchTracker.swift in Sources */,
 				641B9D221F7D3DE600C26D10 /* ShowProgressFilter.swift in Sources */,
 				644FCDDF1F5ED41F00346605 /* ShowViewModelMapper.swift in Sources */,
@@ -2279,6 +2320,7 @@
 				64D29C3F1F55A96D008E344E /* SearchService.swift in Sources */,
 				64FD8E701F61BEA100111223 /* ShowDetailsCacheRepository.swift in Sources */,
 				6434C3A51F83678C009B5A9F /* ShowEpisodeViewController.swift in Sources */,
+				645322F32024CD6200449B0A /* ShowEntityRealm.swift in Sources */,
 				64BE633C1F4F7ED7002E55EA /* UIViewController+BaseView.swift in Sources */,
 				641B9D3D1F7D7C2800C26D10 /* ShowSeasonsModule.swift in Sources */,
 				6454D15C1F70359E008C4E5F /* TraktLoginContract.swift in Sources */,
@@ -2306,6 +2348,7 @@
 				641B9D201F7D3DC900C26D10 /* ShowProgressSort.swift in Sources */,
 				64EB97A01FB20C8E00C96E43 /* TraktAuthenticationProvider.swift in Sources */,
 				6405E4F51F5DE7B800756E79 /* TrendingCell.swift in Sources */,
+				645322FB2024CF7200449B0A /* EpisodeEntityRealm.swift in Sources */,
 				644E90401F72986B0089CD70 /* ShowsNowModule.swift in Sources */,
 				645B83881F73FC04009DDF53 /* Date+Presentable.swift in Sources */,
 				64FDE5041F7E64F200A4C7AA /* ShowEpisodeiOSPresenter.swift in Sources */,
@@ -2360,6 +2403,7 @@
 				392D98D1F350EE017D21155F /* TraktProvider.swift in Sources */,
 				641D497520222EDC002A4EAD /* Schedulers.swift in Sources */,
 				64CB309B1F6077B800FD6171 /* TrendingCellViewModel.swift in Sources */,
+				645322F72024CF5000449B0A /* WatchedShowEntityRealm.swift in Sources */,
 				64EC3A6A1F66B9230046A186 /* ShowDetailsViewModel.swift in Sources */,
 				644BF5101F6B07B00010CE35 /* AppConfigurationsContract.swift in Sources */,
 				6434C39B1F835CAB009B5A9F /* ShowProgressService.swift in Sources */,
@@ -2428,7 +2472,9 @@
 				648390D21F504E7600911BA0 /* MovieDetailsMocks.swift in Sources */,
 				648391031F504F6400911BA0 /* SearchContract.swift in Sources */,
 				64C384091F6C134F00FC9930 /* AppConfigurationsPresenterTest.swift in Sources */,
+				645322F42024CD6200449B0A /* ShowEntityRealm.swift in Sources */,
 				64CCE3401F7AD2A300CD2B9C /* ShowsProgressServiceTest.swift in Sources */,
+				645322F02024CD0100449B0A /* GenreRealm.swift in Sources */,
 				6496D9AA1F56F1CF00B76E06 /* TraktProviderMock.swift in Sources */,
 				644FCDE01F5ED41F00346605 /* ShowViewModelMapper.swift in Sources */,
 				6454D1621F7037DF008C4E5F /* TraktLoginService.swift in Sources */,
@@ -2484,6 +2530,7 @@
 				644BF5221F6B07E20010CE35 /* AppConfigurationsContract.swift in Sources */,
 				642F6F511F5D722B0012F04F /* ShowEntity.swift in Sources */,
 				64A5DCC71F56E2DF006853A2 /* ImagesEntityMapper.swift in Sources */,
+				645322FC2024CF7200449B0A /* EpisodeEntityRealm.swift in Sources */,
 				6434C3A01F835CE6009B5A9F /* ShowProgressContract.swift in Sources */,
 				6434C3981F835A9F009B5A9F /* ShowProgressAPIRepository.swift in Sources */,
 				645B834E1F73E2A8009DDF53 /* EpisodeEntityMapper.swift in Sources */,
@@ -2492,7 +2539,7 @@
 				648390D81F504E7600911BA0 /* SearchInteractorTest.swift in Sources */,
 				64D29C411F55A9F4008E344E /* TrendingService.swift in Sources */,
 				64C384081F6C134F00FC9930 /* AppConfigurationsMocks.swift in Sources */,
-				644E90631F7306070089CD70 /* EpisodeProgressEntity.swift in Sources */,
+				644E90631F7306070089CD70 /* EpisodeEntity.swift in Sources */,
 				64FDE5051F7E64F200A4C7AA /* ShowEpisodeiOSPresenter.swift in Sources */,
 				64D29C4D1F55AA21008E344E /* MovieDetailsiOSPresenter.swift in Sources */,
 				644EE1531F55E8D20053D631 /* MovieEntity.swift in Sources */,
@@ -2508,6 +2555,7 @@
 				646896401F7C132C00F95649 /* ShowProgressCellService.swift in Sources */,
 				644E905F1F72F3EA0089CD70 /* ShowsProgressService.swift in Sources */,
 				648390D11F504E7600911BA0 /* MovieDetailsInteractorTest.swift in Sources */,
+				645322F82024CF5000449B0A /* WatchedShowEntityRealm.swift in Sources */,
 				392D9633B6766B4443D60643 /* RxAsserts.swift in Sources */,
 				6475674B1F8693F900F14DE0 /* ShowProgressAPIRepositoryTest.swift in Sources */,
 				64BE63351F4F6F63002E55EA /* String+Localizable.swift in Sources */,
@@ -2517,6 +2565,7 @@
 				6405E5021F5DE84500756E79 /* TrendingShowEntity.swift in Sources */,
 				64CC08621F71616E004D164A /* ShowsManagerContract.swift in Sources */,
 				6454D15D1F70359E008C4E5F /* TraktLoginContract.swift in Sources */,
+				645322EC2024C76100449B0A /* ShowIdsRealm.swift in Sources */,
 				64CC089D1F718F63004D164A /* TraktLoginStoreTest.swift in Sources */,
 				6454D1781F704192008C4E5F /* TraktLoginPresenterTest.swift in Sources */,
 				392D9CAB8901302FCB6F2C14 /* TMDBProvider.swift in Sources */,
@@ -2541,6 +2590,7 @@
 				392D9B5602C6F9CFE2F490F1 /* EpisodeImageInputMock.swift in Sources */,
 				392D9C6338EA5876F7B00AB2 /* ShowProgressServiceTest.swift in Sources */,
 				392D9B6A156DA52E6E7D92F6 /* AppConfigurationsUserDefaultsDataSource.swift in Sources */,
+				645323002024CF9F00449B0A /* EpisodeIdsRealm.swift in Sources */,
 				392D9999DB34BB269067B8A4 /* AppConfigurationsUserDefaultsDataSourceTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2570,6 +2620,7 @@
 				6442F9FE1F61A0E4008E3E12 /* ShowDetailsContract.swift in Sources */,
 				644EE1551F55E8D20053D631 /* MovieEntity.swift in Sources */,
 				64A5DCCE1F56E3FC006853A2 /* MovieEntityMapper.swift in Sources */,
+				645322ED2024C76100449B0A /* ShowIdsRealm.swift in Sources */,
 				64BE631A1F4F5E43002E55EA /* Date+TraktDateFormatter.swift in Sources */,
 				644E904C1F72E5C40089CD70 /* WatchedShowEntity.swift in Sources */,
 				64EC3A681F66B3B30046A186 /* ShowDetailsiOSPresenter.swift in Sources */,
@@ -2578,6 +2629,7 @@
 				641B9D301F7D665600C26D10 /* ShowManagerContract.swift in Sources */,
 				644E90601F72F3EA0089CD70 /* ShowsProgressService.swift in Sources */,
 				644EE14C1F55E0340053D631 /* TMDBProviderMock.swift in Sources */,
+				645322F12024CD0100449B0A /* GenreRealm.swift in Sources */,
 				6454D1891F705222008C4E5F /* TraktTokenPolicyDecider.swift in Sources */,
 				641B9D4C1F7D964500C26D10 /* ShowEpisodeContract.swift in Sources */,
 				64CC085E1F714F33004D164A /* TraktTokenPolicyDeciderTest.swift in Sources */,
@@ -2587,6 +2639,7 @@
 				64BE631B1F4F5E43002E55EA /* GenreRepository.swift in Sources */,
 				64CC089B1F718BE2004D164A /* TraktLoginState.swift in Sources */,
 				648390E21F504EA500911BA0 /* SearchMocks.swift in Sources */,
+				645322FD2024CF7200449B0A /* EpisodeEntityRealm.swift in Sources */,
 				644BF5291F6B07E30010CE35 /* AppConfigurationOptions.swift in Sources */,
 				64BE63191F4F5E04002E55EA /* BaseView.swift in Sources */,
 				64FDE5021F7E629800A4C7AA /* SyncResult.swift in Sources */,
@@ -2626,6 +2679,7 @@
 				64BE63001F4F5C5F002E55EA /* TrendingError.swift in Sources */,
 				6434C3901F8355A3009B5A9F /* ShowEpisodeViewModel.swift in Sources */,
 				6434CA991F75808A00EA3AD8 /* CacheMock.swift in Sources */,
+				645322F52024CD6200449B0A /* ShowEntityRealm.swift in Sources */,
 				4FD27A3D201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift in Sources */,
 				6434CA6C1F75347D00EA3AD8 /* ShowsProgressAPIRepositoryTest.swift in Sources */,
 				64D29C431F55A9F5008E344E /* TrendingService.swift in Sources */,
@@ -2679,13 +2733,14 @@
 				6434CA911F757AE900EA3AD8 /* ShowsProgressMocks.swift in Sources */,
 				64D29C4C1F55AA17008E344E /* SearchService.swift in Sources */,
 				64BE62FD1F4F5C20002E55EA /* RxAsserts.swift in Sources */,
+				645322F92024CF5000449B0A /* WatchedShowEntityRealm.swift in Sources */,
 				4F7B09612016B8BF001F6C50 /* NoCacheMoyaPluginTests.swift in Sources */,
 				644EE1481F55DF9F0053D631 /* ConfigurationRepositoryMock.swift in Sources */,
 				641D49BE20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift in Sources */,
 				64DF60591F61D3A200E1B0CC /* MovieIds+TMDBType.swift in Sources */,
 				642F6F581F5D74F10012F04F /* ShowEntityMapper.swift in Sources */,
 				6475674C1F8693F900F14DE0 /* ShowProgressAPIRepositoryTest.swift in Sources */,
-				644E90641F7306070089CD70 /* EpisodeProgressEntity.swift in Sources */,
+				644E90641F7306070089CD70 /* EpisodeEntity.swift in Sources */,
 				644BF52B1F6B07E30010CE35 /* AppConfigurationsiOSPresenter.swift in Sources */,
 				643E918E20249C340048C0F2 /* ModulePage.swift in Sources */,
 				64BE63371F4F6F63002E55EA /* String+Localizable.swift in Sources */,
@@ -2693,6 +2748,7 @@
 				645EEEE21F61ADE30034EB66 /* ShowDetailsService.swift in Sources */,
 				6468963B1F7C12A400F95649 /* ShowProgressCelliOSPresenter.swift in Sources */,
 				6434C3991F835A9F009B5A9F /* ShowProgressAPIRepository.swift in Sources */,
+				645323012024CF9F00449B0A /* EpisodeIdsRealm.swift in Sources */,
 				645B83861F73F18E009DDF53 /* ShowProgressiOSPresenter.swift in Sources */,
 				64C384101F6C137A00FC9930 /* AppConfigurationsMocks.swift in Sources */,
 				6423EA931F56091400F3899C /* ImagesEntity.swift in Sources */,
