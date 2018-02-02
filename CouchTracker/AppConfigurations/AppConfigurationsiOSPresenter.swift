@@ -22,8 +22,6 @@ final class AppConfigurationsiOSPresenter: AppConfigurationsPresenter {
     switch option {
     case .connectToTrakt:
       self.router.showTraktLogin(output: self)
-    case .deleteCache:
-      self.interactor.deleteCache()
     default: break
     }
   }

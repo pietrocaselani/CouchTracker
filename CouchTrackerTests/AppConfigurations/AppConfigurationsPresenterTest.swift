@@ -22,7 +22,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 
   private func setUpModuleWithError(_ error: Error) {
     let repository = AppConfigurationsRepositoryErrorMock(error: error)
-    let interactor = AppConfigurationsInteractorMock(repository: repository, memoryCache: AnyCache(cache), diskCache: AnyCache(cache))
+    let interactor = AppConfigurationsInteractorMock(repository: repository)
     presenter = AppConfigurationsiOSPresenter(view: view, interactor: interactor, router: router)
   }
 
@@ -30,7 +30,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     view = AppConfigurationsViewMock()
     router = AppConfigurationsRouterMock()
     let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users, isEmpty: empty)
-    let interactor = AppConfigurationsInteractorMock(repository: repository, memoryCache: AnyCache(cache), diskCache: AnyCache(cache))
+    let interactor = AppConfigurationsInteractorMock(repository: repository)
     presenter = AppConfigurationsiOSPresenter(view: view, interactor: interactor, router: router)
   }
 

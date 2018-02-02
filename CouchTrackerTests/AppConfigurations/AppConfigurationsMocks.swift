@@ -18,7 +18,7 @@ final class AppConfigurationsMock {
 final class AppConfigurationsInteractorMock: AppConfigurationsInteractor {
   private let repository: AppConfigurationsRepository
 
-  init(repository: AppConfigurationsRepository, memoryCache: AnyCache<Int, NSData>, diskCache: AnyCache<Int, NSData>) {
+  init(repository: AppConfigurationsRepository) {
     self.repository = repository
   }
 
@@ -32,10 +32,6 @@ final class AppConfigurationsInteractorMock: AppConfigurationsInteractor {
 
         return Observable.just(LoginState.notLogged)
     }
-  }
-
-  func deleteCache() {
-    
   }
 }
 
@@ -68,16 +64,14 @@ final class AppConfigurationsRouterMock: AppConfigurationsRouter {
 final class AppConfigurationsRepositoryMock: AppConfigurationsRepository {
   private let usersProvider: MoyaProvider<Users>
   private let isEmpty: Bool
-  init(usersProvider: MoyaProvider<Users>, isEmpty: Bool = false) {
+
+	init(dataSource: AppConfigurationsDataSource) {
+		Swift.fatalError()
+	}
+
+	init(usersProvider: MoyaProvider<Users>, isEmpty: Bool = false, dataSource: AppConfigurationsDataSource = AppConfigurationDataSourceMock()) {
     self.usersProvider = usersProvider
     self.isEmpty = isEmpty
-    preferredContentLocale = Locale.current
-  }
-
-  var preferredContentLocale: Locale
-
-  var preferredLocales: [Locale] {
-    return Locale.preferredLanguages.map { Locale(identifier: $0) }
   }
 
   func fetchLoggedUser(forced: Bool) -> Observable<User> {
@@ -91,16 +85,36 @@ final class AppConfigurationsRepositoryMock: AppConfigurationsRepository {
 final class AppConfigurationsRepositoryErrorMock: AppConfigurationsRepository {
   private let error: Swift.Error
 
-  init(error: Swift.Error) {
-    self.error = error
-    preferredContentLocale = Locale.current
+	init(dataSource: AppConfigurationsDataSource) {
+		Swift.fatalError()
+	}
+
+  init(error: Swift.Error, dataSource: AppConfigurationsDataSource = AppConfigurationDataSourceMock()) {
+	  self.error = error
   }
 
-  var preferredLocales: [Locale] { return Locale.preferredLanguages.map { Locale(identifier: $0) } }
-
-  var preferredContentLocale: Locale
-
-  func fetchLoggedUser(forced: Bool) -> Observable<User> {
+	func fetchLoggedUser(forced: Bool) -> Observable<User> {
     return Observable.error(error)
+  }
+}
+
+final class AppConfigurationDataSourceMock: AppConfigurationsDataSource {
+	var invokedSaveSettings = false
+	var invokedFetchSettings = false
+  var settings: Settings?
+
+  func save(settings: Settings) throws {
+	  invokedSaveSettings = true
+    self.settings = settings
+  }
+
+  func fetchSettings() -> Observable<Settings> {
+	  invokedFetchSettings = true
+
+    guard let settings = settings else {
+      return Observable.empty()
+    }
+
+    return Observable.just(settings)
   }
 }
