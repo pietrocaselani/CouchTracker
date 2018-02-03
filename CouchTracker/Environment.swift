@@ -13,6 +13,7 @@ final class Environment {
   let diskCache: AnyCache<Int, NSData>
   let memoryCache: AnyCache<Int, NSData>
   let schedulers: Schedulers
+  let realmProvider: RealmProvider
 
   private init() {
     let schedulers = DefaultSchedulers()
@@ -47,5 +48,6 @@ final class Environment {
 
     self.memoryCache = simpleCache
     self.diskCache = simpleCache
+    self.realmProvider = DefaultRealmProvider()
   }
 }
