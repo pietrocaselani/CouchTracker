@@ -7,7 +7,8 @@ final class ShowEpisodeService: ShowEpisodeInteractor {
   private let imageRepository: ImageRepository
 
   init(repository: ShowEpisodeRepository,
-       showProgressInteractor: ShowProgressInteractor, imageRepository: ImageRepository) {
+       showProgressInteractor: ShowProgressInteractor,
+       imageRepository: ImageRepository) {
     self.repository = repository
     self.showProgressInteractor = showProgressInteractor
     self.imageRepository = imageRepository

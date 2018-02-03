@@ -2,11 +2,11 @@ import RxSwift
 import TraktSwift
 
 protocol ShowsProgressRepository: class {
-  func fetchWatchedShows(update: Bool, extended: Extended) -> Observable<[BaseShow]>
+  func fetchWatchedShows(update: Bool, extended: Extended) -> Observable<WatchedShowEntity>
 }
 
 protocol ShowsProgressInteractor: class {
-  init(repository: ShowsProgressRepository, showProgressInteractor: ShowProgressInteractor, schedulers: Schedulers)
+  init(repository: ShowsProgressRepository, schedulers: Schedulers)
 
   func fetchWatchedShowsProgress(update: Bool) -> Observable<WatchedShowEntity>
 }
