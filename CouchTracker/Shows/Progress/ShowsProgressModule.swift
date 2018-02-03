@@ -24,15 +24,10 @@ final class ShowsProgressModule {
                                                 cofigurationRepository: configurationRepository,
                                                 schedulers: schedulers)
 
-    let showProgressRepository = ShowProgressAPIRepository(trakt: trakt, schedulers: schedulers)
-    let showProgressInteractor = ShowProgressService(repository: showProgressRepository)
-
     let router = ShowsProgressiOSRouter(viewController: view)
     let dataSource = ShowsProgressTableViewDataSource(imageRepository: imageRepository)
     let repository = ShowsProgressAPIRepository(trakt: trakt, schedulers: schedulers)
-    let interactor = ShowsProgressService(repository: repository,
-                                          showProgressInteractor: showProgressInteractor,
-                                          schedulers: schedulers)
+    let interactor = ShowsProgressService(repository: repository, schedulers: schedulers)
     let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor,
                                               dataSource: dataSource, router: router)
 
