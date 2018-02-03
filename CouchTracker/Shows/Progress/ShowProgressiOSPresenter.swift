@@ -9,10 +9,10 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
   private var entities = [WatchedShowEntity]()
   private var currentFilter = ShowProgressFilter.none
   private var currentSort = ShowProgressSort.title
-  var dataSource: ShowsProgressDataSource
+  var dataSource: ShowsProgressViewDataSource
 
   init(view: ShowsProgressView, interactor: ShowsProgressInteractor,
-       dataSource: ShowsProgressDataSource, router: ShowsProgressRouter) {
+       dataSource: ShowsProgressViewDataSource, router: ShowsProgressRouter) {
     self.view = view
     self.interactor = interactor
     self.dataSource = dataSource
