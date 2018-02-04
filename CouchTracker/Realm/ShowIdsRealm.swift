@@ -13,24 +13,6 @@ final class ShowIdsRealm: Object {
     return "trakt"
   }
 
-  override var hashValue: Int {
-    var hash = super.hashValue
-
-    hash ^= trakt.hashValue
-
-    tmdb.value.run { hash ^= $0.hashValue }
-
-    imdb.run { hash ^= $0.hashValue }
-
-    hash ^= slug.hashValue
-
-    hash ^= tvdb.hashValue
-
-    tvrage.value.run { hash ^= $0.hashValue }
-
-    return hash
-  }
-
   func toEntity() -> ShowIds {
     return ShowIds(trakt: self.trakt,
                    tmdb: self.tmdb.value,

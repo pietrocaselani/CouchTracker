@@ -11,6 +11,6 @@ final class ShowsProgressService: ShowsProgressInteractor {
   }
 
   func fetchWatchedShowsProgress(update: Bool) -> Observable<WatchedShowEntity> {
-    return repository.fetchWatchedShows(update: update, extended: .fullEpisodes).observeOn(schedulers.networkScheduler)
+    return repository.fetchWatchedShows(update: update, extended: .fullEpisodes)
   }
 }

@@ -4,7 +4,13 @@ import RxSwift
 final class DefaultRealmProvider: RealmProvider {
   lazy var realm: Realm = {
     do {
-      return try Realm()
+      let instance = try Realm()
+
+      if Environment.instance.debug {
+        print(instance.configuration.fileURL?.absoluteString ?? "Realm in memory")
+      }
+
+      return instance
     } catch {
       fatalError("Could not open Realm due to error: \(error.localizedDescription)")
     }

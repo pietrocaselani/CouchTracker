@@ -12,10 +12,10 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
   var dataSource: ShowsProgressViewDataSource
 
   init(view: ShowsProgressView, interactor: ShowsProgressInteractor,
-       dataSource: ShowsProgressViewDataSource, router: ShowsProgressRouter) {
+       viewDataSource: ShowsProgressViewDataSource, router: ShowsProgressRouter) {
     self.view = view
     self.interactor = interactor
-    self.dataSource = dataSource
+    self.dataSource = viewDataSource
     self.router = router
   }
 
