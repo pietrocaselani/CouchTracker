@@ -17,6 +17,7 @@ final class ShowsProgressModule {
     let tmdb = Environment.instance.tmdb
     let tvdb = Environment.instance.tvdb
     let schedulers = Environment.instance.schedulers
+    let realmProvider = Environment.instance.realmProvider
 
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
@@ -24,12 +25,14 @@ final class ShowsProgressModule {
                                                 cofigurationRepository: configurationRepository,
                                                 schedulers: schedulers)
 
+    let dataSource = ShowsProgressRealmDataSource(realmProvider: realmProvider, schedulers: schedulers)
+
     let router = ShowsProgressiOSRouter(viewController: view)
-    let dataSource = ShowsProgressTableViewDataSource(imageRepository: imageRepository)
-    let repository = ShowsProgressAPIRepository(trakt: trakt, schedulers: schedulers)
+    let viewDataSource = ShowsProgressTableViewDataSource(imageRepository: imageRepository)
+    let repository = ShowsProgressAPIRepository(trakt: trakt, dataSource: dataSource, schedulers: schedulers)
     let interactor = ShowsProgressService(repository: repository, schedulers: schedulers)
     let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor,
-                                              dataSource: dataSource, router: router)
+                                              viewDataSource: viewDataSource, router: router)
 
     view.presenter = presenter
 

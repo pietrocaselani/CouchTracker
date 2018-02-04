@@ -12,22 +12,6 @@ final class EpisodeIdsRealm: Object {
     return "trakt"
   }
 
-  override var hashValue: Int {
-    var hash = super.hashValue
-
-    hash ^= trakt.hashValue
-
-    tmdb.value.run { hash ^= $0.hashValue }
-
-    imdb.run { hash ^= $0.hashValue }
-
-    hash ^= tvdb.hashValue
-
-    tvrage.value.run { hash ^= $0.hashValue }
-
-    return hash
-  }
-
   func toEntity() -> EpisodeIds {
     return EpisodeIds(trakt: self.trakt,
                       tmdb: self.tmdb.value,

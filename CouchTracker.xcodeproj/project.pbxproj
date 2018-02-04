@@ -291,9 +291,6 @@
 		6453230D2024DA3200449B0A /* OptionalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6453230C2024DA3200449B0A /* OptionalExtensions.swift */; };
 		6453230E2024DA3200449B0A /* OptionalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6453230C2024DA3200449B0A /* OptionalExtensions.swift */; };
 		6453230F2024DA3200449B0A /* OptionalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6453230C2024DA3200449B0A /* OptionalExtensions.swift */; };
-		645323112024EC5E00449B0A /* DispatchQueueScheduer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645323102024EC5E00449B0A /* DispatchQueueScheduer.swift */; };
-		645323122024EC5E00449B0A /* DispatchQueueScheduer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645323102024EC5E00449B0A /* DispatchQueueScheduer.swift */; };
-		645323132024EC5E00449B0A /* DispatchQueueScheduer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645323102024EC5E00449B0A /* DispatchQueueScheduer.swift */; };
 		6454D1581F6FF1FE008C4E5F /* AppConfigurationsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D1571F6FF1FE008C4E5F /* AppConfigurationsModule.swift */; };
 		6454D15C1F70359E008C4E5F /* TraktLoginContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D15B1F70359E008C4E5F /* TraktLoginContract.swift */; };
 		6454D15D1F70359E008C4E5F /* TraktLoginContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D15B1F70359E008C4E5F /* TraktLoginContract.swift */; };
@@ -399,6 +396,15 @@
 		649D3DC4202637C000DF401A /* ShowProgressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DBD202637C000DF401A /* ShowProgressService.swift */; };
 		649D3DC5202637C000DF401A /* ShowProgressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DBD202637C000DF401A /* ShowProgressService.swift */; };
 		649D3DC6202637C000DF401A /* ShowProgressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DBD202637C000DF401A /* ShowProgressService.swift */; };
+		649D3DC820263AB200DF401A /* ShowsProgressRealmDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DC720263AB200DF401A /* ShowsProgressRealmDataSource.swift */; };
+		649D3DC920263AB200DF401A /* ShowsProgressRealmDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DC720263AB200DF401A /* ShowsProgressRealmDataSource.swift */; };
+		649D3DCA20263AB200DF401A /* ShowsProgressRealmDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DC720263AB200DF401A /* ShowsProgressRealmDataSource.swift */; };
+		649D3DE02027D01300DF401A /* ThreadWithRunLoopScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DDF2027D01300DF401A /* ThreadWithRunLoopScheduler.swift */; };
+		649D3DE12027D01300DF401A /* ThreadWithRunLoopScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DDF2027D01300DF401A /* ThreadWithRunLoopScheduler.swift */; };
+		649D3DE22027D01300DF401A /* ThreadWithRunLoopScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DDF2027D01300DF401A /* ThreadWithRunLoopScheduler.swift */; };
+		649D3DE42027D01F00DF401A /* ThreadWithRunLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DE32027D01F00DF401A /* ThreadWithRunLoop.swift */; };
+		649D3DE52027D01F00DF401A /* ThreadWithRunLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DE32027D01F00DF401A /* ThreadWithRunLoop.swift */; };
+		649D3DE62027D01F00DF401A /* ThreadWithRunLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DE32027D01F00DF401A /* ThreadWithRunLoop.swift */; };
 		649F56D31FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F56D21FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift */; };
 		649F56D51FB3214F004B13B0 /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */; };
 		64A5DCC61F56E2DF006853A2 /* ImagesEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5DCC51F56E2DF006853A2 /* ImagesEntityMapper.swift */; };
@@ -752,7 +758,6 @@
 		645323022024D25D00449B0A /* RealmProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmProvider.swift; sourceTree = "<group>"; };
 		645323062024D28100449B0A /* DefaultRealmProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRealmProvider.swift; sourceTree = "<group>"; };
 		6453230C2024DA3200449B0A /* OptionalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalExtensions.swift; sourceTree = "<group>"; };
-		645323102024EC5E00449B0A /* DispatchQueueScheduer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueScheduer.swift; sourceTree = "<group>"; };
 		6454D1571F6FF1FE008C4E5F /* AppConfigurationsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsModule.swift; sourceTree = "<group>"; };
 		6454D15B1F70359E008C4E5F /* TraktLoginContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginContract.swift; sourceTree = "<group>"; };
 		6454D1601F7037DF008C4E5F /* TraktLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginService.swift; sourceTree = "<group>"; };
@@ -806,6 +811,9 @@
 		649D3DBB202637C000DF401A /* ShowProgressAPIRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowProgressAPIRepository.swift; sourceTree = "<group>"; };
 		649D3DBC202637C000DF401A /* ShowProgressContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowProgressContract.swift; sourceTree = "<group>"; };
 		649D3DBD202637C000DF401A /* ShowProgressService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowProgressService.swift; sourceTree = "<group>"; };
+		649D3DC720263AB200DF401A /* ShowsProgressRealmDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressRealmDataSource.swift; sourceTree = "<group>"; };
+		649D3DDF2027D01300DF401A /* ThreadWithRunLoopScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithRunLoopScheduler.swift; sourceTree = "<group>"; };
+		649D3DE32027D01F00DF401A /* ThreadWithRunLoop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithRunLoop.swift; sourceTree = "<group>"; };
 		649F56D21FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseWriterMoyaPlugin.swift; sourceTree = "<group>"; };
 		649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCacheMoyaPlugin.swift; sourceTree = "<group>"; };
 		64A5DCC51F56E2DF006853A2 /* ImagesEntityMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesEntityMapper.swift; sourceTree = "<group>"; };
@@ -1582,7 +1590,6 @@
 			isa = PBXGroup;
 			children = (
 				64CC08AC1F719B85004D164A /* CompositeLoginOutput.swift */,
-				645323102024EC5E00449B0A /* DispatchQueueScheduer.swift */,
 				645B834C1F73E2A8009DDF53 /* EpisodeEntityMapper.swift */,
 				64A5DCC51F56E2DF006853A2 /* ImagesEntityMapper.swift */,
 				64F05BF51F69527900E3B861 /* ImagesSize.swift */,
@@ -1594,6 +1601,8 @@
 				64343E1D1F7EB3B7004557E4 /* Secrets.swift */,
 				642F6F541F5D74F10012F04F /* ShowEntityMapper.swift */,
 				644FCDDE1F5ED41F00346605 /* ShowViewModelMapper.swift */,
+				649D3DE32027D01F00DF401A /* ThreadWithRunLoop.swift */,
+				649D3DDF2027D01300DF401A /* ThreadWithRunLoopScheduler.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1695,6 +1704,7 @@
 				644E90451F72E18E0089CD70 /* ShowsProgressContract.swift */,
 				641B9D471F7D8EF700C26D10 /* ShowsProgressiOSRouter.swift */,
 				64CB90BF1F72944D0026B139 /* ShowsProgressModule.swift */,
+				649D3DC720263AB200DF401A /* ShowsProgressRealmDataSource.swift */,
 				644E905D1F72F3EA0089CD70 /* ShowsProgressService.swift */,
 				6418AAFB1F7C1D1600D4D83C /* ShowsProgressTableViewDataSource.swift */,
 				64CB90B51F7291650026B139 /* ShowsProgressViewController.swift */,
@@ -2302,6 +2312,7 @@
 				64D29C371F55A949008E344E /* TrendingiOSPresenter.swift in Sources */,
 				6406BEC71F4DBEFA004661C4 /* MovieDetailsViewModel.swift in Sources */,
 				649D3DBE202637C000DF401A /* ShowProgressAPIRepository.swift in Sources */,
+				649D3DC820263AB200DF401A /* ShowsProgressRealmDataSource.swift in Sources */,
 				64BE632F1F4F6F3F002E55EA /* Localizable.swift in Sources */,
 				64CC08A91F71944A004D164A /* TraktLoginOutputProvider.swift in Sources */,
 				6434CA831F7542EA00EA3AD8 /* AnyCache.swift in Sources */,
@@ -2314,7 +2325,7 @@
 				64303EB71F6726970050C287 /* ImagesViewModel.swift in Sources */,
 				64CB90BA1F72922F0026B139 /* ShowsManageriOSPresenter.swift in Sources */,
 				642F6F501F5D722B0012F04F /* ShowEntity.swift in Sources */,
-				645323112024EC5E00449B0A /* DispatchQueueScheduer.swift in Sources */,
+				649D3DE42027D01F00DF401A /* ThreadWithRunLoop.swift in Sources */,
 				642F6F551F5D74F10012F04F /* ShowEntityMapper.swift in Sources */,
 				64CC08891F717249004D164A /* ShowsManagerViewController.swift in Sources */,
 				6453230D2024DA3200449B0A /* OptionalExtensions.swift in Sources */,
@@ -2325,6 +2336,7 @@
 				64B1CC771F4F55B1002A9FFD /* TrendingModule.swift in Sources */,
 				64D29C321F55A936008E344E /* MovieDetailsiOSPresenter.swift in Sources */,
 				648687A21F4A3B9C005A0BA8 /* TrendingError.swift in Sources */,
+				649D3DE02027D01300DF401A /* ThreadWithRunLoopScheduler.swift in Sources */,
 				641B9D521F7D9E8500C26D10 /* ShowEpisodeService.swift in Sources */,
 				64D29C361F55A949008E344E /* TrendingCacheRepository.swift in Sources */,
 				64CC088D1F717330004D164A /* ShowsManagerModule.swift in Sources */,
@@ -2489,7 +2501,6 @@
 				647B66471F5888E000B38D2A /* MovieImageMocks.swift in Sources */,
 				64CC08961F7188E1004D164A /* TraktLoginStore.swift in Sources */,
 				644BF5211F6B07E20010CE35 /* AppConfigurationOptions.swift in Sources */,
-				645323122024EC5E00449B0A /* DispatchQueueScheduer.swift in Sources */,
 				641B9D2D1F7D664C00C26D10 /* ShowManageriOSPresenter.swift in Sources */,
 				644E90471F72E18E0089CD70 /* ShowsProgressContract.swift in Sources */,
 				6434CA611F752E3F00EA3AD8 /* ShowsManagerPresenterTest.swift in Sources */,
@@ -2504,6 +2515,7 @@
 				644BF5261F6B07E20010CE35 /* AppConfigurationsViewModel.swift in Sources */,
 				6453230E2024DA3200449B0A /* OptionalExtensions.swift in Sources */,
 				648390D21F504E7600911BA0 /* MovieDetailsMocks.swift in Sources */,
+				649D3DE52027D01F00DF401A /* ThreadWithRunLoop.swift in Sources */,
 				648391031F504F6400911BA0 /* SearchContract.swift in Sources */,
 				64C384091F6C134F00FC9930 /* AppConfigurationsPresenterTest.swift in Sources */,
 				645322F42024CD6200449B0A /* ShowEntityRealm.swift in Sources */,
@@ -2548,6 +2560,7 @@
 				64CB90BB1F72922F0026B139 /* ShowsManageriOSPresenter.swift in Sources */,
 				6406BEBA1F4DB6C5004661C4 /* BaseView.swift in Sources */,
 				64EC3A6B1F66B9230046A186 /* ShowDetailsViewModel.swift in Sources */,
+				649D3DC920263AB200DF401A /* ShowsProgressRealmDataSource.swift in Sources */,
 				648391201F50606100911BA0 /* SearchPresenterTest.swift in Sources */,
 				648390D31F504E7600911BA0 /* MovieDetailsPresenterTest.swift in Sources */,
 				641D497620222EDC002A4EAD /* Schedulers.swift in Sources */,
@@ -2626,6 +2639,7 @@
 				392D9C6338EA5876F7B00AB2 /* ShowProgressServiceTest.swift in Sources */,
 				392D9B6A156DA52E6E7D92F6 /* AppConfigurationsUserDefaultsDataSource.swift in Sources */,
 				645323002024CF9F00449B0A /* EpisodeIdsRealm.swift in Sources */,
+				649D3DE12027D01300DF401A /* ThreadWithRunLoopScheduler.swift in Sources */,
 				392D9999DB34BB269067B8A4 /* AppConfigurationsUserDefaultsDataSourceTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2696,6 +2710,7 @@
 				647B66481F5889C800B38D2A /* MovieImageMocks.swift in Sources */,
 				6454D1641F7037DF008C4E5F /* TraktLoginService.swift in Sources */,
 				64CB90BC1F72922F0026B139 /* ShowsManageriOSPresenter.swift in Sources */,
+				649D3DE22027D01300DF401A /* ThreadWithRunLoopScheduler.swift in Sources */,
 				641020DE1F8536000033206A /* ShowProgressMocks.swift in Sources */,
 				64EB97A21FB20C8E00C96E43 /* TraktAuthenticationProvider.swift in Sources */,
 				644BF52C1F6B07E30010CE35 /* AppConfigurationsService.swift in Sources */,
@@ -2717,6 +2732,7 @@
 				64BE63001F4F5C5F002E55EA /* TrendingError.swift in Sources */,
 				6434C3901F8355A3009B5A9F /* ShowEpisodeViewModel.swift in Sources */,
 				6434CA991F75808A00EA3AD8 /* CacheMock.swift in Sources */,
+				649D3DCA20263AB200DF401A /* ShowsProgressRealmDataSource.swift in Sources */,
 				645322F52024CD6200449B0A /* ShowEntityRealm.swift in Sources */,
 				4FD27A3D201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift in Sources */,
 				6434CA6C1F75347D00EA3AD8 /* ShowsProgressAPIRepositoryTest.swift in Sources */,
@@ -2733,6 +2749,7 @@
 				64303EBA1F6726970050C287 /* ImagesViewModel.swift in Sources */,
 				641B9D541F7D9E8500C26D10 /* ShowEpisodeService.swift in Sources */,
 				641B9D261F7D413100C26D10 /* ShowProgressFilter.swift in Sources */,
+				649D3DE62027D01F00DF401A /* ThreadWithRunLoop.swift in Sources */,
 				64BE63051F4F5C5F002E55EA /* MovieDetailsError.swift in Sources */,
 				6454D1731F703D17008C4E5F /* TraktLoginMocks.swift in Sources */,
 				64CC089E1F718F63004D164A /* TraktLoginStoreTest.swift in Sources */,
@@ -2805,7 +2822,6 @@
 				392D96D940E8D6DF72B1A063 /* ImageCachedRepositoryTest.swift in Sources */,
 				392D97A668BFBC7643EDF568 /* TMDBErrorProviderMock.swift in Sources */,
 				392D9D1993F8C9834FFBC0D8 /* EpisodeImageInput.swift in Sources */,
-				645323132024EC5E00449B0A /* DispatchQueueScheduer.swift in Sources */,
 				392D9865CDAFE2CD111702A9 /* EpisodeImageInputMock.swift in Sources */,
 				392D9281DF89F0162425E855 /* ShowProgressServiceTest.swift in Sources */,
 				392D9E5BC34939824EA80D0C /* AppConfigurationsUserDefaultsDataSource.swift in Sources */,
@@ -2970,7 +2986,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -3014,7 +3030,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -3033,7 +3049,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5RPM7SE3L;
 				INFOPLIST_FILE = CouchTracker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.couchtracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3054,7 +3070,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5RPM7SE3L;
 				INFOPLIST_FILE = CouchTracker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.couchtracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";

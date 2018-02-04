@@ -4,26 +4,43 @@ import Moya
 
 final class ShowsProgressAPIRepository: ShowsProgressRepository {
   private let trakt: TraktProvider
+  private let dataSource: ShowsProgressDataSource
   private let schedulers: Schedulers
 
-  init(trakt: TraktProvider,
-       schedulers: Schedulers) {
+  init(trakt: TraktProvider, dataSource: ShowsProgressDataSource, schedulers: Schedulers) {
     self.trakt = trakt
+    self.dataSource = dataSource
     self.schedulers = schedulers
   }
 
   func fetchWatchedShows(update: Bool, extended: Extended) -> Observable<WatchedShowEntity> {
+    let apiObservable = fetchWatchedShowsFromAPI(extended: extended)
+      .observeOn(schedulers.networkScheduler)
+      .flatMap { Observable.from($0) }
+      .flatMap { [unowned self] in self.fetchShowProgress(update, $0) }
+      .observeOn(schedulers.dataSourceScheduler)
+      .do(onNext: { [unowned self] entity in
+        try self.dataSource.addWatched(show: entity)
+      })
+
+    guard !update else { return apiObservable }
+
+    return fetchWatchedShowsFromDataSource()
+      .ifEmpty(switchTo: apiObservable)
+      .catchError { _ in return apiObservable }
+      .subscribeOn(schedulers.dataSourceScheduler)
+  }
+
+  private func fetchWatchedShowsFromAPI(extended: Extended) -> Observable<[BaseShow]> {
     let target = Sync.watched(type: .shows, extended: extended)
 
-    let api = trakt.sync.rx.request(target).observeOn(schedulers.networkScheduler)
+    let api = trakt.sync.rx.request(target)
 
-    let observable = api.map([BaseShow].self).asObservable()
+    return api.map([BaseShow].self).asObservable()
+  }
 
-    let x = observable.flatMap { Observable.from($0) }
-      .flatMap { [unowned self] in self.fetchShowProgress(update, $0) }
-      .observeOn(schedulers.networkScheduler)
-
-    return x
+  private func fetchWatchedShowsFromDataSource() -> Observable<WatchedShowEntity> {
+    return dataSource.fetchWatchedShows()
   }
 
   private func fetchShowProgress(_ update: Bool, _ baseShow: BaseShow) -> Observable<WatchedShowEntity> {
@@ -31,7 +48,6 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
 
     return fetchShowProgress(update, ids: show.ids)
       .flatMap { [unowned self] in return self.mapToEntity(baseShow, builder: $0) }
-      .observeOn(schedulers.networkScheduler)
   }
 
   private func fetchShowProgress(_ update: Bool, ids: ShowIds) -> Observable<WatchedShowBuilder> {
@@ -55,7 +71,7 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
   private func fetchShowProgress(showId: String) -> Observable<BaseShow> {
     let target = Shows.watchedProgress(showId: showId, hidden: true, specials: true, countSpecials: true)
 
-    return trakt.shows.rx.request(target).observeOn(schedulers.networkScheduler).map(BaseShow.self).asObservable()
+    return trakt.shows.rx.request(target).map(BaseShow.self).asObservable().observeOn(schedulers.networkScheduler)
   }
 
   private func fetchNextEpisodeDetails(_ builder: WatchedShowBuilder) -> Observable<WatchedShowBuilder> {
@@ -76,7 +92,7 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
                               of showId: String, extended: Extended) -> Observable<Episode> {
     let target = Episodes.summary(showId: showId, season: seasonNumber, episode: episodeNumber, extended: extended)
 
-    return trakt.episodes.rx.request(target).observeOn(schedulers.networkScheduler).map(Episode.self).asObservable()
+    return trakt.episodes.rx.request(target).map(Episode.self).asObservable().observeOn(schedulers.networkScheduler)
   }
 
   private func mapToEntity(_ baseShow: BaseShow, builder: WatchedShowBuilder) -> Observable<WatchedShowEntity> {
@@ -97,6 +113,7 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
                                    completed: completed,
                                    nextEpisode: episodeEntity,
                                    lastWatched: lastWatched)
-    return Observable.just(entity)
+
+    return Observable.just(entity).observeOn(schedulers.networkScheduler)
   }
 }

@@ -1,7 +1,7 @@
 import RealmSwift
 
 final class WatchedShowEntityRealm: Object {
-  @objc private dynamic var identifier = 0
+  @objc private dynamic var identifier = ""
   @objc private dynamic var backingShow: ShowEntityRealm?
   @objc dynamic var aired = -1
   @objc dynamic var completed = -1
@@ -14,8 +14,9 @@ final class WatchedShowEntityRealm: Object {
     }
     set {
       backingShow = newValue
-      if let newValueHash = newValue?.hashValue {
-        identifier = newValueHash
+      if let traktId = newValue?.ids?.trakt {
+        let typeName = String(describing: WatchedShowEntity.self)
+        identifier = "\(typeName)-\(traktId)"
       }
     }
   }

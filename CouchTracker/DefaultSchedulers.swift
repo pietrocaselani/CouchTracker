@@ -9,7 +9,8 @@ final class DefaultSchedulers: Schedulers {
   init() {
     self.networkQueue = DispatchQueue(label: "NetworkQueue", qos: .background)
     self.dataSourceQueue = DispatchQueue(label: "RealmQueue", qos: .background)
+
     self.networkScheduler = ConcurrentDispatchQueueScheduler(queue: networkQueue)
-    self.dataSourceScheduler = DispatchQueueScheduer(queue: dataSourceQueue)
+    self.dataSourceScheduler = ThreadWithRunLoopScheduler(name: "RealmScheduler")
   }
 }
