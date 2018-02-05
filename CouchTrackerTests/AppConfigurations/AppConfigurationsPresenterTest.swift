@@ -2,7 +2,6 @@ import XCTest
 import TraktSwift
 
 final class AppConfigurationsPresenterTest: XCTestCase {
-  private let cache = CacheMock()
   private var view: AppConfigurationsViewMock!
   private var router: AppConfigurationsRouterMock!
   private var presenter: AppConfigurationsPresenter!

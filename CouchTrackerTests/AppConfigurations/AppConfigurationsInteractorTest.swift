@@ -4,8 +4,6 @@ import RxTest
 
 final class AppConfigurationsInteractorTest: XCTestCase {
   private let scheduler = TestScheduler(initialClock: 0)
-  private let memoryCache = AnyCache(CacheMock())
-  private let diskCache = AnyCache(CacheMock())
   private var disposeBag: CompositeDisposable!
   private var observer: TestableObserver<LoginState>!
 

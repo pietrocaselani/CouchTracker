@@ -1,12 +1,17 @@
 import RxSwift
 import TraktSwift
 
+protocol ShowsProgressDataSource: class {
+  func fetchWatchedShows() -> Observable<WatchedShowEntity>
+  func addWatched(show: WatchedShowEntity) throws
+}
+
 protocol ShowsProgressRepository: class {
-  func fetchWatchedShows(update: Bool, extended: Extended) -> Observable<[BaseShow]>
+  func fetchWatchedShows(update: Bool, extended: Extended) -> Observable<WatchedShowEntity>
 }
 
 protocol ShowsProgressInteractor: class {
-  init(repository: ShowsProgressRepository, showProgressInteractor: ShowProgressInteractor, schedulers: Schedulers)
+  init(repository: ShowsProgressRepository, schedulers: Schedulers)
 
   func fetchWatchedShowsProgress(update: Bool) -> Observable<WatchedShowEntity>
 }
@@ -16,9 +21,9 @@ protocol ShowsProgressRouter: class {
 }
 
 protocol ShowsProgressPresenter: class {
-  var dataSource: ShowsProgressDataSource { get }
+  var dataSource: ShowsProgressViewDataSource { get }
   init(view: ShowsProgressView, interactor: ShowsProgressInteractor,
-       dataSource: ShowsProgressDataSource, router: ShowsProgressRouter)
+       viewDataSource: ShowsProgressViewDataSource, router: ShowsProgressRouter)
 
   func viewDidLoad()
   func updateShows()
@@ -38,7 +43,7 @@ protocol ShowsProgressView: class {
   func showOptions(for sorting: [String], for filtering: [String], currentSort: Int, currentFilter: Int)
 }
 
-protocol ShowsProgressDataSource: class {
+protocol ShowsProgressViewDataSource: class {
   func add(viewModel: WatchedShowViewModel)
   func viewModelCount() -> Int
   func update()

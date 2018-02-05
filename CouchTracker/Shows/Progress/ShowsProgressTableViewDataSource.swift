@@ -1,6 +1,6 @@
 import UIKit
 
-final class ShowsProgressTableViewDataSource: NSObject, UITableViewDataSource, ShowsProgressDataSource {
+final class ShowsProgressTableViewDataSource: NSObject, UITableViewDataSource, ShowsProgressViewDataSource {
   private let imageRepository: ImageRepository
   private var viewModels = [WatchedShowViewModel]()
 
