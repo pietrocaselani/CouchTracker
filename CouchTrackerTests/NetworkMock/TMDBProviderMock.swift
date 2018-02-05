@@ -4,8 +4,8 @@ import TMDBSwift
 let tmdbProviderMock = TMDBProviderMock()
 
 final class TMDBProviderMock: TMDBProvider {
-  var movies: MoyaProvider<Movies> = MoyaProvider<Movies>(stubClosure: MoyaProvider.immediatelyStub)
-  var shows: MoyaProvider<Shows> = MoyaProvider<Shows>(stubClosure: MoyaProvider.immediatelyStub)
-  var configuration: MoyaProvider<ConfigurationService> = MoyaProvider<ConfigurationService>(stubClosure: MoyaProvider.immediatelyStub)
-  var episodes: MoyaProvider<Episodes> = MoyaProvider<Episodes>(stubClosure: MoyaProvider.immediatelyStub)
+  var movies: MoyaProvider<Movies> = MoyaProviderMock<Movies>(stubClosure: MoyaProvider.immediatelyStub)
+  var shows: MoyaProvider<Shows> = MoyaProviderMock<Shows>(stubClosure: MoyaProvider.immediatelyStub)
+  var configuration: MoyaProvider<ConfigurationService> = MoyaProviderMock<ConfigurationService>(stubClosure: MoyaProvider.immediatelyStub)
+  var episodes: MoyaProvider<Episodes> = MoyaProviderMock<Episodes>(stubClosure: MoyaProvider.immediatelyStub)
 }

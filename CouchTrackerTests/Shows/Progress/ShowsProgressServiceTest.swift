@@ -19,7 +19,7 @@ final class ShowsProgressServiceTest: XCTestCase {
 
   func testShowsProgressService_fetchWatchedProgress() {
     //Given
-    let interactor = ShowsProgressService(repository: repository, showProgressInteractor: showProgressInteractor, schedulers: scheduler)
+    let interactor = ShowsProgressService(repository: repository, schedulers: scheduler)
 
     //When
     _ = interactor.fetchWatchedShowsProgress(update: false).subscribe(observer)
@@ -27,7 +27,7 @@ final class ShowsProgressServiceTest: XCTestCase {
 
     //Then
     let entity = ShowsProgressMocks.mockWatchedShowEntity()
-    let expectedEvents = [next(2, entity), completed(3)]
+    let expectedEvents = [next(0, entity), completed(0)]
 
     XCTAssertEqual(observer.events, expectedEvents)
   }
