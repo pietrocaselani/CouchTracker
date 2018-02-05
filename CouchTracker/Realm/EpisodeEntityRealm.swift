@@ -29,7 +29,7 @@ final class EpisodeEntityRealm: Object {
   }
 
   override static func ignoredProperties() -> [String] {
-    return ["backingIds"]
+    return ["ids"]
   }
 
   func toEntity() -> EpisodeEntity {

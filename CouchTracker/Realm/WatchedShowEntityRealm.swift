@@ -26,7 +26,7 @@ final class WatchedShowEntityRealm: Object {
   }
 
   override static func ignoredProperties() -> [String] {
-    return ["backingShow"]
+    return ["show"]
   }
 
   func toEntity() -> WatchedShowEntity {
