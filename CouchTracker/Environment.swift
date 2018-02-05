@@ -10,8 +10,6 @@ final class Environment {
   let tvdb: TVDBProvider
   let loginObservable: TraktLoginObservable
   let defaultOutput: TraktLoginOutput
-  let diskCache: AnyCache<Int, NSData>
-  let memoryCache: AnyCache<Int, NSData>
   let schedulers: Schedulers
   let realmProvider: RealmProvider
   let debug: Bool
@@ -58,10 +56,6 @@ final class Environment {
     self.loginObservable = traktLoginStore
     self.defaultOutput = traktLoginStore.loginOutput
 
-    let simpleCache = AnyCache(SimpleMemoryCache())
-
-    self.memoryCache = simpleCache
-    self.diskCache = simpleCache
     self.realmProvider = DefaultRealmProvider()
   }
 }

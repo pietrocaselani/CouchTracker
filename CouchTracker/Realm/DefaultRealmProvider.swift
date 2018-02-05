@@ -2,13 +2,15 @@ import RealmSwift
 import RxSwift
 
 final class DefaultRealmProvider: RealmProvider {
+  private let configuration: Realm.Configuration
+
+  init(configuration: Realm.Configuration = Realm.Configuration.defaultConfiguration) {
+    self.configuration = configuration
+  }
+
   lazy var realm: Realm = {
     do {
-      let instance = try Realm()
-
-      if Environment.instance.debug {
-        print(instance.configuration.fileURL?.absoluteString ?? "Realm in memory")
-      }
+      let instance = try Realm(configuration: configuration)
 
       return instance
     } catch {

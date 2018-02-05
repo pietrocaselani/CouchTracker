@@ -90,8 +90,6 @@
 		6405E5011F5DE84500756E79 /* TrendingShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405E4F41F5DE72B00756E79 /* TrendingShowEntity.swift */; };
 		6405E5021F5DE84500756E79 /* TrendingShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405E4F41F5DE72B00756E79 /* TrendingShowEntity.swift */; };
 		6405E5031F5DE84600756E79 /* TrendingShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405E4F41F5DE72B00756E79 /* TrendingShowEntity.swift */; };
-		64066F231FB4B7CA0042997B /* AnyCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA821F7542EA00EA3AD8 /* AnyCache.swift */; };
-		64066F241FB4B7CA0042997B /* AnyCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA821F7542EA00EA3AD8 /* AnyCache.swift */; };
 		6406BEB61F4DB69C004661C4 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEB21F4DB69C004661C4 /* BaseView.swift */; };
 		6406BEBA1F4DB6C5004661C4 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEB21F4DB69C004661C4 /* BaseView.swift */; };
 		6406BEC21F4DBEFA004661C4 /* MovieDetailsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEBC1F4DBEFA004661C4 /* MovieDetailsContract.swift */; };
@@ -147,9 +145,6 @@
 		641D49BD20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D49BC20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift */; };
 		641D49BE20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D49BC20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift */; };
 		641D49BF20235642002A4EAD /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */; };
-		642074141FAA382700923248 /* SimpleMemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642074131FAA382700923248 /* SimpleMemoryCache.swift */; };
-		642074151FAA382700923248 /* SimpleMemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642074131FAA382700923248 /* SimpleMemoryCache.swift */; };
-		642074161FAA382700923248 /* SimpleMemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642074131FAA382700923248 /* SimpleMemoryCache.swift */; };
 		6421C0791F66F7E70043FB82 /* ShowDetailsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6421C0781F66F7E70043FB82 /* ShowDetailsModule.swift */; };
 		6423EA901F5600A900F3899C /* TMDBMovies+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6423EA8F1F5600A900F3899C /* TMDBMovies+Hashable.swift */; };
 		6423EA931F56091400F3899C /* ImagesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9B38999C1C359F37014E /* ImagesEntity.swift */; };
@@ -185,14 +180,8 @@
 		6434CA671F752ED400EA3AD8 /* TraktLoginObservableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA651F752ED400EA3AD8 /* TraktLoginObservableMock.swift */; };
 		6434CA6B1F75347D00EA3AD8 /* ShowsProgressAPIRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA6A1F75347D00EA3AD8 /* ShowsProgressAPIRepositoryTest.swift */; };
 		6434CA6C1F75347D00EA3AD8 /* ShowsProgressAPIRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA6A1F75347D00EA3AD8 /* ShowsProgressAPIRepositoryTest.swift */; };
-		6434CA7B1F75429200EA3AD8 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA7A1F75429200EA3AD8 /* Cache.swift */; };
-		6434CA7C1F75429200EA3AD8 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA7A1F75429200EA3AD8 /* Cache.swift */; };
-		6434CA7D1F75429200EA3AD8 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA7A1F75429200EA3AD8 /* Cache.swift */; };
-		6434CA831F7542EA00EA3AD8 /* AnyCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA821F7542EA00EA3AD8 /* AnyCache.swift */; };
 		6434CA901F757AE900EA3AD8 /* ShowsProgressMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA8F1F757AE900EA3AD8 /* ShowsProgressMocks.swift */; };
 		6434CA911F757AE900EA3AD8 /* ShowsProgressMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA8F1F757AE900EA3AD8 /* ShowsProgressMocks.swift */; };
-		6434CA981F75808A00EA3AD8 /* CacheMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA971F75808A00EA3AD8 /* CacheMock.swift */; };
-		6434CA991F75808A00EA3AD8 /* CacheMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA971F75808A00EA3AD8 /* CacheMock.swift */; };
 		643E918C20249C340048C0F2 /* ModulePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E918B20249C340048C0F2 /* ModulePage.swift */; };
 		643E918D20249C340048C0F2 /* ModulePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E918B20249C340048C0F2 /* ModulePage.swift */; };
 		643E918E20249C340048C0F2 /* ModulePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E918B20249C340048C0F2 /* ModulePage.swift */; };
@@ -405,6 +394,8 @@
 		649D3DE42027D01F00DF401A /* ThreadWithRunLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DE32027D01F00DF401A /* ThreadWithRunLoop.swift */; };
 		649D3DE52027D01F00DF401A /* ThreadWithRunLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DE32027D01F00DF401A /* ThreadWithRunLoop.swift */; };
 		649D3DE62027D01F00DF401A /* ThreadWithRunLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DE32027D01F00DF401A /* ThreadWithRunLoop.swift */; };
+		649D3DE92028BA4500DF401A /* MoyaProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DE82028BA4500DF401A /* MoyaProviderMock.swift */; };
+		649D3DEA2028BA4500DF401A /* MoyaProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DE82028BA4500DF401A /* MoyaProviderMock.swift */; };
 		649F56D31FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F56D21FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift */; };
 		649F56D51FB3214F004B13B0 /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */; };
 		64A5DCC61F56E2DF006853A2 /* ImagesEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5DCC51F56E2DF006853A2 /* ImagesEntityMapper.swift */; };
@@ -697,7 +688,6 @@
 		641D49BC20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsRepositoryTest.swift; sourceTree = "<group>"; };
 		641D49C4202356AA002A4EAD /* TVDBTestsResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVDBTestsResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		641D49C6202356AA002A4EAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		642074131FAA382700923248 /* SimpleMemoryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleMemoryCache.swift; sourceTree = "<group>"; };
 		6421C0781F66F7E70043FB82 /* ShowDetailsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsModule.swift; sourceTree = "<group>"; };
 		6423EA8F1F5600A900F3899C /* TMDBMovies+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TMDBMovies+Hashable.swift"; sourceTree = "<group>"; };
 		642624381F56E15A00560660 /* MovieImageRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieImageRepositoryMock.swift; sourceTree = "<group>"; };
@@ -715,10 +705,7 @@
 		6434CA601F752E3F00EA3AD8 /* ShowsManagerPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerPresenterTest.swift; sourceTree = "<group>"; };
 		6434CA651F752ED400EA3AD8 /* TraktLoginObservableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginObservableMock.swift; sourceTree = "<group>"; };
 		6434CA6A1F75347D00EA3AD8 /* ShowsProgressAPIRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressAPIRepositoryTest.swift; sourceTree = "<group>"; };
-		6434CA7A1F75429200EA3AD8 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
-		6434CA821F7542EA00EA3AD8 /* AnyCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCache.swift; sourceTree = "<group>"; };
 		6434CA8F1F757AE900EA3AD8 /* ShowsProgressMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressMocks.swift; sourceTree = "<group>"; };
-		6434CA971F75808A00EA3AD8 /* CacheMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheMock.swift; sourceTree = "<group>"; };
 		643E918B20249C340048C0F2 /* ModulePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulePage.swift; sourceTree = "<group>"; };
 		6442F9F31F61751E008E3E12 /* TrendingCellPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCellPresenterTest.swift; sourceTree = "<group>"; };
 		6442F9F61F617648008E3E12 /* TrendingCellMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCellMocks.swift; sourceTree = "<group>"; };
@@ -814,6 +801,7 @@
 		649D3DC720263AB200DF401A /* ShowsProgressRealmDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressRealmDataSource.swift; sourceTree = "<group>"; };
 		649D3DDF2027D01300DF401A /* ThreadWithRunLoopScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithRunLoopScheduler.swift; sourceTree = "<group>"; };
 		649D3DE32027D01F00DF401A /* ThreadWithRunLoop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithRunLoop.swift; sourceTree = "<group>"; };
+		649D3DE82028BA4500DF401A /* MoyaProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaProviderMock.swift; sourceTree = "<group>"; };
 		649F56D21FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseWriterMoyaPlugin.swift; sourceTree = "<group>"; };
 		649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCacheMoyaPlugin.swift; sourceTree = "<group>"; };
 		64A5DCC51F56E2DF006853A2 /* ImagesEntityMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesEntityMapper.swift; sourceTree = "<group>"; };
@@ -1212,23 +1200,12 @@
 		6434CA691F75344900EA3AD8 /* Progress */ = {
 			isa = PBXGroup;
 			children = (
-				6434CA971F75808A00EA3AD8 /* CacheMock.swift */,
 				6434CA6A1F75347D00EA3AD8 /* ShowsProgressAPIRepositoryTest.swift */,
 				6434CA8F1F757AE900EA3AD8 /* ShowsProgressMocks.swift */,
 				64CCE33F1F7AD2A300CD2B9C /* ShowsProgressServiceTest.swift */,
 				646896301F7BFECB00F95649 /* ShowProgressPresenterTest.swift */,
 			);
 			path = Progress;
-			sourceTree = "<group>";
-		};
-		6434CA791F75427800EA3AD8 /* Cache */ = {
-			isa = PBXGroup;
-			children = (
-				6434CA7A1F75429200EA3AD8 /* Cache.swift */,
-				6434CA821F7542EA00EA3AD8 /* AnyCache.swift */,
-				642074131FAA382700923248 /* SimpleMemoryCache.swift */,
-			);
-			path = Cache;
 			sourceTree = "<group>";
 		};
 		643E91912024C1BB0048C0F2 /* Realm */ = {
@@ -1429,7 +1406,6 @@
 				64CC08851F7171E7004D164A /* AppFlow */,
 				647632431F44824900F277F1 /* Assets.xcassets */,
 				6406BEB21F4DB69C004661C4 /* BaseView.swift */,
-				6434CA791F75427800EA3AD8 /* Cache */,
 				644EE1381F55D4C70053D631 /* Configuration */,
 				641D497820222F40002A4EAD /* DefaultSchedulers.swift */,
 				644EE1501F55E8C10053D631 /* Entities */,
@@ -1504,11 +1480,12 @@
 		647C95BD1F7587B5007A86CE /* NetworkMock */ = {
 			isa = PBXGroup;
 			children = (
+				649D3DE82028BA4500DF401A /* MoyaProviderMock.swift */,
+				392D92AFB8979ABE5F428209 /* TMDBErrorProviderMock.swift */,
 				644EE14A1F55E0340053D631 /* TMDBProviderMock.swift */,
+				392D9DF8E4C2F246D55BAA99 /* TraktErrorProviderMock.swift */,
 				6496D9A91F56F1CF00B76E06 /* TraktProviderMock.swift */,
 				64268C321F7ED3920005FCE2 /* TVDBProviderMock.swift */,
-				392D9DF8E4C2F246D55BAA99 /* TraktErrorProviderMock.swift */,
-				392D92AFB8979ABE5F428209 /* TMDBErrorProviderMock.swift */,
 			);
 			path = NetworkMock;
 			sourceTree = "<group>";
@@ -2315,7 +2292,6 @@
 				649D3DC820263AB200DF401A /* ShowsProgressRealmDataSource.swift in Sources */,
 				64BE632F1F4F6F3F002E55EA /* Localizable.swift in Sources */,
 				64CC08A91F71944A004D164A /* TraktLoginOutputProvider.swift in Sources */,
-				6434CA831F7542EA00EA3AD8 /* AnyCache.swift in Sources */,
 				644BF5141F6B07B00010CE35 /* AppConfigurationsDefaultRepository.swift in Sources */,
 				644BF5011F6AFF220010CE35 /* SearchState.swift in Sources */,
 				64D29C3E1F55A96D008E344E /* SearchiOSPresenter.swift in Sources */,
@@ -2332,7 +2308,6 @@
 				6454D17B1F704A1D008C4E5F /* TraktLoginViewController.swift in Sources */,
 				6467FC2A1F66D00D000D1AEE /* ShowDetailsViewController.swift in Sources */,
 				649F56D51FB3214F004B13B0 /* NoCacheMoyaPlugin.swift in Sources */,
-				642074141FAA382700923248 /* SimpleMemoryCache.swift in Sources */,
 				64B1CC771F4F55B1002A9FFD /* TrendingModule.swift in Sources */,
 				64D29C321F55A936008E344E /* MovieDetailsiOSPresenter.swift in Sources */,
 				648687A21F4A3B9C005A0BA8 /* TrendingError.swift in Sources */,
@@ -2422,7 +2397,6 @@
 				644E90461F72E18E0089CD70 /* ShowsProgressContract.swift in Sources */,
 				641B9D3A1F7D7AB300C26D10 /* ShowEpisodeModule.swift in Sources */,
 				64B1CC781F4F55B1002A9FFD /* TrendingiOSRouter.swift in Sources */,
-				6434CA7B1F75429200EA3AD8 /* Cache.swift in Sources */,
 				641B9D351F7D72AE00C26D10 /* ShowOverviewModule.swift in Sources */,
 				644E903C1F72982F0089CD70 /* ShowsNowViewController.swift in Sources */,
 				641B9D2A1F7D5C4C00C26D10 /* ShowManagerContract.swift in Sources */,
@@ -2510,7 +2484,6 @@
 				6406BED51F4DBFF3004661C4 /* MovieDetailsViewModel.swift in Sources */,
 				641D497B20223660002A4EAD /* TestSchedulers.swift in Sources */,
 				64EB97A11FB20C8E00C96E43 /* TraktAuthenticationProvider.swift in Sources */,
-				6434CA981F75808A00EA3AD8 /* CacheMock.swift in Sources */,
 				649D3DC2202637C000DF401A /* ShowProgressContract.swift in Sources */,
 				644BF5261F6B07E20010CE35 /* AppConfigurationsViewModel.swift in Sources */,
 				6453230E2024DA3200449B0A /* OptionalExtensions.swift in Sources */,
@@ -2530,7 +2503,6 @@
 				645EEEE01F61ADE30034EB66 /* ShowDetailsService.swift in Sources */,
 				648390D41F504E7600911BA0 /* TrendingInteractorTest.swift in Sources */,
 				64F05BF71F69527D00E3B861 /* ImagesSize.swift in Sources */,
-				64066F231FB4B7CA0042997B /* AnyCache.swift in Sources */,
 				64D29C481F55AA16008E344E /* SearchService.swift in Sources */,
 				64C2D0141F60A34F00A064E2 /* TrendingCellService.swift in Sources */,
 				640330441F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */,
@@ -2538,7 +2510,6 @@
 				646896311F7BFECB00F95649 /* ShowProgressPresenterTest.swift in Sources */,
 				641B9D4B1F7D964500C26D10 /* ShowEpisodeContract.swift in Sources */,
 				645323082024D28100449B0A /* DefaultRealmProvider.swift in Sources */,
-				6434CA7C1F75429200EA3AD8 /* Cache.swift in Sources */,
 				645B83521F73E8A0009DDF53 /* ShowsProgressAPIRepository.swift in Sources */,
 				64FDE5011F7E629800A4C7AA /* SyncResult.swift in Sources */,
 				64CC085D1F714F33004D164A /* TraktTokenPolicyDeciderTest.swift in Sources */,
@@ -2590,11 +2561,11 @@
 				64FDE5051F7E64F200A4C7AA /* ShowEpisodeiOSPresenter.swift in Sources */,
 				649D3DAB20262CA600DF401A /* WatchedShowBuilder.swift in Sources */,
 				64D29C4D1F55AA21008E344E /* MovieDetailsiOSPresenter.swift in Sources */,
+				649D3DE92028BA4500DF401A /* MoyaProviderMock.swift in Sources */,
 				644EE1531F55E8D20053D631 /* MovieEntity.swift in Sources */,
 				4FD27A3C201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift in Sources */,
 				64C2D0121F60A34C00A064E2 /* TrendingCelliOSPresenter.swift in Sources */,
 				6454D1751F703FC3008C4E5F /* TraktLoginInteractorTest.swift in Sources */,
-				642074151FAA382700923248 /* SimpleMemoryCache.swift in Sources */,
 				641D49BD20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift in Sources */,
 				6405E4FA1F5DE7C900756E79 /* TrendingContract.swift in Sources */,
 				64D29C661F55AD8D008E344E /* Trakt+APIProvider.swift in Sources */,
@@ -2698,6 +2669,7 @@
 				6483911E1F505F4100911BA0 /* MovieViewModelMapper.swift in Sources */,
 				644FCDE21F5ED41F00346605 /* ShowViewModelMapper.swift in Sources */,
 				640330461F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */,
+				649D3DEA2028BA4500DF401A /* MoyaProviderMock.swift in Sources */,
 				64343E131F7EB128004557E4 /* TVDBProvider.swift in Sources */,
 				644BF52E1F6B07E30010CE35 /* AppConfigurationsViewModel.swift in Sources */,
 				646896321F7BFECB00F95649 /* ShowProgressPresenterTest.swift in Sources */,
@@ -2731,7 +2703,6 @@
 				649D3DC0202637C000DF401A /* ShowProgressAPIRepository.swift in Sources */,
 				64BE63001F4F5C5F002E55EA /* TrendingError.swift in Sources */,
 				6434C3901F8355A3009B5A9F /* ShowEpisodeViewModel.swift in Sources */,
-				6434CA991F75808A00EA3AD8 /* CacheMock.swift in Sources */,
 				649D3DCA20263AB200DF401A /* ShowsProgressRealmDataSource.swift in Sources */,
 				645322F52024CD6200449B0A /* ShowEntityRealm.swift in Sources */,
 				4FD27A3D201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift in Sources */,
@@ -2743,7 +2714,6 @@
 				64CC08AB1F71944B004D164A /* TraktLoginOutputProvider.swift in Sources */,
 				64D29C4F1F55AA22008E344E /* MovieDetailsiOSPresenter.swift in Sources */,
 				645323092024D28100449B0A /* DefaultRealmProvider.swift in Sources */,
-				642074161FAA382700923248 /* SimpleMemoryCache.swift in Sources */,
 				646896411F7C132C00F95649 /* ShowProgressCellService.swift in Sources */,
 				64BE63041F4F5C5F002E55EA /* MovieDetailsContract.swift in Sources */,
 				64303EBA1F6726970050C287 /* ImagesViewModel.swift in Sources */,
@@ -2770,7 +2740,6 @@
 				644BF52A1F6B07E30010CE35 /* AppConfigurationsContract.swift in Sources */,
 				6405E5001F5DE83F00756E79 /* TrendingViewModel.swift in Sources */,
 				644E905C1F72EF7E0089CD70 /* WatchedShowViewModel.swift in Sources */,
-				6434CA7D1F75429200EA3AD8 /* Cache.swift in Sources */,
 				6442F9F81F617648008E3E12 /* TrendingCellMocks.swift in Sources */,
 				648390DC1F504E9600911BA0 /* TrendingMocks.swift in Sources */,
 				64C2D0151F60A35000A064E2 /* TrendingCellService.swift in Sources */,
@@ -2784,7 +2753,6 @@
 				64CC08631F71616E004D164A /* ShowsManagerContract.swift in Sources */,
 				64A5DCC91F56E2DF006853A2 /* ImagesEntityMapper.swift in Sources */,
 				6434CA621F752E3F00EA3AD8 /* ShowsManagerPresenterTest.swift in Sources */,
-				64066F241FB4B7CA0042997B /* AnyCache.swift in Sources */,
 				645EEEE51F61AEA10034EB66 /* ShowDetailsMocks.swift in Sources */,
 				6434CA911F757AE900EA3AD8 /* ShowsProgressMocks.swift in Sources */,
 				64D29C4C1F55AA17008E344E /* SearchService.swift in Sources */,
