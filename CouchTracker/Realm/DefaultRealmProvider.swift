@@ -18,12 +18,3 @@ final class DefaultRealmProvider: RealmProvider {
     }
   }()
 }
-
-extension RealmProvider {
-  func asSingle() -> Single<Realm> {
-    return Single<Realm>.create(subscribe: { single -> Disposable in
-      single(.success(self.realm))
-      return Disposables.create()
-    })
-  }
-}

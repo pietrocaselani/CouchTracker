@@ -13,6 +13,21 @@ final class ShowIdsRealm: Object {
     return "trakt"
   }
 
+  override func isEqual(_ object: Any?) -> Bool {
+    guard let entity = object as? ShowIdsRealm else { return false }
+
+    return self == entity
+  }
+
+  static func == (lhs: ShowIdsRealm, rhs: ShowIdsRealm) -> Bool {
+    return lhs.trakt == rhs.trakt &&
+      lhs.tmdb.value == rhs.tmdb.value &&
+      lhs.imdb == rhs.imdb &&
+      lhs.slug == rhs.slug &&
+      lhs.tvdb == rhs.tvdb &&
+      lhs.tvrage.value == rhs.tvrage.value
+  }
+
   func toEntity() -> ShowIds {
     return ShowIds(trakt: self.trakt,
                    tmdb: self.tmdb.value,

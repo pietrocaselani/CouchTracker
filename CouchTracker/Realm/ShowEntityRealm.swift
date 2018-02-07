@@ -32,6 +32,23 @@ final class ShowEntityRealm: Object {
     return ["ids"]
   }
 
+  override func isEqual(_ object: Any?) -> Bool {
+    guard let entity = object as? ShowEntityRealm else { return false }
+
+    return self == entity
+  }
+
+  static func == (lhs: ShowEntityRealm, rhs: ShowEntityRealm) -> Bool {
+    return lhs.identifier == rhs.identifier &&
+      lhs.backingIds == rhs.backingIds &&
+      lhs.title == rhs.title &&
+      lhs.overview == rhs.overview &&
+      lhs.network == rhs.network &&
+      lhs.genres.toArray() == rhs.genres.toArray() &&
+      lhs.status == rhs.status &&
+      lhs.firstAired == rhs.firstAired
+  }
+
   func toEntity() -> ShowEntity {
     guard let showIds = self.ids?.toEntity() else {
       Swift.fatalError("How could this be saved on Realm without primary key?!")

@@ -12,22 +12,16 @@ final class ShowsProgressRealmDataSource: ShowsProgressDataSource {
   }
 
   func fetchWatchedShows() -> Observable<WatchedShowEntity> {
-    let realmObservable = realmProvider.asSingle().asObservable()
-
-    let resultsObservable = realmObservable.flatMap { realm -> Observable<Results<WatchedShowEntityRealm>> in
+    let observable = Observable.deferred { [unowned self] () -> Observable<[WatchedShowEntityRealm]> in
+      let realm = self.realmProvider.realm
       let results = realm.objects(WatchedShowEntityRealm.self)
-
-      guard !results.isEmpty else { return Observable.empty() }
-
-      return Observable.collection(from: results)
+      return Observable.array(from: results)
     }
 
-    let entitiesObservable = resultsObservable.flatMap { results -> Observable<WatchedShowEntity> in
+    return observable.flatMap { results -> Observable<WatchedShowEntity> in
       let entities = results.map { $0.toEntity() }
       return Observable.from(entities)
     }
-
-    return entitiesObservable
   }
 
   func addWatched(show: WatchedShowEntity) throws {
