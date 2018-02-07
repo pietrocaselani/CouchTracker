@@ -29,6 +29,21 @@ final class WatchedShowEntityRealm: Object {
     return ["show"]
   }
 
+  override func isEqual(_ object: Any?) -> Bool {
+    guard let entity = object as? WatchedShowEntityRealm else { return false }
+
+    return self == entity
+  }
+
+  static func == (lhs: WatchedShowEntityRealm, rhs: WatchedShowEntityRealm) -> Bool {
+    return lhs.identifier == rhs.identifier &&
+      lhs.backingShow == rhs.backingShow &&
+      lhs.aired == rhs.aired &&
+      lhs.completed == rhs.completed &&
+      lhs.nextEpisode == rhs.nextEpisode &&
+      lhs.lastWatched == rhs.lastWatched
+  }
+
   func toEntity() -> WatchedShowEntity {
     guard let show = self.show?.toEntity() else {
       Swift.fatalError("How show is not present on EpisodeEntityRealm?!")

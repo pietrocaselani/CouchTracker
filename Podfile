@@ -19,6 +19,7 @@ end
 
 def tests_shared_pods
   pod 'RxTest', '4.0.0'
+  pod 'RxBlocking', '4.1.2'
 end
 
 target 'CouchTrackerFastTests' do
