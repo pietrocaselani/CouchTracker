@@ -12,5 +12,10 @@ final class ShowsProgressService: ShowsProgressInteractor {
 
   func fetchWatchedShowsProgress() -> Observable<[WatchedShowEntity]> {
     return repository.fetchWatchedShows(extended: .fullEpisodes)
+      .distinctUntilChanged({ (lhs, rhs) -> Bool in
+        guard lhs.count == rhs.count else { return false }
+        let equals = lhs == rhs
+        return equals
+      })
   }
 }

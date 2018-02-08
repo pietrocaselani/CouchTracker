@@ -58,6 +58,11 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
     router.show(tvShow: entity)
   }
 
+  private func applyFilterAndSort() -> [WatchedShowViewModel] {
+    entities = originalEntities.filter(currentFilter.filter()).sorted(by: currentSort.comparator())
+    return entities.map { [unowned self] in self.mapToViewModel($0) }
+  }
+
   private func reloadViewModels() {
     let sortedViewModels = entities.map { [unowned self] in self.mapToViewModel($0) }
 
@@ -75,8 +80,10 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
       }).map { [unowned self] in
         return $0.map { [unowned self] in self.mapToViewModel($0) }
       }.observeOn(MainScheduler.instance)
-      .subscribe(onNext: { [unowned self] viewModels in
+      .subscribe(onNext: { [unowned self] _ in
         guard let view = self.view else { return }
+
+        let viewModels = self.applyFilterAndSort()
 
         self.dataSource.viewModels = viewModels
 
