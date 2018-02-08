@@ -23,6 +23,14 @@ final class Environment {
       self.debug = false
     #endif
 
+    if debug {
+      guard let docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
+        Swift.fatalError("Can't find documents directory")
+      }
+
+      print("Documents directory: \(docsDir)")
+    }
+
     var plugins = [PluginType]()
 
     if debug {
