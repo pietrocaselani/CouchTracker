@@ -71,28 +71,35 @@ final class ShowsProgressMocks {
       self.trakt = trakt
     }
 
-    func fetchWatchedShows(update: Bool, extended: Extended) -> Observable<WatchedShowEntity> {
-      return Observable.just(ShowsProgressMocks.mockWatchedShowEntity())
+    func fetchWatchedShows(extended: Extended) -> Observable<[WatchedShowEntity]> {
+      return Observable.just([ShowsProgressMocks.mockWatchedShowEntity()])
     }
   }
 
   final class ShowsProgressViewMock: ShowsProgressView {
     var presenter: ShowsProgressPresenter!
-    var updateFinishedInvoked = false
-    var showEmptyViewInvoked = false
-    var newViewModelAvailableInvoked = false
-    var newViewModelAvailableParameters = [Int]()
     var reloadListInvoked = false
     var showOptionsInvoked = false
+    var showViewModelsInvoked = false
+    var showErrorInvoked = false
+    var showLoadingInvoked = false
+    var showEmptyViewInvoked = false
+    var showViewModelsParameters: [WatchedShowViewModel]?
+    var showErrorParameters: String?
     var showOptionsParameters: (sorting: [String], filtering: [String], currentSort: Int, currentFilter: Int)?
 
-    func newViewModelAvailable(at index: Int) {
-      newViewModelAvailableInvoked = true
-      newViewModelAvailableParameters.append(index)
+    func show(viewModels: [WatchedShowViewModel]) {
+      showViewModelsInvoked = true
+      showViewModelsParameters = viewModels
     }
 
-    func updateFinished() {
-      updateFinishedInvoked = true
+    func showError(message: String) {
+      showErrorInvoked = true
+      showErrorParameters = message
+    }
+
+    func showLoading() {
+      showLoadingInvoked = true
     }
 
     func showEmptyView() {
@@ -112,7 +119,7 @@ final class ShowsProgressMocks {
   final class EmptyShowsProgressInteractorMock: ShowsProgressInteractor {
     init(repository: ShowsProgressRepository, schedulers: Schedulers) {}
 
-    func fetchWatchedShowsProgress(update: Bool) -> Observable<WatchedShowEntity> {
+    func fetchWatchedShowsProgress() -> Observable<[WatchedShowEntity]> {
       return Observable.empty()
     }
   }
@@ -120,12 +127,12 @@ final class ShowsProgressMocks {
   final class ShowsProgressInteractorMock: ShowsProgressInteractor {
     init(repository: ShowsProgressRepository, schedulers: Schedulers) {}
 
-    func fetchWatchedShowsProgress(update: Bool) -> Observable<WatchedShowEntity> {
+    func fetchWatchedShowsProgress() -> Observable<[WatchedShowEntity]> {
       let entity1 = ShowsProgressMocks.mockWatchedShowEntity()
       let entity2 = ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode()
       let entity3 = ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisodeDate()
 
-      return Observable.from([entity1, entity2, entity3])
+      return Observable.just([entity1, entity2, entity3])
     }
   }
 
@@ -144,51 +151,35 @@ final class ShowsProgressMocks {
     var addedEntities = [WatchedShowEntity]()
     var fetchWatchedShowsInvoked = false
     var addWatchedShowInvoked = false
+    private let watchedShowsSubject: BehaviorSubject<[WatchedShowEntity]>
 
     init(entities: [WatchedShowEntity] = []) {
       self.originalEntities = entities
+      watchedShowsSubject = BehaviorSubject<[WatchedShowEntity]>(value: entities)
     }
 
-    func fetchWatchedShows() -> Observable<WatchedShowEntity> {
+    func fetchWatchedShows() -> Observable<[WatchedShowEntity]> {
       fetchWatchedShowsInvoked = true
-
-      if originalEntities.isEmpty {
-	      return Observable.empty()
-      }
-
-      return Observable.from(originalEntities)
+      return watchedShowsSubject.asObservable()
     }
 
-    func addWatched(show: WatchedShowEntity) throws {
+    func addWatched(shows: [WatchedShowEntity]) throws {
       addWatchedShowInvoked = true
-      addedEntities.append(show)
+      addedEntities.append(contentsOf: shows)
+
+      var newEntities = originalEntities
+      newEntities.append(contentsOf: shows)
+
+      watchedShowsSubject.onNext(newEntities)
     }
   }
 
   final class ShowProgressViewDataSourceMock: ShowsProgressViewDataSource {
-    var addInvoked = false
-    var addParameters = [WatchedShowViewModel]()
+    var viewModels = [WatchedShowViewModel]()
     var updateInvoked = false
-    var setInvoked = false
-    var setParameters = [WatchedShowViewModel]()
-
-    func add(viewModel: WatchedShowViewModel) {
-      addInvoked = true
-      addParameters.append(viewModel)
-    }
-
-    func viewModelCount() -> Int {
-      return addParameters.count
-    }
 
     func update() {
-      addParameters.removeAll()
       updateInvoked = true
-    }
-
-    func set(viewModels: [WatchedShowViewModel]) {
-      setInvoked = true
-      setParameters = viewModels
     }
   }
 }

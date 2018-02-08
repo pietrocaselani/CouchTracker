@@ -2,7 +2,7 @@ import UIKit
 
 final class ShowsProgressTableViewDataSource: NSObject, UITableViewDataSource, ShowsProgressViewDataSource {
   private let imageRepository: ImageRepository
-  private var viewModels = [WatchedShowViewModel]()
+  var viewModels: [WatchedShowViewModel] = [WatchedShowViewModel]()
 
   init(imageRepository: ImageRepository) {
     self.imageRepository = imageRepository
@@ -27,20 +27,7 @@ final class ShowsProgressTableViewDataSource: NSObject, UITableViewDataSource, S
     return cell
   }
 
-  func add(viewModel: WatchedShowViewModel) {
-    viewModels.append(viewModel)
-  }
-
-  func viewModelCount() -> Int {
-    return viewModels.count
-  }
-
   func update() {
     viewModels.removeAll()
-  }
-
-  func set(viewModels: [WatchedShowViewModel]) {
-    self.viewModels.removeAll()
-    self.viewModels.append(contentsOf: viewModels)
   }
 }

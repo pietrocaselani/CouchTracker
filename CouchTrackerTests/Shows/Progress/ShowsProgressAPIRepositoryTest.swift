@@ -15,60 +15,19 @@ final class ShowsProgressAPIRepositoryTest: XCTestCase {
     //Given
     let dataSource = ShowsProgressMocks.ShowsProgressDataSourceMock()
     let repository = ShowsProgressAPIRepository(trakt: trakt, dataSource: dataSource, schedulers: schedulers)
-    let observer = schedulers.createObserver(WatchedShowEntity.self)
+    let observer = schedulers.createObserver([WatchedShowEntity].self)
 
     //When
-    _ = repository.fetchWatchedShows(update: false, extended: .full).subscribe(observer)
+    _ = repository.fetchWatchedShows(extended: .full).subscribe(observer)
     schedulers.start()
 
     //Then
     let expectedShow = ShowsProgressMocks.mockWatchedShowEntity()
-    let expectedEvents = [next(6, expectedShow), completed(7)]
+    let expectedEvents = [next(0, [WatchedShowEntity]()), next(6, [expectedShow])]
 
-    XCTAssertEqual(observer.events, expectedEvents)
+    RXAssertEvents(observer.events, expectedEvents)
 	  XCTAssertTrue(dataSource.fetchWatchedShowsInvoked)
 	  XCTAssertTrue(dataSource.addWatchedShowInvoked)
     XCTAssertEqual([expectedShow], dataSource.addedEntities)
-  }
-
-  func testShowsProgressRepository_fetchesShowsForcingUpdate_cantHitOnCache() {
-    //Given
-    let dataSource = ShowsProgressMocks.ShowsProgressDataSourceMock()
-    let repository = ShowsProgressAPIRepository(trakt: trakt, dataSource: dataSource, schedulers: schedulers)
-    let observer = schedulers.createObserver(WatchedShowEntity.self)
-
-    //When
-    _ = repository.fetchWatchedShows(update: true, extended: .full).subscribe(observer)
-    schedulers.start()
-
-    //Then
-    let expectedShow = ShowsProgressMocks.mockWatchedShowEntity()
-    let expectedEvents = [next(5, expectedShow), completed(6)]
-
-    XCTAssertEqual(observer.events, expectedEvents)
-    XCTAssertFalse(dataSource.fetchWatchedShowsInvoked)
-    XCTAssertTrue(dataSource.addWatchedShowInvoked)
-    XCTAssertEqual([expectedShow], dataSource.addedEntities)
-  }
-
-  func testShowsProgressRepository_fetchesShowsFromCache_cantHitOnAPI() {
-    //Given
-    let expectedShow = ShowsProgressMocks.mockWatchedShowEntity()
-    let dataSource = ShowsProgressMocks.ShowsProgressDataSourceMock(entities: [expectedShow])
-    let repository = ShowsProgressAPIRepository(trakt: trakt, dataSource: dataSource, schedulers: schedulers)
-    let observer = schedulers.createObserver(WatchedShowEntity.self)
-
-    //When
-    _ = repository.fetchWatchedShows(update: false, extended: .full).subscribe(observer)
-    schedulers.start()
-
-    //Then
-
-    let expectedEvents = [next(1, expectedShow), completed(1)]
-
-    XCTAssertEqual(observer.events, expectedEvents)
-    XCTAssertTrue(dataSource.fetchWatchedShowsInvoked)
-    XCTAssertFalse((trakt.sync as! MoyaProviderMock).requestInvoked)
-    XCTAssertFalse(dataSource.addWatchedShowInvoked)
   }
 }

@@ -16,8 +16,7 @@ final class ShowsProgressPresenterTest: XCTestCase {
 
     //Then
     XCTAssertTrue(view.showEmptyViewInvoked)
-    XCTAssertTrue(view.updateFinishedInvoked)
-    XCTAssertEqual(dataSource.viewModelCount(), 0)
+    XCTAssertTrue(dataSource.viewModels.isEmpty)
   }
 
   func testShowsProgressPresenter_receivesData_notifyView() {
@@ -29,10 +28,8 @@ final class ShowsProgressPresenterTest: XCTestCase {
     presenter.viewDidLoad()
 
     //Then
-    XCTAssertTrue(view.newViewModelAvailableInvoked)
-    XCTAssertEqual(view.newViewModelAvailableParameters, [0, 1, 2])
-    XCTAssertTrue(view.updateFinishedInvoked)
-    XCTAssertEqual(dataSource.viewModelCount(), 3)
+    XCTAssertTrue(view.showViewModelsInvoked)
+    XCTAssertEqual(dataSource.viewModels.count, 3)
   }
 
   func testShowsProgressPresenter_forceUpdate_reloadView() {
@@ -45,9 +42,7 @@ final class ShowsProgressPresenterTest: XCTestCase {
     presenter.updateShows()
 
     //Then
-    XCTAssertTrue(view.newViewModelAvailableInvoked)
-    XCTAssertEqual(view.newViewModelAvailableParameters, [0, 1, 2, 0, 1, 2])
-    XCTAssertTrue(view.updateFinishedInvoked)
-    XCTAssertEqual(dataSource.viewModelCount(), 3)
+    XCTAssertTrue(view.showViewModelsInvoked)
+    XCTAssertEqual(dataSource.viewModels.count, 3)
   }
 }
