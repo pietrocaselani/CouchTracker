@@ -17,7 +17,7 @@ final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
     let items = toSyncItems(episode, watchedAt)
 
     return performSyncRequest(.addToHistory(items: items))
-      .flatMap { [unowned self] syncResponse -> Single<WatchedShowEntity> in
+      .flatMap { [unowned self] _ -> Single<WatchedShowEntity> in
         return self.fetchShowProgress(ids: show.show.ids).map { $0.createEntity(using: show.show) }
       }.observeOn(schedulers.dataSourceScheduler)
       .do(onSuccess: { [unowned self] newWatchedShowEntity in
@@ -34,7 +34,7 @@ final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
     let items = toSyncItems(episode, watchedAt)
 
     return performSyncRequest(.removeFromHistory(items: items))
-      .flatMap { [unowned self] syncResponse -> Single<WatchedShowEntity> in
+      .flatMap { [unowned self] _ -> Single<WatchedShowEntity> in
         return self.fetchShowProgress(ids: show.show.ids).map { $0.createEntity(using: show.show) }
       }.observeOn(schedulers.dataSourceScheduler)
       .do(onSuccess: { [unowned self] newWatchedShowEntity in
@@ -93,7 +93,7 @@ final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
     return observable.map {
       builder.episode = $0
       return builder
-      }.catchError { error -> Single<WatchedShowBuilder> in
+      }.catchError { _ -> Single<WatchedShowBuilder> in
         return Single.just(builder)
       }
   }

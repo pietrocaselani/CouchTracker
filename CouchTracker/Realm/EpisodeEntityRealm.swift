@@ -10,7 +10,7 @@ final class EpisodeEntityRealm: Object {
   @objc dynamic var season = -1
   @objc dynamic var firstAired: Date?
   @objc dynamic var lastWatched: Date?
-  
+
   var ids: EpisodeIdsRealm? {
     get {
       return backingIds
@@ -23,21 +23,21 @@ final class EpisodeEntityRealm: Object {
       }
     }
   }
-  
+
   override static func primaryKey() -> String? {
     return "identifier"
   }
-  
+
   override static func ignoredProperties() -> [String] {
     return ["ids"]
   }
-  
+
   override func isEqual(_ object: Any?) -> Bool {
     guard let entity = object as? EpisodeEntityRealm else { return false }
-    
+
     return self == entity
   }
-  
+
   static func == (lhs: EpisodeEntityRealm, rhs: EpisodeEntityRealm) -> Bool {
     return lhs.identifier == rhs.identifier &&
       lhs.backingIds == rhs.backingIds &&
@@ -49,16 +49,16 @@ final class EpisodeEntityRealm: Object {
       lhs.firstAired == rhs.firstAired &&
       lhs.lastWatched == rhs.lastWatched
   }
-  
+
   func toEntity() -> EpisodeEntity {
     guard let showIds = self.showIds?.toEntity() else {
       Swift.fatalError("How showIds is not present on EpisodeEntityRealm?!")
     }
-    
+
     guard let ids = self.ids?.toEntity() else {
       Swift.fatalError("How ids is not present on EpisodeEntityRealm?!")
     }
-    
+
     return EpisodeEntity(ids: ids,
                          showIds: showIds,
                          title: self.title,
@@ -73,7 +73,7 @@ final class EpisodeEntityRealm: Object {
 extension EpisodeEntity {
   func toRealm() -> EpisodeEntityRealm {
     let entity = EpisodeEntityRealm()
-    
+
     entity.ids = self.ids.toRealm()
     entity.showIds = self.showIds.toRealm()
     entity.title = self.title
@@ -82,7 +82,7 @@ extension EpisodeEntity {
     entity.season = self.season
     entity.firstAired = self.firstAired
     entity.lastWatched = self.lastWatched
-    
+
     return entity
   }
 }
