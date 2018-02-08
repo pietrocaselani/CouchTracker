@@ -11,24 +11,25 @@ final class ShowsProgressRealmDataSource: ShowsProgressDataSource {
     self.schedulers = schedulers
   }
 
-  func fetchWatchedShows() -> Observable<WatchedShowEntity> {
+  func fetchWatchedShows() -> Observable<[WatchedShowEntity]> {
     let observable = Observable.deferred { [unowned self] () -> Observable<[WatchedShowEntityRealm]> in
       let realm = self.realmProvider.realm
       let results = realm.objects(WatchedShowEntityRealm.self)
       return Observable.array(from: results)
     }
 
-    return observable.flatMap { results -> Observable<WatchedShowEntity> in
-      let entities = results.map { $0.toEntity() }
-      return Observable.from(entities)
-    }
+    return observable.map { results -> [WatchedShowEntity] in
+      return results.map { $0.toEntity() }
+    }.subscribeOn(schedulers.dataSourceScheduler)
   }
 
-  func addWatched(show: WatchedShowEntity) throws {
+  func addWatched(shows: [WatchedShowEntity]) throws {
+    let realmEntities = shows.map { $0.toRealm() }
+
     let realm = realmProvider.realm
 
     try realm.write {
-      realm.add(show.toRealm(), update: true)
+      realm.add(realmEntities, update: true)
     }
   }
 }

@@ -5,10 +5,10 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
   private let interactor: ShowsProgressInteractor
   private let router: ShowsProgressRouter
   private let disposeBag = DisposeBag()
-  private var originalEntities = [WatchedShowEntity]()
-  private var entities = [WatchedShowEntity]()
   private var currentFilter = ShowProgressFilter.none
   private var currentSort = ShowProgressSort.title
+  private var entities = [WatchedShowEntity]()
+  private var originalEntities = [WatchedShowEntity]()
   var dataSource: ShowsProgressViewDataSource
 
   init(view: ShowsProgressView, interactor: ShowsProgressInteractor,
@@ -20,14 +20,12 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
   }
 
   func viewDidLoad() {
-    fetchShows(update: false)
+    fetchShows()
   }
 
   func updateShows() {
-    entities.removeAll()
-    originalEntities.removeAll()
     dataSource.update()
-    fetchShows(update: true)
+    fetchShows()
   }
 
   func handleFilter() {
@@ -63,33 +61,36 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
   private func reloadViewModels() {
     let sortedViewModels = entities.map { [unowned self] in self.mapToViewModel($0) }
 
-    dataSource.set(viewModels: sortedViewModels)
+    dataSource.viewModels = sortedViewModels
     view?.reloadList()
   }
 
-  private func fetchShows(update: Bool) {
-    interactor.fetchWatchedShowsProgress(update: update)
+  private func fetchShows() {
+    view?.showLoading()
+
+    interactor.fetchWatchedShowsProgress()
       .do(onNext: { [unowned self] in
-        self.originalEntities.append($0)
-        self.entities.append($0)
-      }).map { [unowned self] entity in
-        return self.mapToViewModel(entity)
+        self.originalEntities = $0
+        self.entities = $0
+      }).map { [unowned self] in
+        return $0.map { [unowned self] in self.mapToViewModel($0) }
       }.observeOn(MainScheduler.instance)
-      .do(onNext: { [unowned self] viewModel in
-        self.dataSource.add(viewModel: viewModel)
-      })
-      .subscribe(onNext: { [unowned self] _ in
-        self.view?.newViewModelAvailable(at: self.dataSource.viewModelCount() - 1 )
-      }, onError: { error in
-        print(error)
-      }, onCompleted: { [unowned self] in
+      .subscribe(onNext: { [unowned self] viewModels in
         guard let view = self.view else { return }
 
-        view.updateFinished()
+        self.dataSource.viewModels = viewModels
 
-        if self.dataSource.viewModelCount() == 0 {
+        if viewModels.count > 0 {
+          view.show(viewModels: viewModels)
+        } else {
           view.showEmptyView()
         }
+        }, onError: { [unowned self] error in
+          self.view?.showError(message: error.localizedDescription)
+        }, onCompleted: { [unowned self] in
+          if self.dataSource.viewModels.isEmpty {
+            self.view?.showEmptyView()
+          }
       }).disposed(by: disposeBag)
   }
 

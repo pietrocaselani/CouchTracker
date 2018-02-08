@@ -3,7 +3,7 @@ import RxCocoa
 import RxSwift
 import ActionSheetPicker_3_0
 
-final class ShowsProgressViewController: UIViewController, ShowsProgressView, UITableViewDelegate {
+final class ShowsProgressViewController: UIViewController, ShowsProgressView {
   var presenter: ShowsProgressPresenter!
   private let disposeBag = DisposeBag()
   @IBOutlet weak var tableView: UITableView!
@@ -44,21 +44,28 @@ final class ShowsProgressViewController: UIViewController, ShowsProgressView, UI
     self.navigationItem.rightBarButtonItems = [filterItem, directionItem, refreshItem]
   }
 
-  func newViewModelAvailable(at index: Int) {
+  func show(viewModels: [WatchedShowViewModel]) {
     showList()
-    tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+    reloadList()
   }
 
-  func updateFinished() {
-    showList()
+  func showLoading() {
+    infoLabel.text = "Loading"
+    showInfoLabel()
+  }
+
+  func showError(message: String) {
+    infoLabel.text = message
+    showInfoLabel()
   }
 
   func showEmptyView() {
+    infoLabel.text "No data"
     showInfoLabel()
   }
 
   func reloadList() {
-    tableView.reloadData()
+    self.tableView.reloadData()
   }
 
   func showOptions(for sorting: [String], for filtering: [String], currentSort: Int, currentFilter: Int) {
@@ -78,22 +85,20 @@ final class ShowsProgressViewController: UIViewController, ShowsProgressView, UI
     picker?.show()
   }
 
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    tableView.deselectRow(at: indexPath, animated: true)
-    presenter.selectedShow(at: indexPath.row)
-  }
-
   private func showList() {
-    if !tableView.isHidden {
-      infoLabel.isHidden = true
-      tableView.isHidden = false
-    }
+    infoLabel.isHidden = true
+    tableView.isHidden = false
   }
 
   private func showInfoLabel() {
-    if !infoLabel.isHidden {
-      infoLabel.isHidden = false
-      tableView.isHidden = true
-    }
+    infoLabel.isHidden = false
+    tableView.isHidden = true
+  }
+}
+
+extension ShowsProgressViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+    presenter.selectedShow(at: indexPath.row)
   }
 }

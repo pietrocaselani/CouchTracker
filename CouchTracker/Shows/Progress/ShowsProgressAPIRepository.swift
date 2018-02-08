@@ -6,6 +6,7 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
   private let trakt: TraktProvider
   private let dataSource: ShowsProgressDataSource
   private let schedulers: Schedulers
+  private let disposeBag = DisposeBag()
 
   init(trakt: TraktProvider, dataSource: ShowsProgressDataSource, schedulers: Schedulers) {
     self.trakt = trakt
@@ -13,51 +14,46 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
     self.schedulers = schedulers
   }
 
-  func fetchWatchedShows(update: Bool, extended: Extended) -> Observable<WatchedShowEntity> {
-    let apiObservable = fetchWatchedShowsFromAPI(extended: extended)
-      .observeOn(schedulers.networkScheduler)
-      .flatMap { Observable.from($0) }
-      .flatMap { [unowned self] in self.fetchShowProgress(update, $0) }
+  func fetchWatchedShows(extended: Extended) -> Observable<[WatchedShowEntity]> {
+    fetchWatchedShowsFromAPI(extended: extended)
       .observeOn(schedulers.dataSourceScheduler)
-      .do(onNext: { [unowned self] entity in
-        try self.dataSource.addWatched(show: entity)
+      .do(onNext: { [unowned self] entities in
+        try self.dataSource.addWatched(shows: entities)
       })
+      .subscribe()
+      .disposed(by: disposeBag)
 
-    guard !update else { return apiObservable }
-
-    return fetchWatchedShowsFromDataSource()
-      .ifEmpty(switchTo: apiObservable)
-      .catchError { _ in return apiObservable }
-      .subscribeOn(schedulers.dataSourceScheduler)
+    return fetchWatchedShowsFromDataSource().subscribeOn(schedulers.dataSourceScheduler)
   }
 
-  private func fetchWatchedShowsFromAPI(extended: Extended) -> Observable<[BaseShow]> {
-    let target = Sync.watched(type: .shows, extended: extended)
+  private func fetchWatchedShowsFromAPI(extended: Extended) -> Observable<[WatchedShowEntity]> {
+    let api = trakt.sync.rx.request(Sync.watched(type: .shows, extended: extended)).map([BaseShow].self).asObservable()
 
-    let api = trakt.sync.rx.request(target)
-
-    return api.map([BaseShow].self).asObservable()
+    return api.observeOn(schedulers.networkScheduler)
+      .flatMap { Observable.from($0) }
+      .flatMap { [unowned self] in self.fetchShowProgress($0) }
+      .toArray()
   }
 
-  private func fetchWatchedShowsFromDataSource() -> Observable<WatchedShowEntity> {
+  private func fetchWatchedShowsFromDataSource() -> Observable<[WatchedShowEntity]> {
     return dataSource.fetchWatchedShows()
   }
 
-  private func fetchShowProgress(_ update: Bool, _ baseShow: BaseShow) -> Observable<WatchedShowEntity> {
+  private func fetchShowProgress(_ baseShow: BaseShow) -> Observable<WatchedShowEntity> {
     guard let show = baseShow.show else { return Observable.empty() }
 
-    return fetchShowProgress(update, ids: show.ids)
+    return fetchShowProgress(ids: show.ids)
       .flatMap { [unowned self] in return self.mapToEntity(baseShow, builder: $0) }
   }
 
-  private func fetchShowProgress(_ update: Bool, ids: ShowIds) -> Observable<WatchedShowBuilder> {
+  private func fetchShowProgress(ids: ShowIds) -> Observable<WatchedShowBuilder> {
     let builder = WatchedShowBuilder(ids: ids)
 
-    return buildProgressForShow(update, builder)
+    return buildProgressForShow(builder)
       .flatMap { [unowned self] in self.fetchNextEpisodeDetails($0) }
   }
 
-  private func buildProgressForShow(_ update: Bool, _ builder: WatchedShowBuilder) -> Observable<WatchedShowBuilder> {
+  private func buildProgressForShow(_ builder: WatchedShowBuilder) -> Observable<WatchedShowBuilder> {
     let showId = builder.ids.realId
 
     let observable = fetchShowProgress(showId: showId)
