@@ -60,7 +60,7 @@ final class ShowsProgressViewController: UIViewController, ShowsProgressView {
   }
 
   func showEmptyView() {
-    infoLabel.text "No data"
+    infoLabel.text = "No data"
     showInfoLabel()
   }
 
