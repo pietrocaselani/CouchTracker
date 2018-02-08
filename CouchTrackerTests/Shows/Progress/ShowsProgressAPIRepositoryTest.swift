@@ -14,7 +14,9 @@ final class ShowsProgressAPIRepositoryTest: XCTestCase {
   func testShowsProgressRepository_fetchesShowsWithEmptyCache_hitOnAPISavesOnCache() {
     //Given
     let dataSource = ShowsProgressMocks.ShowsProgressDataSourceMock()
-    let repository = ShowsProgressAPIRepository(trakt: trakt, dataSource: dataSource, schedulers: schedulers)
+    let showProgressRepository = ShowProgressMocks.showProgressRepository
+    let repository = ShowsProgressAPIRepository(trakt: trakt, dataSource: dataSource,
+                                                schedulers: schedulers, showProgressRepository: showProgressRepository)
     let observer = schedulers.createObserver([WatchedShowEntity].self)
 
     //When

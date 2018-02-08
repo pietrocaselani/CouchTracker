@@ -19,8 +19,11 @@ final class ShowEpisodeModule {
                                                 cofigurationRepository: configurationRepository,
                                                 schedulers: schedulers)
 
+    let showProgressRepository = ShowProgressAPIRepository(trakt: trakt, schedulers: schedulers)
+
     let showEpisodeDataSource = ShowEpisodeRealmDataSource(realmProvider: realmProvider)
-    let repository = ShowEpisodeAPIRepository(trakt: trakt, dataSource: showEpisodeDataSource, schedulers: schedulers)
+    let repository = ShowEpisodeAPIRepository(trakt: trakt, dataSource: showEpisodeDataSource,
+                                              schedulers: schedulers, showProgressRepository: showProgressRepository)
     let interactor = ShowEpisodeService(repository: repository, imageRepository: imageRepository)
     let presenter = ShowEpisodeiOSPresenter(view: view, interactor: interactor, show: show)
 

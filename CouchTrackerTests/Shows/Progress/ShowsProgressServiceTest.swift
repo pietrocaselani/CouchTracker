@@ -4,7 +4,6 @@ import RxTest
 import TraktSwift
 
 final class ShowsProgressServiceTest: XCTestCase {
-  private let showProgressInteractor = ShowProgressMocks.ShowProgressServiceMock(repository: ShowProgressMocks.showProgressRepository)
   private let scheduler = TestSchedulers()
   private var observer: TestableObserver<[WatchedShowEntity]>!
   private var repository: ShowsProgressRepository!

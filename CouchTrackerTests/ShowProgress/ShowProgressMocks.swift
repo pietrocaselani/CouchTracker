@@ -2,57 +2,16 @@ import RxSwift
 import TraktSwift
 
 final class ShowProgressMocks {
-  static let showProgressRepository = ShowProgressRepositoryMock()
+  static let showProgressRepository = ShowProgressAPIRepositoryMock()
 
   private init() {}
-
-  final class ShowProgressRepositoryMock: ShowProgressRepository {
-    func fetchShowProgress(showId: String, hidden: Bool, specials: Bool, countSpecials: Bool) -> Observable<BaseShow> {
-      let target = Shows.watchedProgress(showId: showId, hidden: hidden, specials: specials, countSpecials: countSpecials)
-      return traktProviderMock.shows.rx.request(target).map(BaseShow.self).asObservable()
-    }
-
-    func fetchDetailsOf(episodeNumber: Int, on seasonNumber: Int, of showId: String, extended: Extended) -> Observable<Episode> {
-      let target = Episodes.summary(showId: showId, season: seasonNumber, episode: episodeNumber, extended: extended)
-      return traktProviderMock.episodes.rx.request(target).map(Episode.self).asObservable()
-    }
-  }
-
-  final class ShowProgressServiceMock: ShowProgressInteractor {
-    private let repository: ShowProgressRepository
-
-    init(repository: ShowProgressRepository) {
-      self.repository = repository
-    }
-
-    func fetchShowProgress(ids: ShowIds) -> Observable<WatchedShowBuilder> {
-      let observable = repository.fetchShowProgress(showId: ids.realId,
-                                                    hidden: false, specials: false, countSpecials: false)
-
-      return observable.map { WatchedShowBuilder(ids: ids, detailShow: $0, episode: nil) }
-        .flatMap { [unowned self] builder -> Observable<WatchedShowBuilder> in
-          return self.fetchNextEpisodeDetails(builder)
-      }
-    }
-
-    private func fetchNextEpisodeDetails(_ builder: WatchedShowBuilder) -> Observable<WatchedShowBuilder> {
-      guard let nextEpisode = builder.detailShow?.nextEpisode else { return Observable.just(builder) }
-
-      let observable = repository.fetchDetailsOf(episodeNumber: nextEpisode.number,
-                                                  on: nextEpisode.season, of: builder.ids.realId, extended: .full)
-
-      return observable.map { episode in
-        builder.episode = episode
-        return builder
-      }
-    }
-  }
 
   final class ShowProgressAPIRepositoryMock: ShowProgressRepository {
 	  private let baseShow: BaseShow?
 	  private let baseShowError: Error?
 	  private let episode: Episode?
 	  private let episodeError: Error?
+    private let trakt = traktProviderMock
 
 	  init(baseShow: BaseShow? = nil, baseShowError: Error? = nil, episode: Episode? = nil, episodeError: Error? = nil) {
 		  self.baseShow = baseShow
@@ -61,28 +20,32 @@ final class ShowProgressMocks {
 		  self.episodeError = episodeError
 	  }
 
-	  func fetchShowProgress(showId: String, hidden: Bool, specials: Bool, countSpecials: Bool) -> Observable<BaseShow> {
-		  if let show = baseShow {
-			  return Observable.just(show)
-		  }
+    func fetchShowProgress(ids: ShowIds) -> Single<WatchedShowBuilder> {
+      if let error = baseShowError { return Single.error(error) }
 
-		  if let showError = baseShowError {
-			  return Observable.error(showError)
-		  }
+      if let error = episodeError { return Single.error(error) }
 
-		  return Observable.empty()
-	  }
+      let target = Shows.watchedProgress(showId: ids.realId, hidden: true, specials: true, countSpecials: true)
+      let single = trakt.shows.rx.request(target).map(BaseShow.self)
 
-	  func fetchDetailsOf(episodeNumber: Int, on seasonNumber: Int, of showId: String, extended: Extended) -> Observable<Episode> {
-		  if let episode = episode {
-			  return Observable.just(episode)
-		  }
+      return single.flatMap { baseShowMock -> Single<WatchedShowBuilder> in
+        let builder = WatchedShowBuilder(ids: ids)
+        builder.detailShow = baseShowMock
+        return self.fetchEpisodeDetails(ids, builder, baseShowMock.nextEpisode)
+      }
+    }
 
-		  if let episodeError = episodeError {
-			  return Observable.error(episodeError)
-		  }
+    private func fetchEpisodeDetails(_ ids: ShowIds, _ builder: WatchedShowBuilder, _ episode: Episode?) -> Single<WatchedShowBuilder> {
+      guard let nextEpisode = episode else { return Single.just(builder) }
 
-		  return Observable.empty()
-	  }
+      let episodeTarget = Episodes.summary(showId: ids.realId, season: nextEpisode.season,
+                                           episode: nextEpisode.number, extended: Extended.fullEpisodes)
+
+      let single = self.trakt.episodes.rx.request(episodeTarget).map(Episode.self)
+      return single.map { e -> WatchedShowBuilder in
+        builder.episode = e
+        return builder
+      }
+    }
   }
 }

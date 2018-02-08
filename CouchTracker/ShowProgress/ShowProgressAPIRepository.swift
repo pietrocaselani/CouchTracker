@@ -10,17 +10,50 @@ final class ShowProgressAPIRepository: ShowProgressRepository {
     self.schedulers = schedulers
   }
 
-  func fetchShowProgress(showId: String, hidden: Bool,
-                         specials: Bool, countSpecials: Bool) -> Observable<BaseShow> {
-    let target = Shows.watchedProgress(showId: showId, hidden: hidden, specials: specials, countSpecials: countSpecials)
+  func fetchShowProgress(ids: ShowIds) -> Single<WatchedShowBuilder> {
+    let builder = WatchedShowBuilder(ids: ids)
 
-    return trakt.shows.rx.request(target).observeOn(schedulers.networkScheduler).map(BaseShow.self).asObservable()
+    return buildProgressForShow(builder)
+      .flatMap { [unowned self] in self.fetchNextEpisodeDetails($0) }
   }
 
-  func fetchDetailsOf(episodeNumber: Int, on seasonNumber: Int,
-                      of showId: String, extended: Extended) -> Observable<Episode> {
+  private func buildProgressForShow(_ builder: WatchedShowBuilder) -> Single<WatchedShowBuilder> {
+    let showId = builder.ids.realId
+
+    let observable = fetchShowProgress(showId: showId)
+
+    return observable.map {
+      builder.detailShow = $0
+      return builder
+    }
+  }
+
+  private func fetchShowProgress(showId: String) -> Single<BaseShow> {
+    let target = Shows.watchedProgress(showId: showId, hidden: true, specials: true, countSpecials: true)
+
+    return trakt.shows.rx.request(target).map(BaseShow.self).observeOn(schedulers.networkScheduler)
+  }
+
+  private func fetchNextEpisodeDetails(_ builder: WatchedShowBuilder) -> Single<WatchedShowBuilder> {
+    guard let episode = builder.detailShow?.nextEpisode else { return Single.just(builder) }
+
+    let showId = builder.ids.realId
+
+    let observable = fetchDetailsOf(episodeNumber: episode.number,
+                                    on: episode.season, of: showId, extended: .full)
+
+    return observable.map {
+      builder.episode = $0
+      return builder
+      }.catchError { _ -> Single<WatchedShowBuilder> in
+        return Single.just(builder)
+    }
+  }
+
+  private func fetchDetailsOf(episodeNumber: Int, on seasonNumber: Int,
+                              of showId: String, extended: Extended) -> Single<Episode> {
     let target = Episodes.summary(showId: showId, season: seasonNumber, episode: episodeNumber, extended: extended)
 
-    return trakt.episodes.rx.request(target).observeOn(schedulers.networkScheduler).map(Episode.self).asObservable()
+    return trakt.episodes.rx.request(target).map(Episode.self).observeOn(schedulers.networkScheduler)
   }
 }

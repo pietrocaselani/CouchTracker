@@ -6,12 +6,15 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
   private let trakt: TraktProvider
   private let dataSource: ShowsProgressDataSource
   private let schedulers: Schedulers
+  private let showProgressRepository: ShowProgressRepository
   private let disposeBag = DisposeBag()
 
-  init(trakt: TraktProvider, dataSource: ShowsProgressDataSource, schedulers: Schedulers) {
+  init(trakt: TraktProvider, dataSource: ShowsProgressDataSource,
+       schedulers: Schedulers, showProgressRepository: ShowProgressRepository) {
     self.trakt = trakt
     self.dataSource = dataSource
     self.schedulers = schedulers
+    self.showProgressRepository = showProgressRepository
   }
 
   func fetchWatchedShows(extended: Extended) -> Observable<[WatchedShowEntity]> {
@@ -39,60 +42,15 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
     return dataSource.fetchWatchedShows()
   }
 
-  private func fetchShowProgress(_ baseShow: BaseShow) -> Observable<WatchedShowEntity> {
-    guard let show = baseShow.show else { return Observable.empty() }
+  private func fetchShowProgress(_ baseShow: BaseShow) -> Single<WatchedShowEntity> {
+    guard let show = baseShow.show else { Swift.fatalError("Can't fetch show progress without show") }
 
-    return fetchShowProgress(ids: show.ids)
+    return showProgressRepository.fetchShowProgress(ids: show.ids)
       .flatMap { [unowned self] in return self.mapToEntity(baseShow, builder: $0) }
   }
 
-  private func fetchShowProgress(ids: ShowIds) -> Observable<WatchedShowBuilder> {
-    let builder = WatchedShowBuilder(ids: ids)
-
-    return buildProgressForShow(builder)
-      .flatMap { [unowned self] in self.fetchNextEpisodeDetails($0) }
-  }
-
-  private func buildProgressForShow(_ builder: WatchedShowBuilder) -> Observable<WatchedShowBuilder> {
-    let showId = builder.ids.realId
-
-    let observable = fetchShowProgress(showId: showId)
-
-    return observable.map {
-      builder.detailShow = $0
-      return builder
-    }
-  }
-
-  private func fetchShowProgress(showId: String) -> Observable<BaseShow> {
-    let target = Shows.watchedProgress(showId: showId, hidden: true, specials: true, countSpecials: true)
-
-    return trakt.shows.rx.request(target).map(BaseShow.self).asObservable().observeOn(schedulers.networkScheduler)
-  }
-
-  private func fetchNextEpisodeDetails(_ builder: WatchedShowBuilder) -> Observable<WatchedShowBuilder> {
-    guard let episode = builder.detailShow?.nextEpisode else { return Observable.just(builder) }
-
-    let showId = builder.ids.realId
-
-    let observable = fetchDetailsOf(episodeNumber: episode.number,
-                                               on: episode.season, of: showId, extended: .full)
-
-    return observable.map {
-      builder.episode = $0
-      return builder
-      }.catchErrorJustReturn(builder)
-  }
-
-  private func fetchDetailsOf(episodeNumber: Int, on seasonNumber: Int,
-                              of showId: String, extended: Extended) -> Observable<Episode> {
-    let target = Episodes.summary(showId: showId, season: seasonNumber, episode: episodeNumber, extended: extended)
-
-    return trakt.episodes.rx.request(target).map(Episode.self).asObservable().observeOn(schedulers.networkScheduler)
-  }
-
-  private func mapToEntity(_ baseShow: BaseShow, builder: WatchedShowBuilder) -> Observable<WatchedShowEntity> {
-    guard let show = baseShow.show else { return Observable.empty() }
+  private func mapToEntity(_ baseShow: BaseShow, builder: WatchedShowBuilder) -> Single<WatchedShowEntity> {
+    guard let show = baseShow.show else { Swift.fatalError("Can't create WatchedShowEntity without show") }
 
     let showIds = builder.ids
 
@@ -110,6 +68,6 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
                                    nextEpisode: episodeEntity,
                                    lastWatched: lastWatched)
 
-    return Observable.just(entity).observeOn(schedulers.networkScheduler)
+    return Single.just(entity).observeOn(schedulers.networkScheduler)
   }
 }

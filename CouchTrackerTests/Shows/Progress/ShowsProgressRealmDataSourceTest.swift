@@ -17,7 +17,7 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
     var testableConfiguration = Realm.Configuration()
     testableConfiguration.inMemoryIdentifier = self.name
 
-    realmProvider = DefaultRealmProvider(configuration: testableConfiguration)
+    realmProvider = DefaultRealmProvider(buildConfig: TestBuildConfig(), configuration: testableConfiguration)
     schedulers = TestSchedulers()
     dataSource = ShowsProgressRealmDataSource(realmProvider: realmProvider, schedulers: schedulers)
     observer = schedulers.createObserver([WatchedShowEntity].self)
