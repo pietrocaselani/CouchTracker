@@ -12,29 +12,31 @@ final class Environment {
   let defaultOutput: TraktLoginOutput
   let schedulers: Schedulers
   let realmProvider: RealmProvider
-  let debug: Bool
+  let buildConfig: BuildConfig
 
   private init() {
     let schedulers = DefaultSchedulers()
 
+    let debug: Bool
+
     #if DEBUG
-      self.debug = true
+      debug = true
     #else
-      self.debug = false
+      debug = false
     #endif
 
-    if debug {
-      guard let docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
-        Swift.fatalError("Can't find documents directory")
-      }
-
-      print("Documents directory: \(docsDir)")
-    }
+    self.buildConfig = DefaultBuildConfig(debug: debug)
 
     var plugins = [PluginType]()
 
     if debug {
       plugins = [NetworkLoggerPlugin()]
+
+      guard let docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
+        Swift.fatalError("Can't find documents directory")
+      }
+
+      print("Documents directory: \(docsDir)")
     }
 
     let traktBuilder = TraktBuilder {
@@ -64,6 +66,6 @@ final class Environment {
     self.loginObservable = traktLoginStore
     self.defaultOutput = traktLoginStore.loginOutput
 
-    self.realmProvider = DefaultRealmProvider()
+    self.realmProvider = DefaultRealmProvider(buildConfig: buildConfig)
   }
 }
