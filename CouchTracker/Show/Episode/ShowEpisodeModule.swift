@@ -19,7 +19,7 @@ final class ShowEpisodeModule {
                                                 cofigurationRepository: configurationRepository,
                                                 schedulers: schedulers)
 
-    let showProgressRepository = ShowProgressAPIRepository(trakt: trakt, schedulers: schedulers)
+    let showProgressRepository = ShowProgressAPIRepository(trakt: trakt)
 
     let showEpisodeDataSource = ShowEpisodeRealmDataSource(realmProvider: realmProvider)
     let repository = ShowEpisodeAPIRepository(trakt: trakt, dataSource: showEpisodeDataSource,

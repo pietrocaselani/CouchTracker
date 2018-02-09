@@ -3,11 +3,9 @@ import TraktSwift
 
 final class ShowProgressAPIRepository: ShowProgressRepository {
   private let trakt: TraktProvider
-  private let schedulers: Schedulers
 
-  init(trakt: TraktProvider, schedulers: Schedulers) {
+  init(trakt: TraktProvider) {
     self.trakt = trakt
-    self.schedulers = schedulers
   }
 
   func fetchShowProgress(ids: ShowIds) -> Single<WatchedShowBuilder> {
@@ -30,8 +28,7 @@ final class ShowProgressAPIRepository: ShowProgressRepository {
 
   private func fetchShowProgress(showId: String) -> Single<BaseShow> {
     let target = Shows.watchedProgress(showId: showId, hidden: true, specials: true, countSpecials: true)
-
-    return trakt.shows.rx.request(target).map(BaseShow.self).observeOn(schedulers.networkScheduler)
+    return trakt.shows.rx.request(target).map(BaseShow.self)
   }
 
   private func fetchNextEpisodeDetails(_ builder: WatchedShowBuilder) -> Single<WatchedShowBuilder> {
@@ -45,15 +42,12 @@ final class ShowProgressAPIRepository: ShowProgressRepository {
     return observable.map {
       builder.episode = $0
       return builder
-      }.catchError { _ -> Single<WatchedShowBuilder> in
-        return Single.just(builder)
-    }
+      }.catchError { _ in return Single.just(builder) }
   }
 
   private func fetchDetailsOf(episodeNumber: Int, on seasonNumber: Int,
                               of showId: String, extended: Extended) -> Single<Episode> {
     let target = Episodes.summary(showId: showId, season: seasonNumber, episode: episodeNumber, extended: extended)
-
-    return trakt.episodes.rx.request(target).map(Episode.self).observeOn(schedulers.networkScheduler)
+    return trakt.episodes.rx.request(target).map(Episode.self)
   }
 }
