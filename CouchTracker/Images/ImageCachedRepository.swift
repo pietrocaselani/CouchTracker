@@ -23,12 +23,12 @@ final class ImageCachedRepository: ImageRepository {
 	}
 
 	func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?,
-	                      backdropSize: BackdropImageSize?) -> Observable<ImagesEntity> {
+	                      backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
 		let target = Movies.images(movieId: movieId)
 
 		let apiObservable = imagesFromAPI(using: tmdb.movies, with: target)
 
-		return createImagesEntities(apiObservable, posterSize: posterSize, backdropSize: backdropSize)
+		return createImagesEntities(apiObservable, posterSize: posterSize, backdropSize: backdropSize).asSingle()
 	}
 
 	func fetchShowImages(for showId: Int, posterSize: PosterImageSize?,
@@ -40,16 +40,17 @@ final class ImageCachedRepository: ImageRepository {
 		return createImagesEntities(apiObservable, posterSize: posterSize, backdropSize: backdropSize).asSingle()
 	}
 
-	func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes? = nil) -> Observable<URL> {
+	func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes? = nil) -> Single<URL> {
 		let tvdbObservable = fetchEpisodeImageFromTVDB(episode.tvdb, size?.tvdb ?? .normal)
 
 		guard let tmdbId = episode.tmdb else {
-			return tvdbObservable
+			return tvdbObservable.asSingle()
 		}
 
 		return fetchEpisodeImageFromTMDB(tmdbId, episode.season, episode.number, size?.tmdb ?? .w300)
 			.catchError { _ in tvdbObservable }
 			.ifEmpty(switchTo: tvdbObservable)
+			.asSingle()
 	}
 
 	private func fetchEpisodeImageFromTMDB(_ showId: Int, _ season: Int,

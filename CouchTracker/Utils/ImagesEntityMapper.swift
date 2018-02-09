@@ -2,7 +2,9 @@ import TMDBSwift
 import Foundation
 
 final class ImagesEntityMapper {
-  private init() {}
+  private init() {
+    Swift.fatalError("No instances for you!")
+  }
 
   static func entity(for images: Images, using configuration: Configuration,
                      posterSize: PosterImageSize = .w342,
