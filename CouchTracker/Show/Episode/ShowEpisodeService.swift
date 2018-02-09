@@ -12,7 +12,7 @@ final class ShowEpisodeService: ShowEpisodeInteractor {
 
   func fetchImageURL(for episode: EpisodeImageInput) -> Single<URL> {
     let size = EpisodeImageSizes(tvdb: .normal, tmdb: .w300)
-    return imageRepository.fetchEpisodeImages(for: episode, size: size).asSingle()
+    return imageRepository.fetchEpisodeImages(for: episode, size: size)
   }
 
   func toggleWatch(for episode: EpisodeEntity, of show: WatchedShowEntity) -> Single<SyncResult> {

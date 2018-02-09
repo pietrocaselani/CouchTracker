@@ -28,7 +28,7 @@ final class TrendingCellInteractorMock: TrendingCellInteractor {
 
   func fetchPosterImageURL(of type: TrendingViewModelType, with size: PosterImageSize?) -> Observable<URL> {
     if case .movie(let tmdbId) = type {
-      let observable = imageRepository.fetchMovieImages(for: tmdbId, posterSize: size, backdropSize: nil)
+      let observable = imageRepository.fetchMovieImages(for: tmdbId, posterSize: size, backdropSize: nil).asObservable()
       return observable.flatMap { imageEntity -> Observable<URL> in
         guard let imageLink = imageEntity.posterImage()?.link, let url = URL(string: imageLink) else {
           return Observable.empty()

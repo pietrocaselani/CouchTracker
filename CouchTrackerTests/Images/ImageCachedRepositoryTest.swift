@@ -21,7 +21,7 @@ final class ImageCachedRepositoryTest: XCTestCase {
 
 	func testImageCachedRepository_fetchMovieImages_withDefaultSizes() {
 		//When
-		_ = repository.fetchMovieImages(for: 550, posterSize: nil, backdropSize: nil).subscribe(observer)
+		_ = repository.fetchMovieImages(for: 550, posterSize: nil, backdropSize: nil).asObservable().subscribe(observer)
 		scheduler.start()
 
 		//Then
@@ -34,14 +34,14 @@ final class ImageCachedRepositoryTest: XCTestCase {
 
 		let images = ImagesEntity(identifier: 550, backdrops: [backdrop], posters: [poster], stills: [ImageEntity]())
 
-		let expectedEvents = [next(1, images), completed(2)]
+		let expectedEvents = [next(2, images), completed(2)]
 
 		XCTAssertEqual(observer.events, expectedEvents)
 	}
 
 	func testImageCachedRepository_fetchMovieImages_withSpecificSizes() {
 		//When
-		_ = repository.fetchMovieImages(for: 550, posterSize: .w92, backdropSize: .w1280).subscribe(observer)
+		_ = repository.fetchMovieImages(for: 550, posterSize: .w92, backdropSize: .w1280).asObservable().subscribe(observer)
 		scheduler.start()
 
 		//Then
@@ -54,7 +54,7 @@ final class ImageCachedRepositoryTest: XCTestCase {
 
 		let images = ImagesEntity(identifier: 550, backdrops: [backdrop], posters: [poster], stills: [ImageEntity]())
 
-		let expectedEvents = [next(1, images), completed(2)]
+		let expectedEvents = [next(2, images), completed(2)]
 
 		XCTAssertEqual(observer.events, expectedEvents)
 	}
@@ -114,13 +114,13 @@ final class ImageCachedRepositoryTest: XCTestCase {
 	func testImageCachedRepository_fetchEpisodeImages_fromTMDB_withDefaultSizes() {
 		let input = EpisodeImageInputMock(tmdb: 1399, tvdb: 3254641, season: 1, number: 1)
 
-		_ = repository.fetchEpisodeImages(for: input).subscribe(episodeObserver)
+		_ = repository.fetchEpisodeImages(for: input).asObservable().subscribe(episodeObserver)
 
     scheduler.start()
 
 		let expectedURL = URL(string: "https:/image.tmdb.org/t/p/w300/wrGWeW4WKxnaeA8sxJb2T9O6ryo.jpg")!
 
-		let expectedEvents = [next(1, expectedURL), completed(2)]
+		let expectedEvents = [next(2, expectedURL), completed(2)]
 
 		XCTAssertEqual(episodeObserver.events, expectedEvents)
 	}
@@ -130,13 +130,13 @@ final class ImageCachedRepositoryTest: XCTestCase {
 
 		let sizes = EpisodeImageSizes(tvdb: .normal, tmdb: .w185)
 
-		_ = repository.fetchEpisodeImages(for: input, size: sizes).subscribe(episodeObserver)
+		_ = repository.fetchEpisodeImages(for: input, size: sizes).asObservable().subscribe(episodeObserver)
 
 		scheduler.start()
 
 		let expectedURL = URL(string: "https:/image.tmdb.org/t/p/w185/wrGWeW4WKxnaeA8sxJb2T9O6ryo.jpg")!
 
-		let expectedEvents = [next(1, expectedURL), completed(2)]
+		let expectedEvents = [next(2, expectedURL), completed(2)]
 
 		XCTAssertEqual(episodeObserver.events, expectedEvents)
 	}
@@ -144,7 +144,7 @@ final class ImageCachedRepositoryTest: XCTestCase {
 	func testImageCachedRepository_fetchEpisodeImages_fromTVDB_withEmptyTMDBId_withDefaultSizes() {
 		let input = EpisodeImageInputMock(tmdb: nil, tvdb: 3254641, season: 1, number: 1)
 
-		_ = repository.fetchEpisodeImages(for: input).subscribe(episodeObserver)
+		_ = repository.fetchEpisodeImages(for: input).asObservable().subscribe(episodeObserver)
 
 		scheduler.start()
 
@@ -160,7 +160,7 @@ final class ImageCachedRepositoryTest: XCTestCase {
 
 		let sizes = EpisodeImageSizes(tvdb: .small, tmdb: .w92)
 
-		_ = repository.fetchEpisodeImages(for: input, size: sizes).subscribe(episodeObserver)
+		_ = repository.fetchEpisodeImages(for: input, size: sizes).asObservable().subscribe(episodeObserver)
 
 		scheduler.start()
 
@@ -179,7 +179,7 @@ final class ImageCachedRepositoryTest: XCTestCase {
 
 		let sizes = EpisodeImageSizes(tvdb: .small, tmdb: .w92)
 
-		_ = repository.fetchEpisodeImages(for: input, size: sizes).subscribe(episodeObserver)
+		_ = repository.fetchEpisodeImages(for: input, size: sizes).asObservable().subscribe(episodeObserver)
 
 		scheduler.start()
 
