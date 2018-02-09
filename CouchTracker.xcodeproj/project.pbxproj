@@ -85,6 +85,7 @@
 		4F7B095E2016B7B7001F6C50 /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */; };
 		4F7B09602016B8BF001F6C50 /* NoCacheMoyaPluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7B095F2016B8BF001F6C50 /* NoCacheMoyaPluginTests.swift */; };
 		4F7B09612016B8BF001F6C50 /* NoCacheMoyaPluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7B095F2016B8BF001F6C50 /* NoCacheMoyaPluginTests.swift */; };
+		4F8EE011202DDA460002189B /* trakt_episodes_summary_error.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F8EE010202DDA460002189B /* trakt_episodes_summary_error.json */; };
 		4FD27A3C201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD27A3B201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift */; };
 		4FD27A3D201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD27A3B201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift */; };
 		5AFB185485EB040E4F014E77 /* Pods_CouchTrackerFastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 939B7E4F3BDEEABB056F9AEE /* Pods_CouchTrackerFastTests.framework */; };
@@ -656,6 +657,7 @@
 		4F6DC41C201549C100AA0DC8 /* MoviesManagerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerModule.swift; sourceTree = "<group>"; };
 		4F7B09532016B53B001F6C50 /* BaseViewMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewMock.swift; sourceTree = "<group>"; };
 		4F7B095F2016B8BF001F6C50 /* NoCacheMoyaPluginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCacheMoyaPluginTests.swift; sourceTree = "<group>"; };
+		4F8EE010202DDA460002189B /* trakt_episodes_summary_error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_episodes_summary_error.json; sourceTree = "<group>"; };
 		4FD27A3B201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCacheRepositoryTest.swift; sourceTree = "<group>"; };
 		534BF83F9A5CE210BB311AC1 /* Pods_TVDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TVDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		59441E4C8DE29AF103016522 /* Pods_TVDB_MacTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TVDB_MacTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1535,6 +1537,7 @@
 				64B801EA1FA7949D004A6EEE /* tmdb_movie_images_20526.json */,
 				64B801EC1FA7949D004A6EEE /* tmdb_movie_images.json */,
 				64B801E91FA7949D004A6EEE /* tmdb_show_images.json */,
+				4F8EE010202DDA460002189B /* trakt_episodes_summary_error.json */,
 				64B801C41FA79362004A6EEE /* trakt_episodes_summary.json */,
 				64B801C51FA79362004A6EEE /* trakt_genres_movies.json */,
 				64B801C31FA79362004A6EEE /* trakt_genres_shows.json */,
@@ -1546,9 +1549,9 @@
 				6448372B2023C402008ECE2B /* trakt_shows_watchedprogress_without_nextepisode.json */,
 				64B801C21FA79362004A6EEE /* trakt_shows_watchedprogress.json */,
 				6488301F1FB2250C00BB217D /* trakt_sync_watched_shows.json */,
+				392D9C154DB74E65A233F9C3 /* trakt_users_settings_invalid.json */,
 				64B801C91FA79363004A6EEE /* trakt_users_settings.json */,
 				6448372D2023CF4D008ECE2B /* tvdb_episodes.json */,
-				392D9C154DB74E65A233F9C3 /* trakt_users_settings_invalid.json */,
 			);
 			path = JSONs;
 			sourceTree = "<group>";
@@ -2001,6 +2004,7 @@
 			files = (
 				64B801D61FA79369004A6EEE /* trakt_search_textquery.json in Resources */,
 				648830201FB2250C00BB217D /* trakt_sync_watched_shows.json in Resources */,
+				4F8EE011202DDA460002189B /* trakt_episodes_summary_error.json in Resources */,
 				64B801D31FA79369004A6EEE /* trakt_episodes_summary.json in Resources */,
 				640373131FABA8CD005023D5 /* trakt_movies_summary.json in Resources */,
 				6448372C2023C402008ECE2B /* trakt_shows_watchedprogress_without_nextepisode.json in Resources */,
