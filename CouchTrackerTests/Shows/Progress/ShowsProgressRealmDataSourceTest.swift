@@ -3,7 +3,6 @@ import RxTest
 import RxSwift
 import RealmSwift
 import TraktSwift
-import RxBlocking
 
 final class ShowsProgressRealmDataSourceTest: XCTestCase {
 	private var realmProvider: RealmProvider!
