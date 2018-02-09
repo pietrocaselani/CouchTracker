@@ -1,5 +1,6 @@
 import RxSwift
 import TMDBSwift
+import TVDBSwift
 import Moya
 
 func createMovieImagesRepositoryMock(_ images: ImagesEntity) -> ImageRepository {
@@ -48,13 +49,16 @@ final class ImagesRepositorySampleMock: ImageRepository {
 }
 
 final class ImageRepositoryMock: ImageRepository {
+  typealias TMDBEpisodes = TMDBSwift.Episodes
+  typealias TVDBEpisodes = TVDBSwift.Episodes
+
   private let tmdb: TMDBProvider
   private let tvdb: TVDBProvider
   private let configuration: ConfigurationRepository
   var fetchMovieImagesInvoked = false
   var fetchShowImagesInvoked = false
   var fetchEpisodeImagesInvoked = false
-  var fetchEpisodeImagesParameters: (EpisodeImageInput, EpisodeImageSizes?)?
+  var fetchEpisodeImagesParameters: (input: EpisodeImageInput, sizes: EpisodeImageSizes?)?
 
   init(tmdb: TMDBProvider, tvdb: TVDBProvider, cofigurationRepository: ConfigurationRepository) {
     self.tmdb = tmdb
@@ -92,10 +96,43 @@ final class ImageRepositoryMock: ImageRepository {
     fetchEpisodeImagesInvoked = true
     fetchEpisodeImagesParameters = (episode, size)
 
+    let tmdbObservable = fetchEpisodeImageFromTMDB(episode, size)
+    let tvdbObservable = fetchEpisodeImageFromTVDB(episode, size)
+
+    return tmdbObservable.ifEmpty(switchTo: tvdbObservable).catchError { _ in tvdbObservable }.asSingle()
+  }
+
+  private func fetchEpisodeImageFromTVDB(_ episode: EpisodeImageInput, _ size: EpisodeImageSizes?) -> Observable<URL> {
+    let single = tvdb.episodes.rx.request(TVDBEpisodes.episode(id: episode.tvdb)).map(EpisodeResponse.self)
+
+    return single.asObservable().flatMap { response -> Observable<URL> in
+      guard let filename = response.episode.filename else { return Observable.empty() }
+
+      let size = size?.tvdb ?? TVDBEpisodeImageSize.normal
+      let baseURL = size == TVDBEpisodeImageSize.normal ? TVDB.bannersImageURL : TVDB.smallBannersImageURL
+      return Observable.just(baseURL.appendingPathComponent(filename))
+    }
+  }
+
+  private func fetchEpisodeImageFromTMDB(_ episode: EpisodeImageInput, _ size: EpisodeImageSizes?) -> Observable<URL> {
     guard let tmdbId = episode.tmdb else {
-      return Single.never()
+      return Observable.empty()
     }
 
-    return Single.never()
+    let target = TMDBEpisodes.images(showId: tmdbId, season: episode.season, episode: episode.number)
+    let tmdbImages = tmdb.episodes.rx.request(target).map(Images.self).asObservable()
+    let configurationObservable = configuration.fetchConfiguration()
+
+    let imagesObservable = Observable.combineLatest(tmdbImages, configurationObservable) { (images, configuration) -> ImagesEntity in
+      let tmdbSize = size?.tmdb ?? StillImageSize.w300
+      return ImagesEntityMapper.entity(for: images, using: configuration, stillSize: tmdbSize)
+    }
+
+    let tmdbURLObservable = imagesObservable.flatMap { images -> Observable<URL> in
+      guard let link = images.stillImage()?.link, let url = URL(string: link) else { return Observable.empty() }
+      return Observable.just(url)
+    }
+
+    return tmdbURLObservable
   }
 }
