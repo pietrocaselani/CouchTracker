@@ -19,7 +19,6 @@ end
 
 def tests_shared_pods
   pod 'RxTest', '4.0.0'
-  pod 'RxBlocking', '4.1.2'
 end
 
 target 'CouchTrackerFastTests' do
@@ -32,7 +31,7 @@ target 'CouchTrackerFastTests' do
 end
 
 target 'CouchTracker' do
-  platform :ios, '9.0'
+  platform :ios, '10.0'
   use_frameworks!
   inhibit_all_warnings!
 
