@@ -577,6 +577,9 @@
 		64FDE5051F7E64F200A4C7AA /* ShowEpisodeiOSPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDE5031F7E64F200A4C7AA /* ShowEpisodeiOSPresenter.swift */; };
 		64FDE5061F7E64F200A4C7AA /* ShowEpisodeiOSPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDE5031F7E64F200A4C7AA /* ShowEpisodeiOSPresenter.swift */; };
 		697C56830BC1531EA1BD9DDB /* Pods_CouchTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847EA74DA5621E8BC2C9D97D /* Pods_CouchTrackerTests.framework */; };
+		DF30AAB4D0690827F1ECFE26 /* SeasonEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3C9E24EE5E852B4B54ADDD /* SeasonEntity.swift */; };
+		DF3637F7606021C95B8F1111 /* SeasonEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3C9E24EE5E852B4B54ADDD /* SeasonEntity.swift */; };
+		DF3CA8D9B4ACEA5A9008BA60 /* SeasonEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3C9E24EE5E852B4B54ADDD /* SeasonEntity.swift */; };
 		F23089BF675566CBB1950BC8 /* Pods_CouchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FA5E5D147F9088F5D88235F /* Pods_CouchTracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -929,6 +932,7 @@
 		D67E1A3BC6DA1CF83894528D /* Pods-CouchTrackerFastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerFastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerFastTests/Pods-CouchTrackerFastTests.release.xcconfig"; sourceTree = "<group>"; };
 		D98956F891B4A93C32DB6F21 /* Pods-CouchTrackerUgly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerUgly.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerUgly/Pods-CouchTrackerUgly.debug.xcconfig"; sourceTree = "<group>"; };
 		DF068A4FDD7BF265740D4182 /* Pods-TraktTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraktTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraktTests/Pods-TraktTests.release.xcconfig"; sourceTree = "<group>"; };
+		DF3C9E24EE5E852B4B54ADDD /* SeasonEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeasonEntity.swift; sourceTree = "<group>"; };
 		E0E15B46F23414FFD31B0507 /* Pods-CouchTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerTests/Pods-CouchTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E17910F474A969CBB2B2C20B /* Pods_TraktTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraktTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6495406CE9D164BEA40B59D /* Pods_TVDB_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TVDB_Mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1050,6 +1054,20 @@
 				64EB979F1FB20C8E00C96E43 /* TraktAuthenticationProvider.swift */,
 			);
 			path = Providers;
+			sourceTree = "<group>";
+		};
+		4F562E04202E763500CB1AE0 /* EntityMappers */ = {
+			isa = PBXGroup;
+			children = (
+				645B834C1F73E2A8009DDF53 /* EpisodeEntityMapper.swift */,
+				64A5DCC51F56E2DF006853A2 /* ImagesEntityMapper.swift */,
+				640330421F67FEBA001CCEDB /* ImagesViewModelMapper.swift */,
+				64A5DCCA1F56E3FC006853A2 /* MovieEntityMapper.swift */,
+				6483911A1F505F4100911BA0 /* MovieViewModelMapper.swift */,
+				642F6F541F5D74F10012F04F /* ShowEntityMapper.swift */,
+				644FCDDE1F5ED41F00346605 /* ShowViewModelMapper.swift */,
+			);
+			path = EntityMappers;
 			sourceTree = "<group>";
 		};
 		4F6DC40A2015448800AA0DC8 /* Movies */ = {
@@ -1361,6 +1379,7 @@
 				644EE1511F55E8D20053D631 /* MovieEntity.swift */,
 				642F6F4F1F5D722B0012F04F /* ShowEntity.swift */,
 				644EE1561F55E9460053D631 /* TrendingMovieEntity.swift */,
+				DF3C9E24EE5E852B4B54ADDD /* SeasonEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1449,6 +1468,7 @@
 				4F236DC3202CB9C5007FB1B9 /* DefaultBuildConfig.swift */,
 				641D497820222F40002A4EAD /* DefaultSchedulers.swift */,
 				644EE1501F55E8C10053D631 /* Entities */,
+				4F562E04202E763500CB1AE0 /* EntityMappers */,
 				64CC08B01F71A0D1004D164A /* Environment.swift */,
 				6406BED61F4DC353004661C4 /* Extensions */,
 				6406BEDE1F4DC353004661C4 /* Genres */,
@@ -1610,17 +1630,10 @@
 			isa = PBXGroup;
 			children = (
 				64CC08AC1F719B85004D164A /* CompositeLoginOutput.swift */,
-				645B834C1F73E2A8009DDF53 /* EpisodeEntityMapper.swift */,
-				64A5DCC51F56E2DF006853A2 /* ImagesEntityMapper.swift */,
 				64F05BF51F69527900E3B861 /* ImagesSize.swift */,
-				640330421F67FEBA001CCEDB /* ImagesViewModelMapper.swift */,
-				64A5DCCA1F56E3FC006853A2 /* MovieEntityMapper.swift */,
-				6483911A1F505F4100911BA0 /* MovieViewModelMapper.swift */,
 				649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */,
 				649F56D21FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift */,
 				64343E1D1F7EB3B7004557E4 /* Secrets.swift */,
-				642F6F541F5D74F10012F04F /* ShowEntityMapper.swift */,
-				644FCDDE1F5ED41F00346605 /* ShowViewModelMapper.swift */,
 				649D3DE32027D01F00DF401A /* ThreadWithRunLoop.swift */,
 				649D3DDF2027D01300DF401A /* ThreadWithRunLoopScheduler.swift */,
 			);
@@ -2482,6 +2495,7 @@
 				392D965A215A77454BDE43DC /* LoginState.swift in Sources */,
 				392D9ECB74DB0D737B5F9790 /* EpisodeImageInput.swift in Sources */,
 				392D9EBB02059C5ACD671C15 /* AppConfigurationsUserDefaultsDataSource.swift in Sources */,
+				DF30AAB4D0690827F1ECFE26 /* SeasonEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2663,6 +2677,7 @@
 				649D3DE12027D01300DF401A /* ThreadWithRunLoopScheduler.swift in Sources */,
 				392D9999DB34BB269067B8A4 /* AppConfigurationsUserDefaultsDataSourceTest.swift in Sources */,
 				392D98EAB61CEA3E33B432D7 /* ShowsProgressRealmDataSourceTest.swift in Sources */,
+				DF3CA8D9B4ACEA5A9008BA60 /* SeasonEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2850,6 +2865,7 @@
 				392D9E5BC34939824EA80D0C /* AppConfigurationsUserDefaultsDataSource.swift in Sources */,
 				392D96ACD23B00E44272EE5E /* AppConfigurationsUserDefaultsDataSourceTest.swift in Sources */,
 				392D9FDFC1C49D05157AB8F4 /* ShowsProgressRealmDataSourceTest.swift in Sources */,
+				DF3637F7606021C95B8F1111 /* SeasonEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
