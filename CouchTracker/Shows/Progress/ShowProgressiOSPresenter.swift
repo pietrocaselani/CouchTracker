@@ -7,6 +7,7 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
   private let disposeBag = DisposeBag()
   private var currentFilter = ShowProgressFilter.none
   private var currentSort = ShowProgressSort.title
+  private var currentDirection = ShowProgressDirection.asc
   private var entities = [WatchedShowEntity]()
   private var originalEntities = [WatchedShowEntity]()
   var dataSource: ShowsProgressViewDataSource
@@ -38,17 +39,13 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
   }
 
   func handleDirection() {
-    entities.reverse()
+    currentDirection = currentDirection.toggle()
     reloadViewModels()
   }
 
   func changeSort(to index: Int, filter: Int) {
     currentSort = ShowProgressSort.sort(for: index)
     currentFilter = ShowProgressFilter.filter(for: filter)
-
-    entities = originalEntities.filter(currentFilter.filter())
-
-    entities.sort(by: currentSort.comparator())
 
     reloadViewModels()
   }
@@ -60,11 +57,16 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
 
   private func applyFilterAndSort() -> [WatchedShowViewModel] {
     entities = originalEntities.filter(currentFilter.filter()).sorted(by: currentSort.comparator())
+
+    if currentDirection == .desc {
+      entities = entities.reversed()
+    }
+
     return entities.map { [unowned self] in self.mapToViewModel($0) }
   }
 
   private func reloadViewModels() {
-    let sortedViewModels = entities.map { [unowned self] in self.mapToViewModel($0) }
+    let sortedViewModels = applyFilterAndSort()
 
     dataSource.viewModels = sortedViewModels
     view?.reloadList()

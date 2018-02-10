@@ -6,6 +6,7 @@ struct WatchedShowEntity: Hashable {
   let completed: Int
   let nextEpisode: EpisodeEntity?
   let lastWatched: Date?
+  let seasons: [WatchedSeasonEntity]
 
   var hashValue: Int {
     var hash = show.hashValue ^ aired.hashValue ^ completed.hashValue
@@ -17,6 +18,8 @@ struct WatchedShowEntity: Hashable {
     if let lastWatchedHash = lastWatched?.hashValue {
       hash ^= lastWatchedHash
     }
+
+    seasons.forEach { hash ^= $0.hashValue }
 
     return hash
   }
@@ -36,6 +39,7 @@ final class WatchedShowEntityBuilder {
   var completed: Int?
   var nextEpisode: EpisodeEntity?
   var lastWatched: Date?
+  var seasons = [WatchedSeasonEntity]()
 
   private init(entity: WatchedShowEntity) {
     self.show = entity.show
@@ -55,6 +59,6 @@ final class WatchedShowEntityBuilder {
     guard let completed = completed else { fatalError("completed can't be nil") }
 
     return WatchedShowEntity(show: show, aired: aired, completed: completed,
-                             nextEpisode: nextEpisode, lastWatched: lastWatched)
+                             nextEpisode: nextEpisode, lastWatched: lastWatched, seasons: seasons)
   }
 }

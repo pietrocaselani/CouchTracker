@@ -30,7 +30,7 @@ final class ShowProgressMocks {
 
       return single.flatMap { baseShowMock -> Single<WatchedShowBuilder> in
         let builder = WatchedShowBuilder(ids: ids)
-        builder.detailShow = baseShowMock
+        builder.progressShow = baseShowMock
         return self.fetchEpisodeDetails(ids, builder, baseShowMock.nextEpisode)
       }
     }

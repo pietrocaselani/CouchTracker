@@ -21,7 +21,7 @@ final class ShowProgressAPIRepository: ShowProgressRepository {
     let observable = fetchShowProgress(showId: showId)
 
     return observable.map {
-      builder.detailShow = $0
+      builder.progressShow = $0
       return builder
     }
   }
@@ -32,7 +32,7 @@ final class ShowProgressAPIRepository: ShowProgressRepository {
   }
 
   private func fetchNextEpisodeDetails(_ builder: WatchedShowBuilder) -> Single<WatchedShowBuilder> {
-    guard let episode = builder.detailShow?.nextEpisode else { return Single.just(builder) }
+    guard let episode = builder.progressShow?.nextEpisode else { return Single.just(builder) }
 
     let showId = builder.ids.realId
 

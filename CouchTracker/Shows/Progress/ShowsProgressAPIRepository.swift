@@ -57,16 +57,32 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
     let showEntity = ShowEntityMapper.entity(for: show)
     let episodeEntity = builder.episode.map { EpisodeEntityMapper.entity(for: $0, showIds: showIds) }
 
-    let aired = builder.detailShow?.aired ?? 0
-    let completed = builder.detailShow?.completed ?? 0
+    let aired = builder.progressShow?.aired ?? 0
+    let completed = builder.progressShow?.completed ?? 0
 
-    let lastWatched = builder.detailShow?.lastWatchedAt
+    let lastWatched = baseShow.lastWatchedAt
+
+    var seasonEntities = [WatchedSeasonEntity]()
+    if let baseSeasons = builder.progressShow?.seasons {
+      seasonEntities = baseSeasons.map { baseSeason in
+        let watchedEpisodes = baseSeason.episodes.map { baseEpisode in
+          WatchedEpisodeEntity(showIds: showIds, number: baseEpisode.number, lastWatchedAt: baseEpisode.lastWatchedAt)
+        }
+
+        return WatchedSeasonEntity(showIds: showIds,
+                            number: baseSeason.number,
+                            aired: baseSeason.aired,
+                            completed: baseSeason.completed,
+                            episodes: watchedEpisodes)
+      }
+    }
 
     let entity = WatchedShowEntity(show: showEntity,
                                    aired: aired,
                                    completed: completed,
                                    nextEpisode: episodeEntity,
-                                   lastWatched: lastWatched)
+                                   lastWatched: lastWatched,
+                                   seasons: seasonEntities)
 
     return Single.just(entity).observeOn(schedulers.networkScheduler)
   }
