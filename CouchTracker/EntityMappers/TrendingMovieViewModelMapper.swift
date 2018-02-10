@@ -1,7 +1,9 @@
 import TraktSwift
 
-final class MovieViewModelMapper {
-  private init() {}
+final class TrendingMovieViewModelMapper {
+  private init() {
+    Swift.fatalError("No instances for you!")
+  }
 
   static func viewModel(for movie: MovieEntity, defaultTitle: String = "TBA".localized) -> TrendingViewModel {
     return TrendingViewModel(title: movie.title ?? defaultTitle, type: movie.ids.tmdbModelType())
