@@ -7,6 +7,7 @@ final class WatchedShowEntityRealm: Object {
   @objc dynamic var completed = -1
   @objc dynamic var nextEpisode: EpisodeEntityRealm?
   @objc dynamic var lastWatched: Date?
+  let seasons = List<WatchedSeasonEntityRealm>()
 
   var show: ShowEntityRealm? {
     get {
@@ -53,7 +54,8 @@ final class WatchedShowEntityRealm: Object {
                              aired: self.aired,
                              completed: self.completed,
                              nextEpisode: self.nextEpisode?.toEntity(),
-                             lastWatched: self.lastWatched)
+                             lastWatched: self.lastWatched,
+                             seasons: self.seasons.map { $0.toEntity() })
   }
 }
 
@@ -66,6 +68,7 @@ extension WatchedShowEntity {
     entity.completed = self.completed
     entity.nextEpisode = self.nextEpisode?.toRealm()
     entity.lastWatched = self.lastWatched
+    entity.seasons.append(objectsIn: self.seasons.map { $0.toRealm() })
 
     return entity
   }

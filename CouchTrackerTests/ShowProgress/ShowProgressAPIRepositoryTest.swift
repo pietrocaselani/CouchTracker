@@ -17,7 +17,7 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
 
     _ = repository.fetchShowProgress(ids: showIds!).subscribe(onSuccess: { builder in
       testExpectation.fulfill()
-      XCTAssertNotNil(builder.detailShow)
+      XCTAssertNotNil(builder.progressShow)
       XCTAssertNil(builder.episode)
     }) { error in
       XCTFail(error.localizedDescription)
@@ -36,7 +36,7 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
 
     _ = repository.fetchShowProgress(ids: showIds!).subscribe(onSuccess: { builder in
       testExpectation.fulfill()
-      XCTAssertNotNil(builder.detailShow)
+      XCTAssertNotNil(builder.progressShow)
       XCTAssertNil(builder.episode)
     }) { error in
       XCTFail(error.localizedDescription)
@@ -55,7 +55,7 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
 
     _ = repository.fetchShowProgress(ids: showIds!).subscribe(onSuccess: { builder in
       testExpectation.fulfill()
-      XCTAssertNotNil(builder.detailShow)
+      XCTAssertNotNil(builder.progressShow)
       XCTAssertNotNil(builder.episode)
     }) { error in
       XCTFail(error.localizedDescription)
