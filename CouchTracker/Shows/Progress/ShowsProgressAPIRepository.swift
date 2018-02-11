@@ -7,17 +7,33 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
   private let dataSource: ShowsProgressDataSource
   private let schedulers: Schedulers
   private let showProgressRepository: ShowProgressRepository
+  private let appConfigurationsObservable: AppConfigurationsObservable
+  private var hideSpecials: Bool
   private let disposeBag = DisposeBag()
 
-  init(trakt: TraktProvider, dataSource: ShowsProgressDataSource,
-       schedulers: Schedulers, showProgressRepository: ShowProgressRepository) {
+  init(trakt: TraktProvider, dataSource: ShowsProgressDataSource, schedulers: Schedulers,
+       showProgressRepository: ShowProgressRepository, appConfigurationsObservable: AppConfigurationsObservable,
+       hideSpecials: Bool) {
     self.trakt = trakt
     self.dataSource = dataSource
     self.schedulers = schedulers
     self.showProgressRepository = showProgressRepository
+    self.appConfigurationsObservable = appConfigurationsObservable
+    self.hideSpecials = hideSpecials
   }
 
   func fetchWatchedShows(extended: Extended) -> Observable<[WatchedShowEntity]> {
+    appConfigurationsObservable.observe().subscribe(onNext: { [unowned self] newState in
+      self.hideSpecials = newState.hideSpecials
+      self.updateShowsFromAPI(extended)
+    }).disposed(by: disposeBag)
+
+    updateShowsFromAPI(extended)
+
+    return fetchWatchedShowsFromDataSource().subscribeOn(schedulers.dataSourceScheduler)
+  }
+
+  private func updateShowsFromAPI(_ extended: Extended) {
     fetchWatchedShowsFromAPI(extended: extended)
       .observeOn(schedulers.dataSourceScheduler)
       .do(onNext: { [unowned self] entities in
@@ -25,8 +41,6 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
       })
       .subscribe()
       .disposed(by: disposeBag)
-
-    return fetchWatchedShowsFromDataSource().subscribeOn(schedulers.dataSourceScheduler)
   }
 
   private func fetchWatchedShowsFromAPI(extended: Extended) -> Observable<[WatchedShowEntity]> {
@@ -45,7 +59,7 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
   private func fetchShowProgress(_ baseShow: BaseShow) -> Single<WatchedShowEntity> {
     guard let show = baseShow.show else { Swift.fatalError("Can't fetch show progress without show") }
 
-    return showProgressRepository.fetchShowProgress(ids: show.ids)
+    return showProgressRepository.fetchShowProgress(ids: show.ids, hideSpecials: hideSpecials)
       .flatMap { [unowned self] in return self.mapToEntity(baseShow, builder: $0) }
   }
 

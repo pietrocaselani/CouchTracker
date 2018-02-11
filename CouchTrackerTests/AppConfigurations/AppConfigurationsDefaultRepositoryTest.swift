@@ -25,11 +25,11 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
     super.tearDown()
   }
 
-	func testAppConfigurationsUserDefaultsRepository_fetchLoggedUserWithEmptyCache() {
+	func testAppConfigurationsUserDefaultsRepository_fetchLoginStateWithEmptyCache() {
 		//Given an empty repository
 
 		//When
-		_ = repository.fetchLoggedUser(forced: false).subscribe(observer)
+		_ = repository.fetchLoginState(forced: false).subscribe(observer)
 		scheduler.start()
 
 		//Then
@@ -39,11 +39,11 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
 		XCTAssertEqual(observer.events, expectedEvents)
 	}
 
-	func testAppConfigurationsUserDefaultsRepository_fetchLoggedUserFromAPIAndSaveOnCache() {
+	func testAppConfigurationsUserDefaultsRepository_fetchLoginStateFromAPIAndSaveOnCache() {
 		//Given an empty repository
 
 		// When
-		_ = repository.fetchLoggedUser(forced: false).subscribe(observer)
+		_ = repository.fetchLoginState(forced: false).subscribe(observer)
 		scheduler.start()
 
 		//Then
@@ -55,7 +55,7 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
 		XCTAssertEqual(dataSource.settings!, expectedSettings)
 	}
 
-	func testAppConfigurationsUserDefaultsRepository_fetchLoggedUserFromCache() {
+	func testAppConfigurationsUserDefaultsRepository_fetchLoginStateFromCache() {
 		//Given
 		let settings = TraktEntitiesMock.createUserSettingsMock()
 		dataSource.settings = settings
@@ -63,7 +63,7 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
 		let repository = AppConfigurationsDefaultRepository(dataSource: dataSource, traktProvider: TraktErrorProviderMock())
 
 		//When
-		_ = repository.fetchLoggedUser(forced: false).subscribe(observer)
+		_ = repository.fetchLoginState(forced: false).subscribe(observer)
 
 		//Then
 		let expectedEvents = [next(0, settings.user), completed(0)]
