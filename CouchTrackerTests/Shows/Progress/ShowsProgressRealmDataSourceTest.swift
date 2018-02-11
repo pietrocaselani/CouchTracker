@@ -114,6 +114,8 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
     schedulers.start()
 
     //Then
+    let seasons = [WatchedSeasonEntity]()
+
     let expectedShowIds = ShowIds(trakt: 1020, tmdb: nil, imdb: "imdb-id", slug: "show-slug", tvdb: 3030, tvrage: 1001)
     let expectedShowEntity = ShowEntity(ids: expectedShowIds, title: "Title", overview: "Cool show", network: "ABC",
                                         genres: [Genre](), status: Status.returning, firstAired: Date(timeIntervalSince1970: 0))
@@ -122,7 +124,7 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
                                             overview: "TBD", number: 4, season: 1,
                                             firstAired: Date(timeIntervalSince1970: 0),
                                             lastWatched: Date(timeIntervalSince1970: 6))
-    let expectedEntity = WatchedShowEntity(show: expectedShowEntity, aired: 5, completed: 3, nextEpisode: expectedNextEpisode, lastWatched: Date(timeIntervalSince1970: 6))
+    let expectedEntity = WatchedShowEntity(show: expectedShowEntity, aired: 5, completed: 3, nextEpisode: expectedNextEpisode, lastWatched: Date(timeIntervalSince1970: 6), seasons: seasons)
 
     let expectedEvents = [next(0, [expectedEntity])]
 

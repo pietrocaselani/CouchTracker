@@ -15,8 +15,13 @@ final class ShowsProgressAPIRepositoryTest: XCTestCase {
     //Given
     let dataSource = ShowsProgressMocks.ShowsProgressDataSourceMock()
     let showProgressRepository = ShowProgressMocks.showProgressRepository
-    let repository = ShowsProgressAPIRepository(trakt: trakt, dataSource: dataSource,
-                                                schedulers: schedulers, showProgressRepository: showProgressRepository)
+    let appConfigsObservable = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let repository = ShowsProgressAPIRepository(trakt: trakt,
+                                                dataSource: dataSource,
+                                                schedulers: schedulers,
+                                                showProgressRepository: showProgressRepository,
+                                                appConfigurationsObservable: appConfigsObservable,
+                                                hideSpecials: false)
     let observer = schedulers.createObserver([WatchedShowEntity].self)
 
     //When

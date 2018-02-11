@@ -13,7 +13,7 @@ protocol AppConfigurationsRepository: class {
 protocol AppConfigurationsDataSource: class {
 
   func save(settings: Settings) throws
-  func fetchSettings() -> Observable<LoginState>
+  func fetchLoginState() -> Observable<LoginState>
   func toggleHideSpecials() throws
   func fetchHideSpecials() -> Observable<Bool>
 }

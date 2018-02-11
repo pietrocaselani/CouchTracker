@@ -23,7 +23,7 @@ final class AppConfigurationsDefaultRepository: AppConfigurationsRepository {
 
     guard !forced else { return apiObservable }
 
-    return dataSource.fetchSettings()
+    return dataSource.fetchLoginState()
       .catchError { _ in apiObservable }
       .ifEmpty(switchTo: apiObservable)
   }
