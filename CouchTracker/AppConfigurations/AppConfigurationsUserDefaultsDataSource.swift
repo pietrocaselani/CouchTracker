@@ -6,7 +6,7 @@ final class AppConfigurationsUserDefaultsDataSource: AppConfigurationsDataSource
   private static let hideSpecialsKey = "hideSpecials"
 	private let userDefaults: UserDefaults
   private let hideSpecialsSubject: BehaviorSubject<Bool>
-  private let settingsSubject: BehaviorSubject<LoginState>
+  private let loginStateSubject: BehaviorSubject<LoginState>
 
 	init(userDefaults: UserDefaults) {
 		self.userDefaults = userDefaults
@@ -15,7 +15,7 @@ final class AppConfigurationsUserDefaultsDataSource: AppConfigurationsDataSource
     hideSpecialsSubject = BehaviorSubject<Bool>(value: hideSpecials)
 
     let loginState = AppConfigurationsUserDefaultsDataSource.currentLoginValue(userDefaults)
-    settingsSubject = BehaviorSubject<LoginState>(value: loginState)
+    loginStateSubject = BehaviorSubject<LoginState>(value: loginState)
 	}
 
 	func save(settings: Settings) throws {
@@ -24,11 +24,11 @@ final class AppConfigurationsUserDefaultsDataSource: AppConfigurationsDataSource
 
 		let data = try encoder.encode(settings)
 		self.userDefaults.set(data, forKey: AppConfigurationsUserDefaultsDataSource.traktUserKey)
-    settingsSubject.onNext(LoginState.logged(settings: settings))
+    loginStateSubject.onNext(LoginState.logged(settings: settings))
 	}
 
-	func fetchSettings() -> Observable<LoginState> {
-		return settingsSubject.asObservable()
+	func fetchLoginState() -> Observable<LoginState> {
+		return loginStateSubject.asObservable().distinctUntilChanged()
 	}
 
   func toggleHideSpecials() throws {

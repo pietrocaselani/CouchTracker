@@ -22,6 +22,12 @@ final class ShowsProgressMocks {
     let dateTransformer = TraktDateTransformer.dateTimeTransformer
 
     let ids = ShowIds(trakt: 46263, tmdb: 46533, imdb: "tt2149175", slug: "the-americans-2013", tvdb: 261690, tvrage: 30449)
+
+    let episode0 = WatchedEpisodeEntity(showIds: ids, number: 1, lastWatchedAt: dateTransformer.transformFromJSON("2017-09-18T02:11:57.000Z"))
+    let episode1 = WatchedEpisodeEntity(showIds: ids, number: 9, lastWatchedAt: nil)
+
+    let season0 = WatchedSeasonEntity(showIds: ids, number: 5, aired: 13, completed: 8, episodes: [episode0, episode1])
+
     let show = ShowEntity(ids: ids,
                           title: "The Americans",
                           overview: "The Americans is a period drama about the complex marriage of two KGB spies posing as Americans in suburban Washington D.C. shortly after Ronald Reagan is elected President. The arranged marriage of Philip and Elizabeth Jennings, who have two children - 13-year-old Paige and 10-year-old Henry, who know nothing about their parents' true identity - grows more passionate and genuine by the day, but is constantly tested by the escalation of the Cold War and the intimate, dangerous and darkly funny relationships they must maintain with a network of spies and informants under their control.",
@@ -31,7 +37,7 @@ final class ShowsProgressMocks {
                           firstAired: dateTransformer.transformFromJSON("2013-01-30T00:00:00.000Z"))
     let episodeIds = EpisodeIds(trakt: 73640, tmdb: 63056, imdb: "tt1480055", tvdb: 3254641, tvrage: 1065008299)
     let nextEpisode = EpisodeEntity(ids: episodeIds, showIds: ids, title: "Winter Is Coming", overview: "Ned Stark, Lord of Winterfell learns that his mentor, Jon Arryn, has died and that King Robert is on his way north to offer Ned Arryn’s position as the King’s Hand. Across the Narrow Sea in Pentos, Viserys Targaryen plans to wed his sister Daenerys to the nomadic Dothraki warrior leader, Khal Drogo to forge an alliance to take the throne.", number: 1, season: 1, firstAired: dateTransformer.transformFromJSON("2011-04-18T01:00:00.000Z"), lastWatched: nil)
-    return WatchedShowEntity(show: show, aired: 65, completed: 60, nextEpisode: nextEpisode, lastWatched: dateTransformer.transformFromJSON("2017-09-21T12:28:21.000Z"))
+    return WatchedShowEntity(show: show, aired: 65, completed: 60, nextEpisode: nextEpisode, lastWatched: dateTransformer.transformFromJSON("2017-09-21T12:28:21.000Z"), seasons: [season0])
   }
 
   static func mockEpisodeEntity(watched: Date? = nil) -> EpisodeEntity {
@@ -46,6 +52,12 @@ final class ShowsProgressMocks {
     let dateTransformer = TraktDateTransformer.dateTimeTransformer
 
     let ids = ShowIds(trakt: 46263, tmdb: 46533, imdb: "tt2149175", slug: "the-americans-2013", tvdb: 261690, tvrage: 30449)
+
+    let episode0 = WatchedEpisodeEntity(showIds: ids, number: 1, lastWatchedAt: dateTransformer.transformFromJSON("2017-09-18T02:11:57.000Z"))
+    let episode1 = WatchedEpisodeEntity(showIds: ids, number: 9, lastWatchedAt: nil)
+
+    let season0 = WatchedSeasonEntity(showIds: ids, number: 5, aired: 13, completed: 8, episodes: [episode0, episode1])
+
     let show = ShowEntity(ids: ids,
                           title: "The Americans 2",
                           overview: "The Americans is a period drama about the complex marriage of two KGB spies posing as Americans.",
@@ -53,11 +65,15 @@ final class ShowsProgressMocks {
                           genres: nil,
                           status: Status.returning,
                           firstAired: dateTransformer.transformFromJSON("2013-01-30T00:00:00.000Z"))
-    return WatchedShowEntity(show: show, aired: 65, completed: 65, nextEpisode: nil, lastWatched: dateTransformer.transformFromJSON("2017-09-21T12:28:21.000Z"))
+    return WatchedShowEntity(show: show, aired: 65, completed: 65, nextEpisode: nil,
+                             lastWatched: dateTransformer.transformFromJSON("2017-09-21T12:28:21.000Z"),
+                             seasons: [season0])
   }
 
   static func mockWatchedShowEntityWithoutNextEpisodeDate() -> WatchedShowEntity {
     let dateTransformer = TraktDateTransformer.dateTimeTransformer
+
+    let seasons = [WatchedSeasonEntity]()
 
     let ids = ShowIds(trakt: 46263, tmdb: 46533, imdb: "tt2149175", slug: "the-americans-2013", tvdb: 261690, tvrage: 30449)
     let show = ShowEntity(ids: ids,
@@ -69,7 +85,7 @@ final class ShowsProgressMocks {
                           firstAired: dateTransformer.transformFromJSON("2013-01-30T00:00:00.000Z"))
     let episodeIds = EpisodeIds(trakt: 73640, tmdb: 63056, imdb: "tt1480055", tvdb: 3254641, tvrage: 1065008299)
     let nextEpisode = EpisodeEntity(ids: episodeIds, showIds: ids, title: "Winter Is Coming", overview: "Ned Stark, Lord of Winterfell learns that his mentor, Jon Arryn, has died and that King Robert is on his way north to offer Ned Arryn’s position as the King’s Hand. Across the Narrow Sea in Pentos, Viserys Targaryen plans to wed his sister Daenerys to the nomadic Dothraki warrior leader, Khal Drogo to forge an alliance to take the throne.", number: 1, season: 1, firstAired: nil, lastWatched: nil)
-    return WatchedShowEntity(show: show, aired: 65, completed: 60, nextEpisode: nextEpisode, lastWatched: dateTransformer.transformFromJSON("2017-09-21T12:28:21.000Z"))
+    return WatchedShowEntity(show: show, aired: 65, completed: 60, nextEpisode: nextEpisode, lastWatched: dateTransformer.transformFromJSON("2017-09-21T12:28:21.000Z"), seasons: seasons)
   }
 
   final class ShowsProgressRepositoryMock: ShowsProgressRepository {

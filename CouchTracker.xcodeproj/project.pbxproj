@@ -114,6 +114,7 @@
 		4F8EE01A202E1B680002189B /* ImageCachedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9639185F354505ABB8D3 /* ImageCachedRepository.swift */; };
 		4FD27A3C201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD27A3B201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift */; };
 		4FD27A3D201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD27A3B201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift */; };
+		4FF3B3792030F3C20017116B /* TrendingCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C331F55A948008E344E /* TrendingCacheRepository.swift */; };
 		5AFB185485EB040E4F014E77 /* Pods_CouchTrackerFastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 939B7E4F3BDEEABB056F9AEE /* Pods_CouchTrackerFastTests.framework */; };
 		640330431F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640330421F67FEBA001CCEDB /* ImagesViewModelMapper.swift */; };
 		640330441F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640330421F67FEBA001CCEDB /* ImagesViewModelMapper.swift */; };
@@ -2718,6 +2719,7 @@
 				392D9B6A156DA52E6E7D92F6 /* AppConfigurationsUserDefaultsDataSource.swift in Sources */,
 				645323002024CF9F00449B0A /* EpisodeIdsRealm.swift in Sources */,
 				649D3DE12027D01300DF401A /* ThreadWithRunLoopScheduler.swift in Sources */,
+				4FF3B3792030F3C20017116B /* TrendingCacheRepository.swift in Sources */,
 				392D9999DB34BB269067B8A4 /* AppConfigurationsUserDefaultsDataSourceTest.swift in Sources */,
 				392D98EAB61CEA3E33B432D7 /* ShowsProgressRealmDataSourceTest.swift in Sources */,
 			);
