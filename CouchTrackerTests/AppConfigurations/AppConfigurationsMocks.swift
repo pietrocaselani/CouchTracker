@@ -23,7 +23,7 @@ final class AppConfigurationsInteractorMock: AppConfigurationsInteractor {
   }
 
   func fetchLoginState(forced: Bool) -> Observable<LoginState> {
-    return repository.fetchLoggedUser(forced: forced).map { user -> LoginState in
+    return repository.fetchLoginState(forced: forced).map { user -> LoginState in
       LoginState.logged(user: user)
       }.catchError { error in
         guard let moyaError = error as? MoyaError, moyaError.response?.statusCode == 401 else {
@@ -74,7 +74,7 @@ final class AppConfigurationsRepositoryMock: AppConfigurationsRepository {
     self.isEmpty = isEmpty
   }
 
-  func fetchLoggedUser(forced: Bool) -> Observable<User> {
+  func fetchLoginState(forced: Bool) -> Observable<User> {
     guard !isEmpty else {
       return Observable.error(AppConfigurationsMock.createUnauthorizedErrorMock())
     }
@@ -93,7 +93,7 @@ final class AppConfigurationsRepositoryErrorMock: AppConfigurationsRepository {
 	  self.error = error
   }
 
-	func fetchLoggedUser(forced: Bool) -> Observable<User> {
+	func fetchLoginState(forced: Bool) -> Observable<User> {
     return Observable.error(error)
   }
 }

@@ -5,12 +5,17 @@ import RxSwift
 protocol AppConfigurationsRepository: class {
   init(dataSource: AppConfigurationsDataSource)
 
-  func fetchLoggedUser(forced: Bool) -> Observable<User>
+  func fetchLoginState(forced: Bool) -> Observable<LoginState>
+  func fetchHideSpecials() -> Observable<Bool>
+  func toggleHideSpecials() -> Completable
 }
 
 protocol AppConfigurationsDataSource: class {
+
   func save(settings: Settings) throws
-  func fetchSettings() -> Observable<Settings>
+  func fetchSettings() -> Observable<LoginState>
+  func toggleHideSpecials() throws
+  func fetchHideSpecials() -> Observable<Bool>
 }
 
 protocol AppConfigurationsRouter: class {
@@ -19,9 +24,10 @@ protocol AppConfigurationsRouter: class {
 }
 
 protocol AppConfigurationsInteractor: class {
-  init(repository: AppConfigurationsRepository)
+  init(repository: AppConfigurationsRepository, output: AppConfigurationsOutput)
 
-  func fetchLoginState(forced: Bool) -> Observable<LoginState>
+  func fetchAppConfigurationsState(forced: Bool) -> Observable<AppConfigurationsState>
+  func toggleHideSpecials() -> Completable
 }
 
 protocol AppConfigurationsPresenter: class {

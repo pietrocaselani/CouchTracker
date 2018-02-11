@@ -15,14 +15,34 @@ final class AppConfigurationsDefaultRepository: AppConfigurationsRepository {
     self.trakt = traktProvider
   }
 
-  func fetchLoggedUser(forced: Bool) -> Observable<User> {
-    let apiObservable = fetchSettingsFromAPI().map { $0.user }
+  func fetchLoginState(forced: Bool) -> Observable<LoginState> {
+    let apiObservable = fetchSettingsFromAPI()
+      .map { LoginState.logged(settings: $0) }
+      .ifEmpty(default: LoginState.notLogged)
+      .catchErrorJustReturn(LoginState.notLogged)
 
     guard !forced else { return apiObservable }
 
-    let cacheObservable = dataSource.fetchSettings().map { $0.user }
+    return dataSource.fetchSettings()
+      .catchError { _ in apiObservable }
+      .ifEmpty(switchTo: apiObservable)
+  }
 
-    return cacheObservable.catchError { _ in apiObservable }.ifEmpty(switchTo: apiObservable)
+  func fetchHideSpecials() -> Observable<Bool> {
+    return dataSource.fetchHideSpecials()
+  }
+
+  func toggleHideSpecials() -> Completable {
+    return Completable.create(subscribe: { [unowned self] completable -> Disposable in
+      do {
+        try self.dataSource.toggleHideSpecials()
+        completable(.completed)
+      } catch {
+        completable(.error(error))
+      }
+
+      return Disposables.create()
+    })
   }
 
   private func fetchSettingsFromAPI() -> Observable<Settings> {

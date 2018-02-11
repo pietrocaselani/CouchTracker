@@ -48,6 +48,7 @@ final class AppConfigurationsViewController: UIViewController, AppConfigurations
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let identifier = R.reuseIdentifier.appConfigurationsCell
+
     guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) else {
       fatalError("What a terrible failure - Dequeue AppConfigurationCell fail")
     }
@@ -58,6 +59,13 @@ final class AppConfigurationsViewController: UIViewController, AppConfigurations
     cell.textLabel?.text = configuration.title
     cell.detailTextLabel?.text = configuration.subtitle
 
+    switch configuration.value {
+    case .none:
+      cell.accessoryType = .none
+    case .boolean(let value):
+      cell.accessoryType = value ? .checkmark : .none
+    }
+
     return cell
   }
 }
@@ -65,6 +73,9 @@ final class AppConfigurationsViewController: UIViewController, AppConfigurations
 extension AppConfigurationsViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    presenter.optionSelectedAt(index: indexPath.row)
+
+    let index = indexPath.section + indexPath.row
+
+    presenter.optionSelectedAt(index: index)
   }
 }

@@ -6,13 +6,23 @@ final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
   private let schedulers: Schedulers
   private let dataSource: ShowEpisodeDataSource
   private let showProgressRepository: ShowProgressRepository
+  private let appConfigurationsObservable: AppConfigurationsObservable
+  private let disposeBag = DisposeBag()
+  private var hideSpecials: Bool
 
-  init(trakt: TraktProvider, dataSource: ShowEpisodeDataSource,
-       schedulers: Schedulers, showProgressRepository: ShowProgressRepository) {
+  init(trakt: TraktProvider, dataSource: ShowEpisodeDataSource, schedulers: Schedulers,
+       showProgressRepository: ShowProgressRepository, appConfigurationsObservable: AppConfigurationsObservable,
+       hideSpecials: Bool) {
     self.trakt = trakt
     self.schedulers = schedulers
     self.dataSource = dataSource
     self.showProgressRepository = showProgressRepository
+    self.appConfigurationsObservable = appConfigurationsObservable
+    self.hideSpecials = hideSpecials
+
+    appConfigurationsObservable.observe().subscribe(onNext: { [unowned self] newState in
+      self.hideSpecials = newState.hideSpecials
+    }).disposed(by: disposeBag)
   }
 
   func addToHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<SyncResult> {
@@ -35,7 +45,8 @@ final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
       .filterSuccessfulStatusAndRedirectCodes()
       .map(SyncResponse.self)
       .flatMap { [unowned self] _ -> Single<WatchedShowEntity> in
-        return self.showProgressRepository.fetchShowProgress(ids: show.ids).map { $0.createEntity(using: show) }
+        return self.showProgressRepository.fetchShowProgress(ids: show.ids, hideSpecials: self.hideSpecials)
+          .map { $0.createEntity(using: show) }
       }.observeOn(schedulers.dataSourceScheduler)
       .do(onSuccess: { [unowned self] newWatchedShowEntity in
         try self.dataSource.updateWatched(show: newWatchedShowEntity)
