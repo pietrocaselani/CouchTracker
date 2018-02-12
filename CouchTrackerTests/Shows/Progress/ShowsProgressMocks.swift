@@ -206,4 +206,17 @@ final class ShowsProgressMocks {
       updateInvoked = true
     }
   }
+
+  final class ShowsProgressNetworkMock: ShowsProgressNetwork {
+    var fetchWatchedShowsInvoked = false
+    var fetchWatchedShowsInvokedCount = 0
+
+    func fetchWatchedShows(extended: Extended) -> Single<[BaseShow]> {
+      fetchWatchedShowsInvoked = true
+      fetchWatchedShowsInvokedCount += 1
+      
+      let baseShows: [BaseShow] = TraktEntitiesMock.decodeTraktJSONArray(with: "trakt_sync_watched_shows")
+      return Single.just(baseShows)
+    }
+  }
 }

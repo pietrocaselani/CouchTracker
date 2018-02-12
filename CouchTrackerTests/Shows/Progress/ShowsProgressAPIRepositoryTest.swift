@@ -16,7 +16,8 @@ final class ShowsProgressAPIRepositoryTest: XCTestCase {
     let dataSource = ShowsProgressMocks.ShowsProgressDataSourceMock()
     let showProgressRepository = ShowProgressMocks.showProgressRepository
     let appConfigsObservable = AppConfigurationsMock.AppConfigurationsObservableMock()
-    let repository = ShowsProgressAPIRepository(trakt: trakt,
+    let network = ShowsProgressMocks.ShowsProgressNetworkMock()
+    let repository = ShowsProgressAPIRepository(network: network,
                                                 dataSource: dataSource,
                                                 schedulers: schedulers,
                                                 showProgressRepository: showProgressRepository,
@@ -36,5 +37,36 @@ final class ShowsProgressAPIRepositoryTest: XCTestCase {
 	  XCTAssertTrue(dataSource.fetchWatchedShowsInvoked)
 	  XCTAssertTrue(dataSource.addWatchedShowInvoked)
     XCTAssertEqual([expectedShow], dataSource.addedEntities)
+  }
+
+  func testShowsProgressRepository_fetchShowsFromAPIWhenAppStateChanges() {
+    let dataSource = ShowsProgressMocks.ShowsProgressDataSourceMock()
+    let showProgressRepository = ShowProgressMocks.showProgressRepository
+    let appConfigsObservable = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let network = ShowsProgressMocks.ShowsProgressNetworkMock()
+    let repository = ShowsProgressAPIRepository(network: network,
+                                                dataSource: dataSource,
+                                                schedulers: schedulers,
+                                                showProgressRepository: showProgressRepository,
+                                                appConfigurationsObservable: appConfigsObservable,
+                                                hideSpecials: false)
+
+    schedulers.start()
+
+    _ = repository.fetchWatchedShows(extended: .full)
+
+    XCTAssertEqual(network.fetchWatchedShowsInvokedCount, 1)
+
+    let networkExpectation = expectation(description: "Should request from network twice")
+
+    let newState = AppConfigurationsState(loginState: .notLogged, hideSpecials: true)
+    appConfigsObservable.chage(state: newState)
+
+    DispatchQueue.main.async {
+      networkExpectation.fulfill()
+      XCTAssertEqual(network.fetchWatchedShowsInvokedCount, 2)
+    }
+
+    wait(for: [networkExpectation], timeout: 1)
   }
 }

@@ -3,7 +3,7 @@ import RxSwift
 import Moya
 
 final class ShowsProgressAPIRepository: ShowsProgressRepository {
-  private let trakt: TraktProvider
+  private let network: ShowsProgressNetwork
   private let dataSource: ShowsProgressDataSource
   private let schedulers: Schedulers
   private let showProgressRepository: ShowProgressRepository
@@ -11,10 +11,10 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
   private var hideSpecials: Bool
   private let disposeBag = DisposeBag()
 
-  init(trakt: TraktProvider, dataSource: ShowsProgressDataSource, schedulers: Schedulers,
+  init(network: ShowsProgressNetwork, dataSource: ShowsProgressDataSource, schedulers: Schedulers,
        showProgressRepository: ShowProgressRepository, appConfigurationsObservable: AppConfigurationsObservable,
        hideSpecials: Bool) {
-    self.trakt = trakt
+    self.network = network
     self.dataSource = dataSource
     self.schedulers = schedulers
     self.showProgressRepository = showProgressRepository
@@ -23,10 +23,11 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
   }
 
   func fetchWatchedShows(extended: Extended) -> Observable<[WatchedShowEntity]> {
-    appConfigurationsObservable.observe().subscribe(onNext: { [unowned self] newState in
-      self.hideSpecials = newState.hideSpecials
-      self.updateShowsFromAPI(extended)
-    }).disposed(by: disposeBag)
+    appConfigurationsObservable.observe()
+      .subscribe(onNext: { [unowned self] newState in
+        self.hideSpecials = newState.hideSpecials
+        self.updateShowsFromAPI(extended)
+      }).disposed(by: disposeBag)
 
     updateShowsFromAPI(extended)
 
@@ -34,7 +35,7 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
   }
 
   private func updateShowsFromAPI(_ extended: Extended) {
-    fetchWatchedShowsFromAPI(extended: extended)
+    fetchWatchedShowsFromAPI(extended)
       .observeOn(schedulers.dataSourceScheduler)
       .do(onNext: { [unowned self] entities in
         try self.dataSource.addWatched(shows: entities)
@@ -43,8 +44,8 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
       .disposed(by: disposeBag)
   }
 
-  private func fetchWatchedShowsFromAPI(extended: Extended) -> Observable<[WatchedShowEntity]> {
-    let api = trakt.sync.rx.request(Sync.watched(type: .shows, extended: extended)).map([BaseShow].self).asObservable()
+  private func fetchWatchedShowsFromAPI(_ extended: Extended) -> Observable<[WatchedShowEntity]> {
+    let api = network.fetchWatchedShows(extended: extended).asObservable()
 
     return api.observeOn(schedulers.networkScheduler)
       .flatMap { Observable.from($0) }
