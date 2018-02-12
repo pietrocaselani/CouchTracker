@@ -8,12 +8,14 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
 	private var dataSource: AppConfigurationsUserDefaultsDataSource!
 	private var scheduler: TestScheduler!
 	private var observer: TestableObserver<LoginState>!
+  private var hideSpecialsObserver: TestableObserver<Bool>!
 
 	override func setUp() {
 		super.setUp()
 
 		scheduler = TestScheduler(initialClock: 0)
 		observer = scheduler.createObserver(LoginState.self)
+    hideSpecialsObserver = scheduler.createObserver(Bool.self)
 		userDefaultsMock = UserDefaults(suiteName: "AppConfigurationsUserDefaultsDataSourceTest")!
 		clearUserDefaults(userDefaultsMock)
 	}
@@ -95,4 +97,54 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
 		//Then
 		XCTAssertNotNil(userDefaultsMock.data(forKey: "traktUser"))
 	}
+
+  func testAppConfigurationsUserDefaultsDataSource_toggleHideSpecials() {
+    //Given
+    XCTAssertFalse(userDefaultsMock.bool(forKey: "hideSpecials"))
+    dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
+
+    //When
+    do {
+      try dataSource.toggleHideSpecials()
+    } catch {
+      XCTFail(error.localizedDescription)
+    }
+
+    //Then
+    XCTAssertTrue(userDefaultsMock.bool(forKey: "hideSpecials"))
+
+    //When
+    do {
+      try dataSource.toggleHideSpecials()
+    } catch {
+      XCTFail(error.localizedDescription)
+    }
+
+    //Then
+    XCTAssertFalse(userDefaultsMock.bool(forKey: "hideSpecials"))
+  }
+
+  func testAppConfigurationsUserDefaultsDataSource_fetchHideSpecials() {
+    //Given
+    XCTAssertFalse(userDefaultsMock.bool(forKey: "hideSpecials"))
+    dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
+
+    //When
+    _ = dataSource.fetchHideSpecials().subscribe(hideSpecialsObserver)
+
+    //Then
+    var expectedEvents = [next(0, false)]
+    XCTAssertEqual(hideSpecialsObserver.events, expectedEvents)
+
+    //When
+    do {
+      try dataSource.toggleHideSpecials()
+    } catch {
+      XCTFail(error.localizedDescription)
+    }
+
+    //Then
+    expectedEvents = [next(0, false), next(0, true)]
+    XCTAssertEqual(hideSpecialsObserver.events, expectedEvents)
+  }
 }

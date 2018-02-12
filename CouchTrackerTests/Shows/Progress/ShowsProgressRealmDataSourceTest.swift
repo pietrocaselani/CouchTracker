@@ -23,15 +23,15 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
 	}
 
   override func tearDown() {
-//    let realm = realmProvider.realm
-//    try! realm.write {
-//      realmProvider.realm.deleteAll()
-//    }
+    let realm = realmProvider.realm
+    try! realm.write {
+      realmProvider.realm.deleteAll()
+    }
 
-//    realmProvider = nil
-//    schedulers = nil
-//    dataSource = nil
-//    observer = nil
+    realmProvider = nil
+    schedulers = nil
+    dataSource = nil
+    observer = nil
 
     super.tearDown()
   }
@@ -131,8 +131,11 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
     RXAssertEvents(observer.events, expectedEvents)
   }
 
-  func testShowProgressRealmDataSource_emitsNextWhenAddNewEntity() {
+
+    //TODO Implement test
     /*
+
+     testShowProgressRealmDataSource_emitsNextWhenAddNewEntity
 
      I don't know how to make this test yet.
      I tryed to do like RxRealm tests
@@ -141,5 +144,4 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
      Using .toBlocking(), it runs infinitely!
 
      */
-  }
 }
