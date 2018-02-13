@@ -75,6 +75,33 @@ final class AppConfigurationsInteractorTest: XCTestCase {
     XCTAssertEqual(observer.events, expectedEvents)
   }
 
-  //TODO Add test with error for fetch user, emits not loged
-  //TODO Add test for toggle hide special
+  func testAppConfigurationsInteractor_toggleHideSpecials_notifyRepository() {
+    //Given
+    let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users)
+    let output = AppConfigurationsMock.AppConfigurationsOutputMock()
+    let interactor = AppConfigurationsService(repository: repository, output: output)
+
+    //When
+    _ = interactor.toggleHideSpecials().subscribe()
+
+    //Then
+    XCTAssertTrue(repository.invokedToggleHideSpecials)
+  }
+
+  func testAppConfigurationsInteractor_fetchLoginStateWithError_emitsNotLogged() {
+    //Given
+    let message = "decrypt error"
+    let genericError = NSError(domain: "io.github.pietrocaselani", code: 203, userInfo: [NSLocalizedDescriptionKey: message])
+    let repository = AppConfigurationsRepositoryErrorMock(loginError: genericError)
+    let output = AppConfigurationsMock.AppConfigurationsOutputMock()
+    let interactor = AppConfigurationsService(repository: repository, output: output)
+
+    //When
+    _ = interactor.fetchAppConfigurationsState(forced: false).subscribe(observer)
+
+    //Then
+    let expectedState = AppConfigurationsState(loginState: .notLogged, hideSpecials: false)
+    let expectedEvents = [next(0, expectedState), completed(0)]
+    XCTAssertEqual(observer.events, expectedEvents)
+  }
 }
