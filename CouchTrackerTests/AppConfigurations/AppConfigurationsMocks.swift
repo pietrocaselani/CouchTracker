@@ -179,3 +179,42 @@ final class AppConfigurationDataSourceMock: AppConfigurationsDataSource {
     return Observable.just(hideSpecials)
   }
 }
+
+final class AppConfigurationsDataSourceErrorMock: AppConfigurationsDataSource {
+  private let error: Error
+  var saveSettingsInvoked = false
+
+  init(error: Error) {
+    self.error = error
+  }
+
+  func save(settings: Settings) throws {
+    saveSettingsInvoked = true
+    throw error
+  }
+
+  func fetchLoginState() -> Observable<LoginState> {
+    return Observable.error(error)
+  }
+
+  func toggleHideSpecials() throws {
+    throw error
+  }
+
+  func fetchHideSpecials() -> Observable<Bool> {
+    return Observable.error(error)
+  }
+}
+
+final class AppConfigurationsNetworkMock: AppConfigurationsNetwork {
+  var fetchUserSettingsInvoked = false
+  var fetchUserSettingsInvokedCount = 0
+
+  func fetchUserSettings() -> Single<Settings> {
+    fetchUserSettingsInvoked = true
+    fetchUserSettingsInvokedCount += 1
+
+    let settings = TraktEntitiesMock.createUserSettingsMock()
+    return Single.just(settings)
+  }
+}
