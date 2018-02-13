@@ -4,15 +4,11 @@ import Moya
 
 final class AppConfigurationsDefaultRepository: AppConfigurationsRepository {
   private let dataSource: AppConfigurationsDataSource
-  private let trakt: TraktProvider
+  private let network: AppConfigurationsNetwork
 
-  init(dataSource: AppConfigurationsDataSource) {
-    Swift.fatalError("please use init(dataSource: traktProvider:")
-  }
-
-  init(dataSource: AppConfigurationsDataSource, traktProvider: TraktProvider) {
+  init(dataSource: AppConfigurationsDataSource, network: AppConfigurationsNetwork) {
     self.dataSource = dataSource
-    self.trakt = traktProvider
+    self.network = network
   }
 
   func fetchLoginState(forced: Bool) -> Observable<LoginState> {
@@ -46,9 +42,7 @@ final class AppConfigurationsDefaultRepository: AppConfigurationsRepository {
   }
 
   private func fetchSettingsFromAPI() -> Observable<Settings> {
-    return trakt.users.rx.request(.settings)
-      .filterSuccessfulStatusCodes()
-      .map(Settings.self)
+    return network.fetchUserSettings()
       .do(onSuccess: { [unowned self] settings in
         do {
           try self.dataSource.save(settings: settings)

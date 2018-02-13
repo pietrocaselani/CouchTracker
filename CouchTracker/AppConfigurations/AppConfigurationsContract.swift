@@ -3,15 +3,16 @@ import TraktSwift
 import RxSwift
 
 protocol AppConfigurationsRepository: class {
-  init(dataSource: AppConfigurationsDataSource)
-
   func fetchLoginState(forced: Bool) -> Observable<LoginState>
   func fetchHideSpecials() -> Observable<Bool>
   func toggleHideSpecials() -> Completable
 }
 
-protocol AppConfigurationsDataSource: class {
+protocol AppConfigurationsNetwork: class {
+  func fetchUserSettings() -> Single<Settings>
+}
 
+protocol AppConfigurationsDataSource: class {
   func save(settings: Settings) throws
   func fetchLoginState() -> Observable<LoginState>
   func toggleHideSpecials() throws
