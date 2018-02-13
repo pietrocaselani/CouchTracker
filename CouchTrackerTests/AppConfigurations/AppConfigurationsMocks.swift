@@ -41,6 +41,7 @@ final class AppConfigurationsInteractorMock: AppConfigurationsInteractor {
   private let repository: AppConfigurationsRepository
   var hideSpecials = false
   var loginState = LoginState.notLogged
+  var toggleHideSpecialsInvoked = false
 
   init(repository: AppConfigurationsRepository, output: AppConfigurationsOutput) {
     self.repository = repository
@@ -56,6 +57,7 @@ final class AppConfigurationsInteractorMock: AppConfigurationsInteractor {
   }
 
   func toggleHideSpecials() -> Completable {
+    toggleHideSpecialsInvoked = true
     return repository.toggleHideSpecials()
   }
 }

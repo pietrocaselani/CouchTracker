@@ -5,12 +5,14 @@ final class AppConfigurationsPresenterTest: XCTestCase {
   private var view: AppConfigurationsViewMock!
   private var router: AppConfigurationsRouterMock!
   private var presenter: AppConfigurationsPresenter!
+  private var interactor: AppConfigurationsInteractorMock!
 
   override func tearDown() {
     super.tearDown()
     presenter = nil
     view = nil
     router = nil
+    interactor = nil
   }
 
   override func setUp() {
@@ -31,7 +33,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     router = AppConfigurationsRouterMock()
     let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users, isEmpty: empty)
     let output = AppConfigurationsMock.AppConfigurationsOutputMock()
-    let interactor = AppConfigurationsInteractorMock(repository: repository, output: output)
+    interactor = AppConfigurationsInteractorMock(repository: repository, output: output)
     presenter = AppConfigurationsiOSPresenter(view: view, interactor: interactor, router: router)
   }
 
@@ -133,5 +135,17 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 
     //Then
     XCTAssertTrue(router.invokedShowTraktLogin)
+  }
+
+  func testAppConfigurationsPresenter_receivesEventToggleHideSpecials_notifyInteractor() {
+    //Given
+    setupModule(empty: true)
+    presenter.viewDidLoad()
+
+    //When
+    presenter.optionSelectedAt(index: 1)
+
+    //Then
+    XCTAssertTrue(interactor.toggleHideSpecialsInvoked)
   }
 }
