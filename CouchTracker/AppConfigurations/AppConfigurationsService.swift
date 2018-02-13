@@ -29,13 +29,6 @@ final class AppConfigurationsService: AppConfigurationsInteractor {
 
   private func fetchLoginState(forced: Bool) -> Observable<LoginState> {
     return repository.fetchLoginState(forced: forced)
-      .catchError { error in
-        guard let moyaError = error as? MoyaError, moyaError.response?.statusCode == 401 else {
-          return Observable.error(error)
-        }
-
-        return Observable.just(LoginState.notLogged)
-    }
   }
 
   private func fetchHideSpecials() -> Observable<Bool> {
