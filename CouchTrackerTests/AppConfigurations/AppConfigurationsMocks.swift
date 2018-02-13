@@ -97,10 +97,6 @@ final class AppConfigurationsRepositoryMock: AppConfigurationsRepository {
   var invokedToggleHideSpecials = false
   var invokedFetchHideSpecials = false
 
-	init(dataSource: AppConfigurationsDataSource) {
-		Swift.fatalError()
-	}
-
 	init(usersProvider: MoyaProvider<Users>, isEmpty: Bool = false, dataSource: AppConfigurationsDataSource = AppConfigurationDataSourceMock()) {
     self.usersProvider = usersProvider
     self.isEmpty = isEmpty
@@ -127,26 +123,40 @@ final class AppConfigurationsRepositoryMock: AppConfigurationsRepository {
 }
 
 final class AppConfigurationsRepositoryErrorMock: AppConfigurationsRepository {
-  private let error: Swift.Error
+  private let error: Swift.Error?
+  private let loginError: Swift.Error?
 
-	init(dataSource: AppConfigurationsDataSource) {
-		Swift.fatalError()
-	}
-
-  init(error: Swift.Error, dataSource: AppConfigurationsDataSource = AppConfigurationDataSourceMock()) {
+  init(error: Swift.Error? = nil, loginError: Swift.Error? = nil) {
 	  self.error = error
+    self.loginError = loginError
   }
 
   func fetchLoginState(forced: Bool) -> Observable<LoginState> {
-    return Observable.error(error)
+    if let error = error {
+      return Observable.error(error)
+    }
+
+    if let error = loginError {
+      return Observable.error(error)
+    }
+
+    return Observable.just(LoginState.notLogged)
   }
 
   func fetchHideSpecials() -> Observable<Bool> {
-    return Observable.error(error)
+    if let error = error {
+      return Observable.error(error)
+    }
+
+    return Observable.just(false)
   }
 
   func toggleHideSpecials() -> Completable {
-    return Completable.error(error)
+    if let error = error {
+      return Completable.error(error)
+    }
+
+    return Completable.empty()
   }
 }
 
