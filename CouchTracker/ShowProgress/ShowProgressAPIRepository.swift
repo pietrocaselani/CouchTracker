@@ -1,5 +1,6 @@
 import RxSwift
 import TraktSwift
+import Moya
 
 final class ShowProgressAPIRepository: ShowProgressRepository {
   private let trakt: TraktProvider
@@ -8,31 +9,27 @@ final class ShowProgressAPIRepository: ShowProgressRepository {
     self.trakt = trakt
   }
 
-  func fetchShowProgress(ids: ShowIds) -> Single<WatchedShowBuilder> {
+  func fetchShowProgress(ids: ShowIds, hideSpecials: Bool) -> Single<WatchedShowBuilder> {
     let builder = WatchedShowBuilder(ids: ids)
 
-    return buildProgressForShow(builder)
-      .flatMap { [unowned self] in self.fetchNextEpisodeDetails($0) }
-  }
-
-  private func buildProgressForShow(_ builder: WatchedShowBuilder) -> Single<WatchedShowBuilder> {
-    let showId = builder.ids.realId
-
-    let observable = fetchShowProgress(showId: showId)
+    let observable = fetchShowProgress(showId: ids.realId, hideSpecials)
 
     return observable.map {
-      builder.detailShow = $0
+      builder.progressShow = $0
       return builder
-    }
+    }.flatMap { [unowned self] in self.fetchNextEpisodeDetails($0) }
   }
 
-  private func fetchShowProgress(showId: String) -> Single<BaseShow> {
-    let target = Shows.watchedProgress(showId: showId, hidden: true, specials: true, countSpecials: true)
+  private func fetchShowProgress(showId: String, _ hideSpecials: Bool) -> Single<BaseShow> {
+    let target = Shows.watchedProgress(showId: showId,
+                                       hidden: !hideSpecials,
+                                       specials: !hideSpecials,
+                                       countSpecials: !hideSpecials)
     return trakt.shows.rx.request(target).map(BaseShow.self)
   }
 
   private func fetchNextEpisodeDetails(_ builder: WatchedShowBuilder) -> Single<WatchedShowBuilder> {
-    guard let episode = builder.detailShow?.nextEpisode else { return Single.just(builder) }
+    guard let episode = builder.progressShow?.nextEpisode else { return Single.just(builder) }
 
     let showId = builder.ids.realId
 

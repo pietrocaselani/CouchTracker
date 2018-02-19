@@ -8,10 +8,6 @@ final class ShowsManagerViewMock: ShowsManagerView {
     showPagesInvoked = true
     showPagesParameters = (pages, index)
   }
-
-  func showNeedsTraktLogin() {
-    showNeedsTraktLoginInvoked = true
-  }
 }
 
 final class ShowsManagerDataSourceMock: ShowsManagerDataSource {
@@ -19,10 +15,21 @@ final class ShowsManagerDataSourceMock: ShowsManagerDataSource {
   var modulePages: [ModulePage]
   var defaultModuleIndex: Int
 
-  init(options: [ShowsManagerOption] = [.progress, .now, .trending],
-       modulePages: [ModulePage], index: Int = 0) {
+  init(creator: ShowsManagerModuleCreator) {
+    options = [.progress, .now, .trending]
+    modulePages = [ModulePage]()
+    defaultModuleIndex = 0
+  }
+
+  init(options: [ShowsManagerOption] = [.progress, .now, .trending], modulePages: [ModulePage], index: Int = 0) {
     self.options = options
     self.modulePages = modulePages
     self.defaultModuleIndex = index
+  }
+}
+
+final class ShowsManagerCreatorMock: ShowsManagerModuleCreator {
+  func createModule(for option: ShowsManagerOption) -> BaseView {
+    return BaseViewMock()
   }
 }

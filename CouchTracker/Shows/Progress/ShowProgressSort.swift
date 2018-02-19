@@ -1,5 +1,14 @@
 import Foundation
 
+enum ShowProgressDirection: String {
+  case asc
+  case desc
+
+  func toggle() -> ShowProgressDirection {
+    return self == .asc ? .desc : .asc
+  }
+}
+
 enum ShowProgressSort: String {
   case title
   case remaining

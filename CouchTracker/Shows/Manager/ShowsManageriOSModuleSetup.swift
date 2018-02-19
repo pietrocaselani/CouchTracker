@@ -1,4 +1,10 @@
 final class ShowsManageriOSModuleSetup: ShowsManagerDataSource {
+  private let creator: ShowsManagerModuleCreator
+
+  init(creator: ShowsManagerModuleCreator) {
+    self.creator = creator
+  }
+
 	var options: [ShowsManagerOption] {
 		let progress = ShowsManagerOption.progress
 		let now = ShowsManagerOption.now
@@ -9,7 +15,7 @@ final class ShowsManageriOSModuleSetup: ShowsManagerDataSource {
 
 	var modulePages: [ModulePage] {
 		let pages = options.map { option -> ModulePage in
-			let view = moduleViewFor(option: option)
+			let view = self.creator.createModule(for: option)
 			let name = moduleNameFor(option: option)
 
 			return ModulePage(page: view, title: name)
@@ -31,17 +37,6 @@ final class ShowsManageriOSModuleSetup: ShowsManagerDataSource {
 			return "Now"
 		case .trending:
 			return "Trending"
-		}
-	}
-
-	private func moduleViewFor(option: ShowsManagerOption) -> BaseView {
-		switch option {
-		case .progress:
-			return ShowsProgressModule.setupModule()
-		case .now:
-			return ShowsNowModule.setupModule()
-		case .trending:
-			return TrendingModule.setupModule(for: .shows)
 		}
 	}
 }

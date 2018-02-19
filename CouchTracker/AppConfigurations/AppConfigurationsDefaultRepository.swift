@@ -1,38 +1,56 @@
 import TraktSwift
 import RxSwift
-import Moya
 
 final class AppConfigurationsDefaultRepository: AppConfigurationsRepository {
   private let dataSource: AppConfigurationsDataSource
-  private let trakt: TraktProvider
+  private let network: AppConfigurationsNetwork
+  private let schedulers: Schedulers
+  private let disposeBag = DisposeBag()
 
-  init(dataSource: AppConfigurationsDataSource) {
-    Swift.fatalError("please use init(dataSource: traktProvider:")
-  }
-
-  init(dataSource: AppConfigurationsDataSource, traktProvider: TraktProvider) {
+  init(dataSource: AppConfigurationsDataSource, network: AppConfigurationsNetwork, schedulers: Schedulers) {
     self.dataSource = dataSource
-    self.trakt = traktProvider
+    self.network = network
+    self.schedulers = schedulers
   }
 
-  func fetchLoggedUser(forced: Bool) -> Observable<User> {
-    let apiObservable = fetchSettingsFromAPI().map { $0.user }
-
-    guard !forced else { return apiObservable }
-
-    let cacheObservable = dataSource.fetchSettings().map { $0.user }
-
-    return cacheObservable.catchError { _ in apiObservable }.ifEmpty(switchTo: apiObservable)
+  func fetchLoginState() -> Observable<LoginState> {
+    return dataSource.fetchLoginState()
+      .do(onNext: { [weak self] loginState in
+        if loginState == .notLogged {
+          self?.saveLoginStateFromAPI()
+        }
+      }, onError: { [weak self] _ in
+        self?.saveLoginStateFromAPI()
+      })
+      .catchErrorJustReturn(.notLogged)
+      .ifEmpty(default: .notLogged)
+      .subscribeOn(schedulers.ioScheduler)
   }
 
-  private func fetchSettingsFromAPI() -> Observable<Settings> {
-    return trakt.users.rx.request(.settings)
-      .filterSuccessfulStatusCodes()
-      .map(Settings.self)
+  func fetchHideSpecials() -> Observable<Bool> {
+    return dataSource.fetchHideSpecials()
+  }
+
+  func toggleHideSpecials() -> Completable {
+    return Completable.create(subscribe: { [unowned self] completable -> Disposable in
+      do {
+        try self.dataSource.toggleHideSpecials()
+        completable(.completed)
+      } catch {
+        completable(.error(error))
+      }
+
+      return Disposables.create()
+    }).subscribeOn(schedulers.ioScheduler)
+  }
+
+  private func saveLoginStateFromAPI() {
+    return network.fetchUserSettings()
+      .observeOn(schedulers.networkScheduler)
       .do(onSuccess: { [unowned self] settings in
-        do {
-          try self.dataSource.save(settings: settings)
-        } catch {}
-      }).asObservable()
+        try self.dataSource.save(settings: settings)
+      })
+      .subscribe()
+      .disposed(by: disposeBag)
   }
 }
