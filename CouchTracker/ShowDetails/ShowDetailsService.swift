@@ -29,7 +29,7 @@ final class ShowDetailsService: ShowDetailsInteractor {
   }
 
   func fetchImages() -> Single<ImagesEntity> {
-    guard let tmdbId = showIds.tmdb else { return Single.never() }
+    guard let tmdbId = showIds.tmdb else { return Single.just(ImagesEntity.empty()) }
 
     return imageRepository.fetchShowImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)
   }

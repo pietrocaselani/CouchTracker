@@ -1,27 +1,30 @@
 import TraktSwift
 import RxSwift
-import Moya
 
 final class AppConfigurationsDefaultRepository: AppConfigurationsRepository {
   private let dataSource: AppConfigurationsDataSource
   private let network: AppConfigurationsNetwork
+  private let schedulers: Schedulers
+  private let disposeBag = DisposeBag()
 
-  init(dataSource: AppConfigurationsDataSource, network: AppConfigurationsNetwork) {
+  init(dataSource: AppConfigurationsDataSource, network: AppConfigurationsNetwork, schedulers: Schedulers) {
     self.dataSource = dataSource
     self.network = network
+    self.schedulers = schedulers
   }
 
-  func fetchLoginState(forced: Bool) -> Observable<LoginState> {
-    let apiObservable = fetchSettingsFromAPI()
-      .map { LoginState.logged(settings: $0) }
-      .ifEmpty(default: LoginState.notLogged)
-      .catchErrorJustReturn(LoginState.notLogged)
-
-    guard !forced else { return apiObservable }
-
+  func fetchLoginState() -> Observable<LoginState> {
     return dataSource.fetchLoginState()
-      .catchError { _ in apiObservable }
-      .ifEmpty(switchTo: apiObservable)
+      .do(onNext: { [weak self] loginState in
+        if loginState == .notLogged {
+          self?.saveLoginStateFromAPI()
+        }
+      }, onError: { [weak self] _ in
+        self?.saveLoginStateFromAPI()
+      })
+      .catchErrorJustReturn(.notLogged)
+      .ifEmpty(default: .notLogged)
+      .subscribeOn(schedulers.ioScheduler)
   }
 
   func fetchHideSpecials() -> Observable<Bool> {
@@ -38,15 +41,16 @@ final class AppConfigurationsDefaultRepository: AppConfigurationsRepository {
       }
 
       return Disposables.create()
-    })
+    }).subscribeOn(schedulers.ioScheduler)
   }
 
-  private func fetchSettingsFromAPI() -> Observable<Settings> {
+  private func saveLoginStateFromAPI() {
     return network.fetchUserSettings()
+      .observeOn(schedulers.networkScheduler)
       .do(onSuccess: { [unowned self] settings in
-        do {
-          try self.dataSource.save(settings: settings)
-        } catch {}
-      }).asObservable()
+        try self.dataSource.save(settings: settings)
+      })
+      .subscribe()
+      .disposed(by: disposeBag)
   }
 }

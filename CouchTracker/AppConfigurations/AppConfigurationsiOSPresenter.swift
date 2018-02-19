@@ -28,8 +28,8 @@ final class AppConfigurationsiOSPresenter: AppConfigurationsPresenter {
     }
   }
 
-  fileprivate func updateView(forced: Bool = false) {
-    interactor.fetchAppConfigurationsState(forced: forced)
+  fileprivate func updateView() {
+    interactor.fetchAppConfigurationsState()
       .map { [unowned self] in self.createViewModel($0) }
       .observeOn(MainScheduler.instance)
       .subscribe(onNext: { [unowned self] viewModel in
@@ -83,7 +83,7 @@ final class AppConfigurationsiOSPresenter: AppConfigurationsPresenter {
 
 extension AppConfigurationsiOSPresenter: TraktLoginOutput {
   func loggedInSuccessfully() {
-    updateView(forced: true)
+    updateView()
   }
 
   func logInFail(message: String) {

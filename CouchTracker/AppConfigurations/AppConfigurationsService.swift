@@ -11,14 +11,14 @@ final class AppConfigurationsService: AppConfigurationsInteractor {
     self.output = output
   }
 
-  func fetchAppConfigurationsState(forced: Bool) -> Observable<AppConfigurationsState> {
-    let loginStateObservable = fetchLoginState(forced: forced)
+  func fetchAppConfigurationsState() -> Observable<AppConfigurationsState> {
+    let loginStateObservable = fetchLoginState()
     let hideSpecialsObservable = fetchHideSpecials()
 
     return Observable.combineLatest(loginStateObservable, hideSpecialsObservable) { (loginState, hideSpecials) in
       AppConfigurationsState(loginState: loginState, hideSpecials: hideSpecials)
       }.catchErrorJustReturn(AppConfigurationsState.initialState())
-      .do(onNext: { [unowned self] newState in
+      .do(onNext: { newState in
         self.output.newConfiguration(state: newState)
       })
   }
@@ -27,8 +27,8 @@ final class AppConfigurationsService: AppConfigurationsInteractor {
     return self.repository.toggleHideSpecials()
   }
 
-  private func fetchLoginState(forced: Bool) -> Observable<LoginState> {
-    return repository.fetchLoginState(forced: forced)
+  private func fetchLoginState() -> Observable<LoginState> {
+    return repository.fetchLoginState()
   }
 
   private func fetchHideSpecials() -> Observable<Bool> {

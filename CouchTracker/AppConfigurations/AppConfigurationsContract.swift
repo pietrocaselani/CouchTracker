@@ -3,7 +3,7 @@ import TraktSwift
 import RxSwift
 
 protocol AppConfigurationsRepository: class {
-  func fetchLoginState(forced: Bool) -> Observable<LoginState>
+  func fetchLoginState() -> Observable<LoginState>
   func fetchHideSpecials() -> Observable<Bool>
   func toggleHideSpecials() -> Completable
 }
@@ -27,7 +27,7 @@ protocol AppConfigurationsRouter: class {
 protocol AppConfigurationsInteractor: class {
   init(repository: AppConfigurationsRepository, output: AppConfigurationsOutput)
 
-  func fetchAppConfigurationsState(forced: Bool) -> Observable<AppConfigurationsState>
+  func fetchAppConfigurationsState() -> Observable<AppConfigurationsState>
   func toggleHideSpecials() -> Completable
 }
 

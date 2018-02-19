@@ -1,6 +1,7 @@
 import RxSwift
 
 final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
+  private let loginObservable: TraktLoginObservable
   private weak var view: ShowsProgressView?
   private let interactor: ShowsProgressInteractor
   private let router: ShowsProgressRouter
@@ -12,16 +13,30 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
   private var originalEntities = [WatchedShowEntity]()
   var dataSource: ShowsProgressViewDataSource
 
-  init(view: ShowsProgressView, interactor: ShowsProgressInteractor,
-       viewDataSource: ShowsProgressViewDataSource, router: ShowsProgressRouter) {
+  init(view: ShowsProgressView, interactor: ShowsProgressInteractor, viewDataSource: ShowsProgressViewDataSource,
+       router: ShowsProgressRouter, loginObservable: TraktLoginObservable) {
     self.view = view
     self.interactor = interactor
     self.dataSource = viewDataSource
     self.router = router
+    self.loginObservable = loginObservable
   }
 
   func viewDidLoad() {
-    fetchShows()
+    loginObservable.observe()
+      .distinctUntilChanged()
+      .observeOn(MainScheduler.instance)
+      .subscribe(onNext: { [unowned self] loginState in
+        guard let view = self.view else { return }
+
+        if loginState == .notLogged {
+          view.showError(message: "You need to login on Trakt to access this content".localized)
+          self.dataSource.update()
+        } else {
+          self.fetchShows()
+        }
+
+      }).disposed(by: disposeBag)
   }
 
   func updateShows() {
@@ -96,6 +111,7 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
         }
         }, onError: { [unowned self] error in
           self.view?.showError(message: error.localizedDescription)
+          self.dataSource.update()
         }, onCompleted: { [unowned self] in
           if self.dataSource.viewModels.isEmpty {
             self.view?.showEmptyView()
