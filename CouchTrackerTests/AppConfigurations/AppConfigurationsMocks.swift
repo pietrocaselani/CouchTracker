@@ -37,6 +37,20 @@ final class AppConfigurationsMock {
   }
 }
 
+final class AppConfigurationsInteractorErrorMock: AppConfigurationsInteractor {
+  var error: Error!
+
+  init(repository: AppConfigurationsRepository, output: AppConfigurationsOutput) {}
+
+  func fetchAppConfigurationsState() -> Observable<AppConfigurationsState> {
+    return Observable.error(error)
+  }
+
+  func toggleHideSpecials() -> Completable {
+    return Completable.error(error)
+  }
+}
+
 final class AppConfigurationsInteractorMock: AppConfigurationsInteractor {
   private let repository: AppConfigurationsRepository
   var hideSpecials = false
@@ -47,9 +61,9 @@ final class AppConfigurationsInteractorMock: AppConfigurationsInteractor {
     self.repository = repository
   }
 
-  func fetchAppConfigurationsState(forced: Bool) -> Observable<AppConfigurationsState> {
+  func fetchAppConfigurationsState() -> Observable<AppConfigurationsState> {
     let hideSpecial = repository.fetchHideSpecials()
-    let loginState = repository.fetchLoginState(forced: forced)
+    let loginState = repository.fetchLoginState()
 
     return Observable.combineLatest(loginState, hideSpecial, resultSelector: { (loginState, hideSpecials) -> AppConfigurationsState in
       return AppConfigurationsState(loginState: loginState, hideSpecials: hideSpecials)
@@ -97,7 +111,7 @@ final class AppConfigurationsRepositoryMock: AppConfigurationsRepository {
   var invokedToggleHideSpecials = false
   var invokedFetchHideSpecials = false
 
-	init(usersProvider: MoyaProvider<Users>, isEmpty: Bool = false, dataSource: AppConfigurationsDataSource = AppConfigurationDataSourceMock()) {
+  init(usersProvider: MoyaProvider<Users>, isEmpty: Bool = false, dataSource: AppConfigurationsDataSource = AppConfigurationDataSourceMock(settings: nil)) {
     self.usersProvider = usersProvider
     self.isEmpty = isEmpty
   }
@@ -113,7 +127,7 @@ final class AppConfigurationsRepositoryMock: AppConfigurationsRepository {
     return Completable.empty()
   }
 
-  func fetchLoginState(forced: Bool) -> Observable<LoginState> {
+  func fetchLoginState() -> Observable<LoginState> {
     invokedFetchSettings = true
 
     guard !isEmpty else { return Observable.just(LoginState.notLogged) }
@@ -131,7 +145,7 @@ final class AppConfigurationsRepositoryErrorMock: AppConfigurationsRepository {
     self.loginError = loginError
   }
 
-  func fetchLoginState(forced: Bool) -> Observable<LoginState> {
+  func fetchLoginState() -> Observable<LoginState> {
     if let error = error {
       return Observable.error(error)
     }
@@ -167,18 +181,34 @@ final class AppConfigurationDataSourceMock: AppConfigurationsDataSource {
   var invokedToggleHideSpecials = false
   var invokedFetchHideSpecials = false
   var settings: Settings?
+  private let loginStateSubject: BehaviorSubject<LoginState>
+
+  init(settings: Settings?) {
+    self.settings = settings
+    
+    let state: LoginState
+
+    if let settings = settings {
+      state = LoginState.logged(settings: settings)
+    } else {
+      state = .notLogged
+    }
+
+    loginStateSubject = BehaviorSubject<LoginState>(value: state)
+  }
 
   func save(settings: Settings) throws {
 	  invokedSaveSettings = true
     self.settings = settings
+
+    DispatchQueue.main.async {
+      self.loginStateSubject.onNext(.logged(settings: settings))
+    }
   }
 
   func fetchLoginState() -> Observable<LoginState> {
     invokedFetchLoginState = true
-
-    guard let settings = settings else { return Observable.just(LoginState.notLogged) }
-
-    return Observable.just(LoginState.logged(settings: settings))
+    return loginStateSubject.asObservable()
   }
 
   func toggleHideSpecials() throws {

@@ -83,6 +83,24 @@
 		4F562E0A202E7A4300CB1AE0 /* WatchedSeasonEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F562E09202E7A4300CB1AE0 /* WatchedSeasonEntity.swift */; };
 		4F562E0B202E7A4300CB1AE0 /* WatchedSeasonEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F562E09202E7A4300CB1AE0 /* WatchedSeasonEntity.swift */; };
 		4F562E0C202E7A4300CB1AE0 /* WatchedSeasonEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F562E09202E7A4300CB1AE0 /* WatchedSeasonEntity.swift */; };
+		4F6097DC203B40DB006A2B33 /* AppConfigurationsStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6097DB203B40DB006A2B33 /* AppConfigurationsStateTest.swift */; };
+		4F6097DD203B40DB006A2B33 /* AppConfigurationsStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6097DB203B40DB006A2B33 /* AppConfigurationsStateTest.swift */; };
+		4F6097DF203B429A006A2B33 /* ShowProgressFilterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6097DE203B429A006A2B33 /* ShowProgressFilterTest.swift */; };
+		4F6097E0203B429A006A2B33 /* ShowProgressFilterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6097DE203B429A006A2B33 /* ShowProgressFilterTest.swift */; };
+		4F6D6E9F20339B3A00987AD1 /* ShowsManageriOSCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6E9E20339B3A00987AD1 /* ShowsManageriOSCreator.swift */; };
+		4F6D6EA120339C1300987AD1 /* ShowsManageriOSModuleSetupTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EA020339C1300987AD1 /* ShowsManageriOSModuleSetupTest.swift */; };
+		4F6D6EA220339C1300987AD1 /* ShowsManageriOSModuleSetupTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EA020339C1300987AD1 /* ShowsManageriOSModuleSetupTest.swift */; };
+		4F6D6EA320339CE600987AD1 /* ShowsManageriOSModuleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90BD1F7294290026B139 /* ShowsManageriOSModuleSetup.swift */; };
+		4F6D6EA420339CE600987AD1 /* ShowsManageriOSModuleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90BD1F7294290026B139 /* ShowsManageriOSModuleSetup.swift */; };
+		4F6D6EA62033A50700987AD1 /* ShowsProgressMoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EA52033A50700987AD1 /* ShowsProgressMoyaNetwork.swift */; };
+		4F6D6EA72033A50700987AD1 /* ShowsProgressMoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EA52033A50700987AD1 /* ShowsProgressMoyaNetwork.swift */; };
+		4F6D6EA82033A50700987AD1 /* ShowsProgressMoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EA52033A50700987AD1 /* ShowsProgressMoyaNetwork.swift */; };
+		4F6D6EAA2033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EA92033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift */; };
+		4F6D6EAB2033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EA92033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift */; };
+		4F6D6EAC2033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EA92033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift */; };
+		4F6D6EAE2036854600987AD1 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EAD2036854600987AD1 /* Observable+Extensions.swift */; };
+		4F6D6EAF2036854600987AD1 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EAD2036854600987AD1 /* Observable+Extensions.swift */; };
+		4F6D6EB02036854600987AD1 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EAD2036854600987AD1 /* Observable+Extensions.swift */; };
 		4F6DC40D201544E200AA0DC8 /* MoviesManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC40C201544E200AA0DC8 /* MoviesManagerContract.swift */; };
 		4F6DC40E201544E200AA0DC8 /* MoviesManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC40C201544E200AA0DC8 /* MoviesManagerContract.swift */; };
 		4F6DC40F201544E200AA0DC8 /* MoviesManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC40C201544E200AA0DC8 /* MoviesManagerContract.swift */; };
@@ -366,8 +384,8 @@
 		645EEEE51F61AEA10034EB66 /* ShowDetailsMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645EEEE31F61AEA10034EB66 /* ShowDetailsMocks.swift */; };
 		6467FC2A1F66D00D000D1AEE /* ShowDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6467FC291F66D00D000D1AEE /* ShowDetailsViewController.swift */; };
 		6467FC2D1F66D038000D1AEE /* ShowDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6467FC2C1F66D038000D1AEE /* ShowDetails.storyboard */; };
-		646896311F7BFECB00F95649 /* ShowProgressPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896301F7BFECB00F95649 /* ShowProgressPresenterTest.swift */; };
-		646896321F7BFECB00F95649 /* ShowProgressPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896301F7BFECB00F95649 /* ShowProgressPresenterTest.swift */; };
+		646896311F7BFECB00F95649 /* ShowsProgressiOSPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896301F7BFECB00F95649 /* ShowsProgressiOSPresenterTest.swift */; };
+		646896321F7BFECB00F95649 /* ShowsProgressiOSPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896301F7BFECB00F95649 /* ShowsProgressiOSPresenterTest.swift */; };
 		646896341F7C11EE00F95649 /* ShowProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896331F7C11EE00F95649 /* ShowProgressCell.swift */; };
 		646896371F7C123D00F95649 /* ShowProgressCellContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896361F7C123D00F95649 /* ShowProgressCellContract.swift */; };
 		646896391F7C12A400F95649 /* ShowProgressCelliOSPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896381F7C12A400F95649 /* ShowProgressCelliOSPresenter.swift */; };
@@ -685,6 +703,13 @@
 		4F236DCA202CD36E007FB1B9 /* ShowProgressAPIRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressAPIRepositoryTest.swift; sourceTree = "<group>"; };
 		4F562E05202E7A3400CB1AE0 /* WatchedEpisodeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedEpisodeEntity.swift; sourceTree = "<group>"; };
 		4F562E09202E7A4300CB1AE0 /* WatchedSeasonEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedSeasonEntity.swift; sourceTree = "<group>"; };
+		4F6097DB203B40DB006A2B33 /* AppConfigurationsStateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsStateTest.swift; sourceTree = "<group>"; };
+		4F6097DE203B429A006A2B33 /* ShowProgressFilterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressFilterTest.swift; sourceTree = "<group>"; };
+		4F6D6E9E20339B3A00987AD1 /* ShowsManageriOSCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManageriOSCreator.swift; sourceTree = "<group>"; };
+		4F6D6EA020339C1300987AD1 /* ShowsManageriOSModuleSetupTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManageriOSModuleSetupTest.swift; sourceTree = "<group>"; };
+		4F6D6EA52033A50700987AD1 /* ShowsProgressMoyaNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressMoyaNetwork.swift; sourceTree = "<group>"; };
+		4F6D6EA92033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsMoyaNetwork.swift; sourceTree = "<group>"; };
+		4F6D6EAD2036854600987AD1 /* Observable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extensions.swift"; sourceTree = "<group>"; };
 		4F6DC40C201544E200AA0DC8 /* MoviesManagerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerContract.swift; sourceTree = "<group>"; };
 		4F6DC4102015460700AA0DC8 /* MoviesManageriOSModuleSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManageriOSModuleSetup.swift; sourceTree = "<group>"; };
 		4F6DC4142015476000AA0DC8 /* MoviesManager.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MoviesManager.storyboard; sourceTree = "<group>"; };
@@ -819,7 +844,7 @@
 		645EEEE31F61AEA10034EB66 /* ShowDetailsMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsMocks.swift; sourceTree = "<group>"; };
 		6467FC291F66D00D000D1AEE /* ShowDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsViewController.swift; sourceTree = "<group>"; };
 		6467FC2C1F66D038000D1AEE /* ShowDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowDetails.storyboard; sourceTree = "<group>"; };
-		646896301F7BFECB00F95649 /* ShowProgressPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressPresenterTest.swift; sourceTree = "<group>"; };
+		646896301F7BFECB00F95649 /* ShowsProgressiOSPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressiOSPresenterTest.swift; sourceTree = "<group>"; };
 		646896331F7C11EE00F95649 /* ShowProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCell.swift; sourceTree = "<group>"; };
 		646896361F7C123D00F95649 /* ShowProgressCellContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellContract.swift; sourceTree = "<group>"; };
 		646896381F7C12A400F95649 /* ShowProgressCelliOSPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCelliOSPresenter.swift; sourceTree = "<group>"; };
@@ -1165,6 +1190,7 @@
 				64BE63201F4F6893002E55EA /* UIAlertController+Error.swift */,
 				6406BEDB1F4DC353004661C4 /* UIColor+CouchTracker.swift */,
 				64BE633B1F4F7ED7002E55EA /* UIViewController+BaseView.swift */,
+				4F6D6EAD2036854600987AD1 /* Observable+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1274,6 +1300,7 @@
 		6434CA5C1F7529BC00EA3AD8 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				4F6D6EA020339C1300987AD1 /* ShowsManageriOSModuleSetupTest.swift */,
 				6434CA5D1F752BD200EA3AD8 /* ShowsManagerMocks.swift */,
 				6434CA601F752E3F00EA3AD8 /* ShowsManagerPresenterTest.swift */,
 			);
@@ -1286,8 +1313,9 @@
 				6434CA6A1F75347D00EA3AD8 /* ShowsProgressAPIRepositoryTest.swift */,
 				6434CA8F1F757AE900EA3AD8 /* ShowsProgressMocks.swift */,
 				64CCE33F1F7AD2A300CD2B9C /* ShowsProgressServiceTest.swift */,
-				646896301F7BFECB00F95649 /* ShowProgressPresenterTest.swift */,
+				646896301F7BFECB00F95649 /* ShowsProgressiOSPresenterTest.swift */,
 				392D92E09E0D2FA6A0EB4810 /* ShowsProgressRealmDataSourceTest.swift */,
+				4F6097DE203B429A006A2B33 /* ShowProgressFilterTest.swift */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -1354,6 +1382,7 @@
 				392D9D85E8E3DD59D4898217 /* AppConfigurationsUserDefaultsDataSource.swift */,
 				64D491551F6FE4DF00EA0C80 /* AppConfigurationsViewController.swift */,
 				644BF50C1F6B07AF0010CE35 /* AppConfigurationsViewModel.swift */,
+				4F6D6EA92033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift */,
 			);
 			path = AppConfigurations;
 			sourceTree = "<group>";
@@ -1755,6 +1784,7 @@
 				64C384061F6C134F00FC9930 /* AppConfigurationsDefaultRepositoryTest.swift */,
 				392D9A1EBEA9372640C0DB85 /* AppConfigurationsUserDefaultsDataSourceTest.swift */,
 				4FA0C76120326DBA008656B7 /* AppConfigurationsStoreTest.swift */,
+				4F6097DB203B40DB006A2B33 /* AppConfigurationsStateTest.swift */,
 			);
 			path = AppConfigurations;
 			sourceTree = "<group>";
@@ -1771,6 +1801,7 @@
 				644E90451F72E18E0089CD70 /* ShowsProgressContract.swift */,
 				641B9D471F7D8EF700C26D10 /* ShowsProgressiOSRouter.swift */,
 				64CB90BF1F72944D0026B139 /* ShowsProgressModule.swift */,
+				4F6D6EA52033A50700987AD1 /* ShowsProgressMoyaNetwork.swift */,
 				649D3DC720263AB200DF401A /* ShowsProgressRealmDataSource.swift */,
 				644E905D1F72F3EA0089CD70 /* ShowsProgressService.swift */,
 				6418AAFB1F7C1D1600D4D83C /* ShowsProgressTableViewDataSource.swift */,
@@ -1796,6 +1827,7 @@
 			children = (
 				64CC08901F7174F5004D164A /* ShowsManager.storyboard */,
 				64CC08601F71616E004D164A /* ShowsManagerContract.swift */,
+				4F6D6E9E20339B3A00987AD1 /* ShowsManageriOSCreator.swift */,
 				64CB90BD1F7294290026B139 /* ShowsManageriOSModuleSetup.swift */,
 				64CB90B91F72922F0026B139 /* ShowsManageriOSPresenter.swift */,
 				64CC088C1F717330004D164A /* ShowsManagerModule.swift */,
@@ -2363,6 +2395,7 @@
 				64F05BF61F69527C00E3B861 /* ImagesSize.swift in Sources */,
 				641B9D451F7D7DBB00C26D10 /* ShowManagerViewController.swift in Sources */,
 				641B9D481F7D8EF700C26D10 /* ShowsProgressiOSRouter.swift in Sources */,
+				4F6D6E9F20339B3A00987AD1 /* ShowsManageriOSCreator.swift in Sources */,
 				6454D1831F704BED008C4E5F /* TraktLoginModule.swift in Sources */,
 				644BF5111F6B07B00010CE35 /* AppConfigurationsiOSPresenter.swift in Sources */,
 				648390E71F504EE500911BA0 /* SearchContract.swift in Sources */,
@@ -2459,6 +2492,7 @@
 				644BF50F1F6B07B00010CE35 /* AppConfigurationOptions.swift in Sources */,
 				6418AAFC1F7C1D1600D4D83C /* ShowsProgressTableViewDataSource.swift in Sources */,
 				641B9D201F7D3DC900C26D10 /* ShowProgressSort.swift in Sources */,
+				4F6D6EA62033A50700987AD1 /* ShowsProgressMoyaNetwork.swift in Sources */,
 				64EB97A01FB20C8E00C96E43 /* TraktAuthenticationProvider.swift in Sources */,
 				6405E4F51F5DE7B800756E79 /* TrendingCell.swift in Sources */,
 				645322FB2024CF7200449B0A /* EpisodeEntityRealm.swift in Sources */,
@@ -2467,6 +2501,7 @@
 				645B83881F73FC04009DDF53 /* Date+Presentable.swift in Sources */,
 				64FDE5041F7E64F200A4C7AA /* ShowEpisodeiOSPresenter.swift in Sources */,
 				6406BEE61F4DC353004661C4 /* UIColor+CouchTracker.swift in Sources */,
+				4F6D6EAE2036854600987AD1 /* Observable+Extensions.swift in Sources */,
 				6406BEC21F4DBEFA004661C4 /* MovieDetailsContract.swift in Sources */,
 				4F202F5F202F10EB0040185F /* WatchedEpisodeEntityRealm.swift in Sources */,
 				6405E5011F5DE84500756E79 /* TrendingShowEntity.swift in Sources */,
@@ -2519,6 +2554,7 @@
 				645323072024D28100449B0A /* DefaultRealmProvider.swift in Sources */,
 				392D98D1F350EE017D21155F /* TraktProvider.swift in Sources */,
 				641D497520222EDC002A4EAD /* Schedulers.swift in Sources */,
+				4F6D6EAA2033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift in Sources */,
 				64CB309B1F6077B800FD6171 /* TrendingCellViewModel.swift in Sources */,
 				645322F72024CF5000449B0A /* WatchedShowEntityRealm.swift in Sources */,
 				64EC3A6A1F66B9230046A186 /* ShowDetailsViewModel.swift in Sources */,
@@ -2547,6 +2583,7 @@
 				641B9D4F1F7D9C6D00C26D10 /* ShowEpisodeAPIRepository.swift in Sources */,
 				64C2D01A1F60A4BC00A064E2 /* TrendingCellInteractorTest.swift in Sources */,
 				641B9D531F7D9E8500C26D10 /* ShowEpisodeService.swift in Sources */,
+				4F6097DC203B40DB006A2B33 /* AppConfigurationsStateTest.swift in Sources */,
 				64D29C501F55AA25008E344E /* MovieDetailsService.swift in Sources */,
 				644EE1581F55E9460053D631 /* TrendingMovieEntity.swift in Sources */,
 				64C2D0161F60A35300A064E2 /* TrendingCellViewModel.swift in Sources */,
@@ -2613,7 +2650,7 @@
 				64C2D0141F60A34F00A064E2 /* TrendingCellService.swift in Sources */,
 				640330441F67FEBA001CCEDB /* ImagesViewModelMapper.swift in Sources */,
 				645EEEE41F61AEA10034EB66 /* ShowDetailsMocks.swift in Sources */,
-				646896311F7BFECB00F95649 /* ShowProgressPresenterTest.swift in Sources */,
+				646896311F7BFECB00F95649 /* ShowsProgressiOSPresenterTest.swift in Sources */,
 				4F8EE015202E164D0002189B /* ShowEpisodeServiceTest.swift in Sources */,
 				641B9D4B1F7D964500C26D10 /* ShowEpisodeContract.swift in Sources */,
 				645323082024D28100449B0A /* DefaultRealmProvider.swift in Sources */,
@@ -2628,6 +2665,7 @@
 				642F6F561F5D74F10012F04F /* ShowEntityMapper.swift in Sources */,
 				645323042024D25D00449B0A /* RealmProvider.swift in Sources */,
 				6434CA5E1F752BD200EA3AD8 /* ShowsManagerMocks.swift in Sources */,
+				4F6D6EA320339CE600987AD1 /* ShowsManageriOSModuleSetup.swift in Sources */,
 				644EE1471F55DF9F0053D631 /* ConfigurationRepositoryMock.swift in Sources */,
 				6454D1871F705222008C4E5F /* TraktTokenPolicyDecider.swift in Sources */,
 				641B9D231F7D412B00C26D10 /* ShowProgressSort.swift in Sources */,
@@ -2648,6 +2686,7 @@
 				648390D51F504E7600911BA0 /* TrendingMocks.swift in Sources */,
 				644BF5021F6AFF5E0010CE35 /* SearchState.swift in Sources */,
 				64303EB81F6726970050C287 /* ImagesViewModel.swift in Sources */,
+				4F6D6EA120339C1300987AD1 /* ShowsManageriOSModuleSetupTest.swift in Sources */,
 				64EC3A661F66B3B30046A186 /* ShowDetailsiOSPresenter.swift in Sources */,
 				641B9D251F7D413000C26D10 /* ShowProgressFilter.swift in Sources */,
 				642624391F56E15A00560660 /* ImageRepositoryMock.swift in Sources */,
@@ -2658,7 +2697,9 @@
 				644EE14B1F55E0340053D631 /* TMDBProviderMock.swift in Sources */,
 				644BF5221F6B07E20010CE35 /* AppConfigurationsContract.swift in Sources */,
 				642F6F511F5D722B0012F04F /* ShowEntity.swift in Sources */,
+				4F6D6EA72033A50700987AD1 /* ShowsProgressMoyaNetwork.swift in Sources */,
 				64A5DCC71F56E2DF006853A2 /* ImagesEntityMapper.swift in Sources */,
+				4F6D6EAB2033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift in Sources */,
 				4F202F68202F1FE40040185F /* AppConfigurationsState.swift in Sources */,
 				645322FC2024CF7200449B0A /* EpisodeEntityRealm.swift in Sources */,
 				645B834E1F73E2A8009DDF53 /* EpisodeEntityMapper.swift in Sources */,
@@ -2684,6 +2725,7 @@
 				64CC08A61F71939C004D164A /* TraktLoginObservable.swift in Sources */,
 				6468963A1F7C12A400F95649 /* ShowProgressCelliOSPresenter.swift in Sources */,
 				4FA0C76220326DBA008656B7 /* AppConfigurationsStoreTest.swift in Sources */,
+				4F6097DF203B429A006A2B33 /* ShowProgressFilterTest.swift in Sources */,
 				646896401F7C132C00F95649 /* ShowProgressCellService.swift in Sources */,
 				644E905F1F72F3EA0089CD70 /* ShowsProgressService.swift in Sources */,
 				648390D11F504E7600911BA0 /* MovieDetailsInteractorTest.swift in Sources */,
@@ -2702,6 +2744,7 @@
 				392D9CAB8901302FCB6F2C14 /* TMDBProvider.swift in Sources */,
 				645EEEDC1F61AB8A0034EB66 /* ShowDetailsInteractorTest.swift in Sources */,
 				392D94094EB036ECB0061A99 /* TraktProvider.swift in Sources */,
+				4F6D6EAF2036854600987AD1 /* Observable+Extensions.swift in Sources */,
 				6454D16D1F703B4D008C4E5F /* TraktLoginiOSPresenter.swift in Sources */,
 				392D951BEE3334C99765C1AE /* ImageRepository.swift in Sources */,
 				4F8EE01A202E1B680002189B /* ImageCachedRepository.swift in Sources */,
@@ -2734,12 +2777,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				644EE15A1F55E9460053D631 /* TrendingMovieEntity.swift in Sources */,
 				4F7B095A2016B7B7001F6C50 /* APISearchRepository.swift in Sources */,
 				4F7B095B2016B7B7001F6C50 /* ShowDetailsCacheRepository.swift in Sources */,
 				4F8EE016202E164D0002189B /* ShowEpisodeServiceTest.swift in Sources */,
 				4F236DBC202C0837007FB1B9 /* ShowEpisodeRealmDataSource.swift in Sources */,
 				4F7B095C2016B7B7001F6C50 /* TrendingCacheRepository.swift in Sources */,
-				644EE15A1F55E9460053D631 /* TrendingMovieEntity.swift in Sources */,
 				4F7B095D2016B7B7001F6C50 /* CompositeLoginOutput.swift in Sources */,
 				4F7B095E2016B7B7001F6C50 /* NoCacheMoyaPlugin.swift in Sources */,
 				4F7B09572016B756001F6C50 /* TraktGenreRepository.swift in Sources */,
@@ -2779,6 +2822,7 @@
 				64BE631B1F4F5E43002E55EA /* GenreRepository.swift in Sources */,
 				64CC089B1F718BE2004D164A /* TraktLoginState.swift in Sources */,
 				648390E21F504EA500911BA0 /* SearchMocks.swift in Sources */,
+				4F6D6EB02036854600987AD1 /* Observable+Extensions.swift in Sources */,
 				645322FD2024CF7200449B0A /* EpisodeEntityRealm.swift in Sources */,
 				644BF5291F6B07E30010CE35 /* AppConfigurationOptions.swift in Sources */,
 				64BE63191F4F5E04002E55EA /* BaseView.swift in Sources */,
@@ -2791,11 +2835,12 @@
 				64343E131F7EB128004557E4 /* TVDBProvider.swift in Sources */,
 				644BF52E1F6B07E30010CE35 /* AppConfigurationsViewModel.swift in Sources */,
 				4FA0C76320326DBA008656B7 /* AppConfigurationsStoreTest.swift in Sources */,
-				646896321F7BFECB00F95649 /* ShowProgressPresenterTest.swift in Sources */,
+				646896321F7BFECB00F95649 /* ShowsProgressiOSPresenterTest.swift in Sources */,
 				64C384111F6C137A00FC9930 /* AppConfigurationsPresenterTest.swift in Sources */,
 				64F05BF91F69527E00E3B861 /* ImagesSize.swift in Sources */,
 				64C2D0131F60A34C00A064E2 /* TrendingCelliOSPresenter.swift in Sources */,
 				645B83531F73E8A0009DDF53 /* ShowsProgressAPIRepository.swift in Sources */,
+				4F6D6EA220339C1300987AD1 /* ShowsManageriOSModuleSetupTest.swift in Sources */,
 				6423EA941F56091700F3899C /* ImageEntity.swift in Sources */,
 				4F8EE019202E16EF0002189B /* ShowEpisodeMocks.swift in Sources */,
 				64268C341F7ED3920005FCE2 /* TVDBProviderMock.swift in Sources */,
@@ -2810,6 +2855,7 @@
 				64FDE5061F7E64F200A4C7AA /* ShowEpisodeiOSPresenter.swift in Sources */,
 				64EC3A631F66B2AB0046A186 /* ShowDetailsPresenterTest.swift in Sources */,
 				648390DF1F504EA500911BA0 /* MovieDetailsMocks.swift in Sources */,
+				4F6D6EAC2033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift in Sources */,
 				64D29C461F55A9FD008E344E /* TrendingiOSPresenter.swift in Sources */,
 				641B9D241F7D412B00C26D10 /* ShowProgressSort.swift in Sources */,
 				648391211F50606100911BA0 /* SearchPresenterTest.swift in Sources */,
@@ -2829,6 +2875,7 @@
 				649D3DCA20263AB200DF401A /* ShowsProgressRealmDataSource.swift in Sources */,
 				645322F52024CD6200449B0A /* ShowEntityRealm.swift in Sources */,
 				4FD27A3D201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift in Sources */,
+				4F6097DD203B40DB006A2B33 /* AppConfigurationsStateTest.swift in Sources */,
 				6434CA6C1F75347D00EA3AD8 /* ShowsProgressAPIRepositoryTest.swift in Sources */,
 				64D29C431F55A9F5008E344E /* TrendingService.swift in Sources */,
 				648390DB1F504E9100911BA0 /* TrendingInteractorTest.swift in Sources */,
@@ -2867,12 +2914,15 @@
 				6405E5001F5DE83F00756E79 /* TrendingViewModel.swift in Sources */,
 				4F236DCC202CD36E007FB1B9 /* ShowProgressAPIRepositoryTest.swift in Sources */,
 				644E905C1F72EF7E0089CD70 /* WatchedShowViewModel.swift in Sources */,
+				4F6D6EA420339CE600987AD1 /* ShowsManageriOSModuleSetup.swift in Sources */,
+				4F6D6EA82033A50700987AD1 /* ShowsProgressMoyaNetwork.swift in Sources */,
 				6442F9F81F617648008E3E12 /* TrendingCellMocks.swift in Sources */,
 				648390DC1F504E9600911BA0 /* TrendingMocks.swift in Sources */,
 				64C2D0151F60A35000A064E2 /* TrendingCellService.swift in Sources */,
 				648390DE1F504EA500911BA0 /* MovieDetailsInteractorTest.swift in Sources */,
 				6496D9AB1F56F1CF00B76E06 /* TraktProviderMock.swift in Sources */,
 				641D497720222EDC002A4EAD /* Schedulers.swift in Sources */,
+				4F6097E0203B429A006A2B33 /* ShowProgressFilterTest.swift in Sources */,
 				64BE63321F4F6F3F002E55EA /* Localizable.swift in Sources */,
 				6454D15F1F70359E008C4E5F /* TraktLoginContract.swift in Sources */,
 				64CC08971F7188E1004D164A /* TraktLoginStore.swift in Sources */,

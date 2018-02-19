@@ -1,7 +1,9 @@
 import UIKit
 
 final class ShowsManagerModule {
-  private init() {}
+  private init() {
+    fatalError("No instances for you!")
+  }
 
   static func setupModule() -> BaseView {
     guard let view = R.storyboard.showsManager().instantiateInitialViewController() as? UINavigationController else {
@@ -12,10 +14,9 @@ final class ShowsManagerModule {
       fatalError("Can't instantiate ShowsManagerViewController from Storyboard")
     }
 
-    let loginObservable = Environment.instance.loginObservable
-    let modulesSetup = ShowsManageriOSModuleSetup()
-    let presenter = ShowsManageriOSPresenter(view: showsManagerView,
-                                             loginObservable: loginObservable, moduleSetup: modulesSetup)
+    let moduleCreator = ShowsManageriOSCreator()
+    let modulesSetup = ShowsManageriOSModuleSetup(creator: moduleCreator)
+    let presenter = ShowsManageriOSPresenter(view: showsManagerView, moduleSetup: modulesSetup)
 
     showsManagerView.presenter = presenter
 

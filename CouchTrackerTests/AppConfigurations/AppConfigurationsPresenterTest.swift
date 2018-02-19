@@ -4,8 +4,9 @@ import TraktSwift
 final class AppConfigurationsPresenterTest: XCTestCase {
   private var view: AppConfigurationsViewMock!
   private var router: AppConfigurationsRouterMock!
-  private var presenter: AppConfigurationsPresenter!
+  private var presenter: AppConfigurationsiOSPresenter!
   private var interactor: AppConfigurationsInteractorMock!
+  private var interactorError: AppConfigurationsInteractorErrorMock!
 
   override func tearDown() {
     super.tearDown()
@@ -28,7 +29,17 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     presenter = AppConfigurationsiOSPresenter(view: view, interactor: interactor, router: router)
   }
 
-  private func setupModule(empty: Bool = false)  {
+  private func setupModule(error: Error) {
+    view = AppConfigurationsViewMock()
+    router = AppConfigurationsRouterMock()
+    let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users, isEmpty: true)
+    let output = AppConfigurationsMock.AppConfigurationsOutputMock()
+    let interactor = AppConfigurationsInteractorErrorMock(repository: repository, output: output)
+    interactor.error = error
+    presenter = AppConfigurationsiOSPresenter(view: view, interactor: interactor, router: router)
+  }
+
+  private func setupModule(empty: Bool = false) {
     view = AppConfigurationsViewMock()
     router = AppConfigurationsRouterMock()
     let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users, isEmpty: empty)
@@ -147,5 +158,47 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 
     //Then
     XCTAssertTrue(interactor.toggleHideSpecialsInvoked)
+  }
+
+  func testAppConfigurationsPresenter_receivesErrorFromInteractor_notifyRouter() {
+    //Given
+    let error = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 2002, userInfo: nil)
+    setupModule(error: error)
+
+    //When
+    presenter.viewDidLoad()
+
+    //Then
+    XCTAssertTrue(router.invokedShowErrorMessage)
+  }
+
+  func testAppConfigrationsPresenter_receivesTraktLoginError_notifyRouter() {
+    //Given
+    setupModule(empty: true)
+
+    //When
+    let message = "User or password invalid"
+    presenter.logInFail(message: message)
+
+    //Then
+    XCTAssertTrue(router.invokedShowErrorMessage)
+
+    guard let receivedMessage = router.invokedShowErrorMessageParameters?.message else {
+      XCTFail("Parameter can't be nil")
+      return
+    }
+
+    XCTAssertEqual(receivedMessage, message)
+  }
+
+  func testAppConfigrationsPresenter_receivesTraktLogin_updatesView() {
+    //Given
+    setupModule(empty: true)
+
+    //When
+    presenter.loggedInSuccessfully()
+
+    //Then
+    XCTAssertTrue(view.invokedShowConfigurations)
   }
 }

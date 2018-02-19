@@ -27,7 +27,7 @@ final class AppConfigurationsInteractorTest: XCTestCase {
     let interactor = AppConfigurationsService(repository: repository, output: output)
 
     //When
-    let observable = interactor.fetchAppConfigurationsState(forced: false)
+    let observable = interactor.fetchAppConfigurationsState()
 
     //Then
     let disposable = observable.subscribe(observer)
@@ -45,7 +45,7 @@ final class AppConfigurationsInteractorTest: XCTestCase {
     let interactor = AppConfigurationsService(repository: repository, output: output)
 
     //When
-    let observable = interactor.fetchAppConfigurationsState(forced: false)
+    let observable = interactor.fetchAppConfigurationsState()
 
     //Then
     let disposable = observable.subscribe(observer)
@@ -62,7 +62,7 @@ final class AppConfigurationsInteractorTest: XCTestCase {
     let interactor = AppConfigurationsService(repository: repository, output: output)
 
     //When
-    let observable = interactor.fetchAppConfigurationsState(forced: false)
+    let observable = interactor.fetchAppConfigurationsState()
 
     //Then
     let disposable = observable.subscribe(observer)
@@ -97,7 +97,7 @@ final class AppConfigurationsInteractorTest: XCTestCase {
     let interactor = AppConfigurationsService(repository: repository, output: output)
 
     //When
-    _ = interactor.fetchAppConfigurationsState(forced: false).subscribe(observer)
+    _ = interactor.fetchAppConfigurationsState().subscribe(observer)
 
     //Then
     let expectedState = AppConfigurationsState(loginState: .notLogged, hideSpecials: false)

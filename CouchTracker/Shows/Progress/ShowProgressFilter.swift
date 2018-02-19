@@ -11,7 +11,12 @@ enum ShowProgressFilter: String {
   }
 
   static func filter(for index: Int) -> ShowProgressFilter {
-    return ShowProgressFilter.allValues()[index]
+    let allValues = ShowProgressFilter.allValues()
+    if index < 0 || index >= allValues.count {
+      return ShowProgressFilter.none
+    }
+
+    return allValues[index]
   }
 
   func index() -> Int {

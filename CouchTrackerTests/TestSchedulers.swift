@@ -6,6 +6,8 @@ final class TestSchedulers: Schedulers {
   var dataSourceQueue: DispatchQueue
   var networkQueue: DispatchQueue
   var networkScheduler: ImmediateSchedulerType
+  var ioQueue: DispatchQueue
+  var ioScheduler: ImmediateSchedulerType
   let testScheduler: TestScheduler
 
   init(initialClock: TestTime = 0) {
@@ -15,6 +17,8 @@ final class TestSchedulers: Schedulers {
     self.networkScheduler = scheduler
     self.dataSourceQueue = DispatchQueue.main
     self.dataSourceScheduler = scheduler
+    self.ioQueue = DispatchQueue.main
+    self.ioScheduler = scheduler
   }
 
   func start() {
