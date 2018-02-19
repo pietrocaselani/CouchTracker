@@ -1,11 +1,8 @@
 import UIKit
-import TraktSwift
 
 final class ShowsProgressModule {
-  private init() {}
-
-  static var showsManagerOption: ShowsManagerOption {
-    return ShowsManagerOption.progress
+  private init() {
+    Swift.fatalError("No instances for you!")
   }
 
   static func setupModule() -> BaseView {
@@ -18,6 +15,9 @@ final class ShowsProgressModule {
     let tvdb = Environment.instance.tvdb
     let schedulers = Environment.instance.schedulers
     let realmProvider = Environment.instance.realmProvider
+    let appConfigsObservable = Environment.instance.appConfigurationsObservable
+    let hideSpecials = Environment.instance.currentAppState.hideSpecials
+    let traktLoginObservable = Environment.instance.loginObservable
 
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
@@ -30,11 +30,19 @@ final class ShowsProgressModule {
     let dataSource = ShowsProgressRealmDataSource(realmProvider: realmProvider, schedulers: schedulers)
     let router = ShowsProgressiOSRouter(viewController: view)
     let viewDataSource = ShowsProgressTableViewDataSource(imageRepository: imageRepository)
-    let repository = ShowsProgressAPIRepository(trakt: trakt, dataSource: dataSource,
-                                                schedulers: schedulers, showProgressRepository: showProgressRepository)
+    let showsProgressNetwork = ShowsProgressMoyaNetwork(trakt: trakt)
+    let repository = ShowsProgressAPIRepository(network: showsProgressNetwork,
+                                                dataSource: dataSource,
+                                                schedulers: schedulers,
+                                                showProgressRepository: showProgressRepository,
+                                                appConfigurationsObservable: appConfigsObservable,
+                                                hideSpecials: hideSpecials)
     let interactor = ShowsProgressService(repository: repository, schedulers: schedulers)
-    let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor,
-                                              viewDataSource: viewDataSource, router: router)
+    let presenter = ShowsProgressiOSPresenter(view: view,
+                                              interactor: interactor,
+                                              viewDataSource: viewDataSource,
+                                              router: router,
+                                              loginObservable: traktLoginObservable)
 
     view.presenter = presenter
 

@@ -6,6 +6,11 @@ final class TraktEntitiesMock {
     return try! jsonDecoder.decode(T.self, from: data)
   }
 
+  static func decodeTraktJSONArray<T: Codable>(with name: String) -> [T] {
+    let data = traktDataForJSON(with: name)
+    return try! jsonDecoder.decode([T].self, from: data)
+  }
+
   static func traktDataForJSON(with name: String) -> Data {
     let resourcesPath = Bundle(for: Trakt.self).bundlePath
 

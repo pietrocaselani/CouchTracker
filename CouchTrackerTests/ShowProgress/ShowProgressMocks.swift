@@ -7,7 +7,7 @@ final class ShowProgressMocks {
   private init() {}
 
   final class ShowProgressAPIRepositoryMock: ShowProgressRepository {
-	  private let baseShow: BaseShow?
+    private let baseShow: BaseShow?
 	  private let baseShowError: Error?
 	  private let episode: Episode?
 	  private let episodeError: Error?
@@ -20,17 +20,17 @@ final class ShowProgressMocks {
 		  self.episodeError = episodeError
 	  }
 
-    func fetchShowProgress(ids: ShowIds) -> Single<WatchedShowBuilder> {
+    func fetchShowProgress(ids: ShowIds, hideSpecials: Bool) -> Single<WatchedShowBuilder> {
       if let error = baseShowError { return Single.error(error) }
 
       if let error = episodeError { return Single.error(error) }
 
-      let target = Shows.watchedProgress(showId: ids.realId, hidden: true, specials: true, countSpecials: true)
+      let target = Shows.watchedProgress(showId: ids.realId, hidden: !hideSpecials, specials: !hideSpecials, countSpecials: !hideSpecials)
       let single = trakt.shows.rx.request(target).map(BaseShow.self)
 
       return single.flatMap { baseShowMock -> Single<WatchedShowBuilder> in
         let builder = WatchedShowBuilder(ids: ids)
-        builder.detailShow = baseShowMock
+        builder.progressShow = baseShowMock
         return self.fetchEpisodeDetails(ids, builder, baseShowMock.nextEpisode)
       }
     }

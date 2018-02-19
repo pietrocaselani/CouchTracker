@@ -3,14 +3,20 @@ import TraktSwift
 import RxSwift
 
 protocol AppConfigurationsRepository: class {
-  init(dataSource: AppConfigurationsDataSource)
+  func fetchLoginState() -> Observable<LoginState>
+  func fetchHideSpecials() -> Observable<Bool>
+  func toggleHideSpecials() -> Completable
+}
 
-  func fetchLoggedUser(forced: Bool) -> Observable<User>
+protocol AppConfigurationsNetwork: class {
+  func fetchUserSettings() -> Single<Settings>
 }
 
 protocol AppConfigurationsDataSource: class {
   func save(settings: Settings) throws
-  func fetchSettings() -> Observable<Settings>
+  func fetchLoginState() -> Observable<LoginState>
+  func toggleHideSpecials() throws
+  func fetchHideSpecials() -> Observable<Bool>
 }
 
 protocol AppConfigurationsRouter: class {
@@ -19,9 +25,10 @@ protocol AppConfigurationsRouter: class {
 }
 
 protocol AppConfigurationsInteractor: class {
-  init(repository: AppConfigurationsRepository)
+  init(repository: AppConfigurationsRepository, output: AppConfigurationsOutput)
 
-  func fetchLoginState(forced: Bool) -> Observable<LoginState>
+  func fetchAppConfigurationsState() -> Observable<AppConfigurationsState>
+  func toggleHideSpecials() -> Completable
 }
 
 protocol AppConfigurationsPresenter: class {

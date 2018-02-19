@@ -15,9 +15,9 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
 
     let testExpectation = expectation(description: "Should returns a builder without next episode")
 
-    _ = repository.fetchShowProgress(ids: showIds!).subscribe(onSuccess: { builder in
+    _ = repository.fetchShowProgress(ids: showIds!, hideSpecials: false).subscribe(onSuccess: { builder in
       testExpectation.fulfill()
-      XCTAssertNotNil(builder.detailShow)
+      XCTAssertNotNil(builder.progressShow)
       XCTAssertNil(builder.episode)
     }) { error in
       XCTFail(error.localizedDescription)
@@ -34,9 +34,9 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
 
     let testExpectation = expectation(description: "Should returns a builder without next episode")
 
-    _ = repository.fetchShowProgress(ids: showIds!).subscribe(onSuccess: { builder in
+    _ = repository.fetchShowProgress(ids: showIds!, hideSpecials: false).subscribe(onSuccess: { builder in
       testExpectation.fulfill()
-      XCTAssertNotNil(builder.detailShow)
+      XCTAssertNotNil(builder.progressShow)
       XCTAssertNil(builder.episode)
     }) { error in
       XCTFail(error.localizedDescription)
@@ -53,9 +53,9 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
 
     let testExpectation = expectation(description: "Should returns a builder with next episode")
 
-    _ = repository.fetchShowProgress(ids: showIds!).subscribe(onSuccess: { builder in
+    _ = repository.fetchShowProgress(ids: showIds!, hideSpecials: false).subscribe(onSuccess: { builder in
       testExpectation.fulfill()
-      XCTAssertNotNil(builder.detailShow)
+      XCTAssertNotNil(builder.progressShow)
       XCTAssertNotNil(builder.episode)
     }) { error in
       XCTFail(error.localizedDescription)

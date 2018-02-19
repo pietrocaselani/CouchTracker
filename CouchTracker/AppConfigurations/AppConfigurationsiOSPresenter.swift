@@ -22,12 +22,14 @@ final class AppConfigurationsiOSPresenter: AppConfigurationsPresenter {
     switch option {
     case .connectToTrakt:
       self.router.showTraktLogin(output: self)
+    case .hideSpecials:
+      self.interactor.toggleHideSpecials().subscribe().disposed(by: disposeBag)
     default: break
     }
   }
 
-  fileprivate func updateView(forced: Bool = false) {
-    interactor.fetchLoginState(forced: forced)
+  fileprivate func updateView() {
+    interactor.fetchAppConfigurationsState()
       .map { [unowned self] in self.createViewModel($0) }
       .observeOn(MainScheduler.instance)
       .subscribe(onNext: { [unowned self] viewModel in
@@ -37,30 +39,51 @@ final class AppConfigurationsiOSPresenter: AppConfigurationsPresenter {
       }).disposed(by: disposeBag)
   }
 
-  private func createViewModel(_ loginState: LoginState) -> [AppConfigurationsViewModel] {
-    let traktConfigs = traktConfigurations(loginState)
+  private func createViewModel(_ appConfigurationsState: AppConfigurationsState) -> [AppConfigurationsViewModel] {
+    let traktConfigs = traktConfigurationsViewModel(appConfigurationsState)
+    let generalConfigs = generalConfigurationsViewModel(appConfigurationsState)
 
-    return [traktConfigs]
+    return [traktConfigs, generalConfigs]
   }
 
-  private func traktConfigurations(_ loginState: LoginState) -> AppConfigurationsViewModel {
-    var configurations = [AppConfigurationViewModel]()
+  private func traktConfigurationsViewModel(_ state: AppConfigurationsState) -> AppConfigurationsViewModel {
+    let loginState = state.loginState
 
-    if case .logged(let user) = loginState {
-      configurations.append(AppConfigurationViewModel(title: "Connected".localized, subtitle: user.name))
-      options.append(AppConfigurationOptions.connectedToTrakt)
+    let connectedConfiguration: AppConfigurationViewModel
+    let connectedOption: AppConfigurationOptions
+
+    if case .logged(let settings) = loginState {
+      connectedOption = .connectedToTrakt
+      connectedConfiguration = AppConfigurationViewModel(title: "Connected".localized,
+                                                         subtitle: settings.user.name,
+                                                         value: .none)
     } else {
-      configurations.append(AppConfigurationViewModel(title: "Connect to Trakt".localized, subtitle: nil))
-      options.append(AppConfigurationOptions.connectToTrakt)
+      connectedOption = .connectToTrakt
+      connectedConfiguration = AppConfigurationViewModel(title: "Connect to Trakt".localized,
+                                                         subtitle: nil,
+                                                         value: .none)
     }
 
+    let configurations = [connectedConfiguration]
+    options.append(connectedOption)
+
     return AppConfigurationsViewModel(title: "Trakt", configurations: configurations)
+  }
+
+  private func generalConfigurationsViewModel(_ state: AppConfigurationsState) -> AppConfigurationsViewModel {
+    let configurations = [AppConfigurationViewModel(title: "Hide specials",
+                                                    subtitle: "Will not show special episodes",
+                                                    value: .boolean(value: state.hideSpecials))]
+
+    options.append(.hideSpecials)
+
+    return AppConfigurationsViewModel(title: "General", configurations: configurations)
   }
 }
 
 extension AppConfigurationsiOSPresenter: TraktLoginOutput {
   func loggedInSuccessfully() {
-    updateView(forced: true)
+    updateView()
   }
 
   func logInFail(message: String) {

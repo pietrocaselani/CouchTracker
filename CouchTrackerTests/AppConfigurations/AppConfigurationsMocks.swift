@@ -13,25 +13,66 @@ final class AppConfigurationsMock {
     let response = Response(statusCode: 401, data: Data())
     return MoyaError.statusCode(response)
   }
+
+  final class AppConfigurationsObservableMock: AppConfigurationsObservable {
+    var subject = PublishSubject<AppConfigurationsState>()
+    
+    func chage(state: AppConfigurationsState) {
+      subject.onNext(state)
+    }
+
+    func observe() -> Observable<AppConfigurationsState> {
+      return subject.asObservable()
+    }
+  }
+
+  final class AppConfigurationsOutputMock: AppConfigurationsOutput {
+    var newConfigurationInvoked = false
+    var newConfigurationParameters: AppConfigurationsState?
+
+    func newConfiguration(state: AppConfigurationsState) {
+      newConfigurationInvoked = true
+      newConfigurationParameters = state
+    }
+  }
+}
+
+final class AppConfigurationsInteractorErrorMock: AppConfigurationsInteractor {
+  var error: Error!
+
+  init(repository: AppConfigurationsRepository, output: AppConfigurationsOutput) {}
+
+  func fetchAppConfigurationsState() -> Observable<AppConfigurationsState> {
+    return Observable.error(error)
+  }
+
+  func toggleHideSpecials() -> Completable {
+    return Completable.error(error)
+  }
 }
 
 final class AppConfigurationsInteractorMock: AppConfigurationsInteractor {
   private let repository: AppConfigurationsRepository
+  var hideSpecials = false
+  var loginState = LoginState.notLogged
+  var toggleHideSpecialsInvoked = false
 
-  init(repository: AppConfigurationsRepository) {
+  init(repository: AppConfigurationsRepository, output: AppConfigurationsOutput) {
     self.repository = repository
   }
 
-  func fetchLoginState(forced: Bool) -> Observable<LoginState> {
-    return repository.fetchLoggedUser(forced: forced).map { user -> LoginState in
-      LoginState.logged(user: user)
-      }.catchError { error in
-        guard let moyaError = error as? MoyaError, moyaError.response?.statusCode == 401 else {
-          return Observable.error(error)
-        }
+  func fetchAppConfigurationsState() -> Observable<AppConfigurationsState> {
+    let hideSpecial = repository.fetchHideSpecials()
+    let loginState = repository.fetchLoginState()
 
-        return Observable.just(LoginState.notLogged)
-    }
+    return Observable.combineLatest(loginState, hideSpecial, resultSelector: { (loginState, hideSpecials) -> AppConfigurationsState in
+      return AppConfigurationsState(loginState: loginState, hideSpecials: hideSpecials)
+    }).catchErrorJustReturn(AppConfigurationsState.initialState())
+  }
+
+  func toggleHideSpecials() -> Completable {
+    toggleHideSpecialsInvoked = true
+    return repository.toggleHideSpecials()
   }
 }
 
@@ -64,57 +105,158 @@ final class AppConfigurationsRouterMock: AppConfigurationsRouter {
 final class AppConfigurationsRepositoryMock: AppConfigurationsRepository {
   private let usersProvider: MoyaProvider<Users>
   private let isEmpty: Bool
+  var invokedSaveSettings = false
+  var invokedFetchSettings = false
+  var hideSpecials = false
+  var invokedToggleHideSpecials = false
+  var invokedFetchHideSpecials = false
 
-	init(dataSource: AppConfigurationsDataSource) {
-		Swift.fatalError()
-	}
-
-	init(usersProvider: MoyaProvider<Users>, isEmpty: Bool = false, dataSource: AppConfigurationsDataSource = AppConfigurationDataSourceMock()) {
+  init(usersProvider: MoyaProvider<Users>, isEmpty: Bool = false, dataSource: AppConfigurationsDataSource = AppConfigurationDataSourceMock(settings: nil)) {
     self.usersProvider = usersProvider
     self.isEmpty = isEmpty
   }
 
-  func fetchLoggedUser(forced: Bool) -> Observable<User> {
-    guard !isEmpty else {
-      return Observable.error(AppConfigurationsMock.createUnauthorizedErrorMock())
-    }
-    return usersProvider.rx.request(.settings).map(Settings.self).map { $0.user }.asObservable()
+  func fetchHideSpecials() -> Observable<Bool> {
+    invokedFetchHideSpecials = true
+    return Observable.just(hideSpecials)
+  }
+
+  func toggleHideSpecials() -> Completable {
+    invokedToggleHideSpecials = true
+    hideSpecials = !hideSpecials
+    return Completable.empty()
+  }
+
+  func fetchLoginState() -> Observable<LoginState> {
+    invokedFetchSettings = true
+
+    guard !isEmpty else { return Observable.just(LoginState.notLogged) }
+
+    return usersProvider.rx.request(.settings).map(Settings.self).asObservable().map { LoginState.logged(settings: $0) }
   }
 }
 
 final class AppConfigurationsRepositoryErrorMock: AppConfigurationsRepository {
-  private let error: Swift.Error
+  private let error: Swift.Error?
+  private let loginError: Swift.Error?
 
-	init(dataSource: AppConfigurationsDataSource) {
-		Swift.fatalError()
-	}
-
-  init(error: Swift.Error, dataSource: AppConfigurationsDataSource = AppConfigurationDataSourceMock()) {
+  init(error: Swift.Error? = nil, loginError: Swift.Error? = nil) {
 	  self.error = error
+    self.loginError = loginError
   }
 
-	func fetchLoggedUser(forced: Bool) -> Observable<User> {
-    return Observable.error(error)
+  func fetchLoginState() -> Observable<LoginState> {
+    if let error = error {
+      return Observable.error(error)
+    }
+
+    if let error = loginError {
+      return Observable.error(error)
+    }
+
+    return Observable.just(LoginState.notLogged)
+  }
+
+  func fetchHideSpecials() -> Observable<Bool> {
+    if let error = error {
+      return Observable.error(error)
+    }
+
+    return Observable.just(false)
+  }
+
+  func toggleHideSpecials() -> Completable {
+    if let error = error {
+      return Completable.error(error)
+    }
+
+    return Completable.empty()
   }
 }
 
 final class AppConfigurationDataSourceMock: AppConfigurationsDataSource {
-	var invokedSaveSettings = false
-	var invokedFetchSettings = false
+  var invokedSaveSettings = false
+	var invokedFetchLoginState = false
+  var hideSpecials = false
+  var invokedToggleHideSpecials = false
+  var invokedFetchHideSpecials = false
   var settings: Settings?
+  private let loginStateSubject: BehaviorSubject<LoginState>
+
+  init(settings: Settings?) {
+    self.settings = settings
+    
+    let state: LoginState
+
+    if let settings = settings {
+      state = LoginState.logged(settings: settings)
+    } else {
+      state = .notLogged
+    }
+
+    loginStateSubject = BehaviorSubject<LoginState>(value: state)
+  }
 
   func save(settings: Settings) throws {
 	  invokedSaveSettings = true
     self.settings = settings
+
+    DispatchQueue.main.async {
+      self.loginStateSubject.onNext(.logged(settings: settings))
+    }
   }
 
-  func fetchSettings() -> Observable<Settings> {
-	  invokedFetchSettings = true
+  func fetchLoginState() -> Observable<LoginState> {
+    invokedFetchLoginState = true
+    return loginStateSubject.asObservable()
+  }
 
-    guard let settings = settings else {
-      return Observable.empty()
-    }
+  func toggleHideSpecials() throws {
+    invokedToggleHideSpecials = true
+    hideSpecials = !hideSpecials
+  }
 
-    return Observable.just(settings)
+  func fetchHideSpecials() -> Observable<Bool> {
+    invokedFetchHideSpecials = true
+    return Observable.just(hideSpecials)
+  }
+}
+
+final class AppConfigurationsDataSourceErrorMock: AppConfigurationsDataSource {
+  private let error: Error
+  var saveSettingsInvoked = false
+
+  init(error: Error) {
+    self.error = error
+  }
+
+  func save(settings: Settings) throws {
+    saveSettingsInvoked = true
+    throw error
+  }
+
+  func fetchLoginState() -> Observable<LoginState> {
+    return Observable.error(error)
+  }
+
+  func toggleHideSpecials() throws {
+    throw error
+  }
+
+  func fetchHideSpecials() -> Observable<Bool> {
+    return Observable.error(error)
+  }
+}
+
+final class AppConfigurationsNetworkMock: AppConfigurationsNetwork {
+  var fetchUserSettingsInvoked = false
+  var fetchUserSettingsInvokedCount = 0
+
+  func fetchUserSettings() -> Single<Settings> {
+    fetchUserSettingsInvoked = true
+    fetchUserSettingsInvokedCount += 1
+
+    let settings = TraktEntitiesMock.createUserSettingsMock()
+    return Single.just(settings)
   }
 }

@@ -13,6 +13,15 @@ final class Environment {
   let schedulers: Schedulers
   let realmProvider: RealmProvider
   let buildConfig: BuildConfig
+  let appConfigurationsObservable: AppConfigurationsObservable
+  let appConfigurationsOutput: AppConfigurationsOutput
+
+  var currentAppState: AppConfigurationsState {
+    let userDefaults = UserDefaults.standard
+    let loginState = AppConfigurationsUserDefaultsDataSource.currentLoginValue(userDefaults)
+    let hideSpecials = AppConfigurationsUserDefaultsDataSource.currentHideSpecialValue(userDefaults)
+    return AppConfigurationsState(loginState: loginState, hideSpecials: hideSpecials)
+  }
 
   private init() {
     let schedulers = DefaultSchedulers()
@@ -67,5 +76,10 @@ final class Environment {
     self.defaultOutput = traktLoginStore.loginOutput
 
     self.realmProvider = DefaultRealmProvider(buildConfig: buildConfig)
+
+    let appConfigurationsStore = AppConfigurationsStore()
+
+    self.appConfigurationsOutput = appConfigurationsStore
+    self.appConfigurationsObservable = appConfigurationsStore
   }
 }

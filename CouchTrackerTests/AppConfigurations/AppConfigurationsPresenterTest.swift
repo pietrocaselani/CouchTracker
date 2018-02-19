@@ -4,13 +4,16 @@ import TraktSwift
 final class AppConfigurationsPresenterTest: XCTestCase {
   private var view: AppConfigurationsViewMock!
   private var router: AppConfigurationsRouterMock!
-  private var presenter: AppConfigurationsPresenter!
+  private var presenter: AppConfigurationsiOSPresenter!
+  private var interactor: AppConfigurationsInteractorMock!
+  private var interactorError: AppConfigurationsInteractorErrorMock!
 
   override func tearDown() {
     super.tearDown()
     presenter = nil
     view = nil
     router = nil
+    interactor = nil
   }
 
   override func setUp() {
@@ -21,19 +24,31 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 
   private func setUpModuleWithError(_ error: Error) {
     let repository = AppConfigurationsRepositoryErrorMock(error: error)
-    let interactor = AppConfigurationsInteractorMock(repository: repository)
+    let output = AppConfigurationsMock.AppConfigurationsOutputMock()
+    let interactor = AppConfigurationsInteractorMock(repository: repository, output: output)
     presenter = AppConfigurationsiOSPresenter(view: view, interactor: interactor, router: router)
   }
 
-  private func setupModule(empty: Bool = false)  {
+  private func setupModule(error: Error) {
+    view = AppConfigurationsViewMock()
+    router = AppConfigurationsRouterMock()
+    let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users, isEmpty: true)
+    let output = AppConfigurationsMock.AppConfigurationsOutputMock()
+    let interactor = AppConfigurationsInteractorErrorMock(repository: repository, output: output)
+    interactor.error = error
+    presenter = AppConfigurationsiOSPresenter(view: view, interactor: interactor, router: router)
+  }
+
+  private func setupModule(empty: Bool = false) {
     view = AppConfigurationsViewMock()
     router = AppConfigurationsRouterMock()
     let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users, isEmpty: empty)
-    let interactor = AppConfigurationsInteractorMock(repository: repository)
+    let output = AppConfigurationsMock.AppConfigurationsOutputMock()
+    interactor = AppConfigurationsInteractorMock(repository: repository, output: output)
     presenter = AppConfigurationsiOSPresenter(view: view, interactor: interactor, router: router)
   }
 
-  func testAppConfigurationsPresenter_receivesGenericError_notifyRouter() {
+  func testAppConfigurationsPresenter_receivesGenericError_notifyViewNotLogged() {
     //Given
     let message = "decrypt error"
     setUpModuleWithError(NSError(domain: "io.github.pietrocaselani", code: 203, userInfo: [NSLocalizedDescriptionKey: message]))
@@ -42,8 +57,21 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     presenter.viewDidLoad()
 
     //Then
-    XCTAssertTrue(router.invokedShowErrorMessage)
-    XCTAssertEqual(router.invokedShowErrorMessageParameters?.message, message)
+    XCTAssertTrue(view.invokedShowConfigurations)
+
+    let connectToTraktViewModel = AppConfigurationViewModel(title: "Connect to Trakt", subtitle: nil, value: .none)
+    let traktViewModel = AppConfigurationsViewModel(title: "Trakt", configurations: [connectToTraktViewModel])
+
+    let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .boolean(value: false))
+    let generalViewModel = AppConfigurationsViewModel(title: "General", configurations: [hideSpecialsViewModel])
+
+    let viewModels = [traktViewModel, generalViewModel]
+
+    if view.invokedShowConfigurationsParameters?.models == nil {
+      XCTFail("Parameters can't be nil")
+    } else {
+      XCTAssertEqual(view.invokedShowConfigurationsParameters!.models, viewModels)
+    }
   }
 
   func testAppConfigurationsPresenter_receivesUserNotLoggedError_notifyView() {
@@ -54,8 +82,13 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     presenter.viewDidLoad()
 
     //Then
-    let connectToTraktViewModel = AppConfigurationViewModel(title: "Connect to Trakt", subtitle: nil)
-    let viewModels = [AppConfigurationsViewModel(title: "Trakt", configurations: [connectToTraktViewModel])]
+    let connectToTraktViewModel = AppConfigurationViewModel(title: "Connect to Trakt", subtitle: nil, value: .none)
+    let traktViewModel = AppConfigurationsViewModel(title: "Trakt", configurations: [connectToTraktViewModel])
+
+    let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .boolean(value: false))
+    let generalViewModel = AppConfigurationsViewModel(title: "General", configurations: [hideSpecialsViewModel])
+
+    let viewModels = [traktViewModel, generalViewModel]
 
     XCTAssertTrue(view.invokedShowConfigurations)
     if view.invokedShowConfigurationsParameters?.models == nil {
@@ -74,8 +107,13 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 
     //Then
     let expectedUserName = AppConfigurationsMock.createUserMock().name
-    let connectToTraktViewModel = AppConfigurationViewModel(title: "Connected", subtitle: expectedUserName)
-    let viewModels = [AppConfigurationsViewModel(title: "Trakt", configurations: [connectToTraktViewModel])]
+    let connectToTraktViewModel = AppConfigurationViewModel(title: "Connected", subtitle: expectedUserName, value: .none)
+    let traktViewModel = AppConfigurationsViewModel(title: "Trakt", configurations: [connectToTraktViewModel])
+
+    let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .boolean(value: false))
+    let generalViewModel = AppConfigurationsViewModel(title: "General", configurations: [hideSpecialsViewModel])
+
+    let viewModels = [traktViewModel, generalViewModel]
 
     XCTAssertTrue(view.invokedShowConfigurations)
 
@@ -108,5 +146,59 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 
     //Then
     XCTAssertTrue(router.invokedShowTraktLogin)
+  }
+
+  func testAppConfigurationsPresenter_receivesEventToggleHideSpecials_notifyInteractor() {
+    //Given
+    setupModule(empty: true)
+    presenter.viewDidLoad()
+
+    //When
+    presenter.optionSelectedAt(index: 1)
+
+    //Then
+    XCTAssertTrue(interactor.toggleHideSpecialsInvoked)
+  }
+
+  func testAppConfigurationsPresenter_receivesErrorFromInteractor_notifyRouter() {
+    //Given
+    let error = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 2002, userInfo: nil)
+    setupModule(error: error)
+
+    //When
+    presenter.viewDidLoad()
+
+    //Then
+    XCTAssertTrue(router.invokedShowErrorMessage)
+  }
+
+  func testAppConfigrationsPresenter_receivesTraktLoginError_notifyRouter() {
+    //Given
+    setupModule(empty: true)
+
+    //When
+    let message = "User or password invalid"
+    presenter.logInFail(message: message)
+
+    //Then
+    XCTAssertTrue(router.invokedShowErrorMessage)
+
+    guard let receivedMessage = router.invokedShowErrorMessageParameters?.message else {
+      XCTFail("Parameter can't be nil")
+      return
+    }
+
+    XCTAssertEqual(receivedMessage, message)
+  }
+
+  func testAppConfigrationsPresenter_receivesTraktLogin_updatesView() {
+    //Given
+    setupModule(empty: true)
+
+    //When
+    presenter.loggedInSuccessfully()
+
+    //Then
+    XCTAssertTrue(view.invokedShowConfigurations)
   }
 }

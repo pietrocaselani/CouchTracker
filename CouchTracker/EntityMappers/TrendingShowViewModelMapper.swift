@@ -1,7 +1,9 @@
 import TraktSwift
 
-final class ShowViewModelMapper {
-  private init() {}
+final class TrendingShowViewModelMapper {
+  private init() {
+    Swift.fatalError("No instances for you!")
+  }
 
   static func viewModel(for show: ShowEntity, defaultTitle: String = "TBA".localized) -> TrendingViewModel {
     return TrendingViewModel(title: show.title ?? defaultTitle, type: show.ids.tmdbModelType())

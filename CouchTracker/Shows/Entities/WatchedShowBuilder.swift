@@ -3,12 +3,16 @@ import TraktSwift
 final class WatchedShowBuilder: Hashable {
   let ids: ShowIds
   var detailShow: BaseShow?
+  var progressShow: BaseShow?
   var episode: Episode?
+  var seasons: [WatchedSeasonEntity]
 
-  init(ids: ShowIds, detailShow: BaseShow? = nil, episode: Episode? = nil) {
+  init(ids: ShowIds, progressShow: BaseShow? = nil,
+       episode: Episode? = nil, seasons: [WatchedSeasonEntity] = [WatchedSeasonEntity]()) {
     self.ids = ids
-    self.detailShow = detailShow
+    self.progressShow = progressShow
     self.episode = episode
+    self.seasons = seasons
   }
 
   func createEntity(using show: Show) -> WatchedShowEntity {
@@ -18,28 +22,31 @@ final class WatchedShowBuilder: Hashable {
   func createEntity(using showEntity: ShowEntity) -> WatchedShowEntity {
     let episodeEntity = episode.map { EpisodeEntityMapper.entity(for: $0, showIds: ids) }
 
-    let aired = detailShow?.aired ?? 0
-    let completed = detailShow?.completed ?? 0
-    let lastWatched = detailShow?.lastWatchedAt
+    let aired = progressShow?.aired ?? 0
+    let completed = progressShow?.completed ?? 0
+    let lastWatched = progressShow?.lastWatchedAt
 
     let entity = WatchedShowEntity(show: showEntity,
                                    aired: aired,
                                    completed: completed,
                                    nextEpisode: episodeEntity,
-                                   lastWatched: lastWatched)
+                                   lastWatched: lastWatched,
+                                   seasons: seasons)
     return entity
   }
 
   var hashValue: Int {
     var hash = ids.hashValue
 
-    if let show = detailShow {
+    if let show = progressShow {
       hash ^= show.hashValue
     }
 
     if let episode = episode {
       hash ^= episode.hashValue
     }
+
+    seasons.forEach { hash ^= $0.hashValue }
 
     return hash
   }

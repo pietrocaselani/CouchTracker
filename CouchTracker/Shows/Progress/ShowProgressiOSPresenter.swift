@@ -1,26 +1,42 @@
 import RxSwift
 
 final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
+  private let loginObservable: TraktLoginObservable
   private weak var view: ShowsProgressView?
   private let interactor: ShowsProgressInteractor
   private let router: ShowsProgressRouter
   private let disposeBag = DisposeBag()
   private var currentFilter = ShowProgressFilter.none
   private var currentSort = ShowProgressSort.title
+  private var currentDirection = ShowProgressDirection.asc
   private var entities = [WatchedShowEntity]()
   private var originalEntities = [WatchedShowEntity]()
   var dataSource: ShowsProgressViewDataSource
 
-  init(view: ShowsProgressView, interactor: ShowsProgressInteractor,
-       viewDataSource: ShowsProgressViewDataSource, router: ShowsProgressRouter) {
+  init(view: ShowsProgressView, interactor: ShowsProgressInteractor, viewDataSource: ShowsProgressViewDataSource,
+       router: ShowsProgressRouter, loginObservable: TraktLoginObservable) {
     self.view = view
     self.interactor = interactor
     self.dataSource = viewDataSource
     self.router = router
+    self.loginObservable = loginObservable
   }
 
   func viewDidLoad() {
-    fetchShows()
+    loginObservable.observe()
+      .distinctUntilChanged()
+      .observeOn(MainScheduler.instance)
+      .subscribe(onNext: { [unowned self] loginState in
+        guard let view = self.view else { return }
+
+        if loginState == .notLogged {
+          view.showError(message: "You need to login on Trakt to access this content".localized)
+          self.dataSource.update()
+        } else {
+          self.fetchShows()
+        }
+
+      }).disposed(by: disposeBag)
   }
 
   func updateShows() {
@@ -38,17 +54,13 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
   }
 
   func handleDirection() {
-    entities.reverse()
+    currentDirection = currentDirection.toggle()
     reloadViewModels()
   }
 
   func changeSort(to index: Int, filter: Int) {
     currentSort = ShowProgressSort.sort(for: index)
     currentFilter = ShowProgressFilter.filter(for: filter)
-
-    entities = originalEntities.filter(currentFilter.filter())
-
-    entities.sort(by: currentSort.comparator())
 
     reloadViewModels()
   }
@@ -60,11 +72,16 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
 
   private func applyFilterAndSort() -> [WatchedShowViewModel] {
     entities = originalEntities.filter(currentFilter.filter()).sorted(by: currentSort.comparator())
+
+    if currentDirection == .desc {
+      entities = entities.reversed()
+    }
+
     return entities.map { [unowned self] in self.mapToViewModel($0) }
   }
 
   private func reloadViewModels() {
-    let sortedViewModels = entities.map { [unowned self] in self.mapToViewModel($0) }
+    let sortedViewModels = applyFilterAndSort()
 
     dataSource.viewModels = sortedViewModels
     view?.reloadList()
@@ -94,6 +111,7 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
         }
         }, onError: { [unowned self] error in
           self.view?.showError(message: error.localizedDescription)
+          self.dataSource.update()
         }, onCompleted: { [unowned self] in
           if self.dataSource.viewModels.isEmpty {
             self.view?.showEmptyView()

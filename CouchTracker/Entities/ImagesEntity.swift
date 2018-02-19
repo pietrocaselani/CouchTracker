@@ -34,4 +34,9 @@ struct ImagesEntity: Hashable {
   static func == (lhs: ImagesEntity, rhs: ImagesEntity) -> Bool {
     return lhs.hashValue == rhs.hashValue
   }
+
+  static func empty() -> ImagesEntity {
+    let imageEntities = [ImageEntity]()
+    return ImagesEntity(identifier: -1, backdrops: imageEntities, posters: imageEntities, stills: imageEntities)
+  }
 }
