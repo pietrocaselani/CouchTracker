@@ -131,4 +131,92 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
 
 		wait(for: [testExpectation], timeout: 1)
 	}
+
+	func testShowEpisodeAPIRepository_addToHistorSuccess_emitsSyncResultWithShow() {
+		//Given
+		let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceMock()
+		let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
+		let schedulers = TestSchedulers()
+		let showProgressRepository = ShowProgressMocks.ShowProgressRepositoryMock()
+		let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+
+		let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
+																																												network: network,
+																																												schedulers: schedulers,
+																																												showProgressRepository: showProgressRepository,
+																																												appConfigurationsObservable: appConfigsObservableMock,
+																																												hideSpecials: true)
+
+		//When
+		let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
+		let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
+
+		let single = repository.addToHistory(of: watchedShow, episode: episodeEntity)
+		schedulers.start()
+
+		//Then
+		let testExpectation = expectation(description: "Should receive SyncResult success")
+
+		let expectedResult = SyncResult.success(show: ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
+
+		_ = single.subscribe(onSuccess: { result in
+			testExpectation.fulfill()
+			XCTAssertEqual(result, expectedResult)
+			XCTAssertTrue(network.addToHistoryInvoked)
+			XCTAssertTrue(dataSource.updateWatchedShowInvoked)
+			XCTAssertFalse(network.removeFromHistoryInvoked)
+			XCTAssertTrue(showProgressRepository.fetchShowProgressInvoked)
+			guard let hideSpecial = showProgressRepository.fetchShowProgressParameters?.hideSpecial else {
+				XCTFail()
+				return
+			}
+			XCTAssertTrue(hideSpecial)
+		})
+
+		wait(for: [testExpectation], timeout: 1)
+	}
+
+	func testShowEpisodeAPIRepository_removeFromHistorSuccess_emitsSyncResultWithShow() {
+		//Given
+		let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceMock()
+		let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
+		let schedulers = TestSchedulers()
+		let showProgressRepository = ShowProgressMocks.ShowProgressRepositoryMock()
+		let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+
+		let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
+																																												network: network,
+																																												schedulers: schedulers,
+																																												showProgressRepository: showProgressRepository,
+																																												appConfigurationsObservable: appConfigsObservableMock,
+																																												hideSpecials: true)
+
+		//When
+		let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
+		let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
+
+		let single = repository.removeFromHistory(of: watchedShow, episode: episodeEntity)
+		schedulers.start()
+
+		//Then
+		let testExpectation = expectation(description: "Should receive SyncResult success")
+
+		let expectedResult = SyncResult.success(show: ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
+
+		_ = single.subscribe(onSuccess: { result in
+			testExpectation.fulfill()
+			XCTAssertEqual(result, expectedResult)
+			XCTAssertFalse(network.addToHistoryInvoked)
+			XCTAssertTrue(dataSource.updateWatchedShowInvoked)
+			XCTAssertTrue(network.removeFromHistoryInvoked)
+			XCTAssertTrue(showProgressRepository.fetchShowProgressInvoked)
+			guard let hideSpecial = showProgressRepository.fetchShowProgressParameters?.hideSpecial else {
+				XCTFail()
+				return
+			}
+			XCTAssertTrue(hideSpecial)
+		})
+
+		wait(for: [testExpectation], timeout: 1)
+	}
 }
