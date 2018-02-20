@@ -20,7 +20,12 @@ enum ShowProgressSort: String {
   }
 
   static func sort(for index: Int) -> ShowProgressSort {
-    return ShowProgressSort.allValues()[index]
+    let allValues = ShowProgressSort.allValues()
+    if index < 0 || index >= allValues.count {
+      return ShowProgressSort.title
+    }
+
+    return allValues[index]
   }
 
   func index() -> Int {
