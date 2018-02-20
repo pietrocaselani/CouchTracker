@@ -1495,10 +1495,10 @@
 				35F4540E74D8632B2F76B8F1 /* Pods */,
 				6476323A1F44824900F277F1 /* Products */,
 			);
-			indentWidth = 2;
+			indentWidth = 1;
 			sourceTree = "<group>";
-			tabWidth = 2;
-			usesTabs = 0;
+			tabWidth = 1;
+			usesTabs = 1;
 		};
 		6476323A1F44824900F277F1 /* Products */ = {
 			isa = PBXGroup;

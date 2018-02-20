@@ -3,47 +3,47 @@ import TraktSwift
 import RxSwift
 
 protocol AppConfigurationsRepository: class {
-  func fetchLoginState() -> Observable<LoginState>
-  func fetchHideSpecials() -> Observable<Bool>
-  func toggleHideSpecials() -> Completable
+	func fetchLoginState() -> Observable<LoginState>
+	func fetchHideSpecials() -> Observable<Bool>
+	func toggleHideSpecials() -> Completable
 }
 
 protocol AppConfigurationsNetwork: class {
-  func fetchUserSettings() -> Single<Settings>
+	func fetchUserSettings() -> Single<Settings>
 }
 
 protocol AppConfigurationsDataSource: class {
-  func save(settings: Settings) throws
-  func fetchLoginState() -> Observable<LoginState>
-  func toggleHideSpecials() throws
-  func fetchHideSpecials() -> Observable<Bool>
+	func save(settings: Settings) throws
+	func fetchLoginState() -> Observable<LoginState>
+	func toggleHideSpecials() throws
+	func fetchHideSpecials() -> Observable<Bool>
 }
 
 protocol AppConfigurationsRouter: class {
-  func showTraktLogin(output: TraktLoginOutput)
-  func showError(message: String)
+	func showTraktLogin(output: TraktLoginOutput)
+	func showError(message: String)
 }
 
 protocol AppConfigurationsInteractor: class {
-  init(repository: AppConfigurationsRepository, output: AppConfigurationsOutput)
+	init(repository: AppConfigurationsRepository, output: AppConfigurationsOutput)
 
-  func fetchAppConfigurationsState() -> Observable<AppConfigurationsState>
-  func toggleHideSpecials() -> Completable
+	func fetchAppConfigurationsState() -> Observable<AppConfigurationsState>
+	func toggleHideSpecials() -> Completable
 }
 
 protocol AppConfigurationsPresenter: class {
-  init(view: AppConfigurationsView, interactor: AppConfigurationsInteractor, router: AppConfigurationsRouter)
+	init(view: AppConfigurationsView, interactor: AppConfigurationsInteractor, router: AppConfigurationsRouter)
 
-  func viewDidLoad()
-  func optionSelectedAt(index: Int)
+	func viewDidLoad()
+	func optionSelectedAt(index: Int)
 }
 
 protocol AppConfigurationsView: class {
-  var presenter: AppConfigurationsPresenter! { get set }
+	var presenter: AppConfigurationsPresenter! { get set }
 
-  func showConfigurations(models: [AppConfigurationsViewModel])
+	func showConfigurations(models: [AppConfigurationsViewModel])
 }
 
 protocol AppConfigurationsPresentable: class {
-  func showAppSettings()
+	func showAppSettings()
 }

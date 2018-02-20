@@ -1,4 +1,4 @@
 enum SearchState {
-  case searching
-  case notSearching
+	case searching
+	case notSearching
 }
