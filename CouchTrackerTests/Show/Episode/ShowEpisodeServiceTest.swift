@@ -66,7 +66,7 @@ final class ShowEpisodeServiceTest: XCTestCase {
 		XCTAssertEqual(repository.addToHistoryParameters!.episode, episode)
 	}
 
-	func testShowEpisodeService_toggleWatch_forUnwatchedEpisode_shoulRemoveFromHistory() {
+	func testShowEpisodeService_toggleWatch_forWwatchedEpisode_shoulRemoveFromHistory() {
 		//Given
 		let show = ShowsProgressMocks.mockWatchedShowEntity()
 		let episode = ShowsProgressMocks.mockEpisodeEntity(watched: Date(timeIntervalSince1970: 0))
