@@ -7,10 +7,6 @@ final class ShowsProgressAPIRepositoryTest: XCTestCase {
 	private let trakt = TraktProviderMock()
 	private let schedulers = TestSchedulers()
 
-	override func tearDown() {
-		super.tearDown()
-	}
-
 	func testShowsProgressRepository_fetchesShowsWithEmptyCache_hitOnAPISavesOnCache() {
 		//Given
 		let dataSource = ShowsProgressMocks.ShowsProgressDataSourceMock()
