@@ -5,6 +5,11 @@ protocol ShowEpisodeDataSource: class {
 	func updateWatched(show: WatchedShowEntity) throws
 }
 
+protocol ShowEpisodeNetwork: class {
+	func addToHistory(items: SyncItems) -> Single<SyncResponse>
+	func removeFromHistory(items: SyncItems) -> Single<SyncResponse>
+}
+
 protocol ShowEpisodeRepository: class {
 	func addToHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<SyncResult>
 	func removeFromHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<SyncResult>

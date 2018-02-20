@@ -127,6 +127,14 @@
 		4F8EE018202E16EF0002189B /* ShowEpisodeMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8EE017202E16EF0002189B /* ShowEpisodeMocks.swift */; };
 		4F8EE019202E16EF0002189B /* ShowEpisodeMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8EE017202E16EF0002189B /* ShowEpisodeMocks.swift */; };
 		4F8EE01A202E1B680002189B /* ImageCachedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9639185F354505ABB8D3 /* ImageCachedRepository.swift */; };
+		4F93153D203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93153C203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift */; };
+		4F93153E203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93153C203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift */; };
+		4F93153F203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93153C203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift */; };
+		4F931541203CAADF00631D4A /* ShowEpisodeAPIRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F931540203CAADF00631D4A /* ShowEpisodeAPIRepositoryTest.swift */; };
+		4F931542203CAADF00631D4A /* ShowEpisodeAPIRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F931540203CAADF00631D4A /* ShowEpisodeAPIRepositoryTest.swift */; };
+		4F931544203CB34800631D4A /* trakt_sync_addtohistory.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F931543203CB34800631D4A /* trakt_sync_addtohistory.json */; };
+		4F931546203CD45F00631D4A /* ShowsProgressMoyaNetworkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F931545203CD45F00631D4A /* ShowsProgressMoyaNetworkTest.swift */; };
+		4F931547203CD45F00631D4A /* ShowsProgressMoyaNetworkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F931545203CD45F00631D4A /* ShowsProgressMoyaNetworkTest.swift */; };
 		4FA0C76220326DBA008656B7 /* AppConfigurationsStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0C76120326DBA008656B7 /* AppConfigurationsStoreTest.swift */; };
 		4FA0C76320326DBA008656B7 /* AppConfigurationsStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0C76120326DBA008656B7 /* AppConfigurationsStoreTest.swift */; };
 		4FD27A3C201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD27A3B201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift */; };
@@ -716,6 +724,10 @@
 		4F8EE010202DDA460002189B /* trakt_episodes_summary_error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_episodes_summary_error.json; sourceTree = "<group>"; };
 		4F8EE014202E164D0002189B /* ShowEpisodeServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeServiceTest.swift; sourceTree = "<group>"; };
 		4F8EE017202E16EF0002189B /* ShowEpisodeMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeMocks.swift; sourceTree = "<group>"; };
+		4F93153C203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeMoyaNetwork.swift; sourceTree = "<group>"; };
+		4F931540203CAADF00631D4A /* ShowEpisodeAPIRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeAPIRepositoryTest.swift; sourceTree = "<group>"; };
+		4F931543203CB34800631D4A /* trakt_sync_addtohistory.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_sync_addtohistory.json; sourceTree = "<group>"; };
+		4F931545203CD45F00631D4A /* ShowsProgressMoyaNetworkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressMoyaNetworkTest.swift; sourceTree = "<group>"; };
 		4FA0C76120326DBA008656B7 /* AppConfigurationsStoreTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsStoreTest.swift; sourceTree = "<group>"; };
 		4FD27A3B201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCacheRepositoryTest.swift; sourceTree = "<group>"; };
 		4FE42FB4203B94B80001FF1F /* ShowProgressSortTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressSortTest.swift; sourceTree = "<group>"; };
@@ -1149,8 +1161,10 @@
 		4F8EE013202E16370002189B /* Episode */ = {
 			isa = PBXGroup;
 			children = (
-				4F8EE014202E164D0002189B /* ShowEpisodeServiceTest.swift */,
+				4F931540203CAADF00631D4A /* ShowEpisodeAPIRepositoryTest.swift */,
 				4F8EE017202E16EF0002189B /* ShowEpisodeMocks.swift */,
+				4F8EE014202E164D0002189B /* ShowEpisodeServiceTest.swift */,
+				4F931545203CD45F00631D4A /* ShowsProgressMoyaNetworkTest.swift */,
 			);
 			path = Episode;
 			sourceTree = "<group>";
@@ -1252,6 +1266,7 @@
 				6434C3A41F83678C009B5A9F /* ShowEpisodeViewController.swift */,
 				6434C38D1F8355A3009B5A9F /* ShowEpisodeViewModel.swift */,
 				64FDE4FF1F7E629800A4C7AA /* SyncResult.swift */,
+				4F93153C203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift */,
 			);
 			path = Episode;
 			sourceTree = "<group>";
@@ -1650,6 +1665,7 @@
 				64B801C11FA79362004A6EEE /* trakt_shows_trending.json */,
 				6448372B2023C402008ECE2B /* trakt_shows_watchedprogress_without_nextepisode.json */,
 				64B801C21FA79362004A6EEE /* trakt_shows_watchedprogress.json */,
+				4F931543203CB34800631D4A /* trakt_sync_addtohistory.json */,
 				6488301F1FB2250C00BB217D /* trakt_sync_watched_shows.json */,
 				392D9C154DB74E65A233F9C3 /* trakt_users_settings_invalid.json */,
 				64B801C91FA79363004A6EEE /* trakt_users_settings.json */,
@@ -2102,6 +2118,7 @@
 				64B801D61FA79369004A6EEE /* trakt_search_textquery.json in Resources */,
 				648830201FB2250C00BB217D /* trakt_sync_watched_shows.json in Resources */,
 				4F8EE011202DDA460002189B /* trakt_episodes_summary_error.json in Resources */,
+				4F931544203CB34800631D4A /* trakt_sync_addtohistory.json in Resources */,
 				64B801D31FA79369004A6EEE /* trakt_episodes_summary.json in Resources */,
 				640373131FABA8CD005023D5 /* trakt_movies_summary.json in Resources */,
 				6448372C2023C402008ECE2B /* trakt_shows_watchedprogress_without_nextepisode.json in Resources */,
@@ -2503,6 +2520,7 @@
 				64343E111F7EB128004557E4 /* TVDBProvider.swift in Sources */,
 				645B83511F73E8A0009DDF53 /* ShowsProgressAPIRepository.swift in Sources */,
 				646896341F7C11EE00F95649 /* ShowProgressCell.swift in Sources */,
+				4F93153D203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift in Sources */,
 				4F562E06202E7A3400CB1AE0 /* WatchedEpisodeEntity.swift in Sources */,
 				4F202F73202F228C0040185F /* AppConfigurationsOutput.swift in Sources */,
 				6421C0791F66F7E70043FB82 /* ShowDetailsModule.swift in Sources */,
@@ -2581,6 +2599,7 @@
 				6442F9FC1F61A0E4008E3E12 /* ShowDetailsContract.swift in Sources */,
 				64B1CCC91F4F58BA002A9FFD /* Date+TraktDateFormatter.swift in Sources */,
 				645B83851F73F18E009DDF53 /* ShowProgressiOSPresenter.swift in Sources */,
+				4F931541203CAADF00631D4A /* ShowEpisodeAPIRepositoryTest.swift in Sources */,
 				64B1CCC81F4F589F002A9FFD /* GenreRepository.swift in Sources */,
 				64EC3A621F66B2AB0046A186 /* ShowDetailsPresenterTest.swift in Sources */,
 				641020DD1F8536000033206A /* ShowProgressMocks.swift in Sources */,
@@ -2673,6 +2692,7 @@
 				648390D91F504E7600911BA0 /* SearchMocks.swift in Sources */,
 				6434CA661F752ED400EA3AD8 /* TraktLoginObservableMock.swift in Sources */,
 				648390D51F504E7600911BA0 /* TrendingMocks.swift in Sources */,
+				4F93153E203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift in Sources */,
 				644BF5021F6AFF5E0010CE35 /* SearchState.swift in Sources */,
 				64303EB81F6726970050C287 /* ImagesViewModel.swift in Sources */,
 				4F6D6EA120339C1300987AD1 /* ShowsManageriOSModuleSetupTest.swift in Sources */,
@@ -2726,6 +2746,7 @@
 				644BF5231F6B07E20010CE35 /* AppConfigurationsiOSPresenter.swift in Sources */,
 				6405E5021F5DE84500756E79 /* TrendingShowEntity.swift in Sources */,
 				64CC08621F71616E004D164A /* ShowsManagerContract.swift in Sources */,
+				4F931546203CD45F00631D4A /* ShowsProgressMoyaNetworkTest.swift in Sources */,
 				6454D15D1F70359E008C4E5F /* TraktLoginContract.swift in Sources */,
 				645322EC2024C76100449B0A /* ShowIdsRealm.swift in Sources */,
 				64CC089D1F718F63004D164A /* TraktLoginStoreTest.swift in Sources */,
@@ -2804,6 +2825,7 @@
 				6454D1891F705222008C4E5F /* TraktTokenPolicyDecider.swift in Sources */,
 				641B9D4C1F7D964500C26D10 /* ShowEpisodeContract.swift in Sources */,
 				4F202F65202F10FE0040185F /* WatchedSeasonEntityRealm.swift in Sources */,
+				4F93153F203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift in Sources */,
 				4FE42FB6203B94B80001FF1F /* ShowProgressSortTest.swift in Sources */,
 				64CC085E1F714F33004D164A /* TraktTokenPolicyDeciderTest.swift in Sources */,
 				6426243A1F56E15A00560660 /* ImageRepositoryMock.swift in Sources */,
@@ -2918,6 +2940,7 @@
 				64BE62F61F4F5C20002E55EA /* GenreRepositoryMock.swift in Sources */,
 				64CC08631F71616E004D164A /* ShowsManagerContract.swift in Sources */,
 				64A5DCC91F56E2DF006853A2 /* ImagesEntityMapper.swift in Sources */,
+				4F931542203CAADF00631D4A /* ShowEpisodeAPIRepositoryTest.swift in Sources */,
 				6434CA621F752E3F00EA3AD8 /* ShowsManagerPresenterTest.swift in Sources */,
 				4F562E0C202E7A4300CB1AE0 /* WatchedSeasonEntity.swift in Sources */,
 				645EEEE51F61AEA10034EB66 /* ShowDetailsMocks.swift in Sources */,
@@ -2932,6 +2955,7 @@
 				642F6F581F5D74F10012F04F /* ShowEntityMapper.swift in Sources */,
 				644E90641F7306070089CD70 /* EpisodeEntity.swift in Sources */,
 				644BF52B1F6B07E30010CE35 /* AppConfigurationsiOSPresenter.swift in Sources */,
+				4F931547203CD45F00631D4A /* ShowsProgressMoyaNetworkTest.swift in Sources */,
 				643E918E20249C340048C0F2 /* ModulePage.swift in Sources */,
 				64BE63371F4F6F63002E55EA /* String+Localizable.swift in Sources */,
 				645B834F1F73E2A8009DDF53 /* EpisodeEntityMapper.swift in Sources */,

@@ -1,0 +1,90 @@
+{
+  "movies": [
+    {
+      "watched_at": "2014-09-01T09:10:11.000Z",
+      "title": "Batman Begins",
+      "year": 2005,
+      "ids": {
+        "trakt": 1,
+        "slug": "batman-begins-2005",
+        "imdb": "tt0372784",
+        "tmdb": 272
+      }
+    },
+    {
+      "ids": {
+        "imdb": "tt0000111"
+      }
+    }
+  ],
+  "shows": [
+    {
+      "title": "Breaking Bad",
+      "year": 2008,
+      "ids": {
+        "trakt": 1,
+        "slug": "breaking-bad",
+        "tvdb": 81189,
+        "imdb": "tt0903747",
+        "tmdb": 1396,
+        "tvrage": 18164
+      }
+    },
+    {
+      "title": "The Walking Dead",
+      "year": 2010,
+      "ids": {
+        "trakt": 2,
+        "slug": "the-walking-dead",
+        "tvdb": 153021,
+        "imdb": "tt1520211",
+        "tmdb": 1402,
+        "tvrage": 25056
+      },
+      "seasons": [
+        {
+          "watched_at": "2014-09-01T09:10:11.000Z",
+          "number": 3
+        }
+      ]
+    },
+    {
+      "title": "Mad Men",
+      "year": 2007,
+      "ids": {
+        "trakt": 4,
+        "slug": "mad-men",
+        "tvdb": 80337,
+        "imdb": "tt0804503",
+        "tmdb": 1104,
+        "tvrage": 16356
+      },
+      "seasons": [
+        {
+          "number": 1,
+          "episodes": [
+            {
+              "watched_at": "2014-09-01T09:10:11.000Z",
+              "number": 1
+            },
+            {
+              "number": 2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "episodes": [
+    {
+      "watched_at": "2014-09-01T09:10:11.000Z",
+      "ids": {
+        "trakt": 1061,
+        "tvdb": 1555111,
+        "imdb": "tt007404",
+        "tmdb": 422183,
+        "tvrage": 12345
+      }
+    }
+  ]
+}
