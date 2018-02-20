@@ -24,12 +24,13 @@ final class ShowEpisodeModule {
 		let showProgressRepository = ShowProgressAPIRepository(trakt: trakt)
 
 		let showEpisodeDataSource = ShowEpisodeRealmDataSource(realmProvider: realmProvider)
-		let repository = ShowEpisodeAPIRepository(trakt: trakt,
-																							dataSource: showEpisodeDataSource,
-																							schedulers: schedulers,
-																							showProgressRepository: showProgressRepository,
-																							appConfigurationsObservable: appConfigsObservable,
-																							hideSpecials: hideSpecials)
+		let showEpisodeNetwork = ShowEpisodeMoyaNetwork(trakt: trakt, schedulers: schedulers)
+		let repository = ShowEpisodeAPIRepository(dataSource: showEpisodeDataSource,
+																																												network: showEpisodeNetwork,
+																																												schedulers: schedulers,
+																																												showProgressRepository: showProgressRepository,
+																																												appConfigurationsObservable: appConfigsObservable,
+																																												hideSpecials: hideSpecials)
 		let interactor = ShowEpisodeService(repository: repository, imageRepository: imageRepository)
 		let presenter = ShowEpisodeiOSPresenter(view: view, interactor: interactor, show: show)
 
