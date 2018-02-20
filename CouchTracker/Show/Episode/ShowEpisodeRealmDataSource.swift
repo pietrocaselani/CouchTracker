@@ -1,17 +1,17 @@
 import RealmSwift
 
 final class ShowEpisodeRealmDataSource: ShowEpisodeDataSource {
-  private let realmProvider: RealmProvider
+	private let realmProvider: RealmProvider
 
-  init(realmProvider: RealmProvider) {
-    self.realmProvider = realmProvider
-  }
+	init(realmProvider: RealmProvider) {
+		self.realmProvider = realmProvider
+	}
 
-  func updateWatched(show: WatchedShowEntity) throws {
-    let realm = realmProvider.realm
+	func updateWatched(show: WatchedShowEntity) throws {
+		let realm = realmProvider.realm
 
-    try realm.write {
-      realm.add(show.toRealm(), update: true)
-    }
-  }
+		try realm.write {
+			realm.add(show.toRealm(), update: true)
+		}
+	}
 }

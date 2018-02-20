@@ -1,9 +1,9 @@
 final class ShowsManageriOSModuleSetup: ShowsManagerDataSource {
-  private let creator: ShowsManagerModuleCreator
+	private let creator: ShowsManagerModuleCreator
 
-  init(creator: ShowsManagerModuleCreator) {
-    self.creator = creator
-  }
+	init(creator: ShowsManagerModuleCreator) {
+		self.creator = creator
+	}
 
 	var options: [ShowsManagerOption] {
 		let progress = ShowsManagerOption.progress

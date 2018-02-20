@@ -3,55 +3,55 @@ import RxCocoa
 import RxSwift
 
 final class TrendingViewController: UIViewController {
-  var presenter: TrendingPresenter!
+	var presenter: TrendingPresenter!
 
-  private let disposeBag = DisposeBag()
+	private let disposeBag = DisposeBag()
 
-  @IBOutlet weak var collectionView: UICollectionView!
-  @IBOutlet weak var emptyLabel: UILabel!
-  @IBOutlet weak var trendingTypeSegmentedControl: UISegmentedControl!
+	@IBOutlet weak var collectionView: UICollectionView!
+	@IBOutlet weak var emptyLabel: UILabel!
+	@IBOutlet weak var trendingTypeSegmentedControl: UISegmentedControl!
 
-  override func awakeFromNib() {
-    super.awakeFromNib()
+	override func awakeFromNib() {
+		super.awakeFromNib()
 
-    title = "Trending"
-  }
+		title = "Trending"
+	}
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
-    guard let collectionViewDataSource = presenter.dataSource as? UICollectionViewDataSource else {
-      fatalError("dataSource should be an instance of UICollectionViewDataSource")
-    }
+		guard let collectionViewDataSource = presenter.dataSource as? UICollectionViewDataSource else {
+			fatalError("dataSource should be an instance of UICollectionViewDataSource")
+		}
 
-    emptyLabel.text = "No movies to show right now".localized
-    collectionView.delegate = self
+		emptyLabel.text = "No movies to show right now".localized
+		collectionView.delegate = self
 
-    collectionView.dataSource = collectionViewDataSource
+		collectionView.dataSource = collectionViewDataSource
 
-    presenter.viewDidLoad()
-  }
+		presenter.viewDidLoad()
+	}
 }
 
 extension TrendingViewController: TrendingView {
-  func showTrendingsView() {
-    makeListVisible()
-    collectionView.reloadData()
-  }
+	func showTrendingsView() {
+		makeListVisible()
+		collectionView.reloadData()
+	}
 
-  func showEmptyView() {
-    emptyLabel.isHidden = false
-    collectionView.isHidden = true
-  }
+	func showEmptyView() {
+		emptyLabel.isHidden = false
+		collectionView.isHidden = true
+	}
 
-  private func makeListVisible() {
-    emptyLabel.isHidden = true
-    collectionView.isHidden = false
-  }
+	private func makeListVisible() {
+		emptyLabel.isHidden = true
+		collectionView.isHidden = false
+	}
 }
 
 extension TrendingViewController: UICollectionViewDelegate {
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    presenter.showDetailsOfTrending(at: indexPath.row)
-  }
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		presenter.showDetailsOfTrending(at: indexPath.row)
+	}
 }

@@ -1,29 +1,29 @@
 import TraktSwift
 
 final class TraktEntitiesMock {
-  static func decodeTraktJSON<T: Codable>(with name: String) -> T {
-    let data = traktDataForJSON(with: name)
-    return try! jsonDecoder.decode(T.self, from: data)
-  }
+	static func decodeTraktJSON<T: Codable>(with name: String) -> T {
+		let data = traktDataForJSON(with: name)
+		return try! jsonDecoder.decode(T.self, from: data)
+	}
 
-  static func decodeTraktJSONArray<T: Codable>(with name: String) -> [T] {
-    let data = traktDataForJSON(with: name)
-    return try! jsonDecoder.decode([T].self, from: data)
-  }
+	static func decodeTraktJSONArray<T: Codable>(with name: String) -> [T] {
+		let data = traktDataForJSON(with: name)
+		return try! jsonDecoder.decode([T].self, from: data)
+	}
 
-  static func traktDataForJSON(with name: String) -> Data {
-    let resourcesPath = Bundle(for: Trakt.self).bundlePath
+	static func traktDataForJSON(with name: String) -> Data {
+		let resourcesPath = Bundle(for: Trakt.self).bundlePath
 
-    let bundle = findBundleUsing(resourcesPath: resourcesPath)
+		let bundle = findBundleUsing(resourcesPath: resourcesPath)
 
-    let url = bundle.url(forResource: name, withExtension: "json")
+		let url = bundle.url(forResource: name, withExtension: "json")
 
-    guard let fileURL = url, let data = try? Data(contentsOf: fileURL) else {
-      return Data()
-    }
+		guard let fileURL = url, let data = try? Data(contentsOf: fileURL) else {
+			return Data()
+		}
 
-    return data
-  }
+		return data
+	}
 
 	static var jsonDecoder: JSONDecoder {
 		return JSONDecoder()
@@ -79,18 +79,18 @@ final class TraktEntitiesMock {
 		return try! jsonDecoder.decode(Settings.self, from: Users.settings.sampleData)
 	}
 
-  private static func findBundleUsing(resourcesPath: String) -> Bundle {
-    var path = "/../"
+	private static func findBundleUsing(resourcesPath: String) -> Bundle {
+		var path = "/../"
 
-    var bundle: Bundle? = nil
-    var attempt = 0
+		var bundle: Bundle? = nil
+		var attempt = 0
 
-    repeat {
-      bundle = Bundle(path: resourcesPath.appending("\(path)TraktTestsResources.bundle"))
-      path.append("../")
-      attempt += 1
-    } while bundle == nil && attempt < 5
+		repeat {
+			bundle = Bundle(path: resourcesPath.appending("\(path)TraktTestsResources.bundle"))
+			path.append("../")
+			attempt += 1
+		} while bundle == nil && attempt < 5
 
-    return bundle!
-  }
+		return bundle!
+	}
 }

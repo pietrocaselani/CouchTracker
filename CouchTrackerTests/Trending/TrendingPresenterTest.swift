@@ -5,147 +5,147 @@ import RxTest
 
 final class TrendingPresenterTest: XCTestCase {
 
-  private let scheduler = TestScheduler(initialClock: 0)
-  let view = TrendingViewMock()
-  let router = TrendingRouterMock()
-  let dataSource = TrendingDataSourceMock()
+	private let scheduler = TestScheduler(initialClock: 0)
+	let view = TrendingViewMock()
+	let router = TrendingRouterMock()
+	let dataSource = TrendingDataSourceMock()
 
-  func testTrendingPresenter_fetchMoviesSuccessWithEmptyData_andPresentNothing() {
-    let repository = EmptyTrendingRepositoryMock()
-    let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
+	func testTrendingPresenter_fetchMoviesSuccessWithEmptyData_andPresentNothing() {
+		let repository = EmptyTrendingRepositoryMock()
+		let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
+		let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
 
-    presenter.viewDidLoad()
+		presenter.viewDidLoad()
 
-    XCTAssertTrue(view.invokedShowEmptyView)
-    XCTAssertFalse(view.invokedShow)
-  }
+		XCTAssertTrue(view.invokedShowEmptyView)
+		XCTAssertFalse(view.invokedShow)
+	}
 
-  func testTrendingPresenter_fetchShowsSuccessWithEmptyData_andPresentNothing() {
-    let repository = EmptyTrendingRepositoryMock()
-    let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)
+	func testTrendingPresenter_fetchShowsSuccessWithEmptyData_andPresentNothing() {
+		let repository = EmptyTrendingRepositoryMock()
+		let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
+		let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)
 
-    presenter.viewDidLoad()
+		presenter.viewDidLoad()
 
-    XCTAssertTrue(view.invokedShowEmptyView)
-    XCTAssertFalse(view.invokedShow)
-    XCTAssertFalse(dataSource.invokedSetViewModels)
-    XCTAssertTrue(dataSource.viewModels.isEmpty)
-  }
+		XCTAssertTrue(view.invokedShowEmptyView)
+		XCTAssertFalse(view.invokedShow)
+		XCTAssertFalse(dataSource.invokedSetViewModels)
+		XCTAssertTrue(dataSource.viewModels.isEmpty)
+	}
 
-  func testTrendingPresenter_fetchMoviesFailure_andPresentError() {
-    let error = TrendingError.parseError("Invalid json")
-    let repository = ErrorTrendingRepositoryMock(error: error)
-    let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
+	func testTrendingPresenter_fetchMoviesFailure_andPresentError() {
+		let error = TrendingError.parseError("Invalid json")
+		let repository = ErrorTrendingRepositoryMock(error: error)
+		let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
+		let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
 
-    presenter.viewDidLoad()
+		presenter.viewDidLoad()
 
-    XCTAssertTrue(router.invokedShowError)
-    XCTAssertEqual(router.invokedShowErrorParameters?.message, "Invalid json")
-  }
+		XCTAssertTrue(router.invokedShowError)
+		XCTAssertEqual(router.invokedShowErrorParameters?.message, "Invalid json")
+	}
 
-  func testTrendingPresenter_fetchShowsFailure_andPresentError() {
-    let error = TrendingError.parseError("Invalid json")
-    let repository = ErrorTrendingRepositoryMock(error: error)
-    let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)
+	func testTrendingPresenter_fetchShowsFailure_andPresentError() {
+		let error = TrendingError.parseError("Invalid json")
+		let repository = ErrorTrendingRepositoryMock(error: error)
+		let interactor = TrendingServiceMock(repository: repository, imageRepository: imageRepositoryMock)
+		let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)
 
-    presenter.viewDidLoad()
+		presenter.viewDidLoad()
 
-    XCTAssertTrue(router.invokedShowError)
-    XCTAssertEqual(router.invokedShowErrorParameters?.message, "Invalid json")
-  }
+		XCTAssertTrue(router.invokedShowError)
+		XCTAssertEqual(router.invokedShowErrorParameters?.message, "Invalid json")
+	}
 
-  func testTrendingPresenter_fetchMoviesSuccess_andPresentMovies() {
-    let movies = TraktEntitiesMock.createMockMovies()
-    let images = TMDBEntitiesMock.createImagesEntityMock()
-    let repository = TrendingMoviesRepositoryMock(movies: movies)
-    let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
+	func testTrendingPresenter_fetchMoviesSuccess_andPresentMovies() {
+		let movies = TraktEntitiesMock.createMockMovies()
+		let images = TMDBEntitiesMock.createImagesEntityMock()
+		let repository = TrendingMoviesRepositoryMock(movies: movies)
+		let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
+		let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
 
-    presenter.viewDidLoad()
+		presenter.viewDidLoad()
 
-    let expectedViewModel = movies.map { trendingMovie -> TrendingViewModel in
-      let type = trendingMovie.movie.ids.tmdbModelType()
-      return TrendingViewModel(title: trendingMovie.movie.title ?? "TBA", type: type)
-    }
+		let expectedViewModel = movies.map { trendingMovie -> TrendingViewModel in
+			let type = trendingMovie.movie.ids.tmdbModelType()
+			return TrendingViewModel(title: trendingMovie.movie.title ?? "TBA", type: type)
+		}
 
-    XCTAssertTrue(view.invokedShow)
-    XCTAssertTrue(dataSource.invokedSetViewModels)
-    XCTAssertEqual(dataSource.viewModels, expectedViewModel)
-  }
+		XCTAssertTrue(view.invokedShow)
+		XCTAssertTrue(dataSource.invokedSetViewModels)
+		XCTAssertEqual(dataSource.viewModels, expectedViewModel)
+	}
 
-  func testTrendingPresenter_fetchShowsSuccess_andPresentShows() {
-    let images = TMDBEntitiesMock.createImagesEntityMock()
-    let imagesRepository = createMovieImagesRepositoryMock(images)
-    let interactor = TrendingServiceMock(repository: trendingRepositoryMock, imageRepository: imagesRepository)
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)
+	func testTrendingPresenter_fetchShowsSuccess_andPresentShows() {
+		let images = TMDBEntitiesMock.createImagesEntityMock()
+		let imagesRepository = createMovieImagesRepositoryMock(images)
+		let interactor = TrendingServiceMock(repository: trendingRepositoryMock, imageRepository: imagesRepository)
+		let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)
 
-    presenter.viewDidLoad()
+		presenter.viewDidLoad()
 
-    XCTAssertTrue(view.invokedShow)
-  }
+		XCTAssertTrue(view.invokedShow)
+	}
 
-  func testTrendingPresenter_fetchMoviewSuccess_andPresentNoMovies() {
-    let movies = [TrendingMovie]()
-    let images = TMDBEntitiesMock.createImagesEntityMock()
-    let repository = TrendingMoviesRepositoryMock(movies: movies)
-    let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
+	func testTrendingPresenter_fetchMoviewSuccess_andPresentNoMovies() {
+		let movies = [TrendingMovie]()
+		let images = TMDBEntitiesMock.createImagesEntityMock()
+		let repository = TrendingMoviesRepositoryMock(movies: movies)
+		let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
 
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
+		let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
 
-    presenter.viewDidLoad()
+		presenter.viewDidLoad()
 
-    XCTAssertTrue(view.invokedShowEmptyView)
-    XCTAssertFalse(view.invokedShow)
-  }
+		XCTAssertTrue(view.invokedShowEmptyView)
+		XCTAssertFalse(view.invokedShow)
+	}
 
-  func testTrendingPresenter_fetchMoviesFailure_andIsCustomError() {
-    let userInfo = [NSLocalizedDescriptionKey: "Custom list movies error"]
-    let error = NSError(domain: "io.github.pietrocaselani.CouchTracker", code: 10, userInfo: userInfo)
-    let interactor = TrendingServiceMock(repository: ErrorTrendingRepositoryMock(error: error), imageRepository: imageRepositoryMock)
+	func testTrendingPresenter_fetchMoviesFailure_andIsCustomError() {
+		let userInfo = [NSLocalizedDescriptionKey: "Custom list movies error"]
+		let error = NSError(domain: "io.github.pietrocaselani.CouchTracker", code: 10, userInfo: userInfo)
+		let interactor = TrendingServiceMock(repository: ErrorTrendingRepositoryMock(error: error), imageRepository: imageRepositoryMock)
 
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
+		let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
 
-    presenter.viewDidLoad()
+		presenter.viewDidLoad()
 
-    XCTAssertTrue(router.invokedShowError)
-    XCTAssertEqual(router.invokedShowErrorParameters?.message, "Custom list movies error")
-  }
+		XCTAssertTrue(router.invokedShowError)
+		XCTAssertEqual(router.invokedShowErrorParameters?.message, "Custom list movies error")
+	}
 
-  func testTrendingPresenter_requestToShowDetailsOfMovie_notifyRouterToShowDetails() {
-    let movieIndex = 1
-    let movies = TraktEntitiesMock.createMockMovies()
-    let images = TMDBEntitiesMock.createImagesEntityMock()
-    let repository = TrendingMoviesRepositoryMock(movies: movies)
-    let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
+	func testTrendingPresenter_requestToShowDetailsOfMovie_notifyRouterToShowDetails() {
+		let movieIndex = 1
+		let movies = TraktEntitiesMock.createMockMovies()
+		let images = TMDBEntitiesMock.createImagesEntityMock()
+		let repository = TrendingMoviesRepositoryMock(movies: movies)
+		let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
+		let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
 
-    presenter.viewDidLoad()
-    presenter.showDetailsOfTrending(at: movieIndex)
-    
-    let expectedMovie = MovieEntityMapper.entity(for: movies[movieIndex].movie)
+		presenter.viewDidLoad()
+		presenter.showDetailsOfTrending(at: movieIndex)
 
-    XCTAssertTrue(router.invokedMovieDetails)
-    XCTAssertEqual(router.invokedMovieDetailsParameters?.movie, expectedMovie)
-  }
+		let expectedMovie = MovieEntityMapper.entity(for: movies[movieIndex].movie)
 
-  func testTrendingPresenter_requestToShowDetailsOfShow_notifyRouterToShowDetails() {
-    let showIndex = 1
-    let shows = TraktEntitiesMock.createTrendingShowsMock()
-    let images = TMDBEntitiesMock.createImagesEntityMock()
-    let repository = TrendingShowsRepositoryMock(shows: shows)
-    let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
-    let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)
+		XCTAssertTrue(router.invokedMovieDetails)
+		XCTAssertEqual(router.invokedMovieDetailsParameters?.movie, expectedMovie)
+	}
 
-    presenter.viewDidLoad()
-    presenter.showDetailsOfTrending(at: 1)
+	func testTrendingPresenter_requestToShowDetailsOfShow_notifyRouterToShowDetails() {
+		let showIndex = 1
+		let shows = TraktEntitiesMock.createTrendingShowsMock()
+		let images = TMDBEntitiesMock.createImagesEntityMock()
+		let repository = TrendingShowsRepositoryMock(shows: shows)
+		let interactor = TrendingServiceMock(repository: repository, imageRepository: createMovieImagesRepositoryMock(images))
+		let presenter = TrendingiOSPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)
 
-    let expectedShow = ShowEntityMapper.entity(for: shows[showIndex].show)
+		presenter.viewDidLoad()
+		presenter.showDetailsOfTrending(at: 1)
 
-    XCTAssertTrue(router.invokedShowDetails)
-    XCTAssertEqual(router.invokedShowDetailsParameters?.show, expectedShow)
-  }
+		let expectedShow = ShowEntityMapper.entity(for: shows[showIndex].show)
+
+		XCTAssertTrue(router.invokedShowDetails)
+		XCTAssertEqual(router.invokedShowDetailsParameters?.show, expectedShow)
+	}
 }

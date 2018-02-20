@@ -5,24 +5,24 @@ let imageRepositoryRealMock = ImageRepositoryMock(tmdb: tmdbProviderMock, tvdb: 
 let imageRepositoryMock = EmptyImageRepositoryMock(tmdb: tmdbProviderMock, tvdb: tvdbProviderMock, cofigurationRepository: configurationRepositoryMock)
 
 final class ErrorImageRepositoryMock: ImageRepository {
-  private var error: Error!
+	private var error: Error!
 
-  convenience init(error: Error) {
-    self.init(tmdb: tmdbProviderMock, tvdb: tvdbProviderMock, cofigurationRepository: configurationRepositoryMock)
-    self.error = error
-  }
+	convenience init(error: Error) {
+		self.init(tmdb: tmdbProviderMock, tvdb: tvdbProviderMock, cofigurationRepository: configurationRepositoryMock)
+		self.error = error
+	}
 
-  init(tmdb: TMDBProvider, tvdb: TVDBProvider, cofigurationRepository: ConfigurationRepository) {}
+	init(tmdb: TMDBProvider, tvdb: TVDBProvider, cofigurationRepository: ConfigurationRepository) {}
 
-  func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
-    return Single.error(error)
-  }
+	func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
+		return Single.error(error)
+	}
 
-  func fetchShowImages(for showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
-    return Single.error(error)
-  }
+	func fetchShowImages(for showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
+		return Single.error(error)
+	}
 
-  func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Single<URL> {
-    return Single.error(error)
-  }
+	func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Single<URL> {
+		return Single.error(error)
+	}
 }

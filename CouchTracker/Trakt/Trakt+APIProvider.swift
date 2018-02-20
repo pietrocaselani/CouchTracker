@@ -6,5 +6,5 @@ extension Trakt: TraktProvider {
 }
 
 extension Trakt: TraktAuthenticationProvider {
-  var isAuthenticated: Bool { return self.hasValidToken }
+	var isAuthenticated: Bool { return self.hasValidToken }
 }
