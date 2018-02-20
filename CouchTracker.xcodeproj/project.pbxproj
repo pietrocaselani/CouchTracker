@@ -121,9 +121,6 @@
 		4F7B095B2016B7B7001F6C50 /* ShowDetailsCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FD8E6F1F61BEA100111223 /* ShowDetailsCacheRepository.swift */; };
 		4F7B095C2016B7B7001F6C50 /* TrendingCacheRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C331F55A948008E344E /* TrendingCacheRepository.swift */; };
 		4F7B095D2016B7B7001F6C50 /* CompositeLoginOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08AC1F719B85004D164A /* CompositeLoginOutput.swift */; };
-		4F7B095E2016B7B7001F6C50 /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */; };
-		4F7B09602016B8BF001F6C50 /* NoCacheMoyaPluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7B095F2016B8BF001F6C50 /* NoCacheMoyaPluginTests.swift */; };
-		4F7B09612016B8BF001F6C50 /* NoCacheMoyaPluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7B095F2016B8BF001F6C50 /* NoCacheMoyaPluginTests.swift */; };
 		4F8EE011202DDA460002189B /* trakt_episodes_summary_error.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F8EE010202DDA460002189B /* trakt_episodes_summary_error.json */; };
 		4F8EE015202E164D0002189B /* ShowEpisodeServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8EE014202E164D0002189B /* ShowEpisodeServiceTest.swift */; };
 		4F8EE016202E164D0002189B /* ShowEpisodeServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8EE014202E164D0002189B /* ShowEpisodeServiceTest.swift */; };
@@ -207,7 +204,6 @@
 		641D497C20223660002A4EAD /* TestSchedulers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D497A20223660002A4EAD /* TestSchedulers.swift */; };
 		641D49BD20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D49BC20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift */; };
 		641D49BE20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D49BC20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift */; };
-		641D49BF20235642002A4EAD /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */; };
 		6421C0791F66F7E70043FB82 /* ShowDetailsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6421C0781F66F7E70043FB82 /* ShowDetailsModule.swift */; };
 		6423EA901F5600A900F3899C /* TMDBMovies+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6423EA8F1F5600A900F3899C /* TMDBMovies+Hashable.swift */; };
 		6423EA931F56091400F3899C /* ImagesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9B38999C1C359F37014E /* ImagesEntity.swift */; };
@@ -454,8 +450,6 @@
 		649D3DE62027D01F00DF401A /* ThreadWithRunLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DE32027D01F00DF401A /* ThreadWithRunLoop.swift */; };
 		649D3DE92028BA4500DF401A /* MoyaProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DE82028BA4500DF401A /* MoyaProviderMock.swift */; };
 		649D3DEA2028BA4500DF401A /* MoyaProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DE82028BA4500DF401A /* MoyaProviderMock.swift */; };
-		649F56D31FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F56D21FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift */; };
-		649F56D51FB3214F004B13B0 /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */; };
 		64A5DCC61F56E2DF006853A2 /* ImagesEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5DCC51F56E2DF006853A2 /* ImagesEntityMapper.swift */; };
 		64A5DCC71F56E2DF006853A2 /* ImagesEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5DCC51F56E2DF006853A2 /* ImagesEntityMapper.swift */; };
 		64A5DCC91F56E2DF006853A2 /* ImagesEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A5DCC51F56E2DF006853A2 /* ImagesEntityMapper.swift */; };
@@ -719,7 +713,6 @@
 		4F6DC4182015499B00AA0DC8 /* MoviesManageriOSPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManageriOSPresenter.swift; sourceTree = "<group>"; };
 		4F6DC41C201549C100AA0DC8 /* MoviesManagerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerModule.swift; sourceTree = "<group>"; };
 		4F7B09532016B53B001F6C50 /* BaseViewMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewMock.swift; sourceTree = "<group>"; };
-		4F7B095F2016B8BF001F6C50 /* NoCacheMoyaPluginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCacheMoyaPluginTests.swift; sourceTree = "<group>"; };
 		4F8EE010202DDA460002189B /* trakt_episodes_summary_error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_episodes_summary_error.json; sourceTree = "<group>"; };
 		4F8EE014202E164D0002189B /* ShowEpisodeServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeServiceTest.swift; sourceTree = "<group>"; };
 		4F8EE017202E16EF0002189B /* ShowEpisodeMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeMocks.swift; sourceTree = "<group>"; };
@@ -882,8 +875,6 @@
 		649D3DDF2027D01300DF401A /* ThreadWithRunLoopScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithRunLoopScheduler.swift; sourceTree = "<group>"; };
 		649D3DE32027D01F00DF401A /* ThreadWithRunLoop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadWithRunLoop.swift; sourceTree = "<group>"; };
 		649D3DE82028BA4500DF401A /* MoyaProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaProviderMock.swift; sourceTree = "<group>"; };
-		649F56D21FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseWriterMoyaPlugin.swift; sourceTree = "<group>"; };
-		649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCacheMoyaPlugin.swift; sourceTree = "<group>"; };
 		64A5DCC51F56E2DF006853A2 /* ImagesEntityMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesEntityMapper.swift; sourceTree = "<group>"; };
 		64A5DCCA1F56E3FC006853A2 /* MovieEntityMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEntityMapper.swift; sourceTree = "<group>"; };
 		64B03ED41F4715D2009E37C9 /* TrendingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingViewController.swift; sourceTree = "<group>"; };
@@ -1577,7 +1568,6 @@
 				648390CC1F504E7500911BA0 /* JSONs */,
 				648390C41F504E7500911BA0 /* MovieDetails */,
 				647C95BD1F7587B5007A86CE /* NetworkMock */,
-				4F7B095F2016B8BF001F6C50 /* NoCacheMoyaPluginTests.swift */,
 				392D9CCADDD8B9EF1D8D74F7 /* RxAsserts.swift */,
 				648390CE1F504E7500911BA0 /* Search */,
 				4F8EE012202E16150002189B /* Show */,
@@ -1698,8 +1688,6 @@
 			children = (
 				64CC08AC1F719B85004D164A /* CompositeLoginOutput.swift */,
 				64F05BF51F69527900E3B861 /* ImagesSize.swift */,
-				649F56D41FB3214F004B13B0 /* NoCacheMoyaPlugin.swift */,
-				649F56D21FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift */,
 				64343E1D1F7EB3B7004557E4 /* Secrets.swift */,
 				649D3DE32027D01F00DF401A /* ThreadWithRunLoop.swift */,
 				649D3DDF2027D01300DF401A /* ThreadWithRunLoopScheduler.swift */,
@@ -2411,7 +2399,6 @@
 				641B9D2C1F7D664C00C26D10 /* ShowManageriOSPresenter.swift in Sources */,
 				644BF5131F6B07B00010CE35 /* AppConfigurationsService.swift in Sources */,
 				64BE63391F4F71DC002E55EA /* MovieDetailsiOSRouter.swift in Sources */,
-				649F56D31FB3102D004B13B0 /* ResponseWriterMoyaPlugin.swift in Sources */,
 				64D2FFDA1F44DFEA009E9ED3 /* R.generated.swift in Sources */,
 				64D43BCB1F605DB0005CDBF7 /* TrendingCelliOSPresenter.swift in Sources */,
 				64D29C371F55A949008E344E /* TrendingiOSPresenter.swift in Sources */,
@@ -2437,7 +2424,6 @@
 				6454D17B1F704A1D008C4E5F /* TraktLoginViewController.swift in Sources */,
 				6467FC2A1F66D00D000D1AEE /* ShowDetailsViewController.swift in Sources */,
 				4F236DC0202CB98E007FB1B9 /* BuildConfig.swift in Sources */,
-				649F56D51FB3214F004B13B0 /* NoCacheMoyaPlugin.swift in Sources */,
 				64B1CC771F4F55B1002A9FFD /* TrendingModule.swift in Sources */,
 				64D29C321F55A936008E344E /* MovieDetailsiOSPresenter.swift in Sources */,
 				648687A21F4A3B9C005A0BA8 /* TrendingError.swift in Sources */,
@@ -2601,7 +2587,6 @@
 				6434CA901F757AE900EA3AD8 /* ShowsProgressMocks.swift in Sources */,
 				6406BED21F4DBFE8004661C4 /* MovieDetailsError.swift in Sources */,
 				6442F9F41F61751E008E3E12 /* TrendingCellPresenterTest.swift in Sources */,
-				4F7B09602016B8BF001F6C50 /* NoCacheMoyaPluginTests.swift in Sources */,
 				64DF605C1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift in Sources */,
 				64D29C471F55AA16008E344E /* SearchiOSPresenter.swift in Sources */,
 				4F6DC40E201544E200AA0DC8 /* MoviesManagerContract.swift in Sources */,
@@ -2645,7 +2630,6 @@
 				644BF5241F6B07E20010CE35 /* AppConfigurationsService.swift in Sources */,
 				4F202F60202F10EB0040185F /* WatchedEpisodeEntityRealm.swift in Sources */,
 				645B83891F73FC04009DDF53 /* Date+Presentable.swift in Sources */,
-				641D49BF20235642002A4EAD /* NoCacheMoyaPlugin.swift in Sources */,
 				4F8EE018202E16EF0002189B /* ShowEpisodeMocks.swift in Sources */,
 				645EEEE01F61ADE30034EB66 /* ShowDetailsService.swift in Sources */,
 				4F236DCB202CD36E007FB1B9 /* ShowProgressAPIRepositoryTest.swift in Sources */,
@@ -2789,7 +2773,6 @@
 				4F236DBC202C0837007FB1B9 /* ShowEpisodeRealmDataSource.swift in Sources */,
 				4F7B095C2016B7B7001F6C50 /* TrendingCacheRepository.swift in Sources */,
 				4F7B095D2016B7B7001F6C50 /* CompositeLoginOutput.swift in Sources */,
-				4F7B095E2016B7B7001F6C50 /* NoCacheMoyaPlugin.swift in Sources */,
 				4F7B09572016B756001F6C50 /* TraktGenreRepository.swift in Sources */,
 				6453230F2024DA3200449B0A /* OptionalExtensions.swift in Sources */,
 				4F7B09582016B756001F6C50 /* ImageCachedRepository.swift in Sources */,
@@ -2942,7 +2925,6 @@
 				64D29C4C1F55AA17008E344E /* SearchService.swift in Sources */,
 				64BE62FD1F4F5C20002E55EA /* RxAsserts.swift in Sources */,
 				645322F92024CF5000449B0A /* WatchedShowEntityRealm.swift in Sources */,
-				4F7B09612016B8BF001F6C50 /* NoCacheMoyaPluginTests.swift in Sources */,
 				649D3DC3202637C000DF401A /* ShowProgressContract.swift in Sources */,
 				644EE1481F55DF9F0053D631 /* ConfigurationRepositoryMock.swift in Sources */,
 				641D49BE20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift in Sources */,
