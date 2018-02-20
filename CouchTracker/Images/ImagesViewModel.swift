@@ -1,22 +1,22 @@
 struct ImagesViewModel: Hashable {
-  let posterLink: String?
-  let backdropLink: String?
+	let posterLink: String?
+	let backdropLink: String?
 
-  var hashValue: Int {
-    var hash = 0
+	var hashValue: Int {
+		var hash = 0
 
-    if let posterLinkHash = posterLink?.hashValue {
-      hash = hash ^ posterLinkHash
-    }
+		if let posterLinkHash = posterLink?.hashValue {
+			hash = hash ^ posterLinkHash
+		}
 
-    if let backdropLinkHash = backdropLink?.hashValue {
-      hash = hash ^ backdropLinkHash
-    }
+		if let backdropLinkHash = backdropLink?.hashValue {
+			hash = hash ^ backdropLinkHash
+		}
 
-    return hash
-  }
+		return hash
+	}
 
-  static func == (lhs: ImagesViewModel, rhs: ImagesViewModel) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-  }
+	static func == (lhs: ImagesViewModel, rhs: ImagesViewModel) -> Bool {
+		return lhs.hashValue == rhs.hashValue
+	}
 }

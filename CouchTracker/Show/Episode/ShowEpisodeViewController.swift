@@ -4,9 +4,9 @@ import RxCocoa
 import RxSwift
 
 final class ShowEpisodeViewController: UIViewController, ShowEpisodeView {
-  var presenter: ShowEpisodePresenter!
+	var presenter: ShowEpisodePresenter!
 
-  private let disposeBag = DisposeBag()
+	private let disposeBag = DisposeBag()
 
 	@IBOutlet weak var screenshotImageView: UIImageView!
 	@IBOutlet weak var titleLabel: UILabel!
@@ -16,31 +16,31 @@ final class ShowEpisodeViewController: UIViewController, ShowEpisodeView {
 	@IBOutlet weak var watchedSwich: UISwitch!
 
 	override func viewDidLoad() {
-    super.viewDidLoad()
+		super.viewDidLoad()
 
-    guard presenter != nil else { fatalError("view loaded without presenter") }
+		guard presenter != nil else { fatalError("view loaded without presenter") }
 
-    watchedSwich.isOn = false
+		watchedSwich.isOn = false
 
-    watchedSwich.rx.isOn.changed.asDriver().drive(onNext: { [unowned self] _ in
-      self.presenter.handleWatch()
-    }).disposed(by: disposeBag)
+		watchedSwich.rx.isOn.changed.asDriver().drive(onNext: { [unowned self] _ in
+			self.presenter.handleWatch()
+		}).disposed(by: disposeBag)
 
-    presenter.viewDidLoad()
-  }
+		presenter.viewDidLoad()
+	}
 
-  func showEmptyView() {
-    print("Nothing to show here!")
-  }
+	func showEmptyView() {
+		print("Nothing to show here!")
+	}
 
-  func showEpisodeImage(with url: URL) {
-    screenshotImageView.kf.setImage(with: url)
-  }
+	func showEpisodeImage(with url: URL) {
+		screenshotImageView.kf.setImage(with: url)
+	}
 
-  func show(viewModel: ShowEpisodeViewModel) {
-    titleLabel.text = viewModel.title
-    numberLabel.text = viewModel.number
-    dateLabel.text = viewModel.date
-    watchedSwich.isOn = viewModel.watched
-  }
+	func show(viewModel: ShowEpisodeViewModel) {
+		titleLabel.text = viewModel.title
+		numberLabel.text = viewModel.number
+		dateLabel.text = viewModel.date
+		watchedSwich.isOn = viewModel.watched
+	}
 }

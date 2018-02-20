@@ -8,14 +8,14 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
 	private var dataSource: AppConfigurationsUserDefaultsDataSource!
 	private var scheduler: TestScheduler!
 	private var observer: TestableObserver<LoginState>!
-  private var hideSpecialsObserver: TestableObserver<Bool>!
+	private var hideSpecialsObserver: TestableObserver<Bool>!
 
 	override func setUp() {
 		super.setUp()
 
 		scheduler = TestScheduler(initialClock: 0)
 		observer = scheduler.createObserver(LoginState.self)
-    hideSpecialsObserver = scheduler.createObserver(Bool.self)
+		hideSpecialsObserver = scheduler.createObserver(Bool.self)
 		userDefaultsMock = UserDefaults(suiteName: "AppConfigurationsUserDefaultsDataSourceTest")!
 		clearUserDefaults(userDefaultsMock)
 	}
@@ -35,8 +35,8 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
 
 	func testAppConfigurationUserDefaultsDataSource_fetchLoginStateWithEmptyUserDefaults_emitsNotLogged() {
 		//Given an empty user defaults
-    clearUserDefaults(userDefaultsMock)
-    dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
+		clearUserDefaults(userDefaultsMock)
+		dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
 
 		//When
 		_ = dataSource.fetchLoginState().subscribe(observer)
@@ -52,23 +52,23 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
 		//Given an invalid user defaults
 		let data = "{ \"key1\": \"value1\", \"key2\": false }".data(using: .utf8)!
 		userDefaultsMock.set(data, forKey: "traktUser")
-    dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
+		dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
 
 		//When
 		_ = dataSource.fetchLoginState().subscribe(observer)
 		scheduler.start()
 
 		//Then
-    let expectedEvents: [Recorded<Event<LoginState>>] = [next(0, LoginState.notLogged)]
+		let expectedEvents: [Recorded<Event<LoginState>>] = [next(0, LoginState.notLogged)]
 
-    XCTAssertEqual(observer.events, expectedEvents)
+		XCTAssertEqual(observer.events, expectedEvents)
 	}
 
 	func testAppConfigurationUserDefaultsDataSource_fetchLoginStateWithValidUserDefaults_emitsLogged() {
 		//Given a valid user defaults
 		let settingsData = Users.settings.sampleData
 		userDefaultsMock.set(settingsData, forKey: "traktUser")
-    dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
+		dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
 
 		//When
 		_ = dataSource.fetchLoginState().subscribe(observer)
@@ -84,7 +84,7 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
 	func testAppConfigurationUserDefaultsDataSource_saveSettings() {
 		//Given
 		XCTAssertNil(userDefaultsMock.data(forKey: "traktUser"))
-    dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
+		dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
 		let settings = TraktEntitiesMock.createUserSettingsMock()
 
 		//When
@@ -98,53 +98,53 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
 		XCTAssertNotNil(userDefaultsMock.data(forKey: "traktUser"))
 	}
 
-  func testAppConfigurationsUserDefaultsDataSource_toggleHideSpecials() {
-    //Given
-    XCTAssertFalse(userDefaultsMock.bool(forKey: "hideSpecials"))
-    dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
+	func testAppConfigurationsUserDefaultsDataSource_toggleHideSpecials() {
+		//Given
+		XCTAssertFalse(userDefaultsMock.bool(forKey: "hideSpecials"))
+		dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
 
-    //When
-    do {
-      try dataSource.toggleHideSpecials()
-    } catch {
-      XCTFail(error.localizedDescription)
-    }
+		//When
+		do {
+			try dataSource.toggleHideSpecials()
+		} catch {
+			XCTFail(error.localizedDescription)
+		}
 
-    //Then
-    XCTAssertTrue(userDefaultsMock.bool(forKey: "hideSpecials"))
+		//Then
+		XCTAssertTrue(userDefaultsMock.bool(forKey: "hideSpecials"))
 
-    //When
-    do {
-      try dataSource.toggleHideSpecials()
-    } catch {
-      XCTFail(error.localizedDescription)
-    }
+		//When
+		do {
+			try dataSource.toggleHideSpecials()
+		} catch {
+			XCTFail(error.localizedDescription)
+		}
 
-    //Then
-    XCTAssertFalse(userDefaultsMock.bool(forKey: "hideSpecials"))
-  }
+		//Then
+		XCTAssertFalse(userDefaultsMock.bool(forKey: "hideSpecials"))
+	}
 
-  func testAppConfigurationsUserDefaultsDataSource_fetchHideSpecials() {
-    //Given
-    XCTAssertFalse(userDefaultsMock.bool(forKey: "hideSpecials"))
-    dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
+	func testAppConfigurationsUserDefaultsDataSource_fetchHideSpecials() {
+		//Given
+		XCTAssertFalse(userDefaultsMock.bool(forKey: "hideSpecials"))
+		dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
 
-    //When
-    _ = dataSource.fetchHideSpecials().subscribe(hideSpecialsObserver)
+		//When
+		_ = dataSource.fetchHideSpecials().subscribe(hideSpecialsObserver)
 
-    //Then
-    var expectedEvents = [next(0, false)]
-    XCTAssertEqual(hideSpecialsObserver.events, expectedEvents)
+		//Then
+		var expectedEvents = [next(0, false)]
+		XCTAssertEqual(hideSpecialsObserver.events, expectedEvents)
 
-    //When
-    do {
-      try dataSource.toggleHideSpecials()
-    } catch {
-      XCTFail(error.localizedDescription)
-    }
+		//When
+		do {
+			try dataSource.toggleHideSpecials()
+		} catch {
+			XCTFail(error.localizedDescription)
+		}
 
-    //Then
-    expectedEvents = [next(0, false), next(0, true)]
-    XCTAssertEqual(hideSpecialsObserver.events, expectedEvents)
-  }
+		//Then
+		expectedEvents = [next(0, false), next(0, true)]
+		XCTAssertEqual(hideSpecialsObserver.events, expectedEvents)
+	}
 }
