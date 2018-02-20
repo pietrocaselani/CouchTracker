@@ -1,3 +1,3 @@
 struct DefaultBuildConfig: BuildConfig {
-  let debug: Bool
+	let debug: Bool
 }

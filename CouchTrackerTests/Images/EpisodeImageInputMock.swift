@@ -4,17 +4,17 @@ struct EpisodeImageInputMock: EpisodeImageInput, Hashable {
 	var season: Int
 	var number: Int
 
-  var hashValue: Int {
-    var hash = tvdb.hashValue
-    hash ^= season.hashValue
-    hash ^= number.hashValue
+	var hashValue: Int {
+		var hash = tvdb.hashValue
+		hash ^= season.hashValue
+		hash ^= number.hashValue
 
-    tmdb.run { hash ^= $0.hashValue }
+		tmdb.run { hash ^= $0.hashValue }
 
-    return hash
-  }
+		return hash
+	}
 
-  static func == (lhs: EpisodeImageInputMock, rhs: EpisodeImageInputMock) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-  }
+	static func == (lhs: EpisodeImageInputMock, rhs: EpisodeImageInputMock) -> Bool {
+		return lhs.hashValue == rhs.hashValue
+	}
 }

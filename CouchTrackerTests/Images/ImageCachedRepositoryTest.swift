@@ -16,7 +16,7 @@ final class ImageCachedRepositoryTest: XCTestCase {
 				cofigurationRepository: configurationRepositoryMock, schedulers: scheduler)
 
 		observer = scheduler.createObserver(ImagesEntity.self)
-    episodeObserver = scheduler.createObserver(URL.self)
+	episodeObserver = scheduler.createObserver(URL.self)
 	}
 
 	func testImageCachedRepository_fetchMovieImages_withDefaultSizes() {
@@ -116,7 +116,7 @@ final class ImageCachedRepositoryTest: XCTestCase {
 
 		_ = repository.fetchEpisodeImages(for: input).asObservable().subscribe(episodeObserver)
 
-    scheduler.start()
+	scheduler.start()
 
 		let expectedURL = URL(string: "https:/image.tmdb.org/t/p/w300/wrGWeW4WKxnaeA8sxJb2T9O6ryo.jpg")!
 

@@ -1,9 +1,9 @@
 import UIKit
 
 final class AppFlowViewController: UITabBarController {
-  override func viewDidLoad() {
-    super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
-    self.view.backgroundColor = UIColor.ctdarkerBunker
-  }
+		self.view.backgroundColor = UIColor.ctdarkerBunker
+	}
 }

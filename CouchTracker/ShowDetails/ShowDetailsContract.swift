@@ -2,31 +2,31 @@ import RxSwift
 import TraktSwift
 
 protocol
-    ShowDetailsRepository: class {
-  func fetchDetailsOfShow(with identifier: String, extended: Extended) -> Single<Show>
+		ShowDetailsRepository: class {
+	func fetchDetailsOfShow(with identifier: String, extended: Extended) -> Single<Show>
 }
 
 protocol ShowDetailsInteractor: class {
-  init(showIds: ShowIds, repository: ShowDetailsRepository,
-       genreRepository: GenreRepository, imageRepository: ImageRepository)
+	init(showIds: ShowIds, repository: ShowDetailsRepository,
+			genreRepository: GenreRepository, imageRepository: ImageRepository)
 
-  func fetchDetailsOfShow() -> Single<ShowEntity>
-  func fetchImages() -> Single<ImagesEntity>
+	func fetchDetailsOfShow() -> Single<ShowEntity>
+	func fetchImages() -> Single<ImagesEntity>
 }
 
 protocol ShowDetailsPresenter: class {
-  init(view: ShowDetailsView, router: ShowDetailsRouter, interactor: ShowDetailsInteractor)
+	init(view: ShowDetailsView, router: ShowDetailsRouter, interactor: ShowDetailsInteractor)
 
-  func viewDidLoad()
+	func viewDidLoad()
 }
 
 protocol ShowDetailsRouter: class {
-  func showError(message: String)
+	func showError(message: String)
 }
 
 protocol ShowDetailsView: class {
-  var presenter: ShowDetailsPresenter! { get set }
+	var presenter: ShowDetailsPresenter! { get set }
 
-  func show(details: ShowDetailsViewModel)
-  func show(images: ImagesViewModel)
+	func show(details: ShowDetailsViewModel)
+	func show(images: ImagesViewModel)
 }

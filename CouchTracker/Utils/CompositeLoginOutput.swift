@@ -1,15 +1,15 @@
 final class CompositeLoginOutput: TraktLoginOutput {
-  private let outputs: [TraktLoginOutput]
+	private let outputs: [TraktLoginOutput]
 
-  init(outputs: [TraktLoginOutput]) {
-    self.outputs = outputs
-  }
+	init(outputs: [TraktLoginOutput]) {
+		self.outputs = outputs
+	}
 
-  func loggedInSuccessfully() {
-    outputs.forEach { $0.loggedInSuccessfully() }
-  }
+	func loggedInSuccessfully() {
+		outputs.forEach { $0.loggedInSuccessfully() }
+	}
 
-  func logInFail(message: String) {
-    outputs.forEach { $0.logInFail(message: message) }
-  }
+	func logInFail(message: String) {
+		outputs.forEach { $0.logInFail(message: message) }
+	}
 }

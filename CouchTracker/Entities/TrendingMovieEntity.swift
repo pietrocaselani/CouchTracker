@@ -1,13 +1,13 @@
 import TraktSwift
 
 struct TrendingMovieEntity: Hashable {
-  let movie: MovieEntity
+	let movie: MovieEntity
 
-  var hashValue: Int {
-    return movie.hashValue
-  }
+	var hashValue: Int {
+		return movie.hashValue
+	}
 
-  static func == (lhs: TrendingMovieEntity, rhs: TrendingMovieEntity) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-  }
+	static func == (lhs: TrendingMovieEntity, rhs: TrendingMovieEntity) -> Bool {
+		return lhs.hashValue == rhs.hashValue
+	}
 }

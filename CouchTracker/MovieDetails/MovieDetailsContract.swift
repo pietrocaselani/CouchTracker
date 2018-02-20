@@ -2,30 +2,30 @@ import RxSwift
 import TraktSwift
 
 protocol MovieDetailsRouter: class {
-  func showError(message: String)
+	func showError(message: String)
 }
 
 protocol MovieDetailsPresenter: class {
-  init(view: MovieDetailsView, interactor: MovieDetailsInteractor, router: MovieDetailsRouter)
+	init(view: MovieDetailsView, interactor: MovieDetailsInteractor, router: MovieDetailsRouter)
 
-  func viewDidLoad()
+	func viewDidLoad()
 }
 
 protocol MovieDetailsView: BaseView {
-  var presenter: MovieDetailsPresenter! { get set }
+	var presenter: MovieDetailsPresenter! { get set }
 
-  func show(details: MovieDetailsViewModel)
-  func show(images: ImagesViewModel)
+	func show(details: MovieDetailsViewModel)
+	func show(images: ImagesViewModel)
 }
 
 protocol MovieDetailsInteractor: class {
-  init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
-       imageRepository: ImageRepository, movieIds: MovieIds)
+	init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
+			imageRepository: ImageRepository, movieIds: MovieIds)
 
-  func fetchDetails() -> Observable<MovieEntity>
-  func fetchImages() -> Observable<ImagesEntity>
+	func fetchDetails() -> Observable<MovieEntity>
+	func fetchImages() -> Observable<ImagesEntity>
 }
 
 protocol MovieDetailsRepository: class {
-  func fetchDetails(movieId: String) -> Observable<Movie>
+	func fetchDetails(movieId: String) -> Observable<Movie>
 }
