@@ -6,6 +6,22 @@ final class ShowProgressMocks {
 
 	private init() {}
 
+	final class ShowProgressRepositoryMock: ShowProgressRepository {
+		var fetchShowProgressInvoked = false
+		var fetchShowProgressParameters: (ids: ShowIds, hideSpecial: Bool)?
+
+		func fetchShowProgress(ids: ShowIds, hideSpecials: Bool) -> Single<WatchedShowBuilder> {
+			fetchShowProgressInvoked = true
+			fetchShowProgressParameters = (ids, hideSpecials)
+
+			let baseShow = ShowsProgressMocks.createShowMock("pc")!
+
+			let builder = WatchedShowBuilder(ids: ids, progressShow: baseShow)
+
+			return Single.just(builder)
+		}
+	}
+
 	final class ShowProgressAPIRepositoryMock: ShowProgressRepository {
 		private let baseShow: BaseShow?
 		private let baseShowError: Error?

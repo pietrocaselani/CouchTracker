@@ -16,7 +16,7 @@ final class TestSchedulers: Schedulers {
 		self.networkQueue = DispatchQueue.main
 		self.networkScheduler = scheduler
 		self.dataSourceQueue = DispatchQueue.main
-		self.dataSourceScheduler = scheduler
+		self.dataSourceScheduler = MainScheduler.instance
 		self.ioQueue = DispatchQueue.main
 		self.ioScheduler = scheduler
 	}

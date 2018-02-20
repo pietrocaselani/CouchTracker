@@ -26,33 +26,23 @@ final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
 	func addToHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<SyncResult> {
 		let syncEpisode = SyncEpisode(ids: episode.ids)
 		let items = SyncItems(episodes: [syncEpisode])
-		let showEntity = show.show
-		let showIds = showEntity.ids
+		let single = network.addToHistory(items: items)
 
-		return network.addToHistory(items: items)
-			.flatMap { [unowned self] _ -> Single<WatchedShowEntity> in
-				return self.showProgressRepository.fetchShowProgress(ids: showIds, hideSpecials: self.hideSpecials)
-					.map { $0.createEntity(using: showEntity) }
-			}.observeOn(schedulers.dataSourceScheduler)
-			.do(onSuccess: { [unowned self] newWatchedShowEntity in
-				try self.dataSource.updateWatched(show: newWatchedShowEntity)
-			}).map { newWatchedShowEntity -> SyncResult in
-				SyncResult.success(show: newWatchedShowEntity)
-			}.catchError { error -> Single<SyncResult> in
-				Single.just(SyncResult.fail(error: error))
-		}
+		return performSync(single, show.show)
 	}
 
 	func removeFromHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<SyncResult> {
 		let syncEpisode = SyncEpisode(ids: episode.ids)
 		let items = SyncItems(episodes: [syncEpisode])
-		let showEntity = show.show
-		let showIds = showEntity.ids
+		let single = network.removeFromHistory(items: items)
 
-		return network.removeFromHistory(items: items)
-			.flatMap { [unowned self] _ -> Single<WatchedShowEntity> in
-				return self.showProgressRepository.fetchShowProgress(ids: showIds, hideSpecials: self.hideSpecials)
-					.map { $0.createEntity(using: showEntity) }
+		return performSync(single, show.show)
+	}
+
+	private func performSync(_ single: Single<SyncResponse>, _ show: ShowEntity) -> Single<SyncResult> {
+		return single.flatMap { [unowned self] _ -> Single<WatchedShowEntity> in
+			return self.showProgressRepository.fetchShowProgress(ids: show.ids, hideSpecials: self.hideSpecials)
+				.map { $0.createEntity(using: show) }
 			}.observeOn(schedulers.dataSourceScheduler)
 			.do(onSuccess: { [unowned self] newWatchedShowEntity in
 				try self.dataSource.updateWatched(show: newWatchedShowEntity)
