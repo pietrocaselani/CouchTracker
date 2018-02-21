@@ -85,7 +85,6 @@
 		4F0F573C203D5FA000B86CB8 /* OptionalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6453230C2024DA3200449B0A /* OptionalExtensions.swift */; };
 		4F0F573D203D5FA000B86CB8 /* ShowIds+TMDBType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DF605A1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift */; };
 		4F0F573E203D5FA000B86CB8 /* String+Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE63331F4F6F63002E55EA /* String+Localizable.swift */; };
-		4F0F5743203D5FA000B86CB8 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EAD2036854600987AD1 /* Observable+Extensions.swift */; };
 		4F0F5744203D5FA000B86CB8 /* GenreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC731F4F55A8002A9FFD /* GenreRepository.swift */; };
 		4F0F5745203D5FA000B86CB8 /* TraktGenreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C391F55A957008E344E /* TraktGenreRepository.swift */; };
 		4F0F5746203D5FA000B86CB8 /* EpisodeImageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9D5DF615DE80C9E7CE4F /* EpisodeImageInput.swift */; };
@@ -307,9 +306,6 @@
 		4F6D6EAA2033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EA92033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift */; };
 		4F6D6EAB2033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EA92033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift */; };
 		4F6D6EAC2033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EA92033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift */; };
-		4F6D6EAE2036854600987AD1 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EAD2036854600987AD1 /* Observable+Extensions.swift */; };
-		4F6D6EAF2036854600987AD1 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EAD2036854600987AD1 /* Observable+Extensions.swift */; };
-		4F6D6EB02036854600987AD1 /* Observable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EAD2036854600987AD1 /* Observable+Extensions.swift */; };
 		4F6DC40D201544E200AA0DC8 /* MoviesManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC40C201544E200AA0DC8 /* MoviesManagerContract.swift */; };
 		4F6DC40E201544E200AA0DC8 /* MoviesManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC40C201544E200AA0DC8 /* MoviesManagerContract.swift */; };
 		4F6DC40F201544E200AA0DC8 /* MoviesManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC40C201544E200AA0DC8 /* MoviesManagerContract.swift */; };
@@ -840,6 +836,27 @@
 			remoteGlobalIDString = 4F0F56FB203D5F4C00B86CB8;
 			remoteInfo = CouchTrackerCore;
 		};
+		4F0F5816203D6EB600B86CB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 647632311F44824900F277F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64B801BA1FA7933F004A6EEE;
+			remoteInfo = TraktTestsResources;
+		};
+		4F0F5818203D6EB600B86CB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 647632311F44824900F277F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64B801E11FA7947F004A6EEE;
+			remoteInfo = TMDBTestsResources;
+		};
+		4F0F581A203D6EB600B86CB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 647632311F44824900F277F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 641D49C3202356AA002A4EAD;
+			remoteInfo = TVDBTestsResources;
+		};
 		641D49CC20235746002A4EAD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 647632311F44824900F277F1 /* Project object */;
@@ -936,7 +953,6 @@
 		4F6D6EA020339C1300987AD1 /* ShowsManageriOSModuleSetupTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManageriOSModuleSetupTest.swift; sourceTree = "<group>"; };
 		4F6D6EA52033A50700987AD1 /* ShowsProgressMoyaNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressMoyaNetwork.swift; sourceTree = "<group>"; };
 		4F6D6EA92033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsMoyaNetwork.swift; sourceTree = "<group>"; };
-		4F6D6EAD2036854600987AD1 /* Observable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extensions.swift"; sourceTree = "<group>"; };
 		4F6DC40C201544E200AA0DC8 /* MoviesManagerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerContract.swift; sourceTree = "<group>"; };
 		4F6DC4102015460700AA0DC8 /* MoviesManageriOSModuleSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManageriOSModuleSetup.swift; sourceTree = "<group>"; };
 		4F6DC4142015476000AA0DC8 /* MoviesManager.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MoviesManager.storyboard; sourceTree = "<group>"; };
@@ -1459,7 +1475,6 @@
 				64BE63201F4F6893002E55EA /* UIAlertController+Error.swift */,
 				6406BEDB1F4DC353004661C4 /* UIColor+CouchTracker.swift */,
 				64BE633B1F4F7ED7002E55EA /* UIViewController+BaseView.swift */,
-				4F6D6EAD2036854600987AD1 /* Observable+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1761,16 +1776,16 @@
 			isa = PBXGroup;
 			children = (
 				6476323B1F44824900F277F1 /* CouchTracker */,
-				64B1CCCF1F4F597D002A9FFD /* CouchTrackerFastTests */,
-				647632501F44824900F277F1 /* CouchTrackerTests */,
-				64B801BC1FA7933F004A6EEE /* TraktTestsResources */,
-				64B801E31FA7947F004A6EEE /* TMDBTestsResources */,
-				641D49C5202356AA002A4EAD /* TVDBTestsResources */,
 				4F0F56FD203D5F4C00B86CB8 /* CouchTrackerCore */,
 				4F0F5708203D5F4C00B86CB8 /* CouchTrackerCoreTests */,
+				64B1CCCF1F4F597D002A9FFD /* CouchTrackerFastTests */,
+				647632501F44824900F277F1 /* CouchTrackerTests */,
 				31C11952FDC8E067FC72DB57 /* Frameworks */,
 				35F4540E74D8632B2F76B8F1 /* Pods */,
 				6476323A1F44824900F277F1 /* Products */,
+				64B801E31FA7947F004A6EEE /* TMDBTestsResources */,
+				64B801BC1FA7933F004A6EEE /* TraktTestsResources */,
+				641D49C5202356AA002A4EAD /* TVDBTestsResources */,
 			);
 			indentWidth = 1;
 			sourceTree = "<group>";
@@ -2185,6 +2200,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				4F0F5817203D6EB600B86CB8 /* PBXTargetDependency */,
+				4F0F5819203D6EB600B86CB8 /* PBXTargetDependency */,
+				4F0F581B203D6EB600B86CB8 /* PBXTargetDependency */,
 				4F0F5707203D5F4C00B86CB8 /* PBXTargetDependency */,
 			);
 			name = CouchTrackerCoreTests;
@@ -2870,7 +2888,6 @@
 				4F0F573D203D5FA000B86CB8 /* ShowIds+TMDBType.swift in Sources */,
 				4F0F5815203D6AC500B86CB8 /* TrendingShowEntity.swift in Sources */,
 				4F0F573E203D5FA000B86CB8 /* String+Localizable.swift in Sources */,
-				4F0F5743203D5FA000B86CB8 /* Observable+Extensions.swift in Sources */,
 				4F0F5744203D5FA000B86CB8 /* GenreRepository.swift in Sources */,
 				4F0F5745203D5FA000B86CB8 /* TraktGenreRepository.swift in Sources */,
 				4F0F5746203D5FA000B86CB8 /* EpisodeImageInput.swift in Sources */,
@@ -3166,7 +3183,6 @@
 				645B83881F73FC04009DDF53 /* Date+Presentable.swift in Sources */,
 				64FDE5041F7E64F200A4C7AA /* ShowEpisodeiOSPresenter.swift in Sources */,
 				6406BEE61F4DC353004661C4 /* UIColor+CouchTracker.swift in Sources */,
-				4F6D6EAE2036854600987AD1 /* Observable+Extensions.swift in Sources */,
 				6406BEC21F4DBEFA004661C4 /* MovieDetailsContract.swift in Sources */,
 				4F202F5F202F10EB0040185F /* WatchedEpisodeEntityRealm.swift in Sources */,
 				64CC088B1F717298004D164A /* AppFlowModule.swift in Sources */,
@@ -3413,7 +3429,6 @@
 				392D9CAB8901302FCB6F2C14 /* TMDBProvider.swift in Sources */,
 				645EEEDC1F61AB8A0034EB66 /* ShowDetailsInteractorTest.swift in Sources */,
 				392D94094EB036ECB0061A99 /* TraktProvider.swift in Sources */,
-				4F6D6EAF2036854600987AD1 /* Observable+Extensions.swift in Sources */,
 				6454D16D1F703B4D008C4E5F /* TraktLoginiOSPresenter.swift in Sources */,
 				392D951BEE3334C99765C1AE /* ImageRepository.swift in Sources */,
 				4F8EE01A202E1B680002189B /* ImageCachedRepository.swift in Sources */,
@@ -3492,7 +3507,6 @@
 				64BE631B1F4F5E43002E55EA /* GenreRepository.swift in Sources */,
 				64CC089B1F718BE2004D164A /* TraktLoginState.swift in Sources */,
 				648390E21F504EA500911BA0 /* SearchMocks.swift in Sources */,
-				4F6D6EB02036854600987AD1 /* Observable+Extensions.swift in Sources */,
 				645322FD2024CF7200449B0A /* EpisodeEntityRealm.swift in Sources */,
 				644BF5291F6B07E30010CE35 /* AppConfigurationOptions.swift in Sources */,
 				64BE63191F4F5E04002E55EA /* BaseView.swift in Sources */,
@@ -3668,6 +3682,21 @@
 			isa = PBXTargetDependency;
 			target = 4F0F56FB203D5F4C00B86CB8 /* CouchTrackerCore */;
 			targetProxy = 4F0F5706203D5F4C00B86CB8 /* PBXContainerItemProxy */;
+		};
+		4F0F5817203D6EB600B86CB8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64B801BA1FA7933F004A6EEE /* TraktTestsResources */;
+			targetProxy = 4F0F5816203D6EB600B86CB8 /* PBXContainerItemProxy */;
+		};
+		4F0F5819203D6EB600B86CB8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64B801E11FA7947F004A6EEE /* TMDBTestsResources */;
+			targetProxy = 4F0F5818203D6EB600B86CB8 /* PBXContainerItemProxy */;
+		};
+		4F0F581B203D6EB600B86CB8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 641D49C3202356AA002A4EAD /* TVDBTestsResources */;
+			targetProxy = 4F0F581A203D6EB600B86CB8 /* PBXContainerItemProxy */;
 		};
 		641D49CD20235746002A4EAD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
