@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0900"
+   LastUpgradeVersion = "0920"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -9,28 +9,14 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "64B1CCCD1F4F597D002A9FFD"
-               BuildableName = "CouchTrackerFastTests.xctest"
-               BlueprintName = "CouchTrackerFastTests"
-               ReferencedContainer = "container:CouchTracker.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "64A45A011F54AE49002C5CAC"
-               BuildableName = "TMDB-MacTests.xctest"
-               BlueprintName = "TMDB-MacTests"
+               BlueprintIdentifier = "4F0F56FB203D5F4C00B86CB8"
+               BuildableName = "CouchTrackerCore.framework"
+               BlueprintName = "CouchTrackerCore"
                ReferencedContainer = "container:CouchTracker.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -48,9 +34,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "64B1CCCD1F4F597D002A9FFD"
-               BuildableName = "CouchTrackerFastTests.xctest"
-               BlueprintName = "CouchTrackerFastTests"
+               BlueprintIdentifier = "4F0F5703203D5F4C00B86CB8"
+               BuildableName = "CouchTrackerCoreTests.xctest"
+               BlueprintName = "CouchTrackerCoreTests"
                ReferencedContainer = "container:CouchTracker.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -58,9 +44,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "64B1CCCD1F4F597D002A9FFD"
-            BuildableName = "CouchTrackerFastTests.xctest"
-            BlueprintName = "CouchTrackerFastTests"
+            BlueprintIdentifier = "4F0F56FB203D5F4C00B86CB8"
+            BuildableName = "CouchTrackerCore.framework"
+            BlueprintName = "CouchTrackerCore"
             ReferencedContainer = "container:CouchTracker.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -81,9 +67,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "64B1CCCD1F4F597D002A9FFD"
-            BuildableName = "CouchTrackerFastTests.xctest"
-            BlueprintName = "CouchTrackerFastTests"
+            BlueprintIdentifier = "4F0F56FB203D5F4C00B86CB8"
+            BuildableName = "CouchTrackerCore.framework"
+            BlueprintName = "CouchTrackerCore"
             ReferencedContainer = "container:CouchTracker.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -99,9 +85,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "64B1CCCD1F4F597D002A9FFD"
-            BuildableName = "CouchTrackerFastTests.xctest"
-            BlueprintName = "CouchTrackerFastTests"
+            BlueprintIdentifier = "4F0F56FB203D5F4C00B86CB8"
+            BuildableName = "CouchTrackerCore.framework"
+            BlueprintName = "CouchTrackerCore"
             ReferencedContainer = "container:CouchTracker.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
