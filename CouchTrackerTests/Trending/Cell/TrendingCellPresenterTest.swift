@@ -1,4 +1,5 @@
 import XCTest
+@testable import CouchTrackerCore
 
 final class TrendingCellPresenterTest: XCTestCase {
 

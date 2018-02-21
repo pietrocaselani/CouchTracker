@@ -2,6 +2,7 @@ import XCTest
 import TraktSwift
 import RxTest
 import RxSwift
+@testable import CouchTrackerCore
 
 final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
 	private var repository: AppConfigurationsDefaultRepository!

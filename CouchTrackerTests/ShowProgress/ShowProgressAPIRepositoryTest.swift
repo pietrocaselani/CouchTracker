@@ -3,6 +3,7 @@ import RxSwift
 import RxTest
 import Moya
 import TraktSwift
+@testable import CouchTrackerCore
 
 final class ShowProgressAPIRepositoryTest: XCTestCase {
 	private var traktMock: TraktProvider!

@@ -1,4 +1,5 @@
 import XCTest
+@testable import CouchTrackerCore
 
 final class ShowProgressSortTest: XCTestCase {
 	func testShowProgressSort_returnAllValues() {

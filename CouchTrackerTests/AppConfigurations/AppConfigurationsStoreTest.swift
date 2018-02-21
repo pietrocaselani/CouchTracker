@@ -1,6 +1,7 @@
 import XCTest
 import RxSwift
 import RxTest
+@testable import CouchTrackerCore
 
 final class AppConfigurationsStoreTest: XCTestCase {
 	func testAppConfigurationsStore_receivesNewState_emitNewState() {

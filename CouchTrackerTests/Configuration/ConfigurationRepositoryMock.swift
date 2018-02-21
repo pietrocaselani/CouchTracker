@@ -1,6 +1,7 @@
 import RxSwift
 import Moya
 import TMDBSwift
+@testable import CouchTrackerCore
 
 let configurationRepositoryMock = ConfigurationRepositoryMock(tmdbProvider: tmdbProviderMock)
 

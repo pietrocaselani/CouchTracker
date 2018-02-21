@@ -1,4 +1,5 @@
 import RxSwift
+@testable import CouchTrackerCore
 
 final class TraktLoginOutputMock: TraktLoginOutput {
 	var invokedLoggedInSuccessfully = false

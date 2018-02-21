@@ -2,6 +2,7 @@ import XCTest
 import RxTest
 import RxSwift
 import TraktSwift
+@testable import CouchTrackerCore
 
 final class ShowDetailsRepositoryTest: XCTestCase {
 	private let scheduler = TestSchedulers()

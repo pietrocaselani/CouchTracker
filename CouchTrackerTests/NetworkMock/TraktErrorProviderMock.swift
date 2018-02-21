@@ -1,6 +1,7 @@
 import TraktSwift
 import RxSwift
 import Moya
+@testable import CouchTrackerCore
 
 final class TraktErrorProviderMock: TraktProvider {
 	func finishesAuthentication(with request: URLRequest) -> Single<AuthenticationResult> {

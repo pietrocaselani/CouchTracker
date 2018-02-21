@@ -1,5 +1,6 @@
 import TMDBSwift
 import Moya
+@testable import CouchTrackerCore
 
 final class TMDBErrorProviderMock: TMDBProvider {
 

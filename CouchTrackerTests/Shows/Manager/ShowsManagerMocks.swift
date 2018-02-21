@@ -1,3 +1,5 @@
+@testable import CouchTrackerCore
+
 final class ShowsManagerViewMock: ShowsManagerView {
 	var presenter: ShowsManagerPresenter!
 	var showNeedsTraktLoginInvoked = false

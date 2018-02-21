@@ -1,4 +1,5 @@
 import XCTest
+@testable import CouchTrackerCore
 
 final class ShowsManageriOSModuleSetupTest: XCTestCase {
 	func testShowsManageriOSModuleSetup_provideOptionsInCorrectOrder() {

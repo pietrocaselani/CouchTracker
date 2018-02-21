@@ -3,6 +3,7 @@ import RxTest
 import RxSwift
 import RealmSwift
 import TraktSwift
+@testable import CouchTrackerCore
 
 final class ShowsProgressRealmDataSourceTest: XCTestCase {
 	private var realmProvider: RealmProvider!

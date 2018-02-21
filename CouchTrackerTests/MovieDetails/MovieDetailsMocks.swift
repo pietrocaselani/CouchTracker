@@ -1,6 +1,7 @@
 import Foundation
 import RxSwift
 import TraktSwift
+@testable import CouchTrackerCore
 
 final class MovieDetailsViewMock: MovieDetailsView {
 	var presenter: MovieDetailsPresenter!

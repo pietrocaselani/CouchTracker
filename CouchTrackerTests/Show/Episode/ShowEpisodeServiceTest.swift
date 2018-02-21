@@ -1,6 +1,7 @@
 import XCTest
 import RxSwift
 import RxTest
+@testable import CouchTrackerCore
 
 final class ShowEpisodeServiceTest: XCTestCase {
 	private var imageRepository: ImageRepositoryMock!

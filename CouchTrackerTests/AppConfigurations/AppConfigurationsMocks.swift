@@ -1,6 +1,7 @@
 import RxSwift
 import TraktSwift
 import Moya
+@testable import CouchTrackerCore
 
 final class AppConfigurationsMock {
 	private init() {}

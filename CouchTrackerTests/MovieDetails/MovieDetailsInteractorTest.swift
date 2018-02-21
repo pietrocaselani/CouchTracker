@@ -3,6 +3,7 @@ import RxSwift
 import RxTest
 import TraktSwift
 import TMDBSwift
+@testable import CouchTrackerCore
 
 final class MovieDetailsInteractorTest: XCTestCase {
 

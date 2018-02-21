@@ -1,5 +1,6 @@
 import Foundation
 import RxSwift
+@testable import CouchTrackerCore
 
 final class TrendingCellViewMock: TrendingCellView {
 	var presenter: TrendingCellPresenter!

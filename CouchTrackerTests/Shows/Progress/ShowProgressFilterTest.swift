@@ -1,5 +1,6 @@
 import XCTest
 import TraktSwift
+@testable import CouchTrackerCore
 
 final class ShowProgressFilterTest: XCTestCase {
 	func testShowProgressFilter_returnAllValues() {

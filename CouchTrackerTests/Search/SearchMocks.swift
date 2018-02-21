@@ -1,6 +1,7 @@
 import Moya
 import RxSwift
 import TraktSwift
+@testable import CouchTrackerCore
 
 final class SearchViewMock: SearchView {
 	var presenter: SearchPresenter!

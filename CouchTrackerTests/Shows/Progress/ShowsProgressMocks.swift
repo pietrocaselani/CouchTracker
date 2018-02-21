@@ -1,5 +1,6 @@
 import TraktSwift
 import RxSwift
+@testable import CouchTrackerCore
 
 final class ShowsProgressMocks {
 	private init() {}

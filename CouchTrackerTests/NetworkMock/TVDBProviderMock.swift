@@ -1,5 +1,6 @@
 import Moya
 import TVDBSwift
+@testable import CouchTrackerCore
 
 let tvdbProviderMock = TVDBProviderMock()
 

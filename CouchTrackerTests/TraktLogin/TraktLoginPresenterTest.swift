@@ -1,5 +1,6 @@
 import RxSwift
 import XCTest
+@testable import CouchTrackerCore
 
 final class TraktLoginPresenterTest: XCTestCase {
 	private let view = TraktLoginViewMock()

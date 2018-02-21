@@ -1,5 +1,6 @@
 import XCTest
 import RxSwift
+@testable import CouchTrackerCore
 
 final class TraktLoginInteractorTest: XCTestCase {
 	private let disposeBag = CompositeDisposable()
