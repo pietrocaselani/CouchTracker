@@ -1,5 +1,3 @@
-import TraktSwift
-
 struct TrendingMovieEntity: Hashable {
 	let movie: MovieEntity
 
