@@ -52,9 +52,4 @@ target 'CouchTracker' do
   inhibit_all_warnings!
 
   ios_pods
-
-  target 'CouchTrackerTests' do
-    inherit! :search_paths
-    tests_shared_pods
-  end
 end
