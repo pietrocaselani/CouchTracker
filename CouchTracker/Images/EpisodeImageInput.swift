@@ -1,6 +1,6 @@
 import TraktSwift
 
-protocol EpisodeImageInput {
+public protocol EpisodeImageInput {
 	var tmdb: Int? { get }
 	var tvdb: Int { get }
 	var season: Int { get }

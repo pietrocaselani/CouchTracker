@@ -1,5 +1,5 @@
 import RealmSwift
 
-protocol RealmProvider: class {
+public protocol RealmProvider: class {
 	var realm: Realm { get }
 }

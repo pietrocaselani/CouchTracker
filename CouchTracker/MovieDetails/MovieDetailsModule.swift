@@ -1,4 +1,5 @@
 import TraktSwift
+import CouchTrackerCore
 
 final class MovieDetailsModule {
 	private init() {}

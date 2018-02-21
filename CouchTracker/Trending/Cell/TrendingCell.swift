@@ -1,6 +1,7 @@
 import UIKit
 import Kingfisher
 import RxSwift
+import CouchTrackerCore
 
 final class TrendingCell: UICollectionViewCell, TrendingCellView {
 	@IBOutlet weak var titleLabel: UILabel!

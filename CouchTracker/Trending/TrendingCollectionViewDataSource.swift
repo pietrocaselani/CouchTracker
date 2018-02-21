@@ -1,4 +1,5 @@
 import UIKit
+import CouchTrackerCore
 
 final class TrendingCollectionViewDataSource: NSObject, TrendingDataSource, UICollectionViewDataSource {
 	var viewModels = [TrendingViewModel]()

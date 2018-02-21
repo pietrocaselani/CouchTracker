@@ -2,7 +2,7 @@ import Moya
 import RxSwift
 import TraktSwift
 
-protocol TraktProvider: class {
+public protocol TraktProvider: class {
 	var movies: MoyaProvider<Movies> { get }
 	var genres: MoyaProvider<Genres> { get }
 	var search: MoyaProvider<Search> { get }

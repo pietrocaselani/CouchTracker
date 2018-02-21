@@ -1,5 +1,5 @@
 import RxSwift
 
-protocol TraktLoginObservable {
+public protocol TraktLoginObservable {
 	func observe() -> Observable<TraktLoginState>
 }

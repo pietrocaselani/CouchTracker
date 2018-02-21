@@ -1,1 +1,1 @@
-protocol BaseView: class {}
+public protocol BaseView: class {}

@@ -1,24 +1,24 @@
 import RxSwift
 import TraktSwift
 
-protocol MovieDetailsRouter: class {
+public protocol MovieDetailsRouter: class {
 	func showError(message: String)
 }
 
-protocol MovieDetailsPresenter: class {
+public protocol MovieDetailsPresenter: class {
 	init(view: MovieDetailsView, interactor: MovieDetailsInteractor, router: MovieDetailsRouter)
 
 	func viewDidLoad()
 }
 
-protocol MovieDetailsView: BaseView {
+public protocol MovieDetailsView: BaseView {
 	var presenter: MovieDetailsPresenter! { get set }
 
 	func show(details: MovieDetailsViewModel)
 	func show(images: ImagesViewModel)
 }
 
-protocol MovieDetailsInteractor: class {
+public protocol MovieDetailsInteractor: class {
 	init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
 			imageRepository: ImageRepository, movieIds: MovieIds)
 
@@ -26,6 +26,6 @@ protocol MovieDetailsInteractor: class {
 	func fetchImages() -> Observable<ImagesEntity>
 }
 
-protocol MovieDetailsRepository: class {
+public protocol MovieDetailsRepository: class {
 	func fetchDetails(movieId: String) -> Observable<Movie>
 }

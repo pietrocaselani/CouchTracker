@@ -1,19 +1,19 @@
-struct ShowDetailsViewModel: Hashable {
-	let title: String
-	let overview: String
-	let network: String
-	let genres: String
-	let firstAired: String
-	let status: String
+public struct ShowDetailsViewModel: Hashable {
+	public let title: String
+	public let overview: String
+	public let network: String
+	public let genres: String
+	public let firstAired: String
+	public let status: String
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		var hash = title.hashValue ^ overview.hashValue
 		hash = hash ^ network.hashValue ^ genres.hashValue
 		hash = hash ^ firstAired.hashValue ^ status.hashValue
 		return hash
 	}
 
-	static func == (lhs: ShowDetailsViewModel, rhs: ShowDetailsViewModel) -> Bool {
+	public static func == (lhs: ShowDetailsViewModel, rhs: ShowDetailsViewModel) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }

@@ -1,5 +1,6 @@
 import UIKit
 import Kingfisher
+import CouchTrackerCore
 
 final class ShowProgressCell: UITableViewCell, ShowProgressCellView {
 	var presenter: ShowProgressCellPresenter! {

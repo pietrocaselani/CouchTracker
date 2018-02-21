@@ -1,6 +1,7 @@
 import UIKit
 import Tabman
 import Pageboy
+import CouchTrackerCore
 
 final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
 	var presenter: ShowsManagerPresenter!

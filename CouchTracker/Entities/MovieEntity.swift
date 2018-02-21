@@ -1,15 +1,15 @@
 import TraktSwift
 import Foundation
 
-struct MovieEntity: Hashable {
-	let ids: MovieIds
-	let title: String?
-	let genres: [Genre]?
-	let tagline: String?
-	let overview: String?
-	let releaseDate: Date?
+public struct MovieEntity: Hashable {
+	public let ids: MovieIds
+	public let title: String?
+	public let genres: [Genre]?
+	public let tagline: String?
+	public let overview: String?
+	public let releaseDate: Date?
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		var hash = ids.hashValue
 
 		if let titleHash = title?.hashValue {
@@ -33,7 +33,7 @@ struct MovieEntity: Hashable {
 		return hash
 	}
 
-	static func == (lhs: MovieEntity, rhs: MovieEntity) -> Bool {
+	public static func == (lhs: MovieEntity, rhs: MovieEntity) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }

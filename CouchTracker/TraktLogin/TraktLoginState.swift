@@ -1,4 +1,4 @@
-enum TraktLoginState: Int {
+public enum TraktLoginState: Int {
 	case logged
 	case notLogged
 }

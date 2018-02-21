@@ -1,4 +1,4 @@
-enum PosterImageSize: String {
+public enum PosterImageSize: String {
 	case w92
 	case w154
 	case w185
@@ -8,30 +8,30 @@ enum PosterImageSize: String {
 	case original
 }
 
-enum BackdropImageSize: String {
+public enum BackdropImageSize: String {
 	case w300
 	case w780
 	case w1280
 	case original
 }
 
-enum TVDBEpisodeImageSize: String {
+public enum TVDBEpisodeImageSize: String {
 	case normal
 	case small
 }
 
-enum StillImageSize: String {
+public enum StillImageSize: String {
 	case w92
 	case w185
 	case w300
 	case original
 }
 
-struct EpisodeImageSizes: Hashable {
-	let tvdb: TVDBEpisodeImageSize?
-	let tmdb: StillImageSize?
+public struct EpisodeImageSizes: Hashable {
+	public let tvdb: TVDBEpisodeImageSize?
+	public let tmdb: StillImageSize?
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		var hash = 11
 
 		tvdb.run { hash ^= $0.hashValue }
@@ -40,7 +40,7 @@ struct EpisodeImageSizes: Hashable {
 		return hash
 	}
 
-	static func == (lhs: EpisodeImageSizes, rhs: EpisodeImageSizes) -> Bool {
+	public static func == (lhs: EpisodeImageSizes, rhs: EpisodeImageSizes) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }

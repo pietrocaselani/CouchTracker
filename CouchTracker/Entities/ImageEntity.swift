@@ -1,17 +1,17 @@
-struct ImageEntity: Hashable {
-	let link: String
-	let width: Int
-	let height: Int
-	let iso6391: String?
-	let aspectRatio: Float
-	let voteAverage: Float
-	let voteCount: Int
+public struct ImageEntity: Hashable {
+	public let link: String
+	public let width: Int
+	public let height: Int
+	public let iso6391: String?
+	public let aspectRatio: Float
+	public let voteAverage: Float
+	public let voteCount: Int
 
-	func isBest(then: ImageEntity) -> Bool {
+	public func isBest(then: ImageEntity) -> Bool {
 		return self.voteCount < then.voteCount
 	}
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		var hash = link.hashValue
 		hash = hash ^ width.hashValue
 		hash = hash ^ height.hashValue
@@ -27,7 +27,7 @@ struct ImageEntity: Hashable {
 		return hash
 	}
 
-	static func == (lhs: ImageEntity, rhs: ImageEntity) -> Bool {
+	public static func == (lhs: ImageEntity, rhs: ImageEntity) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }

@@ -1,16 +1,16 @@
 import RealmSwift
 import RxSwift
 
-final class DefaultRealmProvider: RealmProvider {
+public final class DefaultRealmProvider: RealmProvider {
 	private let configuration: Realm.Configuration
 	private let buildConfig: BuildConfig
 
-	init(buildConfig: BuildConfig, configuration: Realm.Configuration = Realm.Configuration.defaultConfiguration) {
+	public init(buildConfig: BuildConfig, configuration: Realm.Configuration = Realm.Configuration.defaultConfiguration) {
 		self.buildConfig = buildConfig
 		self.configuration = configuration
 	}
 
-	lazy var realm: Realm = {
+	public lazy var realm: Realm = {
 		do {
 			let instance = try Realm(configuration: configuration)
 

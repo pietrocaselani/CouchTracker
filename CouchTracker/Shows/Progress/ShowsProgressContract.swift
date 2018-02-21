@@ -1,30 +1,30 @@
 import RxSwift
 import TraktSwift
 
-protocol ShowsProgressDataSource: class {
+public protocol ShowsProgressDataSource: class {
 	func fetchWatchedShows() -> Observable<[WatchedShowEntity]>
 	func addWatched(shows: [WatchedShowEntity]) throws
 }
 
-protocol ShowsProgressNetwork: class {
+public protocol ShowsProgressNetwork: class {
 	func fetchWatchedShows(extended: Extended) -> Single<[BaseShow]>
 }
 
-protocol ShowsProgressRepository: class {
+public protocol ShowsProgressRepository: class {
 	func fetchWatchedShows(extended: Extended) -> Observable<[WatchedShowEntity]>
 }
 
-protocol ShowsProgressInteractor: class {
+public protocol ShowsProgressInteractor: class {
 	init(repository: ShowsProgressRepository, schedulers: Schedulers)
 
 	func fetchWatchedShowsProgress() -> Observable<[WatchedShowEntity]>
 }
 
-protocol ShowsProgressRouter: class {
+public protocol ShowsProgressRouter: class {
 	func show(tvShow entity: WatchedShowEntity)
 }
 
-protocol ShowsProgressPresenter: class {
+public protocol ShowsProgressPresenter: class {
 	var dataSource: ShowsProgressViewDataSource { get }
 	init(view: ShowsProgressView, interactor: ShowsProgressInteractor,
 			viewDataSource: ShowsProgressViewDataSource, router: ShowsProgressRouter, loginObservable: TraktLoginObservable)
@@ -37,7 +37,7 @@ protocol ShowsProgressPresenter: class {
 	func selectedShow(at index: Int)
 }
 
-protocol ShowsProgressView: class {
+public protocol ShowsProgressView: class {
 	var presenter: ShowsProgressPresenter! { get set }
 
 	func show(viewModels: [WatchedShowViewModel])
@@ -48,7 +48,7 @@ protocol ShowsProgressView: class {
 	func showOptions(for sorting: [String], for filtering: [String], currentSort: Int, currentFilter: Int)
 }
 
-protocol ShowsProgressViewDataSource: class {
+public protocol ShowsProgressViewDataSource: class {
 	var viewModels: [WatchedShowViewModel] { get set }
 
 	func update()

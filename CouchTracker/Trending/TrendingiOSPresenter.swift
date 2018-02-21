@@ -1,11 +1,11 @@
 import RxSwift
 import TraktSwift
 
-final class TrendingiOSPresenter: TrendingPresenter {
+public final class TrendingiOSPresenter: TrendingPresenter {
 	private static let limitPerPage = 25
 
-	weak var view: TrendingView?
-	var dataSource: TrendingDataSource
+	public weak var view: TrendingView?
+	public var dataSource: TrendingDataSource
 
 	private let trendingType: TrendingType
 	private let interactor: TrendingInteractor
@@ -16,7 +16,7 @@ final class TrendingiOSPresenter: TrendingPresenter {
 	private var currentShowsPage = 0
 	fileprivate let router: TrendingRouter
 
-	init(view: TrendingView, interactor: TrendingInteractor,
+	public init(view: TrendingView, interactor: TrendingInteractor,
 			router: TrendingRouter, dataSource: TrendingDataSource, type: TrendingType) {
 		self.view = view
 		self.interactor = interactor
@@ -25,7 +25,7 @@ final class TrendingiOSPresenter: TrendingPresenter {
 		self.trendingType = type
 	}
 
-	func viewDidLoad() {
+	public func viewDidLoad() {
 		if trendingType == .movies {
 			fetchMovies()
 		} else {
@@ -33,7 +33,7 @@ final class TrendingiOSPresenter: TrendingPresenter {
 		}
 	}
 
-	func showDetailsOfTrending(at index: Int) {
+	public func showDetailsOfTrending(at index: Int) {
 		if trendingType == .movies {
 			showDetailsOfMovie(at: index)
 		} else {

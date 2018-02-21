@@ -1,18 +1,18 @@
 import RxSwift
 
-final class TraktLoginiOSPresenter: TraktLoginPresenter {
+public final class TraktLoginiOSPresenter: TraktLoginPresenter {
 	private weak var view: TraktLoginView?
 	private let interactor: TraktLoginInteractor
 	private let output: TraktLoginOutput
 	private let disposeBag = DisposeBag()
 
-	init(view: TraktLoginView, interactor: TraktLoginInteractor, output: TraktLoginOutput) {
+	public init(view: TraktLoginView, interactor: TraktLoginInteractor, output: TraktLoginOutput) {
 		self.view = view
 		self.interactor = interactor
 		self.output = output
 	}
 
-	func viewDidLoad() {
+	public func viewDidLoad() {
 		interactor.fetchLoginURL()
 			.observeOn(MainScheduler.instance)
 			.subscribe(onSuccess: { [unowned self] url in

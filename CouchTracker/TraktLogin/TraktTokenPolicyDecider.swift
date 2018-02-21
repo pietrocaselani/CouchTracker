@@ -1,20 +1,20 @@
 import RxSwift
 import TraktSwift
 
-final class TraktTokenPolicyDecider: TraktLoginPolicyDecider {
+public final class TraktTokenPolicyDecider: TraktLoginPolicyDecider {
 	private let trakt: TraktProvider
 	private let output: TraktLoginOutput
 
-	init(loginOutput: TraktLoginOutput) {
+	public init(loginOutput: TraktLoginOutput) {
 		Swift.fatalError("Not implemented! Use init(loginOutput: traktProvider:)")
 	}
 
-	init(loginOutput: TraktLoginOutput, traktProvider: TraktProvider) {
+	public init(loginOutput: TraktLoginOutput, traktProvider: TraktProvider) {
 		self.output = loginOutput
 		self.trakt = traktProvider
 	}
 
-	func allowedToProceed(with request: URLRequest) -> Single<AuthenticationResult> {
+	public func allowedToProceed(with request: URLRequest) -> Single<AuthenticationResult> {
 		return trakt.finishesAuthentication(with: request)
 			.observeOn(MainScheduler.instance)
 			.do(onSuccess: { [unowned self] result in

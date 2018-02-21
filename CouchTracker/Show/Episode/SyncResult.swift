@@ -1,8 +1,8 @@
-enum SyncResult: Hashable {
+public enum SyncResult: Hashable {
 	case success(show: WatchedShowEntity)
 	case fail(error: Error)
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		var hash = 11
 
 		if case .success(let show) = self {
@@ -12,7 +12,7 @@ enum SyncResult: Hashable {
 		return hash
 	}
 
-	static func ==(lhs: SyncResult, rhs: SyncResult) -> Bool {
+	public static func == (lhs: SyncResult, rhs: SyncResult) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }

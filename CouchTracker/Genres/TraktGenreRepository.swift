@@ -2,20 +2,20 @@ import Moya
 import RxSwift
 import TraktSwift
 
-final class TraktGenreRepository: GenreRepository {
+public final class TraktGenreRepository: GenreRepository {
 	private let traktProvider: TraktProvider
 	private let schedulers: Schedulers
 
-	init(traktProvider: TraktProvider, schedulers: Schedulers) {
+	public init(traktProvider: TraktProvider, schedulers: Schedulers) {
 		self.traktProvider = traktProvider
 		self.schedulers = schedulers
 	}
 
-	func fetchMoviesGenres() -> Observable<[Genre]> {
+	public func fetchMoviesGenres() -> Observable<[Genre]> {
 		return fetchGenres(mediaType: .movies)
 	}
 
-	func fetchShowsGenres() -> Observable<[Genre]> {
+	public func fetchShowsGenres() -> Observable<[Genre]> {
 		return fetchGenres(mediaType: .shows)
 	}
 

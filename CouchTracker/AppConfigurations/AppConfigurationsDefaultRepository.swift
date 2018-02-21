@@ -1,19 +1,19 @@
 import TraktSwift
 import RxSwift
 
-final class AppConfigurationsDefaultRepository: AppConfigurationsRepository {
+public final class AppConfigurationsDefaultRepository: AppConfigurationsRepository {
 	private let dataSource: AppConfigurationsDataSource
 	private let network: AppConfigurationsNetwork
 	private let schedulers: Schedulers
 	private let disposeBag = DisposeBag()
 
-	init(dataSource: AppConfigurationsDataSource, network: AppConfigurationsNetwork, schedulers: Schedulers) {
+	public init(dataSource: AppConfigurationsDataSource, network: AppConfigurationsNetwork, schedulers: Schedulers) {
 		self.dataSource = dataSource
 		self.network = network
 		self.schedulers = schedulers
 	}
 
-	func fetchLoginState() -> Observable<LoginState> {
+	public func fetchLoginState() -> Observable<LoginState> {
 		return dataSource.fetchLoginState()
 			.do(onNext: { [weak self] loginState in
 				if loginState == .notLogged {
@@ -27,11 +27,11 @@ final class AppConfigurationsDefaultRepository: AppConfigurationsRepository {
 			.subscribeOn(schedulers.ioScheduler)
 	}
 
-	func fetchHideSpecials() -> Observable<Bool> {
+	public func fetchHideSpecials() -> Observable<Bool> {
 		return dataSource.fetchHideSpecials()
 	}
 
-	func toggleHideSpecials() -> Completable {
+	public func toggleHideSpecials() -> Completable {
 		return Completable.create(subscribe: { [unowned self] completable -> Disposable in
 			do {
 				try self.dataSource.toggleHideSpecials()

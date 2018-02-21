@@ -1,19 +1,19 @@
 import RxSwift
 import TraktSwift
 
-final class ShowDetailsiOSPresenter: ShowDetailsPresenter {
+public final class ShowDetailsiOSPresenter: ShowDetailsPresenter {
 	private weak var view: ShowDetailsView!
 	private let router: ShowDetailsRouter
 	private let interactor: ShowDetailsInteractor
 	private let disposeBag = DisposeBag()
 
-	init(view: ShowDetailsView, router: ShowDetailsRouter, interactor: ShowDetailsInteractor) {
+	public init(view: ShowDetailsView, router: ShowDetailsRouter, interactor: ShowDetailsInteractor) {
 		self.view = view
 		self.router = router
 		self.interactor = interactor
 	}
 
-	func viewDidLoad() {
+	public func viewDidLoad() {
 		interactor.fetchImages().map { ImagesViewModelMapper.viewModel(for: $0) }
 			.observeOn(MainScheduler.instance)
 			.subscribe(onSuccess: { [unowned self] in

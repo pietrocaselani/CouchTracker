@@ -1,18 +1,18 @@
 import RxSwift
 
-final class ShowProgressCelliOSPresenter: ShowProgressCellPresenter {
+public final class ShowProgressCelliOSPresenter: ShowProgressCellPresenter {
 	private weak var view: ShowProgressCellView?
 	private let interactor: ShowProgressCellInteractor
 	private let viewModel: WatchedShowViewModel
 	private let disposeBag = DisposeBag()
 
-	init(view: ShowProgressCellView, interactor: ShowProgressCellInteractor, viewModel: WatchedShowViewModel) {
+	public init(view: ShowProgressCellView, interactor: ShowProgressCellInteractor, viewModel: WatchedShowViewModel) {
 		self.view = view
 		self.interactor = interactor
 		self.viewModel = viewModel
 	}
 
-	func viewWillAppear() {
+	public func viewWillAppear() {
 		view?.show(viewModel: viewModel)
 
 		guard let tmdbId = viewModel.tmdbId else { return }

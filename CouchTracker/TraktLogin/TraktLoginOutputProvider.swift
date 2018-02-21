@@ -1,3 +1,3 @@
-protocol TraktLoginOutputProvider: class {
+public protocol TraktLoginOutputProvider: class {
 	var loginOutput: TraktLoginOutput { get }
 }

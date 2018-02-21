@@ -1,27 +1,22 @@
-enum MoviesManagerOption: String {
+public enum MoviesManagerOption: String {
 	case trending
 }
 
-protocol MoviesManagerPresenter: class {
+public protocol MoviesManagerPresenter: class {
 	init(view: MoviesManagerView, dataSource: MoviesManagerDataSource)
 
 	func viewDidLoad()
 }
 
-protocol MoviesManagerView: class {
+public protocol MoviesManagerView: class {
 	var presenter: MoviesManagerPresenter! { get set }
 
-	func show(pages: [MovieManagerModulePage], withDefault index: Int)
+	func show(pages: [ModulePage], withDefault index: Int)
 }
 
-protocol MoviesManagerDataSource: class {
+public protocol MoviesManagerDataSource: class {
 	var options: [MoviesManagerOption] { get }
 
-	func modulePages() -> [MovieManagerModulePage]
+	func modulePages() -> [ModulePage]
 	func defaultModuleIndex() -> Int
-}
-
-struct MovieManagerModulePage {
-	let page: BaseView
-	let title: String
 }

@@ -1,3 +1,7 @@
-struct DefaultBuildConfig: BuildConfig {
-	let debug: Bool
+public struct DefaultBuildConfig: BuildConfig {
+	public let debug: Bool
+
+	public init(debug: Bool) {
+		self.debug = debug
+	}
 }

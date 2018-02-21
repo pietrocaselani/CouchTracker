@@ -1,18 +1,18 @@
 import RxSwift
 
-final class TrendingCelliOSPresenter: TrendingCellPresenter {
+public final class TrendingCelliOSPresenter: TrendingCellPresenter {
 	private weak var view: TrendingCellView?
 	private let interactor: TrendingCellInteractor
 	private let viewModel: TrendingViewModel
 	private let disposeBag = DisposeBag()
 
-	init(view: TrendingCellView, interactor: TrendingCellInteractor, viewModel: TrendingViewModel) {
+	public init(view: TrendingCellView, interactor: TrendingCellInteractor, viewModel: TrendingViewModel) {
 		self.view = view
 		self.interactor = interactor
 		self.viewModel = viewModel
 	}
 
-	func viewWillAppear() {
+	public func viewWillAppear() {
 		view?.show(viewModel: TrendingCellViewModel(title: viewModel.title))
 
 		guard let trendingType = viewModel.type else { return }

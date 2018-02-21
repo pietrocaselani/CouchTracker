@@ -1,14 +1,14 @@
 import TraktSwift
 import RxSwift
 
-final class AppConfigurationsUserDefaultsDataSource: AppConfigurationsDataSource {
+public final class AppConfigurationsUserDefaultsDataSource: AppConfigurationsDataSource {
 	private static let traktUserKey = "traktUser"
 	private static let hideSpecialsKey = "hideSpecials"
 	private let userDefaults: UserDefaults
 	private let hideSpecialsSubject: BehaviorSubject<Bool>
 	private let loginStateSubject: BehaviorSubject<LoginState>
 
-	init(userDefaults: UserDefaults) {
+	public init(userDefaults: UserDefaults) {
 		self.userDefaults = userDefaults
 
 		let hideSpecials = AppConfigurationsUserDefaultsDataSource.currentHideSpecialValue(userDefaults)
@@ -18,7 +18,7 @@ final class AppConfigurationsUserDefaultsDataSource: AppConfigurationsDataSource
 		loginStateSubject = BehaviorSubject<LoginState>(value: loginState)
 	}
 
-	func save(settings: Settings) throws {
+	public func save(settings: Settings) throws {
 		let encoder = JSONEncoder()
 		encoder.dateEncodingStrategy = .formatted(TraktDateTransformer.dateTimeTransformer.dateFormatter)
 
@@ -27,17 +27,17 @@ final class AppConfigurationsUserDefaultsDataSource: AppConfigurationsDataSource
 		loginStateSubject.onNext(LoginState.logged(settings: settings))
 	}
 
-	func fetchLoginState() -> Observable<LoginState> {
+	public func fetchLoginState() -> Observable<LoginState> {
 		return loginStateSubject.asObservable().distinctUntilChanged()
 	}
 
-	func toggleHideSpecials() throws {
+	public func toggleHideSpecials() throws {
 		let hideSpecials = userDefaults.bool(forKey: AppConfigurationsUserDefaultsDataSource.hideSpecialsKey)
 		userDefaults.set(!hideSpecials, forKey: AppConfigurationsUserDefaultsDataSource.hideSpecialsKey)
 		hideSpecialsSubject.onNext(!hideSpecials)
 	}
 
-	func fetchHideSpecials() -> Observable<Bool> {
+	public func fetchHideSpecials() -> Observable<Bool> {
 		return hideSpecialsSubject.asObservable()
 	}
 

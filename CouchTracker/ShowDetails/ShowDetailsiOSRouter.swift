@@ -1,4 +1,5 @@
 import UIKit
+import CouchTrackerCore
 
 final class ShowDetailsiOSRouter: ShowDetailsRouter {
 	private weak var viewController: UIViewController?

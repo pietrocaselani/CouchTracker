@@ -1,31 +1,36 @@
 import TraktSwift
 
-struct AppConfigurationsState: Hashable {
-	let loginState: LoginState
-	let hideSpecials: Bool
+public struct AppConfigurationsState: Hashable {
+	public let loginState: LoginState
+	public let hideSpecials: Bool
 
-	static func initialState() -> AppConfigurationsState {
+	public init(loginState: LoginState, hideSpecials: Bool) {
+		self.loginState = loginState
+		self.hideSpecials = hideSpecials
+	}
+
+	public static func initialState() -> AppConfigurationsState {
 		return AppConfigurationsState(loginState: .notLogged, hideSpecials: false)
 	}
 
-	func newBuilder() -> AppConfigurationsStateBuilder {
+	public func newBuilder() -> AppConfigurationsStateBuilder {
 		return AppConfigurationsStateBuilder(state: self)
 	}
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		return loginState.hashValue ^ hideSpecials.hashValue
 	}
 
-	static func == (lhs: AppConfigurationsState, rhs: AppConfigurationsState) -> Bool {
+	public static func == (lhs: AppConfigurationsState, rhs: AppConfigurationsState) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }
 
-enum LoginState: Hashable {
+public enum LoginState: Hashable {
 	case logged(settings: Settings)
 	case notLogged
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		var hash = 11
 
 		if case .logged(let settings) = self {
@@ -35,7 +40,7 @@ enum LoginState: Hashable {
 		return hash
 	}
 
-	static func == (lhs: LoginState, rhs: LoginState) -> Bool {
+	public static func == (lhs: LoginState, rhs: LoginState) -> Bool {
 		switch (lhs, rhs) {
 		case (.logged(let lhsSettings), .logged(let rhsSettings)):
 			return lhsSettings == rhsSettings
@@ -45,16 +50,16 @@ enum LoginState: Hashable {
 	}
 }
 
-struct AppConfigurationsStateBuilder {
-	var loginState = LoginState.notLogged
-	var hideSpecials = false
+public struct AppConfigurationsStateBuilder {
+	public var loginState = LoginState.notLogged
+	public var hideSpecials = false
 
 	fileprivate init(state: AppConfigurationsState) {
 		self.loginState = state.loginState
 		self.hideSpecials = state.hideSpecials
 	}
 
-	func build() -> AppConfigurationsState {
+	public func build() -> AppConfigurationsState {
 		return AppConfigurationsState(loginState: loginState, hideSpecials: hideSpecials)
 	}
 }

@@ -1,13 +1,13 @@
 import TraktSwift
 
-struct WatchedSeasonEntity: Hashable {
-	let showIds: ShowIds
-	let number: Int
-	let aired: Int?
-	let completed: Int?
-	let episodes: [WatchedEpisodeEntity]
+public struct WatchedSeasonEntity: Hashable {
+	public let showIds: ShowIds
+	public let number: Int
+	public let aired: Int?
+	public let completed: Int?
+	public let episodes: [WatchedEpisodeEntity]
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		var hash = showIds.hashValue
 		hash ^= number.hashValue
 		aired.run { hash ^= $0.hashValue }
@@ -18,7 +18,7 @@ struct WatchedSeasonEntity: Hashable {
 		return hash
 	}
 
-	static func == (lhs: WatchedSeasonEntity, rhs: WatchedSeasonEntity) -> Bool {
+	public static func == (lhs: WatchedSeasonEntity, rhs: WatchedSeasonEntity) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }

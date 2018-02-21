@@ -1,9 +1,9 @@
 import Foundation
 
-struct WatchedShowViewModel {
-	let title: String
-	let nextEpisode: String?
-	let nextEpisodeDate: String?
-	let status: String
-	let tmdbId: Int?
+public struct WatchedShowViewModel {
+	public let title: String
+	public let nextEpisode: String?
+	public let nextEpisodeDate: String?
+	public let status: String
+	public let tmdbId: Int?
 }

@@ -1,14 +1,14 @@
 import RxSwift
 import TraktSwift
 
-final class SearchService: SearchInteractor {
+public final class SearchService: SearchInteractor {
 	private let repository: SearchRepository
 
-	init(repository: SearchRepository) {
+	public init(repository: SearchRepository) {
 		self.repository = repository
 	}
 
-	func searchMovies(query: String) -> Observable<[SearchResult]> {
+	public func searchMovies(query: String) -> Observable<[SearchResult]> {
 		return repository.search(query: query, types: [.movie], page: 0, limit: 50)
 	}
 }
