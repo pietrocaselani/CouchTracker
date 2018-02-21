@@ -1,13 +1,13 @@
 import TraktSwift
 
-final class WatchedShowBuilder: Hashable {
-	let ids: ShowIds
-	var detailShow: BaseShow?
-	var progressShow: BaseShow?
-	var episode: Episode?
-	var seasons: [WatchedSeasonEntity]
+public final class WatchedShowBuilder: Hashable {
+	public let ids: ShowIds
+	public var detailShow: BaseShow?
+	public var progressShow: BaseShow?
+	public var episode: Episode?
+	public var seasons: [WatchedSeasonEntity]
 
-	init(ids: ShowIds, progressShow: BaseShow? = nil,
+	public init(ids: ShowIds, progressShow: BaseShow? = nil,
 			episode: Episode? = nil, seasons: [WatchedSeasonEntity] = [WatchedSeasonEntity]()) {
 		self.ids = ids
 		self.progressShow = progressShow
@@ -15,11 +15,11 @@ final class WatchedShowBuilder: Hashable {
 		self.seasons = seasons
 	}
 
-	func createEntity(using show: Show) -> WatchedShowEntity {
+	public func createEntity(using show: Show) -> WatchedShowEntity {
 		return createEntity(using: ShowEntityMapper.entity(for: show))
 	}
 
-	func createEntity(using showEntity: ShowEntity) -> WatchedShowEntity {
+	public func createEntity(using showEntity: ShowEntity) -> WatchedShowEntity {
 		let episodeEntity = episode.map { EpisodeEntityMapper.entity(for: $0, showIds: ids) }
 
 		let aired = progressShow?.aired ?? 0
@@ -35,7 +35,7 @@ final class WatchedShowBuilder: Hashable {
 		return entity
 	}
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		var hash = ids.hashValue
 
 		if let show = progressShow {
@@ -51,7 +51,7 @@ final class WatchedShowBuilder: Hashable {
 		return hash
 	}
 
-	static func == (lhs: WatchedShowBuilder, rhs: WatchedShowBuilder) -> Bool {
+	public static func == (lhs: WatchedShowBuilder, rhs: WatchedShowBuilder) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }

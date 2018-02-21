@@ -1,4 +1,5 @@
 import UIKit
+import CouchTrackerCore
 
 final class ShowsProgressTableViewDataSource: NSObject, UITableViewDataSource, ShowsProgressViewDataSource {
 	private let imageRepository: ImageRepository

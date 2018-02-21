@@ -1,22 +1,22 @@
 import RxSwift
 
-final class ShowEpisodeiOSPresenter: ShowEpisodePresenter {
+public final class ShowEpisodeiOSPresenter: ShowEpisodePresenter {
 	private weak var view: ShowEpisodeView?
 	private let interactor: ShowEpisodeInteractor
 	private var show: WatchedShowEntity
 	private let disposeBag = DisposeBag()
 
-	init(view: ShowEpisodeView, interactor: ShowEpisodeInteractor, show: WatchedShowEntity) {
+	public init(view: ShowEpisodeView, interactor: ShowEpisodeInteractor, show: WatchedShowEntity) {
 		self.view = view
 		self.interactor = interactor
 		self.show = show
 	}
 
-	func viewDidLoad() {
+	public func viewDidLoad() {
 		setupView()
 	}
 
-	func handleWatch() {
+	public func handleWatch() {
 		guard let nextEpisode = show.nextEpisode else { return }
 
 		interactor.toggleWatch(for: nextEpisode, of: show)

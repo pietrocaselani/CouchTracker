@@ -2,7 +2,7 @@ import TraktSwift
 import RxSwift
 import Moya
 
-final class ShowsProgressAPIRepository: ShowsProgressRepository {
+public final class ShowsProgressAPIRepository: ShowsProgressRepository {
 	private let network: ShowsProgressNetwork
 	private let dataSource: ShowsProgressDataSource
 	private let schedulers: Schedulers
@@ -11,7 +11,7 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
 	private var hideSpecials: Bool
 	private let disposeBag = DisposeBag()
 
-	init(network: ShowsProgressNetwork, dataSource: ShowsProgressDataSource, schedulers: Schedulers,
+	public init(network: ShowsProgressNetwork, dataSource: ShowsProgressDataSource, schedulers: Schedulers,
 			showProgressRepository: ShowProgressRepository, appConfigurationsObservable: AppConfigurationsObservable,
 			hideSpecials: Bool) {
 		self.network = network
@@ -22,7 +22,7 @@ final class ShowsProgressAPIRepository: ShowsProgressRepository {
 		self.hideSpecials = hideSpecials
 	}
 
-	func fetchWatchedShows(extended: Extended) -> Observable<[WatchedShowEntity]> {
+	public func fetchWatchedShows(extended: Extended) -> Observable<[WatchedShowEntity]> {
 		appConfigurationsObservable.observe()
 			.subscribe(onNext: { [unowned self] newState in
 				self.hideSpecials = newState.hideSpecials

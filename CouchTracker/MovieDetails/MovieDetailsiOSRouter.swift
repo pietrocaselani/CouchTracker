@@ -1,4 +1,5 @@
 import UIKit
+import CouchTrackerCore
 
 final class MovieDetailsiOSRouter: MovieDetailsRouter {
 	private weak var viewController: UIViewController?

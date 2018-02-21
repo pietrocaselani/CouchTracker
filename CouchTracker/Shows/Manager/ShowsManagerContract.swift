@@ -1,22 +1,22 @@
-enum ShowsManagerOption: String {
+public enum ShowsManagerOption: String {
 	case progress
 	case now
 	case trending
 }
 
-protocol ShowsManagerPresenter: class {
+public protocol ShowsManagerPresenter: class {
 	init(view: ShowsManagerView, moduleSetup: ShowsManagerDataSource)
 
 	func viewDidLoad()
 }
 
-protocol ShowsManagerView: class {
+public protocol ShowsManagerView: class {
 	var presenter: ShowsManagerPresenter! { get set }
 
 	func show(pages: [ModulePage], withDefault index: Int)
 }
 
-protocol ShowsManagerDataSource: class {
+public protocol ShowsManagerDataSource: class {
 	init(creator: ShowsManagerModuleCreator)
 
 	var options: [ShowsManagerOption] { get }
@@ -24,6 +24,6 @@ protocol ShowsManagerDataSource: class {
 	var defaultModuleIndex: Int { get }
 }
 
-protocol ShowsManagerModuleCreator: class {
+public protocol ShowsManagerModuleCreator: class {
 	func createModule(for option: ShowsManagerOption) -> BaseView
 }

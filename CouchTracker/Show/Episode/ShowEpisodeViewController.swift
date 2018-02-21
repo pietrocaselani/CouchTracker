@@ -2,6 +2,7 @@ import UIKit
 import Kingfisher
 import RxCocoa
 import RxSwift
+import CouchTrackerCore
 
 final class ShowEpisodeViewController: UIViewController, ShowEpisodeView {
 	var presenter: ShowEpisodePresenter!

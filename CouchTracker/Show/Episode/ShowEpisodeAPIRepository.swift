@@ -1,7 +1,7 @@
 import TraktSwift
 import RxSwift
 
-final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
+public final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
 	private let schedulers: Schedulers
 	private let dataSource: ShowEpisodeDataSource
 	private let network: ShowEpisodeNetwork
@@ -9,7 +9,7 @@ final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
 	private let disposeBag = DisposeBag()
 	private var hideSpecials: Bool
 
-	init(dataSource: ShowEpisodeDataSource, network: ShowEpisodeNetwork,
+	public init(dataSource: ShowEpisodeDataSource, network: ShowEpisodeNetwork,
 						schedulers: Schedulers, showProgressRepository: ShowProgressRepository,
 						appConfigurationsObservable: AppConfigurationsObservable, hideSpecials: Bool) {
 		self.dataSource = dataSource
@@ -23,7 +23,7 @@ final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
 		}).disposed(by: disposeBag)
 	}
 
-	func addToHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<SyncResult> {
+	public func addToHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<SyncResult> {
 		let syncEpisode = SyncEpisode(ids: episode.ids)
 		let items = SyncItems(episodes: [syncEpisode])
 		let single = network.addToHistory(items: items)
@@ -31,7 +31,7 @@ final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
 		return performSync(single, show.show)
 	}
 
-	func removeFromHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<SyncResult> {
+	public func removeFromHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<SyncResult> {
 		let syncEpisode = SyncEpisode(ids: episode.ids)
 		let items = SyncItems(episodes: [syncEpisode])
 		let single = network.removeFromHistory(items: items)

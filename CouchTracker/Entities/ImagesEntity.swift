@@ -1,18 +1,18 @@
-struct ImagesEntity: Hashable {
+public struct ImagesEntity: Hashable {
 	public let identifier: Int
 	public let backdrops: [ImageEntity]
 	public let posters: [ImageEntity]
 	public let stills: [ImageEntity]
 
-	func posterImage() -> ImageEntity? {
+	public func posterImage() -> ImageEntity? {
 		return bestImage(of: posters)
 	}
 
-	func backdropImage() -> ImageEntity? {
+	public func backdropImage() -> ImageEntity? {
 		return bestImage(of: backdrops)
 	}
 
-	func stillImage() -> ImageEntity? {
+	public func stillImage() -> ImageEntity? {
 		let x = bestImage(of: stills)
 		return x
 	}
@@ -23,7 +23,7 @@ struct ImagesEntity: Hashable {
 		})
 	}
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		var hash = identifier.hashValue
 		backdrops.forEach { hash = hash ^ $0.hashValue }
 		posters.forEach { hash = hash ^ $0.hashValue }
@@ -31,11 +31,11 @@ struct ImagesEntity: Hashable {
 		return hash
 	}
 
-	static func == (lhs: ImagesEntity, rhs: ImagesEntity) -> Bool {
+	public static func == (lhs: ImagesEntity, rhs: ImagesEntity) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 
-	static func empty() -> ImagesEntity {
+	public static func empty() -> ImagesEntity {
 		let imageEntities = [ImageEntity]()
 		return ImagesEntity(identifier: -1, backdrops: imageEntities, posters: imageEntities, stills: imageEntities)
 	}

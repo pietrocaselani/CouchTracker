@@ -1,8 +1,8 @@
-struct AppConfigurationsViewModel: Hashable {
-	let title: String
-	let configurations: [AppConfigurationViewModel]
+public struct AppConfigurationsViewModel: Hashable {
+	public let title: String
+	public let configurations: [AppConfigurationViewModel]
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		var hash = title.hashValue
 
 		configurations.forEach { hash ^= $0.hashValue }
@@ -10,17 +10,17 @@ struct AppConfigurationsViewModel: Hashable {
 		return hash
 	}
 
-	static func == (lhs: AppConfigurationsViewModel, rhs: AppConfigurationsViewModel) -> Bool {
+	public static func == (lhs: AppConfigurationsViewModel, rhs: AppConfigurationsViewModel) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }
 
-struct AppConfigurationViewModel: Hashable {
-	let title: String
-	let subtitle: String?
-	let value: AppConfigurationViewModelValue
+public struct AppConfigurationViewModel: Hashable {
+	public let title: String
+	public let subtitle: String?
+	public let value: AppConfigurationViewModelValue
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		var hash = title.hashValue
 
 		if let subtitleHash = subtitle?.hashValue {
@@ -30,12 +30,12 @@ struct AppConfigurationViewModel: Hashable {
 		return hash
 	}
 
-	static func == (lhs: AppConfigurationViewModel, rhs: AppConfigurationViewModel) -> Bool {
+	public static func == (lhs: AppConfigurationViewModel, rhs: AppConfigurationViewModel) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }
 
-enum AppConfigurationViewModelValue {
+public enum AppConfigurationViewModelValue {
 	case none
 	case boolean(value: Bool)
 }

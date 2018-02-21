@@ -1,33 +1,33 @@
 import RxSwift
 import TraktSwift
 
-protocol ShowEpisodeDataSource: class {
+public protocol ShowEpisodeDataSource: class {
 	func updateWatched(show: WatchedShowEntity) throws
 }
 
-protocol ShowEpisodeNetwork: class {
+public protocol ShowEpisodeNetwork: class {
 	func addToHistory(items: SyncItems) -> Single<SyncResponse>
 	func removeFromHistory(items: SyncItems) -> Single<SyncResponse>
 }
 
-protocol ShowEpisodeRepository: class {
+public protocol ShowEpisodeRepository: class {
 	func addToHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<SyncResult>
 	func removeFromHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<SyncResult>
 }
 
-protocol ShowEpisodeInteractor: class {
+public protocol ShowEpisodeInteractor: class {
 	func fetchImageURL(for episode: EpisodeImageInput) -> Single<URL>
 	func toggleWatch(for episode: EpisodeEntity, of show: WatchedShowEntity) -> Single<SyncResult>
 }
 
-protocol ShowEpisodePresenter: class {
+public protocol ShowEpisodePresenter: class {
 	init(view: ShowEpisodeView, interactor: ShowEpisodeInteractor, show: WatchedShowEntity)
 
 	func viewDidLoad()
 	func handleWatch()
 }
 
-protocol ShowEpisodeView: class {
+public protocol ShowEpisodeView: class {
 	var presenter: ShowEpisodePresenter! { get set }
 
 	func showEmptyView()

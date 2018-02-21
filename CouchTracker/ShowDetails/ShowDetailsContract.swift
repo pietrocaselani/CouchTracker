@@ -1,12 +1,11 @@
 import RxSwift
 import TraktSwift
 
-protocol
-		ShowDetailsRepository: class {
+public protocol ShowDetailsRepository: class {
 	func fetchDetailsOfShow(with identifier: String, extended: Extended) -> Single<Show>
 }
 
-protocol ShowDetailsInteractor: class {
+public protocol ShowDetailsInteractor: class {
 	init(showIds: ShowIds, repository: ShowDetailsRepository,
 			genreRepository: GenreRepository, imageRepository: ImageRepository)
 
@@ -14,17 +13,17 @@ protocol ShowDetailsInteractor: class {
 	func fetchImages() -> Single<ImagesEntity>
 }
 
-protocol ShowDetailsPresenter: class {
+public protocol ShowDetailsPresenter: class {
 	init(view: ShowDetailsView, router: ShowDetailsRouter, interactor: ShowDetailsInteractor)
 
 	func viewDidLoad()
 }
 
-protocol ShowDetailsRouter: class {
+public protocol ShowDetailsRouter: class {
 	func showError(message: String)
 }
 
-protocol ShowDetailsView: class {
+public protocol ShowDetailsView: class {
 	var presenter: ShowDetailsPresenter! { get set }
 
 	func show(details: ShowDetailsViewModel)

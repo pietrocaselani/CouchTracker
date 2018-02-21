@@ -1,3 +1,5 @@
+import CouchTrackerCore
+
 final class ShowManageriOSModuleSetup: ShowManagerDataSource {
 	private let show: WatchedShowEntity
 	var showTitle: String?

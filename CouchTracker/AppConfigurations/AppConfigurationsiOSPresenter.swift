@@ -1,23 +1,23 @@
 import RxSwift
 
-final class AppConfigurationsiOSPresenter: AppConfigurationsPresenter {
+public final class AppConfigurationsiOSPresenter: AppConfigurationsPresenter {
 	private weak var view: AppConfigurationsView!
 	private let interactor: AppConfigurationsInteractor
 	fileprivate let router: AppConfigurationsRouter
 	private let disposeBag = DisposeBag()
 	private var options = [AppConfigurationOptions]()
 
-	init(view: AppConfigurationsView, interactor: AppConfigurationsInteractor, router: AppConfigurationsRouter) {
+	public init(view: AppConfigurationsView, interactor: AppConfigurationsInteractor, router: AppConfigurationsRouter) {
 		self.view = view
 		self.interactor = interactor
 		self.router = router
 	}
 
-	func viewDidLoad() {
+	public func viewDidLoad() {
 		updateView()
 	}
 
-	func optionSelectedAt(index: Int) {
+	public func optionSelectedAt(index: Int) {
 		let option = options[index]
 		switch option {
 		case .connectToTrakt:
@@ -82,11 +82,11 @@ final class AppConfigurationsiOSPresenter: AppConfigurationsPresenter {
 }
 
 extension AppConfigurationsiOSPresenter: TraktLoginOutput {
-	func loggedInSuccessfully() {
+	public func loggedInSuccessfully() {
 		updateView()
 	}
 
-	func logInFail(message: String) {
+	public func logInFail(message: String) {
 		router.showError(message: message)
 	}
 }

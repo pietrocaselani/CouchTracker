@@ -1,4 +1,5 @@
 import UIKit
+import CouchTrackerCore
 
 final class TrendingModule {
 	private init() {}

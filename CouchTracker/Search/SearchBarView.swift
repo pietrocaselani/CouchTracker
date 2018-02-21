@@ -1,4 +1,5 @@
 import UIKit
+import CouchTrackerCore
 
 final class SearchBarView: UISearchBar, SearchView {
 	var presenter: SearchPresenter!

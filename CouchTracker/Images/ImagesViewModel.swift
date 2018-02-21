@@ -1,8 +1,8 @@
-struct ImagesViewModel: Hashable {
-	let posterLink: String?
-	let backdropLink: String?
+public struct ImagesViewModel: Hashable {
+	public let posterLink: String?
+	public let backdropLink: String?
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		var hash = 0
 
 		if let posterLinkHash = posterLink?.hashValue {
@@ -16,7 +16,7 @@ struct ImagesViewModel: Hashable {
 		return hash
 	}
 
-	static func == (lhs: ImagesViewModel, rhs: ImagesViewModel) -> Bool {
+	public static func == (lhs: ImagesViewModel, rhs: ImagesViewModel) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }

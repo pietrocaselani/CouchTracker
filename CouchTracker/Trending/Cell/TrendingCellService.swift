@@ -1,13 +1,13 @@
 import RxSwift
 
-final class TrendingCellService: TrendingCellInteractor {
+public final class TrendingCellService: TrendingCellInteractor {
 	private let imageRepository: ImageRepository
 
-	init(imageRepository: ImageRepository) {
+	public init(imageRepository: ImageRepository) {
 		self.imageRepository = imageRepository
 	}
 
-	func fetchPosterImageURL(of type: TrendingViewModelType, with size: PosterImageSize?) -> Observable<URL> {
+	public func fetchPosterImageURL(of type: TrendingViewModelType, with size: PosterImageSize?) -> Observable<URL> {
 		let imagesObservable: Single<ImagesEntity>
 
 		switch type {

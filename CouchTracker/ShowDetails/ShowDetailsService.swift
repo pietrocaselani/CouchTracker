@@ -1,13 +1,13 @@
 import RxSwift
 import TraktSwift
 
-final class ShowDetailsService: ShowDetailsInteractor {
+public final class ShowDetailsService: ShowDetailsInteractor {
 	private let showIds: ShowIds
 	private let repository: ShowDetailsRepository
 	private let genreRepository: GenreRepository
 	private let imageRepository: ImageRepository
 
-	init(showIds: ShowIds, repository: ShowDetailsRepository,
+	public init(showIds: ShowIds, repository: ShowDetailsRepository,
 			genreRepository: GenreRepository, imageRepository: ImageRepository) {
 		self.showIds = showIds
 		self.repository = repository
@@ -15,7 +15,7 @@ final class ShowDetailsService: ShowDetailsInteractor {
 		self.imageRepository = imageRepository
 	}
 
-	func fetchDetailsOfShow() -> Single<ShowEntity> {
+	public func fetchDetailsOfShow() -> Single<ShowEntity> {
 		let genreObservable = genreRepository.fetchShowsGenres()
 		let showObservable = repository.fetchDetailsOfShow(with: showIds.slug, extended: .full).asObservable()
 
@@ -28,7 +28,7 @@ final class ShowDetailsService: ShowDetailsInteractor {
 		}.asSingle()
 	}
 
-	func fetchImages() -> Single<ImagesEntity> {
+	public func fetchImages() -> Single<ImagesEntity> {
 		guard let tmdbId = showIds.tmdb else { return Single.just(ImagesEntity.empty()) }
 
 		return imageRepository.fetchShowImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)

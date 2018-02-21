@@ -1,11 +1,11 @@
-struct TrendingCellViewModel: Hashable {
-	let title: String
+public struct TrendingCellViewModel: Hashable {
+	public let title: String
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		return title.hashValue
 	}
 
-	static func == (lhs: TrendingCellViewModel, rhs: TrendingCellViewModel) -> Bool {
+	public static func == (lhs: TrendingCellViewModel, rhs: TrendingCellViewModel) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }

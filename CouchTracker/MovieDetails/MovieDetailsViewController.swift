@@ -1,6 +1,6 @@
 import UIKit
-
 import Kingfisher
+import CouchTrackerCore
 
 final class MovieDetailsViewController: UIViewController, MovieDetailsView {
 

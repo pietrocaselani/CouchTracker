@@ -1,3 +1,5 @@
+import CouchTrackerCore
+
 final class TraktLoginModule {
 	private init() {}
 

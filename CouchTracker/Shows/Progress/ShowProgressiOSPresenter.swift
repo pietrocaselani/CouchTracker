@@ -1,6 +1,6 @@
 import RxSwift
 
-final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
+public final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
 	private let loginObservable: TraktLoginObservable
 	private weak var view: ShowsProgressView?
 	private let interactor: ShowsProgressInteractor
@@ -11,9 +11,9 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
 	private var currentDirection = ShowProgressDirection.asc
 	private var entities = [WatchedShowEntity]()
 	private var originalEntities = [WatchedShowEntity]()
-	var dataSource: ShowsProgressViewDataSource
+	public var dataSource: ShowsProgressViewDataSource
 
-	init(view: ShowsProgressView, interactor: ShowsProgressInteractor, viewDataSource: ShowsProgressViewDataSource,
+	public init(view: ShowsProgressView, interactor: ShowsProgressInteractor, viewDataSource: ShowsProgressViewDataSource,
 			router: ShowsProgressRouter, loginObservable: TraktLoginObservable) {
 		self.view = view
 		self.interactor = interactor
@@ -22,7 +22,7 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
 		self.loginObservable = loginObservable
 	}
 
-	func viewDidLoad() {
+	public func viewDidLoad() {
 		loginObservable.observe()
 			.distinctUntilChanged()
 			.observeOn(MainScheduler.instance)
@@ -39,12 +39,12 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
 			}).disposed(by: disposeBag)
 	}
 
-	func updateShows() {
+	public func updateShows() {
 		dataSource.update()
 		fetchShows()
 	}
 
-	func handleFilter() {
+	public func handleFilter() {
 		let sorting = ShowProgressSort.allValues().map { $0.rawValue.localized }
 		let filtering = ShowProgressFilter.allValues().map { $0.rawValue.localized }
 
@@ -53,19 +53,19 @@ final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
 		view?.showOptions(for: sorting, for: filtering, currentSort: sortIndex, currentFilter: filterIndex)
 	}
 
-	func handleDirection() {
+	public func handleDirection() {
 		currentDirection = currentDirection.toggle()
 		reloadViewModels()
 	}
 
-	func changeSort(to index: Int, filter: Int) {
+	public func changeSort(to index: Int, filter: Int) {
 		currentSort = ShowProgressSort.sort(for: index)
 		currentFilter = ShowProgressFilter.filter(for: filter)
 
 		reloadViewModels()
 	}
 
-	func selectedShow(at index: Int) {
+	public func selectedShow(at index: Int) {
 		let entity = entities[index]
 		router.show(tvShow: entity)
 	}

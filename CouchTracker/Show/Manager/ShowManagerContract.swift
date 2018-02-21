@@ -1,16 +1,16 @@
-enum ShowManagerOption: String {
+public enum ShowManagerOption: String {
 	case overview
 	case episode
 	case seasons
 }
 
-protocol ShowManagerPresenter: class {
+public protocol ShowManagerPresenter: class {
 	init(view: ShowManagerView, dataSource: ShowManagerDataSource)
 
 	func viewDidLoad()
 }
 
-protocol ShowManagerDataSource: class {
+public protocol ShowManagerDataSource: class {
 	init(show: WatchedShowEntity)
 
 	var showTitle: String? { get }
@@ -19,7 +19,7 @@ protocol ShowManagerDataSource: class {
 	var defaultModuleIndex: Int { get }
 }
 
-protocol ShowManagerView: class {
+public protocol ShowManagerView: class {
 	var presenter: ShowManagerPresenter! { get set }
 	var title: String? { get set }
 

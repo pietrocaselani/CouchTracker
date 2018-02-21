@@ -1,8 +1,8 @@
-enum TrendingViewModelType: Hashable {
+public enum TrendingViewModelType: Hashable {
 	case show(tmdbShowId: Int)
 	case movie(tmdbMovieId: Int)
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		switch self {
 		case .movie(let tmdbMovieId):
 			return "movie".hashValue ^ tmdbMovieId.hashValue
@@ -11,20 +11,20 @@ enum TrendingViewModelType: Hashable {
 		}
 	}
 
-	static func == (lhs: TrendingViewModelType, rhs: TrendingViewModelType) -> Bool {
+	public static func == (lhs: TrendingViewModelType, rhs: TrendingViewModelType) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }
 
-struct TrendingViewModel: Hashable {
-	let title: String
-	let type: TrendingViewModelType?
+public struct TrendingViewModel: Hashable {
+	public let title: String
+	public let type: TrendingViewModelType?
 
-	static func == (lhs: TrendingViewModel, rhs: TrendingViewModel) -> Bool {
+	public static func == (lhs: TrendingViewModel, rhs: TrendingViewModel) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		var hash = title.hashValue
 
 		if let typeHash = type?.hashValue {

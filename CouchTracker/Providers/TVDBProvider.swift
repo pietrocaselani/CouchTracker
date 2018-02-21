@@ -1,6 +1,6 @@
 import Moya
 import TVDBSwift
 
-protocol TVDBProvider: class {
+public protocol TVDBProvider: class {
 	var episodes: MoyaProvider<Episodes> { get }
 }

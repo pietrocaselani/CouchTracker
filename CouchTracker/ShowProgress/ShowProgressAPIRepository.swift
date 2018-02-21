@@ -2,14 +2,14 @@ import RxSwift
 import TraktSwift
 import Moya
 
-final class ShowProgressAPIRepository: ShowProgressRepository {
+public final class ShowProgressAPIRepository: ShowProgressRepository {
 	private let trakt: TraktProvider
 
-	init(trakt: TraktProvider) {
+	public init(trakt: TraktProvider) {
 		self.trakt = trakt
 	}
 
-	func fetchShowProgress(ids: ShowIds, hideSpecials: Bool) -> Single<WatchedShowBuilder> {
+	public func fetchShowProgress(ids: ShowIds, hideSpecials: Bool) -> Single<WatchedShowBuilder> {
 		let builder = WatchedShowBuilder(ids: ids)
 
 		let observable = fetchShowProgress(showId: ids.realId, hideSpecials)

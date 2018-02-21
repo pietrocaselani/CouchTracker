@@ -1,14 +1,13 @@
 import RxSwift
 import TraktSwift
 
-final class MovieDetailsService: MovieDetailsInteractor {
-
+public final class MovieDetailsService: MovieDetailsInteractor {
 	private let repository: MovieDetailsRepository
 	private let genreRepository: GenreRepository
 	private let imageRepository: ImageRepository
 	private let movieIds: MovieIds
 
-	init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
+	public init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
 			imageRepository: ImageRepository, movieIds: MovieIds) {
 		self.repository = repository
 		self.genreRepository = genreRepository
@@ -16,7 +15,7 @@ final class MovieDetailsService: MovieDetailsInteractor {
 		self.movieIds = movieIds
 	}
 
-	func fetchDetails() -> Observable<MovieEntity> {
+	public func fetchDetails() -> Observable<MovieEntity> {
 		let detailsObservable = repository.fetchDetails(movieId: movieIds.slug)
 		let genresObservable = genreRepository.fetchMoviesGenres()
 
@@ -29,7 +28,7 @@ final class MovieDetailsService: MovieDetailsInteractor {
 		}
 	}
 
-	func fetchImages() -> Observable<ImagesEntity> {
+	public func fetchImages() -> Observable<ImagesEntity> {
 		guard let tmdbId = movieIds.tmdb else { return Observable.empty() }
 		return imageRepository.fetchMovieImages(for: tmdbId, posterSize: .w780, backdropSize: .w780).asObservable()
 	}

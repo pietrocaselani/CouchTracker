@@ -1,5 +1,5 @@
 import RxSwift
 
-protocol AppConfigurationsObservable {
+public protocol AppConfigurationsObservable {
 	func observe() -> Observable<AppConfigurationsState>
 }

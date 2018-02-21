@@ -2,16 +2,16 @@ import RxSwift
 import TraktSwift
 import Moya
 
-final class AppConfigurationsService: AppConfigurationsInteractor {
+public final class AppConfigurationsService: AppConfigurationsInteractor {
 	private let repository: AppConfigurationsRepository
 	private let output: AppConfigurationsOutput
 
-	init(repository: AppConfigurationsRepository, output: AppConfigurationsOutput) {
+	public init(repository: AppConfigurationsRepository, output: AppConfigurationsOutput) {
 		self.repository = repository
 		self.output = output
 	}
 
-	func fetchAppConfigurationsState() -> Observable<AppConfigurationsState> {
+	public func fetchAppConfigurationsState() -> Observable<AppConfigurationsState> {
 		let loginStateObservable = fetchLoginState()
 		let hideSpecialsObservable = fetchHideSpecials()
 
@@ -23,7 +23,7 @@ final class AppConfigurationsService: AppConfigurationsInteractor {
 			})
 	}
 
-	func toggleHideSpecials() -> Completable {
+	public func toggleHideSpecials() -> Completable {
 		return self.repository.toggleHideSpecials()
 	}
 

@@ -1,23 +1,23 @@
 import RxSwift
 import TraktSwift
 
-final class SearchiOSPresenter: SearchPresenter {
+public final class SearchiOSPresenter: SearchPresenter {
 	private weak var view: SearchView?
 	private let output: SearchResultOutput
 	private let interactor: SearchInteractor
 	private let disposeBag = DisposeBag()
 
-	init(view: SearchView, interactor: SearchInteractor, resultOutput: SearchResultOutput) {
+	public init(view: SearchView, interactor: SearchInteractor, resultOutput: SearchResultOutput) {
 		self.view = view
 		self.interactor = interactor
 		self.output = resultOutput
 	}
 
-	func viewDidLoad() {
+	public func viewDidLoad() {
 		view?.showHint(message: "Type a movie name".localized)
 	}
 
-	func searchMovies(query: String) {
+	public func searchMovies(query: String) {
 		output.searchChangedTo(state: .searching)
 
 		interactor.searchMovies(query: query)
@@ -34,7 +34,7 @@ final class SearchiOSPresenter: SearchPresenter {
 				}).disposed(by: disposeBag)
 	}
 
-	func cancelSearch() {
+	public func cancelSearch() {
 		output.searchChangedTo(state: .notSearching)
 	}
 }

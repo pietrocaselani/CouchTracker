@@ -1,4 +1,5 @@
 import UIKit
+import CouchTrackerCore
 
 final class ShowEpisodeModule {
 	static func setupModule(for show: WatchedShowEntity) -> BaseView {

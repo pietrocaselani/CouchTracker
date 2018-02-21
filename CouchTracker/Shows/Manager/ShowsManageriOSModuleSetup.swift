@@ -1,11 +1,11 @@
-final class ShowsManageriOSModuleSetup: ShowsManagerDataSource {
+public final class ShowsManageriOSModuleSetup: ShowsManagerDataSource {
 	private let creator: ShowsManagerModuleCreator
 
-	init(creator: ShowsManagerModuleCreator) {
+	public init(creator: ShowsManagerModuleCreator) {
 		self.creator = creator
 	}
 
-	var options: [ShowsManagerOption] {
+	public var options: [ShowsManagerOption] {
 		let progress = ShowsManagerOption.progress
 		let now = ShowsManagerOption.now
 		let trending = ShowsManagerOption.trending
@@ -13,7 +13,7 @@ final class ShowsManageriOSModuleSetup: ShowsManagerDataSource {
 		return [progress, now, trending]
 	}
 
-	var modulePages: [ModulePage] {
+	public var modulePages: [ModulePage] {
 		let pages = options.map { option -> ModulePage in
 			let view = self.creator.createModule(for: option)
 			let name = moduleNameFor(option: option)
@@ -24,7 +24,7 @@ final class ShowsManageriOSModuleSetup: ShowsManagerDataSource {
 		return pages
 	}
 
-	var defaultModuleIndex: Int {
+	public var defaultModuleIndex: Int {
 		//TODO inject app config repository or something like that, to get the last selected module
 		return 0
 	}

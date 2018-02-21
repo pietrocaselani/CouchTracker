@@ -2,6 +2,7 @@ import UIKit
 import WebKit
 import RxSwift
 import TraktSwift
+import CouchTrackerCore
 
 final class TraktLoginViewController: UIViewController, TraktLoginView {
 	fileprivate let disposeBag = DisposeBag()

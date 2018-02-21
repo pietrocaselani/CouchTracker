@@ -1,11 +1,11 @@
-struct TrendingMovieEntity: Hashable {
-	let movie: MovieEntity
+public struct TrendingMovieEntity: Hashable {
+	public let movie: MovieEntity
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		return movie.hashValue
 	}
 
-	static func == (lhs: TrendingMovieEntity, rhs: TrendingMovieEntity) -> Bool {
+	public static func == (lhs: TrendingMovieEntity, rhs: TrendingMovieEntity) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }

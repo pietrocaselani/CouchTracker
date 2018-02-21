@@ -1,13 +1,15 @@
 import RxSwift
 
-final class AppConfigurationsStore: AppConfigurationsObservable, AppConfigurationsOutput {
+public final class AppConfigurationsStore: AppConfigurationsObservable, AppConfigurationsOutput {
 	private let subject = PublishSubject<AppConfigurationsState>()
 
-	func observe() -> Observable<AppConfigurationsState> {
+	public init() {}
+
+	public func observe() -> Observable<AppConfigurationsState> {
 		return subject.asObservable().distinctUntilChanged()
 	}
 
-	func newConfiguration(state: AppConfigurationsState) {
+	public func newConfiguration(state: AppConfigurationsState) {
 		subject.onNext(state)
 	}
 }

@@ -1,3 +1,5 @@
+import CouchTrackerCore
+
 final class ShowsManageriOSCreator: ShowsManagerModuleCreator {
 	func createModule(for option: ShowsManagerOption) -> BaseView {
 		switch option {

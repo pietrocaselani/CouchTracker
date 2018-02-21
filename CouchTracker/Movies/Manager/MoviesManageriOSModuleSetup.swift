@@ -1,14 +1,16 @@
+import CouchTrackerCore
+
 final class MoviesManageriOSModuleSetup: MoviesManagerDataSource {
 	var options: [MoviesManagerOption] {
 		return [.trending]
 	}
 
-	func modulePages() -> [MovieManagerModulePage] {
-		return options.map { option -> MovieManagerModulePage in
+	func modulePages() -> [ModulePage] {
+		return options.map { option -> ModulePage in
 			let view = moduleViewFor(option: option)
 			let title = moduleNameFor(option: option)
 
-			return MovieManagerModulePage(page: view, title: title)
+			return ModulePage(page: view, title: title)
 		}
 	}
 

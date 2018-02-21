@@ -1,11 +1,11 @@
-struct TrendingShowEntity: Hashable {
-	let show: ShowEntity
+public struct TrendingShowEntity: Hashable {
+	public let show: ShowEntity
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		return show.hashValue
 	}
 
-	static func == (lhs: TrendingShowEntity, rhs: TrendingShowEntity) -> Bool {
+	public static func == (lhs: TrendingShowEntity, rhs: TrendingShowEntity) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }

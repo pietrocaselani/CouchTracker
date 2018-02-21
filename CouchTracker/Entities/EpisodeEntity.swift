@@ -1,25 +1,25 @@
 import TraktSwift
 import Foundation
 
-struct EpisodeEntity: Hashable, EpisodeImageInput {
-	let ids: EpisodeIds
-	let showIds: ShowIds
-	let title: String
-	let overview: String?
-	let number: Int
-	let season: Int
-	let firstAired: Date?
-	let lastWatched: Date?
+public struct EpisodeEntity: Hashable, EpisodeImageInput {
+	public let ids: EpisodeIds
+	public let showIds: ShowIds
+	public let title: String
+	public let overview: String?
+	public let number: Int
+	public let season: Int
+	public let firstAired: Date?
+	public let lastWatched: Date?
 
-	var tvdb: Int {
+	public var tvdb: Int {
 		return ids.tvdb
 	}
 
-	var tmdb: Int? {
+	public var tmdb: Int? {
 		return showIds.tmdb
 	}
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		var hash = ids.hashValue ^ title.hashValue ^ number.hashValue ^ season.hashValue
 
 		if let firstAiredHash = firstAired?.hashValue {
@@ -29,7 +29,7 @@ struct EpisodeEntity: Hashable, EpisodeImageInput {
 		return hash
 	}
 
-	static func == (lhs: EpisodeEntity, rhs: EpisodeEntity) -> Bool {
+	public static func == (lhs: EpisodeEntity, rhs: EpisodeEntity) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }

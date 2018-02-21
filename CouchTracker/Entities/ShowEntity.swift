@@ -1,16 +1,16 @@
 import TraktSwift
 import Foundation
 
-struct ShowEntity: Hashable {
-	let ids: ShowIds
-	let title: String?
-	let overview: String?
-	let network: String?
-	let genres: [Genre]?
-	let status: Status?
-	let firstAired: Date?
+public struct ShowEntity: Hashable {
+	public let ids: ShowIds
+	public let title: String?
+	public let overview: String?
+	public let network: String?
+	public let genres: [Genre]?
+	public let status: Status?
+	public let firstAired: Date?
 
-	var hashValue: Int {
+	public var hashValue: Int {
 		var hash = ids.hashValue
 
 		if let titleHash = title?.hashValue {
@@ -38,7 +38,7 @@ struct ShowEntity: Hashable {
 		return hash
 	}
 
-	static func == (lhs: ShowEntity, rhs: ShowEntity) -> Bool {
+	public static func == (lhs: ShowEntity, rhs: ShowEntity) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }

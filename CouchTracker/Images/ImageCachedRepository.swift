@@ -3,7 +3,7 @@ import RxSwift
 import TMDBSwift
 import TVDBSwift
 
-final class ImageCachedRepository: ImageRepository {
+public final class ImageCachedRepository: ImageRepository {
 	typealias TMDBEpisodes = TMDBSwift.Episodes
 	typealias TVDBEpisodes = TVDBSwift.Episodes
 
@@ -12,7 +12,7 @@ final class ImageCachedRepository: ImageRepository {
 	private let tvdb: TVDBProvider
 	private let schedulers: Schedulers
 
-	init(tmdb: TMDBProvider,
+	public init(tmdb: TMDBProvider,
 	     tvdb: TVDBProvider,
 	     cofigurationRepository: ConfigurationRepository,
 	     schedulers: Schedulers) {
@@ -22,25 +22,21 @@ final class ImageCachedRepository: ImageRepository {
 		self.schedulers = schedulers
 	}
 
-	func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?,
+	public func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?,
 	                      backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
 		let target = Movies.images(movieId: movieId)
-
 		let apiObservable = imagesFromAPI(using: tmdb.movies, with: target)
-
 		return createImagesEntities(apiObservable, posterSize: posterSize, backdropSize: backdropSize).asSingle()
 	}
 
-	func fetchShowImages(for showId: Int, posterSize: PosterImageSize?,
+	public func fetchShowImages(for showId: Int, posterSize: PosterImageSize?,
 	                     backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
 		let target = Shows.images(showId: showId)
-
 		let apiObservable = imagesFromAPI(using: tmdb.shows, with: target)
-
 		return createImagesEntities(apiObservable, posterSize: posterSize, backdropSize: backdropSize).asSingle()
 	}
 
-	func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes? = nil) -> Single<URL> {
+	public func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes? = nil) -> Single<URL> {
 		let tvdbObservable = fetchEpisodeImageFromTVDB(episode.tvdb, size?.tvdb ?? .normal)
 
 		guard let tmdbId = episode.tmdb else {

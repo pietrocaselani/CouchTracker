@@ -1,4 +1,5 @@
 import TraktSwift
+import CouchTrackerCore
 
 final class ShowDetailsModule {
 	private init() {}
