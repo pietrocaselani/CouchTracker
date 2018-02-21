@@ -27,7 +27,7 @@ final class ShowDetailsModule {
 
 		let router = ShowDetailsiOSRouter(viewController: view)
 
-		let presenter = ShowDetailsiOSPresenter(view: view, router: router, interactor: interactor)
+		let presenter = ShowDetailsDefaultPresenter(view: view, router: router, interactor: interactor)
 
 		view.presenter = presenter
 

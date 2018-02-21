@@ -29,7 +29,7 @@ final class MovieDetailsModule {
 
 		let router = MovieDetailsiOSRouter(viewController: view)
 
-		let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
+		let presenter = MovieDetailsDefaultPresenter(view: view, interactor: interactor, router: router)
 
 		view.presenter = presenter
 

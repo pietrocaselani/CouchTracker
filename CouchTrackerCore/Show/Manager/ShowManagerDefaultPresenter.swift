@@ -1,4 +1,4 @@
-public final class ShowManageriOSPresenter: ShowManagerPresenter {
+public final class ShowManagerDefaultPresenter: ShowManagerPresenter {
 	private weak var view: ShowManagerView?
 	private let dataSource: ShowManagerDataSource
 

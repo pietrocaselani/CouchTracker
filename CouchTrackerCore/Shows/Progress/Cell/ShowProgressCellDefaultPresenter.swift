@@ -1,6 +1,6 @@
 import RxSwift
 
-public final class ShowProgressCelliOSPresenter: ShowProgressCellPresenter {
+public final class ShowProgressCellDefaultPresenter: ShowProgressCellPresenter {
 	private weak var view: ShowProgressCellView?
 	private let interactor: ShowProgressCellInteractor
 	private let viewModel: WatchedShowViewModel

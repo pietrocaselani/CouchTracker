@@ -13,7 +13,7 @@ final class ShowsManagerPresenterTest: XCTestCase {
 
 		moduleSetup = ShowsManagerDataSourceMock(modulePages: [page1, page2, page3], index: index)
 
-		presenter = ShowsManageriOSPresenter(view: view, moduleSetup: moduleSetup)
+		presenter = ShowsManagerDefaultPresenter(view: view, moduleSetup: moduleSetup)
 	}
 
 	func testShowsManagerPresenter_initializeWithRightIndex() {

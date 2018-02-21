@@ -14,7 +14,7 @@ final class MoviesManagerModule {
 		}
 
 		let dataSource = MoviesManageriOSModuleSetup()
-		let presenter = MoviesManageriOSPresenter(view: moviesManagerView, dataSource: dataSource)
+		let presenter = MoviesManagerDefaultPresenter(view: moviesManagerView, dataSource: dataSource)
 
 		moviesManagerView.presenter = presenter
 

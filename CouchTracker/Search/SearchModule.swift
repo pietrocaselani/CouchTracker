@@ -14,7 +14,7 @@ final class SearchModule {
 
 		let store = APISearchRepository(traktProvider: environment.trakt, schedulers: environment.schedulers)
 		let interactor = SearchService(repository: store)
-		let presenter = SearchiOSPresenter(view: searchView, interactor: interactor, resultOutput: resultsOutput)
+		let presenter = SearchDefaultPresenter(view: searchView, interactor: interactor, resultOutput: resultsOutput)
 
 		searchView.presenter = presenter
 

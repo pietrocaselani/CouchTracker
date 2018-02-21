@@ -5,7 +5,7 @@ import TraktSwift
 final class AppConfigurationsPresenterTest: XCTestCase {
 	private var view: AppConfigurationsViewMock!
 	private var router: AppConfigurationsRouterMock!
-	private var presenter: AppConfigurationsiOSPresenter!
+	private var presenter: AppConfigurationsDefaultPresenter!
 	private var interactor: AppConfigurationsInteractorMock!
 	private var interactorError: AppConfigurationsInteractorErrorMock!
 
@@ -27,7 +27,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 		let repository = AppConfigurationsRepositoryErrorMock(error: error)
 		let output = AppConfigurationsMock.AppConfigurationsOutputMock()
 		let interactor = AppConfigurationsInteractorMock(repository: repository, output: output)
-		presenter = AppConfigurationsiOSPresenter(view: view, interactor: interactor, router: router)
+		presenter = AppConfigurationsDefaultPresenter(view: view, interactor: interactor, router: router)
 	}
 
 	private func setupModule(error: Error) {
@@ -37,7 +37,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 		let output = AppConfigurationsMock.AppConfigurationsOutputMock()
 		let interactor = AppConfigurationsInteractorErrorMock(repository: repository, output: output)
 		interactor.error = error
-		presenter = AppConfigurationsiOSPresenter(view: view, interactor: interactor, router: router)
+		presenter = AppConfigurationsDefaultPresenter(view: view, interactor: interactor, router: router)
 	}
 
 	private func setupModule(empty: Bool = false) {
@@ -46,7 +46,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 		let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users, isEmpty: empty)
 		let output = AppConfigurationsMock.AppConfigurationsOutputMock()
 		interactor = AppConfigurationsInteractorMock(repository: repository, output: output)
-		presenter = AppConfigurationsiOSPresenter(view: view, interactor: interactor, router: router)
+		presenter = AppConfigurationsDefaultPresenter(view: view, interactor: interactor, router: router)
 	}
 
 	func testAppConfigurationsPresenter_receivesGenericError_notifyViewNotLogged() {

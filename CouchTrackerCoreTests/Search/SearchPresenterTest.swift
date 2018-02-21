@@ -9,7 +9,7 @@ final class SearchPresenterTest: XCTestCase {
 	func testSearchPresenter_viewDidLoad_updateViewHint() {
 		let store = EmptySearchStoreMock()
 		let interactor = SearchService(repository: store)
-		let presenter = SearchiOSPresenter(view: view, interactor: interactor, resultOutput: output)
+		let presenter = SearchDefaultPresenter(view: view, interactor: interactor, resultOutput: output)
 
 		presenter.viewDidLoad()
 
@@ -20,7 +20,7 @@ final class SearchPresenterTest: XCTestCase {
 		let searchResultEntities = TraktEntitiesMock.createSearchResultsMock()
 		let store = SearchStoreMock(results: searchResultEntities)
 		let interactor = SearchService(repository: store)
-		let presenter = SearchiOSPresenter(view: view, interactor: interactor, resultOutput: output)
+		let presenter = SearchDefaultPresenter(view: view, interactor: interactor, resultOutput: output)
 
 		presenter.searchMovies(query: "Tron")
 
@@ -36,7 +36,7 @@ final class SearchPresenterTest: XCTestCase {
 	func testSearchPresenter_performSearchReceivesNoData_notifyOutput() {
 		let store = SearchStoreMock(results: [SearchResult]())
 		let interactor = SearchService(repository: store)
-		let presenter = SearchiOSPresenter(view: view, interactor: interactor, resultOutput: output)
+		let presenter = SearchDefaultPresenter(view: view, interactor: interactor, resultOutput: output)
 
 		presenter.searchMovies(query: "Tron")
 
@@ -48,7 +48,7 @@ final class SearchPresenterTest: XCTestCase {
 		let error = NSError(domain: "io.github.pietrocaselani.CouchTracker", code: 10, userInfo: userInfo)
 		let store = ErrorSearchStoreMock(error: error)
 		let interactor = SearchService(repository: store)
-		let presenter = SearchiOSPresenter(view: view, interactor: interactor, resultOutput: output)
+		let presenter = SearchDefaultPresenter(view: view, interactor: interactor, resultOutput: output)
 
 		presenter.searchMovies(query: "Tron")
 
@@ -61,7 +61,7 @@ final class SearchPresenterTest: XCTestCase {
 	func testSearchPresenter_performCancel_notifyOutput() {
 		let store = EmptySearchStoreMock()
 		let interactor = SearchService(repository: store)
-		let presenter = SearchiOSPresenter(view: view, interactor: interactor, resultOutput: output)
+		let presenter = SearchDefaultPresenter(view: view, interactor: interactor, resultOutput: output)
 
 		presenter.cancelSearch()
 

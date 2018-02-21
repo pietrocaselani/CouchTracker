@@ -23,7 +23,7 @@ final class TrendingCollectionViewDataSource: NSObject, TrendingDataSource, UICo
 
 		let viewModel = viewModels[indexPath.row]
 		let interactor = TrendingCellService(imageRepository: imageRepository)
-		let presenter = TrendingCelliOSPresenter(view: cell, interactor: interactor, viewModel: viewModel)
+		let presenter = TrendingCellDefaultPresenter(view: cell, interactor: interactor, viewModel: viewModel)
 
 		cell.presenter = presenter
 

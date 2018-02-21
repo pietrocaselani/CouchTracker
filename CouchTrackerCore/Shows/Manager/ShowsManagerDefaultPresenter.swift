@@ -1,6 +1,6 @@
 import RxSwift
 
-public final class ShowsManageriOSPresenter: ShowsManagerPresenter {
+public final class ShowsManagerDefaultPresenter: ShowsManagerPresenter {
 	private weak var view: ShowsManagerView?
 	private let disposeBag = DisposeBag()
 	private let defaultIndex: Int
