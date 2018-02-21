@@ -2,6 +2,7 @@ import XCTest
 import RxSwift
 import RxTest
 import TMDBSwift
+@testable import CouchTrackerCore
 
 final class ImageCachedRepositoryTest: XCTestCase {
 	private let scheduler = TestSchedulers()

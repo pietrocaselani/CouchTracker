@@ -2,6 +2,7 @@ import Moya
 import XCTest
 import TraktSwift
 import RxTest
+@testable import CouchTrackerCore
 
 final class TrendingPresenterTest: XCTestCase {
 

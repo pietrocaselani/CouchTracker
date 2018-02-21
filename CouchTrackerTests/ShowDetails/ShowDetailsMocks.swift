@@ -1,5 +1,6 @@
 import RxSwift
 import TraktSwift
+@testable import CouchTrackerCore
 
 let showDetailsRepositoryMock = ShowDetailsRepositoryMock(traktProvider: traktProviderMock)
 

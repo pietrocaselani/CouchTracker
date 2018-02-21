@@ -1,4 +1,5 @@
 import XCTest
+@testable import CouchTrackerCore
 
 final class ShowsProgressiOSPresenterTest: XCTestCase {
 	private let view = ShowsProgressMocks.ShowsProgressViewMock()

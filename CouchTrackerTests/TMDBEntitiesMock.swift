@@ -1,4 +1,5 @@
 import TMDBSwift
+@testable import CouchTrackerCore
 
 final class TMDBEntitiesMock {
 

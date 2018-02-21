@@ -1,6 +1,7 @@
 import Moya
 import TraktSwift
 import RxSwift
+@testable import CouchTrackerCore
 
 let traktProviderMock = TraktProviderMock()
 

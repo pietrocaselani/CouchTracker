@@ -1,4 +1,5 @@
 import XCTest
+@testable import CouchTrackerCore
 
 final class TraktTokenPolicyDeciderTest: XCTestCase {
 	private let output = TraktLoginOutputMock()

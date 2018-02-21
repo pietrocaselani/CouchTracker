@@ -1,6 +1,7 @@
 import XCTest
 import RxTest
 import RxSwift
+@testable import CouchTrackerCore
 
 final class ShowEpisodeAPIRepositoryTest: XCTestCase {
 	func testShowEpisodeAPIRepository_addToHistoryWithError_emitsSyncResultFail() {

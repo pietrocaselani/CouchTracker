@@ -2,6 +2,7 @@ import RxSwift
 import TMDBSwift
 import TVDBSwift
 import Moya
+@testable import CouchTrackerCore
 
 func createMovieImagesRepositoryMock(_ images: ImagesEntity) -> ImageRepository {
 	return ImagesRepositorySampleMock(tmdb: tmdbProviderMock, tvdb: tvdbProviderMock, cofigurationRepository: configurationRepositoryMock, images: images)

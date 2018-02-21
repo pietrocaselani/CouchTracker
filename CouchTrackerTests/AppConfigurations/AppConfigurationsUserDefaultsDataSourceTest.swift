@@ -2,6 +2,7 @@ import XCTest
 import TraktSwift
 import RxSwift
 import RxTest
+@testable import CouchTrackerCore
 
 final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
 	private var userDefaultsMock: UserDefaults!

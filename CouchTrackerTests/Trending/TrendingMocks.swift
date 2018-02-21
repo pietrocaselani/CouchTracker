@@ -1,6 +1,7 @@
 import Foundation
 import RxSwift
 import TraktSwift
+@testable import CouchTrackerCore
 
 let trendingRepositoryMock = TrendingRepositoryMock(traktProvider: traktProviderMock)
 

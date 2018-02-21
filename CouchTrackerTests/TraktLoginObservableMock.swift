@@ -1,4 +1,5 @@
 import RxSwift
+@testable import CouchTrackerCore
 
 final class TraktLoginObservableMock: TraktLoginObservable {
 	private let stateSubject: BehaviorSubject<TraktLoginState>

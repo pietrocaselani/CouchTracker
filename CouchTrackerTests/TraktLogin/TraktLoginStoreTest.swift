@@ -1,6 +1,7 @@
 import XCTest
 import RxSwift
 import RxTest
+@testable import CouchTrackerCore
 
 final class TraktLoginStoreTest: XCTestCase {
 	private let scheduler = TestScheduler(initialClock: 0)

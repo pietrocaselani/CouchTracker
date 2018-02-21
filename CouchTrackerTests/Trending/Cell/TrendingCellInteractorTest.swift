@@ -1,6 +1,7 @@
 import XCTest
 import RxTest
 import RxSwift
+@testable import CouchTrackerCore
 
 final class TrendingCellInteractorTest: XCTestCase {
 

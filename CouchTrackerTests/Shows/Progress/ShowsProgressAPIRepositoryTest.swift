@@ -2,6 +2,7 @@ import XCTest
 import RxSwift
 import RxTest
 import TraktSwift
+@testable import CouchTrackerCore
 
 final class ShowsProgressAPIRepositoryTest: XCTestCase {
 	private let trakt = TraktProviderMock()

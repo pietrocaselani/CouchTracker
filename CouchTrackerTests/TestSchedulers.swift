@@ -1,5 +1,6 @@
 import RxSwift
 import RxTest
+@testable import CouchTrackerCore
 
 final class TestSchedulers: Schedulers {
 	var dataSourceScheduler: ImmediateSchedulerType

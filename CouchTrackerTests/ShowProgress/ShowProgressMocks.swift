@@ -1,5 +1,6 @@
 import RxSwift
 import TraktSwift
+@testable import CouchTrackerCore
 
 final class ShowProgressMocks {
 	static let showProgressRepository = ShowProgressAPIRepositoryMock()

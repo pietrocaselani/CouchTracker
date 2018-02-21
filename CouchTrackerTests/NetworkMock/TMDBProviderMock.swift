@@ -1,5 +1,6 @@
 import Moya
 import TMDBSwift
+@testable import CouchTrackerCore
 
 let tmdbProviderMock = TMDBProviderMock()
 

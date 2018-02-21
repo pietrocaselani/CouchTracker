@@ -25,7 +25,24 @@ target 'CouchTrackerFastTests' do
   platform :osx, '10.11'
   use_frameworks!
   inhibit_all_warnings!
-  
+
+  common_pods
+  tests_shared_pods
+end
+
+target 'CouchTrackerCore' do
+  platform :osx, '10.11'
+  use_frameworks!
+  inhibit_all_warnings!
+
+  common_pods
+end
+
+target 'CouchTrackerCoreTests' do
+  platform :osx, '10.11'
+  use_frameworks!
+  inhibit_all_warnings!
+
   common_pods
   tests_shared_pods
 end

@@ -1,6 +1,7 @@
 import XCTest
 import TraktSwift
 import RxSwift
+@testable import CouchTrackerCore
 
 final class ShowsProgressMoyaNetworkTest: XCTestCase {
 	func testShowsProgressMoyaNetwork_shouldRequest() {
