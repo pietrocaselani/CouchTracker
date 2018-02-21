@@ -1,6 +1,6 @@
 import RxSwift
 
-public final class ShowEpisodeiOSPresenter: ShowEpisodePresenter {
+public final class ShowEpisodeDefaultPresenter: ShowEpisodePresenter {
 	private weak var view: ShowEpisodeView?
 	private let interactor: ShowEpisodeInteractor
 	private var show: WatchedShowEntity

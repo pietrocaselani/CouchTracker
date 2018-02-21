@@ -1,6 +1,6 @@
 import RxSwift
 
-public final class TrendingCelliOSPresenter: TrendingCellPresenter {
+public final class TrendingCellDefaultPresenter: TrendingCellPresenter {
 	private weak var view: TrendingCellView?
 	private let interactor: TrendingCellInteractor
 	private let viewModel: TrendingViewModel

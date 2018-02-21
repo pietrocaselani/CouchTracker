@@ -1,7 +1,7 @@
 import RxSwift
 import TraktSwift
 
-public final class ShowDetailsiOSPresenter: ShowDetailsPresenter {
+public final class ShowDetailsDefaultPresenter: ShowDetailsPresenter {
 	private weak var view: ShowDetailsView!
 	private let router: ShowDetailsRouter
 	private let interactor: ShowDetailsInteractor

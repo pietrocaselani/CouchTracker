@@ -1,6 +1,6 @@
 import RxSwift
 
-public final class AppConfigurationsiOSPresenter: AppConfigurationsPresenter {
+public final class AppConfigurationsDefaultPresenter: AppConfigurationsPresenter {
 	private weak var view: AppConfigurationsView!
 	private let interactor: AppConfigurationsInteractor
 	fileprivate let router: AppConfigurationsRouter
@@ -81,7 +81,7 @@ public final class AppConfigurationsiOSPresenter: AppConfigurationsPresenter {
 	}
 }
 
-extension AppConfigurationsiOSPresenter: TraktLoginOutput {
+extension AppConfigurationsDefaultPresenter: TraktLoginOutput {
 	public func loggedInSuccessfully() {
 		updateView()
 	}

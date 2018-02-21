@@ -1,7 +1,7 @@
 import RxSwift
 import TraktSwift
 
-public final class TrendingiOSPresenter: TrendingPresenter {
+public final class TrendingDefaultPresenter: TrendingPresenter {
 	private static let limitPerPage = 25
 
 	public weak var view: TrendingView?
@@ -42,7 +42,7 @@ public final class TrendingiOSPresenter: TrendingPresenter {
 	}
 
 	private func fetchMovies() {
-		let observable = interactor.fetchMovies(page: currentMoviesPage, limit: TrendingiOSPresenter.limitPerPage)
+		let observable = interactor.fetchMovies(page: currentMoviesPage, limit: TrendingDefaultPresenter.limitPerPage)
 			.do(onNext: { [unowned self] in
 				self.movies = $0
 			}).map { [unowned self] in self.transformToViewModels(entities: $0) }
@@ -51,7 +51,7 @@ public final class TrendingiOSPresenter: TrendingPresenter {
 	}
 
 	private func fetchShows() {
-		let observable = interactor.fetchShows(page: currentShowsPage, limit: TrendingiOSPresenter.limitPerPage)
+		let observable = interactor.fetchShows(page: currentShowsPage, limit: TrendingDefaultPresenter.limitPerPage)
 			.do(onNext: { [unowned self] in
 				self.shows = $0
 			}).map { [unowned self] in self.transformToViewModels(entities: $0) }

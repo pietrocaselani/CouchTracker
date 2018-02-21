@@ -8,7 +8,7 @@ final class TrendingCellPresenterTest: XCTestCase {
 	func testTrendingCellPresenter_updatesViewModelOnView() {
 		let interactor = TrendingCellInteractorMock(imageRepository: imageRepositoryRealMock)
 		let trendingViewModel = TrendingViewModel(title: "Nice", type: nil)
-		let presenter = TrendingCelliOSPresenter(view: view, interactor: interactor, viewModel: trendingViewModel)
+		let presenter = TrendingCellDefaultPresenter(view: view, interactor: interactor, viewModel: trendingViewModel)
 
 		presenter.viewWillAppear()
 
@@ -24,7 +24,7 @@ final class TrendingCellPresenterTest: XCTestCase {
 		let type = TrendingViewModelType.movie(tmdbMovieId: 4)
 
 		let trendingViewModel = TrendingViewModel(title: "Nice", type: type)
-		let presenter = TrendingCelliOSPresenter(view: view, interactor: interactor, viewModel: trendingViewModel)
+		let presenter = TrendingCellDefaultPresenter(view: view, interactor: interactor, viewModel: trendingViewModel)
 
 		presenter.viewWillAppear()
 

@@ -33,7 +33,7 @@ final class ShowEpisodeModule {
 																																												appConfigurationsObservable: appConfigsObservable,
 																																												hideSpecials: hideSpecials)
 		let interactor = ShowEpisodeService(repository: repository, imageRepository: imageRepository)
-		let presenter = ShowEpisodeiOSPresenter(view: view, interactor: interactor, show: show)
+		let presenter = ShowEpisodeDefaultPresenter(view: view, interactor: interactor, show: show)
 
 		view.presenter = presenter
 

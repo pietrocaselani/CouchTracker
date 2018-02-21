@@ -1,7 +1,7 @@
 import RxSwift
 import TraktSwift
 
-public final class SearchiOSPresenter: SearchPresenter {
+public final class SearchDefaultPresenter: SearchPresenter {
 	private weak var view: SearchView?
 	private let output: SearchResultOutput
 	private let interactor: SearchInteractor

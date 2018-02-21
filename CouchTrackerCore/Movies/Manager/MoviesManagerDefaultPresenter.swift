@@ -1,4 +1,4 @@
-public final class MoviesManageriOSPresenter: MoviesManagerPresenter {
+public final class MoviesManagerDefaultPresenter: MoviesManagerPresenter {
 	private weak var view: MoviesManagerView?
 	private let defaultIndex: Int
 	private let modules: [ModulePage]

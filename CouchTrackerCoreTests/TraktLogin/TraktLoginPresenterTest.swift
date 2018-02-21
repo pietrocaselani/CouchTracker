@@ -12,7 +12,7 @@ final class TraktLoginPresenterTest: XCTestCase {
 		let userInfo = [NSLocalizedDescriptionKey: message]
 		let genericError = NSError(domain: "io.github.pietrocaselani", code: 50, userInfo: userInfo)
 		let interactor = TraktLoginErrorInteractorMock(error: genericError)
-		let presenter = TraktLoginiOSPresenter(view: view, interactor: interactor, output: output)
+		let presenter = TraktLoginDefaultPresenter(view: view, interactor: interactor, output: output)
 
 		//When
 		presenter.viewDidLoad()
@@ -26,7 +26,7 @@ final class TraktLoginPresenterTest: XCTestCase {
 		//Given
 		let url = URL(string: "https://trakt.tv/login")!
 		let interactor = TraktLoginInteractorMock(traktProvider: TraktProviderMock(oauthURL: url))
-		let presenter = TraktLoginiOSPresenter(view: view, interactor: interactor, output: output)
+		let presenter = TraktLoginDefaultPresenter(view: view, interactor: interactor, output: output)
 
 		//When
 		presenter.viewDidLoad()

@@ -1,6 +1,6 @@
 import RxSwift
 
-public final class ShowsProgressiOSPresenter: ShowsProgressPresenter {
+public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
 	private let loginObservable: TraktLoginObservable
 	private weak var view: ShowsProgressView?
 	private let interactor: ShowsProgressInteractor

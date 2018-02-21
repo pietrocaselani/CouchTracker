@@ -1,7 +1,7 @@
 import XCTest
 @testable import CouchTrackerCore
 
-final class ShowsProgressiOSPresenterTest: XCTestCase {
+final class ShowsProgressDefaultPresenterTest: XCTestCase {
 	private let view = ShowsProgressMocks.ShowsProgressViewMock()
 	private let router = ShowsProgressMocks.ShowsProgressRouterMock()
 	private let repository = ShowsProgressMocks.ShowsProgressRepositoryMock(trakt: traktProviderMock)
@@ -13,7 +13,7 @@ final class ShowsProgressiOSPresenterTest: XCTestCase {
 		let loginObservable = TraktLoginObservableMock(state: loginState)
 
 		let interactor = ShowsProgressMocks.EmptyShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
-		let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+		let presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
 
 		//When
 		presenter.viewDidLoad()
@@ -37,7 +37,7 @@ final class ShowsProgressiOSPresenterTest: XCTestCase {
 		let loginObservable = TraktLoginObservableMock(state: loginState)
 
 		let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
-		let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+		let presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
 
 		//When
 		presenter.viewDidLoad()
@@ -61,7 +61,7 @@ final class ShowsProgressiOSPresenterTest: XCTestCase {
 		let loginObservable = TraktLoginObservableMock(state: loginState)
 
 		let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
-		let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+		let presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
 		presenter.viewDidLoad()
 
 		//When
@@ -87,7 +87,7 @@ final class ShowsProgressiOSPresenterTest: XCTestCase {
 		let loginObservable = TraktLoginObservableMock(state: loginState)
 
 		let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
-		let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+		let presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
 
 		//When
 		presenter.viewDidLoad()
@@ -106,7 +106,7 @@ final class ShowsProgressiOSPresenterTest: XCTestCase {
 		let loginObservable = TraktLoginObservableMock(state: loginState)
 
 		let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
-		let presenter = ShowsProgressiOSPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+		let presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
 
 		presenter.viewDidLoad()
 

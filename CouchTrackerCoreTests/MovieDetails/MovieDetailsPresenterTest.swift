@@ -13,7 +13,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 		let repository = MovieDetailsStoreMock(movie: movie)
 		let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
 																						imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
-		let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
+		let presenter = MovieDetailsDefaultPresenter(view: view, interactor: interactor, router: router)
 
 		presenter.viewDidLoad()
 
@@ -38,7 +38,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 		let repository = MovieDetailsStoreMock(movie: movie)
 		let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
 																						imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
-		let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
+		let presenter = MovieDetailsDefaultPresenter(view: view, interactor: interactor, router: router)
 
 		presenter.viewDidLoad()
 
@@ -60,7 +60,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
 		let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
 																						imageRepository: imageRepositoryRealMock, movieIds: movieIds)
-		let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
+		let presenter = MovieDetailsDefaultPresenter(view: view, interactor: interactor, router: router)
 
 		presenter.viewDidLoad()
 
@@ -74,7 +74,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 		let repository = ErrorMovieDetailsStoreMock(error: detailsError)
 		let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
 																						imageRepository: imageRepositoryMock, movieIds: movie.ids)
-		let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
+		let presenter = MovieDetailsDefaultPresenter(view: view, interactor: interactor, router: router)
 
 		presenter.viewDidLoad()
 
@@ -89,7 +89,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 		let repository = ErrorMovieDetailsStoreMock(error: error)
 		let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
 																						imageRepository: imageRepositoryMock, movieIds: movie.ids)
-		let presenter = MovieDetailsiOSPresenter(view: view, interactor: interactor, router: router)
+		let presenter = MovieDetailsDefaultPresenter(view: view, interactor: interactor, router: router)
 
 		presenter.viewDidLoad()
 

@@ -30,7 +30,7 @@ final class TrendingModule {
 
 		let dataSource = TrendingCollectionViewDataSource(imageRepository: imageRepository)
 
-		let presenter = TrendingiOSPresenter(view: view, interactor: interactor,
+		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor,
 																				router: router, dataSource: dataSource, type: trendingType)
 
 		view.presenter = presenter

@@ -1,6 +1,6 @@
 import RxSwift
 
-public final class TraktLoginiOSPresenter: TraktLoginPresenter {
+public final class TraktLoginDefaultPresenter: TraktLoginPresenter {
 	private weak var view: TraktLoginView?
 	private let interactor: TraktLoginInteractor
 	private let output: TraktLoginOutput

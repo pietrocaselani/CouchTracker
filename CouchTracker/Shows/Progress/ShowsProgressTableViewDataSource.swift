@@ -21,7 +21,7 @@ final class ShowsProgressTableViewDataSource: NSObject, UITableViewDataSource, S
 
 		let viewModel = viewModels[indexPath.row]
 		let interactor = ShowProgressCellService(imageRepository: imageRepository)
-		let presenter = ShowProgressCelliOSPresenter(view: cell, interactor: interactor, viewModel: viewModel)
+		let presenter = ShowProgressCellDefaultPresenter(view: cell, interactor: interactor, viewModel: viewModel)
 
 		cell.presenter = presenter
 

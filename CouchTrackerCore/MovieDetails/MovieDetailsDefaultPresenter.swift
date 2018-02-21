@@ -2,7 +2,7 @@ import RxSwift
 import Foundation
 import TraktSwift
 
-public final class MovieDetailsiOSPresenter: MovieDetailsPresenter {
+public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
 	private let disposeBag = DisposeBag()
 	private weak var view: MovieDetailsView?
 	private let interactor: MovieDetailsInteractor

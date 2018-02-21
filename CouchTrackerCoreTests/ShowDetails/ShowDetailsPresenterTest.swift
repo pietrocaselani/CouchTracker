@@ -11,7 +11,7 @@ final class ShowDetailsPresenterTest: XCTestCase {
 																							repository: showDetailsRepositoryMock,
 																							genreRepository: GenreRepositoryMock(),
 																							imageRepository: imageRepositoryMock)
-		let presenter = ShowDetailsiOSPresenter(view: view, router: router, interactor: interactor)
+		let presenter = ShowDetailsDefaultPresenter(view: view, router: router, interactor: interactor)
 		XCTAssertNotNil(presenter)
 	}
 
@@ -24,7 +24,7 @@ final class ShowDetailsPresenterTest: XCTestCase {
 																										repository: repository,
 																										genreRepository: GenreRepositoryMock(),
 																										imageRepository: imageRepositoryMock)
-		let presenter = ShowDetailsiOSPresenter(view: view, router: router, interactor: errorInteractor)
+		let presenter = ShowDetailsDefaultPresenter(view: view, router: router, interactor: errorInteractor)
 
 		presenter.viewDidLoad()
 
@@ -37,7 +37,7 @@ final class ShowDetailsPresenterTest: XCTestCase {
 																							repository: showDetailsRepositoryMock,
 																							genreRepository: GenreRepositoryMock(),
 																							imageRepository: imageRepositoryMock)
-		let presenter = ShowDetailsiOSPresenter(view: view, router: router, interactor: interactor)
+		let presenter = ShowDetailsDefaultPresenter(view: view, router: router, interactor: interactor)
 
 		presenter.viewDidLoad()
 
@@ -72,7 +72,7 @@ final class ShowDetailsPresenterTest: XCTestCase {
 																							repository: showDetailsRepositoryMock,
 																							genreRepository: GenreRepositoryMock(),
 																							imageRepository: ErrorImageRepositoryMock(error: imageError))
-		let presenter = ShowDetailsiOSPresenter(view: view, router: router, interactor: interactor)
+		let presenter = ShowDetailsDefaultPresenter(view: view, router: router, interactor: interactor)
 
 		presenter.viewDidLoad()
 
@@ -84,7 +84,7 @@ final class ShowDetailsPresenterTest: XCTestCase {
 																							repository: showDetailsRepositoryMock,
 																							genreRepository: GenreRepositoryMock(),
 																							imageRepository: imageRepositoryRealMock)
-		let presenter = ShowDetailsiOSPresenter(view: view, router: router, interactor: interactor)
+		let presenter = ShowDetailsDefaultPresenter(view: view, router: router, interactor: interactor)
 
 		presenter.viewDidLoad()
 
