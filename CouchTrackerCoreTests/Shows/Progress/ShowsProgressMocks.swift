@@ -91,13 +91,19 @@ final class ShowsProgressMocks {
 
 	final class ShowsProgressRepositoryMock: ShowsProgressRepository {
 		private let trakt: TraktProvider
+		private let subject: BehaviorSubject<[WatchedShowEntity]>
 
 		init(trakt: TraktProvider) {
 			self.trakt = trakt
+			subject = BehaviorSubject(value: [ShowsProgressMocks.mockWatchedShowEntity()])
 		}
 
 		func fetchWatchedShows(extended: Extended) -> Observable<[WatchedShowEntity]> {
-			return Observable.just([ShowsProgressMocks.mockWatchedShowEntity()])
+			return subject.asObservable()
+		}
+
+		func emitsAgain(_ value: [WatchedShowEntity]) {
+			subject.onNext(value)
 		}
 	}
 
