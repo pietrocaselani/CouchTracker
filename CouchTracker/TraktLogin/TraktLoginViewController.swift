@@ -28,12 +28,11 @@ final class TraktLoginViewController: UIViewController, TraktLoginView {
 
 extension TraktLoginViewController: WKNavigationDelegate {
 	func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
-							decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+														decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 
 		policyDecider.allowedToProceed(with: navigationAction.request).subscribe(onSuccess: { _ in
 			decisionHandler(.allow)
-		}, onError: { error in
-			print(error)
+		}, onError: { _ in
 			decisionHandler(.cancel)
 		}).disposed(by: disposeBag)
 	}

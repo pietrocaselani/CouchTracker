@@ -15,15 +15,15 @@ final class ErrorImageRepositoryMock: ImageRepository {
 
 	init(tmdb: TMDBProvider, tvdb: TVDBProvider, cofigurationRepository: ConfigurationRepository) {}
 
-	func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
-		return Single.error(error)
+	func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Maybe<ImagesEntity> {
+		return Maybe.error(error)
 	}
 
-	func fetchShowImages(for showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
-		return Single.error(error)
+	func fetchShowImages(for showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Maybe<ImagesEntity> {
+		return Maybe.error(error)
 	}
 
-	func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Single<URL> {
-		return Single.error(error)
+	func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Maybe<URL> {
+		return Maybe.error(error)
 	}
 }

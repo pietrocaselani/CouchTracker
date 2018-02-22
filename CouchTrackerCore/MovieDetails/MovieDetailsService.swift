@@ -8,7 +8,7 @@ public final class MovieDetailsService: MovieDetailsInteractor {
 	private let movieIds: MovieIds
 
 	public init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
-			imageRepository: ImageRepository, movieIds: MovieIds) {
+													imageRepository: ImageRepository, movieIds: MovieIds) {
 		self.repository = repository
 		self.genreRepository = genreRepository
 		self.imageRepository = imageRepository
@@ -28,8 +28,8 @@ public final class MovieDetailsService: MovieDetailsInteractor {
 		}
 	}
 
-	public func fetchImages() -> Observable<ImagesEntity> {
-		guard let tmdbId = movieIds.tmdb else { return Observable.empty() }
-		return imageRepository.fetchMovieImages(for: tmdbId, posterSize: .w780, backdropSize: .w780).asObservable()
+	public func fetchImages() -> Maybe<ImagesEntity> {
+		guard let tmdbId = movieIds.tmdb else { return Maybe.empty() }
+		return imageRepository.fetchMovieImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)
 	}
 }

@@ -17,7 +17,8 @@ public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
 	public func viewDidLoad() {
 		interactor.fetchImages()
 			.map { ImagesViewModelMapper.viewModel(for: $0) }
-			.observeOn(MainScheduler.instance).subscribe(onNext: { [unowned self] imagesViewModel in
+			.observeOn(MainScheduler.instance)
+			.subscribe(onSuccess: { [unowned self] imagesViewModel in
 				self.view?.show(images: imagesViewModel)
 			}).disposed(by: disposeBag)
 

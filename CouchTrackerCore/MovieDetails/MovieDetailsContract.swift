@@ -20,10 +20,10 @@ public protocol MovieDetailsView: BaseView {
 
 public protocol MovieDetailsInteractor: class {
 	init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
-			imageRepository: ImageRepository, movieIds: MovieIds)
+						imageRepository: ImageRepository, movieIds: MovieIds)
 
 	func fetchDetails() -> Observable<MovieEntity>
-	func fetchImages() -> Observable<ImagesEntity>
+	func fetchImages() -> Maybe<ImagesEntity>
 }
 
 public protocol MovieDetailsRepository: class {

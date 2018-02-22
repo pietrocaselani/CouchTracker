@@ -49,9 +49,9 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
 	}
 
 	override func pageboyViewController(_ pageboyViewController: PageboyViewController, didScrollToPageAt index: Int,
-																			direction: PageboyViewController.NavigationDirection, animated: Bool) {
+																																					direction: PageboyViewController.NavigationDirection, animated: Bool) {
 		super.pageboyViewController(pageboyViewController, didScrollToPageAt: index,
-																direction: direction, animated: animated)
+																														direction: direction, animated: animated)
 
 		let currentViewController = self.viewController(for: pageboyViewController, at: index)
 
@@ -66,7 +66,7 @@ extension ShowsManagerViewController: PageboyViewControllerDataSource {
 	}
 
 	func viewController(for pageboyViewController: PageboyViewController,
-											at index: PageboyViewController.PageIndex) -> UIViewController? {
+																					at index: PageboyViewController.PageIndex) -> UIViewController? {
 		return moduleViews?[index] as? UIViewController
 	}
 

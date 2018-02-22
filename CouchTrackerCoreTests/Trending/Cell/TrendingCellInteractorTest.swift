@@ -19,7 +19,7 @@ final class TrendingCellInteractorTest: XCTestCase {
 		let interactor = TrendingCellService(imageRepository: imageRepositoryRealMock)
 		let observable = interactor.fetchPosterImageURL(of: type, with: PosterImageSize.w92)
 
-		let disposable = observable.subscribe(observer)
+		let disposable = observable.asObservable().subscribe(observer)
 
 		scheduler.scheduleAt(600) {
 			disposable.dispose()
@@ -40,7 +40,7 @@ final class TrendingCellInteractorTest: XCTestCase {
 		let interactor = TrendingCellService(imageRepository: ErrorImageRepositoryMock(error: imageError))
 		let observable = interactor.fetchPosterImageURL(of: type, with: PosterImageSize.w92)
 
-		let disposable = observable.subscribe(observer)
+		let disposable = observable.asObservable().subscribe(observer)
 
 		scheduler.scheduleAt(600) {
 			disposable.dispose()
@@ -59,15 +59,12 @@ final class TrendingCellInteractorTest: XCTestCase {
 		let images = [ImageEntity]()
 		let imagesMock = ImagesEntity(identifier: 4, backdrops: images, posters: images, stills: images)
 
-		let repository = ImagesRepositorySampleMock(tmdb: tmdbProviderMock,
-																								tvdb: tvdbProviderMock,
-																								cofigurationRepository: configurationRepositoryMock,
-																								images: imagesMock)
+		let repository = ImagesRepositorySampleMock(images: imagesMock)
 
 		let interactor = TrendingCellService(imageRepository: repository)
 		let observable = interactor.fetchPosterImageURL(of: type, with: PosterImageSize.w92)
 
-		let disposable = observable.subscribe(observer)
+		let disposable = observable.asObservable().subscribe(observer)
 
 		scheduler.scheduleAt(600) {
 			disposable.dispose()
@@ -87,15 +84,12 @@ final class TrendingCellInteractorTest: XCTestCase {
 		let images = [image]
 		let imagesMock = ImagesEntity(identifier: 4, backdrops: images, posters: images, stills: images)
 
-		let repository = ImagesRepositorySampleMock(tmdb: tmdbProviderMock,
-																								tvdb: tvdbProviderMock,
-																								cofigurationRepository: configurationRepositoryMock,
-																								images: imagesMock)
+		let repository = ImagesRepositorySampleMock(images: imagesMock)
 
 		let interactor = TrendingCellService(imageRepository: repository)
 		let observable = interactor.fetchPosterImageURL(of: type, with: PosterImageSize.w92)
 
-		let disposable = observable.subscribe(observer)
+		let disposable = observable.asObservable().subscribe(observer)
 
 		scheduler.scheduleAt(600) {
 			disposable.dispose()
