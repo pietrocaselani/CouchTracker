@@ -16,5 +16,5 @@ public protocol TrendingCellPresenter: class {
 public protocol TrendingCellInteractor: class {
 	init(imageRepository: ImageRepository)
 
-	func fetchPosterImageURL(of type: TrendingViewModelType, with size: PosterImageSize?) -> Observable<URL>
+	func fetchPosterImageURL(of type: TrendingViewModelType, with size: PosterImageSize?) -> Maybe<URL>
 }

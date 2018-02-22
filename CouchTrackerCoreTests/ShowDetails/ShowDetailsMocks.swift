@@ -57,8 +57,8 @@ final class ShowDetailsInteractorMock: ShowDetailsInteractor {
 		}).asSingle()
 	}
 
-	func fetchImages() -> Single<ImagesEntity> {
-		guard let tmdbId = showIds.tmdb else { return Single.never() }
+	func fetchImages() -> Maybe<ImagesEntity> {
+		guard let tmdbId = showIds.tmdb else { return Maybe.empty() }
 
 		return imageRepository.fetchShowImages(for: tmdbId, posterSize: nil, backdropSize: nil)
 	}

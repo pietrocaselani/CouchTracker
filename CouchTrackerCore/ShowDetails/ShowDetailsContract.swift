@@ -10,7 +10,7 @@ public protocol ShowDetailsInteractor: class {
 						genreRepository: GenreRepository, imageRepository: ImageRepository)
 
 	func fetchDetailsOfShow() -> Single<ShowEntity>
-	func fetchImages() -> Single<ImagesEntity>
+	func fetchImages() -> Maybe<ImagesEntity>
 }
 
 public protocol ShowDetailsPresenter: class {

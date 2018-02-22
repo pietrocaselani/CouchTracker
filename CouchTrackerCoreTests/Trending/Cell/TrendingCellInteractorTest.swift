@@ -19,7 +19,7 @@ final class TrendingCellInteractorTest: XCTestCase {
 		let interactor = TrendingCellService(imageRepository: imageRepositoryRealMock)
 		let observable = interactor.fetchPosterImageURL(of: type, with: PosterImageSize.w92)
 
-		let disposable = observable.subscribe(observer)
+		let disposable = observable.asObservable().subscribe(observer)
 
 		scheduler.scheduleAt(600) {
 			disposable.dispose()
@@ -40,7 +40,7 @@ final class TrendingCellInteractorTest: XCTestCase {
 		let interactor = TrendingCellService(imageRepository: ErrorImageRepositoryMock(error: imageError))
 		let observable = interactor.fetchPosterImageURL(of: type, with: PosterImageSize.w92)
 
-		let disposable = observable.subscribe(observer)
+		let disposable = observable.asObservable().subscribe(observer)
 
 		scheduler.scheduleAt(600) {
 			disposable.dispose()
@@ -67,7 +67,7 @@ final class TrendingCellInteractorTest: XCTestCase {
 		let interactor = TrendingCellService(imageRepository: repository)
 		let observable = interactor.fetchPosterImageURL(of: type, with: PosterImageSize.w92)
 
-		let disposable = observable.subscribe(observer)
+		let disposable = observable.asObservable().subscribe(observer)
 
 		scheduler.scheduleAt(600) {
 			disposable.dispose()
@@ -95,7 +95,7 @@ final class TrendingCellInteractorTest: XCTestCase {
 		let interactor = TrendingCellService(imageRepository: repository)
 		let observable = interactor.fetchPosterImageURL(of: type, with: PosterImageSize.w92)
 
-		let disposable = observable.subscribe(observer)
+		let disposable = observable.asObservable().subscribe(observer)
 
 		scheduler.scheduleAt(600) {
 			disposable.dispose()

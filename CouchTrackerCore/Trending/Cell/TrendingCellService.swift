@@ -7,8 +7,8 @@ public final class TrendingCellService: TrendingCellInteractor {
 		self.imageRepository = imageRepository
 	}
 
-	public func fetchPosterImageURL(of type: TrendingViewModelType, with size: PosterImageSize?) -> Observable<URL> {
-		let imagesObservable: Single<ImagesEntity>
+	public func fetchPosterImageURL(of type: TrendingViewModelType, with size: PosterImageSize?) -> Maybe<URL> {
+		let imagesObservable: Maybe<ImagesEntity>
 
 		switch type {
 		case .movie(let tmdbMovieId):
@@ -18,13 +18,13 @@ public final class TrendingCellService: TrendingCellInteractor {
 			imagesObservable = single
 		}
 
-		return imagesObservable.asObservable().flatMap { images -> Observable<URL> in
+		return imagesObservable.flatMap { images -> Maybe<URL> in
 			guard let imageLink = images.posterImage()?.link,
 				let imageURL = URL(string: imageLink) else {
-					return Observable.empty()
+					return Maybe.empty()
 			}
 
-			return Observable.just(imageURL)
+			return Maybe.just(imageURL)
 		}
 	}
 }

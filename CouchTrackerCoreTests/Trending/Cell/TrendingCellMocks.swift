@@ -27,7 +27,7 @@ final class TrendingCellInteractorMock: TrendingCellInteractor {
 		self.imageRepository = imageRepository
 	}
 
-	func fetchPosterImageURL(of type: TrendingViewModelType, with size: PosterImageSize?) -> Observable<URL> {
+	func fetchPosterImageURL(of type: TrendingViewModelType, with size: PosterImageSize?) -> Maybe<URL> {
 		if case .movie(let tmdbId) = type {
 			let observable = imageRepository.fetchMovieImages(for: tmdbId, posterSize: size, backdropSize: nil).asObservable()
 			return observable.flatMap { imageEntity -> Observable<URL> in
@@ -36,9 +36,9 @@ final class TrendingCellInteractorMock: TrendingCellInteractor {
 				}
 
 				return Observable.just(url)
-			}
+			}.asMaybe()
 		}
 
-		return Observable.empty()
+		return Maybe.empty()
 	}
 }

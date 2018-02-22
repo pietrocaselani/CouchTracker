@@ -23,7 +23,7 @@ public protocol MovieDetailsInteractor: class {
 						imageRepository: ImageRepository, movieIds: MovieIds)
 
 	func fetchDetails() -> Observable<MovieEntity>
-	func fetchImages() -> Observable<ImagesEntity>
+	func fetchImages() -> Maybe<ImagesEntity>
 }
 
 public protocol MovieDetailsRepository: class {

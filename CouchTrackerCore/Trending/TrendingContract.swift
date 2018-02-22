@@ -30,7 +30,7 @@ public protocol TrendingRouter: class {
 }
 
 public protocol TrendingInteractor: class {
-	init(repository: TrendingRepository, imageRepository: ImageRepository)
+	init(repository: TrendingRepository)
 
 	func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovieEntity]>
 	func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShowEntity]>

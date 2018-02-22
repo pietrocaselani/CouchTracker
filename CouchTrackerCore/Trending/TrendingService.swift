@@ -5,11 +5,9 @@ import TMDBSwift
 
 public final class TrendingService: TrendingInteractor {
 	private let repository: TrendingRepository
-	private let imageRepository: ImageRepository
 
-	public init(repository: TrendingRepository, imageRepository: ImageRepository) {
+	public init(repository: TrendingRepository) {
 		self.repository = repository
-		self.imageRepository = imageRepository
 	}
 
 	public func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShowEntity]> {

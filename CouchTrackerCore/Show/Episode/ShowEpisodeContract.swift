@@ -16,7 +16,7 @@ public protocol ShowEpisodeRepository: class {
 }
 
 public protocol ShowEpisodeInteractor: class {
-	func fetchImageURL(for episode: EpisodeImageInput) -> Single<URL>
+	func fetchImageURL(for episode: EpisodeImageInput) -> Maybe<URL>
 	func toggleWatch(for episode: EpisodeEntity, of show: WatchedShowEntity) -> Single<SyncResult>
 }
 

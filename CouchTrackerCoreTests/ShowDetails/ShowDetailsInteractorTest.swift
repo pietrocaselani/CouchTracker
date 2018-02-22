@@ -69,12 +69,12 @@ final class ShowDetailsInteractorTest: XCTestCase {
 
 		let errorExpectation = expectation(description: "Expect interactor to emit an error")
 
-		let disposable = interactor.fetchImages().subscribe(onSuccess: { show in
+		let disposable = interactor.fetchImages().subscribe(onSuccess: { _ in
 			XCTFail()
-		}) { error in
+		}, onError: { error in
 			XCTAssertEqual(error as NSError, showError)
 			errorExpectation.fulfill()
-		}
+		})
 
 		scheduler.scheduleAt(600) {
 			disposable.dispose()
@@ -85,7 +85,7 @@ final class ShowDetailsInteractorTest: XCTestCase {
 		wait(for: [errorExpectation], timeout: 1)
 	}
 
-	func testShowDetailsInteractor_fetchImagesWithEmptyTMDBIdentifier_emitsEmptyData() {
+	func testShowDetailsInteractor_fetchImagesWithEmptyTMDBIdentifier_emitsOnCompleted() {
 		let ids = TraktEntitiesMock.createTraktShowDetails().ids
 
 		let showIds = ShowIds(trakt: ids.trakt, tmdb: nil, imdb: ids.imdb, slug: ids.slug, tvdb: ids.tvdb, tvrage: ids.tvrage)
@@ -95,13 +95,10 @@ final class ShowDetailsInteractorTest: XCTestCase {
 																				genreRepository: GenreRepositoryMock(),
 																				imageRepository: imageRepositoryRealMock)
 
-		let dataExpectation = expectation(description: "Expect interactor to emit empty images entity")
+		let dataExpectation = expectation(description: "Expect interactor to emit on completed")
 
-		let expectedImageEntity = ImagesEntity.empty()
-
-		_ = interactor.fetchImages().subscribe(onSuccess: { images in
+		_ = interactor.fetchImages().subscribe(onCompleted: {
 			dataExpectation.fulfill()
-			XCTAssertEqual(images, expectedImageEntity)
 		})
 
 		wait(for: [dataExpectation], timeout: 1)
