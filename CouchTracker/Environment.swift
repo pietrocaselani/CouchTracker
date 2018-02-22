@@ -2,6 +2,7 @@ import TraktSwift
 import TMDBSwift
 import TVDBSwift
 import Moya
+import CouchTrackerCore
 
 final class Environment {
 	static let instance = Environment()

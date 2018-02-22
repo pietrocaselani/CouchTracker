@@ -1,4 +1,5 @@
 import UIKit
+import CouchTrackerCore
 
 final class AppConfigurationsModule {
 	private init() {
@@ -26,7 +27,7 @@ final class AppConfigurationsModule {
 																												schedulers: schedulers)
 		let interactor = AppConfigurationsService(repository: repository, output: appConfigurationsOutput)
 		let router = AppConfigurationsiOSRouter(viewController: view)
-		let presenter = AppConfigurationsiOSPresenter(view: view, interactor: interactor, router: router)
+		let presenter = AppConfigurationsDefaultPresenter(view: view, interactor: interactor, router: router)
 
 		view.presenter = presenter
 
