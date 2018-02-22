@@ -19,7 +19,7 @@ public final class ShowProgressCellDefaultPresenter: ShowProgressCellPresenter {
 
 		interactor.fetchPosterImageURL(for: tmdbId, with: .w185)
 			.observeOn(MainScheduler.instance)
-			.subscribe(onNext: { [weak self] url in
+			.subscribe(onSuccess: { [weak self] url in
 				guard let view = self?.view else { return }
 
 				view.showPosterImage(with: url)

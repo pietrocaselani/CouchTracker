@@ -17,7 +17,7 @@ final class ImageCachedRepositoryTest: XCTestCase {
 				cofigurationRepository: configurationRepositoryMock, schedulers: scheduler)
 
 		observer = scheduler.createObserver(ImagesEntity.self)
-	episodeObserver = scheduler.createObserver(URL.self)
+		episodeObserver = scheduler.createObserver(URL.self)
 	}
 
 	func testImageCachedRepository_fetchMovieImages_withDefaultSizes() {

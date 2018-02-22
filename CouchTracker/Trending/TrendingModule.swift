@@ -25,7 +25,7 @@ final class TrendingModule {
 																								cofigurationRepository: configurationRepository,
 																								schedulers: schedulers)
 
-		let interactor = TrendingService(repository: repository, imageRepository: imageRepository)
+		let interactor = TrendingService(repository: repository)
 		let router = TrendingiOSRouter(viewController: viewController)
 
 		let dataSource = TrendingCollectionViewDataSource(imageRepository: imageRepository)

@@ -17,7 +17,7 @@ public final class TrendingDefaultPresenter: TrendingPresenter {
 	fileprivate let router: TrendingRouter
 
 	public init(view: TrendingView, interactor: TrendingInteractor,
-			router: TrendingRouter, dataSource: TrendingDataSource, type: TrendingType) {
+													router: TrendingRouter, dataSource: TrendingDataSource, type: TrendingType) {
 		self.view = view
 		self.interactor = interactor
 		self.router = router

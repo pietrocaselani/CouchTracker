@@ -10,7 +10,7 @@ final class MovieEntityMapper {
 	}
 
 	static func entity(for trendingMovie: TrendingMovie,
-										with genres: [Genre]? = nil) -> TrendingMovieEntity {
+																				with genres: [Genre]? = nil) -> TrendingMovieEntity {
 		let movie = entity(for: trendingMovie.movie, with: genres)
 		return TrendingMovieEntity(movie: movie)
 	}

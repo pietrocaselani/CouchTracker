@@ -156,13 +156,10 @@ final class TrendingRepositoryMock: TrendingRepository {
 }
 
 final class TrendingServiceMock: TrendingInteractor {
-
 	let trendingRepo: TrendingRepository
-	let imageRepo: ImageRepository
 
-	init(repository: TrendingRepository, imageRepository: ImageRepository) {
+	init(repository: TrendingRepository) {
 		self.trendingRepo = repository
-		self.imageRepo = imageRepository
 	}
 
 	func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovieEntity]> {

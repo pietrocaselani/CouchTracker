@@ -7,14 +7,14 @@ public final class ShowProgressCellService: ShowProgressCellInteractor {
 		self.imageRepository = imageRepository
 	}
 
-	public func fetchPosterImageURL(for tmdbId: Int, with size: PosterImageSize?) -> Observable<URL> {
-		let observable = imageRepository.fetchShowImages(for: tmdbId, posterSize: size, backdropSize: nil).asObservable()
+	public func fetchPosterImageURL(for tmdbId: Int, with size: PosterImageSize?) -> Maybe<URL> {
+		let maybe = imageRepository.fetchShowImages(for: tmdbId, posterSize: size, backdropSize: nil)
 
-		return observable.flatMap { images -> Observable<URL> in
+		return maybe.flatMap { images -> Maybe<URL> in
 			guard let imageLink = images.posterImage()?.link, let url = URL(string: imageLink) else {
-				return Observable.empty()
+				return Maybe.empty()
 			}
-			return Observable.just(url)
+			return Maybe.just(url)
 		}
 	}
 }

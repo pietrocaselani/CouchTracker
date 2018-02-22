@@ -4,48 +4,56 @@ import TVDBSwift
 import Moya
 @testable import CouchTrackerCore
 
-func createMovieImagesRepositoryMock(_ images: ImagesEntity) -> ImageRepository {
-	return ImagesRepositorySampleMock(tmdb: tmdbProviderMock, tvdb: tvdbProviderMock, cofigurationRepository: configurationRepositoryMock, images: images)
-}
-
 final class EmptyImageRepositoryMock: ImageRepository {
 	init(tmdb: TMDBProvider, tvdb: TVDBProvider, cofigurationRepository: ConfigurationRepository) {}
 
-	func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
-		return Single.never()
+	func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Maybe<ImagesEntity> {
+		return Maybe.empty()
 	}
 
-	func fetchShowImages(for showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
-		return Single.never()
+	func fetchShowImages(for showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Maybe<ImagesEntity> {
+		return Maybe.empty()
 	}
 
-	func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Single<URL> {
-		return Single.never()
+	func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Maybe<URL> {
+		return Maybe.empty()
 	}
 }
 
 final class ImagesRepositorySampleMock: ImageRepository {
-	private let images: ImagesEntity
+	var images: ImagesEntity
+	var fetchMoviesImagesInvoked = false
+	var fetchMoviesImagesParameters: (movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?)?
+	var fetchShowsImagesInvoked = false
+	var fetchShowsImagesParameters: (showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?)?
+	var fetchEpisodeImagesInvoked = false
+	var fetchEpisodeImagesParameters: (episode: EpisodeImageInput, size: EpisodeImageSizes?)?
 
-	init(tmdb: TMDBProvider, tvdb: TVDBProvider, cofigurationRepository: ConfigurationRepository) {
+	init() {
 		let imageEntities = [ImageEntity(link: "", width: 10, height: 10, iso6391: nil, aspectRatio: 1.2, voteAverage: 2.3, voteCount: 5)]
 		self.images = ImagesEntity(identifier: -1, backdrops: imageEntities, posters: imageEntities, stills: [ImageEntity]())
 	}
 
-	init(tmdb: TMDBProvider, tvdb: TVDBProvider, cofigurationRepository: ConfigurationRepository, images: ImagesEntity) {
+	init(images: ImagesEntity) {
 		self.images = images
 	}
 
-	func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
-		return Single.just(images)
+	func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Maybe<ImagesEntity> {
+		fetchMoviesImagesInvoked = true
+		fetchMoviesImagesParameters = (movieId, posterSize, backdropSize)
+		return Maybe.just(images)
 	}
 
-	func fetchShowImages(for showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
-		return Single.just(images)
+	func fetchShowImages(for showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Maybe<ImagesEntity> {
+		fetchShowsImagesInvoked = true
+		fetchShowsImagesParameters = (showId, posterSize, backdropSize)
+		return Maybe.just(images)
 	}
 
-	func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Single<URL> {
-		return Single.never()
+	func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Maybe<URL> {
+		fetchEpisodeImagesInvoked = true
+		fetchEpisodeImagesParameters = (episode, size)
+		return Maybe.empty()
 	}
 }
 
@@ -67,7 +75,7 @@ final class ImageRepositoryMock: ImageRepository {
 		self.configuration = cofigurationRepository
 	}
 
-	func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
+	func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Maybe<ImagesEntity> {
 		fetchMovieImagesInvoked = true
 		let observable = configuration.fetchConfiguration().asObservable().flatMap { [unowned self] config -> Observable<ImagesEntity> in
 			return self.tmdb.movies.rx.request(.images(movieId: movieId)).asObservable().map(Images.self).map {
@@ -78,10 +86,10 @@ final class ImageRepositoryMock: ImageRepository {
 			}
 		}
 
-		return observable.asSingle()
+		return observable.asMaybe()
 	}
 
-	func fetchShowImages(for showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
+	func fetchShowImages(for showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Maybe<ImagesEntity> {
 		fetchShowImagesInvoked = true
 		let configurationObservable = configuration.fetchConfiguration()
 		let imagesObservable = tmdb.shows.rx.request(.images(showId: showId)).map(Images.self).asObservable()
@@ -90,34 +98,34 @@ final class ImageRepositoryMock: ImageRepository {
 			let posterSize = posterSize ?? .w342
 			let backdropSize = backdropSize ?? .w300
 			return ImagesEntityMapper.entity(for: images, using: configuration, posterSize: posterSize, backdropSize: backdropSize)
-		}.asSingle()
+		}.asMaybe()
 	}
 
-	func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Single<URL> {
+	func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Maybe<URL> {
 		fetchEpisodeImagesInvoked = true
 		fetchEpisodeImagesParameters = (episode, size)
 
 		let tmdbObservable = fetchEpisodeImageFromTMDB(episode, size)
 		let tvdbObservable = fetchEpisodeImageFromTVDB(episode, size)
 
-		return tmdbObservable.ifEmpty(switchTo: tvdbObservable).catchError { _ in tvdbObservable }.asSingle()
+		return tmdbObservable.ifEmpty(switchTo: tvdbObservable).catchError { _ in tvdbObservable }
 	}
 
-	private func fetchEpisodeImageFromTVDB(_ episode: EpisodeImageInput, _ size: EpisodeImageSizes?) -> Observable<URL> {
+	private func fetchEpisodeImageFromTVDB(_ episode: EpisodeImageInput, _ size: EpisodeImageSizes?) -> Maybe<URL> {
 		let single = tvdb.episodes.rx.request(TVDBEpisodes.episode(id: episode.tvdb)).map(EpisodeResponse.self)
 
-		return single.asObservable().flatMap { response -> Observable<URL> in
-			guard let filename = response.episode.filename else { return Observable.empty() }
+		return single.flatMapMaybe { response -> Maybe<URL> in
+			guard let filename = response.episode.filename else { return Maybe.empty() }
 
 			let size = size?.tvdb ?? TVDBEpisodeImageSize.normal
 			let baseURL = size == TVDBEpisodeImageSize.normal ? TVDB.bannersImageURL : TVDB.smallBannersImageURL
-			return Observable.just(baseURL.appendingPathComponent(filename))
+			return Maybe.just(baseURL.appendingPathComponent(filename))
 		}
 	}
 
-	private func fetchEpisodeImageFromTMDB(_ episode: EpisodeImageInput, _ size: EpisodeImageSizes?) -> Observable<URL> {
+	private func fetchEpisodeImageFromTMDB(_ episode: EpisodeImageInput, _ size: EpisodeImageSizes?) -> Maybe<URL> {
 		guard let tmdbId = episode.tmdb else {
-			return Observable.empty()
+			return Maybe.empty()
 		}
 
 		let target = TMDBEpisodes.images(showId: tmdbId, season: episode.season, episode: episode.number)
@@ -134,6 +142,6 @@ final class ImageRepositoryMock: ImageRepository {
 			return Observable.just(url)
 		}
 
-		return tmdbURLObservable
+		return tmdbURLObservable.asMaybe()
 	}
 }

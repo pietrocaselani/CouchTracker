@@ -7,9 +7,9 @@ final class ImagesEntityMapper {
 	}
 
 	static func entity(for images: Images, using configuration: Configuration,
-	posterSize: PosterImageSize = .w342,
-	backdropSize: BackdropImageSize = .w780,
-	stillSize: StillImageSize = .w300) -> ImagesEntity {
+																				posterSize: PosterImageSize = .w342,
+																				backdropSize: BackdropImageSize = .w780,
+																				stillSize: StillImageSize = .w300) -> ImagesEntity {
 		let baseURL = configuration.images.secureBaseURL as NSString
 
 		let backdrops = images.backdrops.map { imageEntity(for: $0, with: baseURL, size: backdropSize.rawValue) }

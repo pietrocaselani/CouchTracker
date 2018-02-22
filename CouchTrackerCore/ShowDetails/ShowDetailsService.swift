@@ -8,7 +8,7 @@ public final class ShowDetailsService: ShowDetailsInteractor {
 	private let imageRepository: ImageRepository
 
 	public init(showIds: ShowIds, repository: ShowDetailsRepository,
-			genreRepository: GenreRepository, imageRepository: ImageRepository) {
+													genreRepository: GenreRepository, imageRepository: ImageRepository) {
 		self.showIds = showIds
 		self.repository = repository
 		self.genreRepository = genreRepository
@@ -28,8 +28,8 @@ public final class ShowDetailsService: ShowDetailsInteractor {
 		}.asSingle()
 	}
 
-	public func fetchImages() -> Single<ImagesEntity> {
-		guard let tmdbId = showIds.tmdb else { return Single.just(ImagesEntity.empty()) }
+	public func fetchImages() -> Maybe<ImagesEntity> {
+		guard let tmdbId = showIds.tmdb else { return Maybe.empty() }
 
 		return imageRepository.fetchShowImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)
 	}

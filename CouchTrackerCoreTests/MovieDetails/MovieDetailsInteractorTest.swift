@@ -49,7 +49,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
 		let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
 																				imageRepository: imageRepository, movieIds: movieIds)
 
-		disposable = interactor.fetchImages().subscribe(imagesObserver)
+		disposable = interactor.fetchImages().asObservable().subscribe(imagesObserver)
 
 		scheduler.start()
 
@@ -67,7 +67,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
 		let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
 																				imageRepository: imageRepository, movieIds: movie.ids)
 
-		disposable = interactor.fetchImages().subscribe(imagesObserver)
+		disposable = interactor.fetchImages().asObservable().subscribe(imagesObserver)
 
 		scheduler.start()
 
