@@ -59,10 +59,7 @@ final class TrendingCellInteractorTest: XCTestCase {
 		let images = [ImageEntity]()
 		let imagesMock = ImagesEntity(identifier: 4, backdrops: images, posters: images, stills: images)
 
-		let repository = ImagesRepositorySampleMock(tmdb: tmdbProviderMock,
-																								tvdb: tvdbProviderMock,
-																								cofigurationRepository: configurationRepositoryMock,
-																								images: imagesMock)
+		let repository = ImagesRepositorySampleMock(images: imagesMock)
 
 		let interactor = TrendingCellService(imageRepository: repository)
 		let observable = interactor.fetchPosterImageURL(of: type, with: PosterImageSize.w92)
@@ -87,10 +84,7 @@ final class TrendingCellInteractorTest: XCTestCase {
 		let images = [image]
 		let imagesMock = ImagesEntity(identifier: 4, backdrops: images, posters: images, stills: images)
 
-		let repository = ImagesRepositorySampleMock(tmdb: tmdbProviderMock,
-																								tvdb: tvdbProviderMock,
-																								cofigurationRepository: configurationRepositoryMock,
-																								images: imagesMock)
+		let repository = ImagesRepositorySampleMock(images: imagesMock)
 
 		let interactor = TrendingCellService(imageRepository: repository)
 		let observable = interactor.fetchPosterImageURL(of: type, with: PosterImageSize.w92)
