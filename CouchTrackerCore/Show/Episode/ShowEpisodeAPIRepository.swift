@@ -10,8 +10,8 @@ public final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
 	private var hideSpecials: Bool
 
 	public init(dataSource: ShowEpisodeDataSource, network: ShowEpisodeNetwork,
-						schedulers: Schedulers, showProgressRepository: ShowProgressRepository,
-						appConfigurationsObservable: AppConfigurationsObservable, hideSpecials: Bool) {
+													schedulers: Schedulers, showProgressRepository: ShowProgressRepository,
+													appConfigurationsObservable: AppConfigurationsObservable, hideSpecials: Bool) {
 		self.dataSource = dataSource
 		self.network = network
 		self.schedulers = schedulers

@@ -8,7 +8,7 @@ public final class ShowDetailsService: ShowDetailsInteractor {
 	private let imageRepository: ImageRepository
 
 	public init(showIds: ShowIds, repository: ShowDetailsRepository,
-			genreRepository: GenreRepository, imageRepository: ImageRepository) {
+													genreRepository: GenreRepository, imageRepository: ImageRepository) {
 		self.showIds = showIds
 		self.repository = repository
 		self.genreRepository = genreRepository

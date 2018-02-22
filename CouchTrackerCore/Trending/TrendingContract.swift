@@ -10,7 +10,7 @@ public protocol TrendingPresenter: class {
 	var dataSource: TrendingDataSource { get }
 
 	init(view: TrendingView, interactor: TrendingInteractor,
-			router: TrendingRouter, dataSource: TrendingDataSource, type: TrendingType)
+						router: TrendingRouter, dataSource: TrendingDataSource, type: TrendingType)
 
 	func viewDidLoad()
 	func showDetailsOfTrending(at index: Int)

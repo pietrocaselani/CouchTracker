@@ -6,7 +6,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	private var listMoviesModule: TrendingModule!
 
 	func application(_ application: UIApplication,
-									didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+																		didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
 		UINavigationBar.appearance().barTintColor = UIColor.ctblack
 		UINavigationBar.appearance().tintColor = UIColor.white

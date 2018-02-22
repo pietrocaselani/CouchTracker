@@ -13,9 +13,9 @@ public final class ImageCachedRepository: ImageRepository {
 	private let schedulers: Schedulers
 
 	public init(tmdb: TMDBProvider,
-	     tvdb: TVDBProvider,
-	     cofigurationRepository: ConfigurationRepository,
-	     schedulers: Schedulers) {
+													tvdb: TVDBProvider,
+													cofigurationRepository: ConfigurationRepository,
+													schedulers: Schedulers) {
 		self.configurationRepository = cofigurationRepository
 		self.tmdb = tmdb
 		self.tvdb = tvdb
@@ -23,14 +23,14 @@ public final class ImageCachedRepository: ImageRepository {
 	}
 
 	public func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?,
-	                      backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
+																														backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
 		let target = Movies.images(movieId: movieId)
 		let apiObservable = imagesFromAPI(using: tmdb.movies, with: target)
 		return createImagesEntities(apiObservable, posterSize: posterSize, backdropSize: backdropSize).asSingle()
 	}
 
 	public func fetchShowImages(for showId: Int, posterSize: PosterImageSize?,
-	                     backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
+																													backdropSize: BackdropImageSize?) -> Single<ImagesEntity> {
 		let target = Shows.images(showId: showId)
 		let apiObservable = imagesFromAPI(using: tmdb.shows, with: target)
 		return createImagesEntities(apiObservable, posterSize: posterSize, backdropSize: backdropSize).asSingle()
@@ -50,7 +50,7 @@ public final class ImageCachedRepository: ImageRepository {
 	}
 
 	private func fetchEpisodeImageFromTMDB(_ showId: Int, _ season: Int,
-	                                       _ number: Int, _ size: StillImageSize) -> Observable<URL> {
+																																								_ number: Int, _ size: StillImageSize) -> Observable<URL> {
 		let target = TMDBEpisodes.images(showId: showId, season: season, episode: number)
 
 		let apiObservable = imagesFromAPI(using: tmdb.episodes, with: target)
@@ -88,8 +88,8 @@ public final class ImageCachedRepository: ImageRepository {
 	}
 
 	private func createImagesEntities(_ imagesObservable: Observable<Images>, posterSize: PosterImageSize? = nil,
-	                                  backdropSize: BackdropImageSize? = nil,
-	                                  stillSize: StillImageSize? = nil) -> Observable<ImagesEntity> {
+																																			backdropSize: BackdropImageSize? = nil,
+																																			stillSize: StillImageSize? = nil) -> Observable<ImagesEntity> {
 		let configurationObservable = configurationRepository.fetchConfiguration()
 
 		let observable = Observable.combineLatest(imagesObservable, configurationObservable) {

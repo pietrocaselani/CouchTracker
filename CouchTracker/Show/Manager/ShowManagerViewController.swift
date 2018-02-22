@@ -36,18 +36,16 @@ final class ShowManagerViewController: TabmanViewController, ShowManagerView {
 }
 
 extension ShowManagerViewController: PageboyViewControllerDataSource {
-
 	func numberOfViewControllers(in pageboyViewController: PageboyViewController) -> Int {
 		return moduleViews?.count ?? 0
 	}
 
 	func viewController(for pageboyViewController: PageboyViewController,
-											at index: PageboyViewController.PageIndex) -> UIViewController? {
+																					at index: PageboyViewController.PageIndex) -> UIViewController? {
 		return moduleViews?[index] as? UIViewController
 	}
 
 	func defaultPage(for pageboyViewController: PageboyViewController) -> PageboyViewController.Page? {
 		return Page.at(index: defaultPageIndex)
 	}
-
 }

@@ -8,7 +8,7 @@ public final class WatchedShowBuilder: Hashable {
 	public var seasons: [WatchedSeasonEntity]
 
 	public init(ids: ShowIds, progressShow: BaseShow? = nil,
-			episode: Episode? = nil, seasons: [WatchedSeasonEntity] = [WatchedSeasonEntity]()) {
+													episode: Episode? = nil, seasons: [WatchedSeasonEntity] = [WatchedSeasonEntity]()) {
 		self.ids = ids
 		self.progressShow = progressShow
 		self.episode = episode
