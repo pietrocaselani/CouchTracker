@@ -43,7 +43,7 @@ public final class ShowProgressAPIRepository: ShowProgressRepository {
 	}
 
 	private func fetchDetailsOf(episodeNumber: Int, on seasonNumber: Int,
-															of showId: String, extended: Extended) -> Single<Episode> {
+																													of showId: String, extended: Extended) -> Single<Episode> {
 		let target = Episodes.summary(showId: showId, season: seasonNumber, episode: episodeNumber, extended: extended)
 		return trakt.episodes.rx.request(target).map(Episode.self)
 	}

@@ -14,7 +14,7 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
 	public var dataSource: ShowsProgressViewDataSource
 
 	public init(view: ShowsProgressView, interactor: ShowsProgressInteractor, viewDataSource: ShowsProgressViewDataSource,
-			router: ShowsProgressRouter, loginObservable: TraktLoginObservable) {
+													router: ShowsProgressRouter, loginObservable: TraktLoginObservable) {
 		self.view = view
 		self.interactor = interactor
 		self.dataSource = viewDataSource

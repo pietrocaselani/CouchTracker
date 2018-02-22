@@ -27,7 +27,7 @@ public protocol ShowsProgressRouter: class {
 public protocol ShowsProgressPresenter: class {
 	var dataSource: ShowsProgressViewDataSource { get }
 	init(view: ShowsProgressView, interactor: ShowsProgressInteractor,
-			viewDataSource: ShowsProgressViewDataSource, router: ShowsProgressRouter, loginObservable: TraktLoginObservable)
+						viewDataSource: ShowsProgressViewDataSource, router: ShowsProgressRouter, loginObservable: TraktLoginObservable)
 
 	func viewDidLoad()
 	func updateShows()

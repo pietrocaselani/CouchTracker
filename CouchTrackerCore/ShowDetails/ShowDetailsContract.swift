@@ -7,7 +7,7 @@ public protocol ShowDetailsRepository: class {
 
 public protocol ShowDetailsInteractor: class {
 	init(showIds: ShowIds, repository: ShowDetailsRepository,
-			genreRepository: GenreRepository, imageRepository: ImageRepository)
+						genreRepository: GenreRepository, imageRepository: ImageRepository)
 
 	func fetchDetailsOfShow() -> Single<ShowEntity>
 	func fetchImages() -> Single<ImagesEntity>

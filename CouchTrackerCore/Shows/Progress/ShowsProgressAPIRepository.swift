@@ -12,8 +12,8 @@ public final class ShowsProgressAPIRepository: ShowsProgressRepository {
 	private let disposeBag = DisposeBag()
 
 	public init(network: ShowsProgressNetwork, dataSource: ShowsProgressDataSource, schedulers: Schedulers,
-			showProgressRepository: ShowProgressRepository, appConfigurationsObservable: AppConfigurationsObservable,
-			hideSpecials: Bool) {
+													showProgressRepository: ShowProgressRepository, appConfigurationsObservable: AppConfigurationsObservable,
+													hideSpecials: Bool) {
 		self.network = network
 		self.dataSource = dataSource
 		self.schedulers = schedulers
