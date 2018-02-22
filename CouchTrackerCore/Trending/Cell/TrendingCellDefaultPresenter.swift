@@ -19,7 +19,7 @@ public final class TrendingCellDefaultPresenter: TrendingCellPresenter {
 
 		interactor.fetchPosterImageURL(of: trendingType, with: .w185)
 			.observeOn(MainScheduler.instance)
-			.subscribe(onNext: { imageURL in
+			.subscribe(onSuccess: { imageURL in
 				guard let view = self.view else { return }
 
 				view.showPosterImage(with: imageURL)

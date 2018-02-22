@@ -16,5 +16,5 @@ public protocol ShowProgressCellPresenter: class {
 public protocol ShowProgressCellInteractor: class {
 	init(imageRepository: ImageRepository)
 
-	func fetchPosterImageURL(for tmdbId: Int, with size: PosterImageSize?) -> Observable<URL>
+	func fetchPosterImageURL(for tmdbId: Int, with size: PosterImageSize?) -> Maybe<URL>
 }

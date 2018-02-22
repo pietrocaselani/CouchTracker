@@ -86,8 +86,8 @@ final class MovieDetailsServiceMock: MovieDetailsInteractor {
 		}
 	}
 
-	func fetchImages() -> Observable<ImagesEntity> {
-		guard let tmdbId = movieIds.tmdb else { return Observable.empty() }
-		return imageRepository.fetchMovieImages(for: tmdbId, posterSize: nil, backdropSize: nil).asObservable()
+	func fetchImages() -> Maybe<ImagesEntity> {
+		guard let tmdbId = movieIds.tmdb else { return Maybe.empty() }
+		return imageRepository.fetchMovieImages(for: tmdbId, posterSize: nil, backdropSize: nil)
 	}
 }

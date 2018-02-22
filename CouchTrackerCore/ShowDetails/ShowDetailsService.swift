@@ -28,8 +28,8 @@ public final class ShowDetailsService: ShowDetailsInteractor {
 		}.asSingle()
 	}
 
-	public func fetchImages() -> Single<ImagesEntity> {
-		guard let tmdbId = showIds.tmdb else { return Single.just(ImagesEntity.empty()) }
+	public func fetchImages() -> Maybe<ImagesEntity> {
+		guard let tmdbId = showIds.tmdb else { return Maybe.empty() }
 
 		return imageRepository.fetchShowImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)
 	}

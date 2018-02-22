@@ -28,8 +28,8 @@ public final class MovieDetailsService: MovieDetailsInteractor {
 		}
 	}
 
-	public func fetchImages() -> Observable<ImagesEntity> {
-		guard let tmdbId = movieIds.tmdb else { return Observable.empty() }
-		return imageRepository.fetchMovieImages(for: tmdbId, posterSize: .w780, backdropSize: .w780).asObservable()
+	public func fetchImages() -> Maybe<ImagesEntity> {
+		guard let tmdbId = movieIds.tmdb else { return Maybe.empty() }
+		return imageRepository.fetchMovieImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)
 	}
 }
