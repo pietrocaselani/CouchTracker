@@ -47,4 +47,3 @@ Logs/
 Pods/
 *.lock
 .env
-info.plist
