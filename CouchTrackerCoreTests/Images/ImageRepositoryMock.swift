@@ -4,10 +4,6 @@ import TVDBSwift
 import Moya
 @testable import CouchTrackerCore
 
-func createMovieImagesRepositoryMock(_ images: ImagesEntity) -> ImageRepository {
-	return ImagesRepositorySampleMock(tmdb: tmdbProviderMock, tvdb: tvdbProviderMock, cofigurationRepository: configurationRepositoryMock, images: images)
-}
-
 final class EmptyImageRepositoryMock: ImageRepository {
 	init(tmdb: TMDBProvider, tvdb: TVDBProvider, cofigurationRepository: ConfigurationRepository) {}
 
@@ -25,26 +21,38 @@ final class EmptyImageRepositoryMock: ImageRepository {
 }
 
 final class ImagesRepositorySampleMock: ImageRepository {
-	private let images: ImagesEntity
+	var images: ImagesEntity
+	var fetchMoviesImagesInvoked = false
+	var fetchMoviesImagesParameters: (movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?)?
+	var fetchShowsImagesInvoked = false
+	var fetchShowsImagesParameters: (showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?)?
+	var fetchEpisodeImagesInvoked = false
+	var fetchEpisodeImagesParameters: (episode: EpisodeImageInput, size: EpisodeImageSizes?)?
 
-	init(tmdb: TMDBProvider, tvdb: TVDBProvider, cofigurationRepository: ConfigurationRepository) {
+	init() {
 		let imageEntities = [ImageEntity(link: "", width: 10, height: 10, iso6391: nil, aspectRatio: 1.2, voteAverage: 2.3, voteCount: 5)]
 		self.images = ImagesEntity(identifier: -1, backdrops: imageEntities, posters: imageEntities, stills: [ImageEntity]())
 	}
 
-	init(tmdb: TMDBProvider, tvdb: TVDBProvider, cofigurationRepository: ConfigurationRepository, images: ImagesEntity) {
+	init(images: ImagesEntity) {
 		self.images = images
 	}
 
 	func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Maybe<ImagesEntity> {
+		fetchMoviesImagesInvoked = true
+		fetchMoviesImagesParameters = (movieId, posterSize, backdropSize)
 		return Maybe.just(images)
 	}
 
 	func fetchShowImages(for showId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Maybe<ImagesEntity> {
+		fetchShowsImagesInvoked = true
+		fetchShowsImagesParameters = (showId, posterSize, backdropSize)
 		return Maybe.just(images)
 	}
 
 	func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Maybe<URL> {
+		fetchEpisodeImagesInvoked = true
+		fetchEpisodeImagesParameters = (episode, size)
 		return Maybe.empty()
 	}
 }
