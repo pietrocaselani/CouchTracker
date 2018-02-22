@@ -1,3 +1,5 @@
+import CouchTrackerCore
+
 final class TraktLoginModule {
 	private init() {}
 
@@ -11,7 +13,7 @@ final class TraktLoginModule {
 		let outputs = CompositeLoginOutput(outputs: [loginOutput, Environment.instance.defaultOutput])
 
 		let view = TraktLoginViewController()
-		let presenter = TraktLoginiOSPresenter(view: view, interactor: interactor, output: outputs)
+		let presenter = TraktLoginDefaultPresenter(view: view, interactor: interactor, output: outputs)
 		let policyDecider = TraktTokenPolicyDecider(loginOutput: outputs, traktProvider: traktProvider)
 
 		view.presenter = presenter

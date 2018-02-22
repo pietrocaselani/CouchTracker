@@ -1,5 +1,6 @@
 import UIKit
 import Kingfisher
+import CouchTrackerCore
 
 final class ShowDetailsViewController: UIViewController, ShowDetailsView {
 	var presenter: ShowDetailsPresenter!

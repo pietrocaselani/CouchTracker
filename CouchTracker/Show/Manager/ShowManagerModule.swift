@@ -1,4 +1,5 @@
 import UIKit
+import CouchTrackerCore
 
 final class ShowManagerModule {
 	private init() {}
@@ -10,7 +11,7 @@ final class ShowManagerModule {
 		}
 
 		let dataSource = ShowManageriOSModuleSetup(show: show)
-		let presenter = ShowManageriOSPresenter(view: showManagerView, dataSource: dataSource)
+		let presenter = ShowManagerDefaultPresenter(view: showManagerView, dataSource: dataSource)
 
 		showManagerView.presenter = presenter
 

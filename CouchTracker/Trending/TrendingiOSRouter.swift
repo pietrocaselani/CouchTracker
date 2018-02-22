@@ -1,6 +1,7 @@
 import UIKit
 import TraktSwift
 import RxSwift
+import CouchTrackerCore
 
 final class TrendingiOSRouter: TrendingRouter {
 	private weak var viewController: UIViewController?

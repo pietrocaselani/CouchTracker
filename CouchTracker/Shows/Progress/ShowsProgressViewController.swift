@@ -2,6 +2,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import ActionSheetPicker_3_0
+import CouchTrackerCore
 
 final class ShowsProgressViewController: UIViewController, ShowsProgressView {
 	var presenter: ShowsProgressPresenter!

@@ -21,11 +21,27 @@ def tests_shared_pods
   pod 'RxTest', '4.0.0'
 end
 
-target 'CouchTrackerFastTests' do
+target 'CouchTrackerCore' do
   platform :osx, '10.11'
   use_frameworks!
   inhibit_all_warnings!
-  
+
+  common_pods
+end
+
+target 'CouchTrackerCore-iOS' do
+  platform :ios, '10.0'
+  use_frameworks!
+  inhibit_all_warnings!
+
+  common_pods
+end
+
+target 'CouchTrackerCoreTests' do
+  platform :osx, '10.11'
+  use_frameworks!
+  inhibit_all_warnings!
+
   common_pods
   tests_shared_pods
 end
@@ -36,9 +52,4 @@ target 'CouchTracker' do
   inhibit_all_warnings!
 
   ios_pods
-
-  target 'CouchTrackerTests' do
-    inherit! :search_paths
-    tests_shared_pods
-  end
 end

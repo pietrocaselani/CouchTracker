@@ -1,5 +1,6 @@
 import Tabman
 import Pageboy
+import CouchTrackerCore
 
 final class MoviesManagerViewController: TabmanViewController, MoviesManagerView {
 	var presenter: MoviesManagerPresenter!
@@ -26,7 +27,7 @@ final class MoviesManagerViewController: TabmanViewController, MoviesManagerView
 		presenter.viewDidLoad()
 	}
 
-	func show(pages: [MovieManagerModulePage], withDefault index: Int) {
+	func show(pages: [ModulePage], withDefault index: Int) {
 		moduleViews = pages.map { $0.page }
 		defaultPageIndex = index
 

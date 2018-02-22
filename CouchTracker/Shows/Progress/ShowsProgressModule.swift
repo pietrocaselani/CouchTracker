@@ -1,4 +1,5 @@
 import UIKit
+import CouchTrackerCore
 
 final class ShowsProgressModule {
 	private init() {
@@ -38,7 +39,7 @@ final class ShowsProgressModule {
 																								appConfigurationsObservable: appConfigsObservable,
 																								hideSpecials: hideSpecials)
 		let interactor = ShowsProgressService(repository: repository, schedulers: schedulers)
-		let presenter = ShowsProgressiOSPresenter(view: view,
+		let presenter = ShowsProgressDefaultPresenter(view: view,
 																							interactor: interactor,
 																							viewDataSource: viewDataSource,
 																							router: router,
