@@ -35,7 +35,7 @@ final class ShowProgressMocks {
 		private let baseShowError: Error?
 		private let episode: Episode?
 		private let episodeError: Error?
-		private let trakt = traktProviderMock
+		private let trakt = createTraktProviderMock()
 
 		init(baseShow: BaseShow? = nil, baseShowError: Error? = nil, episode: Episode? = nil, episodeError: Error? = nil) {
 			self.baseShow = baseShow

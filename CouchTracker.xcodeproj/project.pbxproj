@@ -395,6 +395,7 @@
 		4F0F5947203D994500B86CB8 /* TestBuildConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F236DC7202CCD83007FB1B9 /* TestBuildConfig.swift */; };
 		4F0F5948203D994500B86CB8 /* TMDBEntitiesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9BABD8EC967502B827CF /* TMDBEntitiesMock.swift */; };
 		4F0F5949203D994500B86CB8 /* TraktLoginObservableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA651F752ED400EA3AD8 /* TraktLoginObservableMock.swift */; };
+		4F3EA3FB203FD83E008AE053 /* trakt_sync_removefromhistory.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F3EA3FA203FD83E008AE053 /* trakt_sync_removefromhistory.json */; };
 		4F6DC4152015476000AA0DC8 /* MoviesManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F6DC4142015476000AA0DC8 /* MoviesManager.storyboard */; };
 		4F8EE011202DDA460002189B /* trakt_episodes_summary_error.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F8EE010202DDA460002189B /* trakt_episodes_summary_error.json */; };
 		4F931544203CB34800631D4A /* trakt_sync_addtohistory.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F931543203CB34800631D4A /* trakt_sync_addtohistory.json */; };
@@ -402,6 +403,7 @@
 		4FC97A21203F166400C2B924 /* ShowProgressCellMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A20203F166400C2B924 /* ShowProgressCellMocks.swift */; };
 		4FC97A23203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A22203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift */; };
 		4FC97A25203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A24203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift */; };
+		4FC97A27203FD2AD00C2B924 /* ShowEpisodeMoyaNetworkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A26203FD2AD00C2B924 /* ShowEpisodeMoyaNetworkTest.swift */; };
 		4FDBB663203E9FDA00448A60 /* ShowProgressCellServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDBB662203E9FDA00448A60 /* ShowProgressCellServiceTest.swift */; };
 		640373111FABA80E005023D5 /* trakt_movies_trending.json in Resources */ = {isa = PBXBuildFile; fileRef = 640373101FABA80E005023D5 /* trakt_movies_trending.json */; };
 		640373131FABA8CD005023D5 /* trakt_movies_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 640373121FABA8CD005023D5 /* trakt_movies_summary.json */; };
@@ -541,6 +543,7 @@
 		4F236DC3202CB9C5007FB1B9 /* DefaultBuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBuildConfig.swift; sourceTree = "<group>"; };
 		4F236DC7202CCD83007FB1B9 /* TestBuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBuildConfig.swift; sourceTree = "<group>"; };
 		4F236DCA202CD36E007FB1B9 /* ShowProgressAPIRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressAPIRepositoryTest.swift; sourceTree = "<group>"; };
+		4F3EA3FA203FD83E008AE053 /* trakt_sync_removefromhistory.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_sync_removefromhistory.json; sourceTree = "<group>"; };
 		4F562E05202E7A3400CB1AE0 /* WatchedEpisodeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedEpisodeEntity.swift; sourceTree = "<group>"; };
 		4F562E09202E7A4300CB1AE0 /* WatchedSeasonEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedSeasonEntity.swift; sourceTree = "<group>"; };
 		4F6097DB203B40DB006A2B33 /* AppConfigurationsStateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsStateTest.swift; sourceTree = "<group>"; };
@@ -568,6 +571,7 @@
 		4FC97A20203F166400C2B924 /* ShowProgressCellMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellMocks.swift; sourceTree = "<group>"; };
 		4FC97A22203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeDefaultPresenterTest.swift; sourceTree = "<group>"; };
 		4FC97A24203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeiOSRouter.swift; sourceTree = "<group>"; };
+		4FC97A26203FD2AD00C2B924 /* ShowEpisodeMoyaNetworkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeMoyaNetworkTest.swift; sourceTree = "<group>"; };
 		4FD27A3B201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCacheRepositoryTest.swift; sourceTree = "<group>"; };
 		4FDBB662203E9FDA00448A60 /* ShowProgressCellServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellServiceTest.swift; sourceTree = "<group>"; };
 		4FE42FB4203B94B80001FF1F /* ShowProgressSortTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressSortTest.swift; sourceTree = "<group>"; };
@@ -1315,6 +1319,7 @@
 				4F931540203CAADF00631D4A /* ShowEpisodeAPIRepositoryTest.swift */,
 				4FC97A22203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift */,
 				4F8EE017202E16EF0002189B /* ShowEpisodeMocks.swift */,
+				4FC97A26203FD2AD00C2B924 /* ShowEpisodeMoyaNetworkTest.swift */,
 				4F8EE014202E164D0002189B /* ShowEpisodeServiceTest.swift */,
 			);
 			path = Episode;
@@ -1726,6 +1731,7 @@
 				6448372B2023C402008ECE2B /* trakt_shows_watchedprogress_without_nextepisode.json */,
 				64B801C21FA79362004A6EEE /* trakt_shows_watchedprogress.json */,
 				4F931543203CB34800631D4A /* trakt_sync_addtohistory.json */,
+				4F3EA3FA203FD83E008AE053 /* trakt_sync_removefromhistory.json */,
 				6488301F1FB2250C00BB217D /* trakt_sync_watched_shows.json */,
 				392D9C154DB74E65A233F9C3 /* trakt_users_settings_invalid.json */,
 				64B801C91FA79363004A6EEE /* trakt_users_settings.json */,
@@ -2196,6 +2202,7 @@
 				64B801D91FA79369004A6EEE /* trakt_shows_watchedprogress.json in Resources */,
 				64B801D81FA79369004A6EEE /* trakt_shows_trending.json in Resources */,
 				64B801D71FA79369004A6EEE /* trakt_shows_summary.json in Resources */,
+				4F3EA3FB203FD83E008AE053 /* trakt_sync_removefromhistory.json in Resources */,
 				640373111FABA80E005023D5 /* trakt_movies_trending.json in Resources */,
 				64B801D41FA79369004A6EEE /* trakt_genres_movies.json in Resources */,
 				64B801DB1FA79369004A6EEE /* trakt_users_settings.json in Resources */,
@@ -2677,6 +2684,7 @@
 				4F0F57F3203D61B300B86CB8 /* ShowsProgressMocks.swift in Sources */,
 				4F0F57F4203D61B300B86CB8 /* ShowsProgressServiceTest.swift in Sources */,
 				4F0F5943203D990E00B86CB8 /* GenreRepositoryMock.swift in Sources */,
+				4FC97A27203FD2AD00C2B924 /* ShowEpisodeMoyaNetworkTest.swift in Sources */,
 				4F0F57F5203D61B300B86CB8 /* ShowsProgressPresenterTest.swift in Sources */,
 				4F0F57F6203D61B300B86CB8 /* ShowsProgressRealmDataSourceTest.swift in Sources */,
 				4F0F57F7203D61B300B86CB8 /* ShowProgressFilterTest.swift in Sources */,

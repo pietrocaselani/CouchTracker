@@ -139,7 +139,7 @@ final class ShowEpisodeMocks {
 		func removeFromHistory(items: SyncItems) -> Single<SyncResponse> {
 			removeFromHistoryInvoked = true
 			return Single.deferred { () -> Single<SyncResponse> in
-				let syncResponse: SyncResponse = TraktEntitiesMock.decodeTraktJSON(with: "trakt_sync_addtohistory")
+				let syncResponse: SyncResponse = TraktEntitiesMock.decodeTraktJSON(with: "trakt_sync_removefromhistory")
 				return Single.just(syncResponse)
 			}
 		}

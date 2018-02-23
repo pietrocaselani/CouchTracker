@@ -1,5 +1,5 @@
 {
-  "added": {
+  "deleted": {
     "movies": 2,
     "episodes": 72
   },
@@ -9,12 +9,16 @@
         "ids": {
           "imdb": "tt0000111",
           "slug": "Cool",
-          "trakt": 321
+          "trakt": 123
         }
       }
     ],
     "shows": [],
     "seasons": [],
-    "episodes": []
+    "episodes": [],
+    "ids": [
+      23,
+      42
+    ]
   }
 }

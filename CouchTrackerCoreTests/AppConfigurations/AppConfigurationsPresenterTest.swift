@@ -33,7 +33,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 	private func setupModule(error: Error) {
 		view = AppConfigurationsViewMock()
 		router = AppConfigurationsRouterMock()
-		let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users, isEmpty: true)
+		let repository = AppConfigurationsRepositoryMock(usersProvider: createTraktProviderMock().users, isEmpty: true)
 		let output = AppConfigurationsMock.AppConfigurationsOutputMock()
 		let interactor = AppConfigurationsInteractorErrorMock(repository: repository, output: output)
 		interactor.error = error
@@ -43,7 +43,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 	private func setupModule(empty: Bool = false) {
 		view = AppConfigurationsViewMock()
 		router = AppConfigurationsRouterMock()
-		let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users, isEmpty: empty)
+		let repository = AppConfigurationsRepositoryMock(usersProvider: createTraktProviderMock().users, isEmpty: empty)
 		let output = AppConfigurationsMock.AppConfigurationsOutputMock()
 		interactor = AppConfigurationsInteractorMock(repository: repository, output: output)
 		presenter = AppConfigurationsDefaultPresenter(view: view, interactor: interactor, router: router)

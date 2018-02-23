@@ -14,7 +14,7 @@ final class ShowsProgressServiceTest: XCTestCase {
 
 		observer = scheduler.createObserver([WatchedShowEntity].self)
 
-		repository = ShowsProgressMocks.ShowsProgressRepositoryMock(trakt: traktProviderMock)
+		repository = ShowsProgressMocks.ShowsProgressRepositoryMock(trakt: createTraktProviderMock())
 	}
 
 	func testShowsProgressService_fetchWatchedProgress() {
