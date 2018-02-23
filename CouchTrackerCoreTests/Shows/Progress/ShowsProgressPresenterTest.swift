@@ -4,7 +4,7 @@ import XCTest
 final class ShowsProgressDefaultPresenterTest: XCTestCase {
 	private let view = ShowsProgressMocks.ShowsProgressViewMock()
 	private let router = ShowsProgressMocks.ShowsProgressRouterMock()
-	private let repository = ShowsProgressMocks.ShowsProgressRepositoryMock(trakt: traktProviderMock)
+	private let repository = ShowsProgressMocks.ShowsProgressRepositoryMock(trakt: createTraktProviderMock())
 	private let dataSource = ShowsProgressMocks.ShowProgressViewDataSourceMock()
 
 	func testShowsProgressPresenter_receivesEmptyData_notifyView() {

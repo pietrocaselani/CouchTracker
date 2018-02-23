@@ -8,7 +8,7 @@ final class ShowDetailsRepositoryTest: XCTestCase {
 	private let scheduler = TestSchedulers()
 
 	func testFetchDetails_emitsMockData() {
-		let repository = ShowDetailsAPIRepository(traktProvider: traktProviderMock, schedulers: scheduler)
+		let repository = ShowDetailsAPIRepository(traktProvider: createTraktProviderMock(), schedulers: scheduler)
 
 		let testExpectation = expectation(description: "Expect full game of thones data")
 

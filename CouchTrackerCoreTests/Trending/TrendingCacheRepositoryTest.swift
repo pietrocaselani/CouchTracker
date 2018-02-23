@@ -16,7 +16,7 @@ final class TrendingCacheRepositoryTest: XCTestCase {
 
 		moviesObserver = scheduler.createObserver([TrendingMovie].self)
 		showsObserver = scheduler.createObserver([TrendingShow].self)
-		repository = TrendingCacheRepository(traktProvider: traktProviderMock, schedulers: scheduler)
+		repository = TrendingCacheRepository(traktProvider: createTraktProviderMock(), schedulers: scheduler)
 	}
 
 	func testFetchMoviesEmitMoviesAndComplete() {
