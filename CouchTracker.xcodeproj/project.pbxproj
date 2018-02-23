@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1CF0D4AEF531F0F34FFBA1FB /* Pods_CouchTrackerCore_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5CC049881D7DBD7F196037 /* Pods_CouchTrackerCore_iOS.framework */; };
-		258B0D6D4950307F743A995F /* Pods_CouchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FA5E5D147F9088F5D88235F /* Pods_CouchTracker.framework */; };
 		392D91732CA7FDA4E71A3230 /* trakt_users_settings_invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 392D9C154DB74E65A233F9C3 /* trakt_users_settings_invalid.json */; };
 		4F0F5705203D5F4C00B86CB8 /* CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F56FC203D5F4C00B86CB8 /* CouchTrackerCore.framework */; };
 		4F0F570C203D5F4D00B86CB8 /* CouchTrackerCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F0F56FE203D5F4C00B86CB8 /* CouchTrackerCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -395,6 +394,8 @@
 		4F0F5947203D994500B86CB8 /* TestBuildConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F236DC7202CCD83007FB1B9 /* TestBuildConfig.swift */; };
 		4F0F5948203D994500B86CB8 /* TMDBEntitiesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D9BABD8EC967502B827CF /* TMDBEntitiesMock.swift */; };
 		4F0F5949203D994500B86CB8 /* TraktLoginObservableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA651F752ED400EA3AD8 /* TraktLoginObservableMock.swift */; };
+		4F2F0FD22040093700A76E95 /* CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F5858203D7A5B00B86CB8 /* CouchTrackerCore.framework */; };
+		4F2F0FD32040093700A76E95 /* CouchTrackerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F5858203D7A5B00B86CB8 /* CouchTrackerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F3EA3FB203FD83E008AE053 /* trakt_sync_removefromhistory.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F3EA3FA203FD83E008AE053 /* trakt_sync_removefromhistory.json */; };
 		4F6DC4152015476000AA0DC8 /* MoviesManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F6DC4142015476000AA0DC8 /* MoviesManager.storyboard */; };
 		4F8EE011202DDA460002189B /* trakt_episodes_summary_error.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F8EE010202DDA460002189B /* trakt_episodes_summary_error.json */; };
@@ -473,7 +474,7 @@
 			remoteGlobalIDString = 641D49C3202356AA002A4EAD;
 			remoteInfo = TVDBTestsResources;
 		};
-		4F0F591D203D81AD00B86CB8 /* PBXContainerItemProxy */ = {
+		4F2F0FD42040093700A76E95 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 647632311F44824900F277F1 /* Project object */;
 			proxyType = 1;
@@ -489,6 +490,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				4F2F0FD32040093700A76E95 /* CouchTrackerCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -880,8 +882,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6454D1811F704AC0008C4E5F /* WebKit.framework in Frameworks */,
+				4F2F0FD22040093700A76E95 /* CouchTrackerCore.framework in Frameworks */,
 				F23089BF675566CBB1950BC8 /* Pods_CouchTracker.framework in Frameworks */,
-				258B0D6D4950307F743A995F /* Pods_CouchTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2024,7 +2026,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				4F0F591E203D81AD00B86CB8 /* PBXTargetDependency */,
+				4F2F0FD52040093700A76E95 /* PBXTargetDependency */,
 			);
 			name = CouchTracker;
 			productName = CouchTracker;
@@ -2085,6 +2087,7 @@
 					};
 					4F0F5857203D7A5B00B86CB8 = {
 						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = B5RPM7SE3L;
 						ProvisioningStyle = Manual;
 					};
 					641D49C3202356AA002A4EAD = {
@@ -2967,10 +2970,10 @@
 			target = 641D49C3202356AA002A4EAD /* TVDBTestsResources */;
 			targetProxy = 4F0F581A203D6EB600B86CB8 /* PBXContainerItemProxy */;
 		};
-		4F0F591E203D81AD00B86CB8 /* PBXTargetDependency */ = {
+		4F2F0FD52040093700A76E95 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4F0F5857203D7A5B00B86CB8 /* CouchTrackerCore-iOS */;
-			targetProxy = 4F0F591D203D81AD00B86CB8 /* PBXContainerItemProxy */;
+			targetProxy = 4F2F0FD42040093700A76E95 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3141,12 +3144,12 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = B5RPM7SE3L;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -3179,12 +3182,12 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = B5RPM7SE3L;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
