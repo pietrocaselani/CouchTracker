@@ -3,12 +3,15 @@ import RxSwift
 public final class ShowEpisodeDefaultPresenter: ShowEpisodePresenter {
 	private weak var view: ShowEpisodeView?
 	private let interactor: ShowEpisodeInteractor
+	private let router: ShowEpisodeRouter
 	private var show: WatchedShowEntity
 	private let disposeBag = DisposeBag()
 
-	public init(view: ShowEpisodeView, interactor: ShowEpisodeInteractor, show: WatchedShowEntity) {
+	public init(view: ShowEpisodeView, interactor: ShowEpisodeInteractor,
+													router: ShowEpisodeRouter, show: WatchedShowEntity) {
 		self.view = view
 		self.interactor = interactor
+		self.router = router
 		self.show = show
 	}
 
@@ -23,12 +26,14 @@ public final class ShowEpisodeDefaultPresenter: ShowEpisodePresenter {
 			.observeOn(MainScheduler.instance)
 			.subscribe(onSuccess: { [unowned self] result in
 				if case .success(let newShow) = result {
-					self.updateShowEntity(using: newShow)
+					self.show = newShow
 					self.setupView()
 				} else if case .fail(let error) = result {
-					print(error)
+					self.router.showError(message: error.localizedDescription)
 				}
-			}).disposed(by: disposeBag)
+			}) { [unowned self] error in
+				self.router.showError(message: error.localizedDescription)
+		}.disposed(by: disposeBag)
 	}
 
 	private func setupView() {
@@ -46,16 +51,6 @@ public final class ShowEpisodeDefaultPresenter: ShowEpisodePresenter {
 			}).disposed(by: disposeBag)
 
 		view.show(viewModel: mapToViewModel(nextEpisode))
-	}
-
-	private func updateShowEntity(using newShow: WatchedShowEntity) {
-		let builder = show.newBuilder()
-		builder.nextEpisode = newShow.nextEpisode
-		builder.aired = newShow.aired
-		builder.completed = newShow.completed
-		builder.lastWatched = newShow.lastWatched
-
-		self.show = builder.build()
 	}
 
 	private func mapToViewModel(_ episode: EpisodeEntity) -> ShowEpisodeViewModel {

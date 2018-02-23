@@ -400,6 +400,8 @@
 		4F931544203CB34800631D4A /* trakt_sync_addtohistory.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F931543203CB34800631D4A /* trakt_sync_addtohistory.json */; };
 		4FC97A1F203F163300C2B924 /* ShowProgressCellDefaultPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A1E203F163300C2B924 /* ShowProgressCellDefaultPresenterTest.swift */; };
 		4FC97A21203F166400C2B924 /* ShowProgressCellMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A20203F166400C2B924 /* ShowProgressCellMocks.swift */; };
+		4FC97A23203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A22203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift */; };
+		4FC97A25203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A24203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift */; };
 		4FDBB663203E9FDA00448A60 /* ShowProgressCellServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDBB662203E9FDA00448A60 /* ShowProgressCellServiceTest.swift */; };
 		640373111FABA80E005023D5 /* trakt_movies_trending.json in Resources */ = {isa = PBXBuildFile; fileRef = 640373101FABA80E005023D5 /* trakt_movies_trending.json */; };
 		640373131FABA8CD005023D5 /* trakt_movies_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 640373121FABA8CD005023D5 /* trakt_movies_summary.json */; };
@@ -564,6 +566,8 @@
 		4FA0C76120326DBA008656B7 /* AppConfigurationsStoreTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsStoreTest.swift; sourceTree = "<group>"; };
 		4FC97A1E203F163300C2B924 /* ShowProgressCellDefaultPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellDefaultPresenterTest.swift; sourceTree = "<group>"; };
 		4FC97A20203F166400C2B924 /* ShowProgressCellMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellMocks.swift; sourceTree = "<group>"; };
+		4FC97A22203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeDefaultPresenterTest.swift; sourceTree = "<group>"; };
+		4FC97A24203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeiOSRouter.swift; sourceTree = "<group>"; };
 		4FD27A3B201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCacheRepositoryTest.swift; sourceTree = "<group>"; };
 		4FDBB662203E9FDA00448A60 /* ShowProgressCellServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellServiceTest.swift; sourceTree = "<group>"; };
 		4FE42FB4203B94B80001FF1F /* ShowProgressSortTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressSortTest.swift; sourceTree = "<group>"; };
@@ -1309,9 +1313,9 @@
 			isa = PBXGroup;
 			children = (
 				4F931540203CAADF00631D4A /* ShowEpisodeAPIRepositoryTest.swift */,
+				4FC97A22203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift */,
 				4F8EE017202E16EF0002189B /* ShowEpisodeMocks.swift */,
 				4F8EE014202E164D0002189B /* ShowEpisodeServiceTest.swift */,
-				4F931545203CD45F00631D4A /* ShowsProgressMoyaNetworkTest.swift */,
 			);
 			path = Episode;
 			sourceTree = "<group>";
@@ -1400,6 +1404,7 @@
 			isa = PBXGroup;
 			children = (
 				6434C3A21F836762009B5A9F /* ShowEpisode.storyboard */,
+				4FC97A24203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift */,
 				641B9D391F7D7AB300C26D10 /* ShowEpisodeModule.swift */,
 				6434C3A41F83678C009B5A9F /* ShowEpisodeViewController.swift */,
 			);
@@ -1453,13 +1458,14 @@
 			isa = PBXGroup;
 			children = (
 				4FDBB661203E9FBC00448A60 /* Cell */,
-				6434CA6A1F75347D00EA3AD8 /* ShowsProgressAPIRepositoryTest.swift */,
-				6434CA8F1F757AE900EA3AD8 /* ShowsProgressMocks.swift */,
-				64CCE33F1F7AD2A300CD2B9C /* ShowsProgressServiceTest.swift */,
-				646896301F7BFECB00F95649 /* ShowsProgressPresenterTest.swift */,
-				392D92E09E0D2FA6A0EB4810 /* ShowsProgressRealmDataSourceTest.swift */,
 				4F6097DE203B429A006A2B33 /* ShowProgressFilterTest.swift */,
 				4FE42FB4203B94B80001FF1F /* ShowProgressSortTest.swift */,
+				6434CA6A1F75347D00EA3AD8 /* ShowsProgressAPIRepositoryTest.swift */,
+				6434CA8F1F757AE900EA3AD8 /* ShowsProgressMocks.swift */,
+				4F931545203CD45F00631D4A /* ShowsProgressMoyaNetworkTest.swift */,
+				646896301F7BFECB00F95649 /* ShowsProgressPresenterTest.swift */,
+				392D92E09E0D2FA6A0EB4810 /* ShowsProgressRealmDataSourceTest.swift */,
+				64CCE33F1F7AD2A300CD2B9C /* ShowsProgressServiceTest.swift */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -2643,6 +2649,7 @@
 				4F0F5949203D994500B86CB8 /* TraktLoginObservableMock.swift in Sources */,
 				4F0F5944203D991A00B86CB8 /* TraktEntitiesMock.swift in Sources */,
 				4FC97A1F203F163300C2B924 /* ShowProgressCellDefaultPresenterTest.swift in Sources */,
+				4FC97A23203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift in Sources */,
 				4F0F57DB203D61B300B86CB8 /* MovieDetailsInteractorTest.swift in Sources */,
 				4F0F57DC203D61B300B86CB8 /* MovieDetailsMocks.swift in Sources */,
 				4F0F57DD203D61B300B86CB8 /* MovieDetailsPresenterTest.swift in Sources */,
@@ -2887,6 +2894,7 @@
 				4F0F5838203D779A00B86CB8 /* ShowOverviewModule.swift in Sources */,
 				4F0F5839203D779A00B86CB8 /* ShowSeasonsModule.swift in Sources */,
 				4F0F583A203D779A00B86CB8 /* ShowDetailsModule.swift in Sources */,
+				4FC97A25203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift in Sources */,
 				4F0F583B203D779A00B86CB8 /* ShowDetailsViewController.swift in Sources */,
 				4F0F583C203D779A00B86CB8 /* ShowDetailsiOSRouter.swift in Sources */,
 				4F0F583D203D779A00B86CB8 /* ShowsManageriOSCreator.swift in Sources */,
