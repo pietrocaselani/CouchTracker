@@ -6,14 +6,20 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 	private let router = ShowsProgressMocks.ShowsProgressRouterMock()
 	private let repository = ShowsProgressMocks.ShowsProgressRepositoryMock(trakt: createTraktProviderMock())
 	private let dataSource = ShowsProgressMocks.ShowProgressViewDataSourceMock()
+	private var interactor: ShowsProgressInteractor!
+	private var presenter: ShowsProgressDefaultPresenter!
+	private var loginObservable: TraktLoginObservableMock!
+
+	private func setupPresenter(_ loginState: TraktLoginState) {
+		loginObservable = TraktLoginObservableMock(state: loginState)
+
+		presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+	}
 
 	func testShowsProgressPresenter_receivesEmptyData_notifyView() {
 		//Given
-		let loginState = TraktLoginState.logged
-		let loginObservable = TraktLoginObservableMock(state: loginState)
-
-		let interactor = ShowsProgressMocks.EmptyShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
-		let presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+		interactor = ShowsProgressMocks.EmptyShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.logged)
 
 		//When
 		presenter.viewDidLoad()
@@ -33,11 +39,8 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressPresenter_receivesData_notifyView() {
 		//Given
-		let loginState = TraktLoginState.logged
-		let loginObservable = TraktLoginObservableMock(state: loginState)
-
-		let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
-		let presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.logged)
 
 		//When
 		presenter.viewDidLoad()
@@ -57,11 +60,8 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressPresenter_forceUpdate_reloadView() {
 		//Given
-		let loginState = TraktLoginState.logged
-		let loginObservable = TraktLoginObservableMock(state: loginState)
-
-		let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
-		let presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.logged)
 		presenter.viewDidLoad()
 
 		//When
@@ -83,11 +83,8 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressPresenter_notLoggedOnTrakt_notifyView() {
 		//Given
-		let loginState = TraktLoginState.notLogged
-		let loginObservable = TraktLoginObservableMock(state: loginState)
-
-		let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
-		let presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.notLogged)
 
 		//When
 		presenter.viewDidLoad()
@@ -102,11 +99,8 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressPresenter_receivesNotLoggedEvent_updateView() {
 		//Given
-		let loginState = TraktLoginState.logged
-		let loginObservable = TraktLoginObservableMock(state: loginState)
-
-		let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
-		let presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.logged)
 
 		presenter.viewDidLoad()
 
@@ -126,4 +120,15 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 		wait(for: [viewExpectation], timeout: 5)
 	}
+
+//	func testShowsProgressDefaultPresenter_handleFilter_notifyView() {
+//		//Given
+//		let loginState = TraktLoginState.logged
+//		let loginObservable = TraktLoginObservableMock(state: loginState)
+//
+//		let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+//		let presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+//
+//		presenter.viewDidLoad()
+//	}
 }
