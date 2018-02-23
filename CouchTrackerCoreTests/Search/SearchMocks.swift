@@ -98,7 +98,7 @@ final class SearchRepositoryAPIStubMock: SearchRepository {
 	private let searchProvider: MoyaProvider<Search>
 
 	init() {
-		searchProvider = traktProviderMock.search
+		searchProvider = createTraktProviderMock().search
 	}
 
 	func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]> {

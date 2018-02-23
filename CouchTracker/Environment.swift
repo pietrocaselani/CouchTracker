@@ -29,25 +29,25 @@ final class Environment {
 
 		let debug: Bool
 
+		var plugins = [PluginType]()
+
 		#if DEBUG
 			debug = true
+
+			plugins.append(NetworkLoggerPlugin())
+
+			let traktClientId = Secrets.Trakt.clientId.isEmpty
+			let tmdbAPIKey = Secrets.TMDB.apiKey.isEmpty
+			let tvdbAPIKey = Secrets.TVDB.apiKey.isEmpty
+
+			if traktClientId || tmdbAPIKey || tvdbAPIKey {
+				Swift.fatalError("One or more API keys are empty. Check the class Secrets.swift")
+			}
 		#else
 			debug = false
 		#endif
 
 		self.buildConfig = DefaultBuildConfig(debug: debug)
-
-		var plugins = [PluginType]()
-
-		if debug {
-			plugins = [NetworkLoggerPlugin()]
-
-			guard let docsDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
-				Swift.fatalError("Can't find documents directory")
-			}
-
-			print("Documents directory: \(docsDir)")
-		}
 
 		let traktBuilder = TraktBuilder {
 			$0.clientId = Secrets.Trakt.clientId

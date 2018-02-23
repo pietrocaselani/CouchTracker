@@ -6,7 +6,7 @@ final class TraktTokenPolicyDeciderTest: XCTestCase {
 	private var policyDecider: TraktLoginPolicyDecider!
 	private let request = URLRequest(url: URL(string: "couchtracker://my_awesome_url")!)
 
-	func setupPolicyDecider(_ traktProvider: TraktProvider = traktProviderMock) {
+	func setupPolicyDecider(_ traktProvider: TraktProvider = createTraktProviderMock()) {
 		policyDecider = TraktTokenPolicyDecider(loginOutput: output, traktProvider: traktProvider)
 	}
 

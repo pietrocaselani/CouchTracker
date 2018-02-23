@@ -2,16 +2,18 @@ import UIKit
 import CouchTrackerCore
 
 final class AppConfigurationsiOSRouter: AppConfigurationsRouter {
-	private let viewController: UIViewController
+	private weak var viewController: UIViewController?
 
 	init(viewController: UIViewController) {
 		self.viewController = viewController
 	}
 
 	func showTraktLogin(output: TraktLoginOutput) {
-		guard let navigationController = viewController.navigationController else { return }
+		guard let view = viewController else { return }
 
-		let popviewControllerOutput = PopNavigationControllerOutput(viewController: viewController)
+		guard let navigationController = view.navigationController else { return }
+
+		let popviewControllerOutput = PopNavigationControllerOutput(viewController: view)
 
 		let outputs = CompositeLoginOutput(outputs: [popviewControllerOutput, output])
 
@@ -25,13 +27,15 @@ final class AppConfigurationsiOSRouter: AppConfigurationsRouter {
 	}
 
 	func showError(message: String) {
+		guard let view = viewController else { return }
+
 		let errorAlert = UIAlertController.createErrorAlert(message: message)
-		viewController.present(errorAlert, animated: true)
+		view.present(errorAlert, animated: true)
 	}
 }
 
 private class PopNavigationControllerOutput: TraktLoginOutput {
-	private let viewController: UIViewController
+	private weak var viewController: UIViewController?
 
 	init(viewController: UIViewController) {
 		self.viewController = viewController
@@ -46,6 +50,6 @@ private class PopNavigationControllerOutput: TraktLoginOutput {
 	}
 
 	private func popViewController() {
-		viewController.navigationController?.popViewController(animated: true)
+		viewController?.navigationController?.popViewController(animated: true)
 	}
 }

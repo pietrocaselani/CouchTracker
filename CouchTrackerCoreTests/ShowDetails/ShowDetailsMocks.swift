@@ -2,16 +2,16 @@ import RxSwift
 import TraktSwift
 @testable import CouchTrackerCore
 
-let showDetailsRepositoryMock = ShowDetailsRepositoryMock(traktProvider: traktProviderMock)
+let showDetailsRepositoryMock = ShowDetailsRepositoryMock(traktProvider: createTraktProviderMock())
 
 final class ShowDetailsRepositoryErrorMock: ShowDetailsRepository {
 	private let error: Error
 
-	init(traktProvider: TraktProvider = traktProviderMock) {
+	init(traktProvider: TraktProvider = createTraktProviderMock()) {
 		self.error = NSError(domain: "io.github.pietrocaselani", code: 120)
 	}
 
-	init(traktProvider: TraktProvider = traktProviderMock, error: Error) {
+	init(traktProvider: TraktProvider = createTraktProviderMock(), error: Error) {
 		self.error = error
 	}
 

@@ -20,8 +20,12 @@ public protocol ShowEpisodeInteractor: class {
 	func toggleWatch(for episode: EpisodeEntity, of show: WatchedShowEntity) -> Single<SyncResult>
 }
 
+public protocol ShowEpisodeRouter: class {
+	func showError(message: String)
+}
+
 public protocol ShowEpisodePresenter: class {
-	init(view: ShowEpisodeView, interactor: ShowEpisodeInteractor, show: WatchedShowEntity)
+	init(view: ShowEpisodeView, interactor: ShowEpisodeInteractor, router: ShowEpisodeRouter, show: WatchedShowEntity)
 
 	func viewDidLoad()
 	func handleWatch()

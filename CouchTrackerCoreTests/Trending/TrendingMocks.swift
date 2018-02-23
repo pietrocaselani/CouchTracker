@@ -3,7 +3,7 @@ import RxSwift
 import TraktSwift
 @testable import CouchTrackerCore
 
-let trendingRepositoryMock = TrendingRepositoryMock(traktProvider: traktProviderMock)
+let trendingRepositoryMock = TrendingRepositoryMock(traktProvider: createTraktProviderMock())
 
 final class TrendingViewMock: TrendingView {
 	var appConfigurationsPresentable: AppConfigurationsPresentable!
