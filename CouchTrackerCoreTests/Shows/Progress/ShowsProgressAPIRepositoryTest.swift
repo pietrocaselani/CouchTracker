@@ -15,11 +15,11 @@ final class ShowsProgressAPIRepositoryTest: XCTestCase {
 		let appConfigsObservable = AppConfigurationsMock.AppConfigurationsObservableMock()
 		let network = ShowsProgressMocks.ShowsProgressNetworkMock()
 		let repository = ShowsProgressAPIRepository(network: network,
-	dataSource: dataSource,
-	schedulers: schedulers,
-	showProgressRepository: showProgressRepository,
-	appConfigurationsObservable: appConfigsObservable,
-	hideSpecials: false)
+																																														dataSource: dataSource,
+																																														schedulers: schedulers,
+																																														showProgressRepository: showProgressRepository,
+																																														appConfigurationsObservable: appConfigsObservable,
+																																														hideSpecials: false)
 		let observer = schedulers.createObserver([WatchedShowEntity].self)
 
 		//When
@@ -31,8 +31,8 @@ final class ShowsProgressAPIRepositoryTest: XCTestCase {
 		let expectedEvents = [next(0, [WatchedShowEntity]()), next(6, [expectedShow])]
 
 		RXAssertEvents(observer.events, expectedEvents)
-	XCTAssertTrue(dataSource.fetchWatchedShowsInvoked)
-	XCTAssertTrue(dataSource.addWatchedShowInvoked)
+		XCTAssertTrue(dataSource.fetchWatchedShowsInvoked)
+		XCTAssertTrue(dataSource.addWatchedShowInvoked)
 		XCTAssertEqual([expectedShow], dataSource.addedEntities)
 	}
 

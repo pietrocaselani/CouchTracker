@@ -6,7 +6,8 @@ import RxSwift
 final class ShowsProgressMoyaNetworkTest: XCTestCase {
 	func testShowsProgressMoyaNetwork_shouldRequest() {
 		//Given
-		let network = ShowsProgressMoyaNetwork(trakt: traktProviderMock)
+		let trakt = createTraktProviderMock()
+		let network = ShowsProgressMoyaNetwork(trakt: trakt)
 
 		//When
 		let single: Single<[BaseShow]> = network.fetchWatchedShows(extended: Extended.full)
@@ -17,7 +18,7 @@ final class ShowsProgressMoyaNetworkTest: XCTestCase {
 		_ = single.subscribe(onSuccess: { shows in
 			testExpectation.fulfill()
 			
-			let provider = traktProviderMock.sync as! MoyaProviderMock
+			let provider = trakt.sync as! MoyaProviderMock
 
 			XCTAssertFalse(shows.isEmpty)
 			XCTAssertTrue(provider.requestInvoked)

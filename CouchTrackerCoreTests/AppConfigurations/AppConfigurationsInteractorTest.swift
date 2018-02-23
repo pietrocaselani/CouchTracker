@@ -41,7 +41,7 @@ final class AppConfigurationsInteractorTest: XCTestCase {
 
 	func testAppConfigurationsInteractor_fetchUserFailure_emitsInitialState() {
 		//Given an empty repository
-		let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users, isEmpty: true)
+		let repository = AppConfigurationsRepositoryMock(usersProvider: createTraktProviderMock().users, isEmpty: true)
 		let output = AppConfigurationsMock.AppConfigurationsOutputMock()
 		let interactor = AppConfigurationsService(repository: repository, output: output)
 
@@ -58,7 +58,7 @@ final class AppConfigurationsInteractorTest: XCTestCase {
 
 	func testAppConfigurationsInteractor_fetchUser_emitsAppStateLogged() {
 		//Given a repository with token
-		let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users)
+		let repository = AppConfigurationsRepositoryMock(usersProvider: createTraktProviderMock().users)
 		let output = AppConfigurationsMock.AppConfigurationsOutputMock()
 		let interactor = AppConfigurationsService(repository: repository, output: output)
 
@@ -78,7 +78,7 @@ final class AppConfigurationsInteractorTest: XCTestCase {
 
 	func testAppConfigurationsInteractor_toggleHideSpecials_notifyRepository() {
 		//Given
-		let repository = AppConfigurationsRepositoryMock(usersProvider: traktProviderMock.users)
+		let repository = AppConfigurationsRepositoryMock(usersProvider: createTraktProviderMock().users)
 		let output = AppConfigurationsMock.AppConfigurationsOutputMock()
 		let interactor = AppConfigurationsService(repository: repository, output: output)
 

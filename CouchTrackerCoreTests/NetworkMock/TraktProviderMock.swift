@@ -3,7 +3,9 @@ import TraktSwift
 import RxSwift
 @testable import CouchTrackerCore
 
-let traktProviderMock = TraktProviderMock()
+func createTraktProviderMock() -> TraktProviderMock {
+	return TraktProviderMock()
+}
 
 final class TraktProviderMock: TraktProvider, TraktAuthenticationProvider {
 	private let error: Swift.Error?
