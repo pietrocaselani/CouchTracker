@@ -13,3 +13,11 @@
 "Settings"="Configurações";
 "short date format"="dd de MMM";
 "episodes remaining"="%@ remaining";
+"title" = "Título";
+"remaining" = "Restante";
+"lastWatched" = "Último visto";
+"releaseDate" = "Data de exibição";
+"none" = "Nenhum";
+"watched" = "Vistos";
+"returning" = "Exibição";
+"returningWatched" = "Exibição e vistos";

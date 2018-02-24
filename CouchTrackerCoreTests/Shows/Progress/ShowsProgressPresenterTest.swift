@@ -118,17 +118,35 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 			XCTAssertEqual(self.view.showErrorParameters, "You need to login on Trakt to access this content")
 		}
 
-		wait(for: [viewExpectation], timeout: 5)
+		wait(for: [viewExpectation], timeout: 1)
 	}
 
-//	func testShowsProgressDefaultPresenter_handleFilter_notifyView() {
-//		//Given
-//		let loginState = TraktLoginState.logged
-//		let loginObservable = TraktLoginObservableMock(state: loginState)
-//
-//		let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
-//		let presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
-//
-//		presenter.viewDidLoad()
-//	}
+	func testShowsProgressDefaultPresenter_handleFilter_notifyView() {
+		//Given
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.logged)
+		presenter.viewDidLoad()
+
+		//When
+		presenter.handleFilter()
+
+		//Then
+		let testExpectation = expectation(description: "Should show options")
+
+		DispatchQueue.main.async {
+			testExpectation.fulfill()
+			XCTAssertTrue(self.view.showOptionsInvoked)
+			guard let parameters = self.view.showOptionsParameters else {
+				XCTFail()
+				return
+			}
+
+			XCTAssertEqual(parameters.currentFilter, 0)
+			XCTAssertEqual(parameters.currentSort, 0)
+			XCTAssertEqual(parameters.filtering, ["None", "Watched", "Returning", "Returning and watched"])
+			XCTAssertEqual(parameters.sorting, ["Title", "Remaining", "Last watched", "Release date"])
+		}
+
+		wait(for: [testExpectation], timeout: 4)
+	}
 }

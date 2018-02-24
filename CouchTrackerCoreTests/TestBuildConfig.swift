@@ -1,4 +1,4 @@
-@testable import CouchTrackerCore
+import CouchTrackerCore
 
 struct TestBuildConfig: BuildConfig {
 	let debug: Bool = true
