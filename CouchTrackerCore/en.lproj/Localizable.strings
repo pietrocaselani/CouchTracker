@@ -13,3 +13,11 @@
 "Settings"="Settings";
 "short date format"="MMM dd";
 "episodes remaining"="%@ remaining";
+"title" = "Title";
+"remaining" = "Remaining";
+"lastWatched" = "Last watched";
+"releaseDate" = "Release date";
+"none" = "None";
+"watched" = "Watched";
+"returning" = "Returning";
+"returningWatched" = "Returning and watched";

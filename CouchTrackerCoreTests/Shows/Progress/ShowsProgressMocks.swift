@@ -93,9 +93,9 @@ final class ShowsProgressMocks {
 		private let trakt: TraktProvider
 		private let subject: BehaviorSubject<[WatchedShowEntity]>
 
-		init(trakt: TraktProvider) {
+		init(trakt: TraktProvider, value: [WatchedShowEntity] = [ShowsProgressMocks.mockWatchedShowEntity()]) {
 			self.trakt = trakt
-			subject = BehaviorSubject(value: [ShowsProgressMocks.mockWatchedShowEntity()])
+			subject = BehaviorSubject(value: value)
 		}
 
 		func fetchWatchedShows(extended: Extended) -> Observable<[WatchedShowEntity]> {
