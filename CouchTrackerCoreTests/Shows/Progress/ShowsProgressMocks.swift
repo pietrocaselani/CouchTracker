@@ -156,14 +156,25 @@ final class ShowsProgressMocks {
 	}
 
 	final class ShowsProgressInteractorMock: ShowsProgressInteractor {
+		var error: Error?
+		var empty = false
+
 		init(repository: ShowsProgressRepository, schedulers: Schedulers) {}
 
 		func fetchWatchedShowsProgress() -> Observable<[WatchedShowEntity]> {
-			let entity1 = ShowsProgressMocks.mockWatchedShowEntity()
-			let entity2 = ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode()
-			let entity3 = ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisodeDate()
+			if let error = error {
+				return Observable.error(error)
+			}
 
-			return Observable.just([entity1, entity2, entity3])
+			var entities = [WatchedShowEntity]()
+
+			if !empty {
+				entities.append(ShowsProgressMocks.mockWatchedShowEntity())
+				entities.append(ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
+				entities.append(ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisodeDate())
+			}
+
+			return Observable.just(entities)
 		}
 	}
 
@@ -206,8 +217,14 @@ final class ShowsProgressMocks {
 	}
 
 	final class ShowProgressViewDataSourceMock: ShowsProgressViewDataSource {
-		var viewModels = [WatchedShowViewModel]()
+
+		var viewModels = [WatchedShowViewModel]() {
+			didSet {
+				setViewModelInvoked = true
+			}
+		}
 		var updateInvoked = false
+		var setViewModelInvoked = false
 
 		func update() {
 			updateInvoked = true
