@@ -396,6 +396,8 @@
 		4F0F5949203D994500B86CB8 /* TraktLoginObservableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA651F752ED400EA3AD8 /* TraktLoginObservableMock.swift */; };
 		4F2F0FD22040093700A76E95 /* CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F5858203D7A5B00B86CB8 /* CouchTrackerCore.framework */; };
 		4F2F0FD32040093700A76E95 /* CouchTrackerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F5858203D7A5B00B86CB8 /* CouchTrackerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4F3E77E12041CD9C00A87072 /* WatchedShowEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E77E02041CD9C00A87072 /* WatchedShowEntityMapper.swift */; };
+		4F3E77E22041CD9C00A87072 /* WatchedShowEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E77E02041CD9C00A87072 /* WatchedShowEntityMapper.swift */; };
 		4F3EA3FB203FD83E008AE053 /* trakt_sync_removefromhistory.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F3EA3FA203FD83E008AE053 /* trakt_sync_removefromhistory.json */; };
 		4F6DC4152015476000AA0DC8 /* MoviesManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F6DC4142015476000AA0DC8 /* MoviesManager.storyboard */; };
 		4F778D0B2041192200FBCC2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64BE63231F4F692B002E55EA /* Localizable.strings */; };
@@ -551,6 +553,7 @@
 		4F236DC3202CB9C5007FB1B9 /* DefaultBuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBuildConfig.swift; sourceTree = "<group>"; };
 		4F236DC7202CCD83007FB1B9 /* TestBuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBuildConfig.swift; sourceTree = "<group>"; };
 		4F236DCA202CD36E007FB1B9 /* ShowProgressAPIRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressAPIRepositoryTest.swift; sourceTree = "<group>"; };
+		4F3E77E02041CD9C00A87072 /* WatchedShowEntityMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedShowEntityMapper.swift; sourceTree = "<group>"; };
 		4F3EA3FA203FD83E008AE053 /* trakt_sync_removefromhistory.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_sync_removefromhistory.json; sourceTree = "<group>"; };
 		4F562E05202E7A3400CB1AE0 /* WatchedEpisodeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedEpisodeEntity.swift; sourceTree = "<group>"; };
 		4F562E09202E7A4300CB1AE0 /* WatchedSeasonEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedSeasonEntity.swift; sourceTree = "<group>"; };
@@ -1294,6 +1297,7 @@
 				642F6F541F5D74F10012F04F /* ShowEntityMapper.swift */,
 				6483911A1F505F4100911BA0 /* TrendingMovieViewModelMapper.swift */,
 				644FCDDE1F5ED41F00346605 /* TrendingShowViewModelMapper.swift */,
+				4F3E77E02041CD9C00A87072 /* WatchedShowEntityMapper.swift */,
 			);
 			path = EntityMappers;
 			sourceTree = "<group>";
@@ -2652,6 +2656,7 @@
 				4F0F57BF203D5FA100B86CB8 /* TrendingDefaultPresenter.swift in Sources */,
 				4F0F57C3203D5FA100B86CB8 /* TrendingService.swift in Sources */,
 				4F0F57C6203D5FA100B86CB8 /* TrendingViewModel.swift in Sources */,
+				4F3E77E12041CD9C00A87072 /* WatchedShowEntityMapper.swift in Sources */,
 				4F0F57C8203D5FA100B86CB8 /* TVDB+APIProvider.swift in Sources */,
 				4F0F57C9203D5FA100B86CB8 /* CompositeLoginOutput.swift in Sources */,
 				4F0F57CA203D5FA100B86CB8 /* ImagesSize.swift in Sources */,
@@ -2872,6 +2877,7 @@
 				4F0F590F203D7B0A00B86CB8 /* TrendingDefaultPresenter.swift in Sources */,
 				4F0F5912203D7B0A00B86CB8 /* TrendingService.swift in Sources */,
 				4F0F5914203D7B0A00B86CB8 /* TrendingViewModel.swift in Sources */,
+				4F3E77E22041CD9C00A87072 /* WatchedShowEntityMapper.swift in Sources */,
 				4F0F5916203D7B0A00B86CB8 /* TVDB+APIProvider.swift in Sources */,
 				4F0F5917203D7B0A00B86CB8 /* CompositeLoginOutput.swift in Sources */,
 				4F0F5918203D7B0A00B86CB8 /* ImagesSize.swift in Sources */,

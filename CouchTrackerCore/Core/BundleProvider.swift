@@ -1,3 +1,5 @@
+import Foundation
+
 final class BundleProvider {
 	static let testing = NSClassFromString("XCTestCase") != nil
 
