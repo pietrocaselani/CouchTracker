@@ -6,14 +6,20 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 	private let router = ShowsProgressMocks.ShowsProgressRouterMock()
 	private let repository = ShowsProgressMocks.ShowsProgressRepositoryMock(trakt: createTraktProviderMock())
 	private let dataSource = ShowsProgressMocks.ShowProgressViewDataSourceMock()
+	private var interactor: ShowsProgressInteractor!
+	private var presenter: ShowsProgressDefaultPresenter!
+	private var loginObservable: TraktLoginObservableMock!
 
-	func testShowsProgressPresenter_receivesEmptyData_notifyView() {
+	private func setupPresenter(_ loginState: TraktLoginState) {
+		loginObservable = TraktLoginObservableMock(state: loginState)
+
+		presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+	}
+
+	func testShowsProgressPresenter_receivesNothing_notifyView() {
 		//Given
-		let loginState = TraktLoginState.logged
-		let loginObservable = TraktLoginObservableMock(state: loginState)
-
-		let interactor = ShowsProgressMocks.EmptyShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
-		let presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+		interactor = ShowsProgressMocks.EmptyShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.logged)
 
 		//When
 		presenter.viewDidLoad()
@@ -33,11 +39,8 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressPresenter_receivesData_notifyView() {
 		//Given
-		let loginState = TraktLoginState.logged
-		let loginObservable = TraktLoginObservableMock(state: loginState)
-
-		let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
-		let presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.logged)
 
 		//When
 		presenter.viewDidLoad()
@@ -57,11 +60,8 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressPresenter_forceUpdate_reloadView() {
 		//Given
-		let loginState = TraktLoginState.logged
-		let loginObservable = TraktLoginObservableMock(state: loginState)
-
-		let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
-		let presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.logged)
 		presenter.viewDidLoad()
 
 		//When
@@ -83,11 +83,8 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressPresenter_notLoggedOnTrakt_notifyView() {
 		//Given
-		let loginState = TraktLoginState.notLogged
-		let loginObservable = TraktLoginObservableMock(state: loginState)
-
-		let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
-		let presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.notLogged)
 
 		//When
 		presenter.viewDidLoad()
@@ -102,11 +99,8 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressPresenter_receivesNotLoggedEvent_updateView() {
 		//Given
-		let loginState = TraktLoginState.logged
-		let loginObservable = TraktLoginObservableMock(state: loginState)
-
-		let interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
-		let presenter = ShowsProgressDefaultPresenter(view: view, interactor: interactor, viewDataSource: dataSource, router: router, loginObservable: loginObservable)
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.logged)
 
 		presenter.viewDidLoad()
 
@@ -124,6 +118,171 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 			XCTAssertEqual(self.view.showErrorParameters, "You need to login on Trakt to access this content")
 		}
 
-		wait(for: [viewExpectation], timeout: 5)
+		wait(for: [viewExpectation], timeout: 1)
+	}
+
+	func testShowsProgressDefaultPresenter_handleFilter_notifyView() {
+		//Given
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.logged)
+		presenter.viewDidLoad()
+
+		//When
+		presenter.handleFilter()
+
+		//Then
+		let testExpectation = expectation(description: "Should show options")
+
+		DispatchQueue.main.async {
+			testExpectation.fulfill()
+			XCTAssertTrue(self.view.showOptionsInvoked)
+			guard let parameters = self.view.showOptionsParameters else {
+				XCTFail()
+				return
+			}
+
+			XCTAssertEqual(parameters.currentFilter, 0)
+			XCTAssertEqual(parameters.currentSort, 0)
+			XCTAssertEqual(parameters.filtering, ["None", "Watched", "Returning", "Returning and watched"])
+			XCTAssertEqual(parameters.sorting, ["Title", "Remaining", "Last watched", "Release date"])
+		}
+
+		wait(for: [testExpectation], timeout: 1)
+	}
+
+	func testShowsProgressDefaultPresenter_handleDirection_updateViewAndViewDataSource() {
+		//Given
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.logged)
+		presenter.viewDidLoad()
+
+		//When
+		presenter.handleDirection()
+
+		//Then
+		let testExpectation = expectation(description: "Should update view and data source")
+
+		DispatchQueue.main.async {
+			testExpectation.fulfill()
+			XCTAssertTrue(self.view.reloadListInvoked)
+			XCTAssertTrue(self.dataSource.setViewModelInvoked)
+
+			let entity1 = ShowsProgressMocks.mockWatchedShowEntity()
+			let entity2 = ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode()
+			let entity3 = ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisodeDate()
+
+			let viewModels = [entity1, entity2, entity3].map { WatchedShowEntityMapper.viewModel(for: $0) }
+
+			XCTAssertEqual(self.dataSource.viewModels, viewModels.reversed())
+		}
+
+		wait(for: [testExpectation], timeout: 1)
+	}
+
+	func testShowsProgressDefaultPresenter_changeSortAndFilter_updateViewAndViewDataSource() {
+		//Given
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.logged)
+		presenter.viewDidLoad()
+
+		//When
+		presenter.changeSort(to: 2, filter: 2)
+
+		//Then
+		let testExpectation = expectation(description: "Should update view and data source")
+
+		DispatchQueue.main.async {
+			testExpectation.fulfill()
+			XCTAssertTrue(self.view.reloadListInvoked)
+			XCTAssertTrue(self.dataSource.setViewModelInvoked)
+		}
+
+		wait(for: [testExpectation], timeout: 1)
+	}
+
+	func testShowsProgressDefaultPresenter_selectShow_notifyRouter() {
+		//Given
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.logged)
+		presenter.viewDidLoad()
+
+		let testExpectation = expectation(description: "Should notify router")
+
+		DispatchQueue.main.async {
+			testExpectation.fulfill()
+
+			//When
+			self.presenter.selectedShow(at: 1)
+
+			//Then
+			XCTAssertTrue(self.router.showTVShowInvoked)
+
+			guard let receivedShow = self.router.showTVShowParameter else {
+				XCTFail("Router parameter can't be nil")
+				return
+			}
+
+			let expectedEntity = ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode()
+
+			XCTAssertEqual(receivedShow, expectedEntity)
+		}
+
+		wait(for: [testExpectation], timeout: 1)
+	}
+
+	func testShowsProgressDefaultPresenter_receivesErrorFromInteractor_notifyViewAndDataSource() {
+		//Given
+		let errorInteractor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		let message = "Realm file is corrupted"
+		let userInfo = [NSLocalizedDescriptionKey: message]
+		errorInteractor.error = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 35, userInfo: userInfo)
+		interactor = errorInteractor
+		setupPresenter(TraktLoginState.logged)
+
+		//When
+		presenter.viewDidLoad()
+
+		//Then
+		let testExpectation = expectation(description: "Should notify view and data source")
+
+		DispatchQueue.main.async {
+			testExpectation.fulfill()
+
+			XCTAssertTrue(self.view.showErrorInvoked)
+			XCTAssertTrue(self.dataSource.updateInvoked)
+
+			guard let receivedMessage = self.view.showErrorParameters else {
+				XCTFail("Error message can't be nil")
+				return
+			}
+
+			XCTAssertEqual(receivedMessage, message)
+		}
+
+		wait(for: [testExpectation], timeout: 1)
+	}
+
+	func testShowsProgressDefaultPresenter_receivesEmptyData_notifyView() {
+		//Given
+		let emptyInteractor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		emptyInteractor.empty = true
+		interactor = emptyInteractor
+		setupPresenter(TraktLoginState.logged)
+
+		//When
+		presenter.viewDidLoad()
+
+		//Then
+		let testExpectation = expectation(description: "Should notify view and data source")
+
+		DispatchQueue.main.async {
+			testExpectation.fulfill()
+
+			XCTAssertTrue(self.view.showEmptyViewInvoked)
+			XCTAssertTrue(self.dataSource.setViewModelInvoked)
+			XCTAssertTrue(self.dataSource.viewModels.isEmpty)
+		}
+
+		wait(for: [testExpectation], timeout: 1)
 	}
 }
