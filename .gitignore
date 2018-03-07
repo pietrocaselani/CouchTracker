@@ -47,3 +47,4 @@ Logs/
 Pods/
 *.lock
 .env
+/Index/

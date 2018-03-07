@@ -396,6 +396,21 @@
 		4F0F5949203D994500B86CB8 /* TraktLoginObservableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA651F752ED400EA3AD8 /* TraktLoginObservableMock.swift */; };
 		4F2F0FD22040093700A76E95 /* CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F5858203D7A5B00B86CB8 /* CouchTrackerCore.framework */; };
 		4F2F0FD32040093700A76E95 /* CouchTrackerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F5858203D7A5B00B86CB8 /* CouchTrackerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4F3A5947204EABCF0061ABB7 /* AppFlowInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5946204EABCF0061ABB7 /* AppFlowInteractorTests.swift */; };
+		4F3A5949204EACD20061ABB7 /* AppFlowMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5948204EACD20061ABB7 /* AppFlowMocks.swift */; };
+		4F3A594C204EAD1F0061ABB7 /* AppFlowContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A594B204EAD1F0061ABB7 /* AppFlowContract.swift */; };
+		4F3A594D204EAD1F0061ABB7 /* AppFlowContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A594B204EAD1F0061ABB7 /* AppFlowContract.swift */; };
+		4F3A594F204EB3D00061ABB7 /* AppFlowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A594E204EB3D00061ABB7 /* AppFlowService.swift */; };
+		4F3A5950204EB3D00061ABB7 /* AppFlowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A594E204EB3D00061ABB7 /* AppFlowService.swift */; };
+		4F3A5952204EB75B0061ABB7 /* AppFlowPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5951204EB75B0061ABB7 /* AppFlowPresenterTests.swift */; };
+		4F3A5954204EBA850061ABB7 /* AppFlowDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5953204EBA850061ABB7 /* AppFlowDefaultPresenter.swift */; };
+		4F3A5955204EBA850061ABB7 /* AppFlowDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5953204EBA850061ABB7 /* AppFlowDefaultPresenter.swift */; };
+		4F3A5957204ED9300061ABB7 /* ModulePageMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5956204ED9300061ABB7 /* ModulePageMocks.swift */; };
+		4F3A5959204EE4690061ABB7 /* AppFlowiOSModuleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5958204EE4690061ABB7 /* AppFlowiOSModuleDataSource.swift */; };
+		4F3A595B204EF31A0061ABB7 /* AppFlowUserDefaultsRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A595A204EF31A0061ABB7 /* AppFlowUserDefaultsRepositoryTests.swift */; };
+		4F3A595D204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A595C204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift */; };
+		4F3A595E204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A595C204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift */; };
+		4F3A5960204EF6C30061ABB7 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A595F204EF6C30061ABB7 /* UserDefaultsExtensions.swift */; };
 		4F3E77E12041CD9C00A87072 /* WatchedShowEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E77E02041CD9C00A87072 /* WatchedShowEntityMapper.swift */; };
 		4F3E77E22041CD9C00A87072 /* WatchedShowEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E77E02041CD9C00A87072 /* WatchedShowEntityMapper.swift */; };
 		4F3EA3FB203FD83E008AE053 /* trakt_sync_removefromhistory.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F3EA3FA203FD83E008AE053 /* trakt_sync_removefromhistory.json */; };
@@ -553,6 +568,17 @@
 		4F236DC3202CB9C5007FB1B9 /* DefaultBuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBuildConfig.swift; sourceTree = "<group>"; };
 		4F236DC7202CCD83007FB1B9 /* TestBuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBuildConfig.swift; sourceTree = "<group>"; };
 		4F236DCA202CD36E007FB1B9 /* ShowProgressAPIRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressAPIRepositoryTest.swift; sourceTree = "<group>"; };
+		4F3A5946204EABCF0061ABB7 /* AppFlowInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowInteractorTests.swift; sourceTree = "<group>"; };
+		4F3A5948204EACD20061ABB7 /* AppFlowMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowMocks.swift; sourceTree = "<group>"; };
+		4F3A594B204EAD1F0061ABB7 /* AppFlowContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowContract.swift; sourceTree = "<group>"; };
+		4F3A594E204EB3D00061ABB7 /* AppFlowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowService.swift; sourceTree = "<group>"; };
+		4F3A5951204EB75B0061ABB7 /* AppFlowPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowPresenterTests.swift; sourceTree = "<group>"; };
+		4F3A5953204EBA850061ABB7 /* AppFlowDefaultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowDefaultPresenter.swift; sourceTree = "<group>"; };
+		4F3A5956204ED9300061ABB7 /* ModulePageMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulePageMocks.swift; sourceTree = "<group>"; };
+		4F3A5958204EE4690061ABB7 /* AppFlowiOSModuleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowiOSModuleDataSource.swift; sourceTree = "<group>"; };
+		4F3A595A204EF31A0061ABB7 /* AppFlowUserDefaultsRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowUserDefaultsRepositoryTests.swift; sourceTree = "<group>"; };
+		4F3A595C204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowUserDefaultsRepository.swift; sourceTree = "<group>"; };
+		4F3A595F204EF6C30061ABB7 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		4F3E77E02041CD9C00A87072 /* WatchedShowEntityMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedShowEntityMapper.swift; sourceTree = "<group>"; };
 		4F3EA3FA203FD83E008AE053 /* trakt_sync_removefromhistory.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_sync_removefromhistory.json; sourceTree = "<group>"; };
 		4F562E05202E7A3400CB1AE0 /* WatchedEpisodeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedEpisodeEntity.swift; sourceTree = "<group>"; };
@@ -988,6 +1014,7 @@
 		4F0F56FD203D5F4C00B86CB8 /* CouchTrackerCore */ = {
 			isa = PBXGroup;
 			children = (
+				4F3A594A204EAD0D0061ABB7 /* AppFlow */,
 				4F0F591F203D934400B86CB8 /* AppConfigurations */,
 				4F0F5921203D93C900B86CB8 /* Configuration */,
 				4F0F5920203D939500B86CB8 /* Core */,
@@ -1021,11 +1048,14 @@
 			isa = PBXGroup;
 			children = (
 				64C384021F6C134F00FC9930 /* AppConfigurations */,
+				4F3A5945204EABB60061ABB7 /* AppFlow */,
 				4F7B09532016B53B001F6C50 /* BaseViewMock.swift */,
 				644EE1491F55E01E0053D631 /* Configuration */,
 				6406BEEC1F4DC372004661C4 /* GenreRepositoryMock.swift */,
 				647B66451F5888CE00B38D2A /* Images */,
+				4F0F570B203D5F4D00B86CB8 /* Info.plist */,
 				648390CC1F504E7500911BA0 /* JSONs */,
+				4F3A5956204ED9300061ABB7 /* ModulePageMocks.swift */,
 				648390C41F504E7500911BA0 /* MovieDetails */,
 				647C95BD1F7587B5007A86CE /* NetworkMock */,
 				392D9CCADDD8B9EF1D8D74F7 /* RxAsserts.swift */,
@@ -1041,7 +1071,7 @@
 				6454D1701F703CFD008C4E5F /* TraktLogin */,
 				6434CA651F752ED400EA3AD8 /* TraktLoginObservableMock.swift */,
 				648390C81F504E7500911BA0 /* Trending */,
-				4F0F570B203D5F4D00B86CB8 /* Info.plist */,
+				4F3A595F204EF6C30061ABB7 /* UserDefaultsExtensions.swift */,
 			);
 			path = CouchTrackerCoreTests;
 			sourceTree = "<group>";
@@ -1285,6 +1315,28 @@
 				64CB309A1F6077B800FD6171 /* TrendingCellViewModel.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		4F3A5945204EABB60061ABB7 /* AppFlow */ = {
+			isa = PBXGroup;
+			children = (
+				4F3A5946204EABCF0061ABB7 /* AppFlowInteractorTests.swift */,
+				4F3A5948204EACD20061ABB7 /* AppFlowMocks.swift */,
+				4F3A5951204EB75B0061ABB7 /* AppFlowPresenterTests.swift */,
+				4F3A595A204EF31A0061ABB7 /* AppFlowUserDefaultsRepositoryTests.swift */,
+			);
+			path = AppFlow;
+			sourceTree = "<group>";
+		};
+		4F3A594A204EAD0D0061ABB7 /* AppFlow */ = {
+			isa = PBXGroup;
+			children = (
+				4F3A594B204EAD1F0061ABB7 /* AppFlowContract.swift */,
+				4F3A5953204EBA850061ABB7 /* AppFlowDefaultPresenter.swift */,
+				4F3A594E204EB3D00061ABB7 /* AppFlowService.swift */,
+				4F3A595C204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift */,
+			);
+			path = AppFlow;
 			sourceTree = "<group>";
 		};
 		4F562E04202E763500CB1AE0 /* EntityMappers */ = {
@@ -1891,9 +1943,10 @@
 		64CC08851F7171E7004D164A /* AppFlow */ = {
 			isa = PBXGroup;
 			children = (
-				64CC08861F717205004D164A /* AppFlowViewController.swift */,
-				64CC088A1F717298004D164A /* AppFlowModule.swift */,
 				64CC08921F717597004D164A /* AppFlow.storyboard */,
+				4F3A5958204EE4690061ABB7 /* AppFlowiOSModuleDataSource.swift */,
+				64CC088A1F717298004D164A /* AppFlowModule.swift */,
+				64CC08861F717205004D164A /* AppFlowViewController.swift */,
 			);
 			path = AppFlow;
 			sourceTree = "<group>";
@@ -2552,6 +2605,7 @@
 				4F0F5730203D5FA000B86CB8 /* ShowEntity.swift in Sources */,
 				4F0F5731203D5FA000B86CB8 /* TrendingMovieEntity.swift in Sources */,
 				4F0F5732203D5FA000B86CB8 /* EpisodeEntityMapper.swift in Sources */,
+				4F3A5954204EBA850061ABB7 /* AppFlowDefaultPresenter.swift in Sources */,
 				4F0F5733203D5FA000B86CB8 /* ImagesEntityMapper.swift in Sources */,
 				4F0F5734203D5FA000B86CB8 /* ImagesViewModelMapper.swift in Sources */,
 				4F0F5735203D5FA000B86CB8 /* MovieEntityMapper.swift in Sources */,
@@ -2562,9 +2616,11 @@
 				4F0F573B203D5FA000B86CB8 /* MovieIds+TMDBType.swift in Sources */,
 				4F0F573C203D5FA000B86CB8 /* OptionalExtensions.swift in Sources */,
 				4F0F573D203D5FA000B86CB8 /* ShowIds+TMDBType.swift in Sources */,
+				4F3A595D204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift in Sources */,
 				4F0F5815203D6AC500B86CB8 /* TrendingShowEntity.swift in Sources */,
 				4F0F573E203D5FA000B86CB8 /* String+Localizable.swift in Sources */,
 				4F0F5744203D5FA000B86CB8 /* GenreRepository.swift in Sources */,
+				4F3A594C204EAD1F0061ABB7 /* AppFlowContract.swift in Sources */,
 				4F0F5745203D5FA000B86CB8 /* TraktGenreRepository.swift in Sources */,
 				4F0F5746203D5FA000B86CB8 /* EpisodeImageInput.swift in Sources */,
 				4F0F5747203D5FA000B86CB8 /* ImageCachedRepository.swift in Sources */,
@@ -2589,6 +2645,7 @@
 				4F0F5761203D5FA000B86CB8 /* GenreRealm.swift in Sources */,
 				4F0F5762203D5FA000B86CB8 /* RealmProvider.swift in Sources */,
 				4F0F5763203D5FA000B86CB8 /* ShowEntityRealm.swift in Sources */,
+				4F3A594F204EB3D00061ABB7 /* AppFlowService.swift in Sources */,
 				4F0F5764203D5FA000B86CB8 /* ShowIdsRealm.swift in Sources */,
 				4F0F5765203D5FA000B86CB8 /* WatchedEpisodeEntityRealm.swift in Sources */,
 				4F0F5766203D5FA000B86CB8 /* WatchedSeasonEntityRealm.swift in Sources */,
@@ -2704,7 +2761,10 @@
 				4F0F57F1203D61B300B86CB8 /* ShowProgressAPIRepositoryTest.swift in Sources */,
 				4F0F57F2203D61B300B86CB8 /* ShowsProgressAPIRepositoryTest.swift in Sources */,
 				4F0F57F3203D61B300B86CB8 /* ShowsProgressMocks.swift in Sources */,
+				4F3A5960204EF6C30061ABB7 /* UserDefaultsExtensions.swift in Sources */,
 				4F0F57F4203D61B300B86CB8 /* ShowsProgressServiceTest.swift in Sources */,
+				4F3A5949204EACD20061ABB7 /* AppFlowMocks.swift in Sources */,
+				4F3A5957204ED9300061ABB7 /* ModulePageMocks.swift in Sources */,
 				4F0F5943203D990E00B86CB8 /* GenreRepositoryMock.swift in Sources */,
 				4FC97A27203FD2AD00C2B924 /* ShowEpisodeMoyaNetworkTest.swift in Sources */,
 				4F0F57F5203D61B300B86CB8 /* ShowsProgressPresenterTest.swift in Sources */,
@@ -2735,10 +2795,13 @@
 				4F0F57D1203D619E00B86CB8 /* AppConfigurationsUserDefaultsDataSourceTest.swift in Sources */,
 				4F0F57D2203D619E00B86CB8 /* AppConfigurationsStoreTest.swift in Sources */,
 				4F0F57D3203D619E00B86CB8 /* AppConfigurationsStateTest.swift in Sources */,
+				4F3A595B204EF31A0061ABB7 /* AppFlowUserDefaultsRepositoryTests.swift in Sources */,
 				4F0F57D5203D619E00B86CB8 /* ConfigurationRepositoryMock.swift in Sources */,
 				4F0F57D7203D619E00B86CB8 /* ImageRepositoryMock.swift in Sources */,
+				4F3A5952204EB75B0061ABB7 /* AppFlowPresenterTests.swift in Sources */,
 				4F0F57D8203D619E00B86CB8 /* ImageMocks.swift in Sources */,
 				4F0F57D9203D619E00B86CB8 /* ImageCachedRepositoryTest.swift in Sources */,
+				4F3A5947204EABCF0061ABB7 /* AppFlowInteractorTests.swift in Sources */,
 				4F0F57DA203D619E00B86CB8 /* EpisodeImageInputMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2773,6 +2836,7 @@
 				4F0F5879203D7B0A00B86CB8 /* ConfigurationRepository.swift in Sources */,
 				4F0F587A203D7B0A00B86CB8 /* ConfigurationCachedRepository.swift in Sources */,
 				4F0F587B203D7B0A00B86CB8 /* DefaultBuildConfig.swift in Sources */,
+				4F3A5955204EBA850061ABB7 /* AppFlowDefaultPresenter.swift in Sources */,
 				4F0F587C203D7B0A00B86CB8 /* DefaultSchedulers.swift in Sources */,
 				4F0F587D203D7B0A00B86CB8 /* EpisodeEntity.swift in Sources */,
 				4F0F587E203D7B0A00B86CB8 /* ImageEntity.swift in Sources */,
@@ -2783,9 +2847,11 @@
 				4F0F5883203D7B0A00B86CB8 /* TrendingMovieEntity.swift in Sources */,
 				4F0F5884203D7B0A00B86CB8 /* TrendingShowEntity.swift in Sources */,
 				4F0F5885203D7B0A00B86CB8 /* EpisodeEntityMapper.swift in Sources */,
+				4F3A595E204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift in Sources */,
 				4F0F5886203D7B0A00B86CB8 /* ImagesEntityMapper.swift in Sources */,
 				4F0F5887203D7B0A00B86CB8 /* ImagesViewModelMapper.swift in Sources */,
 				4F0F5888203D7B0A00B86CB8 /* MovieEntityMapper.swift in Sources */,
+				4F3A594D204EAD1F0061ABB7 /* AppFlowContract.swift in Sources */,
 				4F0F5889203D7B0A00B86CB8 /* ShowEntityMapper.swift in Sources */,
 				4F0F588A203D7B0A00B86CB8 /* TrendingMovieViewModelMapper.swift in Sources */,
 				4F0F588B203D7B0A00B86CB8 /* TrendingShowViewModelMapper.swift in Sources */,
@@ -2810,6 +2876,7 @@
 				4F0F58A8203D7B0A00B86CB8 /* MoviesManagerDefaultPresenter.swift in Sources */,
 				4F0F58AB203D7B0A00B86CB8 /* TMDBProvider.swift in Sources */,
 				4F0F58AC203D7B0A00B86CB8 /* TraktProvider.swift in Sources */,
+				4F3A5950204EB3D00061ABB7 /* AppFlowService.swift in Sources */,
 				4F0F58AD203D7B0A00B86CB8 /* TVDBProvider.swift in Sources */,
 				4F0F58AE203D7B0A00B86CB8 /* TraktAuthenticationProvider.swift in Sources */,
 				4F0F58B0203D7B0A00B86CB8 /* DefaultRealmProvider.swift in Sources */,
@@ -2900,6 +2967,7 @@
 			files = (
 				4F0F581D203D779A00B86CB8 /* AppConfigurationsiOSRouter.swift in Sources */,
 				4F0F581E203D779A00B86CB8 /* AppConfigurationsModule.swift in Sources */,
+				4F3A5959204EE4690061ABB7 /* AppFlowiOSModuleDataSource.swift in Sources */,
 				4F0F581F203D779A00B86CB8 /* AppConfigurationsViewController.swift in Sources */,
 				4F0F5820203D779A00B86CB8 /* AppDelegate.swift in Sources */,
 				4F0F5821203D779A00B86CB8 /* AppFlowViewController.swift in Sources */,
