@@ -3,16 +3,21 @@ import RxSwift
 public final class ShowsManagerDefaultPresenter: ShowsManagerPresenter {
 	private weak var view: ShowsManagerView?
 	private let disposeBag = DisposeBag()
-	private let defaultIndex: Int
-	private let pages: [ModulePage]
+	private let dataSource: ShowsManagerDataSource
 
 	public init(view: ShowsManagerView, moduleSetup: ShowsManagerDataSource) {
 		self.view = view
-		self.pages = moduleSetup.modulePages
-		self.defaultIndex = moduleSetup.defaultModuleIndex
+		self.dataSource = moduleSetup
 	}
 
 	public func viewDidLoad() {
-		view?.show(pages: pages, withDefault: self.defaultIndex)
+		let pages = dataSource.modulePages
+		let defaultIndex = dataSource.defaultModuleIndex
+
+		view?.show(pages: pages, withDefault: defaultIndex)
+	}
+
+	public func selectTab(index: Int) {
+		dataSource.defaultModuleIndex = index
 	}
 }

@@ -104,7 +104,7 @@
 		4F0F578E203D5FA100B86CB8 /* WatchedShowBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DA920262CA600DF401A /* WatchedShowBuilder.swift */; };
 		4F0F578F203D5FA100B86CB8 /* WatchedShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90491F72E5C40089CD70 /* WatchedShowEntity.swift */; };
 		4F0F5790203D5FA100B86CB8 /* ShowsManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08601F71616E004D164A /* ShowsManagerContract.swift */; };
-		4F0F5792203D5FA100B86CB8 /* ShowsManageriOSModuleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90BD1F7294290026B139 /* ShowsManageriOSModuleSetup.swift */; };
+		4F0F5792203D5FA100B86CB8 /* ShowsManagerDefaultModuleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90BD1F7294290026B139 /* ShowsManagerDefaultModuleSetup.swift */; };
 		4F0F5793203D5FA100B86CB8 /* ShowsManagerDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90B91F72922F0026B139 /* ShowsManagerDefaultPresenter.swift */; };
 		4F0F5799203D5FA100B86CB8 /* ShowProgressCellContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896361F7C123D00F95649 /* ShowProgressCellContract.swift */; };
 		4F0F579A203D5FA100B86CB8 /* ShowProgressCellDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896381F7C12A400F95649 /* ShowProgressCellDefaultPresenter.swift */; };
@@ -184,7 +184,7 @@
 		4F0F57F6203D61B300B86CB8 /* ShowsProgressRealmDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392D92E09E0D2FA6A0EB4810 /* ShowsProgressRealmDataSourceTest.swift */; };
 		4F0F57F7203D61B300B86CB8 /* ShowProgressFilterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6097DE203B429A006A2B33 /* ShowProgressFilterTest.swift */; };
 		4F0F57F8203D61B300B86CB8 /* ShowProgressSortTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE42FB4203B94B80001FF1F /* ShowProgressSortTest.swift */; };
-		4F0F57F9203D61B300B86CB8 /* ShowsManageriOSModuleSetupTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EA020339C1300987AD1 /* ShowsManageriOSModuleSetupTest.swift */; };
+		4F0F57F9203D61B300B86CB8 /* ShowsManagerDefaultModuleSetupTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6EA020339C1300987AD1 /* ShowsManagerDefaultModuleSetupTest.swift */; };
 		4F0F57FA203D61B300B86CB8 /* ShowsManagerMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA5D1F752BD200EA3AD8 /* ShowsManagerMocks.swift */; };
 		4F0F57FB203D61B300B86CB8 /* ShowsManagerPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA601F752E3F00EA3AD8 /* ShowsManagerPresenterTest.swift */; };
 		4F0F5800203D61B300B86CB8 /* TraktLoginInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D1741F703FC3008C4E5F /* TraktLoginInteractorTest.swift */; };
@@ -346,7 +346,7 @@
 		4F0F58E0203D7B0A00B86CB8 /* WatchedShowBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D3DA920262CA600DF401A /* WatchedShowBuilder.swift */; };
 		4F0F58E1203D7B0A00B86CB8 /* WatchedShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E90491F72E5C40089CD70 /* WatchedShowEntity.swift */; };
 		4F0F58E2203D7B0A00B86CB8 /* ShowsManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08601F71616E004D164A /* ShowsManagerContract.swift */; };
-		4F0F58E4203D7B0A00B86CB8 /* ShowsManageriOSModuleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90BD1F7294290026B139 /* ShowsManageriOSModuleSetup.swift */; };
+		4F0F58E4203D7B0A00B86CB8 /* ShowsManagerDefaultModuleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90BD1F7294290026B139 /* ShowsManagerDefaultModuleSetup.swift */; };
 		4F0F58E5203D7B0A00B86CB8 /* ShowsManagerDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90B91F72922F0026B139 /* ShowsManagerDefaultPresenter.swift */; };
 		4F0F58EB203D7B0A00B86CB8 /* ShowProgressCellContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896361F7C123D00F95649 /* ShowProgressCellContract.swift */; };
 		4F0F58EC203D7B0A00B86CB8 /* ShowProgressCellDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896381F7C12A400F95649 /* ShowProgressCellDefaultPresenter.swift */; };
@@ -586,7 +586,7 @@
 		4F6097DB203B40DB006A2B33 /* AppConfigurationsStateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsStateTest.swift; sourceTree = "<group>"; };
 		4F6097DE203B429A006A2B33 /* ShowProgressFilterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressFilterTest.swift; sourceTree = "<group>"; };
 		4F6D6E9E20339B3A00987AD1 /* ShowsManageriOSCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManageriOSCreator.swift; sourceTree = "<group>"; };
-		4F6D6EA020339C1300987AD1 /* ShowsManageriOSModuleSetupTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManageriOSModuleSetupTest.swift; sourceTree = "<group>"; };
+		4F6D6EA020339C1300987AD1 /* ShowsManagerDefaultModuleSetupTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerDefaultModuleSetupTest.swift; sourceTree = "<group>"; };
 		4F6D6EA52033A50700987AD1 /* ShowsProgressMoyaNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressMoyaNetwork.swift; sourceTree = "<group>"; };
 		4F6D6EA92033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsMoyaNetwork.swift; sourceTree = "<group>"; };
 		4F6DC40C201544E200AA0DC8 /* MoviesManagerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerContract.swift; sourceTree = "<group>"; };
@@ -811,7 +811,7 @@
 		64CB90B31F7291400026B139 /* ShowsProgress.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowsProgress.storyboard; sourceTree = "<group>"; };
 		64CB90B51F7291650026B139 /* ShowsProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressViewController.swift; sourceTree = "<group>"; };
 		64CB90B91F72922F0026B139 /* ShowsManagerDefaultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerDefaultPresenter.swift; sourceTree = "<group>"; };
-		64CB90BD1F7294290026B139 /* ShowsManageriOSModuleSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManageriOSModuleSetup.swift; sourceTree = "<group>"; };
+		64CB90BD1F7294290026B139 /* ShowsManagerDefaultModuleSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerDefaultModuleSetup.swift; sourceTree = "<group>"; };
 		64CB90BF1F72944D0026B139 /* ShowsProgressModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressModule.swift; sourceTree = "<group>"; };
 		64CC085C1F714F33004D164A /* TraktTokenPolicyDeciderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktTokenPolicyDeciderTest.swift; sourceTree = "<group>"; };
 		64CC08601F71616E004D164A /* ShowsManagerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerContract.swift; sourceTree = "<group>"; };
@@ -1245,7 +1245,7 @@
 			isa = PBXGroup;
 			children = (
 				64CC08601F71616E004D164A /* ShowsManagerContract.swift */,
-				64CB90BD1F7294290026B139 /* ShowsManageriOSModuleSetup.swift */,
+				64CB90BD1F7294290026B139 /* ShowsManagerDefaultModuleSetup.swift */,
 				64CB90B91F72922F0026B139 /* ShowsManagerDefaultPresenter.swift */,
 			);
 			path = Manager;
@@ -1521,7 +1521,7 @@
 		6434CA5C1F7529BC00EA3AD8 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				4F6D6EA020339C1300987AD1 /* ShowsManageriOSModuleSetupTest.swift */,
+				4F6D6EA020339C1300987AD1 /* ShowsManagerDefaultModuleSetupTest.swift */,
 				6434CA5D1F752BD200EA3AD8 /* ShowsManagerMocks.swift */,
 				6434CA601F752E3F00EA3AD8 /* ShowsManagerPresenterTest.swift */,
 			);
@@ -2679,7 +2679,7 @@
 				4F0F578E203D5FA100B86CB8 /* WatchedShowBuilder.swift in Sources */,
 				4F0F578F203D5FA100B86CB8 /* WatchedShowEntity.swift in Sources */,
 				4F0F5790203D5FA100B86CB8 /* ShowsManagerContract.swift in Sources */,
-				4F0F5792203D5FA100B86CB8 /* ShowsManageriOSModuleSetup.swift in Sources */,
+				4F0F5792203D5FA100B86CB8 /* ShowsManagerDefaultModuleSetup.swift in Sources */,
 				4F0F5793203D5FA100B86CB8 /* ShowsManagerDefaultPresenter.swift in Sources */,
 				4F0F5799203D5FA100B86CB8 /* ShowProgressCellContract.swift in Sources */,
 				4F0F579A203D5FA100B86CB8 /* ShowProgressCellDefaultPresenter.swift in Sources */,
@@ -2771,7 +2771,7 @@
 				4F0F57F6203D61B300B86CB8 /* ShowsProgressRealmDataSourceTest.swift in Sources */,
 				4F0F57F7203D61B300B86CB8 /* ShowProgressFilterTest.swift in Sources */,
 				4F0F57F8203D61B300B86CB8 /* ShowProgressSortTest.swift in Sources */,
-				4F0F57F9203D61B300B86CB8 /* ShowsManageriOSModuleSetupTest.swift in Sources */,
+				4F0F57F9203D61B300B86CB8 /* ShowsManagerDefaultModuleSetupTest.swift in Sources */,
 				4F0F57FA203D61B300B86CB8 /* ShowsManagerMocks.swift in Sources */,
 				4F0F57FB203D61B300B86CB8 /* ShowsManagerPresenterTest.swift in Sources */,
 				4F0F5800203D61B300B86CB8 /* TraktLoginInteractorTest.swift in Sources */,
@@ -2918,7 +2918,7 @@
 				4F0F58E0203D7B0A00B86CB8 /* WatchedShowBuilder.swift in Sources */,
 				4F0F58E1203D7B0A00B86CB8 /* WatchedShowEntity.swift in Sources */,
 				4F0F58E2203D7B0A00B86CB8 /* ShowsManagerContract.swift in Sources */,
-				4F0F58E4203D7B0A00B86CB8 /* ShowsManageriOSModuleSetup.swift in Sources */,
+				4F0F58E4203D7B0A00B86CB8 /* ShowsManagerDefaultModuleSetup.swift in Sources */,
 				4F0F58E5203D7B0A00B86CB8 /* ShowsManagerDefaultPresenter.swift in Sources */,
 				4F0F58EB203D7B0A00B86CB8 /* ShowProgressCellContract.swift in Sources */,
 				4F0F58EC203D7B0A00B86CB8 /* ShowProgressCellDefaultPresenter.swift in Sources */,
