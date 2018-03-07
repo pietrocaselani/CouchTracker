@@ -13,9 +13,17 @@ final class ShowsManagerViewMock: ShowsManagerView {
 }
 
 final class ShowsManagerDataSourceMock: ShowsManagerDataSource {
+	var defaultModuleIndexInvoked = false
+	var defaultModuleIndexParameter: Int?
+
 	var options: [ShowsManagerOption]
 	var modulePages: [ModulePage]
-	var defaultModuleIndex: Int
+	var defaultModuleIndex: Int {
+		didSet {
+			defaultModuleIndexInvoked = true
+			defaultModuleIndexParameter = defaultModuleIndex
+		}
+	}
 
 	init(creator: ShowsManagerModuleCreator) {
 		options = [.progress, .now, .trending]

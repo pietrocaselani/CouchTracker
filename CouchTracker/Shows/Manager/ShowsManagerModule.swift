@@ -16,7 +16,7 @@ final class ShowsManagerModule {
 		}
 
 		let moduleCreator = ShowsManageriOSCreator()
-		let modulesSetup = ShowsManageriOSModuleSetup(creator: moduleCreator)
+		let modulesSetup = ShowsManagerDefaultModuleSetup(creator: moduleCreator, userDefaults: UserDefaults.standard)
 		let presenter = ShowsManagerDefaultPresenter(view: showsManagerView, moduleSetup: modulesSetup)
 
 		showsManagerView.presenter = presenter

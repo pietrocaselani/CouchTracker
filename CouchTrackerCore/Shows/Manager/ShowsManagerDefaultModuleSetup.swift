@@ -1,8 +1,27 @@
-public final class ShowsManageriOSModuleSetup: ShowsManagerDataSource {
+import Foundation
+
+public final class ShowsManagerDefaultModuleSetup: ShowsManagerDataSource {
+	private static let defaultIndexKey = "showsManagerDefaultIndex"
+
 	private let creator: ShowsManagerModuleCreator
+	private let userDefaults: UserDefaults
+
+	public var defaultModuleIndex: Int {
+		get {
+			return userDefaults.integer(forKey: ShowsManagerDefaultModuleSetup.defaultIndexKey)
+		}
+		set {
+			userDefaults.set(newValue, forKey: ShowsManagerDefaultModuleSetup.defaultIndexKey)
+		}
+	}
 
 	public init(creator: ShowsManagerModuleCreator) {
+		Swift.fatalError("Please, use init(creator: userDefaults:)")
+	}
+
+	public init(creator: ShowsManagerModuleCreator, userDefaults: UserDefaults) {
 		self.creator = creator
+		self.userDefaults = userDefaults
 	}
 
 	public var options: [ShowsManagerOption] {
@@ -22,11 +41,6 @@ public final class ShowsManageriOSModuleSetup: ShowsManagerDataSource {
 		}
 
 		return pages
-	}
-
-	public var defaultModuleIndex: Int {
-		//TODO inject app config repository or something like that, to get the last selected module
-		return 0
 	}
 
 	private func moduleNameFor(option: ShowsManagerOption) -> String {

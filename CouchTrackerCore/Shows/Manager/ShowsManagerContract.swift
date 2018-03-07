@@ -8,6 +8,7 @@ public protocol ShowsManagerPresenter: class {
 	init(view: ShowsManagerView, moduleSetup: ShowsManagerDataSource)
 
 	func viewDidLoad()
+	func selectTab(index: Int)
 }
 
 public protocol ShowsManagerView: class {
@@ -21,7 +22,7 @@ public protocol ShowsManagerDataSource: class {
 
 	var options: [ShowsManagerOption] { get }
 	var modulePages: [ModulePage] { get }
-	var defaultModuleIndex: Int { get }
+	var defaultModuleIndex: Int { get set }
 }
 
 public protocol ShowsManagerModuleCreator: class {
