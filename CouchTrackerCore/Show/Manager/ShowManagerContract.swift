@@ -8,15 +8,20 @@ public protocol ShowManagerPresenter: class {
 	init(view: ShowManagerView, dataSource: ShowManagerDataSource)
 
 	func viewDidLoad()
+	func selectTab(index: Int)
+}
+
+public protocol ShowManagerModuleCreator: class {
+	func createModule(for option: ShowManagerOption) -> BaseView
 }
 
 public protocol ShowManagerDataSource: class {
-	init(show: WatchedShowEntity)
+	init(show: WatchedShowEntity, creator: ShowManagerModuleCreator)
 
 	var showTitle: String? { get }
 	var options: [ShowManagerOption] { get }
 	var modulePages: [ModulePage] { get }
-	var defaultModuleIndex: Int { get }
+	var defaultModuleIndex: Int { get set }
 }
 
 public protocol ShowManagerView: class {

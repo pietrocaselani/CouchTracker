@@ -18,7 +18,7 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
 		observer = scheduler.createObserver(LoginState.self)
 		hideSpecialsObserver = scheduler.createObserver(Bool.self)
 		userDefaultsMock = UserDefaults(suiteName: "AppConfigurationsUserDefaultsDataSourceTest")!
-		clearUserDefaults(userDefaultsMock)
+		userDefaultsMock.clear()
 	}
 
 	override func tearDown() {
@@ -28,15 +28,9 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
 		super.tearDown()
 	}
 
-	private func clearUserDefaults(_ userDefaults: UserDefaults) {
-		for (key, _) in userDefaults.dictionaryRepresentation() {
-			userDefaults.removeObject(forKey: key)
-		}
-	}
-
 	func testAppConfigurationUserDefaultsDataSource_fetchLoginStateWithEmptyUserDefaults_emitsNotLogged() {
 		//Given an empty user defaults
-		clearUserDefaults(userDefaultsMock)
+		userDefaultsMock.clear()
 		dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
 
 		//When

@@ -57,6 +57,8 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
 
 		self.navigationItem.leftBarButtonItems = currentViewController?.navigationItem.leftBarButtonItems
 		self.navigationItem.rightBarButtonItems = currentViewController?.navigationItem.rightBarButtonItems
+
+		self.presenter.selectTab(index: index)
 	}
 }
 
