@@ -13,7 +13,8 @@ final class MoviesManagerModule {
 			fatalError("MoviesManager storyboard should have a MoviesManagerView")
 		}
 
-		let dataSource = MoviesManageriOSModuleSetup()
+		let creator = MoviesManageriOSModuleCreator()
+		let dataSource = MoviesManagerDefaultDataSource(creator: creator, userDefaults: UserDefaults.standard)
 		let presenter = MoviesManagerDefaultPresenter(view: moviesManagerView, dataSource: dataSource)
 
 		moviesManagerView.presenter = presenter

@@ -33,6 +33,14 @@ final class ShowManagerViewController: TabmanViewController, ShowManagerView {
 
 		self.reloadPages()
 	}
+
+	override func pageboyViewController(_ pageboyViewController: PageboyViewController, didScrollToPageAt index: Int,
+																																					direction: PageboyViewController.NavigationDirection, animated: Bool) {
+		super.pageboyViewController(pageboyViewController, didScrollToPageAt: index,
+																														direction: direction, animated: animated)
+
+		self.presenter.selectTab(index: index)
+	}
 }
 
 extension ShowManagerViewController: PageboyViewControllerDataSource {
