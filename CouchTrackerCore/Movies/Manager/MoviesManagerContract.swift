@@ -14,9 +14,14 @@ public protocol MoviesManagerView: class {
 	func show(pages: [ModulePage], withDefault index: Int)
 }
 
+public protocol MoviesManagerModuleCreator: class {
+	func createModule(for option: MoviesManagerOption) -> BaseView
+}
+
 public protocol MoviesManagerDataSource: class {
 	var options: [MoviesManagerOption] { get }
+	var modulePages: [ModulePage] { get }
+	var defaultModuleIndex: Int { get }
 
-	func modulePages() -> [ModulePage]
-	func defaultModuleIndex() -> Int
+	init(creator: MoviesManagerModuleCreator)
 }

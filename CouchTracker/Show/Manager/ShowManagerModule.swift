@@ -10,7 +10,8 @@ final class ShowManagerModule {
 			fatalError("topViewController should be an instance of ShowsManagerViewController")
 		}
 
-		let dataSource = ShowManageriOSModuleSetup(show: show)
+		let creator = ShowManageriOSModuleCreator(show: show)
+		let dataSource = ShowManagerDefaultDataSource(show: show, creator: creator, userDefaults: UserDefaults.standard)
 		let presenter = ShowManagerDefaultPresenter(view: showManagerView, dataSource: dataSource)
 
 		showManagerView.presenter = presenter
