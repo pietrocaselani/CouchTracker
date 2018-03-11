@@ -5,13 +5,11 @@ public final class MoviesManagerDefaultPresenter: MoviesManagerPresenter {
 
 	public init(view: MoviesManagerView, dataSource: MoviesManagerDataSource) {
 		self.view = view
-		self.defaultIndex = dataSource.defaultModuleIndex()
-		self.modules = dataSource.modulePages()
+		self.defaultIndex = dataSource.defaultModuleIndex
+		self.modules = dataSource.modulePages
 	}
 
 	public func viewDidLoad() {
-		guard let view = self.view else { return }
-
-		view.show(pages: modules, withDefault: defaultIndex)
+		view?.show(pages: modules, withDefault: defaultIndex)
 	}
 }
