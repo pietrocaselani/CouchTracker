@@ -427,6 +427,7 @@
 		4F931544203CB34800631D4A /* trakt_sync_addtohistory.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F931543203CB34800631D4A /* trakt_sync_addtohistory.json */; };
 		4F9ABC112052982B00EA6456 /* MoviesManagerDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ABC102052982B00EA6456 /* MoviesManagerDefaultDataSource.swift */; };
 		4F9ABC122052982B00EA6456 /* MoviesManagerDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ABC102052982B00EA6456 /* MoviesManagerDefaultDataSource.swift */; };
+		4FAA2543205693BE0006735A /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAA2542205693BE0006735A /* NoCacheMoyaPlugin.swift */; };
 		4FAC751B20509E2F00266930 /* ShowManagerDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAC751A20509E2F00266930 /* ShowManagerDefaultDataSource.swift */; };
 		4FAC751C20509E2F00266930 /* ShowManagerDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAC751A20509E2F00266930 /* ShowManagerDefaultDataSource.swift */; };
 		4FC97A1F203F163300C2B924 /* ShowProgressCellDefaultPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A1E203F163300C2B924 /* ShowProgressCellDefaultPresenterTest.swift */; };
@@ -618,6 +619,7 @@
 		4F931545203CD45F00631D4A /* ShowsProgressMoyaNetworkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressMoyaNetworkTest.swift; sourceTree = "<group>"; };
 		4F9ABC102052982B00EA6456 /* MoviesManagerDefaultDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerDefaultDataSource.swift; sourceTree = "<group>"; };
 		4FA0C76120326DBA008656B7 /* AppConfigurationsStoreTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsStoreTest.swift; sourceTree = "<group>"; };
+		4FAA2542205693BE0006735A /* NoCacheMoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCacheMoyaPlugin.swift; sourceTree = "<group>"; };
 		4FAC751A20509E2F00266930 /* ShowManagerDefaultDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManagerDefaultDataSource.swift; sourceTree = "<group>"; };
 		4FC97A1E203F163300C2B924 /* ShowProgressCellDefaultPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellDefaultPresenterTest.swift; sourceTree = "<group>"; };
 		4FC97A20203F166400C2B924 /* ShowProgressCellMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellMocks.swift; sourceTree = "<group>"; };
@@ -1864,6 +1866,7 @@
 			isa = PBXGroup;
 			children = (
 				64343E1D1F7EB3B7004557E4 /* Secrets.swift */,
+				4FAA2542205693BE0006735A /* NoCacheMoyaPlugin.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3052,6 +3055,7 @@
 				4F0F5836203D779A00B86CB8 /* ShowManagerModule.swift in Sources */,
 				4F0F5837203D779A00B86CB8 /* ShowManagerViewController.swift in Sources */,
 				4F0F5838203D779A00B86CB8 /* ShowOverviewModule.swift in Sources */,
+				4FAA2543205693BE0006735A /* NoCacheMoyaPlugin.swift in Sources */,
 				4F0F5839203D779A00B86CB8 /* ShowSeasonsModule.swift in Sources */,
 				4F0F583A203D779A00B86CB8 /* ShowDetailsModule.swift in Sources */,
 				4FC97A25203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift in Sources */,
