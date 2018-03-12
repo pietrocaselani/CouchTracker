@@ -47,6 +47,9 @@ final class Environment {
 			debug = false
 		#endif
 
+		var traktPlugins = plugins
+		traktPlugins.append(NoCacheMoyaPlugin())
+
 		self.buildConfig = DefaultBuildConfig(debug: debug)
 
 		let traktBuilder = TraktBuilder {
@@ -54,7 +57,7 @@ final class Environment {
 			$0.clientSecret = Secrets.Trakt.clientSecret
 			$0.redirectURL = Secrets.Trakt.redirectURL
 			$0.callbackQueue = schedulers.networkQueue
-			$0.plugins = plugins
+			$0.plugins = traktPlugins
 		}
 
 		let tvdbBuilder = TVDBBuilder {
