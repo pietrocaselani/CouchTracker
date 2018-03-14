@@ -22,7 +22,8 @@ final class SearchInteractorTest: XCTestCase {
 	}
 
 	func testSearchInteractor_fetchSuccessEmptyData_andEmitsEmptyDataAndOnCompleted() {
-		let interactor = SearchService(repository: SearchMocks.Repository(results: [SearchResult]()))
+		let repository = SearchMocks.Repository()
+		let interactor = SearchService(repository: repository)
 
 		let disposable = interactor.search(query: "Cool movie", types: [SearchType.movie]).asObservable().subscribe(observer)
 
@@ -31,6 +32,17 @@ final class SearchInteractorTest: XCTestCase {
 		let expectedEvents: [Recorded<Event<[SearchResult]>>] = [next(0, [SearchResult]()), completed(0)]
 
 		RXAssertEvents(observer, expectedEvents)
+		XCTAssertTrue(repository.searchInvoked)
+
+		guard let parameters = repository.searchParameters else {
+			XCTFail("searchParameters can't be nil")
+			return
+		}
+
+		XCTAssertEqual(parameters.query, "Cool movie")
+		XCTAssertEqual(parameters.types, [SearchType.movie])
+		XCTAssertEqual(parameters.page, 0)
+		XCTAssertEqual(parameters.limit, 50)
 	}
 
 	func testSearchInteractor_fetchSuccessReceivesData_andEmitDataAndOnCompleted() {
