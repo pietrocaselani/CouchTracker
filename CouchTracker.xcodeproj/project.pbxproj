@@ -413,6 +413,7 @@
 		4F3E77E22041CD9C00A87072 /* WatchedShowEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E77E02041CD9C00A87072 /* WatchedShowEntityMapper.swift */; };
 		4F3EA3FB203FD83E008AE053 /* trakt_sync_removefromhistory.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F3EA3FA203FD83E008AE053 /* trakt_sync_removefromhistory.json */; };
 		4F56336320514AD200923D3D /* ShowManagerDefaultDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F56336220514AD200923D3D /* ShowManagerDefaultDataSourceTest.swift */; };
+		4F56581C2059944500D3D56B /* SearchAPIRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F56581B2059944500D3D56B /* SearchAPIRepositoryTest.swift */; };
 		4F6102232052791D0079EDBA /* ShowManagerMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6102222052791D0079EDBA /* ShowManagerMocks.swift */; };
 		4F6DC4152015476000AA0DC8 /* MoviesManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F6DC4142015476000AA0DC8 /* MoviesManager.storyboard */; };
 		4F778D0B2041192200FBCC2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64BE63231F4F692B002E55EA /* Localizable.strings */; };
@@ -593,6 +594,7 @@
 		4F562E05202E7A3400CB1AE0 /* WatchedEpisodeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedEpisodeEntity.swift; sourceTree = "<group>"; };
 		4F562E09202E7A4300CB1AE0 /* WatchedSeasonEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedSeasonEntity.swift; sourceTree = "<group>"; };
 		4F56336220514AD200923D3D /* ShowManagerDefaultDataSourceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManagerDefaultDataSourceTest.swift; sourceTree = "<group>"; };
+		4F56581B2059944500D3D56B /* SearchAPIRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPIRepositoryTest.swift; sourceTree = "<group>"; };
 		4F6097DB203B40DB006A2B33 /* AppConfigurationsStateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsStateTest.swift; sourceTree = "<group>"; };
 		4F6097DE203B429A006A2B33 /* ShowProgressFilterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressFilterTest.swift; sourceTree = "<group>"; };
 		4F6102222052791D0079EDBA /* ShowManagerMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManagerMocks.swift; sourceTree = "<group>"; };
@@ -1844,6 +1846,7 @@
 				648390CF1F504E7500911BA0 /* SearchInteractorTest.swift */,
 				648390D01F504E7500911BA0 /* SearchMocks.swift */,
 				6483911F1F50606100911BA0 /* SearchPresenterTest.swift */,
+				4F56581B2059944500D3D56B /* SearchAPIRepositoryTest.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -2824,6 +2827,7 @@
 				4F0F57F8203D61B300B86CB8 /* ShowProgressSortTest.swift in Sources */,
 				4F0F57F9203D61B300B86CB8 /* ShowsManagerDefaultModuleSetupTest.swift in Sources */,
 				4F0F57FA203D61B300B86CB8 /* ShowsManagerMocks.swift in Sources */,
+				4F56581C2059944500D3D56B /* SearchAPIRepositoryTest.swift in Sources */,
 				4F0F57FB203D61B300B86CB8 /* ShowsManagerPresenterTest.swift in Sources */,
 				4F0F5800203D61B300B86CB8 /* TraktLoginInteractorTest.swift in Sources */,
 				4F0F5801203D61B300B86CB8 /* TraktLoginMocks.swift in Sources */,
