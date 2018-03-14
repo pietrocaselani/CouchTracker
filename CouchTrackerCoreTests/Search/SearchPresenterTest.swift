@@ -3,13 +3,27 @@ import TraktSwift
 @testable import CouchTrackerCore
 
 final class SearchPresenterTest: XCTestCase {
-	let output = SearchResultOutputMock()
-	let view = SearchViewMock()
+	var output: SearchMocks.ResultOutput!
+	var view: SearchMocks.View!
+
+	override func setUp() {
+		super.setUp()
+
+		output = SearchMocks.ResultOutput()
+		view = SearchMocks.View()
+	}
+
+	override func tearDown() {
+		output = nil
+		view = nil
+
+		super.tearDown()
+	}
 
 	func testSearchPresenter_viewDidLoad_updateViewHint() {
-		let store = EmptySearchStoreMock()
+		let store = SearchMocks.Repository()
 		let interactor = SearchService(repository: store)
-		let presenter = SearchDefaultPresenter(view: view, interactor: interactor, resultOutput: output)
+		let presenter = SearchDefaultPresenter(view: view, interactor: interactor, resultOutput: output, types: [SearchType.movie])
 
 		presenter.viewDidLoad()
 
@@ -18,11 +32,11 @@ final class SearchPresenterTest: XCTestCase {
 
 	func testSearchPresenter_performSearchSuccess_outputsTheResults() {
 		let searchResultEntities = TraktEntitiesMock.createSearchResultsMock()
-		let store = SearchStoreMock(results: searchResultEntities)
+		let store = SearchMocks.Repository(results: searchResultEntities)
 		let interactor = SearchService(repository: store)
-		let presenter = SearchDefaultPresenter(view: view, interactor: interactor, resultOutput: output)
+		let presenter = SearchDefaultPresenter(view: view, interactor: interactor, resultOutput: output, types: [SearchType.movie])
 
-		presenter.searchMovies(query: "Tron")
+		presenter.search(query: "Tron")
 
 		XCTAssertTrue(output.invokedHandleSearch)
 
@@ -34,11 +48,11 @@ final class SearchPresenterTest: XCTestCase {
 	}
 
 	func testSearchPresenter_performSearchReceivesNoData_notifyOutput() {
-		let store = SearchStoreMock(results: [SearchResult]())
+		let store = SearchMocks.Repository()
 		let interactor = SearchService(repository: store)
-		let presenter = SearchDefaultPresenter(view: view, interactor: interactor, resultOutput: output)
+		let presenter = SearchDefaultPresenter(view: view, interactor: interactor, resultOutput: output, types: [SearchType.movie])
 
-		presenter.searchMovies(query: "Tron")
+		presenter.search(query: "Tron")
 
 		XCTAssertTrue(output.invokedHandleEmptySearchResult)
 	}
@@ -46,11 +60,11 @@ final class SearchPresenterTest: XCTestCase {
 	func testSearchPresenter_performSearchFailure_outputsErrorMessage() {
 		let userInfo = [NSLocalizedDescriptionKey: "There is no active connection"]
 		let error = NSError(domain: "io.github.pietrocaselani.CouchTracker", code: 10, userInfo: userInfo)
-		let store = ErrorSearchStoreMock(error: error)
+		let store = SearchMocks.ErrorRepository(error: error)
 		let interactor = SearchService(repository: store)
-		let presenter = SearchDefaultPresenter(view: view, interactor: interactor, resultOutput: output)
+		let presenter = SearchDefaultPresenter(view: view, interactor: interactor, resultOutput: output, types: [SearchType.movie])
 
-		presenter.searchMovies(query: "Tron")
+		presenter.search(query: "Tron")
 
 		let expectedMessage = error.localizedDescription
 
@@ -59,9 +73,9 @@ final class SearchPresenterTest: XCTestCase {
 	}
 
 	func testSearchPresenter_performCancel_notifyOutput() {
-		let store = EmptySearchStoreMock()
+		let store = SearchMocks.Repository()
 		let interactor = SearchService(repository: store)
-		let presenter = SearchDefaultPresenter(view: view, interactor: interactor, resultOutput: output)
+		let presenter = SearchDefaultPresenter(view: view, interactor: interactor, resultOutput: output, types: [SearchType.movie])
 
 		presenter.cancelSearch()
 

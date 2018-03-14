@@ -76,11 +76,10 @@
 		4F0F5766203D5FA000B86CB8 /* WatchedSeasonEntityRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F202F62202F10FE0040185F /* WatchedSeasonEntityRealm.swift */; };
 		4F0F5767203D5FA000B86CB8 /* WatchedShowEntityRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322F62024CF5000449B0A /* WatchedShowEntityRealm.swift */; };
 		4F0F5768203D5FA000B86CB8 /* Schedulers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D497420222EDC002A4EAD /* Schedulers.swift */; };
-		4F0F5769203D5FA000B86CB8 /* APISearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C3D1F55A96C008E344E /* APISearchRepository.swift */; };
+		4F0F5769203D5FA000B86CB8 /* SearchAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C3D1F55A96C008E344E /* SearchAPIRepository.swift */; };
 		4F0F576B203D5FA000B86CB8 /* SearchContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648390E41F504EE500911BA0 /* SearchContract.swift */; };
 		4F0F576C203D5FA000B86CB8 /* SearchDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C3B1F55A968008E344E /* SearchDefaultPresenter.swift */; };
 		4F0F576E203D5FA000B86CB8 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C3C1F55A968008E344E /* SearchService.swift */; };
-		4F0F576F203D5FA000B86CB8 /* SearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BF5001F6AFF220010CE35 /* SearchState.swift */; };
 		4F0F5770203D5FA000B86CB8 /* ShowEpisodeAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D4D1F7D9C6D00C26D10 /* ShowEpisodeAPIRepository.swift */; };
 		4F0F5771203D5FA000B86CB8 /* ShowEpisodeContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D491F7D964500C26D10 /* ShowEpisodeContract.swift */; };
 		4F0F5772203D5FA000B86CB8 /* ShowEpisodeDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDE5031F7E64F200A4C7AA /* ShowEpisodeDefaultPresenter.swift */; };
@@ -318,11 +317,10 @@
 		4F0F58B8203D7B0A00B86CB8 /* WatchedSeasonEntityRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F202F62202F10FE0040185F /* WatchedSeasonEntityRealm.swift */; };
 		4F0F58B9203D7B0A00B86CB8 /* WatchedShowEntityRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645322F62024CF5000449B0A /* WatchedShowEntityRealm.swift */; };
 		4F0F58BA203D7B0A00B86CB8 /* Schedulers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D497420222EDC002A4EAD /* Schedulers.swift */; };
-		4F0F58BB203D7B0A00B86CB8 /* APISearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C3D1F55A96C008E344E /* APISearchRepository.swift */; };
+		4F0F58BB203D7B0A00B86CB8 /* SearchAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C3D1F55A96C008E344E /* SearchAPIRepository.swift */; };
 		4F0F58BD203D7B0A00B86CB8 /* SearchContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648390E41F504EE500911BA0 /* SearchContract.swift */; };
 		4F0F58BE203D7B0A00B86CB8 /* SearchDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C3B1F55A968008E344E /* SearchDefaultPresenter.swift */; };
 		4F0F58C0203D7B0A00B86CB8 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D29C3C1F55A968008E344E /* SearchService.swift */; };
-		4F0F58C1203D7B0A00B86CB8 /* SearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BF5001F6AFF220010CE35 /* SearchState.swift */; };
 		4F0F58C2203D7B0A00B86CB8 /* ShowEpisodeAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D4D1F7D9C6D00C26D10 /* ShowEpisodeAPIRepository.swift */; };
 		4F0F58C3203D7B0A00B86CB8 /* ShowEpisodeContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D491F7D964500C26D10 /* ShowEpisodeContract.swift */; };
 		4F0F58C4203D7B0A00B86CB8 /* ShowEpisodeDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDE5031F7E64F200A4C7AA /* ShowEpisodeDefaultPresenter.swift */; };
@@ -697,7 +695,6 @@
 		6442F9FA1F61A0E4008E3E12 /* ShowDetailsContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsContract.swift; sourceTree = "<group>"; };
 		6448372B2023C402008ECE2B /* trakt_shows_watchedprogress_without_nextepisode.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_shows_watchedprogress_without_nextepisode.json; sourceTree = "<group>"; };
 		6448372D2023CF4D008ECE2B /* tvdb_episodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tvdb_episodes.json; sourceTree = "<group>"; };
-		644BF5001F6AFF220010CE35 /* SearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchState.swift; sourceTree = "<group>"; };
 		644BF5061F6B07AF0010CE35 /* AppConfigurationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigurationOptions.swift; sourceTree = "<group>"; };
 		644BF5071F6B07AF0010CE35 /* AppConfigurationsContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigurationsContract.swift; sourceTree = "<group>"; };
 		644BF5081F6B07AF0010CE35 /* AppConfigurationsDefaultPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigurationsDefaultPresenter.swift; sourceTree = "<group>"; };
@@ -854,7 +851,7 @@
 		64D29C391F55A957008E344E /* TraktGenreRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktGenreRepository.swift; sourceTree = "<group>"; };
 		64D29C3B1F55A968008E344E /* SearchDefaultPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDefaultPresenter.swift; sourceTree = "<group>"; };
 		64D29C3C1F55A968008E344E /* SearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
-		64D29C3D1F55A96C008E344E /* APISearchRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APISearchRepository.swift; sourceTree = "<group>"; };
+		64D29C3D1F55A96C008E344E /* SearchAPIRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAPIRepository.swift; sourceTree = "<group>"; };
 		64D2FFD91F44DFEA009E9ED3 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		64D43BCA1F605DB0005CDBF7 /* TrendingCellDefaultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCellDefaultPresenter.swift; sourceTree = "<group>"; };
 		64D43BCE1F605DE4005CDBF7 /* TrendingCellService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCellService.swift; sourceTree = "<group>"; };
@@ -1198,11 +1195,10 @@
 		4F0F5926203D94C200B86CB8 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				64D29C3D1F55A96C008E344E /* APISearchRepository.swift */,
+				64D29C3D1F55A96C008E344E /* SearchAPIRepository.swift */,
 				648390E41F504EE500911BA0 /* SearchContract.swift */,
 				64D29C3B1F55A968008E344E /* SearchDefaultPresenter.swift */,
 				64D29C3C1F55A968008E344E /* SearchService.swift */,
-				644BF5001F6AFF220010CE35 /* SearchState.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -2705,11 +2701,10 @@
 				4F0F5766203D5FA000B86CB8 /* WatchedSeasonEntityRealm.swift in Sources */,
 				4F0F5767203D5FA000B86CB8 /* WatchedShowEntityRealm.swift in Sources */,
 				4F0F5768203D5FA000B86CB8 /* Schedulers.swift in Sources */,
-				4F0F5769203D5FA000B86CB8 /* APISearchRepository.swift in Sources */,
+				4F0F5769203D5FA000B86CB8 /* SearchAPIRepository.swift in Sources */,
 				4F0F576B203D5FA000B86CB8 /* SearchContract.swift in Sources */,
 				4F0F576C203D5FA000B86CB8 /* SearchDefaultPresenter.swift in Sources */,
 				4F0F576E203D5FA000B86CB8 /* SearchService.swift in Sources */,
-				4F0F576F203D5FA000B86CB8 /* SearchState.swift in Sources */,
 				4F0F5770203D5FA000B86CB8 /* ShowEpisodeAPIRepository.swift in Sources */,
 				4F0F5771203D5FA000B86CB8 /* ShowEpisodeContract.swift in Sources */,
 				4F0F5772203D5FA000B86CB8 /* ShowEpisodeDefaultPresenter.swift in Sources */,
@@ -2952,11 +2947,10 @@
 				4F0F58B8203D7B0A00B86CB8 /* WatchedSeasonEntityRealm.swift in Sources */,
 				4F0F58B9203D7B0A00B86CB8 /* WatchedShowEntityRealm.swift in Sources */,
 				4F0F58BA203D7B0A00B86CB8 /* Schedulers.swift in Sources */,
-				4F0F58BB203D7B0A00B86CB8 /* APISearchRepository.swift in Sources */,
+				4F0F58BB203D7B0A00B86CB8 /* SearchAPIRepository.swift in Sources */,
 				4F0F58BD203D7B0A00B86CB8 /* SearchContract.swift in Sources */,
 				4F0F58BE203D7B0A00B86CB8 /* SearchDefaultPresenter.swift in Sources */,
 				4F0F58C0203D7B0A00B86CB8 /* SearchService.swift in Sources */,
-				4F0F58C1203D7B0A00B86CB8 /* SearchState.swift in Sources */,
 				4F0F58C2203D7B0A00B86CB8 /* ShowEpisodeAPIRepository.swift in Sources */,
 				4F0F58C3203D7B0A00B86CB8 /* ShowEpisodeContract.swift in Sources */,
 				4F0F58C4203D7B0A00B86CB8 /* ShowEpisodeDefaultPresenter.swift in Sources */,

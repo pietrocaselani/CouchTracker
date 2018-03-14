@@ -8,7 +8,7 @@ public final class SearchService: SearchInteractor {
 		self.repository = repository
 	}
 
-	public func searchMovies(query: String) -> Observable<[SearchResult]> {
+	public func search(query: String, types: [SearchType]) -> Single<[SearchResult]> {
 		return repository.search(query: query, types: [.movie], page: 0, limit: 50)
 	}
 }
