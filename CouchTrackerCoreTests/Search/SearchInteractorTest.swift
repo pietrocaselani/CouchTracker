@@ -5,24 +5,26 @@ import TraktSwift
 @testable import CouchTrackerCore
 
 final class SearchInteractorTest: XCTestCase {
-	private let scheduler = TestScheduler(initialClock: 0)
+	private var scheduler: TestScheduler!
 	private var observer: TestableObserver<[SearchResult]>!
 
 	override func setUp() {
 		super.setUp()
 
+		scheduler = TestScheduler(initialClock: 0)
 		observer = scheduler.createObserver([SearchResult].self)
 	}
 
 	override func tearDown() {
 		observer = nil
+		scheduler = nil
 		super.tearDown()
 	}
 
 	func testSearchInteractor_fetchSuccessEmptyData_andEmitsEmptyDataAndOnCompleted() {
-		let interactor = SearchService(repository: SearchStoreMock(results: [SearchResult]()))
+		let interactor = SearchService(repository: SearchMocks.Repository(results: [SearchResult]()))
 
-		let disposable = interactor.searchMovies(query: "Cool movie").subscribe(observer)
+		let disposable = interactor.search(query: "Cool movie", types: [SearchType.movie]).asObservable().subscribe(observer)
 
 		scheduler.scheduleAt(500) { disposable.dispose() }
 
@@ -34,8 +36,8 @@ final class SearchInteractorTest: XCTestCase {
 	func testSearchInteractor_fetchSuccessReceivesData_andEmitDataAndOnCompleted() {
 		let results = TraktEntitiesMock.createSearchResultsMock()
 
-		let interactor = SearchService(repository: SearchStoreMock(results: results))
-		let disposable = interactor.searchMovies(query: "Tron").subscribe(observer)
+		let interactor = SearchService(repository: SearchMocks.Repository(results: results))
+		let disposable = interactor.search(query: "Tron", types: [SearchType.movie]).asObservable().subscribe(observer)
 
 		scheduler.scheduleAt(500) { disposable.dispose() }
 
