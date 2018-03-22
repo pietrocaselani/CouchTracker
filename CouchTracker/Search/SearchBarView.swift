@@ -25,7 +25,7 @@ extension SearchBarView: UISearchBarDelegate {
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		guard let query = searchBar.text else { return }
 
-		presenter.searchMovies(query: query)
+		presenter.search(query: query)
 	}
 
 	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

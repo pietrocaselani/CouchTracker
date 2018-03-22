@@ -9,6 +9,6 @@ public final class SearchService: SearchInteractor {
 	}
 
 	public func search(query: String, types: [SearchType]) -> Single<[SearchResult]> {
-		return repository.search(query: query, types: [.movie], page: 0, limit: 50)
+		return repository.search(query: query, types: types, page: 0, limit: 50)
 	}
 }

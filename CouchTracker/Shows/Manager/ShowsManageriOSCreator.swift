@@ -9,6 +9,8 @@ final class ShowsManageriOSCreator: ShowsManagerModuleCreator {
 			return ShowsNowModule.setupModule()
 		case .trending:
 			return TrendingModule.setupModule(for: .shows)
+		case .search:
+			return SearchModule.setupModule(searchTypes: [.show])
 		}
 	}
 }

@@ -57,4 +57,11 @@ final class SearchInteractorTest: XCTestCase {
 
 		RXAssertEvents(observer, expectedEvents)
 	}
+
+	func testSearchInteractor_invokeRepositoryWithCorrectParameters() {
+		let repository = SearchMocks.Repository()
+		let interactor = SearchService(repository: repository)
+
+		_ = interactor.search(query: "Query cool", types: [.list, .movie, .person, .none])
+	}
 }

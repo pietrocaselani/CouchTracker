@@ -1,10 +1,10 @@
 import TraktSwift
 
 extension ShowIds {
-	func tmdbModelType() -> TrendingViewModelType? {
-		var type: TrendingViewModelType? = nil
+	func tmdbModelType() -> PosterViewModelType? {
+		var type: PosterViewModelType? = nil
 		if let tmdbId = self.tmdb {
-			type = TrendingViewModelType.show(tmdbShowId: tmdbId)
+			type = PosterViewModelType.show(tmdbShowId: tmdbId)
 		}
 		return type
 	}

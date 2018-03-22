@@ -6,7 +6,7 @@ def common_pods
   pod 'TMDB', :git => 'https://github.com/pietrocaselani/TMDB-Swift.git'
   pod 'TVDB', :git => 'https://github.com/pietrocaselani/TVDB-Swift.git'
   pod 'RxRealm', '0.7.5'
-  pod 'RxSwift', :git => 'https://github.com/pietrocaselani/RxSwift.git', :branch => 'develop'
+  pod 'RxSwift', :git => 'https://github.com/ReactiveX/RxSwift.git', :branch => 'develop'
 end
 
 def ios_pods

@@ -28,7 +28,7 @@ final class ShowsManagerDefaultModuleSetupTest: XCTestCase {
 		let options = moduleSetup.options
 
 		//Then
-		let expectedOptions = [ShowsManagerOption.progress, ShowsManagerOption.now, ShowsManagerOption.trending]
+		let expectedOptions = [ShowsManagerOption.progress, ShowsManagerOption.now, ShowsManagerOption.trending, ShowsManagerOption.search]
 		XCTAssertEqual(expectedOptions, options)
 	}
 
@@ -42,7 +42,8 @@ final class ShowsManagerDefaultModuleSetupTest: XCTestCase {
 		let progressPage = ModulePage(page: BaseViewMock(), title: "Progress")
 		let nowPage = ModulePage(page: BaseViewMock(), title: "Now")
 		let trendingPage = ModulePage(page: BaseViewMock(), title: "Trending")
-		let expectedPages = [progressPage, nowPage, trendingPage]
+		let searchPage = ModulePage(page: BaseViewMock(), title: "Search")
+		let expectedPages = [progressPage, nowPage, trendingPage, searchPage]
 
 		XCTAssertEqual(expectedPages, pages)
 	}
