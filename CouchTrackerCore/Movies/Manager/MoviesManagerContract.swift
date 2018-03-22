@@ -1,5 +1,6 @@
 public enum MoviesManagerOption: String {
 	case trending
+	case search
 }
 
 public protocol MoviesManagerPresenter: class {

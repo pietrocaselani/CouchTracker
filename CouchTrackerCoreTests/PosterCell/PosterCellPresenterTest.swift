@@ -1,18 +1,18 @@
 import XCTest
 @testable import CouchTrackerCore
 
-final class TrendingCellPresenterTest: XCTestCase {
+final class PosterCellPresenterTest: XCTestCase {
 
-	private let view = TrendingCellViewMock()
+	private let view = PosterCellViewMock()
 
 	func testTrendingCellPresenter_updatesViewModelOnView() {
 		let interactor = TrendingCellInteractorMock(imageRepository: imageRepositoryRealMock)
-		let trendingViewModel = TrendingViewModel(title: "Nice", type: nil)
-		let presenter = TrendingCellDefaultPresenter(view: view, interactor: interactor, viewModel: trendingViewModel)
+		let trendingViewModel = PosterViewModel(title: "Nice", type: nil)
+		let presenter = PosterCellDefaultPresenter(view: view, interactor: interactor, viewModel: trendingViewModel)
 
 		presenter.viewWillAppear()
 
-		let expectedCellViewModel = TrendingCellViewModel(title: "Nice")
+		let expectedCellViewModel = PosterCellViewModel(title: "Nice")
 
 		XCTAssertTrue(view.invokedShowViewModel)
 		XCTAssertEqual(view.invokedShowViewModelParameters!.viewModel, expectedCellViewModel)
@@ -21,10 +21,10 @@ final class TrendingCellPresenterTest: XCTestCase {
 	func testTrendingCellPresenter_receivesImageURL_notifyView() {
 		let interactor = TrendingCellInteractorMock(imageRepository: imageRepositoryRealMock)
 
-		let type = TrendingViewModelType.movie(tmdbMovieId: 4)
+		let type = PosterViewModelType.movie(tmdbMovieId: 4)
 
-		let trendingViewModel = TrendingViewModel(title: "Nice", type: type)
-		let presenter = TrendingCellDefaultPresenter(view: view, interactor: interactor, viewModel: trendingViewModel)
+		let trendingViewModel = PosterViewModel(title: "Nice", type: type)
+		let presenter = PosterCellDefaultPresenter(view: view, interactor: interactor, viewModel: trendingViewModel)
 
 		presenter.viewWillAppear()
 

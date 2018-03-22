@@ -2,7 +2,7 @@ import UIKit
 import CouchTrackerCore
 
 final class TrendingCollectionViewDataSource: NSObject, TrendingDataSource, UICollectionViewDataSource {
-	var viewModels = [TrendingViewModel]()
+	var viewModels = [PosterViewModel]()
 
 	private let imageRepository: ImageRepository
 
@@ -15,15 +15,15 @@ final class TrendingCollectionViewDataSource: NSObject, TrendingDataSource, UICo
 	}
 
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let identifier = R.reuseIdentifier.trendingCell
+		let identifier = R.reuseIdentifier.posterCell
 
 		guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) else {
-			fatalError("cell isn't an instance of TrendingCell.")
+			Swift.fatalError("Poster cell should not be nil")
 		}
 
 		let viewModel = viewModels[indexPath.row]
-		let interactor = TrendingCellService(imageRepository: imageRepository)
-		let presenter = TrendingCellDefaultPresenter(view: cell, interactor: interactor, viewModel: viewModel)
+		let interactor = PosterCellService(imageRepository: imageRepository)
+		let presenter = PosterCellDefaultPresenter(view: cell, interactor: interactor, viewModel: viewModel)
 
 		cell.presenter = presenter
 

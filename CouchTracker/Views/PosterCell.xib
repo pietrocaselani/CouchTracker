@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="PosterCell" reuseIdentifier="PosterCell" id="ymG-37-7lS" customClass="PosterCell" customModule="CouchTracker" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UMn-CA-J7e">
+                        <rect key="frame" x="8" y="8" width="84" height="142"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PosterListPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="mg2-Dy-D5f">
+                                <rect key="frame" x="0.0" y="0.0" width="84" height="112"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RBF-O8-U4V">
+                                <rect key="frame" x="0.0" y="112" width="84" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingrid Goes West" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdV-FE-9Lp">
+                                        <rect key="frame" x="1" y="0.0" width="84" height="26.5"/>
+                                        <color key="backgroundColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="IdV-FE-9Lp" firstAttribute="top" secondItem="RBF-O8-U4V" secondAttribute="top" id="Lx4-4R-kyN"/>
+                                    <constraint firstAttribute="height" constant="30" id="TIU-SN-mgo"/>
+                                    <constraint firstItem="IdV-FE-9Lp" firstAttribute="leading" secondItem="RBF-O8-U4V" secondAttribute="leading" constant="1" id="Yjs-Wg-Xvs"/>
+                                    <constraint firstAttribute="trailing" secondItem="IdV-FE-9Lp" secondAttribute="trailing" constant="-1" id="rM4-mf-8by"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="RBF-O8-U4V" secondAttribute="bottom" id="Ij6-Hj-6Uu"/>
+                            <constraint firstItem="mg2-Dy-D5f" firstAttribute="top" secondItem="UMn-CA-J7e" secondAttribute="top" id="JqD-AG-3Qr"/>
+                            <constraint firstItem="mg2-Dy-D5f" firstAttribute="width" secondItem="UMn-CA-J7e" secondAttribute="width" id="Mgu-Sy-okl"/>
+                            <constraint firstItem="RBF-O8-U4V" firstAttribute="leading" secondItem="UMn-CA-J7e" secondAttribute="leading" id="Olr-OK-ZCV"/>
+                            <constraint firstItem="RBF-O8-U4V" firstAttribute="width" secondItem="UMn-CA-J7e" secondAttribute="width" id="YfS-nK-bT3"/>
+                            <constraint firstItem="mg2-Dy-D5f" firstAttribute="leading" secondItem="UMn-CA-J7e" secondAttribute="leading" id="pfu-jy-Frb"/>
+                            <constraint firstAttribute="trailing" secondItem="RBF-O8-U4V" secondAttribute="trailing" id="upb-z9-ueV"/>
+                            <constraint firstItem="RBF-O8-U4V" firstAttribute="top" secondItem="mg2-Dy-D5f" secondAttribute="bottom" id="xRe-fx-g1k"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="UMn-CA-J7e" secondAttribute="trailing" constant="8" id="Fu4-gy-KcE"/>
+                <constraint firstItem="UMn-CA-J7e" firstAttribute="leading" secondItem="ymG-37-7lS" secondAttribute="leading" constant="8" id="Yzx-Im-bWB"/>
+                <constraint firstAttribute="bottom" secondItem="UMn-CA-J7e" secondAttribute="bottom" id="fAY-kC-aZz"/>
+                <constraint firstItem="UMn-CA-J7e" firstAttribute="top" secondItem="ymG-37-7lS" secondAttribute="top" constant="8" id="rca-DW-Wc2"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="B7W-R0-lvg"/>
+            <size key="customSize" width="100" height="150"/>
+            <connections>
+                <outlet property="coverImageView" destination="mg2-Dy-D5f" id="yfi-Kt-Crk"/>
+                <outlet property="titleLabel" destination="IdV-FE-9Lp" id="op9-cf-wpu"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="PosterListPlaceholder" width="100" height="150"/>
+    </resources>
+</document>

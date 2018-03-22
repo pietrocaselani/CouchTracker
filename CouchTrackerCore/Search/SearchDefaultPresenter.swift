@@ -3,7 +3,7 @@ import TraktSwift
 
 public final class SearchDefaultPresenter: SearchPresenter {
 	private weak var view: SearchView?
-	private let output: SearchResultOutput
+	private weak var output: SearchResultOutput?
 	private let interactor: SearchInteractor
 	private let searchTypes: [SearchType]
 	private let disposeBag = DisposeBag()
@@ -20,23 +20,23 @@ public final class SearchDefaultPresenter: SearchPresenter {
 	}
 
 	public func search(query: String) {
-		output.searchChangedTo(state: .searching)
+		output?.searchChangedTo(state: .searching)
 
 		interactor.search(query: query, types: searchTypes)
 			.observeOn(MainScheduler.instance)
 			.subscribe(onSuccess: { [weak self] results in
 				guard results.count > 0 else {
-					self?.output.handleEmptySearchResult()
+					self?.output?.handleEmptySearchResult()
 					return
 				}
 
-				self?.output.handleSearch(results: results)
+				self?.output?.handleSearch(results: results)
 			}, onError: { [weak self] error in
-				self?.output.handleError(message: error.localizedDescription)
+				self?.output?.handleError(message: error.localizedDescription)
 			}).disposed(by: disposeBag)
 	}
 
 	public func cancelSearch() {
-		output.searchChangedTo(state: .notSearching)
+		output?.searchChangedTo(state: .notSearching)
 	}
 }

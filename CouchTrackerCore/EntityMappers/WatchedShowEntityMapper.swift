@@ -1,9 +1,9 @@
-final class WatchedShowEntityMapper {
+public final class WatchedShowEntityMapper {
 	private init() {
 		Swift.fatalError("No instances for you!")
 	}
 
-	static func viewModel(for entity: WatchedShowEntity) -> WatchedShowViewModel {
+	public static func viewModel(for entity: WatchedShowEntity) -> WatchedShowViewModel {
 		let nextEpisodeTitle = entity.nextEpisode.map { "\($0.season)x\($0.number) \($0.title)" }
 		let nextEpisodeDateText = nextEpisodeDate(for: entity)
 		let statusText = status(for: entity)
@@ -15,7 +15,7 @@ final class WatchedShowEntityMapper {
 																														tmdbId: entity.show.ids.tmdb)
 	}
 
-	static func status(for entity: WatchedShowEntity) -> String {
+	public static func status(for entity: WatchedShowEntity) -> String {
 		let episodesRemaining = entity.aired - entity.completed
 		var status = episodesRemaining == 0 ? "" : "episodes remaining".localized(String(episodesRemaining))
 
@@ -26,7 +26,7 @@ final class WatchedShowEntityMapper {
 		return status
 	}
 
-	static func nextEpisodeDate(for entity: WatchedShowEntity) -> String {
+	public static func nextEpisodeDate(for entity: WatchedShowEntity) -> String {
 		if let nextEpisodeDate = entity.nextEpisode?.firstAired?.shortString() {
 			return nextEpisodeDate
 		}

@@ -31,67 +31,7 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TrendingCell" id="kvS-8w-Sxv" customClass="TrendingCell" customModule="CouchTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Mb-Ir-Pdd">
-                                                    <rect key="frame" x="8" y="8" width="84" height="142"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PosterListPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Qm8-CJ-hQh">
-                                                            <rect key="frame" x="0.0" y="0.0" width="84" height="112"/>
-                                                        </imageView>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8KI-6N-jvX">
-                                                            <rect key="frame" x="0.0" y="112" width="84" height="30"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingrid Goes West" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhV-eG-OcI">
-                                                                    <rect key="frame" x="1" y="0.0" width="84" height="26.5"/>
-                                                                    <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
-                                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <color key="backgroundColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <constraints>
-                                                                <constraint firstItem="OhV-eG-OcI" firstAttribute="top" secondItem="8KI-6N-jvX" secondAttribute="top" id="Ujc-Kk-Ibb"/>
-                                                                <constraint firstItem="OhV-eG-OcI" firstAttribute="leading" secondItem="8KI-6N-jvX" secondAttribute="leading" constant="1" id="gme-sw-eiK"/>
-                                                                <constraint firstAttribute="height" constant="30" id="m9l-dk-jt1"/>
-                                                                <constraint firstAttribute="trailing" secondItem="OhV-eG-OcI" secondAttribute="trailing" constant="-1" id="zcw-JO-s0q"/>
-                                                            </constraints>
-                                                        </view>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="8KI-6N-jvX" secondAttribute="bottom" id="BBc-nt-xeb"/>
-                                                        <constraint firstItem="Qm8-CJ-hQh" firstAttribute="width" secondItem="3Mb-Ir-Pdd" secondAttribute="width" id="BTs-5t-APO"/>
-                                                        <constraint firstItem="Qm8-CJ-hQh" firstAttribute="leading" secondItem="3Mb-Ir-Pdd" secondAttribute="leading" id="JmB-sy-ZWI"/>
-                                                        <constraint firstItem="Qm8-CJ-hQh" firstAttribute="top" secondItem="3Mb-Ir-Pdd" secondAttribute="top" id="Msu-aQ-sQN"/>
-                                                        <constraint firstItem="8KI-6N-jvX" firstAttribute="leading" secondItem="3Mb-Ir-Pdd" secondAttribute="leading" id="QXw-Bg-B1f"/>
-                                                        <constraint firstAttribute="trailing" secondItem="8KI-6N-jvX" secondAttribute="trailing" id="dVX-lI-ClC"/>
-                                                        <constraint firstItem="8KI-6N-jvX" firstAttribute="width" secondItem="3Mb-Ir-Pdd" secondAttribute="width" id="pjl-e8-Wbf"/>
-                                                        <constraint firstItem="8KI-6N-jvX" firstAttribute="top" secondItem="Qm8-CJ-hQh" secondAttribute="bottom" id="sWa-bZ-Dpc"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="3Mb-Ir-Pdd" firstAttribute="top" secondItem="kvS-8w-Sxv" secondAttribute="top" constant="8" id="0uk-b7-bRa"/>
-                                            <constraint firstAttribute="trailing" secondItem="3Mb-Ir-Pdd" secondAttribute="trailing" constant="8" id="IUp-Df-que"/>
-                                            <constraint firstAttribute="bottom" secondItem="3Mb-Ir-Pdd" secondAttribute="bottom" id="QHY-lh-j9W"/>
-                                            <constraint firstItem="3Mb-Ir-Pdd" firstAttribute="leading" secondItem="kvS-8w-Sxv" secondAttribute="leading" constant="8" id="iwV-hb-43g"/>
-                                        </constraints>
-                                        <size key="customSize" width="100" height="150"/>
-                                        <connections>
-                                            <outlet property="coverImageView" destination="Qm8-CJ-hQh" id="gMT-YD-WbX"/>
-                                            <outlet property="titleLabel" destination="OhV-eG-OcI" id="v0t-ZH-ORD"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5x8-fY-77i">
                                 <rect key="frame" x="46" y="36" width="283" height="21"/>
@@ -125,7 +65,4 @@
             <point key="canvasLocation" x="970.39999999999998" y="76.911544227886068"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="PosterListPlaceholder" width="100" height="150"/>
-    </resources>
 </document>

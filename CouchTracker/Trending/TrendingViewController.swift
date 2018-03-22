@@ -6,11 +6,8 @@ import CouchTrackerCore
 final class TrendingViewController: UIViewController {
 	var presenter: TrendingPresenter!
 
-	private let disposeBag = DisposeBag()
-
 	@IBOutlet weak var collectionView: UICollectionView!
 	@IBOutlet weak var emptyLabel: UILabel!
-	@IBOutlet weak var trendingTypeSegmentedControl: UISegmentedControl!
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -25,9 +22,11 @@ final class TrendingViewController: UIViewController {
 			fatalError("dataSource should be an instance of UICollectionViewDataSource")
 		}
 
-		emptyLabel.text = "No movies to show right now".localized
-		collectionView.delegate = self
+		collectionView.register(R.nib.posterCell(), forCellWithReuseIdentifier: R.nib.posterCell.identifier)
 
+		emptyLabel.text = "No movies to show right now".localized
+
+		collectionView.delegate = self
 		collectionView.dataSource = collectionViewDataSource
 
 		presenter.viewDidLoad()
