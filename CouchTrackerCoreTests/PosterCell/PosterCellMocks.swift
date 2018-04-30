@@ -2,32 +2,32 @@ import Foundation
 import RxSwift
 @testable import CouchTrackerCore
 
-final class TrendingCellViewMock: TrendingCellView {
-	var presenter: TrendingCellPresenter!
+final class PosterCellViewMock: PosterCellView {
+	var presenter: PosterCellPresenter!
 	var invokedShowPosterImage = false
 	var invokedShowViewModel = false
 	var invokedPosterImageParameters: (url: URL, Void)?
-	var invokedShowViewModelParameters: (viewModel: TrendingCellViewModel, Void)?
+	var invokedShowViewModelParameters: (viewModel: PosterCellViewModel, Void)?
 
 	func showPosterImage(with url: URL) {
 		invokedShowPosterImage = true
 		invokedPosterImageParameters = (url, ())
 	}
 
-	func show(viewModel: TrendingCellViewModel) {
+	func show(viewModel: PosterCellViewModel) {
 		invokedShowViewModel = true
 		invokedShowViewModelParameters = (viewModel, ())
 	}
 }
 
-final class TrendingCellInteractorMock: TrendingCellInteractor {
+final class TrendingCellInteractorMock: PosterCellInteractor {
 	private let imageRepository: ImageRepository
 
 	init(imageRepository: ImageRepository) {
 		self.imageRepository = imageRepository
 	}
 
-	func fetchPosterImageURL(of type: TrendingViewModelType, with size: PosterImageSize?) -> Maybe<URL> {
+	func fetchPosterImageURL(of type: PosterViewModelType, with size: PosterImageSize?) -> Maybe<URL> {
 		if case .movie(let tmdbId) = type {
 			let observable = imageRepository.fetchMovieImages(for: tmdbId, posterSize: size, backdropSize: nil).asObservable()
 			return observable.flatMap { imageEntity -> Observable<URL> in

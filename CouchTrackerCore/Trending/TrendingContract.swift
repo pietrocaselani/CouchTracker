@@ -42,5 +42,5 @@ public protocol TrendingRepository: class {
 }
 
 public protocol TrendingDataSource: class {
-	var viewModels: [TrendingViewModel] { get set }
+	var viewModels: [PosterViewModel] { get set }
 }

@@ -3,17 +3,17 @@ import Kingfisher
 import RxSwift
 import CouchTrackerCore
 
-final class TrendingCell: UICollectionViewCell, TrendingCellView {
+final class PosterCell: UICollectionViewCell, PosterCellView {
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var coverImageView: UIImageView!
 
-	var presenter: TrendingCellPresenter! {
+	var presenter: PosterCellPresenter! {
 		didSet {
 			presenter.viewWillAppear()
 		}
 	}
 
-	func show(viewModel: TrendingCellViewModel) {
+	func show(viewModel: PosterCellViewModel) {
 		titleLabel.text = viewModel.title
 	}
 

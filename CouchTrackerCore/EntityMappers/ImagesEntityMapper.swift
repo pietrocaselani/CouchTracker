@@ -1,15 +1,15 @@
 import TMDBSwift
 import Foundation
 
-final class ImagesEntityMapper {
+public final class ImagesEntityMapper {
 	private init() {
 		Swift.fatalError("No instances for you!")
 	}
 
-	static func entity(for images: Images, using configuration: Configuration,
-																				posterSize: PosterImageSize = .w342,
-																				backdropSize: BackdropImageSize = .w780,
-																				stillSize: StillImageSize = .w300) -> ImagesEntity {
+	public static func entity(for images: Images, using configuration: Configuration,
+																											posterSize: PosterImageSize = .w342,
+																											backdropSize: BackdropImageSize = .w780,
+																											stillSize: StillImageSize = .w300) -> ImagesEntity {
 		let baseURL = configuration.images.secureBaseURL as NSString
 
 		let backdrops = images.backdrops.map { imageEntity(for: $0, with: baseURL, size: backdropSize.rawValue) }
@@ -19,7 +19,7 @@ final class ImagesEntityMapper {
 		return ImagesEntity(identifier: images.identifier, backdrops: backdrops, posters: posters, stills: stills)
 	}
 
-	static func imageEntity(for image: Image, with baseURL: NSString, size: String) -> ImageEntity {
+	public static func imageEntity(for image: Image, with baseURL: NSString, size: String) -> ImageEntity {
 		let link = (baseURL.appendingPathComponent(size) as NSString).appendingPathComponent(image.filePath)
 
 		return ImageEntity(link: link,

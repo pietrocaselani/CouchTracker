@@ -5,6 +5,8 @@ final class MoviesManageriOSModuleCreator: MoviesManagerModuleCreator {
 		switch option {
 			case .trending:
 				return TrendingModule.setupModule(for: .movies)
+		case .search:
+			return SearchModule.setupModule(searchTypes: [.movie])
 		}
 	}
 }

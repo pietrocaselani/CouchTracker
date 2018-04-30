@@ -17,7 +17,7 @@ public final class TrendingDefaultPresenter: TrendingPresenter {
 	fileprivate let router: TrendingRouter
 
 	public init(view: TrendingView, interactor: TrendingInteractor,
-													router: TrendingRouter, dataSource: TrendingDataSource, type: TrendingType) {
+	            router: TrendingRouter, dataSource: TrendingDataSource, type: TrendingType) {
 		self.view = view
 		self.interactor = interactor
 		self.router = router
@@ -59,7 +59,7 @@ public final class TrendingDefaultPresenter: TrendingPresenter {
 		subscribe(on: observable, for: .shows)
 	}
 
-	private func subscribe(on observable: Observable<[TrendingViewModel]>, for type: TrendingType) {
+	private func subscribe(on observable: Observable<[PosterViewModel]>, for type: TrendingType) {
 		observable.asSingle().observeOn(MainScheduler.instance).subscribe(onSuccess: { [unowned self] in
 			self.present(viewModels: $0)
 			}, onError: { error in
@@ -72,7 +72,7 @@ public final class TrendingDefaultPresenter: TrendingPresenter {
 		}).disposed(by: disposeBag)
 	}
 
-	fileprivate func present(viewModels: [TrendingViewModel]) {
+	fileprivate func present(viewModels: [PosterViewModel]) {
 		guard let view = view else { return }
 
 		guard viewModels.count > 0 else {
@@ -85,12 +85,12 @@ public final class TrendingDefaultPresenter: TrendingPresenter {
 		view.showTrendingsView()
 	}
 
-	private func transformToViewModels(entities: [TrendingMovieEntity]) -> [TrendingViewModel] {
-		return entities.map { TrendingMovieViewModelMapper.viewModel(for: $0.movie) }
+	private func transformToViewModels(entities: [TrendingMovieEntity]) -> [PosterViewModel] {
+		return entities.map { PosterMovieViewModelMapper.viewModel(for: $0.movie) }
 	}
 
-	private func transformToViewModels(entities: [TrendingShowEntity]) -> [TrendingViewModel] {
-		return entities.map { TrendingShowViewModelMapper.viewModel(for: $0.show) }
+	private func transformToViewModels(entities: [TrendingShowEntity]) -> [PosterViewModel] {
+		return entities.map { PosterShowViewModelMapper.viewModel(for: $0.show) }
 	}
 
 	private func showDetailsOfMovie(at index: Int) {

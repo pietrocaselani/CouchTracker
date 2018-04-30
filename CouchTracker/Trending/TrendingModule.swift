@@ -5,12 +5,8 @@ final class TrendingModule {
 	private init() {}
 
 	static func setupModule(for trendingType: TrendingType) -> BaseView {
-		guard let view = R.storyboard.trending().instantiateInitialViewController() as? TrendingView else {
-			fatalError("topViewController should be an instance of TrendingView")
-		}
-
-		guard let viewController = view as? UIViewController else {
-			fatalError("view should be an instance of UIViewController")
+		guard let view = R.storyboard.trending.instantiateInitialViewController() else {
+			fatalError("Could not instantiate view controller from storyboard")
 		}
 
 		let traktProvider = Environment.instance.trakt
@@ -21,12 +17,12 @@ final class TrendingModule {
 		let repository = TrendingCacheRepository(traktProvider: traktProvider, schedulers: schedulers)
 		let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
 		let imageRepository = ImageCachedRepository(tmdb: tmdb,
-																								tvdb: tvdb,
-																								cofigurationRepository: configurationRepository,
-																								schedulers: schedulers)
+																																														tvdb: tvdb,
+																																														cofigurationRepository: configurationRepository,
+																																														schedulers: schedulers)
 
 		let interactor = TrendingService(repository: repository)
-		let router = TrendingiOSRouter(viewController: viewController)
+		let router = TrendingiOSRouter(viewController: view)
 
 		let dataSource = TrendingCollectionViewDataSource(imageRepository: imageRepository)
 

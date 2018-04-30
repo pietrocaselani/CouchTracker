@@ -67,9 +67,9 @@ final class TrendingPresenterTest: XCTestCase {
 
 		presenter.viewDidLoad()
 
-		let expectedViewModel = movies.map { trendingMovie -> TrendingViewModel in
+		let expectedViewModel = movies.map { trendingMovie -> PosterViewModel in
 			let type = trendingMovie.movie.ids.tmdbModelType()
-			return TrendingViewModel(title: trendingMovie.movie.title ?? "TBA", type: type)
+			return PosterViewModel(title: trendingMovie.movie.title ?? "TBA", type: type)
 		}
 
 		XCTAssertTrue(view.invokedShow)
