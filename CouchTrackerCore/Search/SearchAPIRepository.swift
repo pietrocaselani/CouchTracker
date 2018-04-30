@@ -2,7 +2,7 @@ import RxSwift
 import Moya
 import TraktSwift
 
-public final class APISearchRepository: SearchRepository {
+public final class SearchAPIRepository: SearchRepository {
 	private let trakt: TraktProvider
 	private let schedulers: Schedulers
 
@@ -11,12 +11,11 @@ public final class APISearchRepository: SearchRepository {
 		self.schedulers = schedulers
 	}
 
-	public func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]> {
+	public func search(query: String, types: [SearchType], page: Int, limit: Int) -> Single<[SearchResult]> {
 		let target = Search.textQuery(types: types, query: query, page: page, limit: limit)
 
 		return trakt.search.rx.request(target)
 			.observeOn(schedulers.networkScheduler)
 			.map([SearchResult].self)
-			.asObservable()
 	}
 }

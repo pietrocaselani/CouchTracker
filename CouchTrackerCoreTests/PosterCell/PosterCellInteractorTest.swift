@@ -3,7 +3,7 @@ import RxTest
 import RxSwift
 @testable import CouchTrackerCore
 
-final class TrendingCellInteractorTest: XCTestCase {
+final class PosterCellInteractorTest: XCTestCase {
 
 	let scheduler = TestScheduler(initialClock: 0)
 	var observer: TestableObserver<URL>!
@@ -15,8 +15,8 @@ final class TrendingCellInteractorTest: XCTestCase {
 	}
 
 	func testTrendingInteractor_fetchPosterImageURLForShowSuccess_emitsNextAndCompleted() {
-		let type = TrendingViewModelType.show(tmdbShowId: 2)
-		let interactor = TrendingCellService(imageRepository: imageRepositoryRealMock)
+		let type = PosterViewModelType.show(tmdbShowId: 2)
+		let interactor = PosterCellService(imageRepository: imageRepositoryRealMock)
 		let observable = interactor.fetchPosterImageURL(of: type, with: PosterImageSize.w92)
 
 		let disposable = observable.asObservable().subscribe(observer)
@@ -35,9 +35,9 @@ final class TrendingCellInteractorTest: XCTestCase {
 	}
 
 	func testTrendingInteractor_fetchPosterImageURLForMovieFailure_emitsOnError() {
-		let type = TrendingViewModelType.movie(tmdbMovieId: 4)
+		let type = PosterViewModelType.movie(tmdbMovieId: 4)
 		let imageError = NSError(domain: "io.github.pietrocaselani", code: 100, userInfo: nil)
-		let interactor = TrendingCellService(imageRepository: ErrorImageRepositoryMock(error: imageError))
+		let interactor = PosterCellService(imageRepository: ErrorImageRepositoryMock(error: imageError))
 		let observable = interactor.fetchPosterImageURL(of: type, with: PosterImageSize.w92)
 
 		let disposable = observable.asObservable().subscribe(observer)
@@ -54,14 +54,14 @@ final class TrendingCellInteractorTest: XCTestCase {
 	}
 
 	func testTrendingInteractor_fetchPosterImageURLForMovieSuccessReceivesEmptyData_emitsOnCompleted() {
-		let type = TrendingViewModelType.movie(tmdbMovieId: 4)
+		let type = PosterViewModelType.movie(tmdbMovieId: 4)
 
 		let images = [ImageEntity]()
 		let imagesMock = ImagesEntity(identifier: 4, backdrops: images, posters: images, stills: images)
 
 		let repository = ImagesRepositorySampleMock(images: imagesMock)
 
-		let interactor = TrendingCellService(imageRepository: repository)
+		let interactor = PosterCellService(imageRepository: repository)
 		let observable = interactor.fetchPosterImageURL(of: type, with: PosterImageSize.w92)
 
 		let disposable = observable.asObservable().subscribe(observer)
@@ -78,7 +78,7 @@ final class TrendingCellInteractorTest: XCTestCase {
 	}
 
 	func testTrendingInteractor_fetchPosterImageURLForMovieSuccessReceivesData_emitsURL() {
-		let type = TrendingViewModelType.movie(tmdbMovieId: 4)
+		let type = PosterViewModelType.movie(tmdbMovieId: 4)
 
 		let image = ImageEntity(link: "https://pc.com", width: 123, height: 321, iso6391: nil, aspectRatio: 2.1, voteAverage: 3.2, voteCount: 5)
 		let images = [image]
@@ -86,7 +86,7 @@ final class TrendingCellInteractorTest: XCTestCase {
 
 		let repository = ImagesRepositorySampleMock(images: imagesMock)
 
-		let interactor = TrendingCellService(imageRepository: repository)
+		let interactor = PosterCellService(imageRepository: repository)
 		let observable = interactor.fetchPosterImageURL(of: type, with: PosterImageSize.w92)
 
 		let disposable = observable.asObservable().subscribe(observer)

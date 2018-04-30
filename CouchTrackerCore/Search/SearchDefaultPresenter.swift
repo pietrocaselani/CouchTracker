@@ -3,38 +3,40 @@ import TraktSwift
 
 public final class SearchDefaultPresenter: SearchPresenter {
 	private weak var view: SearchView?
-	private let output: SearchResultOutput
+	private weak var output: SearchResultOutput?
 	private let interactor: SearchInteractor
+	private let searchTypes: [SearchType]
 	private let disposeBag = DisposeBag()
 
-	public init(view: SearchView, interactor: SearchInteractor, resultOutput: SearchResultOutput) {
+	public init(view: SearchView, interactor: SearchInteractor, resultOutput: SearchResultOutput, types: [SearchType]) {
 		self.view = view
 		self.interactor = interactor
 		self.output = resultOutput
+		self.searchTypes = types
 	}
 
 	public func viewDidLoad() {
-		view?.showHint(message: "Type a movie name".localized)
+		view?.showHint(message: "Type something".localized)
 	}
 
-	public func searchMovies(query: String) {
-		output.searchChangedTo(state: .searching)
+	public func search(query: String) {
+		output?.searchChangedTo(state: .searching)
 
-		interactor.searchMovies(query: query)
-				.observeOn(MainScheduler.instance)
-				.subscribe(onNext: { [unowned self] results in
-					guard results.count > 0 else {
-						self.output.handleEmptySearchResult()
-						return
-					}
+		interactor.search(query: query, types: searchTypes)
+			.observeOn(MainScheduler.instance)
+			.subscribe(onSuccess: { [weak self] results in
+				guard results.count > 0 else {
+					self?.output?.handleEmptySearchResult()
+					return
+				}
 
-					self.output.handleSearch(results: results)
-				}, onError: { [unowned self] error in
-					self.output.handleError(message: error.localizedDescription)
-				}).disposed(by: disposeBag)
+				self?.output?.handleSearch(results: results)
+			}, onError: { [weak self] error in
+				self?.output?.handleError(message: error.localizedDescription)
+			}).disposed(by: disposeBag)
 	}
 
 	public func cancelSearch() {
-		output.searchChangedTo(state: .notSearching)
+		output?.searchChangedTo(state: .notSearching)
 	}
 }

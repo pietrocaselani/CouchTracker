@@ -28,8 +28,9 @@ public final class ShowsManagerDefaultModuleSetup: ShowsManagerDataSource {
 		let progress = ShowsManagerOption.progress
 		let now = ShowsManagerOption.now
 		let trending = ShowsManagerOption.trending
+		let search = ShowsManagerOption.search
 
-		return [progress, now, trending]
+		return [progress, now, trending, search]
 	}
 
 	public var modulePages: [ModulePage] {
@@ -46,11 +47,13 @@ public final class ShowsManagerDefaultModuleSetup: ShowsManagerDataSource {
 	private func moduleNameFor(option: ShowsManagerOption) -> String {
 		switch option {
 		case .progress:
-			return "Progress"
+			return "Progress".localized
 		case .now:
-			return "Now"
+			return "Now".localized
 		case .trending:
-			return "Trending"
+			return "Trending".localized
+		case .search:
+			return "Search".localized
 		}
 	}
 }

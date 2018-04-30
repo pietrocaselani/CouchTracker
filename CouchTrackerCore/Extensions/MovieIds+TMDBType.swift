@@ -1,10 +1,10 @@
 import TraktSwift
 
 extension MovieIds {
-	func tmdbModelType() -> TrendingViewModelType? {
-		var type: TrendingViewModelType? = nil
+	func tmdbModelType() -> PosterViewModelType? {
+		var type: PosterViewModelType? = nil
 		if let tmdbId = self.tmdb {
-			type = TrendingViewModelType.movie(tmdbMovieId: tmdbId)
+			type = PosterViewModelType.movie(tmdbMovieId: tmdbId)
 		}
 		return type
 	}

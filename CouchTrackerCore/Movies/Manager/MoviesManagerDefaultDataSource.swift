@@ -32,13 +32,15 @@ public final class MoviesManagerDefaultDataSource: MoviesManagerDataSource {
 		self.creator = creator
 		self.userDefaults = userDefaults
 
-		self.options = [.trending]
+		self.options = [.trending, .search]
 	}
 
 	private func moduleNameFor(option: MoviesManagerOption) -> String {
 		switch option {
 		case .trending:
 			return "Trending".localized
+		case .search:
+			return "Search".localized
 		}
 	}
 }

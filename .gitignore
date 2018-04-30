@@ -45,6 +45,7 @@ Logs/
 .vscode
 .env
 Pods/
-*.lock
 .env
 /Index/
+/vendor
+.bundle

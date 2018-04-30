@@ -2,6 +2,7 @@ public enum ShowsManagerOption: String {
 	case progress
 	case now
 	case trending
+	case search
 }
 
 public protocol ShowsManagerPresenter: class {

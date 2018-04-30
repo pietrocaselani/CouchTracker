@@ -15,19 +15,24 @@ public protocol SearchResultOutput: class {
 }
 
 public protocol SearchPresenter: class {
-	init(view: SearchView, interactor: SearchInteractor, resultOutput: SearchResultOutput)
+	init(view: SearchView, interactor: SearchInteractor, resultOutput: SearchResultOutput, types: [SearchType])
 
 	func viewDidLoad()
-	func searchMovies(query: String)
+	func search(query: String)
 	func cancelSearch()
 }
 
 public protocol SearchInteractor: class {
 	init(repository: SearchRepository)
 
-	func searchMovies(query: String) -> Observable<[SearchResult]>
+	func search(query: String, types: [SearchType]) -> Single<[SearchResult]>
 }
 
 public protocol SearchRepository: class {
-	func search(query: String, types: [SearchType], page: Int, limit: Int) -> Observable<[SearchResult]>
+	func search(query: String, types: [SearchType], page: Int, limit: Int) -> Single<[SearchResult]>
+}
+
+public enum SearchState {
+	case searching
+	case notSearching
 }

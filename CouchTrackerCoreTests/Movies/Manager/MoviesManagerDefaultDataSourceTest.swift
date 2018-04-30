@@ -32,7 +32,7 @@ final class MoviesManagerDefaultDataSourceTest: XCTestCase {
 		let options = dataSource.options
 
 		//Then
-		let expectedOptions = [MoviesManagerOption.trending]
+		let expectedOptions = [MoviesManagerOption.trending, MoviesManagerOption.search]
 		XCTAssertEqual(options, expectedOptions)
 	}
 
@@ -43,7 +43,9 @@ final class MoviesManagerDefaultDataSourceTest: XCTestCase {
 		let pages = dataSource.modulePages
 
 		//Then
-		let expectedPages = [ModulePage(page: BaseViewMock(title: "trending"), title: "Trending")]
+		let trendingPage = ModulePage(page: BaseViewMock(title: "trending"), title: "Trending")
+		let searchPage = ModulePage(page: BaseViewMock(title: "search"), title: "Search")
+		let expectedPages = [trendingPage, searchPage]
 		XCTAssertEqual(pages, expectedPages)
 	}
 
