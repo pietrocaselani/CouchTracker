@@ -1,0 +1,104 @@
+PODS:
+  - ActionSheetPicker-3.0 (2.2.0)
+  - Alamofire (4.7.2)
+  - Kingfisher (4.2.0)
+  - Moya/Core (10.0.0):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - Moya/RxSwift (10.0.0):
+    - Moya/Core
+    - RxSwift (~> 4.0)
+  - Pageboy (2.3.4)
+  - R.swift (4.0.0):
+    - R.swift.Library (~> 4.0.0)
+  - R.swift.Library (4.0.0)
+  - Realm (3.5.0):
+    - Realm/Headers (= 3.5.0)
+  - Realm/Headers (3.5.0)
+  - RealmSwift (3.5.0):
+    - Realm (= 3.5.0)
+  - Result (3.2.4)
+  - RxCocoa (4.0.0):
+    - RxSwift (~> 4.0)
+  - RxRealm (0.7.5):
+    - RealmSwift (~> 3.0)
+    - RxSwift (~> 4.0)
+  - RxSwift (4.1.2)
+  - RxTest (4.0.0):
+    - RxSwift (~> 4.0)
+  - SwiftLint (0.23.1)
+  - Tabman (1.4.0):
+    - Pageboy (~> 2.3.0)
+  - TMDB (0.1.0):
+    - Moya/RxSwift (= 10.0.0)
+    - SwiftLint (= 0.23.1)
+  - Trakt (0.1.0):
+    - Moya/RxSwift (= 10.0.0)
+    - SwiftLint (= 0.23.1)
+  - TVDB (0.1.0):
+    - Moya/RxSwift (= 10.0.0)
+    - SwiftLint (= 0.23.1)
+
+DEPENDENCIES:
+  - ActionSheetPicker-3.0 (= 2.2.0)
+  - Kingfisher (= 4.2.0)
+  - R.swift (= 4.0.0)
+  - RxCocoa (= 4.0.0)
+  - RxRealm (= 0.7.5)
+  - RxSwift (from `https://github.com/ReactiveX/RxSwift.git`, branch `develop`)
+  - RxTest (= 4.0.0)
+  - SwiftLint (= 0.23.1)
+  - Tabman (= 1.4.0)
+  - TMDB (from `https://github.com/pietrocaselani/TMDB-Swift.git`)
+  - Trakt (from `https://github.com/pietrocaselani/Trakt-Swift.git`)
+  - TVDB (from `https://github.com/pietrocaselani/TVDB-Swift.git`)
+
+EXTERNAL SOURCES:
+  RxSwift:
+    :branch: develop
+    :git: https://github.com/ReactiveX/RxSwift.git
+  TMDB:
+    :git: https://github.com/pietrocaselani/TMDB-Swift.git
+  Trakt:
+    :git: https://github.com/pietrocaselani/Trakt-Swift.git
+  TVDB:
+    :git: https://github.com/pietrocaselani/TVDB-Swift.git
+
+CHECKOUT OPTIONS:
+  RxSwift:
+    :commit: 0f49a22ebbfcb67cab5d20c4394e928582253437
+    :git: https://github.com/ReactiveX/RxSwift.git
+  TMDB:
+    :commit: f864dfa2728e1e4f3afa970dcc86c48571366b22
+    :git: https://github.com/pietrocaselani/TMDB-Swift.git
+  Trakt:
+    :commit: c7fcad77aa01de7108dbcd5dab805b904e381dcf
+    :git: https://github.com/pietrocaselani/Trakt-Swift.git
+  TVDB:
+    :commit: 7b0a108d7c40adf87b700176c66d29b7c5f8e851
+    :git: https://github.com/pietrocaselani/TVDB-Swift.git
+
+SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Kingfisher: 9ee7e788d8ba07c3f21ce0d43f33cec310a4f781
+  Moya: adb58b0f4e58430db43cc6e2f6ebab1836501186
+  Pageboy: 502560f49b0357eaf8a3b6075e4cab29505079a3
+  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
+  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  Realm: 0378021c424e4e2bd6a0e63b27881e929d9b9ad1
+  RealmSwift: 3322562622fda2ad596985ead4d8d8be30cf838c
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
+  RxRealm: a6c6c0a07cb61f34209969ca6657734edfdfff30
+  RxSwift: 773988bab7129d439df12bcecf00371a9eebfb77
+  RxTest: 0041e792cede35e53e4749f378d21482af0e9d12
+  SwiftLint: 1b670ce79284c76520f84060e87d645078fd32fa
+  Tabman: 348ff2d3fc88587ef60bae5bce6698a8e1984cc2
+  TMDB: a40d7d20901ca1b15a12ac6edcd08175b24fb15c
+  Trakt: 5b72761cacd5972da6355e97e4d431c8b2545498
+  TVDB: 52d0ba5d696a098729936ba0bb7674f8a3a38beb
+
+PODFILE CHECKSUM: ba83ff25e302565935ba2df491c447ded5746a77
+
+COCOAPODS: 1.3.1
