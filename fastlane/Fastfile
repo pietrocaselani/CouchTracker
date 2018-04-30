@@ -1,4 +1,4 @@
-fastlane_version "2.81.0"
+fastlane_version "2.93.1"
 
 desc "Run bundle exec pod install --repo-update"
 lane :pods do
@@ -25,7 +25,6 @@ lane :lint do
           verbose: true,
           proj: "CouchTracker.xcodeproj",
           workspace: "CouchTracker.xcworkspace")
-  sh("cd .. && lizard . -l swift --xml > ./reports/lizard-report.xml")
   swiftlint(output_file: "./reports/swiftlint.txt", ignore_exit_status: true)
 end
 
