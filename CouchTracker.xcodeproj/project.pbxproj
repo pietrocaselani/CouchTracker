@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1CF0D4AEF531F0F34FFBA1FB /* Pods_CouchTrackerCore_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5CC049881D7DBD7F196037 /* Pods_CouchTrackerCore_iOS.framework */; };
 		392D91732CA7FDA4E71A3230 /* trakt_users_settings_invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 392D9C154DB74E65A233F9C3 /* trakt_users_settings_invalid.json */; };
+		4F09A6FF207FD9DB00E0A64C /* SearchResultMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09A6FE207FD9DB00E0A64C /* SearchResultMock.swift */; };
 		4F0F5705203D5F4C00B86CB8 /* CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F56FC203D5F4C00B86CB8 /* CouchTrackerCore.framework */; };
 		4F0F570C203D5F4D00B86CB8 /* CouchTrackerCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F0F56FE203D5F4C00B86CB8 /* CouchTrackerCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4F0F5713203D5FA000B86CB8 /* AppConfigurationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BF5061F6B07AF0010CE35 /* AppConfigurationOptions.swift */; };
@@ -392,6 +393,8 @@
 		4F0F5949203D994500B86CB8 /* TraktLoginObservableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA651F752ED400EA3AD8 /* TraktLoginObservableMock.swift */; };
 		4F2F0FD22040093700A76E95 /* CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F5858203D7A5B00B86CB8 /* CouchTrackerCore.framework */; };
 		4F2F0FD32040093700A76E95 /* CouchTrackerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F5858203D7A5B00B86CB8 /* CouchTrackerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4F36342A2063C3510045CDCA /* SearchResultDefaultPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3634292063C3510045CDCA /* SearchResultDefaultPresenterTests.swift */; };
+		4F3A2A1120707F5100E3FA76 /* SearchResultMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A2A1020707F5100E3FA76 /* SearchResultMocks.swift */; };
 		4F3A5947204EABCF0061ABB7 /* AppFlowInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5946204EABCF0061ABB7 /* AppFlowInteractorTests.swift */; };
 		4F3A5949204EACD20061ABB7 /* AppFlowMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5948204EACD20061ABB7 /* AppFlowMocks.swift */; };
 		4F3A594C204EAD1F0061ABB7 /* AppFlowContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A594B204EAD1F0061ABB7 /* AppFlowContract.swift */; };
@@ -568,6 +571,7 @@
 		3B3EB9009A3B523D8632A924 /* Pods_CouchTrackerUgly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerUgly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C835172215EB21E106EE41B /* Pods-CouchTrackerCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerCore/Pods-CouchTrackerCore.release.xcconfig"; sourceTree = "<group>"; };
 		4AF82CEF656B3FDBDB4F613E /* Pods-TraktTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraktTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraktTests/Pods-TraktTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4F09A6FE207FD9DB00E0A64C /* SearchResultMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultMock.swift; sourceTree = "<group>"; };
 		4F0F56FC203D5F4C00B86CB8 /* CouchTrackerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CouchTrackerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F0F56FE203D5F4C00B86CB8 /* CouchTrackerCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouchTrackerCore.h; sourceTree = "<group>"; };
 		4F0F56FF203D5F4C00B86CB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -588,6 +592,8 @@
 		4F236DC3202CB9C5007FB1B9 /* DefaultBuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBuildConfig.swift; sourceTree = "<group>"; };
 		4F236DC7202CCD83007FB1B9 /* TestBuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBuildConfig.swift; sourceTree = "<group>"; };
 		4F236DCA202CD36E007FB1B9 /* ShowProgressAPIRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressAPIRepositoryTest.swift; sourceTree = "<group>"; };
+		4F3634292063C3510045CDCA /* SearchResultDefaultPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDefaultPresenterTests.swift; sourceTree = "<group>"; };
+		4F3A2A1020707F5100E3FA76 /* SearchResultMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultMocks.swift; sourceTree = "<group>"; };
 		4F3A5946204EABCF0061ABB7 /* AppFlowInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowInteractorTests.swift; sourceTree = "<group>"; };
 		4F3A5948204EACD20061ABB7 /* AppFlowMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowMocks.swift; sourceTree = "<group>"; };
 		4F3A594B204EAD1F0061ABB7 /* AppFlowContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowContract.swift; sourceTree = "<group>"; };
@@ -2056,6 +2062,9 @@
 		DF3BF079D00223397D6BEAA9 /* Result */ = {
 			isa = PBXGroup;
 			children = (
+				4F3634292063C3510045CDCA /* SearchResultDefaultPresenterTests.swift */,
+				4F3A2A1020707F5100E3FA76 /* SearchResultMocks.swift */,
+				4F09A6FE207FD9DB00E0A64C /* SearchResultMock.swift */,
 			);
 			path = Result;
 			sourceTree = "<group>";
@@ -2836,11 +2845,13 @@
 				4F0F57DB203D61B300B86CB8 /* MovieDetailsInteractorTest.swift in Sources */,
 				4F0F57DC203D61B300B86CB8 /* MovieDetailsMocks.swift in Sources */,
 				4F6102232052791D0079EDBA /* ShowManagerMocks.swift in Sources */,
+				4F36342A2063C3510045CDCA /* SearchResultDefaultPresenterTests.swift in Sources */,
 				4F0F57DD203D61B300B86CB8 /* MovieDetailsPresenterTest.swift in Sources */,
 				4F0F57DE203D61B300B86CB8 /* MoyaProviderMock.swift in Sources */,
 				4F0F57DF203D61B300B86CB8 /* TMDBErrorProviderMock.swift in Sources */,
 				4F0F57E0203D61B300B86CB8 /* TMDBProviderMock.swift in Sources */,
 				4F0F57E1203D61B300B86CB8 /* TraktErrorProviderMock.swift in Sources */,
+				4F3A2A1120707F5100E3FA76 /* SearchResultMocks.swift in Sources */,
 				4F0F57E2203D61B300B86CB8 /* TraktProviderMock.swift in Sources */,
 				4F0F57E3203D61B300B86CB8 /* TVDBProviderMock.swift in Sources */,
 				4F0F57E5203D61B300B86CB8 /* SearchInteractorTest.swift in Sources */,
@@ -2899,6 +2910,7 @@
 				4F3A595B204EF31A0061ABB7 /* AppFlowUserDefaultsRepositoryTests.swift in Sources */,
 				4F0F57D5203D619E00B86CB8 /* ConfigurationRepositoryMock.swift in Sources */,
 				4F0F57D7203D619E00B86CB8 /* ImageRepositoryMock.swift in Sources */,
+				4F09A6FF207FD9DB00E0A64C /* SearchResultMock.swift in Sources */,
 				4F3A5952204EB75B0061ABB7 /* AppFlowPresenterTests.swift in Sources */,
 				4F0F57D8203D619E00B86CB8 /* ImageMocks.swift in Sources */,
 				4F0F57D9203D619E00B86CB8 /* ImageCachedRepositoryTest.swift in Sources */,

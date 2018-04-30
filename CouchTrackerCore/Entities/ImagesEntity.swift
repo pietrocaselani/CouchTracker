@@ -13,8 +13,7 @@ public struct ImagesEntity: Hashable {
 	}
 
 	public func stillImage() -> ImageEntity? {
-		let x = bestImage(of: stills)
-		return x
+		return bestImage(of: stills)
 	}
 
 	private func bestImage(of images: [ImageEntity]) -> ImageEntity? {
