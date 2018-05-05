@@ -9,7 +9,7 @@ final class SearchResultMocks {
 		var invokedPresenterSetter = false
 		var invokedPresenterSetterCount = 0
 		var invokedPresenter: SearchResultPresenter?
-		var invokedPresenterList = [SearchResultPresenter!]()
+		var invokedPresenterList = [SearchResultPresenter]()
 		var invokedPresenterGetter = false
 		var invokedPresenterGetterCount = 0
 		var stubbedPresenter: SearchResultPresenter!

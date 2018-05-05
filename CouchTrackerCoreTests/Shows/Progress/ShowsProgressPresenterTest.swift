@@ -288,6 +288,9 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressPresenter_receivesDataInPortugueseBrazil_notifyView() {
 		//Given
+		NSLocale.ct_overrideRuntimeLocale(Locale(identifier: "pt_BR"))
+		Bundle.ct_overrideLanguage("pt-BR")
+		
 		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
 		setupPresenter(TraktLoginState.logged)
 
@@ -296,14 +299,54 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 		//Then
 		let viewExpectation = expectation(description: "Should update view")
+		
+		let watched1 = WatchedShowViewModel(title: "The Americans", nextEpisode: "1x1 Winter Is Coming", nextEpisodeDate: "17 de abril", status: "5 remaining FX (US)", tmdbId: 46533)
+		
+		let watched2 = WatchedShowViewModel(title: "The Americans", nextEpisode: nil, nextEpisodeDate: "Em exibição", status: "5 remaining FX (US)", tmdbId: 46533)
+		
+		let watched3 = WatchedShowViewModel(title: "The Americans", nextEpisode: "1x1 Winter Is Coming", nextEpisodeDate: "Em exibição", status: "5 remaining FX (US)", tmdbId: 46533)
+		
+		let expectedViewModels = [watched1, watched2, watched3]
 
 		DispatchQueue.main.async {
 			viewExpectation.fulfill()
 			XCTAssertTrue(self.view.showViewModelsInvoked)
-			XCTAssertEqual(self.dataSource.viewModels.count, 3)
+			XCTAssertEqual(self.dataSource.viewModels, expectedViewModels)
 			XCTAssertFalse(self.view.showErrorInvoked)
 		}
 
+		wait(for: [viewExpectation], timeout: 1)
+	}
+	
+	func testShowsProgressPresenter_receivesDataInEnglish_notifyView() {
+		//Given
+		NSLocale.ct_overrideRuntimeLocale(Locale(identifier: "en_US_POSIX"))
+		Bundle.ct_overrideLanguage("en")
+		
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.logged)
+		
+		//When
+		presenter.viewDidLoad()
+		
+		//Then
+		let viewExpectation = expectation(description: "Should update view")
+		
+		let watched1 = WatchedShowViewModel(title: "The Americans", nextEpisode: "1x1 Winter Is Coming", nextEpisodeDate: "Apr 17", status: "5 remaining FX (US)", tmdbId: 46533)
+		
+		let watched2 = WatchedShowViewModel(title: "The Americans", nextEpisode: nil, nextEpisodeDate: "Continuing", status: "5 remaining FX (US)", tmdbId: 46533)
+		
+		let watched3 = WatchedShowViewModel(title: "The Americans", nextEpisode: "1x1 Winter Is Coming", nextEpisodeDate: "Continuing", status: "5 remaining FX (US)", tmdbId: 46533)
+		
+		let expectedViewModels = [watched1, watched2, watched3]
+		
+		DispatchQueue.main.async {
+			viewExpectation.fulfill()
+			XCTAssertTrue(self.view.showViewModelsInvoked)
+			XCTAssertEqual(self.dataSource.viewModels, expectedViewModels)
+			XCTAssertFalse(self.view.showErrorInvoked)
+		}
+		
 		wait(for: [viewExpectation], timeout: 1)
 	}
 }
