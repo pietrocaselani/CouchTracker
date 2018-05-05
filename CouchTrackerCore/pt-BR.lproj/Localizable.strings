@@ -11,7 +11,7 @@
 "in production"="Começando logo";
 "planned"="Em desenvolvimento";
 "Settings"="Configurações";
-"short date format"="dd de MMM";
+"short date format"="dd 'de' MMM";
 "episodes remaining"="%@ remaining";
 "title" = "Título";
 "remaining" = "Restante";

@@ -285,4 +285,25 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 		wait(for: [testExpectation], timeout: 1)
 	}
+
+	func testShowsProgressPresenter_receivesDataInPortugueseBrazil_notifyView() {
+		//Given
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.logged)
+
+		//When
+		presenter.viewDidLoad()
+
+		//Then
+		let viewExpectation = expectation(description: "Should update view")
+
+		DispatchQueue.main.async {
+			viewExpectation.fulfill()
+			XCTAssertTrue(self.view.showViewModelsInvoked)
+			XCTAssertEqual(self.dataSource.viewModels.count, 3)
+			XCTAssertFalse(self.view.showErrorInvoked)
+		}
+
+		wait(for: [viewExpectation], timeout: 1)
+	}
 }
