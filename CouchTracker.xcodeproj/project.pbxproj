@@ -413,6 +413,8 @@
 		4F3E77E12041CD9C00A87072 /* WatchedShowEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E77E02041CD9C00A87072 /* WatchedShowEntityMapper.swift */; };
 		4F3E77E22041CD9C00A87072 /* WatchedShowEntityMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3E77E02041CD9C00A87072 /* WatchedShowEntityMapper.swift */; };
 		4F3EA3FB203FD83E008AE053 /* trakt_sync_removefromhistory.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F3EA3FA203FD83E008AE053 /* trakt_sync_removefromhistory.json */; };
+		4F3F67DC209E674D00D3E403 /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F67DB209E674D00D3E403 /* NSBundle+Language.m */; };
+		4F3F67DF209E678100D3E403 /* NSObject+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F67DE209E678100D3E403 /* NSObject+Swizzling.m */; };
 		4F56336320514AD200923D3D /* ShowManagerDefaultDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F56336220514AD200923D3D /* ShowManagerDefaultDataSourceTest.swift */; };
 		4F56581C2059944500D3D56B /* SearchAPIRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F56581B2059944500D3D56B /* SearchAPIRepositoryTest.swift */; };
 		4F6102232052791D0079EDBA /* ShowManagerMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6102222052791D0079EDBA /* ShowManagerMocks.swift */; };
@@ -420,9 +422,9 @@
 		4F778D0B2041192200FBCC2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64BE63231F4F692B002E55EA /* Localizable.strings */; };
 		4F778D0C2041192E00FBCC2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64BE63231F4F692B002E55EA /* Localizable.strings */; };
 		4F778D0D20411DDE00FBCC2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64BE63231F4F692B002E55EA /* Localizable.strings */; };
-		4F778D13204125AA00FBCC2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64BE63231F4F692B002E55EA /* Localizable.strings */; };
 		4F778D1520412C2A00FBCC2C /* BundleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F778D1420412C2A00FBCC2C /* BundleProvider.swift */; };
 		4F778D1620412C2A00FBCC2C /* BundleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F778D1420412C2A00FBCC2C /* BundleProvider.swift */; };
+		4F8AC27020A5A27800E4E65B /* NSTimeZone+Override.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8AC26F20A5A27800E4E65B /* NSTimeZone+Override.m */; };
 		4F8EE011202DDA460002189B /* trakt_episodes_summary_error.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F8EE010202DDA460002189B /* trakt_episodes_summary_error.json */; };
 		4F931544203CB34800631D4A /* trakt_sync_addtohistory.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F931543203CB34800631D4A /* trakt_sync_addtohistory.json */; };
 		4F9ABC112052982B00EA6456 /* MoviesManagerDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ABC102052982B00EA6456 /* MoviesManagerDefaultDataSource.swift */; };
@@ -430,6 +432,7 @@
 		4F9CE2C0205A84A80000CCD4 /* SearchViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9CE2BF205A84A80000CCD4 /* SearchViewModule.swift */; };
 		4F9CE2C2205A85410000CCD4 /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9CE2C1205A85400000CCD4 /* SearchBarView.xib */; };
 		4F9CE319205B1A080000CCD4 /* PosterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9CE318205B1A080000CCD4 /* PosterCell.xib */; };
+		4FA9B5EE209E6F1C00E99D59 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64BE63231F4F692B002E55EA /* Localizable.strings */; };
 		4FAA2543205693BE0006735A /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAA2542205693BE0006735A /* NoCacheMoyaPlugin.swift */; };
 		4FAC751B20509E2F00266930 /* ShowManagerDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAC751A20509E2F00266930 /* ShowManagerDefaultDataSource.swift */; };
 		4FAC751C20509E2F00266930 /* ShowManagerDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAC751A20509E2F00266930 /* ShowManagerDefaultDataSource.swift */; };
@@ -438,6 +441,7 @@
 		4FC97A23203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A22203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift */; };
 		4FC97A25203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A24203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift */; };
 		4FC97A27203FD2AD00C2B924 /* ShowEpisodeMoyaNetworkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A26203FD2AD00C2B924 /* ShowEpisodeMoyaNetworkTest.swift */; };
+		4FD9E725209E69CB007673A3 /* NSLocale+Override.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD9E724209E69CB007673A3 /* NSLocale+Override.m */; };
 		4FDBB663203E9FDA00448A60 /* ShowProgressCellServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDBB662203E9FDA00448A60 /* ShowProgressCellServiceTest.swift */; };
 		4FE4BA322059E31800969AAF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4BA312059E31800969AAF /* SearchViewController.swift */; };
 		4FE4BA342059E32A00969AAF /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FE4BA332059E32A00969AAF /* Search.storyboard */; };
@@ -607,6 +611,11 @@
 		4F3A595F204EF6C30061ABB7 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		4F3E77E02041CD9C00A87072 /* WatchedShowEntityMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedShowEntityMapper.swift; sourceTree = "<group>"; };
 		4F3EA3FA203FD83E008AE053 /* trakt_sync_removefromhistory.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_sync_removefromhistory.json; sourceTree = "<group>"; };
+		4F3F67D9209E66F900D3E403 /* CouchTrackerCoreTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CouchTrackerCoreTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		4F3F67DA209E66F900D3E403 /* NSBundle+Language.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Language.h"; sourceTree = "<group>"; };
+		4F3F67DB209E674D00D3E403 /* NSBundle+Language.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Language.m"; sourceTree = "<group>"; };
+		4F3F67DD209E678100D3E403 /* NSObject+Swizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Swizzling.h"; sourceTree = "<group>"; };
+		4F3F67DE209E678100D3E403 /* NSObject+Swizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Swizzling.m"; sourceTree = "<group>"; };
 		4F562E05202E7A3400CB1AE0 /* WatchedEpisodeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedEpisodeEntity.swift; sourceTree = "<group>"; };
 		4F562E09202E7A4300CB1AE0 /* WatchedSeasonEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedSeasonEntity.swift; sourceTree = "<group>"; };
 		4F56336220514AD200923D3D /* ShowManagerDefaultDataSourceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManagerDefaultDataSourceTest.swift; sourceTree = "<group>"; };
@@ -626,6 +635,8 @@
 		4F6DC41C201549C100AA0DC8 /* MoviesManagerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerModule.swift; sourceTree = "<group>"; };
 		4F778D1420412C2A00FBCC2C /* BundleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleProvider.swift; sourceTree = "<group>"; };
 		4F7B09532016B53B001F6C50 /* BaseViewMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewMock.swift; sourceTree = "<group>"; };
+		4F8AC26E20A5A27800E4E65B /* NSTimeZone+Override.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimeZone+Override.h"; sourceTree = "<group>"; };
+		4F8AC26F20A5A27800E4E65B /* NSTimeZone+Override.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimeZone+Override.m"; sourceTree = "<group>"; };
 		4F8EE010202DDA460002189B /* trakt_episodes_summary_error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_episodes_summary_error.json; sourceTree = "<group>"; };
 		4F8EE014202E164D0002189B /* ShowEpisodeServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeServiceTest.swift; sourceTree = "<group>"; };
 		4F8EE017202E16EF0002189B /* ShowEpisodeMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeMocks.swift; sourceTree = "<group>"; };
@@ -638,6 +649,7 @@
 		4F9CE2C1205A85400000CCD4 /* SearchBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchBarView.xib; sourceTree = "<group>"; };
 		4F9CE318205B1A080000CCD4 /* PosterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PosterCell.xib; sourceTree = "<group>"; };
 		4FA0C76120326DBA008656B7 /* AppConfigurationsStoreTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsStoreTest.swift; sourceTree = "<group>"; };
+		4FA9B5F0209E749800E99D59 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4FAA2542205693BE0006735A /* NoCacheMoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCacheMoyaPlugin.swift; sourceTree = "<group>"; };
 		4FAC751A20509E2F00266930 /* ShowManagerDefaultDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManagerDefaultDataSource.swift; sourceTree = "<group>"; };
 		4FC97A1E203F163300C2B924 /* ShowProgressCellDefaultPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellDefaultPresenterTest.swift; sourceTree = "<group>"; };
@@ -646,6 +658,8 @@
 		4FC97A24203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeiOSRouter.swift; sourceTree = "<group>"; };
 		4FC97A26203FD2AD00C2B924 /* ShowEpisodeMoyaNetworkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeMoyaNetworkTest.swift; sourceTree = "<group>"; };
 		4FD27A3B201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCacheRepositoryTest.swift; sourceTree = "<group>"; };
+		4FD9E723209E69CB007673A3 /* NSLocale+Override.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSLocale+Override.h"; sourceTree = "<group>"; };
+		4FD9E724209E69CB007673A3 /* NSLocale+Override.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSLocale+Override.m"; sourceTree = "<group>"; };
 		4FDBB662203E9FDA00448A60 /* ShowProgressCellServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellServiceTest.swift; sourceTree = "<group>"; };
 		4FE42FB4203B94B80001FF1F /* ShowProgressSortTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressSortTest.swift; sourceTree = "<group>"; };
 		4FE4BA312059E31800969AAF /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -837,7 +851,6 @@
 		64BE63161F4F5CB5002E55EA /* Moya.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Moya.framework; path = "../../../../Library/Developer/Xcode/DerivedData/CouchTracker-cnszmjsjlweupdapdziltlacodhy/Build/Products/Debug-iphoneos/Moya/Moya.framework"; sourceTree = "<group>"; };
 		64BE63201F4F6893002E55EA /* UIAlertController+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Error.swift"; sourceTree = "<group>"; };
 		64BE63241F4F692B002E55EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		64BE63271F4F6934002E55EA /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		64BE632E1F4F6F3F002E55EA /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		64BE63331F4F6F63002E55EA /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
 		64BE63381F4F71DC002E55EA /* MovieDetailsiOSRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsiOSRouter.swift; sourceTree = "<group>"; };
@@ -1090,6 +1103,8 @@
 		4F0F5708203D5F4C00B86CB8 /* CouchTrackerCoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				4F3F67D9209E66F900D3E403 /* CouchTrackerCoreTests-Bridging-Header.h */,
+				4F3F67D6209E665700D3E403 /* Extensions */,
 				64C384021F6C134F00FC9930 /* AppConfigurations */,
 				4F3A5945204EABB60061ABB7 /* AppFlow */,
 				4F7B09532016B53B001F6C50 /* BaseViewMock.swift */,
@@ -1116,7 +1131,6 @@
 				6454D1701F703CFD008C4E5F /* TraktLogin */,
 				6434CA651F752ED400EA3AD8 /* TraktLoginObservableMock.swift */,
 				648390C81F504E7500911BA0 /* Trending */,
-				4F3A595F204EF6C30061ABB7 /* UserDefaultsExtensions.swift */,
 			);
 			path = CouchTrackerCoreTests;
 			sourceTree = "<group>";
@@ -1372,6 +1386,22 @@
 				4F3A595C204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift */,
 			);
 			path = AppFlow;
+			sourceTree = "<group>";
+		};
+		4F3F67D6209E665700D3E403 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4F3F67DA209E66F900D3E403 /* NSBundle+Language.h */,
+				4F3F67DB209E674D00D3E403 /* NSBundle+Language.m */,
+				4FD9E723209E69CB007673A3 /* NSLocale+Override.h */,
+				4FD9E724209E69CB007673A3 /* NSLocale+Override.m */,
+				4F3F67DD209E678100D3E403 /* NSObject+Swizzling.h */,
+				4F3F67DE209E678100D3E403 /* NSObject+Swizzling.m */,
+				4F8AC26E20A5A27800E4E65B /* NSTimeZone+Override.h */,
+				4F8AC26F20A5A27800E4E65B /* NSTimeZone+Override.m */,
+				4F3A595F204EF6C30061ABB7 /* UserDefaultsExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		4F562E04202E763500CB1AE0 /* EntityMappers */ = {
@@ -2248,6 +2278,7 @@
 					};
 					4F0F5703203D5F4C00B86CB8 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Manual;
 					};
 					4F0F5857203D7A5B00B86CB8 = {
@@ -2319,7 +2350,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F778D13204125AA00FBCC2C /* Localizable.strings in Resources */,
+				4FA9B5EE209E6F1C00E99D59 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2860,12 +2891,16 @@
 				4F0F57E8203D61B300B86CB8 /* ShowEpisodeAPIRepositoryTest.swift in Sources */,
 				4FF6988F203FE73500726112 /* ShowEpisodeRealmDataSourceTest.swift in Sources */,
 				4F0F57E9203D61B300B86CB8 /* ShowEpisodeMocks.swift in Sources */,
+				4FD9E725209E69CB007673A3 /* NSLocale+Override.m in Sources */,
 				4F0F57EA203D61B300B86CB8 /* ShowEpisodeServiceTest.swift in Sources */,
+				4F3F67DF209E678100D3E403 /* NSObject+Swizzling.m in Sources */,
 				4FDBB663203E9FDA00448A60 /* ShowProgressCellServiceTest.swift in Sources */,
 				4F0F57EB203D61B300B86CB8 /* ShowsProgressMoyaNetworkTest.swift in Sources */,
 				4F0F57EC203D61B300B86CB8 /* ShowDetailsInteractorTest.swift in Sources */,
 				4F0F57ED203D61B300B86CB8 /* ShowDetailsMocks.swift in Sources */,
+				4F8AC27020A5A27800E4E65B /* NSTimeZone+Override.m in Sources */,
 				4F0F57EE203D61B300B86CB8 /* ShowDetailsPresenterTest.swift in Sources */,
+				4F3F67DC209E674D00D3E403 /* NSBundle+Language.m in Sources */,
 				4F0F57EF203D61B300B86CB8 /* ShowDetailsRepositoryTest.swift in Sources */,
 				4F0F57F0203D61B300B86CB8 /* ShowProgressMocks.swift in Sources */,
 				4F0F57F1203D61B300B86CB8 /* ShowProgressAPIRepositoryTest.swift in Sources */,
@@ -3199,7 +3234,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				64BE63241F4F692B002E55EA /* en */,
-				64BE63271F4F6934002E55EA /* pt-BR */,
+				4FA9B5F0209E749800E99D59 /* pt-BR */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3289,6 +3324,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
@@ -3308,6 +3344,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "CouchTrackerCoreTests/CouchTrackerCoreTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -3318,6 +3356,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
@@ -3337,6 +3376,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "CouchTrackerCoreTests/CouchTrackerCoreTests-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
@@ -3477,6 +3517,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -3527,6 +3568,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
