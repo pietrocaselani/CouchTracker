@@ -424,6 +424,7 @@
 		4F778D0D20411DDE00FBCC2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64BE63231F4F692B002E55EA /* Localizable.strings */; };
 		4F778D1520412C2A00FBCC2C /* BundleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F778D1420412C2A00FBCC2C /* BundleProvider.swift */; };
 		4F778D1620412C2A00FBCC2C /* BundleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F778D1420412C2A00FBCC2C /* BundleProvider.swift */; };
+		4F8AC27020A5A27800E4E65B /* NSTimeZone+Override.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8AC26F20A5A27800E4E65B /* NSTimeZone+Override.m */; };
 		4F8EE011202DDA460002189B /* trakt_episodes_summary_error.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F8EE010202DDA460002189B /* trakt_episodes_summary_error.json */; };
 		4F931544203CB34800631D4A /* trakt_sync_addtohistory.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F931543203CB34800631D4A /* trakt_sync_addtohistory.json */; };
 		4F9ABC112052982B00EA6456 /* MoviesManagerDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ABC102052982B00EA6456 /* MoviesManagerDefaultDataSource.swift */; };
@@ -634,6 +635,8 @@
 		4F6DC41C201549C100AA0DC8 /* MoviesManagerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerModule.swift; sourceTree = "<group>"; };
 		4F778D1420412C2A00FBCC2C /* BundleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleProvider.swift; sourceTree = "<group>"; };
 		4F7B09532016B53B001F6C50 /* BaseViewMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewMock.swift; sourceTree = "<group>"; };
+		4F8AC26E20A5A27800E4E65B /* NSTimeZone+Override.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimeZone+Override.h"; sourceTree = "<group>"; };
+		4F8AC26F20A5A27800E4E65B /* NSTimeZone+Override.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimeZone+Override.m"; sourceTree = "<group>"; };
 		4F8EE010202DDA460002189B /* trakt_episodes_summary_error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_episodes_summary_error.json; sourceTree = "<group>"; };
 		4F8EE014202E164D0002189B /* ShowEpisodeServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeServiceTest.swift; sourceTree = "<group>"; };
 		4F8EE017202E16EF0002189B /* ShowEpisodeMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeMocks.swift; sourceTree = "<group>"; };
@@ -1394,6 +1397,8 @@
 				4FD9E724209E69CB007673A3 /* NSLocale+Override.m */,
 				4F3F67DD209E678100D3E403 /* NSObject+Swizzling.h */,
 				4F3F67DE209E678100D3E403 /* NSObject+Swizzling.m */,
+				4F8AC26E20A5A27800E4E65B /* NSTimeZone+Override.h */,
+				4F8AC26F20A5A27800E4E65B /* NSTimeZone+Override.m */,
 				4F3A595F204EF6C30061ABB7 /* UserDefaultsExtensions.swift */,
 			);
 			path = Extensions;
@@ -2893,6 +2898,7 @@
 				4F0F57EB203D61B300B86CB8 /* ShowsProgressMoyaNetworkTest.swift in Sources */,
 				4F0F57EC203D61B300B86CB8 /* ShowDetailsInteractorTest.swift in Sources */,
 				4F0F57ED203D61B300B86CB8 /* ShowDetailsMocks.swift in Sources */,
+				4F8AC27020A5A27800E4E65B /* NSTimeZone+Override.m in Sources */,
 				4F0F57EE203D61B300B86CB8 /* ShowDetailsPresenterTest.swift in Sources */,
 				4F3F67DC209E674D00D3E403 /* NSBundle+Language.m in Sources */,
 				4F0F57EF203D61B300B86CB8 /* ShowDetailsRepositoryTest.swift in Sources */,
