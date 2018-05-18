@@ -1,19 +1,29 @@
 import Foundation
 
-enum ShowProgressDirection: String {
+public enum ShowProgressDirection: String {
 	case asc
 	case desc
+
+	static func create(from value: String?) -> ShowProgressDirection {
+		guard let stringValue = value else { return ShowProgressDirection.asc }
+		return ShowProgressDirection(rawValue: stringValue) ?? ShowProgressDirection.asc
+	}
 
 	func toggle() -> ShowProgressDirection {
 		return self == .asc ? .desc : .asc
 	}
 }
 
-enum ShowProgressSort: String {
+public enum ShowProgressSort: String {
 	case title
 	case remaining
 	case lastWatched
 	case releaseDate
+
+	static func create(from value: String?) -> ShowProgressSort {
+		guard let stringValue = value else { return ShowProgressSort.title }
+		return ShowProgressSort(rawValue: stringValue) ?? ShowProgressSort.title
+	}
 
 	static func allValues() -> [ShowProgressSort] {
 		return [.title, .remaining, .lastWatched, .releaseDate]

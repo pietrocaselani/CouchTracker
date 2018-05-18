@@ -28,6 +28,8 @@ final class ShowsProgressModule {
 
 		let showProgressRepository = ShowProgressAPIRepository(trakt: trakt)
 
+		let listStateDataSource = ShowsProgressListStateDefaultDataSource(userDefaults: UserDefaults.standard)
+
 		let dataSource = ShowsProgressRealmDataSource(realmProvider: realmProvider, schedulers: schedulers)
 		let router = ShowsProgressiOSRouter(viewController: view)
 		let viewDataSource = ShowsProgressTableViewDataSource(imageRepository: imageRepository)
@@ -38,7 +40,9 @@ final class ShowsProgressModule {
 																								showProgressRepository: showProgressRepository,
 																								appConfigurationsObservable: appConfigsObservable,
 																								hideSpecials: hideSpecials)
-		let interactor = ShowsProgressService(repository: repository, schedulers: schedulers)
+		let interactor = ShowsProgressService(repository: repository,
+																																								listStateDataSource: listStateDataSource,
+																																								schedulers: schedulers)
 		let presenter = ShowsProgressDefaultPresenter(view: view,
 																							interactor: interactor,
 																							viewDataSource: viewDataSource,
