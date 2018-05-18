@@ -1,10 +1,15 @@
 import TraktSwift
 
-enum ShowProgressFilter: String {
+public enum ShowProgressFilter: String {
 	case none
 	case watched
 	case returning
 	case returningWatched
+
+	static func create(from value: String?) -> ShowProgressFilter {
+		guard let stringValue = value else { return ShowProgressFilter.none }
+		return ShowProgressFilter(rawValue: stringValue) ?? ShowProgressFilter.none
+	}
 
 	static func allValues() -> [ShowProgressFilter] {
 		return [.none, .watched, .returning, returningWatched]
