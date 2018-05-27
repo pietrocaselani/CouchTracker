@@ -22,9 +22,9 @@ public struct ShowProgressListState: Hashable {
 	}
 
 	public final class Builder {
-		public var sort: ShowProgressSort
-		public var filter: ShowProgressFilter
-		public var direction: ShowProgressDirection
+		private var sort: ShowProgressSort
+		private var filter: ShowProgressFilter
+		private var direction: ShowProgressDirection
 
 		init(state: ShowProgressListState = ShowProgressListState.initialState) {
 			sort = state.sort
@@ -34,6 +34,26 @@ public struct ShowProgressListState: Hashable {
 
 		public func build() -> ShowProgressListState {
 			return ShowProgressListState(sort: sort, filter: filter, direction: direction)
+		}
+
+		func sort(_ sort: ShowProgressSort) -> Builder {
+			self.sort = sort
+			return self
+		}
+
+		func filter(_ filter: ShowProgressFilter) -> Builder {
+			self.filter = filter
+			return self
+		}
+
+		func direction(_ direction: ShowProgressDirection) -> Builder {
+			self.direction = direction
+			return self
+		}
+
+		func toggleDirection() -> Builder {
+			self.direction = direction.toggle()
+			return self
 		}
 	}
 }

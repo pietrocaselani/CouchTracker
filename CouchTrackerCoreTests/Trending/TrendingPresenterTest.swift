@@ -6,17 +6,36 @@ import RxTest
 
 final class TrendingPresenterTest: XCTestCase {
 
-	private let scheduler = TestScheduler(initialClock: 0)
-	let view = TrendingViewMock()
-	let router = TrendingRouterMock()
-	let dataSource = TrendingDataSourceMock()
+	private var schedulers: TestSchedulers!
+	private var view: TrendingViewMock!
+	private var router: TrendingRouterMock!
+	private var dataSource: TrendingDataSourceMock!
+
+	override func setUp() {
+		super.setUp()
+
+		schedulers = TestSchedulers(initialClock: 0)
+		view = TrendingViewMock()
+		router = TrendingRouterMock()
+		dataSource = TrendingDataSourceMock()
+	}
+
+	override func tearDown() {
+		schedulers = nil
+		view = nil
+		router = nil
+		dataSource = nil
+
+		super.tearDown()
+	}
 
 	func testTrendingPresenter_fetchMoviesSuccessWithEmptyData_andPresentNothing() {
 		let repository = EmptyTrendingRepositoryMock()
 		let interactor = TrendingServiceMock(repository: repository)
-		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
+		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies, schedulers: schedulers)
 
 		presenter.viewDidLoad()
+		schedulers.start()
 
 		XCTAssertTrue(view.invokedShowEmptyView)
 		XCTAssertFalse(view.invokedShow)
@@ -25,9 +44,10 @@ final class TrendingPresenterTest: XCTestCase {
 	func testTrendingPresenter_fetchShowsSuccessWithEmptyData_andPresentNothing() {
 		let repository = EmptyTrendingRepositoryMock()
 		let interactor = TrendingServiceMock(repository: repository)
-		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)
+		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows, schedulers: schedulers)
 
 		presenter.viewDidLoad()
+		schedulers.start()
 
 		XCTAssertTrue(view.invokedShowEmptyView)
 		XCTAssertFalse(view.invokedShow)
@@ -39,9 +59,10 @@ final class TrendingPresenterTest: XCTestCase {
 		let error = TrendingError.parseError("Invalid json")
 		let repository = ErrorTrendingRepositoryMock(error: error)
 		let interactor = TrendingServiceMock(repository: repository)
-		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
+		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies, schedulers: schedulers)
 
 		presenter.viewDidLoad()
+		schedulers.start()
 
 		XCTAssertTrue(router.invokedShowError)
 		XCTAssertEqual(router.invokedShowErrorParameters?.message, "Invalid json")
@@ -51,9 +72,10 @@ final class TrendingPresenterTest: XCTestCase {
 		let error = TrendingError.parseError("Invalid json")
 		let repository = ErrorTrendingRepositoryMock(error: error)
 		let interactor = TrendingServiceMock(repository: repository)
-		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)
+		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows, schedulers: schedulers)
 
 		presenter.viewDidLoad()
+		schedulers.start()
 
 		XCTAssertTrue(router.invokedShowError)
 		XCTAssertEqual(router.invokedShowErrorParameters?.message, "Invalid json")
@@ -63,9 +85,10 @@ final class TrendingPresenterTest: XCTestCase {
 		let movies = TraktEntitiesMock.createMockMovies()
 		let repository = TrendingMoviesRepositoryMock(movies: movies)
 		let interactor = TrendingServiceMock(repository: repository)
-		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
+		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies, schedulers: schedulers)
 
 		presenter.viewDidLoad()
+		schedulers.start()
 
 		let expectedViewModel = movies.map { trendingMovie -> PosterViewModel in
 			let type = trendingMovie.movie.ids.tmdbModelType()
@@ -79,9 +102,10 @@ final class TrendingPresenterTest: XCTestCase {
 
 	func testTrendingPresenter_fetchShowsSuccess_andPresentShows() {
 		let interactor = TrendingServiceMock(repository: trendingRepositoryMock)
-		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)
+		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows, schedulers: schedulers)
 
 		presenter.viewDidLoad()
+		schedulers.start()
 
 		XCTAssertTrue(view.invokedShow)
 	}
@@ -91,9 +115,10 @@ final class TrendingPresenterTest: XCTestCase {
 		let repository = TrendingMoviesRepositoryMock(movies: movies)
 		let interactor = TrendingServiceMock(repository: repository)
 
-		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
+		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies, schedulers: schedulers)
 
 		presenter.viewDidLoad()
+		schedulers.start()
 
 		XCTAssertTrue(view.invokedShowEmptyView)
 		XCTAssertFalse(view.invokedShow)
@@ -104,9 +129,10 @@ final class TrendingPresenterTest: XCTestCase {
 		let error = NSError(domain: "io.github.pietrocaselani.CouchTracker", code: 10, userInfo: userInfo)
 		let interactor = TrendingServiceMock(repository: ErrorTrendingRepositoryMock(error: error))
 
-		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
+		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies, schedulers: schedulers)
 
 		presenter.viewDidLoad()
+		schedulers.start()
 
 		XCTAssertTrue(router.invokedShowError)
 		XCTAssertEqual(router.invokedShowErrorParameters?.message, "Custom list movies error")
@@ -117,9 +143,10 @@ final class TrendingPresenterTest: XCTestCase {
 		let movies = TraktEntitiesMock.createMockMovies()
 		let repository = TrendingMoviesRepositoryMock(movies: movies)
 		let interactor = TrendingServiceMock(repository: repository)
-		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies)
-
+		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .movies, schedulers: schedulers)
 		presenter.viewDidLoad()
+		schedulers.start()
+
 		presenter.showDetailsOfTrending(at: movieIndex)
 
 		let expectedMovie = MovieEntityMapper.entity(for: movies[movieIndex].movie)
@@ -133,9 +160,10 @@ final class TrendingPresenterTest: XCTestCase {
 		let shows = TraktEntitiesMock.createTrendingShowsMock()
 		let repository = TrendingShowsRepositoryMock(shows: shows)
 		let interactor = TrendingServiceMock(repository: repository)
-		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows)
-
+		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor, router: router, dataSource: dataSource, type: .shows, schedulers: schedulers)
 		presenter.viewDidLoad()
+		schedulers.start()
+		
 		presenter.showDetailsOfTrending(at: 1)
 
 		let expectedShow = ShowEntityMapper.entity(for: shows[showIndex].show)

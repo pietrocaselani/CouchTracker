@@ -26,8 +26,12 @@ final class TrendingModule {
 
 		let dataSource = TrendingCollectionViewDataSource(imageRepository: imageRepository)
 
-		let presenter = TrendingDefaultPresenter(view: view, interactor: interactor,
-																				router: router, dataSource: dataSource, type: trendingType)
+		let presenter = TrendingDefaultPresenter(view: view,
+																																											interactor: interactor,
+																																											router: router,
+																																											dataSource: dataSource,
+																																											type: trendingType,
+																																											schedulers: schedulers)
 
 		view.presenter = presenter
 

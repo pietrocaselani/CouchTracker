@@ -1111,12 +1111,12 @@
 		4F0F5708203D5F4C00B86CB8 /* CouchTrackerCoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				4F3F67D9209E66F900D3E403 /* CouchTrackerCoreTests-Bridging-Header.h */,
-				4F3F67D6209E665700D3E403 /* Extensions */,
 				64C384021F6C134F00FC9930 /* AppConfigurations */,
 				4F3A5945204EABB60061ABB7 /* AppFlow */,
 				4F7B09532016B53B001F6C50 /* BaseViewMock.swift */,
 				644EE1491F55E01E0053D631 /* Configuration */,
+				4F3F67D9209E66F900D3E403 /* CouchTrackerCoreTests-Bridging-Header.h */,
+				4F3F67D6209E665700D3E403 /* Extensions */,
 				6406BEEC1F4DC372004661C4 /* GenreRepositoryMock.swift */,
 				647B66451F5888CE00B38D2A /* Images */,
 				4F0F570B203D5F4D00B86CB8 /* Info.plist */,
@@ -2526,6 +2526,7 @@
 				"${BUILT_PRODUCTS_DIR}/TMDB-macOS/TMDBSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/TVDB-macOS/TVDBSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Trakt-macOS/TraktSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -2540,6 +2541,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TMDBSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TVDBSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TraktSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
