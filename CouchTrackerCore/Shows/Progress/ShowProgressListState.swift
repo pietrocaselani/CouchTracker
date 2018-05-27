@@ -17,6 +17,14 @@ public struct ShowProgressListState: Hashable {
 		self.direction = direction
 	}
 
+	public var hashValue: Int {
+		return sort.hashValue ^ filter.hashValue ^ direction.hashValue
+	}
+
+	public static func == (lhs: ShowProgressListState, rhs: ShowProgressListState) -> Bool {
+		return lhs.hashValue == rhs.hashValue
+	}
+
 	public func builder() -> Builder {
 		return Builder(state: self)
 	}
