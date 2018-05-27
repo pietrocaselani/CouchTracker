@@ -163,6 +163,7 @@ final class ShowsProgressMocks {
 		var listState: ShowProgressListState = ShowProgressListState.initialState
 		var error: Error?
 		var empty = false
+		var entities = [WatchedShowEntity]()
 
 		init(repository: ShowsProgressRepository,
 							listStateDataSource: ShowsProgressListStateDataSource,
@@ -173,9 +174,7 @@ final class ShowsProgressMocks {
 				return Observable.error(error)
 			}
 
-			var entities = [WatchedShowEntity]()
-
-			if !empty {
+			if !empty && entities.count == 0 {
 				entities.append(ShowsProgressMocks.mockWatchedShowEntity())
 				entities.append(ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
 				entities.append(ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisodeDate())

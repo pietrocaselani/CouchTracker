@@ -385,4 +385,35 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 		
 		wait(for: [viewExpectation], timeout: 1)
 	}
+
+	func testShowsProgressPresenter_whenChangeSortAndFilter_shouldNotifyInteractor() {
+		//Given
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.logged)
+		presenter.viewDidLoad()
+
+		//When
+		presenter.changeSort(to: ShowProgressSort.releaseDate.index(), filter: ShowProgressFilter.watched.index())
+
+		//Then
+		let expectedListState = ShowProgressListState(sort: ShowProgressSort.releaseDate, filter: ShowProgressFilter.watched, direction: ShowProgressDirection.asc)
+		XCTAssertEqual(expectedListState, interactor.listState)
+	}
+
+//	func testShowsProgressPresenter_shouldPresentListAsSavedState() {
+//		//Given
+//		listStateDataSource.currentState = ShowProgressListState(sort: .releaseDate, filter: .returning, direction: .desc)
+//		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
+//
+//		let x = (interactor as! ShowsProgressMocks.ShowsProgressInteractorMock)
+//		
+//
+//		setupPresenter(TraktLoginState.logged)
+//
+//		//When
+//		presenter.viewDidLoad()
+//
+//		//
+//		XCTFail("Needs implementation")
+//	}
 }

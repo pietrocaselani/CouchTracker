@@ -22,31 +22,6 @@ final class TrendingViewMock: TrendingView {
 	}
 }
 
-final class TrendingPresenterMock: TrendingPresenter {
-	let currentTrendingType = Variable<TrendingType>(.movies)
-	var dataSource: TrendingDataSource
-	var invokedViewDidLoad = false
-	var type: TrendingType
-
-	init(view: TrendingView, interactor: TrendingInteractor, router: TrendingRouter,
-	     dataSource: TrendingDataSource, type: TrendingType) {
-		self.dataSource = dataSource
-		self.type = type
-	}
-
-	func viewDidLoad() {
-		invokedViewDidLoad = true
-	}
-
-	var invokedShowDetailsOfTrending = false
-	var invokedShowDetailsOfTrendingParameters: (index: Int, Void)?
-
-	func showDetailsOfTrending(at index: Int) {
-		invokedShowDetailsOfTrending = true
-		invokedShowDetailsOfTrendingParameters = (index, ())
-	}
-}
-
 final class TrendingRouterMock: TrendingRouter, AppConfigurationsPresentable {
 	var invokedMovieDetails = false
 	var invokedMovieDetailsParameters: (movie: MovieEntity, Void)?

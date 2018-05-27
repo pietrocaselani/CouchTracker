@@ -7,4 +7,6 @@ public protocol Schedulers: class {
 	var dataSourceQueue: DispatchQueue { get }
 	var ioScheduler: ImmediateSchedulerType { get }
 	var ioQueue: DispatchQueue { get }
+	var mainScheduler: ImmediateSchedulerType { get }
+	var mainQueue: DispatchQueue { get }
 }

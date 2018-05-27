@@ -9,7 +9,6 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
 	private var realmProvider: RealmProvider!
 	private var schedulers: TestSchedulers!
 	private var dataSource: ShowsProgressRealmDataSource!
-	private var observer: TestableObserver<[WatchedShowEntity]>!
 
 	override func setUp() {
 		super.setUp()
@@ -20,19 +19,12 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
 		realmProvider = DefaultRealmProvider(buildConfig: TestBuildConfig(), configuration: testableConfiguration)
 		schedulers = TestSchedulers()
 		dataSource = ShowsProgressRealmDataSource(realmProvider: realmProvider, schedulers: schedulers)
-		observer = schedulers.createObserver([WatchedShowEntity].self)
 	}
 
 	override func tearDown() {
-		let realm = realmProvider.realm
-		try! realm.write {
-			realmProvider.realm.deleteAll()
-		}
-
 		realmProvider = nil
 		schedulers = nil
 		dataSource = nil
-		observer = nil
 
 		super.tearDown()
 	}
@@ -55,12 +47,13 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
 		//Given
 
 		//When
-		_ = dataSource.fetchWatchedShows().subscribe(observer)
-		schedulers.start()
+		let res = schedulers.start {
+			self.dataSource.fetchWatchedShows()
+		}
 
 		//Then
 		let expectedEvents = [next(0, [WatchedShowEntity]())]
-		RXAssertEvents(observer, expectedEvents)
+		RXAssertEvents(res, expectedEvents)
 	}
 
 	func testShowProgressRealmDataSource_fetchRealmObject_asAppEntities() {
@@ -111,8 +104,9 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
 		}
 
 		//When
-		_ = dataSource.fetchWatchedShows().subscribe(observer)
-		schedulers.start()
+		let res = schedulers.start {
+			self.dataSource.fetchWatchedShows()
+		}
 
 		//Then
 		let seasons = [WatchedSeasonEntity]()
@@ -129,7 +123,7 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
 
 		let expectedEvents = [next(0, [expectedEntity])]
 
-		RXAssertEvents(observer.events, expectedEvents)
+		RXAssertEvents(res, expectedEvents)
 	}
 
 

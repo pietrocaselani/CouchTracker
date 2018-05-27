@@ -5,6 +5,7 @@ final class TraktLoginModule {
 
 	static func setupModule(loginOutput: TraktLoginOutput) -> BaseView {
 		let traktProvider = Environment.instance.trakt
+		let schedulers = Environment.instance.schedulers
 
 		guard let interactor = TraktLoginService(traktProvider: traktProvider) else {
 			fatalError("Tried to create OAuth URL without redirect URL? See Trakt.swift")
@@ -13,8 +14,14 @@ final class TraktLoginModule {
 		let outputs = CompositeLoginOutput(outputs: [loginOutput, Environment.instance.defaultOutput])
 
 		let view = TraktLoginViewController()
-		let presenter = TraktLoginDefaultPresenter(view: view, interactor: interactor, output: outputs)
-		let policyDecider = TraktTokenPolicyDecider(loginOutput: outputs, traktProvider: traktProvider)
+		let presenter = TraktLoginDefaultPresenter(view: view,
+																																													interactor: interactor,
+																																													output: outputs,
+																																													schedulers: schedulers)
+
+		let policyDecider = TraktTokenPolicyDecider(loginOutput: outputs,
+																																														traktProvider: traktProvider,
+																																														schedulers: schedulers)
 
 		view.presenter = presenter
 		view.policyDecider = policyDecider
