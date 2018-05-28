@@ -14,8 +14,16 @@ public protocol ShowsProgressRepository: class {
 	func fetchWatchedShows(extended: Extended) -> Observable<[WatchedShowEntity]>
 }
 
+public protocol ShowsProgressListStateDataSource: class {
+	var currentState: ShowProgressListState { get set }
+}
+
 public protocol ShowsProgressInteractor: class {
-	init(repository: ShowsProgressRepository, schedulers: Schedulers)
+	init(repository: ShowsProgressRepository,
+						listStateDataSource: ShowsProgressListStateDataSource,
+						schedulers: Schedulers)
+
+	var listState: ShowProgressListState { get set }
 
 	func fetchWatchedShowsProgress() -> Observable<[WatchedShowEntity]>
 }

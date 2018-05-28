@@ -1,13 +1,31 @@
 import XCTest
+import RxTest
+import Nimble
+import TraktSwift
 @testable import CouchTrackerCore
 
 final class TraktTokenPolicyDeciderTest: XCTestCase {
-	private let output = TraktLoginOutputMock()
+	private var output: TraktLoginOutputMock!
 	private var policyDecider: TraktLoginPolicyDecider!
+	private var schedulers: TestSchedulers!
 	private let request = URLRequest(url: URL(string: "couchtracker://my_awesome_url")!)
 
+	override func setUp() {
+		super.setUp()
+
+		output = TraktLoginOutputMock()
+		schedulers = TestSchedulers(initialClock: 0)
+	}
+
+	override func tearDown() {
+		output = nil
+		schedulers = nil
+
+		super.tearDown()
+	}
+
 	func setupPolicyDecider(_ traktProvider: TraktProvider = createTraktProviderMock()) {
-		policyDecider = TraktTokenPolicyDecider(loginOutput: output, traktProvider: traktProvider)
+		policyDecider = TraktTokenPolicyDecider(loginOutput: output, traktProvider: traktProvider, schedulers: schedulers)
 	}
 
 	func testTraktTokenPolicyDecider_receivesError_notifyOutput() {
@@ -17,9 +35,17 @@ final class TraktTokenPolicyDeciderTest: XCTestCase {
 		setupPolicyDecider(TraktProviderMock(oauthURL: nil, error: genericError))
 
 		//When
-		_ = policyDecider.allowedToProceed(with: request).subscribe()
+		let res = schedulers.start {
+			self.policyDecider.allowedToProceed(with: self.request).asObservable()
+		}
 
 		//Then
+		let expectedEvent = error(201, genericError, AuthenticationResult.self)
+
+		expect(res.events).to(containElementSatisfying({ element -> Bool in
+			return element == expectedEvent
+		}))
+
 		XCTAssertTrue(output.invokedLogInFail)
 		XCTAssertEqual(output.invokedLoginFailParameters?.message, errorMessage)
 	}
@@ -29,9 +55,18 @@ final class TraktTokenPolicyDeciderTest: XCTestCase {
 		setupPolicyDecider()
 
 		//When
-		_ = policyDecider.allowedToProceed(with: request).subscribe()
+		let res = schedulers.start {
+			self.policyDecider.allowedToProceed(with: self.request).asObservable()
+		}
 
 		//Then
+		let expectedResult = AuthenticationResult.undetermined
+		let expectedEvent = next(201, expectedResult)
+
+		expect(res.events).to(containElementSatisfying({ element -> Bool in
+			return element == expectedEvent
+		}))
+
 		XCTAssertFalse(output.invokedLogInFail)
 		XCTAssertFalse(output.invokedLoggedInSuccessfully)
 	}
@@ -42,9 +77,18 @@ final class TraktTokenPolicyDeciderTest: XCTestCase {
 		setupPolicyDecider(trakt)
 
 		//When
-		_ = policyDecider.allowedToProceed(with: request).subscribe()
+		let res = schedulers.start {
+			self.policyDecider.allowedToProceed(with: self.request).asObservable()
+		}
 
 		//Then
+		let expectedResult = AuthenticationResult.authenticated
+		let expectedEvent = next(201, expectedResult)
+
+		expect(res.events).to(containElementSatisfying({ element -> Bool in
+			return element == expectedEvent
+		}))
+
 		XCTAssertTrue(output.invokedLoggedInSuccessfully)
 	}
 }
