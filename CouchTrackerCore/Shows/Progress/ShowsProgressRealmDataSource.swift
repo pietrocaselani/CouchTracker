@@ -12,8 +12,12 @@ public final class ShowsProgressRealmDataSource: ShowsProgressDataSource {
 	}
 
 	public func fetchWatchedShows() -> Observable<[WatchedShowEntity]> {
-		let observable = Observable.deferred { [unowned self] () -> Observable<[WatchedShowEntityRealm]> in
-			let realm = self.realmProvider.realm
+		let observable = Observable.deferred { [weak self] () -> Observable<[WatchedShowEntityRealm]> in
+			guard let strongSelf = self else {
+				return Observable.empty()
+			}
+
+			let realm = strongSelf.realmProvider.realm
 			let results = realm.objects(WatchedShowEntityRealm.self)
 			return Observable.array(from: results)
 		}

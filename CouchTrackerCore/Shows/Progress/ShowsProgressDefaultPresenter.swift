@@ -6,9 +6,6 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
 	private let interactor: ShowsProgressInteractor
 	private let router: ShowsProgressRouter
 	private let disposeBag = DisposeBag()
-	private var currentFilter = ShowProgressFilter.none
-	private var currentSort = ShowProgressSort.title
-	private var currentDirection = ShowProgressDirection.asc
 	private var entities = [WatchedShowEntity]()
 	private var originalEntities = [WatchedShowEntity]()
 	public var dataSource: ShowsProgressViewDataSource
@@ -48,19 +45,26 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
 		let sorting = ShowProgressSort.allValues().map { $0.rawValue.localized }
 		let filtering = ShowProgressFilter.allValues().map { $0.rawValue.localized }
 
-		let sortIndex = currentSort.index()
-		let filterIndex = currentFilter.index()
+		let listState = interactor.listState
+
+		let sortIndex = listState.sort.index()
+		let filterIndex = listState.filter.index()
 		view?.showOptions(for: sorting, for: filtering, currentSort: sortIndex, currentFilter: filterIndex)
 	}
 
 	public func handleDirection() {
-		currentDirection = currentDirection.toggle()
+		let newListState = interactor.listState.builder().toggleDirection().build()
+		interactor.listState = newListState
 		reloadViewModels()
 	}
 
 	public func changeSort(to index: Int, filter: Int) {
-		currentSort = ShowProgressSort.sort(for: index)
-		currentFilter = ShowProgressFilter.filter(for: filter)
+		let sort = ShowProgressSort.sort(for: index)
+		let filter = ShowProgressFilter.filter(for: filter)
+
+		let newListState = interactor.listState.builder().sort(sort).filter(filter).build()
+
+		interactor.listState = newListState
 
 		reloadViewModels()
 	}
@@ -71,6 +75,11 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
 	}
 
 	private func applyFilterAndSort() -> [WatchedShowViewModel] {
+		let listState = interactor.listState
+		let currentFilter = listState.filter
+		let currentSort = listState.sort
+		let currentDirection = listState.direction
+
 		entities = originalEntities.filter(currentFilter.filter()).sorted(by: currentSort.comparator())
 
 		if currentDirection == .desc {

@@ -9,7 +9,7 @@ public protocol TraktLoginInteractor: class {
 }
 
 public protocol TraktLoginPresenter: class {
-	init(view: TraktLoginView, interactor: TraktLoginInteractor, output: TraktLoginOutput)
+	init(view: TraktLoginView, interactor: TraktLoginInteractor, output: TraktLoginOutput, schedulers: Schedulers)
 
 	func viewDidLoad()
 }

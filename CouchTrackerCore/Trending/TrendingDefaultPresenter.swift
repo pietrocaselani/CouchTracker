@@ -9,20 +9,22 @@ public final class TrendingDefaultPresenter: TrendingPresenter {
 
 	private let trendingType: TrendingType
 	private let interactor: TrendingInteractor
+	private let router: TrendingRouter
+	private let schedulers: Schedulers
 	private let disposeBag = DisposeBag()
 	private var movies = [TrendingMovieEntity]()
 	private var shows = [TrendingShowEntity]()
 	private var currentMoviesPage = 0
 	private var currentShowsPage = 0
-	fileprivate let router: TrendingRouter
 
 	public init(view: TrendingView, interactor: TrendingInteractor,
-	            router: TrendingRouter, dataSource: TrendingDataSource, type: TrendingType) {
+													router: TrendingRouter, dataSource: TrendingDataSource, type: TrendingType, schedulers: Schedulers) {
 		self.view = view
 		self.interactor = interactor
 		self.router = router
 		self.dataSource = dataSource
 		self.trendingType = type
+		self.schedulers = schedulers
 	}
 
 	public func viewDidLoad() {
@@ -60,8 +62,10 @@ public final class TrendingDefaultPresenter: TrendingPresenter {
 	}
 
 	private func subscribe(on observable: Observable<[PosterViewModel]>, for type: TrendingType) {
-		observable.asSingle().observeOn(MainScheduler.instance).subscribe(onSuccess: { [unowned self] in
-			self.present(viewModels: $0)
+		observable.asSingle()
+			.observeOn(schedulers.mainScheduler)
+			.subscribe(onSuccess: { [unowned self] in
+				self.present(viewModels: $0)
 			}, onError: { error in
 				guard let moviesListError = error as? TrendingError else {
 					self.router.showError(message: error.localizedDescription)
@@ -72,7 +76,7 @@ public final class TrendingDefaultPresenter: TrendingPresenter {
 		}).disposed(by: disposeBag)
 	}
 
-	fileprivate func present(viewModels: [PosterViewModel]) {
+	private func present(viewModels: [PosterViewModel]) {
 		guard let view = view else { return }
 
 		guard viewModels.count > 0 else {

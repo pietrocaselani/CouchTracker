@@ -148,7 +148,11 @@ final class ShowsProgressMocks {
 	}
 
 	final class EmptyShowsProgressInteractorMock: ShowsProgressInteractor {
-		init(repository: ShowsProgressRepository, schedulers: Schedulers) {}
+		var listState: ShowProgressListState = ShowProgressListState.initialState
+
+		init(repository: ShowsProgressRepository,
+							listStateDataSource: ShowsProgressListStateDataSource,
+							schedulers: Schedulers) {}
 
 		func fetchWatchedShowsProgress() -> Observable<[WatchedShowEntity]> {
 			return Observable.empty()
@@ -156,25 +160,31 @@ final class ShowsProgressMocks {
 	}
 
 	final class ShowsProgressInteractorMock: ShowsProgressInteractor {
+		var listState: ShowProgressListState = ShowProgressListState.initialState
 		var error: Error?
 		var empty = false
+		var entities = [WatchedShowEntity]()
 
-		init(repository: ShowsProgressRepository, schedulers: Schedulers) {}
+		init(repository: ShowsProgressRepository,
+							listStateDataSource: ShowsProgressListStateDataSource,
+							schedulers: Schedulers) {}
 
 		func fetchWatchedShowsProgress() -> Observable<[WatchedShowEntity]> {
 			if let error = error {
 				return Observable.error(error)
 			}
 
-			var entities = [WatchedShowEntity]()
-
-			if !empty {
+			if !empty && entities.count == 0 {
 				entities.append(ShowsProgressMocks.mockWatchedShowEntity())
 				entities.append(ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
 				entities.append(ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisodeDate())
 			}
 
 			return Observable.just(entities)
+		}
+
+		func updateListState(newState: ShowProgressListState) {
+
 		}
 	}
 
@@ -241,6 +251,16 @@ final class ShowsProgressMocks {
 
 			let baseShows: [BaseShow] = TraktEntitiesMock.decodeTraktJSONArray(with: "trakt_sync_watched_shows")
 			return Single.just(baseShows)
+		}
+	}
+
+	final class ListStateDataSource: ShowsProgressListStateDataSource {
+		var currentStateInvokedCount = 0
+
+		var currentState: ShowProgressListState = ShowProgressListState.initialState {
+			didSet {
+				currentStateInvokedCount += 1
+			}
 		}
 	}
 }

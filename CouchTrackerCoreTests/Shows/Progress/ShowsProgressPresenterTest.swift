@@ -6,6 +6,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 	private let router = ShowsProgressMocks.ShowsProgressRouterMock()
 	private let repository = ShowsProgressMocks.ShowsProgressRepositoryMock(trakt: createTraktProviderMock())
 	private let dataSource = ShowsProgressMocks.ShowProgressViewDataSourceMock()
+	private let listStateDataSource = ShowsProgressMocks.ListStateDataSource()
 	private var interactor: ShowsProgressInteractor!
 	private var presenter: ShowsProgressDefaultPresenter!
 	private var loginObservable: TraktLoginObservableMock!
@@ -18,7 +19,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressPresenter_receivesNothing_notifyView() {
 		//Given
-		interactor = ShowsProgressMocks.EmptyShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		interactor = ShowsProgressMocks.EmptyShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
 		setupPresenter(TraktLoginState.logged)
 
 		//When
@@ -39,7 +40,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressPresenter_receivesData_notifyView() {
 		//Given
-		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
 		setupPresenter(TraktLoginState.logged)
 
 		//When
@@ -60,7 +61,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressPresenter_forceUpdate_reloadView() {
 		//Given
-		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
 		setupPresenter(TraktLoginState.logged)
 		presenter.viewDidLoad()
 
@@ -83,7 +84,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressPresenter_notLoggedOnTrakt_notifyView() {
 		//Given
-		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
 		setupPresenter(TraktLoginState.notLogged)
 
 		//When
@@ -99,7 +100,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressPresenter_receivesNotLoggedEvent_updateView() {
 		//Given
-		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
 		setupPresenter(TraktLoginState.logged)
 
 		presenter.viewDidLoad()
@@ -123,7 +124,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressDefaultPresenter_handleFilter_notifyView() {
 		//Given
-		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
 		setupPresenter(TraktLoginState.logged)
 		presenter.viewDidLoad()
 
@@ -152,7 +153,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressDefaultPresenter_handleDirection_updateViewAndViewDataSource() {
 		//Given
-		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
 		setupPresenter(TraktLoginState.logged)
 		presenter.viewDidLoad()
 
@@ -181,7 +182,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressDefaultPresenter_changeSortAndFilter_updateViewAndViewDataSource() {
 		//Given
-		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
 		setupPresenter(TraktLoginState.logged)
 		presenter.viewDidLoad()
 
@@ -202,7 +203,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressDefaultPresenter_selectShow_notifyRouter() {
 		//Given
-		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
 		setupPresenter(TraktLoginState.logged)
 		presenter.viewDidLoad()
 
@@ -232,7 +233,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressDefaultPresenter_receivesErrorFromInteractor_notifyViewAndDataSource() {
 		//Given
-		let errorInteractor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		let errorInteractor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
 		let message = "Realm file is corrupted"
 		let userInfo = [NSLocalizedDescriptionKey: message]
 		errorInteractor.error = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 35, userInfo: userInfo)
@@ -264,7 +265,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
 	func testShowsProgressDefaultPresenter_receivesEmptyData_notifyView() {
 		//Given
-		let emptyInteractor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		let emptyInteractor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
 		emptyInteractor.empty = true
 		interactor = emptyInteractor
 		setupPresenter(TraktLoginState.logged)
@@ -292,7 +293,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 		Bundle.ct_overrideLanguage("pt-BR")
 		NSTimeZone.ct_overrideRuntimeTimeZone(TimeZone(abbreviation: "BRT")!)
 		
-		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
 		setupPresenter(TraktLoginState.logged)
 
 		//When
@@ -325,7 +326,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 		Bundle.ct_overrideLanguage("en")
 		NSTimeZone.ct_overrideRuntimeTimeZone(TimeZone(abbreviation: "BRT")!)
 		
-		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
 		setupPresenter(TraktLoginState.logged)
 		
 		//When
@@ -358,7 +359,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 		Bundle.ct_overrideLanguage("en")
 		NSTimeZone.ct_overrideRuntimeTimeZone(TimeZone(abbreviation: "BST")!)
 		
-		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, schedulers: TestSchedulers())
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
 		setupPresenter(TraktLoginState.logged)
 		
 		//When
@@ -384,4 +385,35 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 		
 		wait(for: [viewExpectation], timeout: 1)
 	}
+
+	func testShowsProgressPresenter_whenChangeSortAndFilter_shouldNotifyInteractor() {
+		//Given
+		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
+		setupPresenter(TraktLoginState.logged)
+		presenter.viewDidLoad()
+
+		//When
+		presenter.changeSort(to: ShowProgressSort.releaseDate.index(), filter: ShowProgressFilter.watched.index())
+
+		//Then
+		let expectedListState = ShowProgressListState(sort: ShowProgressSort.releaseDate, filter: ShowProgressFilter.watched, direction: ShowProgressDirection.asc)
+		XCTAssertEqual(expectedListState, interactor.listState)
+	}
+
+//	func testShowsProgressPresenter_shouldPresentListAsSavedState() {
+//		//Given
+//		listStateDataSource.currentState = ShowProgressListState(sort: .releaseDate, filter: .returning, direction: .desc)
+//		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
+//
+//		let x = (interactor as! ShowsProgressMocks.ShowsProgressInteractorMock)
+//		
+//
+//		setupPresenter(TraktLoginState.logged)
+//
+//		//When
+//		presenter.viewDidLoad()
+//
+//		//
+//		XCTFail("Needs implementation")
+//	}
 }

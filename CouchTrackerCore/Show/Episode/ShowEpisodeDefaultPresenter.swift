@@ -31,9 +31,9 @@ public final class ShowEpisodeDefaultPresenter: ShowEpisodePresenter {
 				} else if case .fail(let error) = result {
 					self.router.showError(message: error.localizedDescription)
 				}
-			}) { [unowned self] error in
+			}, onError: { [unowned self] error in
 				self.router.showError(message: error.localizedDescription)
-		}.disposed(by: disposeBag)
+		}).disposed(by: disposeBag)
 	}
 
 	private func setupView() {
