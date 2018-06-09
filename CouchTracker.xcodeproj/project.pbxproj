@@ -396,6 +396,10 @@
 		4F10101B20A99D9A003CA348 /* ShowsProgressListStateDefaultDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10101A20A99D9A003CA348 /* ShowsProgressListStateDefaultDataSourceTests.swift */; };
 		4F2F0FD22040093700A76E95 /* CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F5858203D7A5B00B86CB8 /* CouchTrackerCore.framework */; };
 		4F2F0FD32040093700A76E95 /* CouchTrackerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F5858203D7A5B00B86CB8 /* CouchTrackerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4F2F336D20C893E700061C13 /* MovieDetailsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2F336C20C893E700061C13 /* MovieDetailsViewState.swift */; };
+		4F2F336E20C893E700061C13 /* MovieDetailsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2F336C20C893E700061C13 /* MovieDetailsViewState.swift */; };
+		4F2F337020C8943D00061C13 /* MovieDetailsImagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2F336F20C8943D00061C13 /* MovieDetailsImagesState.swift */; };
+		4F2F337120C8943D00061C13 /* MovieDetailsImagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2F336F20C8943D00061C13 /* MovieDetailsImagesState.swift */; };
 		4F36342A2063C3510045CDCA /* SearchResultDefaultPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3634292063C3510045CDCA /* SearchResultDefaultPresenterTests.swift */; };
 		4F3A2A1120707F5100E3FA76 /* SearchResultMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A2A1020707F5100E3FA76 /* SearchResultMocks.swift */; };
 		4F3A5947204EABCF0061ABB7 /* AppFlowInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5946204EABCF0061ABB7 /* AppFlowInteractorTests.swift */; };
@@ -603,6 +607,8 @@
 		4F236DC3202CB9C5007FB1B9 /* DefaultBuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBuildConfig.swift; sourceTree = "<group>"; };
 		4F236DC7202CCD83007FB1B9 /* TestBuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBuildConfig.swift; sourceTree = "<group>"; };
 		4F236DCA202CD36E007FB1B9 /* ShowProgressAPIRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressAPIRepositoryTest.swift; sourceTree = "<group>"; };
+		4F2F336C20C893E700061C13 /* MovieDetailsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewState.swift; sourceTree = "<group>"; };
+		4F2F336F20C8943D00061C13 /* MovieDetailsImagesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsImagesState.swift; sourceTree = "<group>"; };
 		4F3634292063C3510045CDCA /* SearchResultDefaultPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDefaultPresenterTests.swift; sourceTree = "<group>"; };
 		4F3A2A1020707F5100E3FA76 /* SearchResultMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultMocks.swift; sourceTree = "<group>"; };
 		4F3A5946204EABCF0061ABB7 /* AppFlowInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowInteractorTests.swift; sourceTree = "<group>"; };
@@ -1220,6 +1226,8 @@
 				64D29C301F55A936008E344E /* MovieDetailsDefaultPresenter.swift */,
 				64D29C2F1F55A936008E344E /* MovieDetailsService.swift */,
 				6406BEC11F4DBEFA004661C4 /* MovieDetailsViewModel.swift */,
+				4F2F336C20C893E700061C13 /* MovieDetailsViewState.swift */,
+				4F2F336F20C8943D00061C13 /* MovieDetailsImagesState.swift */,
 			);
 			path = MovieDetails;
 			sourceTree = "<group>";
@@ -2790,6 +2798,7 @@
 				4F0F575B203D5FA000B86CB8 /* TVDBProvider.swift in Sources */,
 				4F0F575C203D5FA000B86CB8 /* TraktAuthenticationProvider.swift in Sources */,
 				4F0F575E203D5FA000B86CB8 /* DefaultRealmProvider.swift in Sources */,
+				4F2F336D20C893E700061C13 /* MovieDetailsViewState.swift in Sources */,
 				4FAC751B20509E2F00266930 /* ShowManagerDefaultDataSource.swift in Sources */,
 				4F0F575F203D5FA000B86CB8 /* EpisodeEntityRealm.swift in Sources */,
 				4F0F5760203D5FA000B86CB8 /* EpisodeIdsRealm.swift in Sources */,
@@ -2847,6 +2856,7 @@
 				4F0F57A8203D5FA100B86CB8 /* TMDB+APIProvider.swift in Sources */,
 				4F0F57AB203D5FA100B86CB8 /* Date+TraktDateFormatter.swift in Sources */,
 				4F0F57AC203D5FA100B86CB8 /* Trakt+APIProvider.swift in Sources */,
+				4F2F337020C8943D00061C13 /* MovieDetailsImagesState.swift in Sources */,
 				4F0F57AD203D5FA100B86CB8 /* TraktLoginContract.swift in Sources */,
 				4F0F57AE203D5FA100B86CB8 /* TraktLoginDefaultPresenter.swift in Sources */,
 				4F0F57B0203D5FA100B86CB8 /* TraktLoginObservable.swift in Sources */,
@@ -3042,6 +3052,7 @@
 				4F0F589E203D7B0A00B86CB8 /* MovieDetailsContract.swift in Sources */,
 				4F0F589F203D7B0A00B86CB8 /* MovieDetailsError.swift in Sources */,
 				4F0F58A0203D7B0A00B86CB8 /* MovieDetailsDefaultPresenter.swift in Sources */,
+				4F2F336E20C893E700061C13 /* MovieDetailsViewState.swift in Sources */,
 				4FAC751C20509E2F00266930 /* ShowManagerDefaultDataSource.swift in Sources */,
 				4F0F58A5203D7B0A00B86CB8 /* MovieDetailsViewModel.swift in Sources */,
 				4F0F58A6203D7B0A00B86CB8 /* MoviesManagerContract.swift in Sources */,
@@ -3099,6 +3110,7 @@
 				4F0F58EE203D7B0A00B86CB8 /* ShowProgressFilter.swift in Sources */,
 				4F0F58EF203D7B0A00B86CB8 /* ShowsProgressDefaultPresenter.swift in Sources */,
 				4F0F58F0203D7B0A00B86CB8 /* ShowProgressSort.swift in Sources */,
+				4F2F337120C8943D00061C13 /* MovieDetailsImagesState.swift in Sources */,
 				4F0F58F1203D7B0A00B86CB8 /* ShowsProgressAPIRepository.swift in Sources */,
 				4F0F58F2203D7B0A00B86CB8 /* ShowsProgressContract.swift in Sources */,
 				4F0F58F5203D7B0A00B86CB8 /* ShowsProgressMoyaNetwork.swift in Sources */,
@@ -3364,7 +3376,7 @@
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "CouchTrackerCoreTests/CouchTrackerCoreTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -3395,7 +3407,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "CouchTrackerCoreTests/CouchTrackerCoreTests-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -3579,7 +3591,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -3623,7 +3635,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

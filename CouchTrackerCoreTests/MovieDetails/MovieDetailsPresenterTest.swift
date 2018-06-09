@@ -1,12 +1,41 @@
 import XCTest
+import RxTest
+import RxSwift
 import TraktSwift
 @testable import CouchTrackerCore
 
 final class MovieDetailsPresenterTest: XCTestCase {
+	private var view: MovieDetailsViewMock!
+	private var router: MovieDetailsRouterMock!
+	private var genreRepository: GenreRepositoryMock!
+	private var scheduler: TestScheduler!
+	private var viewObserver: TestableObserver<MovieDetailsViewState>!
+	private var imageObserver: TestableObserver<MovieDetailsImagesState>!
+	private var disposeBag: DisposeBag!
 
-	let view = MovieDetailsViewMock()
-	let router = MovieDetailsRouterMock()
-	let genreRepository = GenreRepositoryMock()
+	override func setUp() {
+		super.setUp()
+
+		view = MovieDetailsViewMock()
+		router = MovieDetailsRouterMock()
+		genreRepository = GenreRepositoryMock()
+		scheduler = TestScheduler(initialClock: 0)
+		disposeBag = DisposeBag()
+		viewObserver = scheduler.createObserver(MovieDetailsViewState.self)
+		imageObserver = scheduler.createObserver(MovieDetailsImagesState.self)
+	}
+
+	override func tearDown() {
+		view = nil
+		router = nil
+		genreRepository = nil
+		scheduler = nil
+		viewObserver = nil
+		imageObserver = nil
+		disposeBag = nil
+
+		super.tearDown()
+	}
 
 	func testMovieDetailsPresenter_fetchSuccess_andPresentMovieDetails() {
 		let movie = TraktEntitiesMock.createMovieDetailsMock()
@@ -14,6 +43,8 @@ final class MovieDetailsPresenterTest: XCTestCase {
 		let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
 																						imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
 		let presenter = MovieDetailsDefaultPresenter(view: view, interactor: interactor, router: router)
+
+		presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
 
 		presenter.viewDidLoad()
 
@@ -28,6 +59,13 @@ final class MovieDetailsPresenterTest: XCTestCase {
 				overview: movie.overview ?? "",
 				genres: movieGenres.joined(separator: " | "),
 				releaseDate: movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!))
+
+		let viewStateLoading = MovieDetailsViewState.loading
+		let viewStateShowing = MovieDetailsViewState.showing(viewModel: viewModel)
+
+		let expectedViewStateEvents = [next(0, viewStateLoading),
+																																	next(0, viewStateShowing)]
+		XCTAssertEqual(viewObserver.events, expectedViewStateEvents)
 
 		XCTAssertTrue(view.invokedShow)
 		XCTAssertEqual(view.invokedShowParameters?.details, viewModel)
