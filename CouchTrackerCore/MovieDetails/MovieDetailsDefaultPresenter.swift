@@ -7,11 +7,20 @@ public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
 	private weak var view: MovieDetailsView?
 	private let interactor: MovieDetailsInteractor
 	private let router: MovieDetailsRouter
+	private let viewStateSubject = BehaviorSubject<MovieDetailsViewState>(value: .loading)
 
 	public init(view: MovieDetailsView, interactor: MovieDetailsInteractor, router: MovieDetailsRouter) {
 		self.view = view
 		self.interactor = interactor
 		self.router = router
+	}
+
+	public func observeViewState() -> Observable<MovieDetailsViewState> {
+		return viewStateSubject
+	}
+
+	public func observeImagesState() -> Observable<MovieDetailsImagesState> {
+		return Observable.empty()
 	}
 
 	public func viewDidLoad() {
@@ -25,9 +34,15 @@ public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
 		interactor.fetchDetails()
 			.map { [unowned self] in self.mapToViewModel($0) }
 			.observeOn(MainScheduler.instance)
-			.subscribe(onNext: { [unowned self] viewModel in
-				self.view?.show(details: viewModel)
+			.subscribe(onNext: { [weak self] viewModel in
+				let viewState = MovieDetailsViewState.showing(viewModel: viewModel)
+				self?.viewStateSubject.onNext(viewState)
+
+				self?.view?.show(details: viewModel)
 				}, onError: { [unowned self] error in
+					let viewState = MovieDetailsViewState.error(error: error)
+					self.viewStateSubject.onNext(viewState)
+
 					if let detailsError = error as? MovieDetailsError {
 						self.router.showError(message: detailsError.message)
 					} else {

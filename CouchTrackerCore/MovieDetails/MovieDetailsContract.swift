@@ -9,6 +9,9 @@ public protocol MovieDetailsPresenter: class {
 	init(view: MovieDetailsView, interactor: MovieDetailsInteractor, router: MovieDetailsRouter)
 
 	func viewDidLoad()
+
+	func observeViewState() -> Observable<MovieDetailsViewState>
+	func observeImagesState() -> Observable<MovieDetailsImagesState>
 }
 
 public protocol MovieDetailsView: BaseView {
