@@ -210,7 +210,6 @@
 		4F0F5827203D779A00B86CB8 /* UIAlertController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE63201F4F6893002E55EA /* UIAlertController+Error.swift */; };
 		4F0F5828203D779A00B86CB8 /* UIColor+CouchTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEDB1F4DC353004661C4 /* UIColor+CouchTracker.swift */; };
 		4F0F5829203D779A00B86CB8 /* UIViewController+BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE633B1F4F7ED7002E55EA /* UIViewController+BaseView.swift */; };
-		4F0F582A203D779A00B86CB8 /* MovieDetailsiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE63381F4F71DC002E55EA /* MovieDetailsiOSRouter.swift */; };
 		4F0F582B203D779A00B86CB8 /* MovieDetailsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BF011F4DC41F004661C4 /* MovieDetailsModule.swift */; };
 		4F0F582C203D779A00B86CB8 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BF021F4DC41F004661C4 /* MovieDetailsViewController.swift */; };
 		4F0F582D203D779A00B86CB8 /* MoviesManageriOSModuleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC4102015460700AA0DC8 /* MoviesManageriOSModuleSetup.swift */; };
@@ -867,7 +866,6 @@
 		64BE63241F4F692B002E55EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64BE632E1F4F6F3F002E55EA /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		64BE63331F4F6F63002E55EA /* String+Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localizable.swift"; sourceTree = "<group>"; };
-		64BE63381F4F71DC002E55EA /* MovieDetailsiOSRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsiOSRouter.swift; sourceTree = "<group>"; };
 		64BE633B1F4F7ED7002E55EA /* UIViewController+BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+BaseView.swift"; sourceTree = "<group>"; };
 		64C2D0191F60A4BC00A064E2 /* PosterCellInteractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCellInteractorTest.swift; sourceTree = "<group>"; };
 		64C384031F6C134F00FC9930 /* AppConfigurationsInteractorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigurationsInteractorTest.swift; sourceTree = "<group>"; };
@@ -1542,7 +1540,6 @@
 			isa = PBXGroup;
 			children = (
 				6406BF001F4DC41F004661C4 /* MovieDetails.storyboard */,
-				64BE63381F4F71DC002E55EA /* MovieDetailsiOSRouter.swift */,
 				6406BF011F4DC41F004661C4 /* MovieDetailsModule.swift */,
 				6406BF021F4DC41F004661C4 /* MovieDetailsViewController.swift */,
 			);
@@ -3163,7 +3160,6 @@
 				4F0F5827203D779A00B86CB8 /* UIAlertController+Error.swift in Sources */,
 				4F0F5828203D779A00B86CB8 /* UIColor+CouchTracker.swift in Sources */,
 				4F0F5829203D779A00B86CB8 /* UIViewController+BaseView.swift in Sources */,
-				4F0F582A203D779A00B86CB8 /* MovieDetailsiOSRouter.swift in Sources */,
 				4F0F582B203D779A00B86CB8 /* MovieDetailsModule.swift in Sources */,
 				4F0F582C203D779A00B86CB8 /* MovieDetailsViewController.swift in Sources */,
 				4F0F582D203D779A00B86CB8 /* MoviesManageriOSModuleSetup.swift in Sources */,
