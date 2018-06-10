@@ -78,17 +78,21 @@ final class MovieDetailsPresenterTest: XCTestCase {
 																						imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
 		let presenter = MovieDetailsDefaultPresenter(view: view, interactor: interactor, router: router)
 
+		presenter.observeImagesState().subscribe(imageObserver).disposed(by: disposeBag)
+
 		presenter.viewDidLoad()
 
 		let posterLink = "https:/image.tmdb.org/t/p/w342/fpemzjF623QVTe98pCVlwwtFC5N.jpg"
 		let backdropLink = "https:/image.tmdb.org/t/p/w300/fCayJrkfRaCRCTh8GqN30f8oyQF.jpg"
 		let viewModel = ImagesViewModel(posterLink: posterLink, backdropLink: backdropLink)
 
-		XCTAssertTrue(view.invokedShowImages)
-		XCTAssertEqual(view.invokedShowImagesParameters?.images, viewModel)
+		let expectedImagesEvents = [next(0, MovieDetailsImagesState.loading),
+																														next(0, MovieDetailsImagesState.showing(images: viewModel))]
+
+		XCTAssertEqual(imageObserver.events, expectedImagesEvents)
 	}
 
-	func testMovieDetailsPresenter_fetchImagesFailure_andDontNotifyView() {
+	func testMovieDetailsPresenter_fetchImagesFailure_andNotifyView() {
 		let movie = TraktEntitiesMock.createMovieMock(for: "the-dark-knight-2008")
 		let repository = MovieDetailsStoreMock(movie: movie)
 
@@ -100,9 +104,15 @@ final class MovieDetailsPresenterTest: XCTestCase {
 																						imageRepository: imageRepositoryRealMock, movieIds: movieIds)
 		let presenter = MovieDetailsDefaultPresenter(view: view, interactor: interactor, router: router)
 
+		presenter.observeImagesState().subscribe(imageObserver).disposed(by: disposeBag)
+
 		presenter.viewDidLoad()
 
-		XCTAssertFalse(view.invokedShowImages)
+		let expectedError = MovieDetailsError.noImageAvailable
+		let expectedEvents = [next(0, MovieDetailsImagesState.loading),
+																								next(0, MovieDetailsImagesState.error(error: expectedError))]
+
+		XCTAssertEqual(imageObserver.events, expectedEvents)
 	}
 
 	func testMovieDetailsPresenter_fetchFailure_andPresentErrorMessage() {
@@ -114,10 +124,15 @@ final class MovieDetailsPresenterTest: XCTestCase {
 																						imageRepository: imageRepositoryMock, movieIds: movie.ids)
 		let presenter = MovieDetailsDefaultPresenter(view: view, interactor: interactor, router: router)
 
+		presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
+
 		presenter.viewDidLoad()
 
-		XCTAssertTrue(router.invokedShowError)
-		XCTAssertEqual(router.invokedShowErrorParameters?.message, errorMessage)
+		let expectedError = MovieDetailsError.noConnection(errorMessage)
+		let expectedEvents = [next(0, MovieDetailsViewState.loading),
+																								next(0, MovieDetailsViewState.error(error: expectedError))]
+
+		XCTAssertEqual(viewObserver.events, expectedEvents)
 	}
 
 	func testMovieDetailsPresenter_fetchFailure_andIsCustomError() {
@@ -129,9 +144,13 @@ final class MovieDetailsPresenterTest: XCTestCase {
 																						imageRepository: imageRepositoryMock, movieIds: movie.ids)
 		let presenter = MovieDetailsDefaultPresenter(view: view, interactor: interactor, router: router)
 
+		presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
+
 		presenter.viewDidLoad()
 
-		XCTAssertTrue(router.invokedShowError)
-		XCTAssertEqual(router.invokedShowErrorParameters?.message, errorMessage)
+		let expectedEvents = [next(0, MovieDetailsViewState.loading),
+																								next(0, MovieDetailsViewState.error(error: error))]
+
+		XCTAssertEqual(viewObserver.events, expectedEvents)
 	}
 }
