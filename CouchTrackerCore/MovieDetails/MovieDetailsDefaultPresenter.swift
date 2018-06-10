@@ -8,6 +8,7 @@ public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
 	private let interactor: MovieDetailsInteractor
 	private let router: MovieDetailsRouter
 	private let viewStateSubject = BehaviorSubject<MovieDetailsViewState>(value: .loading)
+	private let imagesStateSubject = BehaviorSubject<MovieDetailsImagesState>(value: .loading)
 
 	public init(view: MovieDetailsView, interactor: MovieDetailsInteractor, router: MovieDetailsRouter) {
 		self.view = view
@@ -20,15 +21,17 @@ public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
 	}
 
 	public func observeImagesState() -> Observable<MovieDetailsImagesState> {
-		return Observable.empty()
+		return imagesStateSubject
 	}
 
 	public func viewDidLoad() {
 		interactor.fetchImages()
-			.map { ImagesViewModelMapper.viewModel(for: $0) }
+			.map { MovieDetailsImagesState.showing(images: ImagesViewModelMapper.viewModel(for: $0))}
+			.catchError { Maybe.just(MovieDetailsImagesState.error(error: $0)) }
+			.ifEmpty(default: MovieDetailsImagesState.error(error: MovieDetailsError.noImageAvailable))
 			.observeOn(MainScheduler.instance)
-			.subscribe(onSuccess: { [unowned self] imagesViewModel in
-				self.view?.show(images: imagesViewModel)
+			.subscribe(onSuccess: { [weak self] viewState in
+				self?.imagesStateSubject.onNext(viewState)
 			}).disposed(by: disposeBag)
 
 		interactor.fetchDetails()
