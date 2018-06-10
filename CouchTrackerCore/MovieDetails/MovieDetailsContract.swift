@@ -1,12 +1,8 @@
 import RxSwift
 import TraktSwift
 
-public protocol MovieDetailsRouter: class {
-	func showError(message: String)
-}
-
 public protocol MovieDetailsPresenter: class {
-	init(view: MovieDetailsView, interactor: MovieDetailsInteractor, router: MovieDetailsRouter)
+	init(interactor: MovieDetailsInteractor)
 
 	func viewDidLoad()
 

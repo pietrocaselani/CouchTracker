@@ -4,16 +4,12 @@ import TraktSwift
 
 public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
 	private let disposeBag = DisposeBag()
-	private weak var view: MovieDetailsView?
 	private let interactor: MovieDetailsInteractor
-	private let router: MovieDetailsRouter
 	private let viewStateSubject = BehaviorSubject<MovieDetailsViewState>(value: .loading)
 	private let imagesStateSubject = BehaviorSubject<MovieDetailsImagesState>(value: .loading)
 
-	public init(view: MovieDetailsView, interactor: MovieDetailsInteractor, router: MovieDetailsRouter) {
-		self.view = view
+	public init(interactor: MovieDetailsInteractor) {
 		self.interactor = interactor
-		self.router = router
 	}
 
 	public func observeViewState() -> Observable<MovieDetailsViewState> {
@@ -40,17 +36,9 @@ public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
 			.subscribe(onNext: { [weak self] viewModel in
 				let viewState = MovieDetailsViewState.showing(viewModel: viewModel)
 				self?.viewStateSubject.onNext(viewState)
-
-				self?.view?.show(details: viewModel)
 				}, onError: { [unowned self] error in
 					let viewState = MovieDetailsViewState.error(error: error)
 					self.viewStateSubject.onNext(viewState)
-
-					if let detailsError = error as? MovieDetailsError {
-						self.router.showError(message: detailsError.message)
-					} else {
-						self.router.showError(message: error.localizedDescription)
-					}
 			}).disposed(by: disposeBag)
 	}
 

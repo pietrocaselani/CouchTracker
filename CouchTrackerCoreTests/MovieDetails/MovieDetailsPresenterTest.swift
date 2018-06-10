@@ -5,8 +5,6 @@ import TraktSwift
 @testable import CouchTrackerCore
 
 final class MovieDetailsPresenterTest: XCTestCase {
-	private var view: MovieDetailsViewMock!
-	private var router: MovieDetailsRouterMock!
 	private var genreRepository: GenreRepositoryMock!
 	private var scheduler: TestScheduler!
 	private var viewObserver: TestableObserver<MovieDetailsViewState>!
@@ -16,8 +14,6 @@ final class MovieDetailsPresenterTest: XCTestCase {
 	override func setUp() {
 		super.setUp()
 
-		view = MovieDetailsViewMock()
-		router = MovieDetailsRouterMock()
 		genreRepository = GenreRepositoryMock()
 		scheduler = TestScheduler(initialClock: 0)
 		disposeBag = DisposeBag()
@@ -26,8 +22,6 @@ final class MovieDetailsPresenterTest: XCTestCase {
 	}
 
 	override func tearDown() {
-		view = nil
-		router = nil
 		genreRepository = nil
 		scheduler = nil
 		viewObserver = nil
@@ -42,7 +36,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 		let repository = MovieDetailsStoreMock(movie: movie)
 		let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
 																						imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
-		let presenter = MovieDetailsDefaultPresenter(view: view, interactor: interactor, router: router)
+		let presenter = MovieDetailsDefaultPresenter(interactor: interactor)
 
 		presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
 
@@ -66,9 +60,6 @@ final class MovieDetailsPresenterTest: XCTestCase {
 		let expectedViewStateEvents = [next(0, viewStateLoading),
 																																	next(0, viewStateShowing)]
 		XCTAssertEqual(viewObserver.events, expectedViewStateEvents)
-
-		XCTAssertTrue(view.invokedShow)
-		XCTAssertEqual(view.invokedShowParameters?.details, viewModel)
 	}
 
 	func testMovieDetailsPresenter_fetchImagesSuccess_andNotifyView() {
@@ -76,7 +67,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 		let repository = MovieDetailsStoreMock(movie: movie)
 		let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
 																						imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
-		let presenter = MovieDetailsDefaultPresenter(view: view, interactor: interactor, router: router)
+		let presenter = MovieDetailsDefaultPresenter(interactor: interactor)
 
 		presenter.observeImagesState().subscribe(imageObserver).disposed(by: disposeBag)
 
@@ -102,7 +93,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
 		let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
 																						imageRepository: imageRepositoryRealMock, movieIds: movieIds)
-		let presenter = MovieDetailsDefaultPresenter(view: view, interactor: interactor, router: router)
+		let presenter = MovieDetailsDefaultPresenter(interactor: interactor)
 
 		presenter.observeImagesState().subscribe(imageObserver).disposed(by: disposeBag)
 
@@ -122,7 +113,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 		let repository = ErrorMovieDetailsStoreMock(error: detailsError)
 		let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
 																						imageRepository: imageRepositoryMock, movieIds: movie.ids)
-		let presenter = MovieDetailsDefaultPresenter(view: view, interactor: interactor, router: router)
+		let presenter = MovieDetailsDefaultPresenter(interactor: interactor)
 
 		presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
 
@@ -142,7 +133,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 		let repository = ErrorMovieDetailsStoreMock(error: error)
 		let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
 																						imageRepository: imageRepositoryMock, movieIds: movie.ids)
-		let presenter = MovieDetailsDefaultPresenter(view: view, interactor: interactor, router: router)
+		let presenter = MovieDetailsDefaultPresenter(interactor: interactor)
 
 		presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
 
