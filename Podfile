@@ -1,25 +1,27 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
+RX_SWIFT_VERSION = '4.2.0'
+
 def common_pods
   pod 'SwiftLint', '0.23.1'
   pod 'Trakt', :git => 'https://github.com/pietrocaselani/Trakt-Swift.git'
   pod 'TMDB', :git => 'https://github.com/pietrocaselani/TMDB-Swift.git'
   pod 'TVDB', :git => 'https://github.com/pietrocaselani/TVDB-Swift.git'
   pod 'RxRealm', '0.7.5'
-  pod 'RxSwift', :git => 'https://github.com/ReactiveX/RxSwift.git', :branch => 'develop'
+  pod 'RxSwift', RX_SWIFT_VERSION
 end
 
 def ios_pods
   common_pods
   pod 'R.swift', '4.0.0'
   pod 'Kingfisher', '4.2.0'
-  pod 'RxCocoa', '4.0.0'
+  pod 'RxCocoa', RX_SWIFT_VERSION
   pod 'ActionSheetPicker-3.0', '2.2.0'
   pod 'Tabman', '1.4.0'
 end
 
 def tests_shared_pods
-  pod 'RxTest', '4.0.0'
+  pod 'RxTest', RX_SWIFT_VERSION
   pod 'Nimble', '7.1.1'
 end
 
