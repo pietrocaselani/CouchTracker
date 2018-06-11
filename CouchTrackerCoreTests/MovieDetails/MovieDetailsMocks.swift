@@ -3,34 +3,6 @@ import RxSwift
 import TraktSwift
 @testable import CouchTrackerCore
 
-final class MovieDetailsViewMock: MovieDetailsView {
-	var presenter: MovieDetailsPresenter!
-	var invokedShow = false
-	var invokedShowParameters: (details: MovieDetailsViewModel, Void)?
-	var invokedShowImages = false
-	var invokedShowImagesParameters: (images: ImagesViewModel, Void)?
-
-	func show(details: MovieDetailsViewModel) {
-		invokedShow = true
-		invokedShowParameters = (details, ())
-	}
-
-	func show(images: ImagesViewModel) {
-		invokedShowImages = true
-		invokedShowImagesParameters = (images, ())
-	}
-}
-
-final class MovieDetailsRouterMock: MovieDetailsRouter {
-	var invokedShowError = false
-	var invokedShowErrorParameters: (message: String, Void)?
-
-	func showError(message: String) {
-		invokedShowError = true
-		invokedShowErrorParameters = (message, ())
-	}
-}
-
 final class ErrorMovieDetailsStoreMock: MovieDetailsRepository {
 
 	private let error: Error
