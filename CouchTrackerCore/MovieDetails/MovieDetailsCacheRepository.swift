@@ -17,4 +17,19 @@ public final class MovieDetailsCacheRepository: MovieDetailsRepository {
 			.map(Movie.self)
 			.asObservable()
 	}
+
+	public func watched(movieId: Int) -> Single<WatchedMovieResult> {
+		let params = HistoryParameters(type: .movies, id: movieId)
+
+		return traktProvider.sync.rx.request(.history(params: params))
+			.observeOn(schedulers.networkScheduler)
+			.map([BaseMovie].self)
+			.map { movies -> WatchedMovieResult in
+				guard let movie = movies.first else {
+					return WatchedMovieResult.unwatched
+				}
+
+				return WatchedMovieResult.watched(movie: movie)
+			}
+	}
 }

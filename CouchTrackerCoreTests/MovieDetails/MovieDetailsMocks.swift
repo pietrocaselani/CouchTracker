@@ -4,7 +4,6 @@ import TraktSwift
 @testable import CouchTrackerCore
 
 final class ErrorMovieDetailsStoreMock: MovieDetailsRepository {
-
 	private let error: Error
 
 	init(error: Error) {
@@ -13,6 +12,10 @@ final class ErrorMovieDetailsStoreMock: MovieDetailsRepository {
 
 	func fetchDetails(movieId: String) -> Observable<Movie> {
 		return Observable.error(error)
+	}
+
+	func watched(movieId: Int) -> PrimitiveSequence<SingleTrait, WatchedMovieResult> {
+		return Single.error(error)
 	}
 }
 
@@ -28,6 +31,22 @@ final class MovieDetailsStoreMock: MovieDetailsRepository {
 		return Observable.just(movie).filter {
 			$0.ids.slug == movieId
 		}
+	}
+
+	func watched(movieId: Int) -> Single<WatchedMovieResult> {
+		guard movie.ids.realId == "\(movieId)" else {
+			return Single.just(WatchedMovieResult.unwatched)
+		}
+
+		let movies = try! JSONDecoder().decode([BaseMovie].self, from: Sync.history(params: nil).sampleData)
+
+		let first = movies.first { $0.movie?.ids.realId == "\(movieId)" }
+
+		guard let m = first else {
+			return Single.just(WatchedMovieResult.unwatched)
+		}
+
+		return Single.just(WatchedMovieResult.watched(movie: m))
 	}
 }
 
