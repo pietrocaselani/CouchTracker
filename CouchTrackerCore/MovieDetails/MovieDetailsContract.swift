@@ -27,4 +27,5 @@ public protocol MovieDetailsInteractor: class {
 
 public protocol MovieDetailsRepository: class {
 	func fetchDetails(movieId: String) -> Observable<Movie>
+	func watched(movieId: Int) -> Single<WatchedMovieResult>
 }

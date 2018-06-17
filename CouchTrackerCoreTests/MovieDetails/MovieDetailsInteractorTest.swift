@@ -117,8 +117,35 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
 		let genres = try! JSONDecoder().decode([Genre].self, from: Genres.list(.movies).sampleData)
 		let moviesGenre = genres.filter { movie.genres?.contains($0.slug) ?? false }
+		
+		guard let watchedAt = TraktDateTransformer.dateTimeTransformer.transformFromJSON("2013-06-15T05:54:27.000Z") else {
+			XCTFail("Can't transform date")
+			return
+		}
 
-		let expectedMovie = MovieEntityMapper.entity(for: movie, with: moviesGenre)
+		let expectedMovie = MovieEntityMapper.entity(for: movie, with: moviesGenre, watchedAt: watchedAt)
+
+		let events: [Recorded<Event<MovieEntity>>] = [next(0, expectedMovie), completed(0)]
+
+		XCTAssertEqual(observer.events, events)
+	}
+
+	func testMovieDetailsInteractor_fetchSuccessUnwatchedMovie_andEmitsDetailsAndOnCompleted() {
+		let movie = TraktEntitiesMock.createMovieMock(for: "the-dark-knight-2008")
+		let repository = MovieDetailsStoreMock(movie: movie)
+		let genreRepository = GenreRepositoryMock()
+		let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
+																																							imageRepository: imageRepositoryRealMock,
+																																							movieIds: movie.ids)
+
+		disposable = interactor.fetchDetails().subscribe(observer)
+
+		scheduler.start()
+
+		let genres = try! JSONDecoder().decode([Genre].self, from: Genres.list(.movies).sampleData)
+		let moviesGenre = genres.filter { movie.genres?.contains($0.slug) ?? false }
+
+		let expectedMovie = MovieEntityMapper.entity(for: movie, with: moviesGenre, watchedAt: nil)
 
 		let events: [Recorded<Event<MovieEntity>>] = [next(0, expectedMovie), completed(0)]
 

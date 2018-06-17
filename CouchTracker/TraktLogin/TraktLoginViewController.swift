@@ -13,9 +13,10 @@ final class TraktLoginViewController: UIViewController, TraktLoginView {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		webView = WKWebView(frame: view.bounds)
+		let webView = WKWebView(frame: view.bounds)
 		webView.translatesAutoresizingMaskIntoConstraints = false
 		webView.navigationDelegate = self
+		self.webView = webView
 		view.addSubview(webView)
 
 		presenter.viewDidLoad()
