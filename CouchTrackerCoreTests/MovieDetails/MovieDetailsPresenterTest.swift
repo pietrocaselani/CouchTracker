@@ -46,13 +46,16 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
 		let genres = TraktEntitiesMock.createMoviesGenresMock()
 		let movieGenres = genres.filter { movie.genres?.contains($0.slug) ?? false }.map { $0.name }
+		let releaseDate = movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!)
+		let watchedAt = "Unwatched"
 
 		let viewModel = MovieDetailsViewModel(
 				title: movie.title ?? "TBA",
 				tagline: movie.tagline ?? "",
 				overview: movie.overview ?? "",
 				genres: movieGenres.joined(separator: " | "),
-				releaseDate: movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!))
+				releaseDate: releaseDate,
+				watchedAt: watchedAt)
 
 		let viewStateLoading = MovieDetailsViewState.loading
 		let viewStateShowing = MovieDetailsViewState.showing(viewModel: viewModel)
