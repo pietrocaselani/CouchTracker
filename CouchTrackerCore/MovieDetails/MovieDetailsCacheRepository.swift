@@ -30,6 +30,6 @@ public final class MovieDetailsCacheRepository: MovieDetailsRepository {
 				}
 
 				return WatchedMovieResult.watched(movie: movie)
-			}
+			}.catchErrorJustReturn(WatchedMovieResult.unwatched)
 	}
 }
