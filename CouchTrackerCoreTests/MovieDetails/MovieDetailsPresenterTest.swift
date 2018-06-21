@@ -32,7 +32,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 	}
 
 	func testMovieDetailsPresenter_fetchSuccess_andPresentMovieDetails() {
-		let movie = TraktEntitiesMock.createMovieDetailsMock()
+		let movie = TraktEntitiesMock.createUnwatchedMovieDetailsMock()
 		let repository = MovieDetailsStoreMock(movie: movie)
 		let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
 																						imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
@@ -46,13 +46,50 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
 		let genres = TraktEntitiesMock.createMoviesGenresMock()
 		let movieGenres = genres.filter { movie.genres?.contains($0.slug) ?? false }.map { $0.name }
+		let releaseDate = movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!)
+		let watchedAt = "Unwatched"
 
 		let viewModel = MovieDetailsViewModel(
 				title: movie.title ?? "TBA",
 				tagline: movie.tagline ?? "",
 				overview: movie.overview ?? "",
 				genres: movieGenres.joined(separator: " | "),
-				releaseDate: movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!))
+				releaseDate: releaseDate,
+				watchedAt: watchedAt)
+
+		let viewStateLoading = MovieDetailsViewState.loading
+		let viewStateShowing = MovieDetailsViewState.showing(viewModel: viewModel)
+
+		let expectedViewStateEvents = [next(0, viewStateLoading),
+																																	next(0, viewStateShowing)]
+		XCTAssertEqual(viewObserver.events, expectedViewStateEvents)
+	}
+
+	func testMovieDetailsPresenter_fetchWatchedMovieDetails_notifyView() {
+		let movie = TraktEntitiesMock.createMovieDetailsMock()
+		let repository = MovieDetailsStoreMock(movie: movie)
+		let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
+																																											imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
+		let presenter = MovieDetailsDefaultPresenter(interactor: interactor)
+
+		presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
+
+		presenter.viewDidLoad()
+
+		let dateFormatter = TraktDateTransformer.dateTransformer.dateFormatter
+
+		let genres = TraktEntitiesMock.createMoviesGenresMock()
+		let movieGenres = genres.filter { movie.genres?.contains($0.slug) ?? false }.map { $0.name }
+		let releaseDate = movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!)
+		let watchedAt = "Watched at: 2013-06-15"
+
+		let viewModel = MovieDetailsViewModel(
+			title: movie.title ?? "TBA",
+			tagline: movie.tagline ?? "",
+			overview: movie.overview ?? "",
+			genres: movieGenres.joined(separator: " | "),
+			releaseDate: releaseDate,
+			watchedAt: watchedAt)
 
 		let viewStateLoading = MovieDetailsViewState.loading
 		let viewStateShowing = MovieDetailsViewState.showing(viewModel: viewModel)
