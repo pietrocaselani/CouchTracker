@@ -15,6 +15,7 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsView {
 	@IBOutlet var genresLabel: UILabel!
 	@IBOutlet var backdropImageView: UIImageView!
 	@IBOutlet var posterImageView: UIImageView!
+	@IBOutlet weak var watchedLabel: UILabel!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -63,6 +64,7 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsView {
 		overviewLabel.text = details.overview
 		releaseDateLabel.text = details.releaseDate
 		genresLabel.text = details.genres
+		watchedLabel.text = details.watchedAt
 	}
 
 	func show(images: ImagesViewModel) {

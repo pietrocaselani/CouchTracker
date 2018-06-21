@@ -18,13 +18,24 @@ public final class MovieDetailsService: MovieDetailsInteractor {
 	public func fetchDetails() -> Observable<MovieEntity> {
 		let detailsObservable = repository.fetchDetails(movieId: movieIds.slug)
 		let genresObservable = genreRepository.fetchMoviesGenres()
+		let watchedObservable = repository.watched(movieId: movieIds.trakt).asObservable()
 
-		return Observable.combineLatest(detailsObservable, genresObservable) { (movie, genres) -> MovieEntity in
+		return Observable.combineLatest(detailsObservable,
+																																		genresObservable,
+																																		watchedObservable) { (movie, genres, watchedMovieResult) -> MovieEntity in
 			let movieGenres = genres.filter { genre -> Bool in
 				return movie.genres?.contains(genre.slug) ?? false
 			}
 
-			return MovieEntityMapper.entity(for: movie, with: movieGenres)
+			let watchedAt: Date?
+
+			if case .watched(let watchedMovie) = watchedMovieResult {
+				watchedAt = watchedMovie.watchedAt
+			} else {
+				watchedAt = nil
+			}
+
+			return MovieEntityMapper.entity(for: movie, with: movieGenres, watchedAt: watchedAt)
 		}
 	}
 

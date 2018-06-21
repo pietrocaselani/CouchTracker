@@ -43,6 +43,14 @@ public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
 	}
 
 	private func mapToViewModel(_ movie: MovieEntity) -> MovieDetailsViewModel {
+		let watchedText: String
+
+		if let watchedDate = movie.watchedAt?.parse() {
+			watchedText = "Watched at".localized + watchedDate
+		} else {
+			watchedText = "Unwatched".localized
+		}
+
 		let releaseDate = movie.releaseDate?.parse() ?? "Unknown".localized
 		let genres = movie.genres?.map { $0.name }.joined(separator: " | ")
 
@@ -51,6 +59,7 @@ public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
 			tagline: movie.tagline ?? "",
 			overview: movie.overview ?? "",
 			genres: genres ?? "",
-			releaseDate: releaseDate)
+			releaseDate: releaseDate,
+			watchedAt: watchedText)
 	}
 }

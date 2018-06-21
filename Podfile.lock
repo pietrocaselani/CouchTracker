@@ -13,11 +13,11 @@ PODS:
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
-  - Realm (3.7.1):
-    - Realm/Headers (= 3.7.1)
-  - Realm/Headers (3.7.1)
-  - RealmSwift (3.7.1):
-    - Realm (= 3.7.1)
+  - Realm (3.7.2):
+    - Realm/Headers (= 3.7.2)
+  - Realm/Headers (3.7.2)
+  - RealmSwift (3.7.2):
+    - Realm (= 3.7.2)
   - Result (3.2.4)
   - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
@@ -68,7 +68,7 @@ CHECKOUT OPTIONS:
     :commit: bfeefe6cba746a7b9128538090b005891c9f6164
     :git: https://github.com/pietrocaselani/TMDB-Swift.git
   Trakt:
-    :commit: d09c043004f35432effa47370eaaf7cab38ff8b8
+    :commit: 3f49903031bd314f69c75a2edaf9060f50db1ef1
     :git: https://github.com/pietrocaselani/Trakt-Swift.git
   TVDB:
     :commit: 43ea1db6f5c405596469e10f6486cb57967ac0ca
@@ -83,8 +83,8 @@ SPEC CHECKSUMS:
   Pageboy: 502560f49b0357eaf8a3b6075e4cab29505079a3
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
-  Realm: 906be37d52f17f25484ac01643a7f26a9d3bfbd5
-  RealmSwift: 1c2b6bae3dc55bb87e080ffa96537d71442f6dce
+  Realm: dd18c3014e8d90df300b83c6da740067436089c5
+  RealmSwift: 79917cae59a0c43ef8118b233a5978891dd50b4a
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxRealm: a6c6c0a07cb61f34209969ca6657734edfdfff30

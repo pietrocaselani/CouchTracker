@@ -67,6 +67,11 @@ final class TraktEntitiesMock {
 		return try! jsonDecoder.decode(Movie.self, from: Movies.summary(movieId: movieId, extended: .full).sampleData)
 	}
 
+	static func createUnwatchedMovieDetailsMock() -> Movie {
+		let data = traktDataForJSON(with: "trakt_unwatched_movie_summary")
+		return try! jsonDecoder.decode(Movie.self, from: data)
+	}
+
 	static func createMovieDetailsMock() -> Movie {
 		return createMovieDetailsMock(for: "tron-legacy-2010")
 	}

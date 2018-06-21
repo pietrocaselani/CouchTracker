@@ -8,6 +8,7 @@ public struct MovieEntity: Hashable {
 	public let tagline: String?
 	public let overview: String?
 	public let releaseDate: Date?
+	public let watchedAt: Date?
 
 	public var hashValue: Int {
 		var hash = ids.hashValue
@@ -26,6 +27,10 @@ public struct MovieEntity: Hashable {
 
 		if let releaseDateHash = releaseDate?.hashValue {
 			hash = hash ^ releaseDateHash
+		}
+
+		if let watchedAtHash = watchedAt?.hashValue {
+			hash = hash ^ watchedAtHash
 		}
 
 		genres?.forEach { hash = hash ^ $0.hashValue }

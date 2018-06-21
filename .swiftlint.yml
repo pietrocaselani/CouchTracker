@@ -4,3 +4,5 @@ included:
 excluded:
   - Pods
   - R.generated.swift
+disabled_rules:
+  - identifier_name #Until this is not merged https://github.com/realm/SwiftLint/pull/2232

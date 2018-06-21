@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -68,6 +68,12 @@
                                                 <color key="textColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2X4-yn-jdw">
+                                                <rect key="frame" x="8" y="241.5" width="359" height="0.0"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="WKa-XQ-3sA" firstAttribute="top" secondItem="Ftg-26-pQr" secondAttribute="bottom" constant="10" id="0gd-9b-Gh7"/>
@@ -78,6 +84,7 @@
                                             <constraint firstAttribute="trailing" secondItem="3wc-YN-l8R" secondAttribute="trailing" constant="8" id="CIM-1S-emR"/>
                                             <constraint firstItem="3wc-YN-l8R" firstAttribute="leading" secondItem="KLw-J3-YS7" secondAttribute="leading" constant="8" id="Ije-sm-FxZ"/>
                                             <constraint firstItem="rqp-lc-dWQ" firstAttribute="leading" secondItem="KLw-J3-YS7" secondAttribute="leading" constant="10" id="Lty-fE-Qyu"/>
+                                            <constraint firstItem="2X4-yn-jdw" firstAttribute="top" secondItem="jjz-i5-kgA" secondAttribute="bottom" constant="8" symbolic="YES" id="NjH-Iu-clm"/>
                                             <constraint firstItem="s1V-Kf-twH" firstAttribute="top" secondItem="rqp-lc-dWQ" secondAttribute="bottom" constant="7.5" id="O0N-bU-xcZ"/>
                                             <constraint firstAttribute="trailing" secondItem="s1V-Kf-twH" secondAttribute="trailing" constant="10" id="OY1-Si-1Rb"/>
                                             <constraint firstAttribute="trailing" secondItem="WKa-XQ-3sA" secondAttribute="trailing" constant="10" id="Tc9-hF-9vR"/>
@@ -85,6 +92,8 @@
                                             <constraint firstItem="jjz-i5-kgA" firstAttribute="leading" secondItem="KLw-J3-YS7" secondAttribute="leading" constant="8" id="USo-VG-p5h"/>
                                             <constraint firstItem="3wc-YN-l8R" firstAttribute="top" secondItem="s1V-Kf-twH" secondAttribute="bottom" constant="20" id="asb-2f-lr8"/>
                                             <constraint firstItem="rqp-lc-dWQ" firstAttribute="top" secondItem="WKa-XQ-3sA" secondAttribute="bottom" constant="20" id="dgR-qP-yPd"/>
+                                            <constraint firstItem="2X4-yn-jdw" firstAttribute="leading" secondItem="jjz-i5-kgA" secondAttribute="leading" id="ha0-H3-Gh1"/>
+                                            <constraint firstItem="2X4-yn-jdw" firstAttribute="trailing" secondItem="jjz-i5-kgA" secondAttribute="trailing" id="qib-Rw-Jpa"/>
                                             <constraint firstAttribute="trailing" secondItem="Ftg-26-pQr" secondAttribute="trailing" constant="10" id="sY9-am-hdj"/>
                                             <constraint firstAttribute="trailing" secondItem="rqp-lc-dWQ" secondAttribute="trailing" constant="10" id="scP-U2-nRd"/>
                                             <constraint firstItem="WKa-XQ-3sA" firstAttribute="leading" secondItem="KLw-J3-YS7" secondAttribute="leading" constant="10" id="u9b-IC-5dU"/>
@@ -123,6 +132,7 @@
                         <outlet property="releaseDateLabel" destination="jjz-i5-kgA" id="AOh-AY-RPF"/>
                         <outlet property="taglineLabel" destination="rqp-lc-dWQ" id="RCe-Yn-tJz"/>
                         <outlet property="titleLabel" destination="WKa-XQ-3sA" id="dbP-GF-p02"/>
+                        <outlet property="watchedLabel" destination="2X4-yn-jdw" id="3nE-Im-oKQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gFH-I7-hCL" userLabel="First Responder" sceneMemberID="firstResponder"/>
