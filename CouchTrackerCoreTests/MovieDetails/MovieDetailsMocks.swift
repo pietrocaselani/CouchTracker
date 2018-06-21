@@ -20,7 +20,6 @@ final class ErrorMovieDetailsStoreMock: MovieDetailsRepository {
 }
 
 final class MovieDetailsStoreMock: MovieDetailsRepository {
-
 	private let movie: Movie
 
 	init(movie: Movie) {
@@ -67,13 +66,22 @@ final class MovieDetailsServiceMock: MovieDetailsInteractor {
 	func fetchDetails() -> Observable<MovieEntity> {
 		let detailsObservable = repository.fetchDetails(movieId: movieIds.slug)
 		let genresObservable = genreRepository.fetchMoviesGenres()
+		let watchedObservable = repository.watched(movieId: movieIds.trakt).asObservable()
 
-		return Observable.combineLatest(detailsObservable, genresObservable) { (movie, genres) in
+		return Observable.combineLatest(detailsObservable, genresObservable, watchedObservable) { (movie, genres, watched) in
 			let movieGenres = genres.filter { genre -> Bool in
 				return movie.genres?.contains(genre.slug) ?? false
 			}
 
-			return MovieEntityMapper.entity(for: movie, with: movieGenres)
+			let watchedAt: Date?
+
+			if case .watched(let baseMovie) = watched {
+				watchedAt = baseMovie.watchedAt
+			} else {
+				watchedAt = nil
+			}
+
+			return MovieEntityMapper.entity(for: movie, with: movieGenres, watchedAt: watchedAt)
 		}
 	}
 
