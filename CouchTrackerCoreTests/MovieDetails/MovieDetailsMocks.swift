@@ -3,6 +3,28 @@ import RxSwift
 import TraktSwift
 @testable import CouchTrackerCore
 
+final class MovieDetailsMocks {
+	private init() {}
+
+	final class Interactor: MovieDetailsInteractor {
+		var toggleWatchedInvokedCount = 0
+
+		func fetchDetails() -> Observable<MovieEntity> {
+			let entity = MovieEntityMapper.entity(for: TraktEntitiesMock.createMovieDetailsMock())
+			return Observable.just(entity)
+		}
+
+		func fetchImages() -> Maybe<ImagesEntity> {
+			return Maybe.empty()
+		}
+
+		func toggleWatched() -> Completable {
+			toggleWatchedInvokedCount += 1
+			return Completable.empty()
+		}
+	}
+}
+
 final class ErrorMovieDetailsStoreMock: MovieDetailsRepository {
 	private let error: Error
 
@@ -88,5 +110,9 @@ final class MovieDetailsServiceMock: MovieDetailsInteractor {
 	func fetchImages() -> Maybe<ImagesEntity> {
 		guard let tmdbId = movieIds.tmdb else { return Maybe.empty() }
 		return imageRepository.fetchMovieImages(for: tmdbId, posterSize: nil, backdropSize: nil)
+	}
+
+	func toggleWatched() -> Completable {
+		return Completable.empty()
 	}
 }
