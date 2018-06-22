@@ -171,4 +171,55 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
 		XCTAssertEqual(observer.events[0].value.error as! MovieDetailsError, connectionError)
 	}
+
+	func testMovieDetailsInteractor_forUnwatchedMovie_toggleWatched_repositoryShouldAddMovieToHistory() {
+		let detailsRepository = MovieDetailsMocks.MovieDetailsRepositoryMock(watched: false)
+		let genreRepository = GenreRepositoryMock()
+		let movie = TraktEntitiesMock.createUnwatchedMovieDetailsMock()
+		let movieEntity = MovieEntityMapper.entity(for: movie, watchedAt: nil)
+		let interactor = MovieDetailsService(repository: detailsRepository,
+																																							genreRepository: genreRepository,
+																																							imageRepository: imageRepositoryMock,
+																																							movieIds: movie.ids)
+
+		let observer = scheduler.createObserver(Never.self)
+
+		disposable = interactor.toggleWatched(movie: movieEntity).asObservable().subscribe(observer)
+
+		scheduler.start()
+
+		guard let firstEvent = observer.events.first else {
+			XCTFail("Should have one event")
+			return
+		}
+
+		XCTAssertEqual(detailsRepository.addToHistoryInvokedCount, 1)
+		XCTAssertTrue(firstEvent.value.isCompleted)
+	}
+
+	func testMovieDetailsInteractor_forWatchedMovie_toggleWatched_repositoryShouldRemoveMovieFromHistory() {
+		let detailsRepository = MovieDetailsMocks.MovieDetailsRepositoryMock(watched: false)
+		let genreRepository = GenreRepositoryMock()
+		let movie = TraktEntitiesMock.createUnwatchedMovieDetailsMock()
+		let watchedAt = TraktDateTransformer.dateTimeTransformer.transformFromJSON("2013-06-15T05:54:27.000Z")
+		let movieEntity = MovieEntityMapper.entity(for: movie, watchedAt: watchedAt)
+		let interactor = MovieDetailsService(repository: detailsRepository,
+																																							genreRepository: genreRepository,
+																																							imageRepository: imageRepositoryMock,
+																																							movieIds: movie.ids)
+
+		let observer = scheduler.createObserver(Never.self)
+
+		disposable = interactor.toggleWatched(movie: movieEntity).asObservable().subscribe(observer)
+
+		scheduler.start()
+
+		guard let firstEvent = observer.events.first else {
+			XCTFail("Should have one event")
+			return
+		}
+
+		XCTAssertEqual(detailsRepository.removeFromHistoryInvokedCount, 1)
+		XCTAssertTrue(firstEvent.value.isCompleted)
+	}
 }

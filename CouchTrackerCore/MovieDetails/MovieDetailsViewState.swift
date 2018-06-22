@@ -1,14 +1,14 @@
 public enum MovieDetailsViewState: Hashable {
 	case loading
-	case showing(viewModel: MovieDetailsViewModel)
+	case showing(movie: MovieEntity)
 	case error(error: Error)
 
 	public var hashValue: Int {
 		switch self {
 		case .loading:
 			return "MovieDetailsViewState.loading".hashValue
-		case .showing(let viewModel):
-			return "MovieDetailsViewState.showing".hashValue ^ viewModel.hashValue
+		case .showing(let movie):
+			return "MovieDetailsViewState.showing".hashValue ^ movie.hashValue
 		case .error(let error):
 			return "MovieDetailsViewState.error".hashValue ^ error.localizedDescription.hashValue
 		}

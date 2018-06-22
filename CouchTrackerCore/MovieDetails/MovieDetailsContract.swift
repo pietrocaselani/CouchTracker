@@ -21,10 +21,12 @@ public protocol MovieDetailsView: BaseView {
 public protocol MovieDetailsInteractor: class {
 	func fetchDetails() -> Observable<MovieEntity>
 	func fetchImages() -> Maybe<ImagesEntity>
-	func toggleWatched() -> Completable
+	func toggleWatched(movie: MovieEntity) -> Completable
 }
 
 public protocol MovieDetailsRepository: class {
 	func fetchDetails(movieId: String) -> Observable<Movie>
 	func watched(movieId: Int) -> Single<WatchedMovieResult>
+	func addToHistory(movieId: Int) -> Single<SyncMovieResult>
+	func removeFromHistory(movieId: Int) -> Single<SyncMovieResult>
 }
