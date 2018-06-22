@@ -58,7 +58,7 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsView {
 		}
 	}
 
-	func show(details: MovieDetailsViewModel) {
+	private func show(details: MovieDetailsViewModel) {
 		titleLabel.text = details.title
 		taglineLabel.text = details.tagline
 		overviewLabel.text = details.overview
@@ -67,7 +67,7 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsView {
 		watchedLabel.text = details.watchedAt
 	}
 
-	func show(images: ImagesViewModel) {
+	private func show(images: ImagesViewModel) {
 		if let backdropLink = images.backdropLink {
 			backdropImageView.kf.setImage(with: URL(string: backdropLink), placeholder: R.image.backdropPlaceholder(),
 																		options: nil, progressBlock: nil, completionHandler: nil)
