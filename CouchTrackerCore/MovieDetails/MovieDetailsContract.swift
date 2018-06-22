@@ -8,6 +8,7 @@ public protocol MovieDetailsPresenter: class {
 
 	func observeViewState() -> Observable<MovieDetailsViewState>
 	func observeImagesState() -> Observable<MovieDetailsImagesState>
+	func handleWatched() -> Completable
 }
 
 public protocol MovieDetailsView: BaseView {
@@ -18,11 +19,9 @@ public protocol MovieDetailsView: BaseView {
 }
 
 public protocol MovieDetailsInteractor: class {
-	init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
-						imageRepository: ImageRepository, movieIds: MovieIds)
-
 	func fetchDetails() -> Observable<MovieEntity>
 	func fetchImages() -> Maybe<ImagesEntity>
+	func toggleWatched() -> Completable
 }
 
 public protocol MovieDetailsRepository: class {

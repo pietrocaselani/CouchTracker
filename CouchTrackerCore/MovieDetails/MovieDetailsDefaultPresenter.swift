@@ -20,6 +20,10 @@ public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
 		return imagesStateSubject
 	}
 
+	public func handleWatched() -> Completable {
+		return interactor.toggleWatched()
+	}
+
 	public func viewDidLoad() {
 		interactor.fetchImages()
 			.map { MovieDetailsImagesState.showing(images: ImagesViewModelMapper.viewModel(for: $0))}

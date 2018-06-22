@@ -43,4 +43,8 @@ public final class MovieDetailsService: MovieDetailsInteractor {
 		guard let tmdbId = movieIds.tmdb else { return Maybe.empty() }
 		return imageRepository.fetchMovieImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)
 	}
+
+	public func toggleWatched() -> Completable {
+		return Completable.empty()
+	}
 }

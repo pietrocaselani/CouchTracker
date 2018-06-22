@@ -181,4 +181,16 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
 		XCTAssertEqual(viewObserver.events, expectedEvents)
 	}
+
+	func testMovieDetailsPresenter_handleWatched_notifyInteractor() {
+		let interactor = MovieDetailsMocks.Interactor()
+		let presenter = MovieDetailsDefaultPresenter(interactor: interactor)
+
+		let observer = scheduler.createObserver(Never.self)
+
+		presenter.handleWatched().asObservable().subscribe(observer).disposed(by: disposeBag)
+
+		XCTAssertEqual(interactor.toggleWatchedInvokedCount, 1)
+		XCTAssertEqual(observer.events.count, 1)
+	}
 }
