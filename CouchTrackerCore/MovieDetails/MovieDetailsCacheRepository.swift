@@ -32,4 +32,12 @@ public final class MovieDetailsCacheRepository: MovieDetailsRepository {
 				return WatchedMovieResult.watched(movie: movie)
 			}.catchErrorJustReturn(WatchedMovieResult.unwatched)
 	}
+
+	public func addToHistory(movieId: Int) -> Single<SyncMovieResult> {
+		return Single.just(SyncMovieResult.success)
+	}
+
+	public func removeFromHistory(movieId: Int) -> Single<SyncMovieResult> {
+		return Single.just(SyncMovieResult.success)
+	}
 }

@@ -421,6 +421,8 @@
 		4F3EA3FB203FD83E008AE053 /* trakt_sync_removefromhistory.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F3EA3FA203FD83E008AE053 /* trakt_sync_removefromhistory.json */; };
 		4F3F67DC209E674D00D3E403 /* NSBundle+Language.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F67DB209E674D00D3E403 /* NSBundle+Language.m */; };
 		4F3F67DF209E678100D3E403 /* NSObject+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F67DE209E678100D3E403 /* NSObject+Swizzling.m */; };
+		4F458B1C20DD86E3008595D8 /* SyncMovieResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F458B1B20DD86E3008595D8 /* SyncMovieResult.swift */; };
+		4F458B1D20DD86E3008595D8 /* SyncMovieResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F458B1B20DD86E3008595D8 /* SyncMovieResult.swift */; };
 		4F56336320514AD200923D3D /* ShowManagerDefaultDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F56336220514AD200923D3D /* ShowManagerDefaultDataSourceTest.swift */; };
 		4F56581C2059944500D3D56B /* SearchAPIRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F56581B2059944500D3D56B /* SearchAPIRepositoryTest.swift */; };
 		4F566C8820A724800003ACD7 /* ShowProgressListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F566C8720A724800003ACD7 /* ShowProgressListState.swift */; };
@@ -632,6 +634,7 @@
 		4F3F67DB209E674D00D3E403 /* NSBundle+Language.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Language.m"; sourceTree = "<group>"; };
 		4F3F67DD209E678100D3E403 /* NSObject+Swizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Swizzling.h"; sourceTree = "<group>"; };
 		4F3F67DE209E678100D3E403 /* NSObject+Swizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Swizzling.m"; sourceTree = "<group>"; };
+		4F458B1B20DD86E3008595D8 /* SyncMovieResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncMovieResult.swift; sourceTree = "<group>"; };
 		4F562E05202E7A3400CB1AE0 /* WatchedEpisodeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedEpisodeEntity.swift; sourceTree = "<group>"; };
 		4F562E09202E7A4300CB1AE0 /* WatchedSeasonEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedSeasonEntity.swift; sourceTree = "<group>"; };
 		4F56336220514AD200923D3D /* ShowManagerDefaultDataSourceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManagerDefaultDataSourceTest.swift; sourceTree = "<group>"; };
@@ -1234,6 +1237,7 @@
 				4F2F336C20C893E700061C13 /* MovieDetailsViewState.swift */,
 				4F2F336F20C8943D00061C13 /* MovieDetailsImagesState.swift */,
 				4F70910620D5F3650017B259 /* WatchedMovieResult.swift */,
+				4F458B1B20DD86E3008595D8 /* SyncMovieResult.swift */,
 			);
 			path = MovieDetails;
 			sourceTree = "<group>";
@@ -2755,6 +2759,7 @@
 				4FE4BA3C2059EA2B00969AAF /* PosterViewModel.swift in Sources */,
 				4F0F571C203D5FA000B86CB8 /* AppConfigurationsState.swift in Sources */,
 				4FE6C60D205FCB8800444B12 /* SearchResultDefaultPresenter.swift in Sources */,
+				4F458B1C20DD86E3008595D8 /* SyncMovieResult.swift in Sources */,
 				4F0F571D203D5FA000B86CB8 /* AppConfigurationsStore.swift in Sources */,
 				4F0F571E203D5FA000B86CB8 /* AppConfigurationsUserDefaultsDataSource.swift in Sources */,
 				4F0F5720203D5FA000B86CB8 /* AppConfigurationsViewModel.swift in Sources */,
@@ -3010,6 +3015,7 @@
 				4FE4BA3D2059EA2B00969AAF /* PosterViewModel.swift in Sources */,
 				4F0F5865203D7B0A00B86CB8 /* AppConfigurationOptions.swift in Sources */,
 				4FE6C60E205FCB8800444B12 /* SearchResultDefaultPresenter.swift in Sources */,
+				4F458B1D20DD86E3008595D8 /* SyncMovieResult.swift in Sources */,
 				4F0F5866203D7B0A00B86CB8 /* AppConfigurationsContract.swift in Sources */,
 				4F0F5867203D7B0A00B86CB8 /* AppConfigurationsDefaultRepository.swift in Sources */,
 				4F0F5868203D7B0A00B86CB8 /* AppConfigurationsDefaultPresenter.swift in Sources */,

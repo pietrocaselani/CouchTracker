@@ -21,7 +21,12 @@ public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
 	}
 
 	public func handleWatched() -> Completable {
-		return interactor.toggleWatched()
+		guard let viewState = try? viewStateSubject.value(),
+			case .showing(let movie) = viewState else {
+			return Completable.empty()
+		}
+
+		return interactor.toggleWatched(movie: movie)
 	}
 
 	public func viewDidLoad() {
@@ -35,35 +40,13 @@ public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
 			}).disposed(by: disposeBag)
 
 		interactor.fetchDetails()
-			.map { [unowned self] in self.mapToViewModel($0) }
 			.observeOn(MainScheduler.instance)
-			.subscribe(onNext: { [weak self] viewModel in
-				let viewState = MovieDetailsViewState.showing(viewModel: viewModel)
+			.subscribe(onNext: { [weak self] movie in
+				let viewState = MovieDetailsViewState.showing(movie: movie)
 				self?.viewStateSubject.onNext(viewState)
 				}, onError: { [unowned self] error in
 					let viewState = MovieDetailsViewState.error(error: error)
 					self.viewStateSubject.onNext(viewState)
 			}).disposed(by: disposeBag)
-	}
-
-	private func mapToViewModel(_ movie: MovieEntity) -> MovieDetailsViewModel {
-		let watchedText: String
-
-		if let watchedDate = movie.watchedAt?.parse() {
-			watchedText = "Watched at".localized + watchedDate
-		} else {
-			watchedText = "Unwatched".localized
-		}
-
-		let releaseDate = movie.releaseDate?.parse() ?? "Unknown".localized
-		let genres = movie.genres?.map { $0.name }.joined(separator: " | ")
-
-		return MovieDetailsViewModel(
-			title: movie.title ?? "TBA".localized,
-			tagline: movie.tagline ?? "",
-			overview: movie.overview ?? "",
-			genres: genres ?? "",
-			releaseDate: releaseDate,
-			watchedAt: watchedText)
 	}
 }

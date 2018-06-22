@@ -42,23 +42,13 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
 		presenter.viewDidLoad()
 
-		let dateFormatter = TraktDateTransformer.dateTransformer.dateFormatter
-
 		let genres = TraktEntitiesMock.createMoviesGenresMock()
-		let movieGenres = genres.filter { movie.genres?.contains($0.slug) ?? false }.map { $0.name }
-		let releaseDate = movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!)
-		let watchedAt = "Unwatched"
+		let movieGenres = genres.filter { movie.genres?.contains($0.slug) ?? false }
 
-		let viewModel = MovieDetailsViewModel(
-				title: movie.title ?? "TBA",
-				tagline: movie.tagline ?? "",
-				overview: movie.overview ?? "",
-				genres: movieGenres.joined(separator: " | "),
-				releaseDate: releaseDate,
-				watchedAt: watchedAt)
+		let movieEntity = MovieEntityMapper.entity(for: movie, with: movieGenres, watchedAt: nil)
 
 		let viewStateLoading = MovieDetailsViewState.loading
-		let viewStateShowing = MovieDetailsViewState.showing(viewModel: viewModel)
+		let viewStateShowing = MovieDetailsViewState.showing(movie: movieEntity)
 
 		let expectedViewStateEvents = [next(0, viewStateLoading),
 																																	next(0, viewStateShowing)]
@@ -76,23 +66,14 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
 		presenter.viewDidLoad()
 
-		let dateFormatter = TraktDateTransformer.dateTransformer.dateFormatter
-
 		let genres = TraktEntitiesMock.createMoviesGenresMock()
-		let movieGenres = genres.filter { movie.genres?.contains($0.slug) ?? false }.map { $0.name }
-		let releaseDate = movie.released == nil ? "Unknown" : dateFormatter.string(from: movie.released!)
-		let watchedAt = "Watched at: 2013-06-15"
+		let movieGenres = genres.filter { movie.genres?.contains($0.slug) ?? false }
+		let watchedAt = TraktDateTransformer.dateTimeTransformer.dateFormatter.date(from: "2013-06-15T05:54:27.000Z")
 
-		let viewModel = MovieDetailsViewModel(
-			title: movie.title ?? "TBA",
-			tagline: movie.tagline ?? "",
-			overview: movie.overview ?? "",
-			genres: movieGenres.joined(separator: " | "),
-			releaseDate: releaseDate,
-			watchedAt: watchedAt)
+		let movieEntity = MovieEntityMapper.entity(for: movie, with: movieGenres, watchedAt: watchedAt)
 
 		let viewStateLoading = MovieDetailsViewState.loading
-		let viewStateShowing = MovieDetailsViewState.showing(viewModel: viewModel)
+		let viewStateShowing = MovieDetailsViewState.showing(movie: movieEntity)
 
 		let expectedViewStateEvents = [next(0, viewStateLoading),
 																																	next(0, viewStateShowing)]
@@ -185,6 +166,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 	func testMovieDetailsPresenter_handleWatched_notifyInteractor() {
 		let interactor = MovieDetailsMocks.Interactor()
 		let presenter = MovieDetailsDefaultPresenter(interactor: interactor)
+		presenter.viewDidLoad()
 
 		let observer = scheduler.createObserver(Never.self)
 
