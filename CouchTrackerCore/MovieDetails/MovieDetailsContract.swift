@@ -13,9 +13,6 @@ public protocol MovieDetailsPresenter: class {
 
 public protocol MovieDetailsView: BaseView {
 	var presenter: MovieDetailsPresenter! { get set }
-
-	func show(details: MovieDetailsViewModel)
-	func show(images: ImagesViewModel)
 }
 
 public protocol MovieDetailsInteractor: class {
