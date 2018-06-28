@@ -46,8 +46,8 @@ public final class MovieDetailsService: MovieDetailsInteractor {
 
 	public func toggleWatched(movie: MovieEntity) -> Completable {
 		let single = movie.watchedAt == nil ?
-		repository.addToHistory(movieId: movie.ids.trakt) :
-		repository.removeFromHistory(movieId: movie.ids.trakt)
+			repository.addToHistory(movie: movie) :
+			repository.removeFromHistory(movie: movie)
 
 		return single.flatMapCompletable {
 			switch $0 {

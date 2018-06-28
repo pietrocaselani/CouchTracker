@@ -24,6 +24,6 @@ public protocol MovieDetailsInteractor: class {
 public protocol MovieDetailsRepository: class {
 	func fetchDetails(movieId: String) -> Observable<Movie>
 	func watched(movieId: Int) -> Single<WatchedMovieResult>
-	func addToHistory(movieId: Int) -> Single<SyncMovieResult>
-	func removeFromHistory(movieId: Int) -> Single<SyncMovieResult>
+	func addToHistory(movie: MovieEntity) -> Single<SyncMovieResult>
+	func removeFromHistory(movie: MovieEntity) -> Single<SyncMovieResult>
 }
