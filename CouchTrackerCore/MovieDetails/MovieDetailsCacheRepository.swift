@@ -33,11 +33,11 @@ public final class MovieDetailsCacheRepository: MovieDetailsRepository {
 			}.catchErrorJustReturn(WatchedMovieResult.unwatched)
 	}
 
-	public func addToHistory(movieId: Int) -> Single<SyncMovieResult> {
+	public func addToHistory(movie: MovieEntity) -> Single<SyncMovieResult> {
 		return Single.just(SyncMovieResult.success)
 	}
 
-	public func removeFromHistory(movieId: Int) -> Single<SyncMovieResult> {
+	public func removeFromHistory(movie: MovieEntity) -> Single<SyncMovieResult> {
 		return Single.just(SyncMovieResult.success)
 	}
 }

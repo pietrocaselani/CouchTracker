@@ -57,7 +57,7 @@ final class MovieDetailsMocks {
 			return Observable.just(TraktEntitiesMock.createMovieDetailsMock())
 		}
 
-		func addToHistory(movieId: Int) -> Single<SyncMovieResult> {
+		func addToHistory(movie: MovieEntity) -> Single<SyncMovieResult> {
 			addToHistoryInvokedCount += 1
 
 			guard let error = self.error else {
@@ -67,7 +67,7 @@ final class MovieDetailsMocks {
 			return Single.error(error)
 		}
 
-		func removeFromHistory(movieId: Int) -> Single<SyncMovieResult> {
+		func removeFromHistory(movie: MovieEntity) -> Single<SyncMovieResult> {
 			removeFromHistoryInvokedCount += 1
 
 			guard let error = self.error else {
@@ -94,11 +94,11 @@ final class ErrorMovieDetailsStoreMock: MovieDetailsRepository {
 		return Single.error(error)
 	}
 
-	func addToHistory(movieId: Int) -> Single<SyncMovieResult> {
+	func addToHistory(movie: MovieEntity) -> Single<SyncMovieResult> {
 		return Single.error(error)
 	}
 
-	func removeFromHistory(movieId: Int) -> Single<SyncMovieResult> {
+	func removeFromHistory(movie: MovieEntity) -> Single<SyncMovieResult> {
 		return Single.error(error)
 	}
 }
@@ -132,11 +132,11 @@ final class MovieDetailsStoreMock: MovieDetailsRepository {
 		return Single.just(WatchedMovieResult.watched(movie: m))
 	}
 
-	func addToHistory(movieId: Int) -> Single<SyncMovieResult> {
+	func addToHistory(movie: MovieEntity) -> Single<SyncMovieResult> {
 		return Single.just(SyncMovieResult.success)
 	}
 
-	func removeFromHistory(movieId: Int) -> Single<SyncMovieResult> {
+	func removeFromHistory(movie: MovieEntity) -> Single<SyncMovieResult> {
 		return Single.just(SyncMovieResult.success)
 	}
 }
