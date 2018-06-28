@@ -391,6 +391,7 @@
 		4F10101820A99C64003CA348 /* ShowsProgressListStateDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10101720A99C64003CA348 /* ShowsProgressListStateDefaultDataSource.swift */; };
 		4F10101920A99C64003CA348 /* ShowsProgressListStateDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10101720A99C64003CA348 /* ShowsProgressListStateDefaultDataSource.swift */; };
 		4F10101B20A99D9A003CA348 /* ShowsProgressListStateDefaultDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10101A20A99D9A003CA348 /* ShowsProgressListStateDefaultDataSourceTests.swift */; };
+		4F260EEB20E50B4100C47616 /* MovieDetailsAPIRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F260EEA20E50B4100C47616 /* MovieDetailsAPIRepositoryTests.swift */; };
 		4F2F0FD22040093700A76E95 /* CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F5858203D7A5B00B86CB8 /* CouchTrackerCore.framework */; };
 		4F2F0FD32040093700A76E95 /* CouchTrackerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F5858203D7A5B00B86CB8 /* CouchTrackerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F2F336D20C893E700061C13 /* MovieDetailsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2F336C20C893E700061C13 /* MovieDetailsViewState.swift */; };
@@ -610,6 +611,7 @@
 		4F236DC3202CB9C5007FB1B9 /* DefaultBuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBuildConfig.swift; sourceTree = "<group>"; };
 		4F236DC7202CCD83007FB1B9 /* TestBuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBuildConfig.swift; sourceTree = "<group>"; };
 		4F236DCA202CD36E007FB1B9 /* ShowProgressAPIRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressAPIRepositoryTest.swift; sourceTree = "<group>"; };
+		4F260EEA20E50B4100C47616 /* MovieDetailsAPIRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsAPIRepositoryTests.swift; sourceTree = "<group>"; };
 		4F2F336C20C893E700061C13 /* MovieDetailsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewState.swift; sourceTree = "<group>"; };
 		4F2F336F20C8943D00061C13 /* MovieDetailsImagesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsImagesState.swift; sourceTree = "<group>"; };
 		4F3634292063C3510045CDCA /* SearchResultDefaultPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDefaultPresenterTests.swift; sourceTree = "<group>"; };
@@ -1904,6 +1906,7 @@
 				648390C51F504E7500911BA0 /* MovieDetailsInteractorTest.swift */,
 				648390C61F504E7500911BA0 /* MovieDetailsMocks.swift */,
 				648390C71F504E7500911BA0 /* MovieDetailsPresenterTest.swift */,
+				4F260EEA20E50B4100C47616 /* MovieDetailsAPIRepositoryTests.swift */,
 			);
 			path = MovieDetails;
 			sourceTree = "<group>";
@@ -2156,7 +2159,6 @@
 				4F0F56F8203D5F4C00B86CB8 /* Frameworks */,
 				4F0F56F9203D5F4C00B86CB8 /* Headers */,
 				4F0F56FA203D5F4C00B86CB8 /* Resources */,
-				D5B2E51E079E0DBB58D6BDDA /* [CP] Copy Pods Resources */,
 				4F0F581C203D75FB00B86CB8 /* SwiftLint */,
 			);
 			buildRules = (
@@ -2177,7 +2179,6 @@
 				4F0F5701203D5F4C00B86CB8 /* Frameworks */,
 				4F0F5702203D5F4C00B86CB8 /* Resources */,
 				3F575D4186D1BBC785CBB045 /* [CP] Embed Pods Frameworks */,
-				CAA53843CB0E2B0173E16A14 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2201,7 +2202,6 @@
 				4F0F5854203D7A5B00B86CB8 /* Frameworks */,
 				4F0F5855203D7A5B00B86CB8 /* Headers */,
 				4F0F5856203D7A5B00B86CB8 /* Resources */,
-				1D153FE8267AF6328833256C /* [CP] Copy Pods Resources */,
 				4F0F5864203D7AEB00B86CB8 /* SwiftLint */,
 			);
 			buildRules = (
@@ -2240,7 +2240,6 @@
 				647632361F44824900F277F1 /* Frameworks */,
 				647632371F44824900F277F1 /* Resources */,
 				6BA4EFF523E57D8DC5A67DEA /* [CP] Embed Pods Frameworks */,
-				23F3BD4CAFAEE990BD7BDA72 /* [CP] Copy Pods Resources */,
 				6455BA751F45B862000660C6 /* SwiftLint */,
 				6405CA021F549BE90039D6E6 /* Embed Frameworks */,
 			);
@@ -2460,36 +2459,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1D153FE8267AF6328833256C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerCore-iOS/Pods-CouchTrackerCore-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		23F3BD4CAFAEE990BD7BDA72 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		24F7650057595A5385FDD0F4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2688,21 +2657,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CAA53843CB0E2B0173E16A14 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerCoreTests/Pods-CouchTrackerCoreTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D366AEF3F84BE5392EF5AC55 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2719,21 +2673,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D5B2E51E079E0DBB58D6BDDA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerCore/Pods-CouchTrackerCore-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2974,6 +2913,7 @@
 				4F0F593A203D97D200B86CB8 /* TestSchedulers.swift in Sources */,
 				4F10101B20A99D9A003CA348 /* ShowsProgressListStateDefaultDataSourceTests.swift in Sources */,
 				4F0F57D0203D619E00B86CB8 /* AppConfigurationsDefaultRepositoryTest.swift in Sources */,
+				4F260EEB20E50B4100C47616 /* MovieDetailsAPIRepositoryTests.swift in Sources */,
 				4F56336320514AD200923D3D /* ShowManagerDefaultDataSourceTest.swift in Sources */,
 				4F0F57D1203D619E00B86CB8 /* AppConfigurationsUserDefaultsDataSourceTest.swift in Sources */,
 				4F0F57D2203D619E00B86CB8 /* AppConfigurationsStoreTest.swift in Sources */,

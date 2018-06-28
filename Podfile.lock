@@ -55,6 +55,26 @@ DEPENDENCIES:
   - Trakt (from `https://github.com/pietrocaselani/Trakt-Swift.git`)
   - TVDB (from `https://github.com/pietrocaselani/TVDB-Swift.git`)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - ActionSheetPicker-3.0
+    - Alamofire
+    - Kingfisher
+    - Moya
+    - Nimble
+    - Pageboy
+    - R.swift
+    - R.swift.Library
+    - Realm
+    - RealmSwift
+    - Result
+    - RxCocoa
+    - RxRealm
+    - RxSwift
+    - RxTest
+    - SwiftLint
+    - Tabman
+
 EXTERNAL SOURCES:
   TMDB:
     :git: https://github.com/pietrocaselani/TMDB-Swift.git
@@ -68,7 +88,7 @@ CHECKOUT OPTIONS:
     :commit: bfeefe6cba746a7b9128538090b005891c9f6164
     :git: https://github.com/pietrocaselani/TMDB-Swift.git
   Trakt:
-    :commit: 3f49903031bd314f69c75a2edaf9060f50db1ef1
+    :commit: ae6c720b01a3e7cf501bedaccbbc3f7a8395bbfd
     :git: https://github.com/pietrocaselani/Trakt-Swift.git
   TVDB:
     :commit: 43ea1db6f5c405596469e10f6486cb57967ac0ca
@@ -98,4 +118,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 9f418135f40c475412ecd58e6c3372be9b8df48b
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.3
