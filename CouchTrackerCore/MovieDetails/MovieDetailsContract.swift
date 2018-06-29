@@ -2,8 +2,6 @@ import RxSwift
 import TraktSwift
 
 public protocol MovieDetailsPresenter: class {
-	init(interactor: MovieDetailsInteractor)
-
 	func viewDidLoad()
 
 	func observeViewState() -> Observable<MovieDetailsViewState>

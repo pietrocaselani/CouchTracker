@@ -16,9 +16,12 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsView {
 	@IBOutlet var backdropImageView: UIImageView!
 	@IBOutlet var posterImageView: UIImageView!
 	@IBOutlet weak var watchedLabel: UILabel!
+	@IBOutlet weak var watchedSwtich: UISwitch!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+		watchedSwtich.isOn = false
 
 		presenter.observeViewState()
 			.observeOn(MainScheduler.instance)
@@ -35,15 +38,44 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsView {
 		presenter.viewDidLoad()
 	}
 
-	private func handleViewState(_ viewState: MovieDetailsViewState) {
+  @IBAction func toggleWatched(_ sender: Any) {
+			presenter.handleWatched()
+				.observeOn(MainScheduler.instance)
+				.subscribe(onCompleted: nil) { [weak self] error in
+					guard let strongSelf = self else { return }
+
+					strongSelf.showError(error)
+				}.disposed(by: disposeBag)
+  }
+
+	private func showError(_ error: Error) {
+		let message: String
+
+		if let traktError = error as? TraktError {
+			switch traktError {
+			case .loginRequired: message = "Trakt login required".localized
+			}
+		} else {
+			message = error.localizedDescription
+		}
+
+		let alertController = UIAlertController.createErrorAlert(message: message)
+
+		present(alertController, animated: true) {
+			let isOn = self.watchedSwtich.isOn
+			self.watchedSwtich.isOn = !isOn
+		}
+	}
+
+  private func handleViewState(_ viewState: MovieDetailsViewState) {
 		switch viewState {
 		case .loading:
 			print("Loading...")
 		case .error(let error):
 			let errorAlert = UIAlertController.createErrorAlert(message: error.localizedDescription)
 			self.present(errorAlert, animated: true)
-		case .showing(let viewModel):
-			show(details: viewModel)
+		case .showing(let movie):
+			show(details: movie)
 		}
 	}
 
@@ -58,13 +90,29 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsView {
 		}
 	}
 
-	private func show(details: MovieDetailsViewModel) {
+	private func show(details: MovieEntity) {
+		let formatter = DateFormatter()
+		formatter.dateStyle = .short
+		formatter.timeStyle = .none
+
+		let watchedText: String
+
+		if let watchedDate = details.watchedAt {
+			watchedText = "Watched at".localized + formatter.string(from: watchedDate)
+		} else {
+			watchedText = "Unwatched".localized
+		}
+
+		let releaseDate = details.releaseDate.map(formatter.string(from:)) ?? "Unknown".localized
+		let genres = details.genres?.map { $0.name }.joined(separator: " | ")
+
 		titleLabel.text = details.title
 		taglineLabel.text = details.tagline
 		overviewLabel.text = details.overview
-		releaseDateLabel.text = details.releaseDate
-		genresLabel.text = details.genres
-		watchedLabel.text = details.watchedAt
+		releaseDateLabel.text = releaseDate
+		genresLabel.text = genres
+		watchedLabel.text = watchedText
+		watchedSwtich.isOn = details.watchedAt != nil
 	}
 
 	private func show(images: ImagesViewModel) {
