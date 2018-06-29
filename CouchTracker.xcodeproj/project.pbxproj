@@ -392,6 +392,8 @@
 		4F10101920A99C64003CA348 /* ShowsProgressListStateDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10101720A99C64003CA348 /* ShowsProgressListStateDefaultDataSource.swift */; };
 		4F10101B20A99D9A003CA348 /* ShowsProgressListStateDefaultDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10101A20A99D9A003CA348 /* ShowsProgressListStateDefaultDataSourceTests.swift */; };
 		4F260EEB20E50B4100C47616 /* MovieDetailsAPIRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F260EEA20E50B4100C47616 /* MovieDetailsAPIRepositoryTests.swift */; };
+		4F260EED20E63E5F00C47616 /* TraktError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F260EEC20E63E5F00C47616 /* TraktError.swift */; };
+		4F260EEE20E63E5F00C47616 /* TraktError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F260EEC20E63E5F00C47616 /* TraktError.swift */; };
 		4F2F0FD22040093700A76E95 /* CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F5858203D7A5B00B86CB8 /* CouchTrackerCore.framework */; };
 		4F2F0FD32040093700A76E95 /* CouchTrackerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F5858203D7A5B00B86CB8 /* CouchTrackerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F2F336D20C893E700061C13 /* MovieDetailsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2F336C20C893E700061C13 /* MovieDetailsViewState.swift */; };
@@ -612,6 +614,7 @@
 		4F236DC7202CCD83007FB1B9 /* TestBuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBuildConfig.swift; sourceTree = "<group>"; };
 		4F236DCA202CD36E007FB1B9 /* ShowProgressAPIRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressAPIRepositoryTest.swift; sourceTree = "<group>"; };
 		4F260EEA20E50B4100C47616 /* MovieDetailsAPIRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsAPIRepositoryTests.swift; sourceTree = "<group>"; };
+		4F260EEC20E63E5F00C47616 /* TraktError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktError.swift; sourceTree = "<group>"; };
 		4F2F336C20C893E700061C13 /* MovieDetailsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewState.swift; sourceTree = "<group>"; };
 		4F2F336F20C8943D00061C13 /* MovieDetailsImagesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsImagesState.swift; sourceTree = "<group>"; };
 		4F3634292063C3510045CDCA /* SearchResultDefaultPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDefaultPresenterTests.swift; sourceTree = "<group>"; };
@@ -1199,6 +1202,7 @@
 				641D497420222EDC002A4EAD /* Schedulers.swift */,
 				649D3DE32027D01F00DF401A /* ThreadWithRunLoop.swift */,
 				649D3DDF2027D01300DF401A /* ThreadWithRunLoopScheduler.swift */,
+				4F260EEC20E63E5F00C47616 /* TraktError.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -2160,6 +2164,7 @@
 				4F0F56F9203D5F4C00B86CB8 /* Headers */,
 				4F0F56FA203D5F4C00B86CB8 /* Resources */,
 				4F0F581C203D75FB00B86CB8 /* SwiftLint */,
+				4D41FEC48844E7413FFE52B3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2179,6 +2184,7 @@
 				4F0F5701203D5F4C00B86CB8 /* Frameworks */,
 				4F0F5702203D5F4C00B86CB8 /* Resources */,
 				3F575D4186D1BBC785CBB045 /* [CP] Embed Pods Frameworks */,
+				27E1151B3B3D336A088EA1AF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2203,6 +2209,7 @@
 				4F0F5855203D7A5B00B86CB8 /* Headers */,
 				4F0F5856203D7A5B00B86CB8 /* Resources */,
 				4F0F5864203D7AEB00B86CB8 /* SwiftLint */,
+				1A27F9AF385D4A43CB1184A2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2242,6 +2249,7 @@
 				6BA4EFF523E57D8DC5A67DEA /* [CP] Embed Pods Frameworks */,
 				6455BA751F45B862000660C6 /* SwiftLint */,
 				6405CA021F549BE90039D6E6 /* Embed Frameworks */,
+				6FE261A25BDB8C12DC695976 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2459,6 +2467,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1A27F9AF385D4A43CB1184A2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerCore-iOS/Pods-CouchTrackerCore-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		24F7650057595A5385FDD0F4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2475,6 +2498,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		27E1151B3B3D336A088EA1AF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerCoreTests/Pods-CouchTrackerCoreTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2E2A586DB303DF3544792355 /* [CP] Check Pods Manifest.lock */ = {
@@ -2533,6 +2571,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerCoreTests/Pods-CouchTrackerCoreTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D41FEC48844E7413FFE52B3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerCore/Pods-CouchTrackerCore-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4F0F581C203D75FB00B86CB8 /* SwiftLint */ = {
@@ -2637,6 +2690,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6FE261A25BDB8C12DC695976 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9C6F0D2340CF87135C62A2BE /* [CP] Check Pods Manifest.lock */ = {
@@ -2824,6 +2892,7 @@
 				4F0F57BE203D5FA100B86CB8 /* TrendingError.swift in Sources */,
 				4F0F57BF203D5FA100B86CB8 /* TrendingDefaultPresenter.swift in Sources */,
 				4F0F57C3203D5FA100B86CB8 /* TrendingService.swift in Sources */,
+				4F260EED20E63E5F00C47616 /* TraktError.swift in Sources */,
 				4F3E77E12041CD9C00A87072 /* WatchedShowEntityMapper.swift in Sources */,
 				4F0F57C8203D5FA100B86CB8 /* TVDB+APIProvider.swift in Sources */,
 				4F0F57C9203D5FA100B86CB8 /* CompositeLoginOutput.swift in Sources */,
@@ -3080,6 +3149,7 @@
 				4F0F590E203D7B0A00B86CB8 /* TrendingError.swift in Sources */,
 				4F0F590F203D7B0A00B86CB8 /* TrendingDefaultPresenter.swift in Sources */,
 				4F0F5912203D7B0A00B86CB8 /* TrendingService.swift in Sources */,
+				4F260EEE20E63E5F00C47616 /* TraktError.swift in Sources */,
 				4F3E77E22041CD9C00A87072 /* WatchedShowEntityMapper.swift in Sources */,
 				4F0F5916203D7B0A00B86CB8 /* TVDB+APIProvider.swift in Sources */,
 				4F0F5917203D7B0A00B86CB8 /* CompositeLoginOutput.swift in Sources */,
