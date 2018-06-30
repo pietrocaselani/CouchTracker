@@ -18,7 +18,7 @@ final class AppConfigurationsMock {
 	final class AppConfigurationsObservableMock: AppConfigurationsObservable {
 		var subject = PublishSubject<AppConfigurationsState>()
 
-		func chage(state: AppConfigurationsState) {
+		func change(state: AppConfigurationsState) {
 			subject.onNext(state)
 		}
 
