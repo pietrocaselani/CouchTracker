@@ -1,3 +1,3 @@
-public enum TraktError: Error {
+public enum TraktError: Int, Error {
 	case loginRequired
 }

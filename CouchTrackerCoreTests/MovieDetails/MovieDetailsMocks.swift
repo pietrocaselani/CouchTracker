@@ -146,6 +146,7 @@ final class MovieDetailsServiceMock: MovieDetailsInteractor {
 	private let repository: MovieDetailsRepository
 	private let genreRepository: GenreRepository
 	private let imageRepository: ImageRepository
+	var toggleWatchedInvokedCount = 0
 
 	init(repository: MovieDetailsRepository, genreRepository: GenreRepository,
 			imageRepository: ImageRepository, movieIds: MovieIds) {
@@ -183,6 +184,7 @@ final class MovieDetailsServiceMock: MovieDetailsInteractor {
 	}
 
 	func toggleWatched(movie: MovieEntity) -> Completable {
+		toggleWatchedInvokedCount += 1
 		return Completable.empty()
 	}
 }
