@@ -9,8 +9,9 @@ final class MovieDetailsModule {
 		let tmdb = Environment.instance.tmdb
 		let tvdb = Environment.instance.tvdb
 		let schedulers = Environment.instance.schedulers
+		let appConfigObservable = Environment.instance.appConfigurationsObservable
 
-		let repository = MovieDetailsCacheRepository(traktProvider: trakt, schedulers: schedulers)
+		let repository = MovieDetailsAPIRepository(traktProvider: trakt, schedulers: schedulers)
 		let genreRepository = TraktGenreRepository(traktProvider: trakt, schedulers: schedulers)
 		let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
 		let imageRespository = ImageCachedRepository(tmdb: tmdb,
@@ -27,7 +28,7 @@ final class MovieDetailsModule {
 			Swift.fatalError("viewController should be an instance of MovieDetailsView")
 		}
 
-		let presenter = MovieDetailsDefaultPresenter(interactor: interactor)
+		let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appConfigObservable)
 
 		view.presenter = presenter
 

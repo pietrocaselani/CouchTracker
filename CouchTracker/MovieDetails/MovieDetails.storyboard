@@ -74,10 +74,17 @@
                                                 <color key="textColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0ZV-GO-Y9g">
+                                                <rect key="frame" x="8" y="249.5" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="toggleWatched:" destination="huT-wP-Z2o" eventType="valueChanged" id="aSM-W7-KRr"/>
+                                                </connections>
+                                            </switch>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="WKa-XQ-3sA" firstAttribute="top" secondItem="Ftg-26-pQr" secondAttribute="bottom" constant="10" id="0gd-9b-Gh7"/>
                                             <constraint firstItem="Ftg-26-pQr" firstAttribute="centerX" secondItem="KLw-J3-YS7" secondAttribute="centerX" id="1b4-bc-uzS"/>
+                                            <constraint firstItem="0ZV-GO-Y9g" firstAttribute="leading" secondItem="2X4-yn-jdw" secondAttribute="leading" id="2Sl-h9-zg4"/>
                                             <constraint firstItem="s1V-Kf-twH" firstAttribute="leading" secondItem="KLw-J3-YS7" secondAttribute="leading" constant="10" id="2lj-g5-af1"/>
                                             <constraint firstItem="jjz-i5-kgA" firstAttribute="top" secondItem="3wc-YN-l8R" secondAttribute="bottom" constant="20" id="6dQ-Be-bhM"/>
                                             <constraint firstAttribute="bottom" secondItem="jjz-i5-kgA" secondAttribute="bottom" constant="369.5" id="ANO-qj-kWK"/>
@@ -97,6 +104,7 @@
                                             <constraint firstAttribute="trailing" secondItem="Ftg-26-pQr" secondAttribute="trailing" constant="10" id="sY9-am-hdj"/>
                                             <constraint firstAttribute="trailing" secondItem="rqp-lc-dWQ" secondAttribute="trailing" constant="10" id="scP-U2-nRd"/>
                                             <constraint firstItem="WKa-XQ-3sA" firstAttribute="leading" secondItem="KLw-J3-YS7" secondAttribute="leading" constant="10" id="u9b-IC-5dU"/>
+                                            <constraint firstItem="0ZV-GO-Y9g" firstAttribute="top" secondItem="2X4-yn-jdw" secondAttribute="bottom" constant="8" symbolic="YES" id="vBb-Ht-tt6"/>
                                             <constraint firstItem="Ftg-26-pQr" firstAttribute="leading" secondItem="KLw-J3-YS7" secondAttribute="leading" constant="10" id="x8Y-Gk-SsL"/>
                                             <constraint firstItem="Ftg-26-pQr" firstAttribute="top" secondItem="KLw-J3-YS7" secondAttribute="top" constant="8" id="xMF-Oi-osp"/>
                                         </constraints>
@@ -133,6 +141,7 @@
                         <outlet property="taglineLabel" destination="rqp-lc-dWQ" id="RCe-Yn-tJz"/>
                         <outlet property="titleLabel" destination="WKa-XQ-3sA" id="dbP-GF-p02"/>
                         <outlet property="watchedLabel" destination="2X4-yn-jdw" id="3nE-Im-oKQ"/>
+                        <outlet property="watchedSwtich" destination="0ZV-GO-Y9g" id="TKE-US-3Yk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gFH-I7-hCL" userLabel="First Responder" sceneMemberID="firstResponder"/>

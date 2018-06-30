@@ -2,7 +2,7 @@ import Moya
 import RxSwift
 import TraktSwift
 
-public final class MovieDetailsCacheRepository: MovieDetailsRepository {
+public final class MovieDetailsAPIRepository: MovieDetailsRepository {
 	private let traktProvider: TraktProvider
 	private let schedulers: Schedulers
 
@@ -31,5 +31,26 @@ public final class MovieDetailsCacheRepository: MovieDetailsRepository {
 
 				return WatchedMovieResult.watched(movie: movie)
 			}.catchErrorJustReturn(WatchedMovieResult.unwatched)
+	}
+
+	public func addToHistory(movie: MovieEntity) -> Single<SyncMovieResult> {
+		let syncMovie = SyncMovie(ids: movie.ids)
+		let syncItems = SyncItems(movies: [syncMovie])
+
+		return performSyncRequest(target: .addToHistory(items: syncItems))
+	}
+
+	public func removeFromHistory(movie: MovieEntity) -> Single<SyncMovieResult> {
+		let syncMovie = SyncMovie(ids: movie.ids)
+		let syncItems = SyncItems(movies: [syncMovie])
+
+		return performSyncRequest(target: .removeFromHistory(items: syncItems))
+	}
+
+	private func performSyncRequest(target: Sync) -> Single<SyncMovieResult> {
+		return traktProvider.sync.rx.request(target)
+			.filterSuccessfulStatusAndRedirectCodes()
+			.map { _ -> SyncMovieResult in return SyncMovieResult.success }
+			.catchError { return Single.just(SyncMovieResult.fail(error: $0)) }
 	}
 }

@@ -43,4 +43,19 @@ public final class MovieDetailsService: MovieDetailsInteractor {
 		guard let tmdbId = movieIds.tmdb else { return Maybe.empty() }
 		return imageRepository.fetchMovieImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)
 	}
+
+	public func toggleWatched(movie: MovieEntity) -> Completable {
+		let single = movie.watchedAt == nil ?
+			repository.addToHistory(movie: movie) :
+			repository.removeFromHistory(movie: movie)
+
+		return single.flatMapCompletable {
+			switch $0 {
+			case .fail(let error):
+				return Completable.error(error)
+			case .success:
+				return Completable.empty()
+			}
+		}
+	}
 }

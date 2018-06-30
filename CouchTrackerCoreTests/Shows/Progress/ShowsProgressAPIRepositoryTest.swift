@@ -57,7 +57,7 @@ final class ShowsProgressAPIRepositoryTest: XCTestCase {
 		let networkExpectation = expectation(description: "Should request from network twice")
 
 		let newState = AppConfigurationsState(loginState: .notLogged, hideSpecials: true)
-		appConfigsObservable.chage(state: newState)
+		appConfigsObservable.change(state: newState)
 
 		DispatchQueue.main.async {
 			networkExpectation.fulfill()
