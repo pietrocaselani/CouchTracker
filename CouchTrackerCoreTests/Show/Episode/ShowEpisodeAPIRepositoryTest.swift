@@ -108,7 +108,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
 																																												appConfigurationsObservable: appConfigsObservableMock,
 																																												hideSpecials: true)
 
-		appConfigsObservableMock.chage(state: AppConfigurationsState(loginState: .notLogged, hideSpecials: false))
+		appConfigsObservableMock.change(state: AppConfigurationsState(loginState: .notLogged, hideSpecials: false))
 
 		//When
 		let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
