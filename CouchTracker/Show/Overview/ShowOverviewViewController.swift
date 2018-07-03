@@ -2,8 +2,8 @@ import UIKit
 import Kingfisher
 import CouchTrackerCore
 
-final class ShowDetailsViewController: UIViewController, ShowDetailsView {
-	var presenter: ShowDetailsPresenter!
+final class ShowOverviewViewController: UIViewController, ShowOverviewView {
+	var presenter: ShowOverviewPresenter!
 
 	@IBOutlet weak var firstAiredLabel: UILabel!
 	@IBOutlet weak var genresLabel: UILabel!
@@ -20,7 +20,7 @@ final class ShowDetailsViewController: UIViewController, ShowDetailsView {
 		presenter.viewDidLoad()
 	}
 
-	func show(details: ShowDetailsViewModel) {
+	func show(details: ShowOverviewViewModel) {
 		titleLabel.text = details.title
 		statusLabel.text = details.status
 		networkLabel.text = details.network
