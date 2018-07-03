@@ -1,13 +1,13 @@
 import RxSwift
 import TraktSwift
 
-public final class ShowDetailsService: ShowDetailsInteractor {
+public final class ShowOverviewService: ShowOverviewInteractor {
 	private let showIds: ShowIds
-	private let repository: ShowDetailsRepository
+	private let repository: ShowOverviewRepository
 	private let genreRepository: GenreRepository
 	private let imageRepository: ImageRepository
 
-	public init(showIds: ShowIds, repository: ShowDetailsRepository,
+	public init(showIds: ShowIds, repository: ShowOverviewRepository,
 													genreRepository: GenreRepository, imageRepository: ImageRepository) {
 		self.showIds = showIds
 		self.repository = repository
