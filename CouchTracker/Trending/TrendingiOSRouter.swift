@@ -19,8 +19,8 @@ final class TrendingiOSRouter: TrendingRouter {
 	}
 
 	func showDetails(of show: ShowEntity) {
-		let showIds = show.ids
-		let view = ShowDetailsModule.setupModule(showIds: showIds)
+		let entity = WatchedShowBuilder(ids: show.ids).createEntity(using: show)
+		let view = ShowManagerModule.setupModule(for: entity)
 		present(view: view)
 	}
 

@@ -10,7 +10,7 @@ final class ShowManageriOSModuleCreator: ShowManagerModuleCreator {
 	func createModule(for option: ShowManagerOption) -> BaseView {
 		switch option {
 		case .overview:
-			return ShowOverviewModule.setupModule()
+			return ShowOverviewModule.setupModule(showIds: show.show.ids)
 		case .episode:
 			return ShowEpisodeModule.setupModule(for: show)
 		case .seasons:

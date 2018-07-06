@@ -1,30 +1,30 @@
 import XCTest
 @testable import CouchTrackerCore
 
-final class ShowDetailsPresenterTest: XCTestCase {
+final class ShowOverviewPresenterTest: XCTestCase {
 
-	private let view = ShowDetailsViewMock()
-	private let router = ShowDetailsRouterMock()
+	private let view = ShowOverviewViewMock()
+	private let router = ShowOverviewRouterMock()
 
-	func testShowDetailsPresenterCreation() {
-		let interactor = ShowDetailsInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
+	func testShowOverviewPresenterCreation() {
+		let interactor = ShowOverviewInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
 																							repository: showDetailsRepositoryMock,
 																							genreRepository: GenreRepositoryMock(),
 																							imageRepository: imageRepositoryMock)
-		let presenter = ShowDetailsDefaultPresenter(view: view, router: router, interactor: interactor)
+		let presenter = ShowOverviewDefaultPresenter(view: view, router: router, interactor: interactor)
 		XCTAssertNotNil(presenter)
 	}
 
-	func testShowDetailsPresenter_receivesError_notifyRouter() {
+	func testShowOverviewPresenter_receivesError_notifyRouter() {
 		let errorMessage = "Unknow error"
 		let userInfo = [NSLocalizedDescriptionKey: errorMessage]
 		let showDetailsError = NSError(domain: "io.github.pietrocaselani", code: 3, userInfo: userInfo)
-		let repository = ShowDetailsRepositoryErrorMock(error: showDetailsError)
-		let errorInteractor = ShowDetailsInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
+		let repository = ShowOverviewRepositoryErrorMock(error: showDetailsError)
+		let errorInteractor = ShowOverviewInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
 																										repository: repository,
 																										genreRepository: GenreRepositoryMock(),
 																										imageRepository: imageRepositoryMock)
-		let presenter = ShowDetailsDefaultPresenter(view: view, router: router, interactor: errorInteractor)
+		let presenter = ShowOverviewDefaultPresenter(view: view, router: router, interactor: errorInteractor)
 
 		presenter.viewDidLoad()
 
@@ -32,12 +32,12 @@ final class ShowDetailsPresenterTest: XCTestCase {
 		XCTAssertEqual(router.invokedShowErrorParameters?.message, errorMessage)
 	}
 
-	func testShowDetailsPresenter_receivesDetails_notifyView() {
-		let interactor = ShowDetailsInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
+	func testShowOverviewPresenter_receivesDetails_notifyView() {
+		let interactor = ShowOverviewInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
 																							repository: showDetailsRepositoryMock,
 																							genreRepository: GenreRepositoryMock(),
 																							imageRepository: imageRepositoryMock)
-		let presenter = ShowDetailsDefaultPresenter(view: view, router: router, interactor: interactor)
+		let presenter = ShowOverviewDefaultPresenter(view: view, router: router, interactor: interactor)
 
 		presenter.viewDidLoad()
 
@@ -53,7 +53,7 @@ final class ShowDetailsPresenterTest: XCTestCase {
 		let show = ShowEntityMapper.entity(for: traktShow, with: showGenres)
 		let genres = show.genres?.map { $0.name }.joined(separator: " | ") ?? ""
 		let firstAired = show.firstAired?.parse() ?? "Unknown".localized
-		let details = ShowDetailsViewModel(title: show.title ?? "TBA".localized,
+		let details = ShowOverviewViewModel(title: show.title ?? "TBA".localized,
 																			overview: show.overview ?? "",
 																			network: show.network ?? "Unknown".localized,
 																			genres: genres,
@@ -64,27 +64,27 @@ final class ShowDetailsPresenterTest: XCTestCase {
 		XCTAssertEqual(view.invokedShowDetailsParameters?.details, details)
 	}
 
-	func testShowDetailsPresenter_fetchImagesFailure_dontNotifyView() {
+	func testShowOverviewPresenter_fetchImagesFailure_dontNotifyView() {
 		let userInfo = [NSLocalizedDescriptionKey: "Image not found"]
 		let imageError = NSError(domain: "io.github.pietrocaselani", code: 404, userInfo: userInfo)
 
-		let interactor = ShowDetailsInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
+		let interactor = ShowOverviewInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
 																							repository: showDetailsRepositoryMock,
 																							genreRepository: GenreRepositoryMock(),
 																							imageRepository: ErrorImageRepositoryMock(error: imageError))
-		let presenter = ShowDetailsDefaultPresenter(view: view, router: router, interactor: interactor)
+		let presenter = ShowOverviewDefaultPresenter(view: view, router: router, interactor: interactor)
 
 		presenter.viewDidLoad()
 
 		XCTAssertFalse(view.invokedShowImages)
 	}
 
-	func testShowDetailsPresenter_fetchImagesSuccess_notifyView() {
-		let interactor = ShowDetailsInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
+	func testShowOverviewPresenter_fetchImagesSuccess_notifyView() {
+		let interactor = ShowOverviewInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
 																							repository: showDetailsRepositoryMock,
 																							genreRepository: GenreRepositoryMock(),
 																							imageRepository: imageRepositoryRealMock)
-		let presenter = ShowDetailsDefaultPresenter(view: view, router: router, interactor: interactor)
+		let presenter = ShowOverviewDefaultPresenter(view: view, router: router, interactor: interactor)
 
 		presenter.viewDidLoad()
 

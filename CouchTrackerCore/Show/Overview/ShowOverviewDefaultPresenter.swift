@@ -1,13 +1,13 @@
 import RxSwift
 import TraktSwift
 
-public final class ShowDetailsDefaultPresenter: ShowDetailsPresenter {
-	private weak var view: ShowDetailsView!
-	private let router: ShowDetailsRouter
-	private let interactor: ShowDetailsInteractor
+public final class ShowOverviewDefaultPresenter: ShowOverviewPresenter {
+	private weak var view: ShowOverviewView!
+	private let router: ShowOverviewRouter
+	private let interactor: ShowOverviewInteractor
 	private let disposeBag = DisposeBag()
 
-	public init(view: ShowDetailsView, router: ShowDetailsRouter, interactor: ShowDetailsInteractor) {
+	public init(view: ShowOverviewView, router: ShowOverviewRouter, interactor: ShowOverviewInteractor) {
 		self.view = view
 		self.router = router
 		self.interactor = interactor
@@ -31,11 +31,11 @@ public final class ShowDetailsDefaultPresenter: ShowDetailsPresenter {
 			}).disposed(by: disposeBag)
 	}
 
-	private func mapToViewModel(_ show: ShowEntity) -> ShowDetailsViewModel {
+	private func mapToViewModel(_ show: ShowEntity) -> ShowOverviewViewModel {
 		let firstAired = show.firstAired?.parse() ?? "Unknown".localized
 		let genres = show.genres?.map { $0.name }.joined(separator: " | ")
 
-		return ShowDetailsViewModel(title: show.title ?? "TBA".localized,
+		return ShowOverviewViewModel(title: show.title ?? "TBA".localized,
 																overview: show.overview ?? "",
 																network: show.network ?? "Unknown".localized,
 																genres: genres ?? "",
