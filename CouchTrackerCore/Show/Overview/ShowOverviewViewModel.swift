@@ -1,4 +1,4 @@
-public struct ShowDetailsViewModel: Hashable {
+public struct ShowOverviewViewModel: Hashable {
 	public let title: String
 	public let overview: String
 	public let network: String
@@ -13,7 +13,7 @@ public struct ShowDetailsViewModel: Hashable {
 		return hash
 	}
 
-	public static func == (lhs: ShowDetailsViewModel, rhs: ShowDetailsViewModel) -> Bool {
+	public static func == (lhs: ShowOverviewViewModel, rhs: ShowOverviewViewModel) -> Bool {
 		return lhs.hashValue == rhs.hashValue
 	}
 }

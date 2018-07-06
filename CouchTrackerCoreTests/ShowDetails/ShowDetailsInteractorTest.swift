@@ -4,14 +4,14 @@ import RxSwift
 import TraktSwift
 @testable import CouchTrackerCore
 
-final class ShowDetailsInteractorTest: XCTestCase {
+final class ShowOverviewInteractorTest: XCTestCase {
 	private let scheduler = TestScheduler(initialClock: 0)
 
-	func testShowDetailsInteractor_fetchDetailsFailure_emitsError() {
+	func testShowOverviewInteractor_fetchDetailsFailure_emitsError() {
 		let showError = NSError(domain: "io.github.pietrocaselani", code: 4)
-		let repository = ShowDetailsRepositoryErrorMock(error: showError)
+		let repository = ShowOverviewRepositoryErrorMock(error: showError)
 
-		let interactor = ShowDetailsService(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
+		let interactor = ShowOverviewService(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
 																				repository: repository,
 																				genreRepository: GenreRepositoryMock(),
 																				imageRepository: imageRepositoryMock)
@@ -34,8 +34,8 @@ final class ShowDetailsInteractorTest: XCTestCase {
 		wait(for: [errorExpectation], timeout: 1)
 	}
 
-	func testShowDetailsInteractor_fetchDetailsSuccess_emitsShow() {
-		let interactor = ShowDetailsService(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
+	func testShowOverviewInteractor_fetchDetailsSuccess_emitsShow() {
+		let interactor = ShowOverviewService(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
 																				repository: showDetailsRepositoryMock,
 																				genreRepository: GenreRepositoryMock(),
 																				imageRepository: imageRepositoryMock)
@@ -60,9 +60,9 @@ final class ShowDetailsInteractorTest: XCTestCase {
 		wait(for: [showExpectation], timeout: 1)
 	}
 
-	func testShowDetailsInteractor_fetchImagesFailure_emitsError() {
+	func testShowOverviewInteractor_fetchImagesFailure_emitsError() {
 		let showError = NSError(domain: "io.github.pietrocaselani", code: 4)
-		let interactor = ShowDetailsService(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
+		let interactor = ShowOverviewService(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
 																				repository: showDetailsRepositoryMock,
 																				genreRepository: GenreRepositoryMock(),
 																				imageRepository: ErrorImageRepositoryMock(error: showError))
@@ -85,12 +85,12 @@ final class ShowDetailsInteractorTest: XCTestCase {
 		wait(for: [errorExpectation], timeout: 1)
 	}
 
-	func testShowDetailsInteractor_fetchImagesWithEmptyTMDBIdentifier_emitsOnCompleted() {
+	func testShowOverviewInteractor_fetchImagesWithEmptyTMDBIdentifier_emitsOnCompleted() {
 		let ids = TraktEntitiesMock.createTraktShowDetails().ids
 
 		let showIds = ShowIds(trakt: ids.trakt, tmdb: nil, imdb: ids.imdb, slug: ids.slug, tvdb: ids.tvdb, tvrage: ids.tvrage)
 
-		let interactor = ShowDetailsService(showIds: showIds,
+		let interactor = ShowOverviewService(showIds: showIds,
 																				repository: showDetailsRepositoryMock,
 																				genreRepository: GenreRepositoryMock(),
 																				imageRepository: imageRepositoryRealMock)
@@ -104,8 +104,8 @@ final class ShowDetailsInteractorTest: XCTestCase {
 		wait(for: [dataExpectation], timeout: 1)
 	}
 
-	func testShowDetailsInteractor_fetchImagesSuccess_emitsData() {
-		let interactor = ShowDetailsService(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
+	func testShowOverviewInteractor_fetchImagesSuccess_emitsData() {
+		let interactor = ShowOverviewService(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
 																				repository: showDetailsRepositoryMock,
 																				genreRepository: GenreRepositoryMock(),
 																				imageRepository: imageRepositoryRealMock)

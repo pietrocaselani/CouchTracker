@@ -2,9 +2,9 @@ import RxSwift
 import TraktSwift
 @testable import CouchTrackerCore
 
-let showDetailsRepositoryMock = ShowDetailsRepositoryMock(traktProvider: createTraktProviderMock())
+let showDetailsRepositoryMock = ShowOverviewRepositoryMock(traktProvider: createTraktProviderMock())
 
-final class ShowDetailsRepositoryErrorMock: ShowDetailsRepository {
+final class ShowOverviewRepositoryErrorMock: ShowOverviewRepository {
 	private let error: Error
 
 	init(traktProvider: TraktProvider = createTraktProviderMock()) {
@@ -20,7 +20,7 @@ final class ShowDetailsRepositoryErrorMock: ShowDetailsRepository {
 	}
 }
 
-final class ShowDetailsRepositoryMock: ShowDetailsRepository {
+final class ShowOverviewRepositoryMock: ShowOverviewRepository {
 	private let provider: TraktProvider
 	init(traktProvider: TraktProvider) {
 		self.provider = traktProvider
@@ -31,13 +31,13 @@ final class ShowDetailsRepositoryMock: ShowDetailsRepository {
 	}
 }
 
-final class ShowDetailsInteractorMock: ShowDetailsInteractor {
+final class ShowOverviewInteractorMock: ShowOverviewInteractor {
 	private let genreRepository: GenreRepository
 	private let imageRepository: ImageRepository
-	private let repository: ShowDetailsRepository
+	private let repository: ShowOverviewRepository
 	private let showIds: ShowIds
 
-	init(showIds: ShowIds, repository: ShowDetailsRepository,
+	init(showIds: ShowIds, repository: ShowOverviewRepository,
 			genreRepository: GenreRepository, imageRepository: ImageRepository) {
 		self.showIds = showIds
 		self.repository = repository
@@ -64,7 +64,7 @@ final class ShowDetailsInteractorMock: ShowDetailsInteractor {
 	}
 }
 
-final class ShowDetailsRouterMock: ShowDetailsRouter {
+final class ShowOverviewRouterMock: ShowOverviewRouter {
 	var invokedShowError = false
 	var invokedShowErrorParameters: (message: String, Void)?
 
@@ -74,14 +74,14 @@ final class ShowDetailsRouterMock: ShowDetailsRouter {
 	}
 }
 
-final class ShowDetailsViewMock: ShowDetailsView {
-	var presenter: ShowDetailsPresenter!
+final class ShowOverviewViewMock: ShowOverviewView {
+	var presenter: ShowOverviewPresenter!
 	var invokedShowDetails = false
-	var invokedShowDetailsParameters: (details: ShowDetailsViewModel, Void)?
+	var invokedShowDetailsParameters: (details: ShowOverviewViewModel, Void)?
 	var invokedShowImages = false
 	var invokedShowImagesParameters: (images: ImagesViewModel, Void)?
 
-	func show(details: ShowDetailsViewModel) {
+	func show(details: ShowOverviewViewModel) {
 		invokedShowDetails = true
 		invokedShowDetailsParameters = (details, ())
 	}
