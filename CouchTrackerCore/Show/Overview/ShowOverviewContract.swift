@@ -14,18 +14,13 @@ public protocol ShowOverviewInteractor: class {
 }
 
 public protocol ShowOverviewPresenter: class {
-	init(view: ShowOverviewView, router: ShowOverviewRouter, interactor: ShowOverviewInteractor)
+	init(interactor: ShowOverviewInteractor)
 
 	func viewDidLoad()
-}
-
-public protocol ShowOverviewRouter: class {
-	func showError(message: String)
+	func observeViewState() -> Observable<ShowOverviewViewState>
+	func observeImagesState() -> Observable<ShowOverviewImagesState>
 }
 
 public protocol ShowOverviewView: class {
 	var presenter: ShowOverviewPresenter! { get set }
-
-	func show(details: ShowOverviewViewModel)
-	func show(images: ImagesViewModel)
 }
