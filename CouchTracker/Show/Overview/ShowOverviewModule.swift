@@ -25,9 +25,7 @@ final class ShowOverviewModule {
 			Swift.fatalError("view should be an instance of ShowOverviewViewController")
 		}
 
-		let router = ShowOverviewiOSRouter(viewController: view)
-
-		let presenter = ShowOverviewDefaultPresenter(view: view, router: router, interactor: interactor)
+		let presenter = ShowOverviewDefaultPresenter(interactor: interactor)
 
 		view.presenter = presenter
 
