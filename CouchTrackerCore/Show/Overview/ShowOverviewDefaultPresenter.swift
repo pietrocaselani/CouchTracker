@@ -2,44 +2,42 @@ import RxSwift
 import TraktSwift
 
 public final class ShowOverviewDefaultPresenter: ShowOverviewPresenter {
-	private weak var view: ShowOverviewView!
-	private let router: ShowOverviewRouter
 	private let interactor: ShowOverviewInteractor
 	private let disposeBag = DisposeBag()
+	private let viewStateSubject = BehaviorSubject<ShowOverviewViewState>(value: .loading)
+	private let imagesStateSubject = BehaviorSubject<ShowOverviewImagesState>(value: .loading)
 
-	public init(view: ShowOverviewView, router: ShowOverviewRouter, interactor: ShowOverviewInteractor) {
-		self.view = view
-		self.router = router
+	public init(interactor: ShowOverviewInteractor) {
 		self.interactor = interactor
 	}
 
 	public func viewDidLoad() {
-		interactor.fetchImages().map { ImagesViewModelMapper.viewModel(for: $0) }
+		interactor.fetchImages()
+			.map {
+				let viewModel = ImagesViewModelMapper.viewModel(for: $0)
+				return ShowOverviewImagesState.showing(images: viewModel)
+			}.catchError { error -> Maybe<ShowOverviewImagesState> in
+				return Maybe.just(ShowOverviewImagesState.error(error: error))
+			}.ifEmpty(default: ShowOverviewImagesState.empty)
 			.observeOn(MainScheduler.instance)
-			.subscribe(onSuccess: { [unowned self] in
-				self.view.show(images: $0)
-				}, onError: { error in
-					print(error.localizedDescription)
+			.subscribe(onSuccess: { [weak self] state in
+				self?.imagesStateSubject.onNext(state)
 			}).disposed(by: disposeBag)
 
-		interactor.fetchDetailsOfShow().map { [unowned self] in self.mapToViewModel($0) }
+		interactor.fetchDetailsOfShow()
+			.map { ShowOverviewViewState.showing(show: $0) }
+			.catchError { Single.just(ShowOverviewViewState.error(error: $0)) }
 			.observeOn(MainScheduler.instance)
-			.subscribe(onSuccess: { [unowned self] viewModel in
-				self.view.show(details: viewModel)
-				}, onError: { [unowned self] error in
-					self.router.showError(message: error.localizedDescription)
+			.subscribe(onSuccess: { [weak self] state in
+				self?.viewStateSubject.onNext(state)
 			}).disposed(by: disposeBag)
 	}
 
-	private func mapToViewModel(_ show: ShowEntity) -> ShowOverviewViewModel {
-		let firstAired = show.firstAired?.parse() ?? "Unknown".localized
-		let genres = show.genres?.map { $0.name }.joined(separator: " | ")
+	public func observeViewState() -> Observable<ShowOverviewViewState> {
+		return viewStateSubject
+	}
 
-		return ShowOverviewViewModel(title: show.title ?? "TBA".localized,
-																overview: show.overview ?? "",
-																network: show.network ?? "Unknown".localized,
-																genres: genres ?? "",
-																firstAired: firstAired,
-																status: show.status?.rawValue.localized ?? "Unknown".localized)
+	public func observeImagesState() -> Observable<ShowOverviewImagesState> {
+		return imagesStateSubject
 	}
 }

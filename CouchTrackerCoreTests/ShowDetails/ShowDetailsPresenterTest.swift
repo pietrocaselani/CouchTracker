@@ -1,43 +1,65 @@
 import XCTest
+import RxTest
+import RxSwift
+import TraktSwift
 @testable import CouchTrackerCore
 
 final class ShowOverviewPresenterTest: XCTestCase {
+	private var genreRepository: GenreRepositoryMock!
+	private var scheduler: TestScheduler!
+	private var viewObserver: TestableObserver<ShowOverviewViewState>!
+	private var imageObserver: TestableObserver<ShowOverviewImagesState>!
+	private var disposeBag: DisposeBag!
 
-	private let view = ShowOverviewViewMock()
-	private let router = ShowOverviewRouterMock()
+	override func setUp() {
+		super.setUp()
 
-	func testShowOverviewPresenterCreation() {
-		let interactor = ShowOverviewInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
-																							repository: showDetailsRepositoryMock,
-																							genreRepository: GenreRepositoryMock(),
-																							imageRepository: imageRepositoryMock)
-		let presenter = ShowOverviewDefaultPresenter(view: view, router: router, interactor: interactor)
-		XCTAssertNotNil(presenter)
+		genreRepository = GenreRepositoryMock()
+		scheduler = TestScheduler(initialClock: 0)
+		disposeBag = DisposeBag()
+		viewObserver = scheduler.createObserver(ShowOverviewViewState.self)
+		imageObserver = scheduler.createObserver(ShowOverviewImagesState.self)
 	}
 
-	func testShowOverviewPresenter_receivesError_notifyRouter() {
+	override func tearDown() {
+		genreRepository = nil
+		scheduler = nil
+		viewObserver = nil
+		imageObserver = nil
+		disposeBag = nil
+
+		super.tearDown()
+	}
+
+	func testShowOverviewPresenter_receivesError_changeStateToError() {
 		let errorMessage = "Unknow error"
 		let userInfo = [NSLocalizedDescriptionKey: errorMessage]
 		let showDetailsError = NSError(domain: "io.github.pietrocaselani", code: 3, userInfo: userInfo)
 		let repository = ShowOverviewRepositoryErrorMock(error: showDetailsError)
 		let errorInteractor = ShowOverviewInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
 																										repository: repository,
-																										genreRepository: GenreRepositoryMock(),
+																										genreRepository: genreRepository,
 																										imageRepository: imageRepositoryMock)
-		let presenter = ShowOverviewDefaultPresenter(view: view, router: router, interactor: errorInteractor)
+		let presenter = ShowOverviewDefaultPresenter(interactor: errorInteractor)
+
+		presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
 
 		presenter.viewDidLoad()
 
-		XCTAssertTrue(router.invokedShowError)
-		XCTAssertEqual(router.invokedShowErrorParameters?.message, errorMessage)
+		let expectedEvents = [Recorded.next(0, ShowOverviewViewState.loading),
+																								Recorded.next(0, ShowOverviewViewState.error(error: showDetailsError))]
+
+		XCTAssertEqual(viewObserver.events, expectedEvents)
 	}
 
-	func testShowOverviewPresenter_receivesDetails_notifyView() {
+	func testShowOverviewPresenter_receivesDetails_changeStateToShowing() {
 		let interactor = ShowOverviewInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
 																							repository: showDetailsRepositoryMock,
-																							genreRepository: GenreRepositoryMock(),
+																							genreRepository: genreRepository,
 																							imageRepository: imageRepositoryMock)
-		let presenter = ShowOverviewDefaultPresenter(view: view, router: router, interactor: interactor)
+		let presenter = ShowOverviewDefaultPresenter(interactor: interactor)
+
+		presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
 
 		presenter.viewDidLoad()
 
@@ -51,20 +73,14 @@ final class ShowOverviewPresenterTest: XCTestCase {
 		}
 
 		let show = ShowEntityMapper.entity(for: traktShow, with: showGenres)
-		let genres = show.genres?.map { $0.name }.joined(separator: " | ") ?? ""
-		let firstAired = show.firstAired?.parse() ?? "Unknown".localized
-		let details = ShowOverviewViewModel(title: show.title ?? "TBA".localized,
-																			overview: show.overview ?? "",
-																			network: show.network ?? "Unknown".localized,
-																			genres: genres,
-																			firstAired: firstAired,
-																			status: show.status?.rawValue.localized ?? "Unknown".localized)
 
-		XCTAssertTrue(view.invokedShowDetails)
-		XCTAssertEqual(view.invokedShowDetailsParameters?.details, details)
+		let expectedEvents = [Recorded.next(0, ShowOverviewViewState.loading),
+																								Recorded.next(0, ShowOverviewViewState.showing(show: show))]
+
+		XCTAssertEqual(viewObserver.events, expectedEvents)
 	}
 
-	func testShowOverviewPresenter_fetchImagesFailure_dontNotifyView() {
+	func testShowOverviewPresenter_fetchImagesFailure_changeStateToError() {
 		let userInfo = [NSLocalizedDescriptionKey: "Image not found"]
 		let imageError = NSError(domain: "io.github.pietrocaselani", code: 404, userInfo: userInfo)
 
@@ -72,19 +88,26 @@ final class ShowOverviewPresenterTest: XCTestCase {
 																							repository: showDetailsRepositoryMock,
 																							genreRepository: GenreRepositoryMock(),
 																							imageRepository: ErrorImageRepositoryMock(error: imageError))
-		let presenter = ShowOverviewDefaultPresenter(view: view, router: router, interactor: interactor)
+		let presenter = ShowOverviewDefaultPresenter(interactor: interactor)
+
+		presenter.observeImagesState().subscribe(imageObserver).disposed(by: disposeBag)
 
 		presenter.viewDidLoad()
 
-		XCTAssertFalse(view.invokedShowImages)
+		let expectedEvents = [Recorded.next(0, ShowOverviewImagesState.loading),
+																								Recorded.next(0, ShowOverviewImagesState.error(error: imageError))]
+
+		XCTAssertEqual(imageObserver.events, expectedEvents)
 	}
 
-	func testShowOverviewPresenter_fetchImagesSuccess_notifyView() {
+	func testShowOverviewPresenter_fetchImagesSuccess_chageStateToShowing() {
 		let interactor = ShowOverviewInteractorMock(showIds: TraktEntitiesMock.createTraktShowDetails().ids,
 																							repository: showDetailsRepositoryMock,
 																							genreRepository: GenreRepositoryMock(),
 																							imageRepository: imageRepositoryRealMock)
-		let presenter = ShowOverviewDefaultPresenter(view: view, router: router, interactor: interactor)
+		let presenter = ShowOverviewDefaultPresenter(interactor: interactor)
+
+		presenter.observeImagesState().subscribe(imageObserver).disposed(by: disposeBag)
 
 		presenter.viewDidLoad()
 
@@ -92,7 +115,27 @@ final class ShowOverviewPresenterTest: XCTestCase {
 		let backdropLink = "https:/image.tmdb.org/t/p/w300/fZ8j6F8dxZPA8wE5sGS9oiKzXzM.jpg"
 		let expectedImagesViewModel = ImagesViewModel(posterLink: posterLink, backdropLink: backdropLink)
 
-		XCTAssertTrue(view.invokedShowImages)
-		XCTAssertEqual(view.invokedShowImagesParameters?.images, expectedImagesViewModel)
+		let expectedEvents = [Recorded.next(0, ShowOverviewImagesState.loading),
+																								Recorded.next(0, ShowOverviewImagesState.showing(images: expectedImagesViewModel))]
+
+		XCTAssertEqual(imageObserver.events, expectedEvents)
+	}
+
+	func testShowOverviewPresenter_noImages_changeStateToEmpty() {
+		let showIds = ShowIds(trakt: 0, tmdb: nil, imdb: nil, slug: "", tvdb: 0, tvrage: nil)
+		let interactor = ShowOverviewInteractorMock(showIds: showIds,
+																																														repository: showDetailsRepositoryMock,
+																																														genreRepository: genreRepository,
+																																														imageRepository: imageRepositoryMock)
+		let presenter = ShowOverviewDefaultPresenter(interactor: interactor)
+
+		presenter.observeImagesState().subscribe(imageObserver).disposed(by: disposeBag)
+
+		presenter.viewDidLoad()
+
+		let expectedEvents = [Recorded.next(0, ShowOverviewImagesState.loading),
+																								Recorded.next(0, ShowOverviewImagesState.empty)]
+
+		XCTAssertEqual(imageObserver.events, expectedEvents)
 	}
 }

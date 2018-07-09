@@ -63,31 +63,3 @@ final class ShowOverviewInteractorMock: ShowOverviewInteractor {
 		return imageRepository.fetchShowImages(for: tmdbId, posterSize: nil, backdropSize: nil)
 	}
 }
-
-final class ShowOverviewRouterMock: ShowOverviewRouter {
-	var invokedShowError = false
-	var invokedShowErrorParameters: (message: String, Void)?
-
-	func showError(message: String) {
-		invokedShowError = true
-		invokedShowErrorParameters = (message, ())
-	}
-}
-
-final class ShowOverviewViewMock: ShowOverviewView {
-	var presenter: ShowOverviewPresenter!
-	var invokedShowDetails = false
-	var invokedShowDetailsParameters: (details: ShowOverviewViewModel, Void)?
-	var invokedShowImages = false
-	var invokedShowImagesParameters: (images: ImagesViewModel, Void)?
-
-	func show(details: ShowOverviewViewModel) {
-		invokedShowDetails = true
-		invokedShowDetailsParameters = (details, ())
-	}
-
-	func show(images: ImagesViewModel) {
-		invokedShowImages = true
-		invokedShowImagesParameters = (images, ())
-	}
-}
