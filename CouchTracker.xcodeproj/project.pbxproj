@@ -452,6 +452,10 @@
 		4FC97A23203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A22203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift */; };
 		4FC97A25203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A24203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift */; };
 		4FC97A27203FD2AD00C2B924 /* ShowEpisodeMoyaNetworkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A26203FD2AD00C2B924 /* ShowEpisodeMoyaNetworkTest.swift */; };
+		4FCF132F20FF66B300122734 /* ShowEpisodeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF132E20FF66B300122734 /* ShowEpisodeViewState.swift */; };
+		4FCF133020FF66B300122734 /* ShowEpisodeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF132E20FF66B300122734 /* ShowEpisodeViewState.swift */; };
+		4FCF133220FF678300122734 /* ShowEpisodeImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF133120FF678300122734 /* ShowEpisodeImageState.swift */; };
+		4FCF133320FF678300122734 /* ShowEpisodeImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF133120FF678300122734 /* ShowEpisodeImageState.swift */; };
 		4FD9E725209E69CB007673A3 /* NSLocale+Override.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD9E724209E69CB007673A3 /* NSLocale+Override.m */; };
 		4FDBB663203E9FDA00448A60 /* ShowProgressCellServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDBB662203E9FDA00448A60 /* ShowProgressCellServiceTest.swift */; };
 		4FE4BA322059E31800969AAF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4BA312059E31800969AAF /* SearchViewController.swift */; };
@@ -678,6 +682,8 @@
 		4FC97A22203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeDefaultPresenterTest.swift; sourceTree = "<group>"; };
 		4FC97A24203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeiOSRouter.swift; sourceTree = "<group>"; };
 		4FC97A26203FD2AD00C2B924 /* ShowEpisodeMoyaNetworkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeMoyaNetworkTest.swift; sourceTree = "<group>"; };
+		4FCF132E20FF66B300122734 /* ShowEpisodeViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeViewState.swift; sourceTree = "<group>"; };
+		4FCF133120FF678300122734 /* ShowEpisodeImageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeImageState.swift; sourceTree = "<group>"; };
 		4FD27A3B201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCacheRepositoryTest.swift; sourceTree = "<group>"; };
 		4FD9E723209E69CB007673A3 /* NSLocale+Override.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSLocale+Override.h"; sourceTree = "<group>"; };
 		4FD9E724209E69CB007673A3 /* NSLocale+Override.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSLocale+Override.m"; sourceTree = "<group>"; };
@@ -1247,6 +1253,8 @@
 				6434C38D1F8355A3009B5A9F /* ShowEpisodeViewModel.swift */,
 				64FDE4FF1F7E629800A4C7AA /* SyncResult.swift */,
 				4F93153C203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift */,
+				4FCF132E20FF66B300122734 /* ShowEpisodeViewState.swift */,
+				4FCF133120FF678300122734 /* ShowEpisodeImageState.swift */,
 			);
 			path = Episode;
 			sourceTree = "<group>";
@@ -2698,6 +2706,7 @@
 				4F0F5850203D789C00B86CB8 /* DefaultSchedulers.swift in Sources */,
 				4F0F5713203D5FA000B86CB8 /* AppConfigurationOptions.swift in Sources */,
 				4F0F5714203D5FA000B86CB8 /* AppConfigurationsContract.swift in Sources */,
+				4FCF133220FF678300122734 /* ShowEpisodeImageState.swift in Sources */,
 				4F0F5715203D5FA000B86CB8 /* AppConfigurationsDefaultRepository.swift in Sources */,
 				4F0F5716203D5FA000B86CB8 /* AppConfigurationsDefaultPresenter.swift in Sources */,
 				4F0F5719203D5FA000B86CB8 /* AppConfigurationsObservable.swift in Sources */,
@@ -2773,6 +2782,7 @@
 				4F0F5768203D5FA000B86CB8 /* Schedulers.swift in Sources */,
 				4F0F5769203D5FA000B86CB8 /* SearchAPIRepository.swift in Sources */,
 				4F0F576B203D5FA000B86CB8 /* SearchContract.swift in Sources */,
+				4FCF132F20FF66B300122734 /* ShowEpisodeViewState.swift in Sources */,
 				4F0F576C203D5FA000B86CB8 /* SearchDefaultPresenter.swift in Sources */,
 				4F0F576E203D5FA000B86CB8 /* SearchService.swift in Sources */,
 				4FE4BA392059E8FA00969AAF /* PosterViewModelType.swift in Sources */,
@@ -2956,6 +2966,7 @@
 				4F0F593C203D988300B86CB8 /* TraktLoginDefaultPresenter.swift in Sources */,
 				4F0F593D203D988300B86CB8 /* TraktLoginObservable.swift in Sources */,
 				4F0F593E203D988300B86CB8 /* TraktLoginOutputProvider.swift in Sources */,
+				4FCF133320FF678300122734 /* ShowEpisodeImageState.swift in Sources */,
 				4F0F593F203D988300B86CB8 /* TraktLoginService.swift in Sources */,
 				4F0F5940203D988300B86CB8 /* TraktLoginState.swift in Sources */,
 				4F0F5941203D988300B86CB8 /* TraktLoginStore.swift in Sources */,
@@ -3031,6 +3042,7 @@
 				4F0F58B2203D7B0A00B86CB8 /* EpisodeIdsRealm.swift in Sources */,
 				4F0F58B3203D7B0A00B86CB8 /* GenreRealm.swift in Sources */,
 				4F0F58B4203D7B0A00B86CB8 /* RealmProvider.swift in Sources */,
+				4FCF133020FF66B300122734 /* ShowEpisodeViewState.swift in Sources */,
 				4F0F58B5203D7B0A00B86CB8 /* ShowEntityRealm.swift in Sources */,
 				4F0F58B6203D7B0A00B86CB8 /* ShowIdsRealm.swift in Sources */,
 				4FE4BA3A2059E8FA00969AAF /* PosterViewModelType.swift in Sources */,
