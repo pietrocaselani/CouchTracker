@@ -87,7 +87,6 @@
 		4F0F5772203D5FA000B86CB8 /* ShowEpisodeDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDE5031F7E64F200A4C7AA /* ShowEpisodeDefaultPresenter.swift */; };
 		4F0F5774203D5FA000B86CB8 /* ShowEpisodeRealmDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F236DB9202C0837007FB1B9 /* ShowEpisodeRealmDataSource.swift */; };
 		4F0F5775203D5FA000B86CB8 /* ShowEpisodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D511F7D9E8500C26D10 /* ShowEpisodeService.swift */; };
-		4F0F5777203D5FA000B86CB8 /* ShowEpisodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434C38D1F8355A3009B5A9F /* ShowEpisodeViewModel.swift */; };
 		4F0F5778203D5FA000B86CB8 /* SyncResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDE4FF1F7E629800A4C7AA /* SyncResult.swift */; };
 		4F0F5779203D5FA000B86CB8 /* ShowEpisodeMoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93153C203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift */; };
 		4F0F577A203D5FA000B86CB8 /* ShowManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D291F7D5C4C00C26D10 /* ShowManagerContract.swift */; };
@@ -320,7 +319,6 @@
 		4F0F58C4203D7B0A00B86CB8 /* ShowEpisodeDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDE5031F7E64F200A4C7AA /* ShowEpisodeDefaultPresenter.swift */; };
 		4F0F58C6203D7B0A00B86CB8 /* ShowEpisodeRealmDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F236DB9202C0837007FB1B9 /* ShowEpisodeRealmDataSource.swift */; };
 		4F0F58C7203D7B0A00B86CB8 /* ShowEpisodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D511F7D9E8500C26D10 /* ShowEpisodeService.swift */; };
-		4F0F58C9203D7B0A00B86CB8 /* ShowEpisodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434C38D1F8355A3009B5A9F /* ShowEpisodeViewModel.swift */; };
 		4F0F58CA203D7B0A00B86CB8 /* SyncResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDE4FF1F7E629800A4C7AA /* SyncResult.swift */; };
 		4F0F58CB203D7B0A00B86CB8 /* ShowEpisodeMoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93153C203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift */; };
 		4F0F58CC203D7B0A00B86CB8 /* ShowManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D291F7D5C4C00C26D10 /* ShowManagerContract.swift */; };
@@ -450,7 +448,6 @@
 		4FC97A1F203F163300C2B924 /* ShowProgressCellDefaultPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A1E203F163300C2B924 /* ShowProgressCellDefaultPresenterTest.swift */; };
 		4FC97A21203F166400C2B924 /* ShowProgressCellMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A20203F166400C2B924 /* ShowProgressCellMocks.swift */; };
 		4FC97A23203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A22203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift */; };
-		4FC97A25203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A24203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift */; };
 		4FC97A27203FD2AD00C2B924 /* ShowEpisodeMoyaNetworkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A26203FD2AD00C2B924 /* ShowEpisodeMoyaNetworkTest.swift */; };
 		4FCF132F20FF66B300122734 /* ShowEpisodeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF132E20FF66B300122734 /* ShowEpisodeViewState.swift */; };
 		4FCF133020FF66B300122734 /* ShowEpisodeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF132E20FF66B300122734 /* ShowEpisodeViewState.swift */; };
@@ -680,7 +677,6 @@
 		4FC97A1E203F163300C2B924 /* ShowProgressCellDefaultPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellDefaultPresenterTest.swift; sourceTree = "<group>"; };
 		4FC97A20203F166400C2B924 /* ShowProgressCellMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellMocks.swift; sourceTree = "<group>"; };
 		4FC97A22203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeDefaultPresenterTest.swift; sourceTree = "<group>"; };
-		4FC97A24203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeiOSRouter.swift; sourceTree = "<group>"; };
 		4FC97A26203FD2AD00C2B924 /* ShowEpisodeMoyaNetworkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeMoyaNetworkTest.swift; sourceTree = "<group>"; };
 		4FCF132E20FF66B300122734 /* ShowEpisodeViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeViewState.swift; sourceTree = "<group>"; };
 		4FCF133120FF678300122734 /* ShowEpisodeImageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeImageState.swift; sourceTree = "<group>"; };
@@ -745,7 +741,6 @@
 		64343E101F7EB128004557E4 /* TVDBProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBProvider.swift; sourceTree = "<group>"; };
 		64343E1D1F7EB3B7004557E4 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		64343E201F7EB48A004557E4 /* TVDB+APIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TVDB+APIProvider.swift"; sourceTree = "<group>"; };
-		6434C38D1F8355A3009B5A9F /* ShowEpisodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeViewModel.swift; sourceTree = "<group>"; };
 		6434C3A21F836762009B5A9F /* ShowEpisode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowEpisode.storyboard; sourceTree = "<group>"; };
 		6434C3A41F83678C009B5A9F /* ShowEpisodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeViewController.swift; sourceTree = "<group>"; };
 		6434CA5D1F752BD200EA3AD8 /* ShowsManagerMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerMocks.swift; sourceTree = "<group>"; };
@@ -1250,7 +1245,6 @@
 				64FDE5031F7E64F200A4C7AA /* ShowEpisodeDefaultPresenter.swift */,
 				4F236DB9202C0837007FB1B9 /* ShowEpisodeRealmDataSource.swift */,
 				641B9D511F7D9E8500C26D10 /* ShowEpisodeService.swift */,
-				6434C38D1F8355A3009B5A9F /* ShowEpisodeViewModel.swift */,
 				64FDE4FF1F7E629800A4C7AA /* SyncResult.swift */,
 				4F93153C203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift */,
 				4FCF132E20FF66B300122734 /* ShowEpisodeViewState.swift */,
@@ -1587,7 +1581,6 @@
 			isa = PBXGroup;
 			children = (
 				6434C3A21F836762009B5A9F /* ShowEpisode.storyboard */,
-				4FC97A24203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift */,
 				641B9D391F7D7AB300C26D10 /* ShowEpisodeModule.swift */,
 				6434C3A41F83678C009B5A9F /* ShowEpisodeViewController.swift */,
 			);
@@ -2792,7 +2785,6 @@
 				4F0F5774203D5FA000B86CB8 /* ShowEpisodeRealmDataSource.swift in Sources */,
 				4F10101820A99C64003CA348 /* ShowsProgressListStateDefaultDataSource.swift in Sources */,
 				4F0F5775203D5FA000B86CB8 /* ShowEpisodeService.swift in Sources */,
-				4F0F5777203D5FA000B86CB8 /* ShowEpisodeViewModel.swift in Sources */,
 				4F0F5778203D5FA000B86CB8 /* SyncResult.swift in Sources */,
 				4F70910720D5F3650017B259 /* WatchedMovieResult.swift in Sources */,
 				4F0F5779203D5FA000B86CB8 /* ShowEpisodeMoyaNetwork.swift in Sources */,
@@ -3061,7 +3053,6 @@
 				4F0F58C4203D7B0A00B86CB8 /* ShowEpisodeDefaultPresenter.swift in Sources */,
 				4F0F58C6203D7B0A00B86CB8 /* ShowEpisodeRealmDataSource.swift in Sources */,
 				4F0F58C7203D7B0A00B86CB8 /* ShowEpisodeService.swift in Sources */,
-				4F0F58C9203D7B0A00B86CB8 /* ShowEpisodeViewModel.swift in Sources */,
 				4F0F58CA203D7B0A00B86CB8 /* SyncResult.swift in Sources */,
 				4F0F58CB203D7B0A00B86CB8 /* ShowEpisodeMoyaNetwork.swift in Sources */,
 				4F0F58CC203D7B0A00B86CB8 /* ShowManagerContract.swift in Sources */,
@@ -3158,7 +3149,6 @@
 				4F0F5837203D779A00B86CB8 /* ShowManagerViewController.swift in Sources */,
 				4FAA2543205693BE0006735A /* NoCacheMoyaPlugin.swift in Sources */,
 				4F0F5839203D779A00B86CB8 /* ShowSeasonsModule.swift in Sources */,
-				4FC97A25203FCAFF00C2B924 /* ShowEpisodeiOSRouter.swift in Sources */,
 				4F0F583D203D779A00B86CB8 /* ShowsManageriOSCreator.swift in Sources */,
 				4FE4BA322059E31800969AAF /* SearchViewController.swift in Sources */,
 				4F0F583E203D779A00B86CB8 /* ShowsManagerModule.swift in Sources */,

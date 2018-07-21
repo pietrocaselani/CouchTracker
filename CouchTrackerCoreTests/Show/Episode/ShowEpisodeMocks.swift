@@ -7,37 +7,6 @@ final class ShowEpisodeMocks {
 		Swift.fatalError("No instances for you!")
 	}
 
-	final class Router: ShowEpisodeRouter {
-		var showErrorInvoked = false
-
-		func showError(message: String) {
-			showErrorInvoked = true
-		}
-	}
-
-	final class View: ShowEpisodeView {
-		var presenter: ShowEpisodePresenter!
-		var showEmptyViewInvoked = false
-		var showEpisodeImageInvoked = false
-		var showEpisodeImageParameters: URL?
-		var showViewModelInvoked = false
-		var showViewModelParameters: ShowEpisodeViewModel?
-
-		func showEmptyView() {
-			showEmptyViewInvoked = true
-		}
-
-		func showEpisodeImage(with url: URL) {
-			showEpisodeImageInvoked = true
-			showEpisodeImageParameters = url
-		}
-
-		func show(viewModel: ShowEpisodeViewModel) {
-			showViewModelInvoked = true
-			showViewModelParameters = viewModel
-		}
-	}
-
 	final class Interactor: ShowEpisodeInteractor {
 		var fetchImageURLInvoked = false
 		var fetchImageURLParameters: EpisodeImageInput?

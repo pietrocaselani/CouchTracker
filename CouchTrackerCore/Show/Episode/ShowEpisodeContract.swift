@@ -20,21 +20,15 @@ public protocol ShowEpisodeInteractor: class {
 	func toggleWatch(for episode: EpisodeEntity, of show: WatchedShowEntity) -> Single<SyncResult>
 }
 
-public protocol ShowEpisodeRouter: class {
-	func showError(message: String)
-}
-
 public protocol ShowEpisodePresenter: class {
-	init(view: ShowEpisodeView, interactor: ShowEpisodeInteractor, router: ShowEpisodeRouter, show: WatchedShowEntity)
+	init(interactor: ShowEpisodeInteractor, show: WatchedShowEntity)
 
 	func viewDidLoad()
-	func handleWatch()
+	func observeViewState() -> Observable<ShowEpisodeViewState>
+	func observeImageState() -> Observable<ShowEpisodeImageState>
+	func handleWatch() -> Maybe<SyncResult>
 }
 
 public protocol ShowEpisodeView: class {
 	var presenter: ShowEpisodePresenter! { get set }
-
-	func showEmptyView()
-	func showEpisodeImage(with url: URL)
-	func show(viewModel: ShowEpisodeViewModel)
 }
