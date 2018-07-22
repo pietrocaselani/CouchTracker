@@ -36,12 +36,11 @@ final class ShowEpisodeViewController: UIViewController, ShowEpisodeView {
 		watchedSwich.isOn = false
 
 		watchedSwich.rx.isOn.changed
-			.asMaybe()
-			.flatMap { [weak self] _ in
-				guard let strongSelf = self else { return Maybe.empty() }
-				return strongSelf.presenter.handleWatch()
+			.flatMap { [weak self] _  -> Observable<SyncResult> in
+				guard let strongSelf = self else { return Observable.empty() }
+				return strongSelf.presenter.handleWatch().asObservable()
 			}.observeOn(MainScheduler.instance)
-			.subscribe(onSuccess: { [weak self] syncResult in
+			.subscribe(onNext: { [weak self] syncResult in
 				self?.handleSyncResult(syncResult)
 			}).disposed(by: disposeBag)
 
