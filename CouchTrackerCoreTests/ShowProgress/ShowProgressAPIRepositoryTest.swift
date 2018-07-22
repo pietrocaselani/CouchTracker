@@ -85,7 +85,7 @@ final class ShowProgressAPIRepositoryTest: XCTestCase {
 		}
 
 		private func createProviderWith<T: TraktType>(json name: String?) -> MoyaProviderMock<T> {
-			return MoyaProviderMock<T>(endpointClosure: { (target) -> Endpoint<T> in
+			return MoyaProviderMock<T>(endpointClosure: { (target) -> Endpoint in
 				let endpoint = MoyaProvider<T>.defaultEndpointMapping(for: target)
 
 				guard let jsonName = name else { return endpoint }
