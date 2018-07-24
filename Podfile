@@ -3,10 +3,10 @@ source 'https://github.com/CocoaPods/Specs.git'
 RX_SWIFT_VERSION = '4.2.0'
 
 def common_pods
-  pod 'SwiftLint', '0.23.1'
-  pod 'Trakt', :git => 'https://github.com/pietrocaselani/Trakt-Swift.git'
-  pod 'TMDB', :git => 'https://github.com/pietrocaselani/TMDB-Swift.git'
-  pod 'TVDB', :git => 'https://github.com/pietrocaselani/TVDB-Swift.git'
+  pod 'SwiftLint', '0.25.1'
+  pod 'Trakt', :git => 'https://github.com/pietrocaselani/Trakt-Swift.git', :branch => 'master'
+  pod 'TMDB', :git => 'https://github.com/pietrocaselani/TMDB-Swift.git', :branch => 'master'
+  pod 'TVDB', :git => 'https://github.com/pietrocaselani/TVDB-Swift.git', :branch => 'master'
   pod 'RxRealm', '0.7.5'
   pod 'RxSwift', RX_SWIFT_VERSION
 end

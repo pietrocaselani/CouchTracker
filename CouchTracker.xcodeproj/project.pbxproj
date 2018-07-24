@@ -455,6 +455,7 @@
 		4FCF133320FF678300122734 /* ShowEpisodeImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF133120FF678300122734 /* ShowEpisodeImageState.swift */; };
 		4FD9E725209E69CB007673A3 /* NSLocale+Override.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD9E724209E69CB007673A3 /* NSLocale+Override.m */; };
 		4FDBB663203E9FDA00448A60 /* ShowProgressCellServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDBB662203E9FDA00448A60 /* ShowProgressCellServiceTest.swift */; };
+		4FE02E452105E98000196B8E /* GenreRealmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE02E442105E98000196B8E /* GenreRealmTests.swift */; };
 		4FE4BA322059E31800969AAF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4BA312059E31800969AAF /* SearchViewController.swift */; };
 		4FE4BA342059E32A00969AAF /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FE4BA332059E32A00969AAF /* Search.storyboard */; };
 		4FE4BA392059E8FA00969AAF /* PosterViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4BA382059E8FA00969AAF /* PosterViewModelType.swift */; };
@@ -684,6 +685,7 @@
 		4FD9E723209E69CB007673A3 /* NSLocale+Override.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSLocale+Override.h"; sourceTree = "<group>"; };
 		4FD9E724209E69CB007673A3 /* NSLocale+Override.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSLocale+Override.m"; sourceTree = "<group>"; };
 		4FDBB662203E9FDA00448A60 /* ShowProgressCellServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellServiceTest.swift; sourceTree = "<group>"; };
+		4FE02E442105E98000196B8E /* GenreRealmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreRealmTests.swift; sourceTree = "<group>"; };
 		4FE42FB4203B94B80001FF1F /* ShowProgressSortTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressSortTest.swift; sourceTree = "<group>"; };
 		4FE4BA312059E31800969AAF /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4FE4BA332059E32A00969AAF /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
@@ -1095,6 +1097,7 @@
 				DF33903CEE622231C01C1E07 /* Movies */,
 				647C95BD1F7587B5007A86CE /* NetworkMock */,
 				4FE4BA372059E85100969AAF /* PosterCell */,
+				4FE02E432105E96D00196B8E /* Realm */,
 				392D9CCADDD8B9EF1D8D74F7 /* RxAsserts.swift */,
 				648390CE1F504E7500911BA0 /* Search */,
 				4F8EE012202E16150002189B /* Show */,
@@ -1464,6 +1467,14 @@
 				4FC97A20203F166400C2B924 /* ShowProgressCellMocks.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		4FE02E432105E96D00196B8E /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				4FE02E442105E98000196B8E /* GenreRealmTests.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 		4FE4BA352059E78400969AAF /* Views */ = {
@@ -2109,7 +2120,6 @@
 				4F0F56F9203D5F4C00B86CB8 /* Headers */,
 				4F0F56FA203D5F4C00B86CB8 /* Resources */,
 				4F0F581C203D75FB00B86CB8 /* SwiftLint */,
-				4D41FEC48844E7413FFE52B3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2129,7 +2139,6 @@
 				4F0F5701203D5F4C00B86CB8 /* Frameworks */,
 				4F0F5702203D5F4C00B86CB8 /* Resources */,
 				3F575D4186D1BBC785CBB045 /* [CP] Embed Pods Frameworks */,
-				27E1151B3B3D336A088EA1AF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2154,7 +2163,6 @@
 				4F0F5855203D7A5B00B86CB8 /* Headers */,
 				4F0F5856203D7A5B00B86CB8 /* Resources */,
 				4F0F5864203D7AEB00B86CB8 /* SwiftLint */,
-				1A27F9AF385D4A43CB1184A2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2194,7 +2202,6 @@
 				6BA4EFF523E57D8DC5A67DEA /* [CP] Embed Pods Frameworks */,
 				6455BA751F45B862000660C6 /* SwiftLint */,
 				6405CA021F549BE90039D6E6 /* Embed Frameworks */,
-				6FE261A25BDB8C12DC695976 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2412,21 +2419,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1A27F9AF385D4A43CB1184A2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerCore-iOS/Pods-CouchTrackerCore-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		24F7650057595A5385FDD0F4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2443,21 +2435,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		27E1151B3B3D336A088EA1AF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerCoreTests/Pods-CouchTrackerCoreTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2E2A586DB303DF3544792355 /* [CP] Check Pods Manifest.lock */ = {
@@ -2484,7 +2461,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerCoreTests/Pods-CouchTrackerCoreTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-CouchTrackerCoreTests/Pods-CouchTrackerCoreTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya-macOS/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm-macOS/Realm.framework",
@@ -2515,22 +2492,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerCoreTests/Pods-CouchTrackerCoreTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4D41FEC48844E7413FFE52B3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerCore/Pods-CouchTrackerCore-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CouchTrackerCoreTests/Pods-CouchTrackerCoreTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4F0F581C203D75FB00B86CB8 /* SwiftLint */ = {
@@ -2545,7 +2507,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, using from Pods. Please download from https://github.com/realm/SwiftLint\"\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, using from Pods. Please download from https://github.com/realm/SwiftLint\"\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi\n\n";
 		};
 		4F0F5864203D7AEB00B86CB8 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2573,7 +2535,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, using from Pods. Please download from https://github.com/realm/SwiftLint\"\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, using from Pods. Please download from https://github.com/realm/SwiftLint\"\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi\n";
 		};
 		64D2FFD81F44DF7F009E9ED3 /* RSwift */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2595,7 +2557,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-CouchTracker/Pods-CouchTracker-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya-iOS/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm-iOS/Realm.framework",
@@ -2634,22 +2596,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6FE261A25BDB8C12DC695976 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CouchTracker/Pods-CouchTracker-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9C6F0D2340CF87135C62A2BE /* [CP] Check Pods Manifest.lock */ = {
@@ -2873,6 +2820,7 @@
 				4F0F57E0203D61B300B86CB8 /* TMDBProviderMock.swift in Sources */,
 				4F0F57E1203D61B300B86CB8 /* TraktErrorProviderMock.swift in Sources */,
 				4F3A2A1120707F5100E3FA76 /* SearchResultMocks.swift in Sources */,
+				4FE02E452105E98000196B8E /* GenreRealmTests.swift in Sources */,
 				4F0F57E2203D61B300B86CB8 /* TraktProviderMock.swift in Sources */,
 				4F0F57E3203D61B300B86CB8 /* TVDBProviderMock.swift in Sources */,
 				4F0F57E5203D61B300B86CB8 /* SearchInteractorTest.swift in Sources */,
