@@ -13,11 +13,11 @@ PODS:
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
-  - Realm (3.7.2):
-    - Realm/Headers (= 3.7.2)
-  - Realm/Headers (3.7.2)
-  - RealmSwift (3.7.2):
-    - Realm (= 3.7.2)
+  - Realm (3.7.5):
+    - Realm/Headers (= 3.7.5)
+  - Realm/Headers (3.7.5)
+  - RealmSwift (3.7.5):
+    - Realm (= 3.7.5)
   - Result (3.2.4)
   - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
@@ -45,6 +45,7 @@ DEPENDENCIES:
   - Kingfisher (= 4.2.0)
   - Nimble (= 7.1.1)
   - R.swift (= 4.0.0)
+  - RealmSwift (= 3.7.5)
   - RxCocoa (= 4.2.0)
   - RxRealm (= 0.7.5)
   - RxSwift (= 4.2.0)
@@ -88,13 +89,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   TMDB:
-    :commit: 13591da0cf268782bcdf39f75df03103320e468f
+    :commit: 24a7ccad76ad77dad79c210d91aad9c62d9641a9
     :git: https://github.com/pietrocaselani/TMDB-Swift.git
   Trakt:
-    :commit: 4142cc9eec38824cc79bdd8c991d9d0afaf1fc55
+    :commit: 1b055b6bab843f07cb96ee6378ad040a9751daa6
     :git: https://github.com/pietrocaselani/Trakt-Swift.git
   TVDB:
-    :commit: d66df97edad13d5e1cf4c10888cdb921ff054c86
+    :commit: 7a1b6c4318c45f05f0fd50288da397d90f9c3d62
     :git: https://github.com/pietrocaselani/TVDB-Swift.git
 
 SPEC CHECKSUMS:
@@ -106,8 +107,8 @@ SPEC CHECKSUMS:
   Pageboy: 502560f49b0357eaf8a3b6075e4cab29505079a3
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
-  Realm: dd18c3014e8d90df300b83c6da740067436089c5
-  RealmSwift: 79917cae59a0c43ef8118b233a5978891dd50b4a
+  Realm: c286caf4dbf346ce24aad49ca76c7ce622d4a082
+  RealmSwift: 2a9281e37d6de55f66f76254d49d28aeb1b729e4
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxRealm: a6c6c0a07cb61f34209969ca6657734edfdfff30
@@ -119,6 +120,6 @@ SPEC CHECKSUMS:
   Trakt: abaf4e90f4b429cbaed82747925c29dfc7ab283d
   TVDB: e6298955678c483ae6993beed16d27bd395a265a
 
-PODFILE CHECKSUM: 6a2c1cab758ffbdecb4adf6a196cf850b707f5bd
+PODFILE CHECKSUM: e53dc39abd47c35c5dfa0db0377db5c72032f89e
 
 COCOAPODS: 1.5.3
