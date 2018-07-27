@@ -1,17 +1,14 @@
 import RxSwift
 
 public final class ShowEpisodeDefaultPresenter: ShowEpisodePresenter {
-	private weak var view: ShowEpisodeView?
-	private let interactor: ShowEpisodeInteractor
-	private let router: ShowEpisodeRouter
 	private var show: WatchedShowEntity
+	private let interactor: ShowEpisodeInteractor
+	private let viewStateSubject = BehaviorSubject<ShowEpisodeViewState>(value: ShowEpisodeViewState.loading)
+	private let imageStateSubject = BehaviorSubject<ShowEpisodeImageState>(value: ShowEpisodeImageState.loading)
 	private let disposeBag = DisposeBag()
 
-	public init(view: ShowEpisodeView, interactor: ShowEpisodeInteractor,
-													router: ShowEpisodeRouter, show: WatchedShowEntity) {
-		self.view = view
+	public init(interactor: ShowEpisodeInteractor, show: WatchedShowEntity) {
 		self.interactor = interactor
-		self.router = router
 		self.show = show
 	}
 
@@ -19,47 +16,45 @@ public final class ShowEpisodeDefaultPresenter: ShowEpisodePresenter {
 		setupView()
 	}
 
-	public func handleWatch() {
-		guard let nextEpisode = show.nextEpisode else { return }
+	public func observeViewState() -> Observable<ShowEpisodeViewState> {
+		return viewStateSubject.distinctUntilChanged()
+	}
 
-		interactor.toggleWatch(for: nextEpisode, of: show)
-			.observeOn(MainScheduler.instance)
-			.subscribe(onSuccess: { [unowned self] result in
-				if case .success(let newShow) = result {
-					self.show = newShow
-					self.setupView()
-				} else if case .fail(let error) = result {
-					self.router.showError(message: error.localizedDescription)
+	public func observeImageState() -> Observable<ShowEpisodeImageState> {
+		return imageStateSubject.distinctUntilChanged()
+	}
+
+	public func handleWatch() -> Maybe<SyncResult> {
+		guard let nextEpisode = show.nextEpisode else { return Maybe.empty() }
+
+		return interactor.toggleWatch(for: nextEpisode, of: show)
+			.do(onSuccess: { [weak self] syncResult in
+				if case .success(let newShow) = syncResult {
+					self?.show = newShow
+					self?.setupView()
 				}
-			}, onError: { [unowned self] error in
-				self.router.showError(message: error.localizedDescription)
-		}).disposed(by: disposeBag)
+			}).asMaybe()
 	}
 
 	private func setupView() {
-		guard let view = view else { return }
-
 		guard let nextEpisode = show.nextEpisode else {
-			view.showEmptyView()
+			viewStateSubject.onNext(.empty)
+			imageStateSubject.onNext(.none)
 			return
 		}
 
 		interactor.fetchImageURL(for: nextEpisode)
+			.map { ShowEpisodeImageState.image(url: $0) }
+			.ifEmpty(default: ShowEpisodeImageState.none)
+			.catchError { Single.just(ShowEpisodeImageState.error(error: $0)) }
+			.do(onSubscribe: { [weak self] in
+				self?.imageStateSubject.onNext(.loading)
+			})
 			.observeOn(MainScheduler.instance)
-			.subscribe(onSuccess: { [unowned self] url in
-				self.view?.showEpisodeImage(with: url)
+			.subscribe(onSuccess: { [weak self] imageState in
+				self?.imageStateSubject.onNext(imageState)
 			}).disposed(by: disposeBag)
 
-		view.show(viewModel: mapToViewModel(nextEpisode))
-	}
-
-	private func mapToViewModel(_ episode: EpisodeEntity) -> ShowEpisodeViewModel {
-		let number = "Season \(episode.season) Episode \(episode.number)"
-		let date = episode.firstAired?.shortString() ?? "Unknown".localized
-
-		return ShowEpisodeViewModel(title: episode.title,
-																number: number,
-																date: date,
-																watched: episode.lastWatched != nil)
+		viewStateSubject.onNext(.showing(episode: nextEpisode))
 	}
 }

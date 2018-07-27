@@ -2,7 +2,7 @@ import TraktSwift
 
 extension MovieIds {
 	func tmdbModelType() -> PosterViewModelType? {
-		var type: PosterViewModelType? = nil
+		var type: PosterViewModelType?
 		if let tmdbId = self.tmdb {
 			type = PosterViewModelType.movie(tmdbMovieId: tmdbId)
 		}

@@ -1,33 +1,38 @@
 import XCTest
+import RxTest
+import RxSwift
 @testable import CouchTrackerCore
 
 final class ShowEpisodeDefaultPresenterTest: XCTestCase {
-	private var view: ShowEpisodeMocks.View!
-	private var router: ShowEpisodeMocks.Router!
 	private var interactor: ShowEpisodeMocks.Interactor!
 	private var presenter: ShowEpisodeDefaultPresenter!
+	private var scheduler: TestScheduler!
+	private var viewObserver: TestableObserver<ShowEpisodeViewState>!
+	private var imageObserver: TestableObserver<ShowEpisodeImageState>!
+	private var disposeBag: DisposeBag!
 
 	override func setUp() {
 		super.setUp()
 
-		presenter = nil
-		view = nil
-		interactor = nil
-		router = nil
-
-		view = ShowEpisodeMocks.View()
 		interactor = ShowEpisodeMocks.Interactor()
-		router = ShowEpisodeMocks.Router()
+		scheduler = TestScheduler(initialClock: 0)
+		disposeBag = DisposeBag()
+		viewObserver = scheduler.createObserver(ShowEpisodeViewState.self)
+		imageObserver = scheduler.createObserver(ShowEpisodeImageState.self)
 	}
 
 	override func tearDown() {
-
-
+		presenter = nil
+		interactor = nil
+		scheduler = nil
+		disposeBag = nil
+		viewObserver = nil
+		imageObserver = nil
 		super.tearDown()
 	}
 
 	private func setupPresenter(_ show: WatchedShowEntity) {
-		presenter = ShowEpisodeDefaultPresenter(view: view, interactor: interactor, router: router, show: show)
+		presenter = ShowEpisodeDefaultPresenter(interactor: interactor, show: show)
 	}
 
 	func testShowEpisodeDefaultPresenter_receivesShowWithoutNextEpisode_notifyViewIsEmpty() {
@@ -35,12 +40,22 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
 		let show = ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode()
 		setupPresenter(show)
 
+		presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
+		presenter.observeImageState().subscribe(imageObserver).disposed(by: disposeBag)
+
 		//When
 		presenter.viewDidLoad()
 
 		//Then
-		XCTAssertTrue(view.showEmptyViewInvoked)
-		XCTAssertFalse(view.showViewModelInvoked)
+		let expectedViewEvents = [Recorded.next(0, ShowEpisodeViewState.loading),
+																												Recorded.next(0, ShowEpisodeViewState.empty)]
+
+		let expectedImageEvents = [Recorded.next(0, ShowEpisodeImageState.loading),
+																													Recorded.next(0, ShowEpisodeImageState.none)]
+
+		XCTAssertEqual(viewObserver.events, expectedViewEvents)
+		XCTAssertEqual(imageObserver.events, expectedImageEvents)
+
 		XCTAssertFalse(interactor.fetchImageURLInvoked)
 		XCTAssertFalse(interactor.toogleWatchInvoked)
 	}
@@ -49,15 +64,30 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
 		//Given
 		let show = ShowsProgressMocks.mockWatchedShowEntity()
 		setupPresenter(show)
-		interactor.error = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 234, userInfo: nil)
+		let imageError = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 234, userInfo: nil)
+		interactor.error = imageError
+
+		presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
+		presenter.observeImageState().subscribe(imageObserver).disposed(by: disposeBag)
 
 		//When
 		presenter.viewDidLoad()
 
 		//Then
-		XCTAssertTrue(view.showViewModelInvoked)
+		guard let nextEpisode = show.nextEpisode else {
+			XCTFail("Next Episode can't be nil")
+			return
+		}
+
+		let expectedViewEvents = [Recorded.next(0, ShowEpisodeViewState.loading),
+																												Recorded.next(0, ShowEpisodeViewState.showing(episode: nextEpisode))]
+
+		let expectedImageEvents = [Recorded.next(0, ShowEpisodeImageState.loading),
+																													Recorded.next(0, ShowEpisodeImageState.error(error: imageError))]
+
+		XCTAssertEqual(viewObserver.events, expectedViewEvents)
+		XCTAssertEqual(imageObserver.events, expectedImageEvents)
 		XCTAssertTrue(interactor.fetchImageURLInvoked)
-		XCTAssertFalse(view.showEpisodeImageInvoked)
 	}
 
 	func testShowEpisodeDefaultPresenter_receivesShow_updateViewAndImage() {
@@ -65,129 +95,133 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
 		let show = ShowsProgressMocks.mockWatchedShowEntity()
 		setupPresenter(show)
 
+		presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
+		presenter.observeImageState().subscribe(imageObserver).disposed(by: disposeBag)
+
 		//When
 		presenter.viewDidLoad()
 
 		//Then
-		let testExpectation = expectation(description: "Should update view")
-
-		DispatchQueue.main.async {
-			testExpectation.fulfill()
-			XCTAssertTrue(self.view.showViewModelInvoked)
-			XCTAssertTrue(self.interactor.fetchImageURLInvoked)
-			XCTAssertTrue(self.view.showEpisodeImageInvoked)
+		guard let nextEpisode = show.nextEpisode else {
+			XCTFail("Next Episode can't be nil")
+			return
 		}
 
-		wait(for: [testExpectation], timeout: 1)
+		let imageURL = URL(string: "path/to/image.png")!
+
+		let expectedViewEvents = [Recorded.next(0, ShowEpisodeViewState.loading),
+																												Recorded.next(0, ShowEpisodeViewState.showing(episode: nextEpisode))]
+
+		let expectedImageEvents = [Recorded.next(0, ShowEpisodeImageState.loading),
+																													Recorded.next(0, ShowEpisodeImageState.image(url: imageURL))]
+
+		XCTAssertEqual(viewObserver.events, expectedViewEvents)
+		XCTAssertEqual(imageObserver.events, expectedImageEvents)
+		XCTAssertTrue(self.interactor.fetchImageURLInvoked)
 	}
 
 	func testShowEpisodeDefaultPresenter_handleWatch_invokesInteractorAndUpdateView() {
 		//Given
 		let show = ShowsProgressMocks.mockWatchedShowEntity()
 		setupPresenter(show)
+		let newShow = ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode()
+		interactor.nextEntity = newShow
+
+		presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
+		presenter.observeImageState().subscribe(imageObserver).disposed(by: disposeBag)
+
 		presenter.viewDidLoad()
-		view.showViewModelInvoked = false
-		view.showEmptyViewInvoked = false
-		interactor.fetchImageURLInvoked = false
-		interactor.toogleWatchInvoked = false
 
 		//When
-		presenter.handleWatch()
+		let results = scheduler.start { self.presenter.handleWatch().asObservable() }
 
 		//Then
+		guard let nextEpisode = show.nextEpisode else {
+			XCTFail("Next Episode can't be nil")
+			return
+		}
+
+		let expectedHandleWatchedResults = [Recorded.next(200, SyncResult.success(show: newShow)),
+																																						Recorded.completed(200)]
+
+		let expectedViewEvents = [Recorded.next(0, ShowEpisodeViewState.loading),
+																												Recorded.next(0, ShowEpisodeViewState.showing(episode: nextEpisode)),
+																												Recorded.next(200, ShowEpisodeViewState.empty)]
+
+		let expectedImageEvents = [Recorded.next(0, ShowEpisodeImageState.loading),
+																													Recorded.next(0, ShowEpisodeImageState.image(url: URL(string: "path/to/image.png")!)),
+																													Recorded.next(200, ShowEpisodeImageState.none)]
+
+		XCTAssertEqual(results.events, expectedHandleWatchedResults)
+		XCTAssertEqual(viewObserver.events, expectedViewEvents)
+		XCTAssertEqual(imageObserver.events, expectedImageEvents)
+
 		XCTAssertTrue(interactor.toogleWatchInvoked)
 		XCTAssertTrue(interactor.fetchImageURLInvoked)
-		XCTAssertTrue(view.showViewModelInvoked)
-		XCTAssertTrue(view.showEpisodeImageInvoked)
 	}
-
-	//TODO needs implementation
-//	func testShowEpisodeDefaultPresenter_handleWatchWithoutNextEpisode_showEmptyViewAndDoesNothing() {
-//		//Given
-//		let show = ShowsProgressMocks.mockWatchedShowEntity()
-//		interactor.nextEntity = ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode()
-//		setupPresenter(show)
-//		presenter.viewDidLoad()
-//
-//		self.presenter.handleWatch()
-//
-//		let testExpectation = expectation(description: "Should handle watch")
-//
-//		//When
-//		DispatchQueue.main.async {
-//			self.view.showViewModelInvoked = false
-//			self.view.showEmptyViewInvoked = false
-//			self.interactor.fetchImageURLInvoked = false
-//			self.interactor.toogleWatchInvoked = false
-//			self.presenter.handleWatch()
-//			testExpectation.fulfill()
-//		}
-//
-//		wait(for: [testExpectation], timeout: 10)
-//
-//		let testExpectation1 = self.expectation(description: "Should update view")
-//
-//		//Then
-//		DispatchQueue.main.async {
-//			XCTAssertTrue(self.view.showEmptyViewInvoked)
-//			XCTAssertFalse(self.view.showViewModelInvoked)
-//			XCTAssertFalse(self.interactor.fetchImageURLInvoked)
-//			XCTAssertFalse(self.interactor.toogleWatchInvoked)
-//			testExpectation1.fulfill()
-//		}
-//
-//		self.wait(for: [testExpectation1], timeout: 10)
-//	}
 
 	func testShowEpisodeDefaultPresenter_handleWatchFail_notifyRouter() {
 		//Given
 		let show = ShowsProgressMocks.mockWatchedShowEntity()
 		setupPresenter(show)
-		interactor.toogleFailError = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 234, userInfo: nil)
+		let watchedError = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 234, userInfo: nil)
+		interactor.toogleFailError = watchedError
+
+		presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
+		presenter.observeImageState().subscribe(imageObserver).disposed(by: disposeBag)
+
 		presenter.viewDidLoad()
-		view.showViewModelInvoked = false
-		view.showEmptyViewInvoked = false
-		interactor.fetchImageURLInvoked = false
-		interactor.toogleWatchInvoked = false
 
 		//When
-		presenter.handleWatch()
+		let results = scheduler.start { self.presenter.handleWatch().asObservable() }
 
 		//Then
-		let testExpectation = expectation(description: "Should notify router")
-
-		DispatchQueue.main.async {
-			testExpectation.fulfill()
-			XCTAssertTrue(self.interactor.toogleWatchInvoked)
-			XCTAssertTrue(self.router.showErrorInvoked)
+		guard let nextEpisode = show.nextEpisode else {
+			XCTFail("Next Episode can't be nil")
+			return
 		}
 
-		wait(for: [testExpectation], timeout: 1)
+		let expectedHandleWatchedResults = [Recorded.next(200, SyncResult.fail(error: watchedError)),
+																																						Recorded.completed(200)]
+
+		let expectedViewEvents = [Recorded.next(0, ShowEpisodeViewState.loading),
+																												Recorded.next(0, ShowEpisodeViewState.showing(episode: nextEpisode))]
+
+		let expectedImageEvents = [Recorded.next(0, ShowEpisodeImageState.loading),
+																													Recorded.next(0, ShowEpisodeImageState.image(url: URL(string: "path/to/image.png")!))]
+
+		XCTAssertEqual(results.events, expectedHandleWatchedResults)
+		XCTAssertEqual(viewObserver.events, expectedViewEvents)
+		XCTAssertEqual(imageObserver.events, expectedImageEvents)
+
+		XCTAssertTrue(self.interactor.toogleWatchInvoked)
 	}
 
-	func testShowEpisodeDefaultPresenter_handleWatchError_notifyRouter() {
+	func testShowEpisodeDefaultPresenter_handleWatchedWhenThereIsNoEpisode_onlyCompletes() {
 		//Given
-		let show = ShowsProgressMocks.mockWatchedShowEntity()
+		let show = ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode()
 		setupPresenter(show)
-		interactor.error = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 234, userInfo: nil)
+
+		presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
+		presenter.observeImageState().subscribe(imageObserver).disposed(by: disposeBag)
+
 		presenter.viewDidLoad()
-		view.showViewModelInvoked = false
-		view.showEmptyViewInvoked = false
-		interactor.fetchImageURLInvoked = false
-		interactor.toogleWatchInvoked = false
 
 		//When
-		presenter.handleWatch()
+		let results = scheduler.start { self.presenter.handleWatch().asObservable() }
 
 		//Then
-		let testExpectation = expectation(description: "Should notify router")
+		let expectedHandleWatchedResults: [Recorded<Event<SyncResult>>] = [Recorded.completed(200)]
 
-		DispatchQueue.main.async {
-			testExpectation.fulfill()
-			XCTAssertTrue(self.interactor.toogleWatchInvoked)
-			XCTAssertTrue(self.router.showErrorInvoked)
-		}
+		let expectedViewEvents = [Recorded.next(0, ShowEpisodeViewState.loading),
+																												Recorded.next(0, ShowEpisodeViewState.empty)]
 
-		wait(for: [testExpectation], timeout: 1)
+		let expectedImageEvents = [Recorded.next(0, ShowEpisodeImageState.loading),
+																													Recorded.next(0, ShowEpisodeImageState.none)]
+
+		XCTAssertEqual(results.events, expectedHandleWatchedResults)
+		XCTAssertEqual(viewObserver.events, expectedViewEvents)
+		XCTAssertEqual(imageObserver.events, expectedImageEvents)
+		XCTAssertFalse(self.interactor.toogleWatchInvoked)
 	}
 }

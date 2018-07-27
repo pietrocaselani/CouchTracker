@@ -12,8 +12,8 @@ final class TMDBErrorProviderMock: TMDBProvider {
 																																		stubClosure: MoyaProvider.immediatelyStub)
 
 	private func createEpisodesEndpointClosure() -> MoyaProvider<Episodes>.EndpointClosure {
-		let endpointClosure = { (target: Episodes) -> Endpoint<Episodes> in
-			return Endpoint<Episodes>(url: "http://fakeurl.com", sampleResponseClosure: { () -> EndpointSampleResponse in
+		let endpointClosure = { (target: Episodes) -> Endpoint in
+			return Endpoint(url: "http://fakeurl.com", sampleResponseClosure: { () -> EndpointSampleResponse in
 				.networkResponse(404, Data())
 			}, method: Moya.Method.get, task: Task.requestPlain, httpHeaderFields: nil)
 		}

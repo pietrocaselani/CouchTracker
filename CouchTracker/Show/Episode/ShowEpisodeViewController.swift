@@ -21,27 +21,93 @@ final class ShowEpisodeViewController: UIViewController, ShowEpisodeView {
 
 		guard presenter != nil else { fatalError("view loaded without presenter") }
 
+		presenter.observeViewState()
+			.observeOn(MainScheduler.instance)
+			.subscribe(onNext: { [weak self] viewState in
+				self?.handleViewState(viewState)
+			}).disposed(by: disposeBag)
+
+		presenter.observeImageState()
+			.observeOn(MainScheduler.instance)
+			.subscribe(onNext: { [weak self] imageState in
+				self?.handleImageState(imageState)
+			}).disposed(by: disposeBag)
+
 		watchedSwich.isOn = false
 
-		watchedSwich.rx.isOn.changed.asDriver().drive(onNext: { [unowned self] _ in
-			self.presenter.handleWatch()
-		}).disposed(by: disposeBag)
+		watchedSwich.rx.isOn.changed
+			.flatMap { [weak self] _  -> Observable<SyncResult> in
+				guard let strongSelf = self else { return Observable.empty() }
+				return strongSelf.presenter.handleWatch().asObservable()
+			}.observeOn(MainScheduler.instance)
+			.subscribe(onNext: { [weak self] syncResult in
+				self?.handleSyncResult(syncResult)
+			}).disposed(by: disposeBag)
 
 		presenter.viewDidLoad()
 	}
 
-	func showEmptyView() {
+	private func handleSyncResult(_ syncResult: SyncResult) {
+		if case .fail(let error) = syncResult {
+			let alert = UIAlertController.createErrorAlert(message: error.localizedDescription)
+			self.present(alert, animated: true, completion: nil)
+		}
+	}
+
+	private func showEmptyView() {
 		print("Nothing to show here!")
 	}
 
-	func showEpisodeImage(with url: URL) {
+	private func showLoadingView() {
+		print("Loading view...")
+	}
+
+	private func showErrorView(_ error: Error) {
+		print("Error view: \(error.localizedDescription)")
+	}
+
+	func show(episode: EpisodeEntity) {
+		titleLabel.text = episode.title
+		numberLabel.text = "Season \(episode.season) Episode \(episode.number)"
+		dateLabel.text = episode.firstAired?.shortString() ?? "Unknown".localized
+		watchedSwich.isOn = episode.lastWatched != nil
+	}
+
+	private func showDefaultImage() {
+		print("No image for episode")
+	}
+
+	private func showLoadingImage() {
+		print("loading image for episode")
+	}
+
+	private func showEpisodeImage(with url: URL) {
 		screenshotImageView.kf.setImage(with: url)
 	}
 
-	func show(viewModel: ShowEpisodeViewModel) {
-		titleLabel.text = viewModel.title
-		numberLabel.text = viewModel.number
-		dateLabel.text = viewModel.date
-		watchedSwich.isOn = viewModel.watched
+	private func handleViewState(_ viewState: ShowEpisodeViewState) {
+		switch viewState {
+		case .loading:
+			self.showLoadingView()
+		case .empty:
+			self.showEmptyView()
+		case .error(let error):
+			self.showErrorView(error)
+		case .showing(let episode):
+			self.show(episode: episode)
+		}
+	}
+
+	private func handleImageState(_ imageState: ShowEpisodeImageState) {
+		switch imageState {
+		case .none:
+			self.showDefaultImage()
+		case .image(let url):
+			self.showEpisodeImage(with: url)
+		case .loading:
+			self.showLoadingImage()
+		case .error:
+			self.showDefaultImage()
+		}
 	}
 }
