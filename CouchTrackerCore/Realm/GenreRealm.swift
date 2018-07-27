@@ -15,10 +15,6 @@ final class GenreRealm: Object {
 }
 
 extension Genre {
-	convenience init(name: String, slug: String) {
-		self.init(name: name, slug: slug)
-	}
-
 	func toRealm() -> GenreRealm {
 		let entity = GenreRealm()
 
