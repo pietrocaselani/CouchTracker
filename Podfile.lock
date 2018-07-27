@@ -92,7 +92,7 @@ CHECKOUT OPTIONS:
     :commit: 24a7ccad76ad77dad79c210d91aad9c62d9641a9
     :git: https://github.com/pietrocaselani/TMDB-Swift.git
   Trakt:
-    :commit: 1b055b6bab843f07cb96ee6378ad040a9751daa6
+    :commit: cfa8dc14db74f47666336a8ca927034e0970d1f5
     :git: https://github.com/pietrocaselani/Trakt-Swift.git
   TVDB:
     :commit: 7a1b6c4318c45f05f0fd50288da397d90f9c3d62
