@@ -49,3 +49,4 @@ Pods/
 /Index/
 /vendor
 .bundle
+CouchTracker/Utils/Secrets.swift
