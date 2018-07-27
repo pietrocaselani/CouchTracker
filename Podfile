@@ -8,6 +8,7 @@ def common_pods
   pod 'TMDB', :git => 'https://github.com/pietrocaselani/TMDB-Swift.git', :branch => 'master'
   pod 'TVDB', :git => 'https://github.com/pietrocaselani/TVDB-Swift.git', :branch => 'master'
   pod 'RxRealm', '0.7.5'
+  pod 'RealmSwift', '3.7.5'
   pod 'RxSwift', RX_SWIFT_VERSION
 end
 
