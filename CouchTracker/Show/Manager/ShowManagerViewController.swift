@@ -1,59 +1,59 @@
-import UIKit
-import Tabman
-import Pageboy
 import CouchTrackerCore
+import Pageboy
+import Tabman
+import UIKit
 
 final class ShowManagerViewController: TabmanViewController, ShowManagerView {
-	var presenter: ShowManagerPresenter!
-	private var moduleViews: [BaseView]?
-	private var defaultPageIndex = 0
+    var presenter: ShowManagerPresenter!
+    private var moduleViews: [BaseView]?
+    private var defaultPageIndex = 0
 
-	override func awakeFromNib() {
-		super.awakeFromNib()
+    override func awakeFromNib() {
+        super.awakeFromNib()
 
-		self.dataSource = self
-		self.delegate = self
-		self.bar.defaultCTAppearance()
-	}
+        dataSource = self
+        delegate = self
+        bar.defaultCTAppearance()
+    }
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-		guard presenter != nil else {
-			fatalError("View loaded without a prenseter")
-		}
+        guard presenter != nil else {
+            fatalError("View loaded without a prenseter")
+        }
 
-		presenter.viewDidLoad()
-	}
+        presenter.viewDidLoad()
+    }
 
-	func show(pages: [ModulePage], withDefault index: Int) {
-		self.moduleViews = pages.map { $0.page }
-		self.defaultPageIndex = index
-		self.bar.items = pages.map { Item(title: $0.title) }
+    func show(pages: [ModulePage], withDefault index: Int) {
+        moduleViews = pages.map { $0.page }
+        defaultPageIndex = index
+        bar.items = pages.map { Item(title: $0.title) }
 
-		self.reloadPages()
-	}
+        reloadPages()
+    }
 
-	override func pageboyViewController(_ pageboyViewController: PageboyViewController, didScrollToPageAt index: Int,
-																																					direction: PageboyViewController.NavigationDirection, animated: Bool) {
-		super.pageboyViewController(pageboyViewController, didScrollToPageAt: index,
-																														direction: direction, animated: animated)
+    override func pageboyViewController(_ pageboyViewController: PageboyViewController, didScrollToPageAt index: Int,
+                                        direction: PageboyViewController.NavigationDirection, animated: Bool) {
+        super.pageboyViewController(pageboyViewController, didScrollToPageAt: index,
+                                    direction: direction, animated: animated)
 
-		self.presenter.selectTab(index: index)
-	}
+        presenter.selectTab(index: index)
+    }
 }
 
 extension ShowManagerViewController: PageboyViewControllerDataSource {
-	func numberOfViewControllers(in pageboyViewController: PageboyViewController) -> Int {
-		return moduleViews?.count ?? 0
-	}
+    func numberOfViewControllers(in _: PageboyViewController) -> Int {
+        return moduleViews?.count ?? 0
+    }
 
-	func viewController(for pageboyViewController: PageboyViewController,
-																					at index: PageboyViewController.PageIndex) -> UIViewController? {
-		return moduleViews?[index] as? UIViewController
-	}
+    func viewController(for _: PageboyViewController,
+                        at index: PageboyViewController.PageIndex) -> UIViewController? {
+        return moduleViews?[index] as? UIViewController
+    }
 
-	func defaultPage(for pageboyViewController: PageboyViewController) -> PageboyViewController.Page? {
-		return Page.at(index: defaultPageIndex)
-	}
+    func defaultPage(for _: PageboyViewController) -> PageboyViewController.Page? {
+        return Page.at(index: defaultPageIndex)
+    }
 }

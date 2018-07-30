@@ -1,124 +1,124 @@
-import XCTest
-import TraktSwift
 @testable import CouchTrackerCore
+import TraktSwift
+import XCTest
 
 final class SearchResultDefaultPresenterTests: XCTestCase {
-	private var view: SearchResultMocks.View!
-	private var router: SearchResultMocks.Router!
-	private var presenter: SearchResultDefaultPresenter!
+    private var view: SearchResultMocks.View!
+    private var router: SearchResultMocks.Router!
+    private var presenter: SearchResultDefaultPresenter!
 
-	override func setUp() {
-		super.setUp()
-		view = SearchResultMocks.View()
-		router = SearchResultMocks.Router()
-		presenter = SearchResultDefaultPresenter(view: view, router: router)
-	}
+    override func setUp() {
+        super.setUp()
+        view = SearchResultMocks.View()
+        router = SearchResultMocks.Router()
+        presenter = SearchResultDefaultPresenter(view: view, router: router)
+    }
 
-	override func tearDown() {
-		view = nil
-		router = nil
-		presenter = nil
-		super.tearDown()
-	}
+    override func tearDown() {
+        view = nil
+        router = nil
+        presenter = nil
+        super.tearDown()
+    }
 
-	func testSearchResultDefaultPresenter_whenSearchStateChangesToSearching_notifyView() {
-		//When
-		presenter.searchChangedTo(state: .searching)
-		
-		//Then
-		XCTAssertTrue(view.invokedShowSearching)
-		XCTAssertEqual(view.invokedShowSearchingCount, 1)
-	}
+    func testSearchResultDefaultPresenter_whenSearchStateChangesToSearching_notifyView() {
+        // When
+        presenter.searchChangedTo(state: .searching)
 
-	func testSearchResultDefaultPresenter_whenSearchStateChangesToNotSearching_notifyView() {
-		//When
-		presenter.searchChangedTo(state: .notSearching)
+        // Then
+        XCTAssertTrue(view.invokedShowSearching)
+        XCTAssertEqual(view.invokedShowSearchingCount, 1)
+    }
 
-		//Then
-		XCTAssertTrue(view.invokedShowNotSearching)
-		XCTAssertEqual(view.invokedShowNotSearchingCount, 1)
-	}
+    func testSearchResultDefaultPresenter_whenSearchStateChangesToNotSearching_notifyView() {
+        // When
+        presenter.searchChangedTo(state: .notSearching)
 
-	func testSearchResultDefaultPresenter_whenThereIsNoResult_notifyView() {
-		//When
-		presenter.handleEmptySearchResult()
+        // Then
+        XCTAssertTrue(view.invokedShowNotSearching)
+        XCTAssertEqual(view.invokedShowNotSearchingCount, 1)
+    }
 
-		//Then
-		XCTAssertTrue(view.invokedShowEmptyResults)
-		XCTAssertEqual(view.invokedShowEmptyResultsCount, 1)
-	}
+    func testSearchResultDefaultPresenter_whenThereIsNoResult_notifyView() {
+        // When
+        presenter.handleEmptySearchResult()
 
-	func testSearchResultDefaultPresenter_whenThereIsAnError_notifyView() {
-		//Given
-		let errorMessage = "There is no internet connection"
+        // Then
+        XCTAssertTrue(view.invokedShowEmptyResults)
+        XCTAssertEqual(view.invokedShowEmptyResultsCount, 1)
+    }
 
-		//When
-		presenter.handleError(message: errorMessage)
+    func testSearchResultDefaultPresenter_whenThereIsAnError_notifyView() {
+        // Given
+        let errorMessage = "There is no internet connection"
 
-		//Then
-		XCTAssertTrue(view.invokedShowError)
-		XCTAssertEqual(view.invokedShowErrorCount, 1)
-		XCTAssertEqual(view.invokedShowErrorParameters?.message, errorMessage)
-	}
+        // When
+        presenter.handleError(message: errorMessage)
 
-	func testSearchResultDefaultPresenter_whenThereIsShowResults_notifyView() {
-		//Given
-		let searchResults = [SearchResult.mock(type: .show, movie: nil)]
+        // Then
+        XCTAssertTrue(view.invokedShowError)
+        XCTAssertEqual(view.invokedShowErrorCount, 1)
+        XCTAssertEqual(view.invokedShowErrorParameters?.message, errorMessage)
+    }
 
-		//When
-		presenter.handleSearch(results: searchResults)
+    func testSearchResultDefaultPresenter_whenThereIsShowResults_notifyView() {
+        // Given
+        let searchResults = [SearchResult.mock(type: .show, movie: nil)]
 
-		//Then
-		let expectedViewModels = [PosterViewModel(title: "Game of Thrones", type: PosterViewModelType.show(tmdbShowId: 1399))]
+        // When
+        presenter.handleSearch(results: searchResults)
 
-		guard let viewModels = view.invokedShowParameters?.viewModels else {
-			XCTFail("Parameters can't be nil")
-			return
-		}
+        // Then
+        let expectedViewModels = [PosterViewModel(title: "Game of Thrones", type: PosterViewModelType.show(tmdbShowId: 1399))]
 
-		XCTAssertTrue(view.invokedShow)
-		XCTAssertEqual(viewModels, expectedViewModels)
-	}
+        guard let viewModels = view.invokedShowParameters?.viewModels else {
+            XCTFail("Parameters can't be nil")
+            return
+        }
 
-	func testSearchResultsDefaultPresenter_whenThereIsMovieResults_notifyView() {
-		//Given
-		let searchResults = [SearchResult.mock(type: .movie, show: nil)]
+        XCTAssertTrue(view.invokedShow)
+        XCTAssertEqual(viewModels, expectedViewModels)
+    }
 
-		//When
-		presenter.handleSearch(results: searchResults)
+    func testSearchResultsDefaultPresenter_whenThereIsMovieResults_notifyView() {
+        // Given
+        let searchResults = [SearchResult.mock(type: .movie, show: nil)]
 
-		//Then
-		let expectedViewModels = [PosterViewModel(title: "TRON: Legacy", type: PosterViewModelType.movie(tmdbMovieId: 20526))]
+        // When
+        presenter.handleSearch(results: searchResults)
 
-		guard let viewModels = view.invokedShowParameters?.viewModels else {
-			XCTFail("Parameters can't be nil")
-			return
-		}
+        // Then
+        let expectedViewModels = [PosterViewModel(title: "TRON: Legacy", type: PosterViewModelType.movie(tmdbMovieId: 20526))]
 
-		XCTAssertTrue(view.invokedShow)
-		XCTAssertEqual(viewModels, expectedViewModels)
-	}
+        guard let viewModels = view.invokedShowParameters?.viewModels else {
+            XCTFail("Parameters can't be nil")
+            return
+        }
 
-	func testSearchResultsDefaultPresenter_whenThereIsMovieAndShowResults_notifyView() {
-		//Given
-		let showResult = SearchResult.mock(type: .show, movie: nil)
-		let movieResult = SearchResult.mock(type: .movie, show: nil)
-		let searchResults = [showResult, movieResult]
+        XCTAssertTrue(view.invokedShow)
+        XCTAssertEqual(viewModels, expectedViewModels)
+    }
 
-		//When
-		presenter.handleSearch(results: searchResults)
+    func testSearchResultsDefaultPresenter_whenThereIsMovieAndShowResults_notifyView() {
+        // Given
+        let showResult = SearchResult.mock(type: .show, movie: nil)
+        let movieResult = SearchResult.mock(type: .movie, show: nil)
+        let searchResults = [showResult, movieResult]
 
-		//Then
-		let showViewModel = PosterViewModel(title: "Game of Thrones", type: PosterViewModelType.show(tmdbShowId: 1399))
-		let movieViewModel = PosterViewModel(title: "TRON: Legacy", type: PosterViewModelType.movie(tmdbMovieId: 20526))
-		let expectedViewModels = [showViewModel, movieViewModel]
+        // When
+        presenter.handleSearch(results: searchResults)
 
-		guard let viewModels = view.invokedShowParameters?.viewModels else {
-			XCTFail("Parameters can't be nil")
-			return
-		}
+        // Then
+        let showViewModel = PosterViewModel(title: "Game of Thrones", type: PosterViewModelType.show(tmdbShowId: 1399))
+        let movieViewModel = PosterViewModel(title: "TRON: Legacy", type: PosterViewModelType.movie(tmdbMovieId: 20526))
+        let expectedViewModels = [showViewModel, movieViewModel]
 
-		XCTAssertTrue(view.invokedShow)
-		XCTAssertEqual(viewModels, expectedViewModels)
-	}
+        guard let viewModels = view.invokedShowParameters?.viewModels else {
+            XCTFail("Parameters can't be nil")
+            return
+        }
+
+        XCTAssertTrue(view.invokedShow)
+        XCTAssertEqual(viewModels, expectedViewModels)
+    }
 }

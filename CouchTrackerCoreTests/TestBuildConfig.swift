@@ -1,5 +1,5 @@
 import CouchTrackerCore
 
 struct TestBuildConfig: BuildConfig {
-	let debug: Bool = true
+    let debug: Bool = true
 }

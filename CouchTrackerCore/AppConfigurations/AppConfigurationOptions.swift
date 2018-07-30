@@ -1,5 +1,5 @@
 enum AppConfigurationOptions: Int {
-	case connectToTrakt
-	case connectedToTrakt
-	case hideSpecials
+    case connectToTrakt
+    case connectedToTrakt
+    case hideSpecials
 }

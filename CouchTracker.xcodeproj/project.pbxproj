@@ -2120,6 +2120,7 @@
 				4F0F56F9203D5F4C00B86CB8 /* Headers */,
 				4F0F56FA203D5F4C00B86CB8 /* Resources */,
 				4F0F581C203D75FB00B86CB8 /* SwiftLint */,
+				4FAC4A91210F27F60096BCE0 /* SwiftFormat */,
 			);
 			buildRules = (
 			);
@@ -2139,6 +2140,7 @@
 				4F0F5701203D5F4C00B86CB8 /* Frameworks */,
 				4F0F5702203D5F4C00B86CB8 /* Resources */,
 				3F575D4186D1BBC785CBB045 /* [CP] Embed Pods Frameworks */,
+				4FAC4A92210F281D0096BCE0 /* SwiftFormat */,
 			);
 			buildRules = (
 			);
@@ -2202,6 +2204,7 @@
 				6BA4EFF523E57D8DC5A67DEA /* [CP] Embed Pods Frameworks */,
 				6455BA751F45B862000660C6 /* SwiftLint */,
 				6405CA021F549BE90039D6E6 /* Embed Frameworks */,
+				4FAC4A93210F28310096BCE0 /* SwiftFormat */,
 			);
 			buildRules = (
 			);
@@ -2522,6 +2525,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, using from Pods. Please download from https://github.com/realm/SwiftLint\"\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi";
+		};
+		4FAC4A91210F27F60096BCE0 /* SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftFormat;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "swiftformat CouchTrackerCore/\n";
+		};
+		4FAC4A92210F281D0096BCE0 /* SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftFormat;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "swiftformat CouchTrackerCoreTests/\n";
+		};
+		4FAC4A93210F28310096BCE0 /* SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftFormat;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "swiftformat CouchTracker/\n";
 		};
 		6455BA751F45B862000660C6 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -2,25 +2,25 @@ import RxSwift
 import TraktSwift
 
 public protocol ShowOverviewRepository: class {
-	func fetchDetailsOfShow(with identifier: String, extended: Extended) -> Single<Show>
+    func fetchDetailsOfShow(with identifier: String, extended: Extended) -> Single<Show>
 }
 
 public protocol ShowOverviewInteractor: class {
-	init(showIds: ShowIds, repository: ShowOverviewRepository,
-						genreRepository: GenreRepository, imageRepository: ImageRepository)
+    init(showIds: ShowIds, repository: ShowOverviewRepository,
+         genreRepository: GenreRepository, imageRepository: ImageRepository)
 
-	func fetchDetailsOfShow() -> Single<ShowEntity>
-	func fetchImages() -> Maybe<ImagesEntity>
+    func fetchDetailsOfShow() -> Single<ShowEntity>
+    func fetchImages() -> Maybe<ImagesEntity>
 }
 
 public protocol ShowOverviewPresenter: class {
-	init(interactor: ShowOverviewInteractor)
+    init(interactor: ShowOverviewInteractor)
 
-	func viewDidLoad()
-	func observeViewState() -> Observable<ShowOverviewViewState>
-	func observeImagesState() -> Observable<ShowOverviewImagesState>
+    func viewDidLoad()
+    func observeViewState() -> Observable<ShowOverviewViewState>
+    func observeImagesState() -> Observable<ShowOverviewImagesState>
 }
 
 public protocol ShowOverviewView: class {
-	var presenter: ShowOverviewPresenter! { get set }
+    var presenter: ShowOverviewPresenter! { get set }
 }

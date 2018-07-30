@@ -1,11 +1,11 @@
 enum TrendingError: Error {
-	case noConnection(String)
-	case parseError(String)
+    case noConnection(String)
+    case parseError(String)
 
-	var message: String {
-		switch self {
-		case .noConnection(let message), .parseError(let message):
-			return message
-		}
-	}
+    var message: String {
+        switch self {
+        case let .noConnection(message), let .parseError(message):
+            return message
+        }
+    }
 }

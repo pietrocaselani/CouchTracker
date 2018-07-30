@@ -3,82 +3,82 @@ import XCTest
 @testable import CouchTrackerCore
 
 final class MoviesManagerDefaultDataSourceTest: XCTestCase {
-	private var creator: MoviesManagerMocks.ModuleCreator!
-	private var userDefaults: UserDefaults!
-	private var dataSource: MoviesManagerDefaultDataSource!
+    private var creator: MoviesManagerMocks.ModuleCreator!
+    private var userDefaults: UserDefaults!
+    private var dataSource: MoviesManagerDefaultDataSource!
 
-	override func setUp() {
-		super.setUp()
+    override func setUp() {
+        super.setUp()
 
-		creator = MoviesManagerMocks.ModuleCreator()
-		userDefaults = UserDefaults(suiteName: "MoviesManagerDefaultDataSourceTest")
-		dataSource = MoviesManagerDefaultDataSource(creator: creator, userDefaults: userDefaults)
+        creator = MoviesManagerMocks.ModuleCreator()
+        userDefaults = UserDefaults(suiteName: "MoviesManagerDefaultDataSourceTest")
+        dataSource = MoviesManagerDefaultDataSource(creator: creator, userDefaults: userDefaults)
 
-		userDefaults.clear()
-	}
+        userDefaults.clear()
+    }
 
-	override func tearDown() {
-		super.tearDown()
+    override func tearDown() {
+        super.tearDown()
 
-		creator = nil
-		userDefaults = nil
-		dataSource = nil
-	}
+        creator = nil
+        userDefaults = nil
+        dataSource = nil
+    }
 
-	func testMoviesManagerDefaultDataSource_returnsOptionsInRightOrder() {
-		//Given
+    func testMoviesManagerDefaultDataSource_returnsOptionsInRightOrder() {
+        // Given
 
-		//When
-		let options = dataSource.options
+        // When
+        let options = dataSource.options
 
-		//Then
-		let expectedOptions = [MoviesManagerOption.trending, MoviesManagerOption.search]
-		XCTAssertEqual(options, expectedOptions)
-	}
+        // Then
+        let expectedOptions = [MoviesManagerOption.trending, MoviesManagerOption.search]
+        XCTAssertEqual(options, expectedOptions)
+    }
 
-	func testMoviesManagerDefaultDataSource_returnsModulePagesInRightOrder() {
-		//Given
+    func testMoviesManagerDefaultDataSource_returnsModulePagesInRightOrder() {
+        // Given
 
-		//When
-		let pages = dataSource.modulePages
+        // When
+        let pages = dataSource.modulePages
 
-		//Then
-		let trendingPage = ModulePage(page: BaseViewMock(title: "trending"), title: "Trending")
-		let searchPage = ModulePage(page: BaseViewMock(title: "search"), title: "Search")
-		let expectedPages = [trendingPage, searchPage]
-		XCTAssertEqual(pages, expectedPages)
-	}
+        // Then
+        let trendingPage = ModulePage(page: BaseViewMock(title: "trending"), title: "Trending")
+        let searchPage = ModulePage(page: BaseViewMock(title: "search"), title: "Search")
+        let expectedPages = [trendingPage, searchPage]
+        XCTAssertEqual(pages, expectedPages)
+    }
 
-	func testMoviesManagerDefaultDataSource_returnsDefaultModuleIndexWhenAbsent() {
-		//Given
-		XCTAssertNil(userDefaults.object(forKey: "moviesManagerLastTab"))
+    func testMoviesManagerDefaultDataSource_returnsDefaultModuleIndexWhenAbsent() {
+        // Given
+        XCTAssertNil(userDefaults.object(forKey: "moviesManagerLastTab"))
 
-		//When
-		let moduleIndex = dataSource.defaultModuleIndex
+        // When
+        let moduleIndex = dataSource.defaultModuleIndex
 
-		//Then
-		let defaultIndex = 0
-		XCTAssertEqual(moduleIndex, defaultIndex)
-	}
+        // Then
+        let defaultIndex = 0
+        XCTAssertEqual(moduleIndex, defaultIndex)
+    }
 
-	func testMoviesManagerDefaultDataSource_savesDefaultModuleIndex() {
-		//Given
+    func testMoviesManagerDefaultDataSource_savesDefaultModuleIndex() {
+        // Given
 
-		//When
-		dataSource.defaultModuleIndex = 42
+        // When
+        dataSource.defaultModuleIndex = 42
 
-		//Then
-		XCTAssertEqual(userDefaults.integer(forKey: "moviesManagerLastTab"), 42)
-	}
+        // Then
+        XCTAssertEqual(userDefaults.integer(forKey: "moviesManagerLastTab"), 42)
+    }
 
-	func testMoviesManagerDefaultDataSource_returnsSavedValue() {
-		//Given
-		userDefaults.set(92, forKey: "moviesManagerLastTab")
+    func testMoviesManagerDefaultDataSource_returnsSavedValue() {
+        // Given
+        userDefaults.set(92, forKey: "moviesManagerLastTab")
 
-		//When
-		let index = dataSource.defaultModuleIndex
+        // When
+        let index = dataSource.defaultModuleIndex
 
-		//Then
-		XCTAssertEqual(index, 92)
-	}
+        // Then
+        XCTAssertEqual(index, 92)
+    }
 }

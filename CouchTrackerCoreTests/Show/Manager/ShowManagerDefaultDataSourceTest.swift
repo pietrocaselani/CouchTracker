@@ -3,118 +3,118 @@ import XCTest
 @testable import CouchTrackerCore
 
 final class ShowManagerDefaultDataSourceTest: XCTestCase {
-	private var userDefaults: UserDefaults!
-	private var creator: ShowManagerModuleCreator!
+    private var userDefaults: UserDefaults!
+    private var creator: ShowManagerModuleCreator!
 
-	override func setUp() {
-		super.setUp()
+    override func setUp() {
+        super.setUp()
 
-		userDefaults = UserDefaults(suiteName: "ShowManagerDefaultDataSourceTest")
-		creator = ShowManagerMocks.ModuleCreator()
+        userDefaults = UserDefaults(suiteName: "ShowManagerDefaultDataSourceTest")
+        creator = ShowManagerMocks.ModuleCreator()
 
-		userDefaults.clear()
-	}
+        userDefaults.clear()
+    }
 
-	override func tearDown() {
-		creator = nil
-		userDefaults = nil
+    override func tearDown() {
+        creator = nil
+        userDefaults = nil
 
-		super.tearDown()
-	}
+        super.tearDown()
+    }
 
-	func testShowManagerDefaultDataSource_returnsShowTitleWhenPresent() {
-		//Given
-		let show = ShowsProgressMocks.mockWatchedShowEntity()
-		let dataSource = ShowManagerDefaultDataSource(show: show, creator: creator, userDefaults: userDefaults)
+    func testShowManagerDefaultDataSource_returnsShowTitleWhenPresent() {
+        // Given
+        let show = ShowsProgressMocks.mockWatchedShowEntity()
+        let dataSource = ShowManagerDefaultDataSource(show: show, creator: creator, userDefaults: userDefaults)
 
-		//When
-		let title = dataSource.showTitle
+        // When
+        let title = dataSource.showTitle
 
-		//Then
-		XCTAssertEqual(title, "The Americans")
-	}
+        // Then
+        XCTAssertEqual(title, "The Americans")
+    }
 
-	func testShowManagerDefaultDataSource_returnsNilShowTitleWhenAbsent() {
-		//Given
-		let show = ShowsProgressMocks.mockWatchedShowEntity(title: nil)
-		let dataSource = ShowManagerDefaultDataSource(show: show, creator: creator, userDefaults: userDefaults)
+    func testShowManagerDefaultDataSource_returnsNilShowTitleWhenAbsent() {
+        // Given
+        let show = ShowsProgressMocks.mockWatchedShowEntity(title: nil)
+        let dataSource = ShowManagerDefaultDataSource(show: show, creator: creator, userDefaults: userDefaults)
 
-		//When
-		let title = dataSource.showTitle
+        // When
+        let title = dataSource.showTitle
 
-		//Then
-		XCTAssertNil(title)
-	}
+        // Then
+        XCTAssertNil(title)
+    }
 
-	func testShowManagerDefaultDataSource_returnsOptionsInRightOrder() {
-		//Given
-		let show = ShowsProgressMocks.mockWatchedShowEntity()
-		let dataSource = ShowManagerDefaultDataSource(show: show, creator: creator, userDefaults: userDefaults)
+    func testShowManagerDefaultDataSource_returnsOptionsInRightOrder() {
+        // Given
+        let show = ShowsProgressMocks.mockWatchedShowEntity()
+        let dataSource = ShowManagerDefaultDataSource(show: show, creator: creator, userDefaults: userDefaults)
 
-		//When
-		let options = dataSource.options
+        // When
+        let options = dataSource.options
 
-		//Then
-		let expectedOptions = [ShowManagerOption.overview, ShowManagerOption.episode, ShowManagerOption.seasons]
-		XCTAssertEqual(options, expectedOptions)
-	}
+        // Then
+        let expectedOptions = [ShowManagerOption.overview, ShowManagerOption.episode, ShowManagerOption.seasons]
+        XCTAssertEqual(options, expectedOptions)
+    }
 
-	func testShowManagerDefaultDataSource_returnsModulePagesInRightOrder() {
-		//Given
-		let show = ShowsProgressMocks.mockWatchedShowEntity()
-		let dataSource = ShowManagerDefaultDataSource(show: show, creator: creator, userDefaults: userDefaults)
+    func testShowManagerDefaultDataSource_returnsModulePagesInRightOrder() {
+        // Given
+        let show = ShowsProgressMocks.mockWatchedShowEntity()
+        let dataSource = ShowManagerDefaultDataSource(show: show, creator: creator, userDefaults: userDefaults)
 
-		//When
-		let pages = dataSource.modulePages
+        // When
+        let pages = dataSource.modulePages
 
-		//Then
-		let expectedPages = ModulePageMocks.createPages(titles: ["Overview", "Episode", "Seasons"])
-		XCTAssertEqual(pages, expectedPages)
-	}
-	
-	func testShowManagerDefaultDataSource_returnsDefaultModuleIndex_whenAbsent() {
-		//Given
-		let show = ShowsProgressMocks.mockWatchedShowEntity()
-		let dataSource = ShowManagerDefaultDataSource(show: show, creator: creator, userDefaults: userDefaults)
+        // Then
+        let expectedPages = ModulePageMocks.createPages(titles: ["Overview", "Episode", "Seasons"])
+        XCTAssertEqual(pages, expectedPages)
+    }
 
-		XCTAssertNil(userDefaults.object(forKey: "showManagerLastTab"))
+    func testShowManagerDefaultDataSource_returnsDefaultModuleIndex_whenAbsent() {
+        // Given
+        let show = ShowsProgressMocks.mockWatchedShowEntity()
+        let dataSource = ShowManagerDefaultDataSource(show: show, creator: creator, userDefaults: userDefaults)
 
-		//When
-		let moduleIndex = dataSource.defaultModuleIndex
+        XCTAssertNil(userDefaults.object(forKey: "showManagerLastTab"))
 
-		//Then
-		let defaultModuleIndex = 0
-		XCTAssertEqual(moduleIndex, defaultModuleIndex)
-	}
+        // When
+        let moduleIndex = dataSource.defaultModuleIndex
 
-	func testShowManagerDefaultDataSource_returnsDefaultModuleIndexFromUserDefaults() {
-		//Given
-		let show = ShowsProgressMocks.mockWatchedShowEntity()
-		let dataSource = ShowManagerDefaultDataSource(show: show, creator: creator, userDefaults: userDefaults)
+        // Then
+        let defaultModuleIndex = 0
+        XCTAssertEqual(moduleIndex, defaultModuleIndex)
+    }
 
-		userDefaults.set(30, forKey: "showManagerLastTab")
+    func testShowManagerDefaultDataSource_returnsDefaultModuleIndexFromUserDefaults() {
+        // Given
+        let show = ShowsProgressMocks.mockWatchedShowEntity()
+        let dataSource = ShowManagerDefaultDataSource(show: show, creator: creator, userDefaults: userDefaults)
 
-		//When
-		let moduleIndex = dataSource.defaultModuleIndex
+        userDefaults.set(30, forKey: "showManagerLastTab")
 
-		//Then
-		let expectedIndex = 30
-		XCTAssertEqual(moduleIndex, expectedIndex)
-	}
+        // When
+        let moduleIndex = dataSource.defaultModuleIndex
 
-	func testShowManagerDefaultDataSource_updateModuleIndexSavesOnUserDefaults() {
-		//Given
-		let show = ShowsProgressMocks.mockWatchedShowEntity()
-		let dataSource = ShowManagerDefaultDataSource(show: show, creator: creator, userDefaults: userDefaults)
+        // Then
+        let expectedIndex = 30
+        XCTAssertEqual(moduleIndex, expectedIndex)
+    }
 
-		XCTAssertNil(userDefaults.object(forKey: "showManagerLastTab"))
+    func testShowManagerDefaultDataSource_updateModuleIndexSavesOnUserDefaults() {
+        // Given
+        let show = ShowsProgressMocks.mockWatchedShowEntity()
+        let dataSource = ShowManagerDefaultDataSource(show: show, creator: creator, userDefaults: userDefaults)
 
-		//When
-		dataSource.defaultModuleIndex = 7
+        XCTAssertNil(userDefaults.object(forKey: "showManagerLastTab"))
 
-		//Then
-		let expectedIndex = 7
-		let userDefaultsIndex = userDefaults.integer(forKey: "showManagerLastTab")
-		XCTAssertEqual(userDefaultsIndex, expectedIndex)
-	}
+        // When
+        dataSource.defaultModuleIndex = 7
+
+        // Then
+        let expectedIndex = 7
+        let userDefaultsIndex = userDefaults.integer(forKey: "showManagerLastTab")
+        XCTAssertEqual(userDefaultsIndex, expectedIndex)
+    }
 }

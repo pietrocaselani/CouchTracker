@@ -2,14 +2,14 @@ import RxSwift
 import TraktSwift
 
 public final class ShowsProgressMoyaNetwork: ShowsProgressNetwork {
-	private let trakt: TraktProvider
+    private let trakt: TraktProvider
 
-	public init(trakt: TraktProvider) {
-		self.trakt = trakt
-	}
+    public init(trakt: TraktProvider) {
+        self.trakt = trakt
+    }
 
-	public func fetchWatchedShows(extended: Extended) -> Single<[BaseShow]> {
-		let target = Sync.watched(type: .shows, extended: extended)
-		return trakt.sync.rx.request(target).map([BaseShow].self)
-	}
+    public func fetchWatchedShows(extended: Extended) -> Single<[BaseShow]> {
+        let target = Sync.watched(type: .shows, extended: extended)
+        return trakt.sync.rx.request(target).map([BaseShow].self)
+    }
 }

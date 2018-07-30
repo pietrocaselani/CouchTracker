@@ -1,3 +1,3 @@
 public protocol TraktAuthenticationProvider {
-	var isAuthenticated: Bool { get }
+    var isAuthenticated: Bool { get }
 }

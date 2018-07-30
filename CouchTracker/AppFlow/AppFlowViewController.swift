@@ -1,41 +1,41 @@
-import UIKit
 import CouchTrackerCore
+import UIKit
 
 final class AppFlowViewController: UITabBarController, AppFlowView {
-	var presenter: AppFlowPresenter!
+    var presenter: AppFlowPresenter!
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-		guard let presenter = presenter else {
-			Swift.fatalError("view was loaded without a presenter")
-		}
+        guard let presenter = presenter else {
+            Swift.fatalError("view was loaded without a presenter")
+        }
 
-		self.view.backgroundColor = UIColor.ctdarkerBunker
+        view.backgroundColor = UIColor.ctdarkerBunker
 
-		presenter.viewDidLoad()
+        presenter.viewDidLoad()
 
-		self.delegate = self
-	}
+        delegate = self
+    }
 
-	func show(pages: [ModulePage], selectedIndex: Int) {
-		let viewControllers = pages.map { modulePage -> UIViewController in
-			guard let viewController = modulePage.page as? UIViewController else {
-				Swift.fatalError("page should be an instance of UIViewController")
-			}
+    func show(pages: [ModulePage], selectedIndex: Int) {
+        let viewControllers = pages.map { modulePage -> UIViewController in
+            guard let viewController = modulePage.page as? UIViewController else {
+                Swift.fatalError("page should be an instance of UIViewController")
+            }
 
-			viewController.title = modulePage.title
+            viewController.title = modulePage.title
 
-			return viewController
-		}
+            return viewController
+        }
 
-		self.viewControllers = viewControllers
-		self.selectedIndex = selectedIndex
-	}
+        self.viewControllers = viewControllers
+        self.selectedIndex = selectedIndex
+    }
 }
 
 extension AppFlowViewController: UITabBarControllerDelegate {
-	func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-		self.presenter.selectTab(index: self.selectedIndex)
-	}
+    func tabBarController(_: UITabBarController, didSelect _: UIViewController) {
+        presenter.selectTab(index: selectedIndex)
+    }
 }

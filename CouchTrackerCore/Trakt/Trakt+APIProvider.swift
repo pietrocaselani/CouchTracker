@@ -1,10 +1,10 @@
-import TraktSwift
 import Foundation
+import TraktSwift
 
 extension Trakt: TraktProvider {
-	public var oauth: URL? { return self.oauthURL }
+    public var oauth: URL? { return oauthURL }
 }
 
 extension Trakt: TraktAuthenticationProvider {
-	public var isAuthenticated: Bool { return self.hasValidToken }
+    public var isAuthenticated: Bool { return hasValidToken }
 }

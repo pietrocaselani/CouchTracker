@@ -1,37 +1,37 @@
-import TraktSwift
 import CouchTrackerCore
+import TraktSwift
 
 final class MovieDetailsModule {
-	private init() {}
+    private init() {}
 
-	static func setupModule(movieIds: MovieIds) -> BaseView {
-		let trakt = Environment.instance.trakt
-		let tmdb = Environment.instance.tmdb
-		let tvdb = Environment.instance.tvdb
-		let schedulers = Environment.instance.schedulers
-		let appConfigObservable = Environment.instance.appConfigurationsObservable
+    static func setupModule(movieIds: MovieIds) -> BaseView {
+        let trakt = Environment.instance.trakt
+        let tmdb = Environment.instance.tmdb
+        let tvdb = Environment.instance.tvdb
+        let schedulers = Environment.instance.schedulers
+        let appConfigObservable = Environment.instance.appConfigurationsObservable
 
-		let repository = MovieDetailsAPIRepository(traktProvider: trakt, schedulers: schedulers)
-		let genreRepository = TraktGenreRepository(traktProvider: trakt, schedulers: schedulers)
-		let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
-		let imageRespository = ImageCachedRepository(tmdb: tmdb,
-																								tvdb: tvdb,
-																								cofigurationRepository: configurationRepository,
-																								schedulers: schedulers)
+        let repository = MovieDetailsAPIRepository(traktProvider: trakt, schedulers: schedulers)
+        let genreRepository = TraktGenreRepository(traktProvider: trakt, schedulers: schedulers)
+        let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
+        let imageRespository = ImageCachedRepository(tmdb: tmdb,
+                                                     tvdb: tvdb,
+                                                     cofigurationRepository: configurationRepository,
+                                                     schedulers: schedulers)
 
-		let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
-																				imageRepository: imageRespository, movieIds: movieIds)
+        let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
+                                             imageRepository: imageRespository, movieIds: movieIds)
 
-		let viewController = R.storyboard.movieDetails.movieDetailsViewController()
+        let viewController = R.storyboard.movieDetails.movieDetailsViewController()
 
-		guard let view = viewController else {
-			Swift.fatalError("viewController should be an instance of MovieDetailsView")
-		}
+        guard let view = viewController else {
+            Swift.fatalError("viewController should be an instance of MovieDetailsView")
+        }
 
-		let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appConfigObservable)
+        let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appConfigObservable)
 
-		view.presenter = presenter
+        view.presenter = presenter
 
-		return view
-	}
+        return view
+    }
 }
