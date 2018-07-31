@@ -2,31 +2,31 @@ import CouchTrackerCore
 import UIKit
 
 final class TrendingCollectionViewDataSource: NSObject, TrendingDataSource, UICollectionViewDataSource {
-    var viewModels = [PosterViewModel]()
+  var viewModels = [PosterViewModel]()
 
-    private let imageRepository: ImageRepository
+  private let imageRepository: ImageRepository
 
-    init(imageRepository: ImageRepository) {
-        self.imageRepository = imageRepository
+  init(imageRepository: ImageRepository) {
+    self.imageRepository = imageRepository
+  }
+
+  func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
+    return viewModels.count
+  }
+
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let identifier = R.reuseIdentifier.posterCell
+
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) else {
+      Swift.fatalError("Poster cell should not be nil")
     }
 
-    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        return viewModels.count
-    }
+    let viewModel = viewModels[indexPath.row]
+    let interactor = PosterCellService(imageRepository: imageRepository)
+    let presenter = PosterCellDefaultPresenter(view: cell, interactor: interactor, viewModel: viewModel)
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let identifier = R.reuseIdentifier.posterCell
+    cell.presenter = presenter
 
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) else {
-            Swift.fatalError("Poster cell should not be nil")
-        }
-
-        let viewModel = viewModels[indexPath.row]
-        let interactor = PosterCellService(imageRepository: imageRepository)
-        let presenter = PosterCellDefaultPresenter(view: cell, interactor: interactor, viewModel: viewModel)
-
-        cell.presenter = presenter
-
-        return cell
-    }
+    return cell
+  }
 }

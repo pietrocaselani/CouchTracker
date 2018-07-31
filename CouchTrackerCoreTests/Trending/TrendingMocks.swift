@@ -6,162 +6,162 @@ import TraktSwift
 let trendingRepositoryMock = TrendingRepositoryMock(traktProvider: createTraktProviderMock())
 
 final class TrendingViewMock: TrendingView {
-    var appConfigurationsPresentable: AppConfigurationsPresentable!
-    var presenter: TrendingPresenter!
-    var searchView: SearchView!
-    var invokedShowEmptyView = false
+  var appConfigurationsPresentable: AppConfigurationsPresentable!
+  var presenter: TrendingPresenter!
+  var searchView: SearchView!
+  var invokedShowEmptyView = false
 
-    func showEmptyView() {
-        invokedShowEmptyView = true
-    }
+  func showEmptyView() {
+    invokedShowEmptyView = true
+  }
 
-    var invokedShow = false
+  var invokedShow = false
 
-    func showTrendingsView() {
-        invokedShow = true
-    }
+  func showTrendingsView() {
+    invokedShow = true
+  }
 }
 
 final class TrendingRouterMock: TrendingRouter, AppConfigurationsPresentable {
-    var invokedMovieDetails = false
-    var invokedMovieDetailsParameters: (movie: MovieEntity, Void)?
+  var invokedMovieDetails = false
+  var invokedMovieDetailsParameters: (movie: MovieEntity, Void)?
 
-    func showDetails(of movie: MovieEntity) {
-        invokedMovieDetails = true
-        invokedMovieDetailsParameters = (movie, ())
-    }
+  func showDetails(of movie: MovieEntity) {
+    invokedMovieDetails = true
+    invokedMovieDetailsParameters = (movie, ())
+  }
 
-    var invokedShowDetails = false
-    var invokedShowDetailsParameters: (show: ShowEntity, Void)?
+  var invokedShowDetails = false
+  var invokedShowDetailsParameters: (show: ShowEntity, Void)?
 
-    func showDetails(of show: ShowEntity) {
-        invokedShowDetails = true
-        invokedShowDetailsParameters = (show, ())
-    }
+  func showDetails(of show: ShowEntity) {
+    invokedShowDetails = true
+    invokedShowDetailsParameters = (show, ())
+  }
 
-    var invokedShowError = false
-    var invokedShowErrorParameters: (message: String, Void)?
+  var invokedShowError = false
+  var invokedShowErrorParameters: (message: String, Void)?
 
-    func showError(message: String) {
-        invokedShowError = true
-        invokedShowErrorParameters = (message, ())
-    }
+  func showError(message: String) {
+    invokedShowError = true
+    invokedShowErrorParameters = (message, ())
+  }
 
-    var invokedShowAppSettings = false
+  var invokedShowAppSettings = false
 
-    func showAppSettings() {
-        invokedShowAppSettings = true
-    }
+  func showAppSettings() {
+    invokedShowAppSettings = true
+  }
 }
 
 final class EmptyTrendingRepositoryMock: TrendingRepository {
-    func fetchMovies(page _: Int, limit _: Int) -> Observable<[TrendingMovie]> {
-        return Observable.just([TrendingMovie]())
-    }
+  func fetchMovies(page _: Int, limit _: Int) -> Observable<[TrendingMovie]> {
+    return Observable.just([TrendingMovie]())
+  }
 
-    func fetchShows(page _: Int, limit _: Int) -> Observable<[TrendingShow]> {
-        return Observable.just([TrendingShow]())
-    }
+  func fetchShows(page _: Int, limit _: Int) -> Observable<[TrendingShow]> {
+    return Observable.just([TrendingShow]())
+  }
 }
 
 final class ErrorTrendingRepositoryMock: TrendingRepository {
-    private let error: Error
+  private let error: Error
 
-    init(error: Error) {
-        self.error = error
-    }
+  init(error: Error) {
+    self.error = error
+  }
 
-    func fetchMovies(page _: Int, limit _: Int) -> Observable<[TrendingMovie]> {
-        return Observable.error(error)
-    }
+  func fetchMovies(page _: Int, limit _: Int) -> Observable<[TrendingMovie]> {
+    return Observable.error(error)
+  }
 
-    func fetchShows(page _: Int, limit _: Int) -> Observable<[TrendingShow]> {
-        return Observable.error(error)
-    }
+  func fetchShows(page _: Int, limit _: Int) -> Observable<[TrendingShow]> {
+    return Observable.error(error)
+  }
 }
 
 final class TrendingMoviesRepositoryMock: TrendingRepository {
-    private let movies: [TrendingMovie]
+  private let movies: [TrendingMovie]
 
-    init(movies: [TrendingMovie]) {
-        self.movies = movies
-    }
+  init(movies: [TrendingMovie]) {
+    self.movies = movies
+  }
 
-    func fetchMovies(page _: Int, limit: Int) -> Observable<[TrendingMovie]> {
-        return Observable.just(movies).take(limit)
-    }
+  func fetchMovies(page _: Int, limit: Int) -> Observable<[TrendingMovie]> {
+    return Observable.just(movies).take(limit)
+  }
 
-    func fetchShows(page _: Int, limit _: Int) -> Observable<[TrendingShow]> {
-        return Observable.empty()
-    }
+  func fetchShows(page _: Int, limit _: Int) -> Observable<[TrendingShow]> {
+    return Observable.empty()
+  }
 }
 
 final class TrendingShowsRepositoryMock: TrendingRepository {
-    private let shows: [TrendingShow]
+  private let shows: [TrendingShow]
 
-    init(shows: [TrendingShow]) {
-        self.shows = shows
-    }
+  init(shows: [TrendingShow]) {
+    self.shows = shows
+  }
 
-    func fetchMovies(page _: Int, limit _: Int) -> Observable<[TrendingMovie]> {
-        return Observable.empty()
-    }
+  func fetchMovies(page _: Int, limit _: Int) -> Observable<[TrendingMovie]> {
+    return Observable.empty()
+  }
 
-    func fetchShows(page _: Int, limit: Int) -> Observable<[TrendingShow]> {
-        return Observable.just(shows).take(limit)
-    }
+  func fetchShows(page _: Int, limit: Int) -> Observable<[TrendingShow]> {
+    return Observable.just(shows).take(limit)
+  }
 }
 
 final class TrendingRepositoryMock: TrendingRepository {
-    private let traktProvider: TraktProvider
+  private let traktProvider: TraktProvider
 
-    init(traktProvider: TraktProvider) {
-        self.traktProvider = traktProvider
-    }
+  init(traktProvider: TraktProvider) {
+    self.traktProvider = traktProvider
+  }
 
-    func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
-        return traktProvider.movies.rx.request(.trending(page: page, limit: limit, extended: .full))
-            .map([TrendingMovie].self).asObservable()
-    }
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
+    return traktProvider.movies.rx.request(.trending(page: page, limit: limit, extended: .full))
+      .map([TrendingMovie].self).asObservable()
+  }
 
-    func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShow]> {
-        return traktProvider.shows.rx.request(.trending(page: page, limit: limit, extended: .full))
-            .map([TrendingShow].self).asObservable()
-    }
+  func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShow]> {
+    return traktProvider.shows.rx.request(.trending(page: page, limit: limit, extended: .full))
+      .map([TrendingShow].self).asObservable()
+  }
 }
 
 final class TrendingServiceMock: TrendingInteractor {
-    let trendingRepo: TrendingRepository
+  let trendingRepo: TrendingRepository
 
-    init(repository: TrendingRepository) {
-        trendingRepo = repository
+  init(repository: TrendingRepository) {
+    trendingRepo = repository
+  }
+
+  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovieEntity]> {
+    let moviesObservable = trendingRepo.fetchMovies(page: page, limit: limit)
+
+    return moviesObservable.map {
+      $0.map {
+        MovieEntityMapper.entity(for: $0)
+      }
     }
+  }
 
-    func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovieEntity]> {
-        let moviesObservable = trendingRepo.fetchMovies(page: page, limit: limit)
-
-        return moviesObservable.map {
-            $0.map {
-                MovieEntityMapper.entity(for: $0)
-            }
-        }
+  func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShowEntity]> {
+    return trendingRepo.fetchShows(page: page, limit: limit).map {
+      $0.map {
+        ShowEntityMapper.entity(for: $0)
+      }
     }
-
-    func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShowEntity]> {
-        return trendingRepo.fetchShows(page: page, limit: limit).map {
-            $0.map {
-                ShowEntityMapper.entity(for: $0)
-            }
-        }
-    }
+  }
 }
 
 final class TrendingDataSourceMock: TrendingDataSource {
-    var invokedSetViewModels = false
+  var invokedSetViewModels = false
 
-    var viewModels = [PosterViewModel]() {
-        didSet {
-            invokedSetViewModels = true
-        }
+  var viewModels = [PosterViewModel]() {
+    didSet {
+      invokedSetViewModels = true
     }
+  }
 }

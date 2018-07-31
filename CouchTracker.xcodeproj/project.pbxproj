@@ -2165,6 +2165,7 @@
 				4F0F5855203D7A5B00B86CB8 /* Headers */,
 				4F0F5856203D7A5B00B86CB8 /* Resources */,
 				4F0F5864203D7AEB00B86CB8 /* SwiftLint */,
+				4FAC4A94210FDD4B0096BCE0 /* SwiftFormat */,
 			);
 			buildRules = (
 			);
@@ -2542,7 +2543,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swiftformat CouchTrackerCore/\n";
+			shellScript = "sh $SRCROOT/scripts/swiftformat CouchTrackerCore/\n";
 		};
 		4FAC4A92210F281D0096BCE0 /* SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2560,7 +2561,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swiftformat CouchTrackerCoreTests/\n";
+			shellScript = "sh $SRCROOT/scripts/swiftformat CouchTrackerCoreTests/\n";
 		};
 		4FAC4A93210F28310096BCE0 /* SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2578,7 +2579,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swiftformat CouchTracker/\n";
+			shellScript = "sh $SRCROOT/scripts/swiftformat CouchTracker/\n";
+		};
+		4FAC4A94210FDD4B0096BCE0 /* SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftFormat;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh $SRCROOT/scripts/swiftformat CouchTrackerCore/\n";
 		};
 		6455BA751F45B862000660C6 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;

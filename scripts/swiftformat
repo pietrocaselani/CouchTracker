@@ -1,0 +1,3 @@
+#!/bin/bash
+
+swiftformat --indent 2 $1

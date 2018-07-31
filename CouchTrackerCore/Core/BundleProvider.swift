@@ -1,19 +1,19 @@
 import Foundation
 
 final class BundleProvider {
-    static let testing = NSClassFromString("XCTestCase") != nil
+  static let testing = NSClassFromString("XCTestCase") != nil
 
-    private static var testBundle = Bundle(identifier: "io.github.pietrocaselani.CouchTrackerCoreTests")!
+  private static var testBundle = Bundle(identifier: "io.github.pietrocaselani.CouchTrackerCoreTests")!
 
-    private init() {
-        fatalError("No instances for you!")
+  private init() {
+    fatalError("No instances for you!")
+  }
+
+  static var provide: Bundle {
+    guard testing else {
+      return Bundle.main
     }
 
-    static var provide: Bundle {
-        guard testing else {
-            return Bundle.main
-        }
-
-        return testBundle
-    }
+    return testBundle
+  }
 }

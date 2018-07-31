@@ -2,24 +2,24 @@ import CouchTrackerCore
 import UIKit
 
 final class AppFlowModule {
-    private init() {
-        Swift.fatalError("No instances for you!")
+  private init() {
+    Swift.fatalError("No instances for you!")
+  }
+
+  static func setupModule() -> BaseView {
+    guard let appFlowViewController = R.storyboard.appFlow.appFlowViewController() else {
+      fatalError("Can't instantiate AppFlowViewController from Storyboard")
     }
 
-    static func setupModule() -> BaseView {
-        guard let appFlowViewController = R.storyboard.appFlow.appFlowViewController() else {
-            fatalError("Can't instantiate AppFlowViewController from Storyboard")
-        }
+    let repository = AppFlowUserDefaultsRepository(userDefaults: UserDefaults.standard)
+    let interactor = AppFlowService(repository: repository)
+    let dataSource = AppFlowiOSModuleDataSource()
+    let presenter = AppFlowDefaultPresenter(view: appFlowViewController,
+                                            interactor: interactor,
+                                            moduleDataSource: dataSource)
 
-        let repository = AppFlowUserDefaultsRepository(userDefaults: UserDefaults.standard)
-        let interactor = AppFlowService(repository: repository)
-        let dataSource = AppFlowiOSModuleDataSource()
-        let presenter = AppFlowDefaultPresenter(view: appFlowViewController,
-                                                interactor: interactor,
-                                                moduleDataSource: dataSource)
+    appFlowViewController.presenter = presenter
 
-        appFlowViewController.presenter = presenter
-
-        return appFlowViewController
-    }
+    return appFlowViewController
+  }
 }

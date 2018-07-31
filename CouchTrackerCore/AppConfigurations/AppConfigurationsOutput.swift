@@ -1,3 +1,3 @@
 public protocol AppConfigurationsOutput {
-    func newConfiguration(state: AppConfigurationsState)
+  func newConfiguration(state: AppConfigurationsState)
 }

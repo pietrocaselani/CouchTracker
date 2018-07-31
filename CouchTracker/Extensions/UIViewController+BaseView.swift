@@ -1,4 +1,4 @@
-import UIKit
 import CouchTrackerCore
+import UIKit
 
 extension UIViewController: BaseView {}

@@ -5,209 +5,209 @@ import RxTest
 import XCTest
 
 final class ShowEpisodeAPIRepositoryTest: XCTestCase {
-    func testShowEpisodeAPIRepository_addToHistoryWithError_emitsSyncResultFail() {
-        // Given
-        let dataSourceError = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 10, userInfo: nil)
-        let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceErrorMock(error: dataSourceError)
-        let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
-        let schedulers = TestSchedulers()
-        let showProgressRepository = ShowProgressMocks.ShowProgressRepositoryMock()
-        let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+  func testShowEpisodeAPIRepository_addToHistoryWithError_emitsSyncResultFail() {
+    // Given
+    let dataSourceError = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 10, userInfo: nil)
+    let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceErrorMock(error: dataSourceError)
+    let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
+    let schedulers = TestSchedulers()
+    let showProgressRepository = ShowProgressMocks.ShowProgressRepositoryMock()
+    let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
 
-        let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
-                                                  network: network,
-                                                  schedulers: schedulers,
-                                                  showProgressRepository: showProgressRepository,
-                                                  appConfigurationsObservable: appConfigsObservableMock,
-                                                  hideSpecials: true)
+    let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
+                                              network: network,
+                                              schedulers: schedulers,
+                                              showProgressRepository: showProgressRepository,
+                                              appConfigurationsObservable: appConfigsObservableMock,
+                                              hideSpecials: true)
 
-        // When
-        let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
-        let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
+    // When
+    let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
+    let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
 
-        let res = schedulers.start {
-            repository.addToHistory(of: watchedShow, episode: episodeEntity).asObservable()
-        }
-
-        // Then
-        let expectedResult = SyncResult.fail(error: dataSourceError)
-
-        let expectedEvent = next(201, expectedResult)
-
-        expect(res.events).to(containElementSatisfying({ element -> Bool in
-            element == expectedEvent
-        }))
-
-        XCTAssertTrue(network.addToHistoryInvoked)
-        XCTAssertTrue(dataSource.updateWatchedShowInvoked)
-        XCTAssertFalse(network.removeFromHistoryInvoked)
-        XCTAssertTrue(showProgressRepository.fetchShowProgressInvoked)
-        guard let hideSpecial = showProgressRepository.fetchShowProgressParameters?.hideSpecial else {
-            XCTFail()
-            return
-        }
-        XCTAssertTrue(hideSpecial)
+    let res = schedulers.start {
+      repository.addToHistory(of: watchedShow, episode: episodeEntity).asObservable()
     }
 
-    func testShowEpisodeAPIRepository_removeFromHistoryWithError_emitsSyncResultFail() {
-        // Given
-        let dataSourceError = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 10, userInfo: nil)
-        let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceErrorMock(error: dataSourceError)
-        let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
-        let schedulers = TestSchedulers()
-        let showProgressRepository = ShowProgressMocks.ShowProgressRepositoryMock()
-        let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+    // Then
+    let expectedResult = SyncResult.fail(error: dataSourceError)
 
-        let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
-                                                  network: network,
-                                                  schedulers: schedulers,
-                                                  showProgressRepository: showProgressRepository,
-                                                  appConfigurationsObservable: appConfigsObservableMock,
-                                                  hideSpecials: true)
+    let expectedEvent = next(201, expectedResult)
 
-        // When
-        let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
-        let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
+    expect(res.events).to(containElementSatisfying({ element -> Bool in
+      element == expectedEvent
+    }))
 
-        let res = schedulers.start {
-            repository.removeFromHistory(of: watchedShow, episode: episodeEntity).asObservable()
-        }
+    XCTAssertTrue(network.addToHistoryInvoked)
+    XCTAssertTrue(dataSource.updateWatchedShowInvoked)
+    XCTAssertFalse(network.removeFromHistoryInvoked)
+    XCTAssertTrue(showProgressRepository.fetchShowProgressInvoked)
+    guard let hideSpecial = showProgressRepository.fetchShowProgressParameters?.hideSpecial else {
+      XCTFail()
+      return
+    }
+    XCTAssertTrue(hideSpecial)
+  }
 
-        // Then
-        let expectedResult = SyncResult.fail(error: dataSourceError)
-        let expectedEvent = next(201, expectedResult)
+  func testShowEpisodeAPIRepository_removeFromHistoryWithError_emitsSyncResultFail() {
+    // Given
+    let dataSourceError = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 10, userInfo: nil)
+    let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceErrorMock(error: dataSourceError)
+    let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
+    let schedulers = TestSchedulers()
+    let showProgressRepository = ShowProgressMocks.ShowProgressRepositoryMock()
+    let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
 
-        expect(res.events).to(containElementSatisfying({ element -> Bool in
-            element == expectedEvent
-        }))
+    let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
+                                              network: network,
+                                              schedulers: schedulers,
+                                              showProgressRepository: showProgressRepository,
+                                              appConfigurationsObservable: appConfigsObservableMock,
+                                              hideSpecials: true)
 
-        XCTAssertTrue(network.removeFromHistoryInvoked)
-        XCTAssertTrue(dataSource.updateWatchedShowInvoked)
-        XCTAssertFalse(network.addToHistoryInvoked)
-        XCTAssertTrue(showProgressRepository.fetchShowProgressInvoked)
-        guard let hideSpecial = showProgressRepository.fetchShowProgressParameters?.hideSpecial else {
-            XCTFail()
-            return
-        }
-        XCTAssertTrue(hideSpecial)
+    // When
+    let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
+    let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
+
+    let res = schedulers.start {
+      repository.removeFromHistory(of: watchedShow, episode: episodeEntity).asObservable()
     }
 
-    func testShowEpisodeAPIRepository_removeFromHistoryWithErrorChangingAppStateHideSpecials_requestShowProgressHideSpecialFalse() {
-        // Given
-        let dataSourceError = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 10, userInfo: nil)
-        let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceErrorMock(error: dataSourceError)
-        let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
-        let schedulers = TestSchedulers()
-        let showProgressRepository = ShowProgressMocks.ShowProgressRepositoryMock()
-        let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+    // Then
+    let expectedResult = SyncResult.fail(error: dataSourceError)
+    let expectedEvent = next(201, expectedResult)
 
-        let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
-                                                  network: network,
-                                                  schedulers: schedulers,
-                                                  showProgressRepository: showProgressRepository,
-                                                  appConfigurationsObservable: appConfigsObservableMock,
-                                                  hideSpecials: true)
+    expect(res.events).to(containElementSatisfying({ element -> Bool in
+      element == expectedEvent
+    }))
 
-        appConfigsObservableMock.change(state: AppConfigurationsState(loginState: .notLogged, hideSpecials: false))
+    XCTAssertTrue(network.removeFromHistoryInvoked)
+    XCTAssertTrue(dataSource.updateWatchedShowInvoked)
+    XCTAssertFalse(network.addToHistoryInvoked)
+    XCTAssertTrue(showProgressRepository.fetchShowProgressInvoked)
+    guard let hideSpecial = showProgressRepository.fetchShowProgressParameters?.hideSpecial else {
+      XCTFail()
+      return
+    }
+    XCTAssertTrue(hideSpecial)
+  }
 
-        // When
-        let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
-        let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
+  func testShowEpisodeAPIRepository_removeFromHistoryWithErrorChangingAppStateHideSpecials_requestShowProgressHideSpecialFalse() {
+    // Given
+    let dataSourceError = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 10, userInfo: nil)
+    let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceErrorMock(error: dataSourceError)
+    let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
+    let schedulers = TestSchedulers()
+    let showProgressRepository = ShowProgressMocks.ShowProgressRepositoryMock()
+    let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
 
-        _ = schedulers.start {
-            repository.removeFromHistory(of: watchedShow, episode: episodeEntity).asObservable()
-        }
+    let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
+                                              network: network,
+                                              schedulers: schedulers,
+                                              showProgressRepository: showProgressRepository,
+                                              appConfigurationsObservable: appConfigsObservableMock,
+                                              hideSpecials: true)
 
-        // Then
-        XCTAssertTrue(showProgressRepository.fetchShowProgressInvoked)
-        guard let hideSpecial = showProgressRepository.fetchShowProgressParameters?.hideSpecial else {
-            XCTFail()
-            return
-        }
-        XCTAssertFalse(hideSpecial)
+    appConfigsObservableMock.change(state: AppConfigurationsState(loginState: .notLogged, hideSpecials: false))
+
+    // When
+    let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
+    let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
+
+    _ = schedulers.start {
+      repository.removeFromHistory(of: watchedShow, episode: episodeEntity).asObservable()
     }
 
-    func testShowEpisodeAPIRepository_addToHistorSuccess_emitsSyncResultWithShow() {
-        // Given
-        let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceMock()
-        let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
-        let schedulers = TestSchedulers()
-        let showProgressRepository = ShowProgressMocks.ShowProgressRepositoryMock()
-        let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+    // Then
+    XCTAssertTrue(showProgressRepository.fetchShowProgressInvoked)
+    guard let hideSpecial = showProgressRepository.fetchShowProgressParameters?.hideSpecial else {
+      XCTFail()
+      return
+    }
+    XCTAssertFalse(hideSpecial)
+  }
 
-        let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
-                                                  network: network,
-                                                  schedulers: schedulers,
-                                                  showProgressRepository: showProgressRepository,
-                                                  appConfigurationsObservable: appConfigsObservableMock,
-                                                  hideSpecials: true)
+  func testShowEpisodeAPIRepository_addToHistorSuccess_emitsSyncResultWithShow() {
+    // Given
+    let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceMock()
+    let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
+    let schedulers = TestSchedulers()
+    let showProgressRepository = ShowProgressMocks.ShowProgressRepositoryMock()
+    let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
 
-        // When
-        let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
-        let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
+    let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
+                                              network: network,
+                                              schedulers: schedulers,
+                                              showProgressRepository: showProgressRepository,
+                                              appConfigurationsObservable: appConfigsObservableMock,
+                                              hideSpecials: true)
 
-        let res = schedulers.start {
-            repository.addToHistory(of: watchedShow, episode: episodeEntity).asObservable()
-        }
+    // When
+    let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
+    let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
 
-        // Then
-        let expectedResult = SyncResult.success(show: ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
-        let expectedEvent = next(201, expectedResult)
-
-        expect(res.events).to(containElementSatisfying({ element -> Bool in
-            element == expectedEvent
-        }))
-
-        XCTAssertTrue(network.addToHistoryInvoked)
-        XCTAssertTrue(dataSource.updateWatchedShowInvoked)
-        XCTAssertFalse(network.removeFromHistoryInvoked)
-        XCTAssertTrue(showProgressRepository.fetchShowProgressInvoked)
-        guard let hideSpecial = showProgressRepository.fetchShowProgressParameters?.hideSpecial else {
-            XCTFail()
-            return
-        }
-        XCTAssertTrue(hideSpecial)
+    let res = schedulers.start {
+      repository.addToHistory(of: watchedShow, episode: episodeEntity).asObservable()
     }
 
-    func testShowEpisodeAPIRepository_removeFromHistorSuccess_emitsSyncResultWithShow() {
-        // Given
-        let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceMock()
-        let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
-        let schedulers = TestSchedulers()
-        let showProgressRepository = ShowProgressMocks.ShowProgressRepositoryMock()
-        let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+    // Then
+    let expectedResult = SyncResult.success(show: ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
+    let expectedEvent = next(201, expectedResult)
 
-        let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
-                                                  network: network,
-                                                  schedulers: schedulers,
-                                                  showProgressRepository: showProgressRepository,
-                                                  appConfigurationsObservable: appConfigsObservableMock,
-                                                  hideSpecials: true)
+    expect(res.events).to(containElementSatisfying({ element -> Bool in
+      element == expectedEvent
+    }))
 
-        // When
-        let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
-        let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
-
-        let res = schedulers.start {
-            repository.removeFromHistory(of: watchedShow, episode: episodeEntity).asObservable()
-        }
-
-        // Then
-        let expectedResult = SyncResult.success(show: ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
-        let expectedEvent = next(201, expectedResult)
-
-        expect(res.events).to(containElementSatisfying({ element -> Bool in
-            element == expectedEvent
-        }))
-
-        XCTAssertFalse(network.addToHistoryInvoked)
-        XCTAssertTrue(dataSource.updateWatchedShowInvoked)
-        XCTAssertTrue(network.removeFromHistoryInvoked)
-        XCTAssertTrue(showProgressRepository.fetchShowProgressInvoked)
-        guard let hideSpecial = showProgressRepository.fetchShowProgressParameters?.hideSpecial else {
-            XCTFail()
-            return
-        }
-        XCTAssertTrue(hideSpecial)
+    XCTAssertTrue(network.addToHistoryInvoked)
+    XCTAssertTrue(dataSource.updateWatchedShowInvoked)
+    XCTAssertFalse(network.removeFromHistoryInvoked)
+    XCTAssertTrue(showProgressRepository.fetchShowProgressInvoked)
+    guard let hideSpecial = showProgressRepository.fetchShowProgressParameters?.hideSpecial else {
+      XCTFail()
+      return
     }
+    XCTAssertTrue(hideSpecial)
+  }
+
+  func testShowEpisodeAPIRepository_removeFromHistorSuccess_emitsSyncResultWithShow() {
+    // Given
+    let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceMock()
+    let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
+    let schedulers = TestSchedulers()
+    let showProgressRepository = ShowProgressMocks.ShowProgressRepositoryMock()
+    let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+
+    let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
+                                              network: network,
+                                              schedulers: schedulers,
+                                              showProgressRepository: showProgressRepository,
+                                              appConfigurationsObservable: appConfigsObservableMock,
+                                              hideSpecials: true)
+
+    // When
+    let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
+    let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
+
+    let res = schedulers.start {
+      repository.removeFromHistory(of: watchedShow, episode: episodeEntity).asObservable()
+    }
+
+    // Then
+    let expectedResult = SyncResult.success(show: ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
+    let expectedEvent = next(201, expectedResult)
+
+    expect(res.events).to(containElementSatisfying({ element -> Bool in
+      element == expectedEvent
+    }))
+
+    XCTAssertFalse(network.addToHistoryInvoked)
+    XCTAssertTrue(dataSource.updateWatchedShowInvoked)
+    XCTAssertTrue(network.removeFromHistoryInvoked)
+    XCTAssertTrue(showProgressRepository.fetchShowProgressInvoked)
+    guard let hideSpecial = showProgressRepository.fetchShowProgressParameters?.hideSpecial else {
+      XCTFail()
+      return
+    }
+    XCTAssertTrue(hideSpecial)
+  }
 }

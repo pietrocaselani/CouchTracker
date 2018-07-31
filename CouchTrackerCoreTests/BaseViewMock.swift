@@ -1,9 +1,9 @@
 @testable import CouchTrackerCore
 
 final class BaseViewMock: BaseView {
-    let title: String
+  let title: String
 
-    init(title: String = "") {
-        self.title = title
-    }
+  init(title: String = "") {
+    self.title = title
+  }
 }

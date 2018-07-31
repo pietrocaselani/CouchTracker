@@ -1,3 +1,3 @@
 public protocol BuildConfig {
-    var debug: Bool { get }
+  var debug: Bool { get }
 }
