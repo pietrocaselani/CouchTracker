@@ -13,11 +13,11 @@ PODS:
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
-  - Realm (3.7.5):
-    - Realm/Headers (= 3.7.5)
-  - Realm/Headers (3.7.5)
-  - RealmSwift (3.7.5):
-    - Realm (= 3.7.5)
+  - Realm (3.7.6):
+    - Realm/Headers (= 3.7.6)
+  - Realm/Headers (3.7.6)
+  - RealmSwift (3.7.6):
+    - Realm (= 3.7.6)
   - Result (3.2.4)
   - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
@@ -45,7 +45,7 @@ DEPENDENCIES:
   - Kingfisher (= 4.2.0)
   - Nimble (= 7.1.1)
   - R.swift (= 4.0.0)
-  - RealmSwift (= 3.7.5)
+  - RealmSwift (= 3.7.6)
   - RxCocoa (= 4.2.0)
   - RxRealm (= 0.7.5)
   - RxSwift (= 4.2.0)
@@ -107,8 +107,8 @@ SPEC CHECKSUMS:
   Pageboy: 502560f49b0357eaf8a3b6075e4cab29505079a3
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
-  Realm: c286caf4dbf346ce24aad49ca76c7ce622d4a082
-  RealmSwift: 2a9281e37d6de55f66f76254d49d28aeb1b729e4
+  Realm: 9eaecad54712d6246d08ba34c10f354e4715d7d3
+  RealmSwift: 1fe08b4ebaeeaacf17f9ba0343f7b25c9fc31fa6
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxRealm: a6c6c0a07cb61f34209969ca6657734edfdfff30
@@ -120,6 +120,6 @@ SPEC CHECKSUMS:
   Trakt: abaf4e90f4b429cbaed82747925c29dfc7ab283d
   TVDB: e6298955678c483ae6993beed16d27bd395a265a
 
-PODFILE CHECKSUM: e53dc39abd47c35c5dfa0db0377db5c72032f89e
+PODFILE CHECKSUM: af407996009f67a2759ff735775c6939b4dfe435
 
 COCOAPODS: 1.5.3
