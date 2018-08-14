@@ -11,7 +11,7 @@ Keep track of your favorite movies and tv shows on your iPhone
 
 Run the following commands
 
-* `cd CouchTracker && bundle install && bundle exec pod install`
+* `cd CouchTracker && sh setup.sh && bundle exec pod install`
 
 * `Open CouchTracker.xcworkspace`
 
