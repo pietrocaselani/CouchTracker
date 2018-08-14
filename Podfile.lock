@@ -53,7 +53,7 @@ DEPENDENCIES:
   - SwiftLint (= 0.25.1)
   - Tabman (= 1.4.0)
   - TMDB (from `https://github.com/pietrocaselani/TMDB-Swift.git`, branch `master`)
-  - Trakt (from `https://github.com/pietrocaselani/Trakt-Swift.git`, branch `master`)
+  - Trakt (from `../Swift/Trakt-Swift`)
   - TVDB (from `https://github.com/pietrocaselani/TVDB-Swift.git`, branch `master`)
 
 SPEC REPOS:
@@ -81,8 +81,7 @@ EXTERNAL SOURCES:
     :branch: master
     :git: https://github.com/pietrocaselani/TMDB-Swift.git
   Trakt:
-    :branch: master
-    :git: https://github.com/pietrocaselani/Trakt-Swift.git
+    :path: "../Swift/Trakt-Swift"
   TVDB:
     :branch: master
     :git: https://github.com/pietrocaselani/TVDB-Swift.git
@@ -91,9 +90,6 @@ CHECKOUT OPTIONS:
   TMDB:
     :commit: 24a7ccad76ad77dad79c210d91aad9c62d9641a9
     :git: https://github.com/pietrocaselani/TMDB-Swift.git
-  Trakt:
-    :commit: cfa8dc14db74f47666336a8ca927034e0970d1f5
-    :git: https://github.com/pietrocaselani/Trakt-Swift.git
   TVDB:
     :commit: 7a1b6c4318c45f05f0fd50288da397d90f9c3d62
     :git: https://github.com/pietrocaselani/TVDB-Swift.git
@@ -117,9 +113,9 @@ SPEC CHECKSUMS:
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
   Tabman: 348ff2d3fc88587ef60bae5bce6698a8e1984cc2
   TMDB: 1537866b145a07c4175ea8901862858145a5e318
-  Trakt: abaf4e90f4b429cbaed82747925c29dfc7ab283d
+  Trakt: b0eaa5ddc17a73b8364c8dfa7aff50d2ed4fe5aa
   TVDB: e6298955678c483ae6993beed16d27bd395a265a
 
-PODFILE CHECKSUM: af407996009f67a2759ff735775c6939b4dfe435
+PODFILE CHECKSUM: 0aaa4707d7d19b2df48c76fe233076c144ac72a2
 
 COCOAPODS: 1.5.3

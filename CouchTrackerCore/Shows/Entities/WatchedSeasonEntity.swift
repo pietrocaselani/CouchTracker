@@ -2,6 +2,7 @@ import TraktSwift
 
 public struct WatchedSeasonEntity: Hashable {
   public let showIds: ShowIds
+  public let seasonIds: SeasonIds
   public let number: Int
   public let aired: Int?
   public let completed: Int?
@@ -9,6 +10,7 @@ public struct WatchedSeasonEntity: Hashable {
 
   public var hashValue: Int {
     var hash = showIds.hashValue
+    hash ^= seasonIds.hashValue
     hash ^= number.hashValue
     aired.run { hash ^= $0.hashValue }
     completed.run { hash ^= $0.hashValue }

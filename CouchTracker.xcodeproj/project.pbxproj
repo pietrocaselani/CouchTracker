@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A6F4EA1C9BEE7D84582F823 /* Pods_CouchTrackerCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD1D9804ED76CB89A443722 /* Pods_CouchTrackerCoreTests.framework */; };
-		1CF0D4AEF531F0F34FFBA1FB /* Pods_CouchTrackerCore_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5CC049881D7DBD7F196037 /* Pods_CouchTrackerCore_iOS.framework */; };
-		390C0066CEC13C51CECC6570 /* Pods_CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A952A436F826C59EA3CB3028 /* Pods_CouchTrackerCore.framework */; };
+		037B1B659EFB63FBAB6F2AB5 /* Pods_CouchTrackerCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C81CF20C8EA291D750ADACE /* Pods_CouchTrackerCoreTests.framework */; };
 		392D91732CA7FDA4E71A3230 /* trakt_users_settings_invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 392D9C154DB74E65A233F9C3 /* trakt_users_settings_invalid.json */; };
 		4F09A6FF207FD9DB00E0A64C /* SearchResultMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09A6FE207FD9DB00E0A64C /* SearchResultMock.swift */; };
 		4F0F5705203D5F4C00B86CB8 /* CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F56FC203D5F4C00B86CB8 /* CouchTrackerCore.framework */; };
@@ -443,6 +441,10 @@
 		4F9CE319205B1A080000CCD4 /* PosterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9CE318205B1A080000CCD4 /* PosterCell.xib */; };
 		4FA9B5EE209E6F1C00E99D59 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64BE63231F4F692B002E55EA /* Localizable.strings */; };
 		4FAA2543205693BE0006735A /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAA2542205693BE0006735A /* NoCacheMoyaPlugin.swift */; };
+		4FAAE3ED2122E2EA002BC040 /* ShowSeasonsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAE3EC2122E2EA002BC040 /* ShowSeasonsRepository.swift */; };
+		4FAAE3EE2122E2EA002BC040 /* ShowSeasonsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAE3EC2122E2EA002BC040 /* ShowSeasonsRepository.swift */; };
+		4FAAE3F02122E3B0002BC040 /* ShowSeasonsAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAE3EF2122E3B0002BC040 /* ShowSeasonsAPIRepository.swift */; };
+		4FAAE3F12122E3B0002BC040 /* ShowSeasonsAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAE3EF2122E3B0002BC040 /* ShowSeasonsAPIRepository.swift */; };
 		4FAC751B20509E2F00266930 /* ShowManagerDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAC751A20509E2F00266930 /* ShowManagerDefaultDataSource.swift */; };
 		4FAC751C20509E2F00266930 /* ShowManagerDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAC751A20509E2F00266930 /* ShowManagerDefaultDataSource.swift */; };
 		4FC97A1F203F163300C2B924 /* ShowProgressCellDefaultPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC97A1E203F163300C2B924 /* ShowProgressCellDefaultPresenterTest.swift */; };
@@ -471,6 +473,7 @@
 		4FFA6B2320EB1984008E0B78 /* ShowOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFA6B1F20EB1983008E0B78 /* ShowOverview.storyboard */; };
 		4FFA6B2520EB1984008E0B78 /* ShowOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFA6B2120EB1983008E0B78 /* ShowOverviewViewController.swift */; };
 		4FFA6B2620EB1984008E0B78 /* ShowOverviewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFA6B2220EB1983008E0B78 /* ShowOverviewModule.swift */; };
+		5CF9C604B2D557B254CBF0B1 /* Pods_CouchTrackerCore_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC3B67169894ACEFB3998C8 /* Pods_CouchTrackerCore_iOS.framework */; };
 		640373111FABA80E005023D5 /* trakt_movies_trending.json in Resources */ = {isa = PBXBuildFile; fileRef = 640373101FABA80E005023D5 /* trakt_movies_trending.json */; };
 		640373131FABA8CD005023D5 /* trakt_movies_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 640373121FABA8CD005023D5 /* trakt_movies_summary.json */; };
 		6406BF031F4DC41F004661C4 /* MovieDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6406BF001F4DC41F004661C4 /* MovieDetails.storyboard */; };
@@ -501,6 +504,8 @@
 		64CC08911F7174F5004D164A /* ShowsManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC08901F7174F5004D164A /* ShowsManager.storyboard */; };
 		64CC08931F717597004D164A /* AppFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC08921F717597004D164A /* AppFlow.storyboard */; };
 		64D491591F6FE5D200EA0C80 /* AppConfigurations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D491581F6FE5D200EA0C80 /* AppConfigurations.storyboard */; };
+		7F56127439D6E9004952D704 /* Pods_CouchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD28A62B2A818658ECA0D22E /* Pods_CouchTracker.framework */; };
+		814105490AFC3A79252D1EB7 /* Pods_CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1448084EA5E5433EFA20D8B9 /* Pods_CouchTrackerCore.framework */; };
 		827BCD3D20EFF3F60080B242 /* ShowOverviewViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */; };
 		827BCD3E20EFF3F60080B242 /* ShowOverviewViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */; };
 		827BCD4020EFF5C30080B242 /* ShowOverviewImagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BCD3F20EFF5C30080B242 /* ShowOverviewImagesState.swift */; };
@@ -508,7 +513,6 @@
 		DF30110BDD6DE3CD2E358CB4 /* MoviesManagerMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32DD5EA6CF4B9E5350531C /* MoviesManagerMocks.swift */; };
 		DF3731C24B5C60D69EB3571C /* MoviesManagerDefaultDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E4B47D06AF91EF740E598 /* MoviesManagerDefaultDataSourceTest.swift */; };
 		DF3797479EC01964EA326A67 /* ShowManagerDefaultPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3675592013A20171297DD1 /* ShowManagerDefaultPresenterTest.swift */; };
-		F23089BF675566CBB1950BC8 /* Pods_CouchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FA5E5D147F9088F5D88235F /* Pods_CouchTracker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -564,9 +568,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1448084EA5E5433EFA20D8B9 /* Pods_CouchTrackerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D8384700ADF9873D8688801 /* Pods-CouchTrackerCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerCore/Pods-CouchTrackerCore.debug.xcconfig"; sourceTree = "<group>"; };
-		2BD1D9804ED76CB89A443722 /* Pods_CouchTrackerCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C5CC049881D7DBD7F196037 /* Pods_CouchTrackerCore_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerCore_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		392D91617733B7EB5EBA114A /* TraktEntitiesMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraktEntitiesMock.swift; sourceTree = "<group>"; };
 		392D92AFB8979ABE5F428209 /* TMDBErrorProviderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBErrorProviderMock.swift; sourceTree = "<group>"; };
 		392D92E09E0D2FA6A0EB4810 /* ShowsProgressRealmDataSourceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowsProgressRealmDataSourceTest.swift; sourceTree = "<group>"; };
@@ -587,6 +590,7 @@
 		392D9F587912BD02D318BCD6 /* EpisodeImageInputMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeImageInputMock.swift; sourceTree = "<group>"; };
 		39365FEFFC65836EDF9F6E8C /* Pods-CouchTrackerCoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerCoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerCoreTests/Pods-CouchTrackerCoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3C835172215EB21E106EE41B /* Pods-CouchTrackerCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerCore/Pods-CouchTrackerCore.release.xcconfig"; sourceTree = "<group>"; };
+		4C81CF20C8EA291D750ADACE /* Pods_CouchTrackerCoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerCoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F09A6FE207FD9DB00E0A64C /* SearchResultMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultMock.swift; sourceTree = "<group>"; };
 		4F0F56FC203D5F4C00B86CB8 /* CouchTrackerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CouchTrackerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F0F56FE203D5F4C00B86CB8 /* CouchTrackerCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouchTrackerCore.h; sourceTree = "<group>"; };
@@ -674,6 +678,8 @@
 		4FA0C76120326DBA008656B7 /* AppConfigurationsStoreTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsStoreTest.swift; sourceTree = "<group>"; };
 		4FA9B5F0209E749800E99D59 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4FAA2542205693BE0006735A /* NoCacheMoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCacheMoyaPlugin.swift; sourceTree = "<group>"; };
+		4FAAE3EC2122E2EA002BC040 /* ShowSeasonsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSeasonsRepository.swift; sourceTree = "<group>"; };
+		4FAAE3EF2122E3B0002BC040 /* ShowSeasonsAPIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSeasonsAPIRepository.swift; sourceTree = "<group>"; };
 		4FAC751A20509E2F00266930 /* ShowManagerDefaultDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManagerDefaultDataSource.swift; sourceTree = "<group>"; };
 		4FC97A1E203F163300C2B924 /* ShowProgressCellDefaultPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellDefaultPresenterTest.swift; sourceTree = "<group>"; };
 		4FC97A20203F166400C2B924 /* ShowProgressCellMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellMocks.swift; sourceTree = "<group>"; };
@@ -698,7 +704,6 @@
 		4FFA6B1F20EB1983008E0B78 /* ShowOverview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShowOverview.storyboard; sourceTree = "<group>"; };
 		4FFA6B2120EB1983008E0B78 /* ShowOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowOverviewViewController.swift; sourceTree = "<group>"; };
 		4FFA6B2220EB1983008E0B78 /* ShowOverviewModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowOverviewModule.swift; sourceTree = "<group>"; };
-		5FA5E5D147F9088F5D88235F /* Pods_CouchTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		640330421F67FEBA001CCEDB /* ImagesViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModelMapper.swift; sourceTree = "<group>"; };
 		640373101FABA80E005023D5 /* trakt_movies_trending.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_movies_trending.json; sourceTree = "<group>"; };
 		640373121FABA8CD005023D5 /* trakt_movies_summary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_movies_summary.json; sourceTree = "<group>"; };
@@ -929,12 +934,13 @@
 		80B871CE6441D89664DCB479 /* Pods-CouchTrackerCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerCoreTests/Pods-CouchTrackerCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOverviewViewState.swift; sourceTree = "<group>"; };
 		827BCD3F20EFF5C30080B242 /* ShowOverviewImagesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOverviewImagesState.swift; sourceTree = "<group>"; };
-		A952A436F826C59EA3CB3028 /* Pods_CouchTrackerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1928DD97DF5EC94CEB6E55D /* Pods-CouchTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker.release.xcconfig"; sourceTree = "<group>"; };
 		DF32DD5EA6CF4B9E5350531C /* MoviesManagerMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesManagerMocks.swift; sourceTree = "<group>"; };
 		DF3675592013A20171297DD1 /* ShowManagerDefaultPresenterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowManagerDefaultPresenterTest.swift; sourceTree = "<group>"; };
 		DF3E4B47D06AF91EF740E598 /* MoviesManagerDefaultDataSourceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesManagerDefaultDataSourceTest.swift; sourceTree = "<group>"; };
 		EAC4758F955CE7FB43AA4A2B /* Pods-CouchTrackerCore-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerCore-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerCore-iOS/Pods-CouchTrackerCore-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		FBC3B67169894ACEFB3998C8 /* Pods_CouchTrackerCore_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerCore_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD28A62B2A818658ECA0D22E /* Pods_CouchTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -942,7 +948,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				390C0066CEC13C51CECC6570 /* Pods_CouchTrackerCore.framework in Frameworks */,
+				814105490AFC3A79252D1EB7 /* Pods_CouchTrackerCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -951,7 +957,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F0F5705203D5F4C00B86CB8 /* CouchTrackerCore.framework in Frameworks */,
-				0A6F4EA1C9BEE7D84582F823 /* Pods_CouchTrackerCoreTests.framework in Frameworks */,
+				037B1B659EFB63FBAB6F2AB5 /* Pods_CouchTrackerCoreTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -959,7 +965,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CF0D4AEF531F0F34FFBA1FB /* Pods_CouchTrackerCore_iOS.framework in Frameworks */,
+				5CF9C604B2D557B254CBF0B1 /* Pods_CouchTrackerCore_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -976,7 +982,7 @@
 			files = (
 				6454D1811F704AC0008C4E5F /* WebKit.framework in Frameworks */,
 				4F2F0FD22040093700A76E95 /* CouchTrackerCore.framework in Frameworks */,
-				F23089BF675566CBB1950BC8 /* Pods_CouchTracker.framework in Frameworks */,
+				7F56127439D6E9004952D704 /* Pods_CouchTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1001,10 +1007,10 @@
 			isa = PBXGroup;
 			children = (
 				6454D1801F704AC0008C4E5F /* WebKit.framework */,
-				5FA5E5D147F9088F5D88235F /* Pods_CouchTracker.framework */,
-				2C5CC049881D7DBD7F196037 /* Pods_CouchTrackerCore_iOS.framework */,
-				A952A436F826C59EA3CB3028 /* Pods_CouchTrackerCore.framework */,
-				2BD1D9804ED76CB89A443722 /* Pods_CouchTrackerCoreTests.framework */,
+				FD28A62B2A818658ECA0D22E /* Pods_CouchTracker.framework */,
+				1448084EA5E5433EFA20D8B9 /* Pods_CouchTrackerCore.framework */,
+				FBC3B67169894ACEFB3998C8 /* Pods_CouchTrackerCore_iOS.framework */,
+				4C81CF20C8EA291D750ADACE /* Pods_CouchTrackerCoreTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1282,6 +1288,7 @@
 		4F0F592B203D956800B86CB8 /* Shows */ = {
 			isa = PBXGroup;
 			children = (
+				4FAAE3EB2122E2D3002BC040 /* Services */,
 				4F0F592D203D959F00B86CB8 /* Progress */,
 				4F0F592C203D957E00B86CB8 /* Manager */,
 				644E90511F72E7AB0089CD70 /* Entities */,
@@ -1457,6 +1464,15 @@
 				4F8EE014202E164D0002189B /* ShowEpisodeServiceTest.swift */,
 			);
 			path = Episode;
+			sourceTree = "<group>";
+		};
+		4FAAE3EB2122E2D3002BC040 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4FAAE3EC2122E2EA002BC040 /* ShowSeasonsRepository.swift */,
+				4FAAE3EF2122E3B0002BC040 /* ShowSeasonsAPIRepository.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		4FDBB661203E9FBC00448A60 /* Cell */ = {
@@ -2139,8 +2155,8 @@
 				4F0F5700203D5F4C00B86CB8 /* Sources */,
 				4F0F5701203D5F4C00B86CB8 /* Frameworks */,
 				4F0F5702203D5F4C00B86CB8 /* Resources */,
-				3F575D4186D1BBC785CBB045 /* [CP] Embed Pods Frameworks */,
 				4FAC4A92210F281D0096BCE0 /* SwiftFormat */,
+				032FE2DEC89BBEF99F1C3DDA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2202,10 +2218,10 @@
 				647632351F44824900F277F1 /* Sources */,
 				647632361F44824900F277F1 /* Frameworks */,
 				647632371F44824900F277F1 /* Resources */,
-				6BA4EFF523E57D8DC5A67DEA /* [CP] Embed Pods Frameworks */,
 				6455BA751F45B862000660C6 /* SwiftLint */,
 				6405CA021F549BE90039D6E6 /* Embed Frameworks */,
 				4FAC4A93210F28310096BCE0 /* SwiftFormat */,
+				9733866B18E1C8A0F48F07D3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2423,43 +2439,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		24F7650057595A5385FDD0F4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CouchTrackerCoreTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2E2A586DB303DF3544792355 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CouchTrackerCore-iOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3F575D4186D1BBC785CBB045 /* [CP] Embed Pods Frameworks */ = {
+		032FE2DEC89BBEF99F1C3DDA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2499,6 +2479,42 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CouchTrackerCoreTests/Pods-CouchTrackerCoreTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		24F7650057595A5385FDD0F4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CouchTrackerCoreTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2E2A586DB303DF3544792355 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CouchTrackerCore-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4F0F581C203D75FB00B86CB8 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2532,13 +2548,9 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 			);
 			name = SwiftFormat;
-			outputFileListPaths = (
-			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2550,13 +2562,9 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 			);
 			name = SwiftFormat;
-			outputFileListPaths = (
-			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2568,13 +2576,9 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 			);
 			name = SwiftFormat;
-			outputFileListPaths = (
-			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2586,13 +2590,9 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 			);
 			name = SwiftFormat;
-			outputFileListPaths = (
-			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2627,7 +2627,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
 		};
-		6BA4EFF523E57D8DC5A67DEA /* [CP] Embed Pods Frameworks */ = {
+		9733866B18E1C8A0F48F07D3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2786,6 +2786,7 @@
 				4F2F336D20C893E700061C13 /* MovieDetailsViewState.swift in Sources */,
 				4FAC751B20509E2F00266930 /* ShowManagerDefaultDataSource.swift in Sources */,
 				4F0F575F203D5FA000B86CB8 /* EpisodeEntityRealm.swift in Sources */,
+				4FAAE3ED2122E2EA002BC040 /* ShowSeasonsRepository.swift in Sources */,
 				4F0F5760203D5FA000B86CB8 /* EpisodeIdsRealm.swift in Sources */,
 				4F0F5761203D5FA000B86CB8 /* GenreRealm.swift in Sources */,
 				4F0F5762203D5FA000B86CB8 /* RealmProvider.swift in Sources */,
@@ -2838,6 +2839,7 @@
 				4F0F579F203D5FA100B86CB8 /* ShowsProgressAPIRepository.swift in Sources */,
 				4F0F57A0203D5FA100B86CB8 /* ShowsProgressContract.swift in Sources */,
 				4F0F57A3203D5FA100B86CB8 /* ShowsProgressMoyaNetwork.swift in Sources */,
+				4FAAE3F02122E3B0002BC040 /* ShowSeasonsAPIRepository.swift in Sources */,
 				4F0F57A4203D5FA100B86CB8 /* ShowsProgressRealmDataSource.swift in Sources */,
 				4F0F57A5203D5FA100B86CB8 /* ShowsProgressService.swift in Sources */,
 				4F0F57A8203D5FA100B86CB8 /* TMDB+APIProvider.swift in Sources */,
@@ -3046,6 +3048,7 @@
 				4F0F58A0203D7B0A00B86CB8 /* MovieDetailsDefaultPresenter.swift in Sources */,
 				4F2F336E20C893E700061C13 /* MovieDetailsViewState.swift in Sources */,
 				4FAC751C20509E2F00266930 /* ShowManagerDefaultDataSource.swift in Sources */,
+				4FAAE3EE2122E2EA002BC040 /* ShowSeasonsRepository.swift in Sources */,
 				4F0F58A6203D7B0A00B86CB8 /* MoviesManagerContract.swift in Sources */,
 				4F0F58A8203D7B0A00B86CB8 /* MoviesManagerDefaultPresenter.swift in Sources */,
 				4F0F58AB203D7B0A00B86CB8 /* TMDBProvider.swift in Sources */,
@@ -3098,6 +3101,7 @@
 				4F0F58E4203D7B0A00B86CB8 /* ShowsManagerDefaultModuleSetup.swift in Sources */,
 				4F0F58E5203D7B0A00B86CB8 /* ShowsManagerDefaultPresenter.swift in Sources */,
 				4F0F58EB203D7B0A00B86CB8 /* ShowProgressCellContract.swift in Sources */,
+				4FAAE3F12122E3B0002BC040 /* ShowSeasonsAPIRepository.swift in Sources */,
 				4F0F58EC203D7B0A00B86CB8 /* ShowProgressCellDefaultPresenter.swift in Sources */,
 				4F0F58ED203D7B0A00B86CB8 /* ShowProgressCellService.swift in Sources */,
 				4F0F58EE203D7B0A00B86CB8 /* ShowProgressFilter.swift in Sources */,

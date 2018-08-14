@@ -2,11 +2,13 @@ import TraktSwift
 
 public struct WatchedEpisodeEntity: Hashable {
   public let showIds: ShowIds
+  public let episodeIds: EpisodeIds
   public let number: Int
   public let lastWatchedAt: Date?
 
   public var hashValue: Int {
     var hash = showIds.hashValue
+    hash ^= episodeIds.hashValue
     hash ^= number.hashValue
 
     lastWatchedAt.run { hash ^= $0.hashValue }
