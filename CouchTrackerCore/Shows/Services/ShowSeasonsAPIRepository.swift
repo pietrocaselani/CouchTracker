@@ -8,8 +8,7 @@ public final class ShowSeasonsAPIRepository: ShowSeasonsRepository {
     self.trakt = trakt
   }
 
-  public func fetchShowSeasons(showIds _: ShowIds, extended _: Extended) -> Single<[Season]> {
-    trakt.shows.rx.request(.)
-    return Single.just([])
+  public func fetchShowSeasons(showIds: ShowIds, extended: Extended) -> Single<[Season]> {
+    return trakt.seasons.rx.request(.summary(showId: showIds.realId, exteded: extended)).map([Season].self)
   }
 }

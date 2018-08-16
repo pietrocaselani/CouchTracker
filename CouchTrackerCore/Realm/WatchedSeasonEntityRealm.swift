@@ -64,7 +64,11 @@ final class WatchedSeasonEntityRealm: Object {
       Swift.fatalError("How show is not present on WatchedSeasonEntityRealm?!")
     }
 
+    // CT-TODO
+    let seasonIds = SeasonIds(tvdb: 0, tmdb: 0, trakt: 0, tvrage: 0)
+
     return WatchedSeasonEntity(showIds: showIds,
+                               seasonIds: seasonIds,
                                number: number,
                                aired: aired.value,
                                completed: completed.value,

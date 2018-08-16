@@ -5,7 +5,7 @@ public final class EpisodeIdsRealm: Object {
   @objc public dynamic var trakt = -1
   public let tmdb = RealmOptional<Int>()
   @objc public dynamic var imdb: String?
-  @objc public dynamic var tvdb = -1
+  public let tvdb = RealmOptional<Int>()
   public let tvrage = RealmOptional<Int>()
 
   public override static func primaryKey() -> String? {
@@ -22,7 +22,7 @@ public final class EpisodeIdsRealm: Object {
     return lhs.trakt == rhs.trakt &&
       lhs.tmdb.value == rhs.tmdb.value &&
       lhs.imdb == rhs.imdb &&
-      lhs.tvdb == rhs.tvdb &&
+      lhs.tvdb.value == rhs.tvdb.value &&
       lhs.tvrage.value == rhs.tvrage.value
   }
 
@@ -30,7 +30,7 @@ public final class EpisodeIdsRealm: Object {
     return EpisodeIds(trakt: trakt,
                       tmdb: tmdb.value,
                       imdb: imdb,
-                      tvdb: tvdb,
+                      tvdb: tvdb.value,
                       tvrage: tvrage.value)
   }
 }
@@ -42,7 +42,7 @@ public extension EpisodeIds {
     entity.trakt = trakt
     entity.tmdb.value = tmdb
     entity.imdb = imdb
-    entity.tvdb = tvdb
+    entity.tvdb.value = tvdb
     entity.tvrage.value = tvrage
 
     return entity

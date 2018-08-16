@@ -11,7 +11,7 @@ public struct EpisodeEntity: Hashable, EpisodeImageInput {
   public let firstAired: Date?
   public let lastWatched: Date?
 
-  public var tvdb: Int {
+  public var tvdb: Int? {
     return ids.tvdb
   }
 

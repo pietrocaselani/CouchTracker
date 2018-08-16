@@ -60,7 +60,10 @@ final class WatchedEpisodeEntityRealm: Object {
       Swift.fatalError("How show is not present on WatchedEpisodeEntityRealm?!")
     }
 
-    return WatchedEpisodeEntity(showIds: showIds, number: number, lastWatchedAt: lastWatchedAt)
+    // CT-TODO
+    let episodeIds = EpisodeIds(trakt: 0, tmdb: 0, imdb: "", tvdb: 0, tvrage: 0)
+
+    return WatchedEpisodeEntity(showIds: showIds, episodeIds: episodeIds, number: number, lastWatchedAt: lastWatchedAt)
   }
 }
 

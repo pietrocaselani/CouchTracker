@@ -6,14 +6,6 @@ public protocol ShowsProgressDataSource: class {
   func addWatched(shows: [WatchedShowEntity]) throws
 }
 
-public protocol ShowsProgressNetwork: class {
-  func fetchWatchedShows(extended: Extended) -> Single<[BaseShow]>
-}
-
-public protocol ShowsProgressRepository: class {
-  func fetchWatchedShows(extended: Extended) -> Observable<[WatchedShowEntity]>
-}
-
 public protocol ShowsProgressListStateDataSource: class {
   var currentState: ShowProgressListState { get set }
 }

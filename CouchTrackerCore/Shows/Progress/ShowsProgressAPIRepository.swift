@@ -80,11 +80,16 @@ public final class ShowsProgressAPIRepository: ShowsProgressRepository {
     var seasonEntities = [WatchedSeasonEntity]()
     if let baseSeasons = builder.progressShow?.seasons {
       seasonEntities = baseSeasons.map { baseSeason in
-        let watchedEpisodes = baseSeason.episodes.map { baseEpisode in
-          WatchedEpisodeEntity(showIds: showIds, number: baseEpisode.number, lastWatchedAt: baseEpisode.lastWatchedAt)
+        let watchedEpisodes = baseSeason.episodes.map { baseEpisode -> WatchedEpisodeEntity in
+          // CT-TODO
+          let episodeIdsFake = EpisodeIds(trakt: 0, tmdb: 0, imdb: "", tvdb: 0, tvrage: 0)
+          return WatchedEpisodeEntity(showIds: showIds, episodeIds: episodeIdsFake, number: baseEpisode.number, lastWatchedAt: baseEpisode.lastWatchedAt)
         }
 
+        let seasonIdsFake = SeasonIds(tvdb: 0, tmdb: 0, trakt: 0, tvrage: 0)
+
         return WatchedSeasonEntity(showIds: showIds,
+                                   seasonIds: seasonIdsFake,
                                    number: baseSeason.number,
                                    aired: baseSeason.aired,
                                    completed: baseSeason.completed,

@@ -468,6 +468,22 @@
 		4FE6C60B205FCA8800444B12 /* SearchResultContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE6C609205FCA8800444B12 /* SearchResultContract.swift */; };
 		4FE6C60D205FCB8800444B12 /* SearchResultDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE6C60C205FCB8800444B12 /* SearchResultDefaultPresenter.swift */; };
 		4FE6C60E205FCB8800444B12 /* SearchResultDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE6C60C205FCB8800444B12 /* SearchResultDefaultPresenter.swift */; };
+		4FEF6AD621259E9900B7CF63 /* WatchedShowsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AD521259E9900B7CF63 /* WatchedShowsRepository.swift */; };
+		4FEF6AD721259E9900B7CF63 /* WatchedShowsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AD521259E9900B7CF63 /* WatchedShowsRepository.swift */; };
+		4FEF6AD921259F1900B7CF63 /* WatchedShowsAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AD821259F1900B7CF63 /* WatchedShowsAPIRepository.swift */; };
+		4FEF6ADA21259F1900B7CF63 /* WatchedShowsAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AD821259F1900B7CF63 /* WatchedShowsAPIRepository.swift */; };
+		4FEF6ADC21259F6900B7CF63 /* ShowWatchedProgressRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6ADB21259F6900B7CF63 /* ShowWatchedProgressRepository.swift */; };
+		4FEF6ADD21259F6900B7CF63 /* ShowWatchedProgressRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6ADB21259F6900B7CF63 /* ShowWatchedProgressRepository.swift */; };
+		4FEF6ADF2125A00100B7CF63 /* ShowWatchedProgressAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6ADE2125A00100B7CF63 /* ShowWatchedProgressAPIRepository.swift */; };
+		4FEF6AE02125A00100B7CF63 /* ShowWatchedProgressAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6ADE2125A00100B7CF63 /* ShowWatchedProgressAPIRepository.swift */; };
+		4FEF6AE22125A07900B7CF63 /* EpisodeDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AE12125A07900B7CF63 /* EpisodeDetailsRepository.swift */; };
+		4FEF6AE32125A07900B7CF63 /* EpisodeDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AE12125A07900B7CF63 /* EpisodeDetailsRepository.swift */; };
+		4FEF6AE52125A0E300B7CF63 /* EpisodeDetailsAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AE42125A0E300B7CF63 /* EpisodeDetailsAPIRepository.swift */; };
+		4FEF6AE62125A0E300B7CF63 /* EpisodeDetailsAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AE42125A0E300B7CF63 /* EpisodeDetailsAPIRepository.swift */; };
+		4FEF6AE82125A19500B7CF63 /* WatchedShowsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AE72125A19500B7CF63 /* WatchedShowsDataSource.swift */; };
+		4FEF6AE92125A19500B7CF63 /* WatchedShowsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AE72125A19500B7CF63 /* WatchedShowsDataSource.swift */; };
+		4FEF6AEB2125A1C200B7CF63 /* WatchedShowsRealmDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AEA2125A1C200B7CF63 /* WatchedShowsRealmDataSource.swift */; };
+		4FEF6AEC2125A1C200B7CF63 /* WatchedShowsRealmDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AEA2125A1C200B7CF63 /* WatchedShowsRealmDataSource.swift */; };
 		4FF6988F203FE73500726112 /* ShowEpisodeRealmDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6988E203FE73500726112 /* ShowEpisodeRealmDataSourceTest.swift */; };
 		4FF9B10B2055BE3700FD28F1 /* MoviesManagerDefaultPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF9B10A2055BE3700FD28F1 /* MoviesManagerDefaultPresenterTest.swift */; };
 		4FFA6B2320EB1984008E0B78 /* ShowOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFA6B1F20EB1983008E0B78 /* ShowOverview.storyboard */; };
@@ -699,6 +715,14 @@
 		4FE4BA3B2059EA2B00969AAF /* PosterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterViewModel.swift; sourceTree = "<group>"; };
 		4FE6C609205FCA8800444B12 /* SearchResultContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultContract.swift; sourceTree = "<group>"; };
 		4FE6C60C205FCB8800444B12 /* SearchResultDefaultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDefaultPresenter.swift; sourceTree = "<group>"; };
+		4FEF6AD521259E9900B7CF63 /* WatchedShowsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedShowsRepository.swift; sourceTree = "<group>"; };
+		4FEF6AD821259F1900B7CF63 /* WatchedShowsAPIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedShowsAPIRepository.swift; sourceTree = "<group>"; };
+		4FEF6ADB21259F6900B7CF63 /* ShowWatchedProgressRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowWatchedProgressRepository.swift; sourceTree = "<group>"; };
+		4FEF6ADE2125A00100B7CF63 /* ShowWatchedProgressAPIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowWatchedProgressAPIRepository.swift; sourceTree = "<group>"; };
+		4FEF6AE12125A07900B7CF63 /* EpisodeDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsRepository.swift; sourceTree = "<group>"; };
+		4FEF6AE42125A0E300B7CF63 /* EpisodeDetailsAPIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsAPIRepository.swift; sourceTree = "<group>"; };
+		4FEF6AE72125A19500B7CF63 /* WatchedShowsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedShowsDataSource.swift; sourceTree = "<group>"; };
+		4FEF6AEA2125A1C200B7CF63 /* WatchedShowsRealmDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedShowsRealmDataSource.swift; sourceTree = "<group>"; };
 		4FF6988E203FE73500726112 /* ShowEpisodeRealmDataSourceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeRealmDataSourceTest.swift; sourceTree = "<group>"; };
 		4FF9B10A2055BE3700FD28F1 /* MoviesManagerDefaultPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerDefaultPresenterTest.swift; sourceTree = "<group>"; };
 		4FFA6B1F20EB1983008E0B78 /* ShowOverview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShowOverview.storyboard; sourceTree = "<group>"; };
@@ -1471,6 +1495,14 @@
 			children = (
 				4FAAE3EC2122E2EA002BC040 /* ShowSeasonsRepository.swift */,
 				4FAAE3EF2122E3B0002BC040 /* ShowSeasonsAPIRepository.swift */,
+				4FEF6AD521259E9900B7CF63 /* WatchedShowsRepository.swift */,
+				4FEF6AD821259F1900B7CF63 /* WatchedShowsAPIRepository.swift */,
+				4FEF6ADB21259F6900B7CF63 /* ShowWatchedProgressRepository.swift */,
+				4FEF6ADE2125A00100B7CF63 /* ShowWatchedProgressAPIRepository.swift */,
+				4FEF6AE12125A07900B7CF63 /* EpisodeDetailsRepository.swift */,
+				4FEF6AE42125A0E300B7CF63 /* EpisodeDetailsAPIRepository.swift */,
+				4FEF6AE72125A19500B7CF63 /* WatchedShowsDataSource.swift */,
+				4FEF6AEA2125A1C200B7CF63 /* WatchedShowsRealmDataSource.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2723,9 +2755,11 @@
 				4F0F5713203D5FA000B86CB8 /* AppConfigurationOptions.swift in Sources */,
 				4F0F5714203D5FA000B86CB8 /* AppConfigurationsContract.swift in Sources */,
 				4FCF133220FF678300122734 /* ShowEpisodeImageState.swift in Sources */,
+				4FEF6AE52125A0E300B7CF63 /* EpisodeDetailsAPIRepository.swift in Sources */,
 				4F0F5715203D5FA000B86CB8 /* AppConfigurationsDefaultRepository.swift in Sources */,
 				4F0F5716203D5FA000B86CB8 /* AppConfigurationsDefaultPresenter.swift in Sources */,
 				4F0F5719203D5FA000B86CB8 /* AppConfigurationsObservable.swift in Sources */,
+				4FEF6AD921259F1900B7CF63 /* WatchedShowsAPIRepository.swift in Sources */,
 				4F0F571A203D5FA000B86CB8 /* AppConfigurationsOutput.swift in Sources */,
 				4F0F571B203D5FA000B86CB8 /* AppConfigurationsService.swift in Sources */,
 				4FE4BA3C2059EA2B00969AAF /* PosterViewModel.swift in Sources */,
@@ -2734,6 +2768,7 @@
 				4F458B1C20DD86E3008595D8 /* SyncMovieResult.swift in Sources */,
 				4F0F571D203D5FA000B86CB8 /* AppConfigurationsStore.swift in Sources */,
 				4F0F571E203D5FA000B86CB8 /* AppConfigurationsUserDefaultsDataSource.swift in Sources */,
+				4FEF6ADC21259F6900B7CF63 /* ShowWatchedProgressRepository.swift in Sources */,
 				4F0F5720203D5FA000B86CB8 /* AppConfigurationsViewModel.swift in Sources */,
 				4F0F5721203D5FA000B86CB8 /* AppConfigurationsMoyaNetwork.swift in Sources */,
 				4F0F5725203D5FA000B86CB8 /* BaseView.swift in Sources */,
@@ -2761,6 +2796,7 @@
 				4F0F573D203D5FA000B86CB8 /* ShowIds+TMDBType.swift in Sources */,
 				4F3A595D204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift in Sources */,
 				4F0F5815203D6AC500B86CB8 /* TrendingShowEntity.swift in Sources */,
+				4FEF6AE82125A19500B7CF63 /* WatchedShowsDataSource.swift in Sources */,
 				4FE6C60A205FCA8800444B12 /* SearchResultContract.swift in Sources */,
 				4F0F573E203D5FA000B86CB8 /* String+Localizable.swift in Sources */,
 				4F0F5744203D5FA000B86CB8 /* GenreRepository.swift in Sources */,
@@ -2799,6 +2835,7 @@
 				4F0F5768203D5FA000B86CB8 /* Schedulers.swift in Sources */,
 				4F0F5769203D5FA000B86CB8 /* SearchAPIRepository.swift in Sources */,
 				4F0F576B203D5FA000B86CB8 /* SearchContract.swift in Sources */,
+				4FEF6ADF2125A00100B7CF63 /* ShowWatchedProgressAPIRepository.swift in Sources */,
 				4FCF132F20FF66B300122734 /* ShowEpisodeViewState.swift in Sources */,
 				4F0F576C203D5FA000B86CB8 /* SearchDefaultPresenter.swift in Sources */,
 				4F0F576E203D5FA000B86CB8 /* SearchService.swift in Sources */,
@@ -2809,6 +2846,7 @@
 				4F0F5774203D5FA000B86CB8 /* ShowEpisodeRealmDataSource.swift in Sources */,
 				4F10101820A99C64003CA348 /* ShowsProgressListStateDefaultDataSource.swift in Sources */,
 				4F0F5775203D5FA000B86CB8 /* ShowEpisodeService.swift in Sources */,
+				4FEF6AE22125A07900B7CF63 /* EpisodeDetailsRepository.swift in Sources */,
 				4F0F5778203D5FA000B86CB8 /* SyncResult.swift in Sources */,
 				4F70910720D5F3650017B259 /* WatchedMovieResult.swift in Sources */,
 				4F0F5779203D5FA000B86CB8 /* ShowEpisodeMoyaNetwork.swift in Sources */,
@@ -2825,6 +2863,7 @@
 				4F0F578D203D5FA100B86CB8 /* WatchedSeasonEntity.swift in Sources */,
 				4F0F578E203D5FA100B86CB8 /* WatchedShowBuilder.swift in Sources */,
 				4F0F578F203D5FA100B86CB8 /* WatchedShowEntity.swift in Sources */,
+				4FEF6AD621259E9900B7CF63 /* WatchedShowsRepository.swift in Sources */,
 				4F0F5790203D5FA100B86CB8 /* ShowsManagerContract.swift in Sources */,
 				4F0F5792203D5FA100B86CB8 /* ShowsManagerDefaultModuleSetup.swift in Sources */,
 				4F0F5793203D5FA100B86CB8 /* ShowsManagerDefaultPresenter.swift in Sources */,
@@ -2847,6 +2886,7 @@
 				4F0F57AC203D5FA100B86CB8 /* Trakt+APIProvider.swift in Sources */,
 				4F2F337020C8943D00061C13 /* MovieDetailsImagesState.swift in Sources */,
 				4F0F57AD203D5FA100B86CB8 /* TraktLoginContract.swift in Sources */,
+				4FEF6AEB2125A1C200B7CF63 /* WatchedShowsRealmDataSource.swift in Sources */,
 				4F0F57AE203D5FA100B86CB8 /* TraktLoginDefaultPresenter.swift in Sources */,
 				4F0F57B0203D5FA100B86CB8 /* TraktLoginObservable.swift in Sources */,
 				4F0F57B1203D5FA100B86CB8 /* TraktLoginOutputProvider.swift in Sources */,
@@ -2985,9 +3025,11 @@
 				4F0F593D203D988300B86CB8 /* TraktLoginObservable.swift in Sources */,
 				4F0F593E203D988300B86CB8 /* TraktLoginOutputProvider.swift in Sources */,
 				4FCF133320FF678300122734 /* ShowEpisodeImageState.swift in Sources */,
+				4FEF6AE62125A0E300B7CF63 /* EpisodeDetailsAPIRepository.swift in Sources */,
 				4F0F593F203D988300B86CB8 /* TraktLoginService.swift in Sources */,
 				4F0F5940203D988300B86CB8 /* TraktLoginState.swift in Sources */,
 				4F0F5941203D988300B86CB8 /* TraktLoginStore.swift in Sources */,
+				4FEF6ADA21259F1900B7CF63 /* WatchedShowsAPIRepository.swift in Sources */,
 				4F0F5942203D988300B86CB8 /* TraktTokenPolicyDecider.swift in Sources */,
 				4F0F591B203D7E9900B86CB8 /* MovieDetailsService.swift in Sources */,
 				4FE4BA3D2059EA2B00969AAF /* PosterViewModel.swift in Sources */,
@@ -2996,6 +3038,7 @@
 				4F458B1D20DD86E3008595D8 /* SyncMovieResult.swift in Sources */,
 				4F0F5866203D7B0A00B86CB8 /* AppConfigurationsContract.swift in Sources */,
 				4F0F5867203D7B0A00B86CB8 /* AppConfigurationsDefaultRepository.swift in Sources */,
+				4FEF6ADD21259F6900B7CF63 /* ShowWatchedProgressRepository.swift in Sources */,
 				4F0F5868203D7B0A00B86CB8 /* AppConfigurationsDefaultPresenter.swift in Sources */,
 				4F0F586B203D7B0A00B86CB8 /* AppConfigurationsObservable.swift in Sources */,
 				4F0F586C203D7B0A00B86CB8 /* AppConfigurationsOutput.swift in Sources */,
@@ -3023,6 +3066,7 @@
 				4F0F5885203D7B0A00B86CB8 /* EpisodeEntityMapper.swift in Sources */,
 				4F3A595E204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift in Sources */,
 				4F0F5886203D7B0A00B86CB8 /* ImagesEntityMapper.swift in Sources */,
+				4FEF6AE92125A19500B7CF63 /* WatchedShowsDataSource.swift in Sources */,
 				4FE6C60B205FCA8800444B12 /* SearchResultContract.swift in Sources */,
 				4F0F5887203D7B0A00B86CB8 /* ImagesViewModelMapper.swift in Sources */,
 				4F0F5888203D7B0A00B86CB8 /* MovieEntityMapper.swift in Sources */,
@@ -3061,6 +3105,7 @@
 				4F0F58B2203D7B0A00B86CB8 /* EpisodeIdsRealm.swift in Sources */,
 				4F0F58B3203D7B0A00B86CB8 /* GenreRealm.swift in Sources */,
 				4F0F58B4203D7B0A00B86CB8 /* RealmProvider.swift in Sources */,
+				4FEF6AE02125A00100B7CF63 /* ShowWatchedProgressAPIRepository.swift in Sources */,
 				4FCF133020FF66B300122734 /* ShowEpisodeViewState.swift in Sources */,
 				4F0F58B5203D7B0A00B86CB8 /* ShowEntityRealm.swift in Sources */,
 				4F0F58B6203D7B0A00B86CB8 /* ShowIdsRealm.swift in Sources */,
@@ -3071,6 +3116,7 @@
 				4F0F58BA203D7B0A00B86CB8 /* Schedulers.swift in Sources */,
 				4F10101920A99C64003CA348 /* ShowsProgressListStateDefaultDataSource.swift in Sources */,
 				4F0F58BB203D7B0A00B86CB8 /* SearchAPIRepository.swift in Sources */,
+				4FEF6AE32125A07900B7CF63 /* EpisodeDetailsRepository.swift in Sources */,
 				4F0F58BD203D7B0A00B86CB8 /* SearchContract.swift in Sources */,
 				4F0F58BE203D7B0A00B86CB8 /* SearchDefaultPresenter.swift in Sources */,
 				4F70910820D5F3650017B259 /* WatchedMovieResult.swift in Sources */,
@@ -3087,6 +3133,7 @@
 				4F0F58D3203D7B0A00B86CB8 /* ShowOverviewAPIRepository.swift in Sources */,
 				4F0F58D4203D7B0A00B86CB8 /* ShowOverviewContract.swift in Sources */,
 				4F0F58D5203D7B0A00B86CB8 /* ShowOverviewDefaultPresenter.swift in Sources */,
+				4FEF6AD721259E9900B7CF63 /* WatchedShowsRepository.swift in Sources */,
 				4F0F58D7203D7B0A00B86CB8 /* ShowOverviewService.swift in Sources */,
 				4F0F58DB203D7B0A00B86CB8 /* ShowProgressAPIRepository.swift in Sources */,
 				4F0F58DC203D7B0A00B86CB8 /* ShowProgressContract.swift in Sources */,
@@ -3109,6 +3156,7 @@
 				4F0F58F0203D7B0A00B86CB8 /* ShowProgressSort.swift in Sources */,
 				4F2F337120C8943D00061C13 /* MovieDetailsImagesState.swift in Sources */,
 				4F0F58F1203D7B0A00B86CB8 /* ShowsProgressAPIRepository.swift in Sources */,
+				4FEF6AEC2125A1C200B7CF63 /* WatchedShowsRealmDataSource.swift in Sources */,
 				4F0F58F2203D7B0A00B86CB8 /* ShowsProgressContract.swift in Sources */,
 				4F0F58F5203D7B0A00B86CB8 /* ShowsProgressMoyaNetwork.swift in Sources */,
 				4F0F58F6203D7B0A00B86CB8 /* ShowsProgressRealmDataSource.swift in Sources */,
