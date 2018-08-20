@@ -22,16 +22,18 @@ final class ShowEpisodeModule {
                                                 cofigurationRepository: configurationRepository,
                                                 schedulers: schedulers)
 
-    let showProgressRepository = ShowProgressAPIRepository(trakt: trakt)
-
     let showEpisodeDataSource = ShowEpisodeRealmDataSource(realmProvider: realmProvider)
     let showEpisodeNetwork = ShowEpisodeMoyaNetwork(trakt: trakt, schedulers: schedulers)
+
+    let assembler = WatchedShowEntityAssemblerModule.setupModule()
+
     let repository = ShowEpisodeAPIRepository(dataSource: showEpisodeDataSource,
                                               network: showEpisodeNetwork,
                                               schedulers: schedulers,
-                                              showProgressRepository: showProgressRepository,
+                                              assembler: assembler,
                                               appConfigurationsObservable: appConfigsObservable,
                                               hideSpecials: hideSpecials)
+
     let interactor = ShowEpisodeService(repository: repository, imageRepository: imageRepository)
     let presenter = ShowEpisodeDefaultPresenter(interactor: interactor, show: show)
 

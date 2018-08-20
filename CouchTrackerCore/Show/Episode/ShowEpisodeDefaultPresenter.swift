@@ -43,7 +43,7 @@ public final class ShowEpisodeDefaultPresenter: ShowEpisodePresenter {
       return
     }
 
-    interactor.fetchImageURL(for: nextEpisode)
+    interactor.fetchImageURL(for: nextEpisode.asImageInput())
       .map { ShowEpisodeImageState.image(url: $0) }
       .ifEmpty(default: ShowEpisodeImageState.none)
       .catchError { Single.just(ShowEpisodeImageState.error(error: $0)) }

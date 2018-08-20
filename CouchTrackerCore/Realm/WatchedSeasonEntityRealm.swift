@@ -4,7 +4,11 @@ import TraktSwift
 final class WatchedSeasonEntityRealm: Object {
   @objc private dynamic var identifier = ""
   @objc private dynamic var backingShowIds: ShowIdsRealm?
+  @objc private dynamic var backingSeasonIds: SeasonIdsRealm?
   @objc dynamic var backingNumber = -1
+  @objc dynamic var title: String?
+  @objc dynamic var overview: String?
+  var special = false
   let aired = RealmOptional<Int>()
   let completed = RealmOptional<Int>()
   let episodes = List<WatchedEpisodeEntityRealm>()
@@ -29,11 +33,21 @@ final class WatchedSeasonEntityRealm: Object {
     }
   }
 
-  private func updateIdentifier() {
-    if let traktId = backingShowIds?.trakt {
-      let typeName = String(describing: WatchedSeasonEntity.self)
-      identifier = "\(typeName)-\(traktId)-\(number)"
+  var seasonIds: SeasonIdsRealm? {
+    get {
+      return backingSeasonIds
     }
+    set {
+      backingSeasonIds = newValue
+      updateIdentifier()
+    }
+  }
+
+  private func updateIdentifier() {
+    guard let showTrakt = backingShowIds?.trakt, let seasonTrakt = backingSeasonIds?.trakt else { return }
+
+    let typeName = String(describing: WatchedSeasonEntity.self)
+    identifier = "\(typeName)-\(showTrakt)-\(seasonTrakt)-\(backingNumber)"
   }
 
   override static func primaryKey() -> String? {
@@ -41,7 +55,7 @@ final class WatchedSeasonEntityRealm: Object {
   }
 
   override static func ignoredProperties() -> [String] {
-    return ["showIds", "number"]
+    return ["showIds", "number", "seasonIds"]
   }
 
   override func isEqual(_ object: Any?) -> Bool {
@@ -60,19 +74,13 @@ final class WatchedSeasonEntityRealm: Object {
   }
 
   func toEntity() -> WatchedSeasonEntity {
-    guard let showIds = showIds?.toEntity() else {
-      Swift.fatalError("How show is not present on WatchedSeasonEntityRealm?!")
+    guard let seasonIds = seasonIds?.toEntity(), let showIds = showIds?.toEntity() else {
+      Swift.fatalError("")
     }
 
-    // CT-TODO
-    let seasonIds = SeasonIds(tvdb: 0, tmdb: 0, trakt: 0, tvrage: 0)
-
-    return WatchedSeasonEntity(showIds: showIds,
-                               seasonIds: seasonIds,
-                               number: number,
-                               aired: aired.value,
-                               completed: completed.value,
-                               episodes: episodes.map { $0.toEntity() })
+    return WatchedSeasonEntity(showIds: showIds, seasonIds: seasonIds, number: number, aired: aired.value,
+                               completed: completed.value, episodes: episodes.map { $0.toEntity() },
+                               special: special, overview: overview, title: title)
   }
 }
 

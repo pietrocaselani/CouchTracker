@@ -14,6 +14,8 @@ final class TrendingModule {
     let tvdb = Environment.instance.tvdb
     let schedulers = Environment.instance.schedulers
 
+    let genreRepository = GenreModule.setupGenreRepository()
+
     let repository = TrendingCacheRepository(traktProvider: traktProvider, schedulers: schedulers)
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
@@ -21,7 +23,7 @@ final class TrendingModule {
                                                 cofigurationRepository: configurationRepository,
                                                 schedulers: schedulers)
 
-    let interactor = TrendingService(repository: repository)
+    let interactor = TrendingService(repository: repository, genreRepository: genreRepository)
     let router = TrendingiOSRouter(viewController: view)
 
     let dataSource = TrendingCollectionViewDataSource(imageRepository: imageRepository)

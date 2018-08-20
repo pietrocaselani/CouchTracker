@@ -59,8 +59,8 @@ public enum ShowProgressSort: String {
 
   private func remainingComparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool {
     return { (lhs: WatchedShowEntity, rhs: WatchedShowEntity) in
-      let lhsRemaining = lhs.aired - lhs.completed
-      let rhsRemaining = rhs.aired - rhs.completed
+      let lhsRemaining = (lhs.aired ?? 0) - (lhs.completed ?? 0)
+      let rhsRemaining = (rhs.aired ?? 0) - (rhs.completed ?? 0)
       return lhsRemaining < rhsRemaining
     }
   }
@@ -75,8 +75,8 @@ public enum ShowProgressSort: String {
 
   private func releaseDateComparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool {
     return { (lhs: WatchedShowEntity, rhs: WatchedShowEntity) in
-      let lhsFirstAired = lhs.nextEpisode?.firstAired ?? Date(timeIntervalSince1970: 0)
-      let rhsFirstAired = rhs.nextEpisode?.firstAired ?? Date(timeIntervalSince1970: 0)
+      let lhsFirstAired = lhs.nextEpisode?.episode.firstAired ?? Date(timeIntervalSince1970: 0)
+      let rhsFirstAired = rhs.nextEpisode?.episode.firstAired ?? Date(timeIntervalSince1970: 0)
       return lhsFirstAired > rhsFirstAired
     }
   }

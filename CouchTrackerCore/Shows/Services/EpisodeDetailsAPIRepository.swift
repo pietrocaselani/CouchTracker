@@ -4,7 +4,7 @@ import TraktSwift
 public final class EpisodeDetailsAPIRepository: EpisodeDetailsRepository {
   private let trakt: TraktProvider
 
-  init(trakt: TraktProvider) {
+  public init(trakt: TraktProvider) {
     self.trakt = trakt
   }
 

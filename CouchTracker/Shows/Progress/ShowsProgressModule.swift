@@ -26,23 +26,24 @@ final class ShowsProgressModule {
                                                 cofigurationRepository: configurationRepository,
                                                 schedulers: schedulers)
 
-    let showProgressRepository = ShowProgressAPIRepository(trakt: trakt)
+    let assembler = WatchedShowsAssemblerModule.setupModule()
+    let showsProgressDataSource = ShowsProgressRealmDataSource(realmProvider: realmProvider, schedulers: schedulers)
+
+    let showsProgressRepository = ShowsProgressDefaultRepository(assembler: assembler,
+                                                                 dataSource: showsProgressDataSource,
+                                                                 schedulers: schedulers)
 
     let listStateDataSource = ShowsProgressListStateDefaultDataSource(userDefaults: UserDefaults.standard)
 
-    let dataSource = ShowsProgressRealmDataSource(realmProvider: realmProvider, schedulers: schedulers)
     let router = ShowsProgressiOSRouter(viewController: view)
     let viewDataSource = ShowsProgressTableViewDataSource(imageRepository: imageRepository)
-    let showsProgressNetwork = ShowsProgressMoyaNetwork(trakt: trakt)
-    let repository = ShowsProgressAPIRepository(network: showsProgressNetwork,
-                                                dataSource: dataSource,
-                                                schedulers: schedulers,
-                                                showProgressRepository: showProgressRepository,
-                                                appConfigurationsObservable: appConfigsObservable,
-                                                hideSpecials: hideSpecials)
-    let interactor = ShowsProgressService(repository: repository,
+
+    let interactor = ShowsProgressService(repository: showsProgressRepository,
                                           listStateDataSource: listStateDataSource,
-                                          schedulers: schedulers)
+                                          appConfigurationsObservable: appConfigsObservable,
+                                          schedulers: schedulers,
+                                          hideSpecials: hideSpecials)
+
     let presenter = ShowsProgressDefaultPresenter(view: view,
                                                   interactor: interactor,
                                                   viewDataSource: viewDataSource,

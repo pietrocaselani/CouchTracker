@@ -1,3 +1,5 @@
 #!/bin/bash
 
-swiftformat --indent 2 $1
+swiftformat --indent 2 CouchTracker/
+swiftformat --indent 2 CouchTrackerCore/
+# swiftformat --indent 2 CouchTrackerCoreTests/

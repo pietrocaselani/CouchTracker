@@ -3,10 +3,10 @@ import RealmSwift
 final class WatchedShowEntityRealm: Object {
   @objc private dynamic var identifier = ""
   @objc private dynamic var backingShow: ShowEntityRealm?
-  @objc dynamic var aired = -1
-  @objc dynamic var completed = -1
-  @objc dynamic var nextEpisode: EpisodeEntityRealm?
+  @objc dynamic var nextEpisode: WatchedEpisodeEntityRealm?
   @objc dynamic var lastWatched: Date?
+  let aired = RealmOptional<Int>()
+  let completed = RealmOptional<Int>()
   let seasons = List<WatchedSeasonEntityRealm>()
 
   var show: ShowEntityRealm? {
@@ -39,8 +39,8 @@ final class WatchedShowEntityRealm: Object {
   static func == (lhs: WatchedShowEntityRealm, rhs: WatchedShowEntityRealm) -> Bool {
     return lhs.identifier == rhs.identifier &&
       lhs.backingShow == rhs.backingShow &&
-      lhs.aired == rhs.aired &&
-      lhs.completed == rhs.completed &&
+      lhs.aired.value == rhs.aired.value &&
+      lhs.completed.value == rhs.completed.value &&
       lhs.nextEpisode == rhs.nextEpisode &&
       lhs.lastWatched == rhs.lastWatched
   }
@@ -51,8 +51,8 @@ final class WatchedShowEntityRealm: Object {
     }
 
     return WatchedShowEntity(show: show,
-                             aired: aired,
-                             completed: completed,
+                             aired: aired.value,
+                             completed: completed.value,
                              nextEpisode: nextEpisode?.toEntity(),
                              lastWatched: lastWatched,
                              seasons: seasons.map { $0.toEntity() })
@@ -64,8 +64,8 @@ extension WatchedShowEntity {
     let entity = WatchedShowEntityRealm()
 
     entity.show = show.toRealm()
-    entity.aired = aired
-    entity.completed = completed
+    entity.aired.value = aired
+    entity.completed.value = completed
     entity.nextEpisode = nextEpisode?.toRealm()
     entity.lastWatched = lastWatched
     entity.seasons.append(objectsIn: seasons.map { $0.toRealm() })

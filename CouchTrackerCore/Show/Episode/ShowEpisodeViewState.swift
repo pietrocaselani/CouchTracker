@@ -1,7 +1,7 @@
 public enum ShowEpisodeViewState: Hashable {
   case loading
   case empty
-  case showing(episode: EpisodeEntity)
+  case showing(episode: WatchedEpisodeEntity)
   case error(error: Error)
 
   public var hashValue: Int {

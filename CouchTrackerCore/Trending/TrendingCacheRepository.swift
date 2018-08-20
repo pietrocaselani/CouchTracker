@@ -11,16 +11,14 @@ public final class TrendingCacheRepository: TrendingRepository {
     self.schedulers = schedulers
   }
 
-  public func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
+  public func fetchMovies(page: Int, limit: Int) -> Single<[TrendingMovie]> {
     return traktProvider.movies.rx.request(.trending(page: page, limit: limit, extended: .full))
-      .asObservable()
       .observeOn(schedulers.networkScheduler)
       .map([TrendingMovie].self)
   }
 
-  public func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShow]> {
+  public func fetchShows(page: Int, limit: Int) -> Single<[TrendingShow]> {
     return traktProvider.shows.rx.request(.trending(page: page, limit: limit, extended: .full))
-      .asObservable()
       .observeOn(schedulers.networkScheduler)
       .map([TrendingShow].self)
   }

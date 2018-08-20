@@ -4,7 +4,7 @@ public final class WatchedShowEntityMapper {
   }
 
   public static func viewModel(for entity: WatchedShowEntity) -> WatchedShowViewModel {
-    let nextEpisodeTitle = entity.nextEpisode.map { "\($0.season)x\($0.number) \($0.title)" }
+    let nextEpisodeTitle = entity.nextEpisode.map { "\($0.episode.season)x\($0.episode.number) \($0.episode.title)" }
     let nextEpisodeDateText = nextEpisodeDate(for: entity)
     let statusText = status(for: entity)
 
@@ -16,7 +16,7 @@ public final class WatchedShowEntityMapper {
   }
 
   public static func status(for entity: WatchedShowEntity) -> String {
-    let episodesRemaining = entity.aired - entity.completed
+    let episodesRemaining = (entity.aired ?? 0) - (entity.completed ?? 0)
     var status = episodesRemaining == 0 ? "" : "episodes remaining".localized(String(episodesRemaining))
 
     if let network = entity.show.network {
@@ -27,7 +27,7 @@ public final class WatchedShowEntityMapper {
   }
 
   public static func nextEpisodeDate(for entity: WatchedShowEntity) -> String {
-    if let nextEpisodeDate = entity.nextEpisode?.firstAired?.shortString() {
+    if let nextEpisodeDate = entity.nextEpisode?.episode.firstAired?.shortString() {
       return nextEpisodeDate
     }
 

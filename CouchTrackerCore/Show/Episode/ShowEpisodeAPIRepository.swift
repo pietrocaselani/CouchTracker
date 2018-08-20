@@ -5,17 +5,17 @@ public final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
   private let schedulers: Schedulers
   private let dataSource: ShowEpisodeDataSource
   private let network: ShowEpisodeNetwork
-  private let showProgressRepository: ShowProgressRepository
+  private let assembler: WatchedShowEntityAssembler
   private let disposeBag = DisposeBag()
   private var hideSpecials: Bool
 
   public init(dataSource: ShowEpisodeDataSource, network: ShowEpisodeNetwork,
-              schedulers: Schedulers, showProgressRepository: ShowProgressRepository,
+              schedulers: Schedulers, assembler: WatchedShowEntityAssembler,
               appConfigurationsObservable: AppConfigurationsObservable, hideSpecials: Bool) {
     self.dataSource = dataSource
     self.network = network
     self.schedulers = schedulers
-    self.showProgressRepository = showProgressRepository
+    self.assembler = assembler
     self.hideSpecials = hideSpecials
 
     appConfigurationsObservable.observe().subscribe(onNext: { [unowned self] newState in
@@ -41,7 +41,8 @@ public final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
 
   private func performSync(_ single: Single<SyncResponse>, _ show: ShowEntity) -> Single<SyncResult> {
     return single.flatMap { [unowned self] _ -> Single<WatchedShowEntity> in
-      self.showProgressRepository.fetchShowProgress(ids: show.ids, hideSpecials: self.hideSpecials)
+      self.assembler.fetchProgress(for: show.ids, hiddingSpecials: self.hideSpecials)
+        .asSingle()
         .map { $0.createEntity(using: show) }
     }.observeOn(schedulers.dataSourceScheduler)
       .do(onSuccess: { [unowned self] newWatchedShowEntity in

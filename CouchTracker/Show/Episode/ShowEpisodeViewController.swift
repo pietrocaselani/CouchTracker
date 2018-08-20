@@ -66,10 +66,10 @@ final class ShowEpisodeViewController: UIViewController, ShowEpisodeView {
     print("Error view: \(error.localizedDescription)")
   }
 
-  func show(episode: EpisodeEntity) {
-    titleLabel.text = episode.title
-    numberLabel.text = "Season \(episode.season) Episode \(episode.number)"
-    dateLabel.text = episode.firstAired?.shortString() ?? "Unknown".localized
+  private func show(episode: WatchedEpisodeEntity) {
+    titleLabel.text = episode.episode.title
+    numberLabel.text = "Season \(episode.episode.season) Episode \(episode.episode.number)"
+    dateLabel.text = episode.episode.firstAired?.shortString() ?? "Unknown".localized
     watchedSwich.isOn = episode.lastWatched != nil
   }
 

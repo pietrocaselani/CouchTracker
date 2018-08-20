@@ -9,9 +9,13 @@ final class ShowOverviewModule {
     let tmdb = Environment.instance.tmdb
     let tvdb = Environment.instance.tvdb
     let schedulers = Environment.instance.schedulers
+    let realm = Environment.instance.realmProvider
 
     let repository = ShowOverviewAPIRepository(traktProvider: trakt, schedulers: schedulers)
-    let genreRepository = TraktGenreRepository(traktProvider: trakt, schedulers: schedulers)
+
+    let genreDataSource = GenreRealmDataSource(realmProvider: realm, schedulers: schedulers)
+    let genreRepository = TraktGenreRepository(traktProvider: trakt, dataSource: genreDataSource, schedulers: schedulers)
+
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
                                                 tvdb: tvdb,

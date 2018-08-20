@@ -3,35 +3,24 @@ import TraktSwift
 
 final class WatchedEpisodeEntityRealm: Object {
   @objc private dynamic var identifier = ""
-  @objc private dynamic var backingShowIds: ShowIdsRealm?
-  @objc dynamic var backingNumber = -1
-  @objc dynamic var lastWatchedAt: Date?
+  @objc private dynamic var backingEpisodeEntity: EpisodeEntityRealm?
+  @objc dynamic var lastWatched: Date?
 
-  var number: Int {
+  var episodeEntity: EpisodeEntityRealm? {
     get {
-      return backingNumber
+      return backingEpisodeEntity
     }
     set {
-      backingNumber = newValue
-      updateIdentifier()
-    }
-  }
-
-  var showIds: ShowIdsRealm? {
-    get {
-      return backingShowIds
-    }
-    set {
-      backingShowIds = newValue
+      backingEpisodeEntity = newValue
       updateIdentifier()
     }
   }
 
   private func updateIdentifier() {
-    if let traktId = backingShowIds?.trakt {
-      let typeName = String(describing: WatchedEpisodeEntity.self)
-      identifier = "\(typeName)-\(traktId)-\(number)"
-    }
+    guard let episodeTrakt = backingEpisodeEntity?.ids?.trakt else { return }
+
+    let typeName = String(describing: WatchedEpisodeEntity.self)
+    identifier = "\(typeName)-\(episodeTrakt)"
   }
 
   override static func primaryKey() -> String? {
@@ -39,7 +28,7 @@ final class WatchedEpisodeEntityRealm: Object {
   }
 
   override static func ignoredProperties() -> [String] {
-    return ["showIds", "number"]
+    return ["showIds", "episodeEntity"]
   }
 
   override func isEqual(_ object: Any?) -> Bool {
@@ -50,20 +39,16 @@ final class WatchedEpisodeEntityRealm: Object {
 
   static func == (lhs: WatchedEpisodeEntityRealm, rhs: WatchedEpisodeEntityRealm) -> Bool {
     return lhs.identifier == rhs.identifier &&
-      lhs.backingShowIds == rhs.backingShowIds &&
-      lhs.number == rhs.number &&
-      lhs.lastWatchedAt == rhs.lastWatchedAt
+      lhs.episodeEntity == rhs.episodeEntity &&
+      lhs.lastWatched == rhs.lastWatched
   }
 
   func toEntity() -> WatchedEpisodeEntity {
-    guard let showIds = showIds?.toEntity() else {
-      Swift.fatalError("How show is not present on WatchedEpisodeEntityRealm?!")
+    guard let episode = episodeEntity?.toEntity() else {
+      Swift.fatalError("How episodeEntity is not present on WatchedEpisodeEntityRealm?!")
     }
 
-    // CT-TODO
-    let episodeIds = EpisodeIds(trakt: 0, tmdb: 0, imdb: "", tvdb: 0, tvrage: 0)
-
-    return WatchedEpisodeEntity(showIds: showIds, episodeIds: episodeIds, number: number, lastWatchedAt: lastWatchedAt)
+    return WatchedEpisodeEntity(episode: episode, lastWatched: lastWatched)
   }
 }
 
@@ -71,9 +56,8 @@ extension WatchedEpisodeEntity {
   func toRealm() -> WatchedEpisodeEntityRealm {
     let realm = WatchedEpisodeEntityRealm()
 
-    realm.showIds = showIds.toRealm()
-    realm.number = number
-    realm.lastWatchedAt = lastWatchedAt
+    realm.episodeEntity = episode.toRealm()
+    realm.lastWatched = lastWatched
 
     return realm
   }
