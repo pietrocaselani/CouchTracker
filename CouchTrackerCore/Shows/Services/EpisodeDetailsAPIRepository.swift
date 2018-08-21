@@ -10,6 +10,8 @@ public final class EpisodeDetailsAPIRepository: EpisodeDetailsRepository {
 
   public func fetchDetailsOf(episode: Int, season: Int, from showId: ShowIds, extended: Extended) -> Single<Episode> {
     let target = Episodes.summary(showId: showId.realId, season: season, episode: episode, extended: extended)
-    return trakt.episodes.rx.request(target).map(Episode.self)
+    return trakt.episodes.rx.request(target).do(onSuccess: { response in
+      print("PC response is empty? \(response.data.isEmpty)")
+    }).map(Episode.self)
   }
 }

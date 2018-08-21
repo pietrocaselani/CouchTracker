@@ -34,7 +34,7 @@ final class Environment {
     #if DEBUG
       debug = true
 
-      plugins.append(NetworkLoggerPlugin())
+      plugins.append(NetworkLoggerPlugin(verbose: true))
 
       let traktClientId = Secrets.Trakt.clientId.isEmpty
       let tmdbAPIKey = Secrets.TMDB.apiKey.isEmpty
@@ -48,6 +48,7 @@ final class Environment {
     #endif
 
     var traktPlugins = plugins
+			//CT-TODO Remove this
     traktPlugins.append(NoCacheMoyaPlugin())
 
     buildConfig = DefaultBuildConfig(debug: debug)
