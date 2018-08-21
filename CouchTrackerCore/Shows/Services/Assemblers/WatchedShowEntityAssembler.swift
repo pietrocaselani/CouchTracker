@@ -29,10 +29,10 @@ public final class WatchedShowEntityAssembler {
         return strongSelf.setGenres(into: builder)
       }.flatMap { [weak self] builder -> Observable<WatchedShowBuilder> in
         guard let strongSelf = self else { return Observable.just(builder) }
-        return strongSelf.setNextEpisodeDetails(into: builder)
+        return strongSelf.setSeasons(into: builder)
       }.flatMap { [weak self] builder -> Observable<WatchedShowBuilder> in
         guard let strongSelf = self else { return Observable.just(builder) }
-        return strongSelf.setSeasons(into: builder)
+        return strongSelf.setNextEpisodeDetails(into: builder)
       }
   }
 

@@ -48,7 +48,7 @@ final class Environment {
     #endif
 
     var traktPlugins = plugins
-			//CT-TODO Remove this
+    // CT-TODO Remove this
     traktPlugins.append(NoCacheMoyaPlugin())
 
     buildConfig = DefaultBuildConfig(debug: debug)
