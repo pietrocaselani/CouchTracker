@@ -10,12 +10,10 @@ final class MovieDetailsModule {
     let tvdb = Environment.instance.tvdb
     let schedulers = Environment.instance.schedulers
     let appConfigObservable = Environment.instance.appConfigurationsObservable
-    let realm = Environment.instance.realmProvider
 
     let repository = MovieDetailsAPIRepository(traktProvider: trakt, schedulers: schedulers)
 
-    let genreDataSource = GenreRealmDataSource(realmProvider: realm, schedulers: schedulers)
-    let genreRepository = TraktGenreRepository(traktProvider: trakt, dataSource: genreDataSource, schedulers: schedulers)
+    let genreRepository = GenreModule.setupGenreRepository()
 
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRespository = ImageCachedRepository(tmdb: tmdb,

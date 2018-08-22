@@ -8,7 +8,6 @@ final class WatchedSeasonEntityRealm: Object {
   @objc dynamic var backingNumber = -1
   @objc dynamic var title: String?
   @objc dynamic var overview: String?
-  var special = false
   let aired = RealmOptional<Int>()
   let completed = RealmOptional<Int>()
   let episodes = List<WatchedEpisodeEntityRealm>()
@@ -74,13 +73,13 @@ final class WatchedSeasonEntityRealm: Object {
   }
 
   func toEntity() -> WatchedSeasonEntity {
-    guard let seasonIds = seasonIds?.toEntity(), let showIds = showIds?.toEntity() else {
+    guard let seasonIds = backingSeasonIds?.toEntity(), let showIds = backingShowIds?.toEntity() else {
       Swift.fatalError("")
     }
 
     return WatchedSeasonEntity(showIds: showIds, seasonIds: seasonIds, number: number, aired: aired.value,
                                completed: completed.value, episodes: episodes.map { $0.toEntity() },
-                               special: special, overview: overview, title: title)
+                               overview: overview, title: title)
   }
 }
 
@@ -89,6 +88,9 @@ extension WatchedSeasonEntity {
     let realm = WatchedSeasonEntityRealm()
 
     realm.showIds = showIds.toRealm()
+    realm.seasonIds = seasonIds.toRealm()
+    realm.title = title
+    realm.overview = overview
     realm.number = number
     realm.aired.value = aired
     realm.completed.value = completed

@@ -7,7 +7,8 @@ public final class TraktLoginDefaultPresenter: TraktLoginPresenter {
   private let schedulers: Schedulers
   private let disposeBag = DisposeBag()
 
-  public init(view: TraktLoginView, interactor: TraktLoginInteractor, output: TraktLoginOutput, schedulers: Schedulers) {
+  public init(view: TraktLoginView, interactor: TraktLoginInteractor,
+              output: TraktLoginOutput, schedulers: Schedulers) {
     self.view = view
     self.interactor = interactor
     self.output = output

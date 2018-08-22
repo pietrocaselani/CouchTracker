@@ -1,33 +1,42 @@
 import TraktSwift
 
-public final class WatchedSeasonEntityBuilder: Hashable {
+public struct WatchedSeasonEntityBuilder: Hashable {
   public let showIds: ShowIds
-  public let special: Bool
   public var progressSeason: BaseSeason?
   public var detailSeason: Season?
   public var episodes: [WatchedEpisodeEntityBuilder]?
 
-  public init(showIds: ShowIds, special: Bool) {
+  public init(showIds: ShowIds, progressSeason: BaseSeason? = nil,
+              detailSeason: Season? = nil, episodes: [WatchedEpisodeEntityBuilder]? = nil) {
     self.showIds = showIds
-    self.special = special
-  }
-
-  @discardableResult
-  public func set(progressSeason: BaseSeason?) -> WatchedSeasonEntityBuilder {
     self.progressSeason = progressSeason
-    return self
-  }
-
-  @discardableResult
-  public func set(episodes: [WatchedEpisodeEntityBuilder]?) -> WatchedSeasonEntityBuilder {
-    self.episodes = episodes
-    return self
-  }
-
-  @discardableResult
-  public func set(detailSeason: Season?) -> WatchedSeasonEntityBuilder {
     self.detailSeason = detailSeason
-    return self
+    self.episodes = episodes
+  }
+
+  public func set(progressSeason: BaseSeason?) -> WatchedSeasonEntityBuilder {
+    return WatchedSeasonEntityBuilder(showIds: showIds,
+                                      progressSeason: progressSeason,
+                                      detailSeason: detailSeason,
+                                      episodes: episodes)
+  }
+
+  public func set(episodes: [WatchedEpisodeEntityBuilder]?) -> WatchedSeasonEntityBuilder {
+    return WatchedSeasonEntityBuilder(showIds: showIds,
+                                      progressSeason: progressSeason,
+                                      detailSeason: detailSeason,
+                                      episodes: episodes)
+  }
+
+  public func set(detailSeason: Season?) -> WatchedSeasonEntityBuilder {
+    return WatchedSeasonEntityBuilder(showIds: showIds,
+                                      progressSeason: progressSeason,
+                                      detailSeason: detailSeason,
+                                      episodes: episodes)
+  }
+
+  public func isValid() -> Bool {
+    return detailSeason != nil
   }
 
   public func createEntity() -> WatchedSeasonEntity {
@@ -37,12 +46,11 @@ public final class WatchedSeasonEntityBuilder: Hashable {
 
     return WatchedSeasonEntity(showIds: showIds, seasonIds: detailSeason.ids, number: detailSeason.number,
                                aired: progressSeason?.aired, completed: progressSeason?.completed,
-                               episodes: episodeEntities, special: special,
-                               overview: detailSeason.overview, title: detailSeason.title)
+                               episodes: episodeEntities, overview: detailSeason.overview, title: detailSeason.title)
   }
 
   public var hashValue: Int {
-    var hash = showIds.hashValue ^ special.hashValue
+    var hash = showIds.hashValue
 
     progressSeason.run { hash ^= $0.hashValue }
     detailSeason.run { hash ^= $0.hashValue }

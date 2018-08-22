@@ -10,6 +10,6 @@ public final class WatchedShowsAPIRepository: WatchedShowsRepository {
 
   public func fetchWatchedShows(extended: Extended) -> Single<[BaseShow]> {
     let target = Sync.watched(type: .shows, extended: extended)
-    return trakt.sync.rx.request(target).map([BaseShow].self)
+    return trakt.sync.rx.request(target).filterSuccessfulStatusCodes().map([BaseShow].self)
   }
 }

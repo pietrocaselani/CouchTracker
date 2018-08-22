@@ -13,6 +13,6 @@ public final class ShowWatchedProgressAPIRepository: ShowWatchedProgressReposito
                                        hidden: !hideSpecials,
                                        specials: !hideSpecials,
                                        countSpecials: !hideSpecials)
-    return trakt.shows.rx.request(target).map(BaseShow.self)
+    return trakt.shows.rx.request(target).filterSuccessfulStatusCodes().map(BaseShow.self)
   }
 }

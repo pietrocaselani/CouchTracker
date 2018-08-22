@@ -9,6 +9,8 @@ public final class ShowSeasonsAPIRepository: ShowSeasonsRepository {
   }
 
   public func fetchShowSeasons(showIds: ShowIds, extended: Extended) -> Single<[Season]> {
-    return trakt.seasons.rx.request(.summary(showId: showIds.realId, exteded: extended)).map([Season].self)
+    return trakt.seasons.rx.request(.summary(showId: showIds.realId, exteded: extended))
+      .filterSuccessfulStatusCodes()
+      .map([Season].self)
   }
 }

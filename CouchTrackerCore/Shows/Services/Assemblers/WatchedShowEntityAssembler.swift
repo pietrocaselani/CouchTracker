@@ -26,11 +26,13 @@ public final class WatchedShowEntityAssembler {
     return setShowProgress(for: ids, hiddingSpecials: hiddingSpecials, into: builder)
       .flatMap { [weak self] builder -> Observable<WatchedShowBuilder> in
         guard let strongSelf = self else { return Observable.just(builder) }
-        return strongSelf.setGenres(into: builder)
-      }.flatMap { [weak self] builder -> Observable<WatchedShowBuilder> in
-        guard let strongSelf = self else { return Observable.just(builder) }
         return strongSelf.setSeasons(into: builder)
-      }.flatMap { [weak self] builder -> Observable<WatchedShowBuilder> in
+      }
+      .flatMap { [weak self] builder -> Observable<WatchedShowBuilder> in
+        guard let strongSelf = self else { return Observable.just(builder) }
+        return strongSelf.setGenres(into: builder)
+      }
+      .flatMap { [weak self] builder -> Observable<WatchedShowBuilder> in
         guard let strongSelf = self else { return Observable.just(builder) }
         return strongSelf.setNextEpisodeDetails(into: builder)
       }
@@ -55,7 +57,29 @@ public final class WatchedShowEntityAssembler {
   }
 
   private func setSeasons(into builder: WatchedShowBuilder) -> Observable<WatchedShowBuilder> {
-    return watchedSeasonsAssembler.fetchWatchedSeasons(using: builder)
+    return watchedSeasonsAssembler.fetchWatchedSeasons(using: builder.ids)
+      .map { seasonBuilders -> WatchedShowBuilder in
+        WatchedShowEntityAssembler.setSeasons(seasonBuilders: seasonBuilders, into: builder)
+      }.asObservable()
+  }
+
+  private static func setSeasons(seasonBuilders: [WatchedSeasonEntityBuilder],
+                                 into builder: WatchedShowBuilder) -> WatchedShowBuilder {
+    guard let progressSeasons = builder.progressShow?.seasons else {
+      return builder
+    }
+
+    var newSeasonBuilders = [WatchedSeasonEntityBuilder]()
+
+    progressSeasons.forEach { progressSeason in
+      let seasonBuilder = seasonBuilders.first(where: { seasonBuilder -> Bool in
+        seasonBuilder.detailSeason?.number == progressSeason.number
+      })
+
+      (seasonBuilder?.set(progressSeason: progressSeason)).run { newSeasonBuilders.append($0) }
+    }
+
+    return builder.set(seasons: newSeasonBuilders)
   }
 
   private func setNextEpisodeDetails(into builder: WatchedShowBuilder) -> Observable<WatchedShowBuilder> {

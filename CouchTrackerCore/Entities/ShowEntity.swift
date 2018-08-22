@@ -10,7 +10,8 @@ public struct ShowEntity: Hashable {
   public let status: Status?
   public let firstAired: Date?
 
-  public init(ids: ShowIds, title: String?, overview: String?, network: String?, genres: [Genre], status: Status?, firstAired: Date?) {
+  public init(ids: ShowIds, title: String?, overview: String?,
+              network: String?, genres: [Genre], status: Status?, firstAired: Date?) {
     self.ids = ids
     self.title = title
     self.overview = overview

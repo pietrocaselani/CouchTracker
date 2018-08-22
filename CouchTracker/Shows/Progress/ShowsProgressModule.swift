@@ -11,7 +11,6 @@ final class ShowsProgressModule {
       Swift.fatalError("Can't instantiate showsProgressController from Shows storyboard")
     }
 
-    let trakt = Environment.instance.trakt
     let tmdb = Environment.instance.tmdb
     let tvdb = Environment.instance.tvdb
     let schedulers = Environment.instance.schedulers
