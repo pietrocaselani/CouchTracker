@@ -7,11 +7,11 @@ final class ShowEpisodeMocks {
     Swift.fatalError("No instances for you!")
   }
 
-  final class Interactor: ShowEpisodeInteractor {
+	final class Interactor: ShowEpisodeInteractor {
     var fetchImageURLInvoked = false
     var fetchImageURLParameters: EpisodeImageInput?
     var toogleWatchInvoked = false
-    var toogleWatchParameters: (episode: EpisodeEntity, show: WatchedShowEntity)?
+    var toogleWatchParameters: (episode: WatchedEpisodeEntity, show: WatchedShowEntity)?
     var error: Error?
     var toogleFailError: Error?
     var nextEntity: WatchedShowEntity!
@@ -32,7 +32,7 @@ final class ShowEpisodeMocks {
       return Maybe.just(url)
     }
 
-    func toggleWatch(for episode: EpisodeEntity, of show: WatchedShowEntity) -> Single<SyncResult> {
+    func toggleWatch(for episode: WatchedEpisodeEntity, of show: WatchedShowEntity) -> Single<SyncResult> {
       toogleWatchInvoked = true
       toogleWatchParameters = (episode, show)
 

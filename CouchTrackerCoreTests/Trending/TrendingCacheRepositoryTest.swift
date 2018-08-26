@@ -20,7 +20,7 @@ final class TrendingCacheRepositoryTest: XCTestCase {
   }
 
   func testFetchMoviesEmitMoviesAndComplete() {
-    repository.fetchMovies(page: 0, limit: 50).subscribe(moviesObserver).disposed(by: disposeBag)
+    repository.fetchMovies(page: 0, limit: 50).asObservable().subscribe(moviesObserver).disposed(by: disposeBag)
 
     scheduler.start()
 
@@ -31,7 +31,7 @@ final class TrendingCacheRepositoryTest: XCTestCase {
   }
 
   func testFetchShowsEmitShowsAndComplete() {
-    repository.fetchShows(page: 0, limit: 50).subscribe(showsObserver).disposed(by: disposeBag)
+    repository.fetchShows(page: 0, limit: 50).asObservable().subscribe(showsObserver).disposed(by: disposeBag)
 
     scheduler.start()
 

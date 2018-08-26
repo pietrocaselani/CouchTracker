@@ -78,22 +78,25 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
     episodeIds.imdb = nil
     episodeIds.tmdb.value = 11
     episodeIds.trakt = 3050
-    episodeIds.tvdb = 6021
+    episodeIds.tvdb.value = 6021
     episodeIds.tvrage.value = nil
 
-    let nextEpisodeEntity = EpisodeEntityRealm()
-    nextEpisodeEntity.firstAired = Date(timeIntervalSince1970: 0)
-    nextEpisodeEntity.lastWatched = Date(timeIntervalSince1970: 6)
-    nextEpisodeEntity.number = 4
-    nextEpisodeEntity.season = 1
-    nextEpisodeEntity.showIds = showIds
-    nextEpisodeEntity.overview = "TBD"
-    nextEpisodeEntity.title = "What?"
-    nextEpisodeEntity.ids = episodeIds
+    let nextEpisode = EpisodeEntityRealm()
+    nextEpisode.firstAired = Date(timeIntervalSince1970: 0)
+    nextEpisode.number = 4
+    nextEpisode.season = 1
+    nextEpisode.showIds = showIds
+    nextEpisode.overview = "TBD"
+    nextEpisode.title = "What?"
+    nextEpisode.ids = episodeIds
+
+			let nextEpisodeEntity = WatchedEpisodeEntityRealm()
+			nextEpisodeEntity.episodeEntity = nextEpisode
+			nextEpisodeEntity.lastWatched = Date(timeIntervalSince1970: 6)
 
     let realmEntity = WatchedShowEntityRealm()
-    realmEntity.aired = 5
-    realmEntity.completed = 3
+    realmEntity.aired.value = 5
+    realmEntity.completed.value = 3
     realmEntity.lastWatched = Date(timeIntervalSince1970: 6)
     realmEntity.show = realmShowEntity
     realmEntity.nextEpisode = nextEpisodeEntity
@@ -117,9 +120,11 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
     let expectedEpisodeIds = EpisodeIds(trakt: 3050, tmdb: 11, imdb: nil, tvdb: 6021, tvrage: nil)
     let expectedNextEpisode = EpisodeEntity(ids: expectedEpisodeIds, showIds: expectedShowIds, title: "What?",
                                             overview: "TBD", number: 4, season: 1,
-                                            firstAired: Date(timeIntervalSince1970: 0),
-                                            lastWatched: Date(timeIntervalSince1970: 6))
-    let expectedEntity = WatchedShowEntity(show: expectedShowEntity, aired: 5, completed: 3, nextEpisode: expectedNextEpisode, lastWatched: Date(timeIntervalSince1970: 6), seasons: seasons)
+                                            firstAired: Date(timeIntervalSince1970: 0))
+
+			let expectedNextWatchedEpisode = WatchedEpisodeEntity(episode: expectedNextEpisode, lastWatched: Date(timeIntervalSince1970: 6))
+
+    let expectedEntity = WatchedShowEntity(show: expectedShowEntity, aired: 5, completed: 3, nextEpisode: expectedNextWatchedEpisode, lastWatched: Date(timeIntervalSince1970: 6), seasons: seasons)
 
     let expectedEvents = [next(0, [expectedEntity])]
 

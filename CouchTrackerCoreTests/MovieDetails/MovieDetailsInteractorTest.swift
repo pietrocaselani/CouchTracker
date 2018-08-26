@@ -175,7 +175,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let detailsRepository = MovieDetailsMocks.MovieDetailsRepositoryMock(watched: false)
     let genreRepository = GenreRepositoryMock()
     let movie = TraktEntitiesMock.createUnwatchedMovieDetailsMock()
-    let movieEntity = MovieEntityMapper.entity(for: movie, watchedAt: nil)
+			let movieEntity = MovieEntityMapper.entity(for: movie, with: [Genre](), watchedAt: nil)
     let interactor = MovieDetailsService(repository: detailsRepository,
                                          genreRepository: genreRepository,
                                          imageRepository: imageRepositoryMock,
@@ -201,7 +201,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let genreRepository = GenreRepositoryMock()
     let movie = TraktEntitiesMock.createUnwatchedMovieDetailsMock()
     let watchedAt = TraktDateTransformer.dateTimeTransformer.transformFromJSON("2013-06-15T05:54:27.000Z")
-    let movieEntity = MovieEntityMapper.entity(for: movie, watchedAt: watchedAt)
+    let movieEntity = MovieEntityMapper.entity(for: movie, with: [Genre](), watchedAt: watchedAt)
     let interactor = MovieDetailsService(repository: detailsRepository,
                                          genreRepository: genreRepository,
                                          imageRepository: imageRepositoryMock,

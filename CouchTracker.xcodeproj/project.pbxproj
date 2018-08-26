@@ -165,14 +165,11 @@
 		4F0F57E8203D61B300B86CB8 /* ShowEpisodeAPIRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F931540203CAADF00631D4A /* ShowEpisodeAPIRepositoryTest.swift */; };
 		4F0F57E9203D61B300B86CB8 /* ShowEpisodeMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8EE017202E16EF0002189B /* ShowEpisodeMocks.swift */; };
 		4F0F57EA203D61B300B86CB8 /* ShowEpisodeServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8EE014202E164D0002189B /* ShowEpisodeServiceTest.swift */; };
-		4F0F57EB203D61B300B86CB8 /* ShowsProgressMoyaNetworkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F931545203CD45F00631D4A /* ShowsProgressMoyaNetworkTest.swift */; };
 		4F0F57EC203D61B300B86CB8 /* ShowDetailsInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645EEEDB1F61AB8A0034EB66 /* ShowDetailsInteractorTest.swift */; };
 		4F0F57ED203D61B300B86CB8 /* ShowDetailsMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645EEEE31F61AEA10034EB66 /* ShowDetailsMocks.swift */; };
 		4F0F57EE203D61B300B86CB8 /* ShowDetailsPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EC3A611F66B2AB0046A186 /* ShowDetailsPresenterTest.swift */; };
 		4F0F57EF203D61B300B86CB8 /* ShowDetailsRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D49BC20223CA7002A4EAD /* ShowDetailsRepositoryTest.swift */; };
 		4F0F57F0203D61B300B86CB8 /* ShowProgressMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641020DC1F8536000033206A /* ShowProgressMocks.swift */; };
-		4F0F57F1203D61B300B86CB8 /* ShowProgressAPIRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F236DCA202CD36E007FB1B9 /* ShowProgressAPIRepositoryTest.swift */; };
-		4F0F57F2203D61B300B86CB8 /* ShowsProgressAPIRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA6A1F75347D00EA3AD8 /* ShowsProgressAPIRepositoryTest.swift */; };
 		4F0F57F3203D61B300B86CB8 /* ShowsProgressMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434CA8F1F757AE900EA3AD8 /* ShowsProgressMocks.swift */; };
 		4F0F57F4203D61B300B86CB8 /* ShowsProgressServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CCE33F1F7AD2A300CD2B9C /* ShowsProgressServiceTest.swift */; };
 		4F0F57F5203D61B300B86CB8 /* ShowsProgressPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896301F7BFECB00F95649 /* ShowsProgressPresenterTest.swift */; };
@@ -469,6 +466,8 @@
 		4FCF133220FF678300122734 /* ShowEpisodeImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF133120FF678300122734 /* ShowEpisodeImageState.swift */; };
 		4FCF133320FF678300122734 /* ShowEpisodeImageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FCF133120FF678300122734 /* ShowEpisodeImageState.swift */; };
 		4FD9E725209E69CB007673A3 /* NSLocale+Override.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD9E724209E69CB007673A3 /* NSLocale+Override.m */; };
+		4FDB45AE2130D671009B5C6F /* ShowSeasonsRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB45AD2130D671009B5C6F /* ShowSeasonsRepositoryMock.swift */; };
+		4FDB45B02130D6CC009B5C6F /* EpisodeDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB45AF2130D6CC009B5C6F /* EpisodeDetailsRepository.swift */; };
 		4FDBB663203E9FDA00448A60 /* ShowProgressCellServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDBB662203E9FDA00448A60 /* ShowProgressCellServiceTest.swift */; };
 		4FE02E452105E98000196B8E /* GenreRealmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE02E442105E98000196B8E /* GenreRealmTests.swift */; };
 		4FE4BA322059E31800969AAF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4BA312059E31800969AAF /* SearchViewController.swift */; };
@@ -649,7 +648,6 @@
 		4F236DBF202CB98E007FB1B9 /* BuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildConfig.swift; sourceTree = "<group>"; };
 		4F236DC3202CB9C5007FB1B9 /* DefaultBuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBuildConfig.swift; sourceTree = "<group>"; };
 		4F236DC7202CCD83007FB1B9 /* TestBuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBuildConfig.swift; sourceTree = "<group>"; };
-		4F236DCA202CD36E007FB1B9 /* ShowProgressAPIRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressAPIRepositoryTest.swift; sourceTree = "<group>"; };
 		4F260EEA20E50B4100C47616 /* MovieDetailsAPIRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsAPIRepositoryTests.swift; sourceTree = "<group>"; };
 		4F260EEC20E63E5F00C47616 /* TraktError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktError.swift; sourceTree = "<group>"; };
 		4F2F281C212909840000CC17 /* GenreDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreDataSource.swift; sourceTree = "<group>"; };
@@ -715,7 +713,6 @@
 		4F93153C203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeMoyaNetwork.swift; sourceTree = "<group>"; };
 		4F931540203CAADF00631D4A /* ShowEpisodeAPIRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeAPIRepositoryTest.swift; sourceTree = "<group>"; };
 		4F931543203CB34800631D4A /* trakt_sync_addtohistory.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_sync_addtohistory.json; sourceTree = "<group>"; };
-		4F931545203CD45F00631D4A /* ShowsProgressMoyaNetworkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressMoyaNetworkTest.swift; sourceTree = "<group>"; };
 		4F9ABC102052982B00EA6456 /* MoviesManagerDefaultDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerDefaultDataSource.swift; sourceTree = "<group>"; };
 		4F9CE2BF205A84A80000CCD4 /* SearchViewModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModule.swift; sourceTree = "<group>"; };
 		4F9CE2C1205A85400000CCD4 /* SearchBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchBarView.xib; sourceTree = "<group>"; };
@@ -735,6 +732,8 @@
 		4FD27A3B201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCacheRepositoryTest.swift; sourceTree = "<group>"; };
 		4FD9E723209E69CB007673A3 /* NSLocale+Override.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSLocale+Override.h"; sourceTree = "<group>"; };
 		4FD9E724209E69CB007673A3 /* NSLocale+Override.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSLocale+Override.m"; sourceTree = "<group>"; };
+		4FDB45AD2130D671009B5C6F /* ShowSeasonsRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSeasonsRepositoryMock.swift; sourceTree = "<group>"; };
+		4FDB45AF2130D6CC009B5C6F /* EpisodeDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsRepository.swift; sourceTree = "<group>"; };
 		4FDBB662203E9FDA00448A60 /* ShowProgressCellServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellServiceTest.swift; sourceTree = "<group>"; };
 		4FE02E442105E98000196B8E /* GenreRealmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreRealmTests.swift; sourceTree = "<group>"; };
 		4FE42FB4203B94B80001FF1F /* ShowProgressSortTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressSortTest.swift; sourceTree = "<group>"; };
@@ -809,7 +808,6 @@
 		6434CA5D1F752BD200EA3AD8 /* ShowsManagerMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerMocks.swift; sourceTree = "<group>"; };
 		6434CA601F752E3F00EA3AD8 /* ShowsManagerPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerPresenterTest.swift; sourceTree = "<group>"; };
 		6434CA651F752ED400EA3AD8 /* TraktLoginObservableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginObservableMock.swift; sourceTree = "<group>"; };
-		6434CA6A1F75347D00EA3AD8 /* ShowsProgressAPIRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressAPIRepositoryTest.swift; sourceTree = "<group>"; };
 		6434CA8F1F757AE900EA3AD8 /* ShowsProgressMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressMocks.swift; sourceTree = "<group>"; };
 		643E918B20249C340048C0F2 /* ModulePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulePage.swift; sourceTree = "<group>"; };
 		6442F9F31F61751E008E3E12 /* PosterCellPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCellPresenterTest.swift; sourceTree = "<group>"; };
@@ -1558,6 +1556,15 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		4FDB45AC2130D65B009B5C6F /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4FDB45AD2130D671009B5C6F /* ShowSeasonsRepositoryMock.swift */,
+				4FDB45AF2130D6CC009B5C6F /* EpisodeDetailsRepository.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		4FDBB661203E9FBC00448A60 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1672,7 +1679,6 @@
 			isa = PBXGroup;
 			children = (
 				641020DC1F8536000033206A /* ShowProgressMocks.swift */,
-				4F236DCA202CD36E007FB1B9 /* ShowProgressAPIRepositoryTest.swift */,
 			);
 			path = ShowProgress;
 			sourceTree = "<group>";
@@ -1736,6 +1742,7 @@
 		6434CA5B1F75298600EA3AD8 /* Shows */ = {
 			isa = PBXGroup;
 			children = (
+				4FDB45AC2130D65B009B5C6F /* Mocks */,
 				6434CA691F75344900EA3AD8 /* Progress */,
 				6434CA5C1F7529BC00EA3AD8 /* Manager */,
 			);
@@ -1758,9 +1765,7 @@
 				4FDBB661203E9FBC00448A60 /* Cell */,
 				4F6097DE203B429A006A2B33 /* ShowProgressFilterTest.swift */,
 				4FE42FB4203B94B80001FF1F /* ShowProgressSortTest.swift */,
-				6434CA6A1F75347D00EA3AD8 /* ShowsProgressAPIRepositoryTest.swift */,
 				6434CA8F1F757AE900EA3AD8 /* ShowsProgressMocks.swift */,
-				4F931545203CD45F00631D4A /* ShowsProgressMoyaNetworkTest.swift */,
 				646896301F7BFECB00F95649 /* ShowsProgressPresenterTest.swift */,
 				392D92E09E0D2FA6A0EB4810 /* ShowsProgressRealmDataSourceTest.swift */,
 				64CCE33F1F7AD2A300CD2B9C /* ShowsProgressServiceTest.swift */,
@@ -2980,8 +2985,10 @@
 				4F0F5945203D994500B86CB8 /* BaseViewMock.swift in Sources */,
 				4F0F5946203D994500B86CB8 /* RxAsserts.swift in Sources */,
 				4F0F5947203D994500B86CB8 /* TestBuildConfig.swift in Sources */,
+				4FDB45AE2130D671009B5C6F /* ShowSeasonsRepositoryMock.swift in Sources */,
 				4F0F5948203D994500B86CB8 /* TMDBEntitiesMock.swift in Sources */,
 				4F0F5949203D994500B86CB8 /* TraktLoginObservableMock.swift in Sources */,
+				4FDB45B02130D6CC009B5C6F /* EpisodeDetailsRepository.swift in Sources */,
 				4F0F5944203D991A00B86CB8 /* TraktEntitiesMock.swift in Sources */,
 				4FC97A1F203F163300C2B924 /* ShowProgressCellDefaultPresenterTest.swift in Sources */,
 				4FC97A23203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift in Sources */,
@@ -3008,7 +3015,6 @@
 				4F0F57EA203D61B300B86CB8 /* ShowEpisodeServiceTest.swift in Sources */,
 				4F3F67DF209E678100D3E403 /* NSObject+Swizzling.m in Sources */,
 				4FDBB663203E9FDA00448A60 /* ShowProgressCellServiceTest.swift in Sources */,
-				4F0F57EB203D61B300B86CB8 /* ShowsProgressMoyaNetworkTest.swift in Sources */,
 				4F0F57EC203D61B300B86CB8 /* ShowDetailsInteractorTest.swift in Sources */,
 				4F0F57ED203D61B300B86CB8 /* ShowDetailsMocks.swift in Sources */,
 				4F8AC27020A5A27800E4E65B /* NSTimeZone+Override.m in Sources */,
@@ -3016,8 +3022,6 @@
 				4F3F67DC209E674D00D3E403 /* NSBundle+Language.m in Sources */,
 				4F0F57EF203D61B300B86CB8 /* ShowDetailsRepositoryTest.swift in Sources */,
 				4F0F57F0203D61B300B86CB8 /* ShowProgressMocks.swift in Sources */,
-				4F0F57F1203D61B300B86CB8 /* ShowProgressAPIRepositoryTest.swift in Sources */,
-				4F0F57F2203D61B300B86CB8 /* ShowsProgressAPIRepositoryTest.swift in Sources */,
 				4F0F57F3203D61B300B86CB8 /* ShowsProgressMocks.swift in Sources */,
 				4F3A5960204EF6C30061ABB7 /* UserDefaultsExtensions.swift in Sources */,
 				4F0F57F4203D61B300B86CB8 /* ShowsProgressServiceTest.swift in Sources */,

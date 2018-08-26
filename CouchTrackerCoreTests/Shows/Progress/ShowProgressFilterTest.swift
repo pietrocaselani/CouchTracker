@@ -34,13 +34,15 @@ final class ShowProgressFilterTest: XCTestCase {
 
     let nonCompletedWatchedShow = WatchedShowEntity(show: mock.show, aired: 10, completed: 8, nextEpisode: nil, lastWatched: lastWatched, seasons: seasons)
 
-    let cancelledShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: nil, status: Status.canceled, firstAired: nil)
+			let genres = [Genre]()
 
-    let endedShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: nil, status: Status.ended, firstAired: nil)
+    let cancelledShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.canceled, firstAired: nil)
 
-    let inDevelopmentShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: nil, status: Status.inDevelopment, firstAired: nil)
+    let endedShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.ended, firstAired: nil)
 
-    let returningShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: nil, status: Status.returning, firstAired: nil)
+    let inDevelopmentShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.inDevelopment, firstAired: nil)
+
+    let returningShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.returning, firstAired: nil)
 
     let cancelledWatchedShow = WatchedShowEntity(show: cancelledShow, aired: 10, completed: 10, nextEpisode: nil, lastWatched: lastWatched, seasons: seasons)
 
@@ -74,13 +76,15 @@ final class ShowProgressFilterTest: XCTestCase {
 
     let nonCompletedWatchedShow = WatchedShowEntity(show: mock.show, aired: 10, completed: 8, nextEpisode: nil, lastWatched: lastWatched, seasons: seasons)
 
-    let cancelledShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: nil, status: Status.canceled, firstAired: nil)
+			let genres = [Genre]()
 
-    let endedShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: nil, status: Status.ended, firstAired: nil)
+    let cancelledShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.canceled, firstAired: nil)
 
-    let inDevelopmentShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: nil, status: Status.inDevelopment, firstAired: nil)
+    let endedShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.ended, firstAired: nil)
 
-    let returningShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: nil, status: Status.returning, firstAired: nil)
+    let inDevelopmentShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.inDevelopment, firstAired: nil)
+
+    let returningShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.returning, firstAired: nil)
 
     let cancelledWatchedShow = WatchedShowEntity(show: cancelledShow, aired: 10, completed: 10, nextEpisode: nil, lastWatched: lastWatched, seasons: seasons)
 
@@ -114,13 +118,15 @@ final class ShowProgressFilterTest: XCTestCase {
 
     let nonCompletedWatchedShow = WatchedShowEntity(show: mock.show, aired: 10, completed: 8, nextEpisode: nil, lastWatched: lastWatched, seasons: seasons)
 
-    let cancelledShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: nil, status: Status.canceled, firstAired: nil)
+			let genres = [Genre]()
 
-    let endedShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: nil, status: Status.ended, firstAired: nil)
+    let cancelledShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.canceled, firstAired: nil)
 
-    let inDevelopmentShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: nil, status: Status.inDevelopment, firstAired: nil)
+    let endedShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.ended, firstAired: nil)
 
-    let returningShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: nil, status: Status.returning, firstAired: nil)
+    let inDevelopmentShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.inDevelopment, firstAired: nil)
+
+    let returningShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.returning, firstAired: nil)
 
     let cancelledWatchedShow = WatchedShowEntity(show: cancelledShow, aired: 10, completed: 10, nextEpisode: nil, lastWatched: lastWatched, seasons: seasons)
 
@@ -154,13 +160,15 @@ final class ShowProgressFilterTest: XCTestCase {
 
     let nonCompletedWatchedShow = WatchedShowEntity(show: mock.show, aired: 10, completed: 8, nextEpisode: nil, lastWatched: lastWatched, seasons: seasons)
 
-    let cancelledShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: nil, status: Status.canceled, firstAired: nil)
+			let genres = [Genre]()
 
-    let endedShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: nil, status: Status.ended, firstAired: nil)
+    let cancelledShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.canceled, firstAired: nil)
 
-    let inDevelopmentShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: nil, status: Status.inDevelopment, firstAired: nil)
+    let endedShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.ended, firstAired: nil)
 
-    let returningShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: nil, status: Status.returning, firstAired: nil)
+    let inDevelopmentShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.inDevelopment, firstAired: nil)
+
+    let returningShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.returning, firstAired: nil)
 
     let cancelledWatchedShow = WatchedShowEntity(show: cancelledShow, aired: 10, completed: 10, nextEpisode: nil, lastWatched: lastWatched, seasons: seasons)
 

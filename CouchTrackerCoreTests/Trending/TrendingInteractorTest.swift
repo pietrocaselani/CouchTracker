@@ -28,9 +28,9 @@ final class TrendingInteractorTest: XCTestCase {
 
   func testTrendingInteractor_fetchMoviesSuccessReceivesNoData_emitsEmptyDataAndCompleted() {
     let repository = EmptyTrendingRepositoryMock()
-    let interactor = TrendingService(repository: repository)
+			let interactor = TrendingService(repository: repository, genreRepository: GenreRepositoryMock())
 
-    let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(moviesObserver)
+    let subscription = interactor.fetchMovies(page: 0, limit: 10).asObservable().subscribe(moviesObserver)
     subscription.disposed(by: disposeBag)
 
     scheduler.start()
@@ -42,9 +42,9 @@ final class TrendingInteractorTest: XCTestCase {
 
   func testTrendingInteractor_fetchShowsSuccessReceivesNoData_emitsOnlyCompleted() {
     let repository = EmptyTrendingRepositoryMock()
-    let interactor = TrendingService(repository: repository)
+			let interactor = TrendingService(repository: repository, genreRepository: GenreRepositoryMock())
 
-    let subscription = interactor.fetchShows(page: 0, limit: 10).subscribe(showsObserver)
+    let subscription = interactor.fetchShows(page: 0, limit: 10).asObservable().subscribe(showsObserver)
     subscription.disposed(by: disposeBag)
 
     scheduler.start()
@@ -58,9 +58,9 @@ final class TrendingInteractorTest: XCTestCase {
     let connectionError = TrendingError.noConnection("There is no connection active")
 
     let repository = ErrorTrendingRepositoryMock(error: connectionError)
-    let interactor = TrendingService(repository: repository)
+    let interactor = TrendingService(repository: repository, genreRepository: GenreRepositoryMock())
 
-    let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(moviesObserver)
+    let subscription = interactor.fetchMovies(page: 0, limit: 10).asObservable().subscribe(moviesObserver)
 
     scheduler.scheduleAt(600) {
       subscription.dispose()
@@ -77,9 +77,9 @@ final class TrendingInteractorTest: XCTestCase {
     let connectionError = TrendingError.noConnection("There is no connection active")
 
     let repository = ErrorTrendingRepositoryMock(error: connectionError)
-    let interactor = TrendingService(repository: repository)
+    let interactor = TrendingService(repository: repository, genreRepository: GenreRepositoryMock())
 
-    let subscription = interactor.fetchShows(page: 0, limit: 10).subscribe(showsObserver)
+    let subscription = interactor.fetchShows(page: 0, limit: 10).asObservable().subscribe(showsObserver)
 
     scheduler.scheduleAt(600) {
       subscription.dispose()
@@ -96,9 +96,9 @@ final class TrendingInteractorTest: XCTestCase {
     let movies = TraktEntitiesMock.createMockMovies()
 
     let repository = TrendingMoviesRepositoryMock(movies: movies)
-    let interactor = TrendingService(repository: repository)
+    let interactor = TrendingService(repository: repository, genreRepository: GenreRepositoryMock())
 
-    let subscription = interactor.fetchMovies(page: 0, limit: 10).subscribe(moviesObserver)
+    let subscription = interactor.fetchMovies(page: 0, limit: 10).asObservable().subscribe(moviesObserver)
 
     scheduler.scheduleAt(600) {
       subscription.dispose()
@@ -107,7 +107,7 @@ final class TrendingInteractorTest: XCTestCase {
     scheduler.start()
 
     let expectedMovies = movies.map { trendingMovie -> TrendingMovieEntity in
-      return MovieEntityMapper.entity(for: trendingMovie)
+					return MovieEntityMapper.entity(for: trendingMovie, with: [Genre]())
     }
 
     let events: [Recorded<Event<[TrendingMovieEntity]>>] = [next(0, expectedMovies), completed(0)]
@@ -117,9 +117,9 @@ final class TrendingInteractorTest: XCTestCase {
 
   func testTrendingInteractor_fetchShowsSuccessReceivesData_emitsEntitiesAndCompleted() {
     let repository = trendingRepositoryMock
-    let interactor = TrendingService(repository: repository)
+    let interactor = TrendingService(repository: repository, genreRepository: GenreRepositoryMock())
 
-    let subscription = interactor.fetchShows(page: 0, limit: 10).subscribe(showsObserver)
+    let subscription = interactor.fetchShows(page: 0, limit: 10).asObservable().subscribe(showsObserver)
 
     scheduler.scheduleAt(600) {
       subscription.dispose()
@@ -127,7 +127,7 @@ final class TrendingInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let expectedShows = TraktEntitiesMock.createTrendingShowsMock().map { ShowEntityMapper.entity(for: $0) }
+    let expectedShows = TraktEntitiesMock.createTrendingShowsMock().map { ShowEntityMapper.entity(for: $0, with: [Genre]()) }
 
     let events: [Recorded<Event<[TrendingShowEntity]>>] = [next(0, expectedShows), completed(0)]
 

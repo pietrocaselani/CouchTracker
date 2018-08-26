@@ -11,15 +11,24 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceErrorMock(error: dataSourceError)
     let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
     let schedulers = TestSchedulers()
-    let showProgressRepository = ShowProgressMocks.ShowProgressRepositoryMock()
     let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
 
-    let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
-                                              network: network,
-                                              schedulers: schedulers,
-                                              showProgressRepository: showProgressRepository,
-                                              appConfigurationsObservable: appConfigsObservableMock,
-                                              hideSpecials: true)
+			let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
+			let showSeasonsRepository = ShowSeasonsRepositoryMock()
+
+			let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
+
+			let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
+			let genreRepository = GenreRepositoryMock()
+
+			let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
+
+			let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
+																																													network: network,
+																																													schedulers: schedulers,
+																																													assembler: assembler,
+																																													appConfigurationsObservable: appConfigsObservableMock,
+																																													hideSpecials: true)
 
     // When
     let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
@@ -41,8 +50,8 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     XCTAssertTrue(network.addToHistoryInvoked)
     XCTAssertTrue(dataSource.updateWatchedShowInvoked)
     XCTAssertFalse(network.removeFromHistoryInvoked)
-    XCTAssertTrue(showProgressRepository.fetchShowProgressInvoked)
-    guard let hideSpecial = showProgressRepository.fetchShowProgressParameters?.hideSpecial else {
+    XCTAssertTrue(showWatchedRepository.fetchShowWatchedProgressInvoked)
+    guard let hideSpecial = showWatchedRepository.fetchShowWatchedProgressInvokedParameters?.hideSpecials else {
       XCTFail()
       return
     }
@@ -55,15 +64,24 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceErrorMock(error: dataSourceError)
     let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
     let schedulers = TestSchedulers()
-    let showProgressRepository = ShowProgressMocks.ShowProgressRepositoryMock()
     let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
 
-    let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
-                                              network: network,
-                                              schedulers: schedulers,
-                                              showProgressRepository: showProgressRepository,
-                                              appConfigurationsObservable: appConfigsObservableMock,
-                                              hideSpecials: true)
+			let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
+			let showSeasonsRepository = ShowSeasonsRepositoryMock()
+
+			let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
+
+			let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
+			let genreRepository = GenreRepositoryMock()
+
+			let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
+
+			let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
+																																													network: network,
+																																													schedulers: schedulers,
+																																													assembler: assembler,
+																																													appConfigurationsObservable: appConfigsObservableMock,
+																																													hideSpecials: true)
 
     // When
     let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
@@ -84,8 +102,8 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     XCTAssertTrue(network.removeFromHistoryInvoked)
     XCTAssertTrue(dataSource.updateWatchedShowInvoked)
     XCTAssertFalse(network.addToHistoryInvoked)
-    XCTAssertTrue(showProgressRepository.fetchShowProgressInvoked)
-    guard let hideSpecial = showProgressRepository.fetchShowProgressParameters?.hideSpecial else {
+    XCTAssertTrue(showWatchedRepository.fetchShowWatchedProgressInvoked)
+    guard let hideSpecial = showWatchedRepository.fetchShowWatchedProgressInvokedParameters?.hideSpecials else {
       XCTFail()
       return
     }
@@ -98,15 +116,24 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceErrorMock(error: dataSourceError)
     let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
     let schedulers = TestSchedulers()
-    let showProgressRepository = ShowProgressMocks.ShowProgressRepositoryMock()
     let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
 
-    let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
-                                              network: network,
-                                              schedulers: schedulers,
-                                              showProgressRepository: showProgressRepository,
-                                              appConfigurationsObservable: appConfigsObservableMock,
-                                              hideSpecials: true)
+			let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
+			let showSeasonsRepository = ShowSeasonsRepositoryMock()
+
+			let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
+
+			let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
+			let genreRepository = GenreRepositoryMock()
+
+			let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
+
+			let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
+																																													network: network,
+																																													schedulers: schedulers,
+																																													assembler: assembler,
+																																													appConfigurationsObservable: appConfigsObservableMock,
+																																													hideSpecials: true)
 
     appConfigsObservableMock.change(state: AppConfigurationsState(loginState: .notLogged, hideSpecials: false))
 
@@ -119,8 +146,8 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     }
 
     // Then
-    XCTAssertTrue(showProgressRepository.fetchShowProgressInvoked)
-    guard let hideSpecial = showProgressRepository.fetchShowProgressParameters?.hideSpecial else {
+    XCTAssertTrue(showWatchedRepository.fetchShowWatchedProgressInvoked)
+    guard let hideSpecial = showWatchedRepository.fetchShowWatchedProgressInvokedParameters?.hideSpecials else {
       XCTFail()
       return
     }
@@ -132,15 +159,24 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceMock()
     let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
     let schedulers = TestSchedulers()
-    let showProgressRepository = ShowProgressMocks.ShowProgressRepositoryMock()
     let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
 
-    let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
-                                              network: network,
-                                              schedulers: schedulers,
-                                              showProgressRepository: showProgressRepository,
-                                              appConfigurationsObservable: appConfigsObservableMock,
-                                              hideSpecials: true)
+			let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
+			let showSeasonsRepository = ShowSeasonsRepositoryMock()
+
+			let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
+
+			let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
+			let genreRepository = GenreRepositoryMock()
+
+			let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
+
+			let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
+																																													network: network,
+																																													schedulers: schedulers,
+																																													assembler: assembler,
+																																													appConfigurationsObservable: appConfigsObservableMock,
+																																													hideSpecials: true)
 
     // When
     let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
@@ -161,8 +197,8 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     XCTAssertTrue(network.addToHistoryInvoked)
     XCTAssertTrue(dataSource.updateWatchedShowInvoked)
     XCTAssertFalse(network.removeFromHistoryInvoked)
-    XCTAssertTrue(showProgressRepository.fetchShowProgressInvoked)
-    guard let hideSpecial = showProgressRepository.fetchShowProgressParameters?.hideSpecial else {
+    XCTAssertTrue(showWatchedRepository.fetchShowWatchedProgressInvoked)
+    guard let hideSpecial = showWatchedRepository.fetchShowWatchedProgressInvokedParameters?.hideSpecials else {
       XCTFail()
       return
     }
@@ -174,15 +210,24 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceMock()
     let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
     let schedulers = TestSchedulers()
-    let showProgressRepository = ShowProgressMocks.ShowProgressRepositoryMock()
     let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
 
-    let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
-                                              network: network,
-                                              schedulers: schedulers,
-                                              showProgressRepository: showProgressRepository,
-                                              appConfigurationsObservable: appConfigsObservableMock,
-                                              hideSpecials: true)
+			let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
+			let showSeasonsRepository = ShowSeasonsRepositoryMock()
+
+			let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
+
+			let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
+			let genreRepository = GenreRepositoryMock()
+
+			let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
+
+			let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
+																																													network: network,
+																																													schedulers: schedulers,
+																																													assembler: assembler,
+																																													appConfigurationsObservable: appConfigsObservableMock,
+																																													hideSpecials: true)
 
     // When
     let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
@@ -203,8 +248,8 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     XCTAssertFalse(network.addToHistoryInvoked)
     XCTAssertTrue(dataSource.updateWatchedShowInvoked)
     XCTAssertTrue(network.removeFromHistoryInvoked)
-    XCTAssertTrue(showProgressRepository.fetchShowProgressInvoked)
-    guard let hideSpecial = showProgressRepository.fetchShowProgressParameters?.hideSpecial else {
+    XCTAssertTrue(showWatchedRepository.fetchShowWatchedProgressInvoked)
+    guard let hideSpecial = showWatchedRepository.fetchShowWatchedProgressInvokedParameters?.hideSpecials else {
       XCTFail()
       return
     }

@@ -9,6 +9,7 @@ final class ShowsProgressServiceTest: XCTestCase {
   private var observer: TestableObserver<[WatchedShowEntity]>!
   private var repository: ShowsProgressMocks.ShowsProgressRepositoryMock!
   private var listStateDataSource: ShowsProgressMocks.ListStateDataSource!
+	private var appConfigurations: AppConfigurationsMock.AppConfigurationsObservableMock!
 
   override func setUp() {
     super.setUp()
@@ -17,11 +18,16 @@ final class ShowsProgressServiceTest: XCTestCase {
 
     repository = ShowsProgressMocks.ShowsProgressRepositoryMock(trakt: createTraktProviderMock())
     listStateDataSource = ShowsProgressMocks.ListStateDataSource()
+			appConfigurations = AppConfigurationsMock.AppConfigurationsObservableMock()
   }
 
   func testShowsProgressService_fetchWatchedProgress() {
     // Given
-    let interactor = ShowsProgressService(repository: repository, listStateDataSource: listStateDataSource, schedulers: scheduler)
+			let interactor = ShowsProgressService(repository: repository,
+																																									listStateDataSource: listStateDataSource,
+																																									appConfigurationsObservable: appConfigurations,
+																																									schedulers: scheduler,
+																																									hideSpecials: true)
 
     // When
     _ = interactor.fetchWatchedShowsProgress().subscribe(observer)
@@ -36,7 +42,11 @@ final class ShowsProgressServiceTest: XCTestCase {
 
   func testShowsProgressService_receiveSameDataFromRepository_emitsOnlyOnce() {
     // Given
-    let interactor = ShowsProgressService(repository: repository, listStateDataSource: listStateDataSource, schedulers: scheduler)
+			let interactor = ShowsProgressService(repository: repository,
+																																									listStateDataSource: listStateDataSource,
+																																									appConfigurationsObservable: appConfigurations,
+																																									schedulers: scheduler,
+																																									hideSpecials: true)
     _ = interactor.fetchWatchedShowsProgress().subscribe(observer)
     scheduler.start()
 
@@ -52,7 +62,11 @@ final class ShowsProgressServiceTest: XCTestCase {
 
   func testShowsProgressService_receiveDifferentDataFromRepository_emitsNewData() {
     // Given
-    let interactor = ShowsProgressService(repository: repository, listStateDataSource: listStateDataSource, schedulers: scheduler)
+			let interactor = ShowsProgressService(repository: repository,
+																																									listStateDataSource: listStateDataSource,
+																																									appConfigurationsObservable: appConfigurations,
+																																									schedulers: scheduler,
+																																									hideSpecials: true)
     _ = interactor.fetchWatchedShowsProgress().subscribe(observer)
     scheduler.start()
 
@@ -68,7 +82,11 @@ final class ShowsProgressServiceTest: XCTestCase {
 
   func testShowsProgressService_receivesNewListState_shouldNotifyDataSource() {
     // Given
-    let interactor = ShowsProgressService(repository: repository, listStateDataSource: listStateDataSource, schedulers: scheduler)
+			let interactor = ShowsProgressService(repository: repository,
+																																									listStateDataSource: listStateDataSource,
+																																									appConfigurationsObservable: appConfigurations,
+																																									schedulers: scheduler,
+																																									hideSpecials: true)
 
     // When
     let listState = ShowProgressListState(sort: .lastWatched, filter: .watched, direction: .asc)

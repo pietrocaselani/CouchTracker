@@ -35,10 +35,6 @@ public struct WatchedSeasonEntityBuilder: Hashable {
                                       episodes: episodes)
   }
 
-  public func isValid() -> Bool {
-    return detailSeason != nil
-  }
-
   public func createEntity() -> WatchedSeasonEntity {
     guard let detailSeason = self.detailSeason else { Swift.fatalError("detailSeason can't be nil") }
 

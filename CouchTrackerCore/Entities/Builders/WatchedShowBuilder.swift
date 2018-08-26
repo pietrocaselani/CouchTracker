@@ -66,7 +66,7 @@ public struct WatchedShowBuilder: Hashable {
   }
 
   public func createEntity(using showEntity: ShowEntity) -> WatchedShowEntity {
-    let seasonEntities = seasons.filter { $0.isValid() }.map { $0.createEntity() }
+    let seasonEntities = seasons.map { $0.createEntity() }
 
     return WatchedShowEntity(show: showEntity, aired: progressShow?.aired, completed: progressShow?.completed,
                              nextEpisode: episode, lastWatched: progressShow?.lastWatchedAt, seasons: seasonEntities)
