@@ -19,7 +19,9 @@ public struct WatchedShowEntity: Hashable {
   }
 
   public var hashValue: Int {
-    var hash = show.hashValue ^ aired.hashValue ^ completed.hashValue
+    var hash = show.hashValue
+    aired.run { hash ^= $0.hashValue }
+    completed.run { hash ^= $0.hashValue }
     nextEpisode.run { hash ^= $0.hashValue }
     lastWatched.run { hash ^= $0.hashValue }
     seasons.forEach { hash ^= $0.hashValue }

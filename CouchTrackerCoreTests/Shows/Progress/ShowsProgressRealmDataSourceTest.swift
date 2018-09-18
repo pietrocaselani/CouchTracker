@@ -13,12 +13,16 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
   override func setUp() {
     super.setUp()
 
-    var testableConfiguration = Realm.Configuration()
-    testableConfiguration.inMemoryIdentifier = name
+//    var testableConfiguration = Realm.Configuration()
+//    testableConfiguration.inMemoryIdentifier = name
 
-    realmProvider = DefaultRealmProvider(buildConfig: TestBuildConfig(), configuration: testableConfiguration)
+    realmProvider = DefaultRealmProvider(buildConfig: TestBuildConfig()) //, configuration: testableConfiguration)
     schedulers = TestSchedulers()
     dataSource = ShowsProgressRealmDataSource(realmProvider: realmProvider, schedulers: schedulers)
+
+			try! realmProvider.realm.write {
+				realmProvider.realm.deleteAll()
+			}
   }
 
   override func tearDown() {
@@ -37,10 +41,10 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
     try! dataSource.addWatched(shows: [appEntity])
 
     // Then
-    let results = realmProvider.realm.objects(WatchedShowEntityRealm.self)
+    let results = realmProvider.realm.objects(WatchedShowEntityRealm.self).toArray()
     let expectedRealmEntity = appEntity.toRealm()
 
-    XCTAssertEqual([expectedRealmEntity], results.toArray())
+    XCTAssertEqual([expectedRealmEntity], results)
   }
 
   func testShowProgressRealmDataSource_fetchRealmObjectWithEmptyDataSource_emitsEmptyShows() {

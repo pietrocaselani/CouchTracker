@@ -7,11 +7,11 @@ struct EpisodeImageInputMock: EpisodeImageInput, Hashable {
   var number: Int
 
   var hashValue: Int {
-    var hash = tvdb.hashValue
-    hash ^= season.hashValue
+    var hash = season.hashValue
     hash ^= number.hashValue
 
     tmdb.run { hash ^= $0.hashValue }
+			tvdb.run { hash ^= $0.hashValue }
 
     return hash
   }

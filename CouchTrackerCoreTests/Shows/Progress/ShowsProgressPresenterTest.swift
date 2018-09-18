@@ -302,7 +302,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     // Then
     let viewExpectation = expectation(description: "Should update view")
 
-    let watched1 = WatchedShowViewModel(title: "The Americans", nextEpisode: "1x1 Winter Is Coming", nextEpisodeDate: "17 de abril", status: "5 remaining FX (US)", tmdbId: 46533)
+    let watched1 = WatchedShowViewModel(title: "The Americans", nextEpisode: "1x1 Winter Is Coming", nextEpisodeDate: "17 de setembro", status: "5 remaining FX (US)", tmdbId: 46533)
 
     let watched2 = WatchedShowViewModel(title: "The Americans", nextEpisode: nil, nextEpisodeDate: "Em exibição", status: "5 remaining FX (US)", tmdbId: 46533)
 
@@ -335,7 +335,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     // Then
     let viewExpectation = expectation(description: "Should update view")
 
-    let watched1 = WatchedShowViewModel(title: "The Americans", nextEpisode: "1x1 Winter Is Coming", nextEpisodeDate: "Apr 17", status: "5 remaining FX (US)", tmdbId: 46533)
+    let watched1 = WatchedShowViewModel(title: "The Americans", nextEpisode: "1x1 Winter Is Coming", nextEpisodeDate: "Sep 17", status: "5 remaining FX (US)", tmdbId: 46533)
 
     let watched2 = WatchedShowViewModel(title: "The Americans", nextEpisode: nil, nextEpisodeDate: "Continuing", status: "5 remaining FX (US)", tmdbId: 46533)
 
@@ -368,7 +368,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     // Then
     let viewExpectation = expectation(description: "Should update view")
 
-    let watched1 = WatchedShowViewModel(title: "The Americans", nextEpisode: "1x1 Winter Is Coming", nextEpisodeDate: "Apr 18", status: "5 remaining FX (US)", tmdbId: 46533)
+    let watched1 = WatchedShowViewModel(title: "The Americans", nextEpisode: "1x1 Winter Is Coming", nextEpisodeDate: "Sep 18", status: "5 remaining FX (US)", tmdbId: 46533)
 
     let watched2 = WatchedShowViewModel(title: "The Americans", nextEpisode: nil, nextEpisodeDate: "Continuing", status: "5 remaining FX (US)", tmdbId: 46533)
 
@@ -399,21 +399,4 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     let expectedListState = ShowProgressListState(sort: ShowProgressSort.releaseDate, filter: ShowProgressFilter.watched, direction: ShowProgressDirection.asc)
     XCTAssertEqual(expectedListState, interactor.listState)
   }
-
-  //	func testShowsProgressPresenter_shouldPresentListAsSavedState() {
-  //		//Given
-  //		listStateDataSource.currentState = ShowProgressListState(sort: .releaseDate, filter: .returning, direction: .desc)
-  //		interactor = ShowsProgressMocks.ShowsProgressInteractorMock(repository: repository, listStateDataSource: listStateDataSource, schedulers: TestSchedulers())
-//
-  //		let x = (interactor as! ShowsProgressMocks.ShowsProgressInteractorMock)
-  //
-//
-  //		setupPresenter(TraktLoginState.logged)
-//
-  //		//When
-  //		presenter.viewDidLoad()
-//
-  //		//
-  //		XCTFail("Needs implementation")
-  //	}
 }

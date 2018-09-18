@@ -41,7 +41,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     // Then
     let expectedResult = SyncResult.fail(error: dataSourceError)
 
-    let expectedEvent = next(201, expectedResult)
+    let expectedEvent = next(203, expectedResult)
 
     expect(res.events).to(containElementSatisfying({ element -> Bool in
       element == expectedEvent
@@ -93,7 +93,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
 
     // Then
     let expectedResult = SyncResult.fail(error: dataSourceError)
-    let expectedEvent = next(201, expectedResult)
+    let expectedEvent = next(203, expectedResult)
 
     expect(res.events).to(containElementSatisfying({ element -> Bool in
       element == expectedEvent
@@ -154,6 +154,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     XCTAssertFalse(hideSpecial)
   }
 
+	// Failing because doesn't emit the show with seasons!
   func testShowEpisodeAPIRepository_addToHistorSuccess_emitsSyncResultWithShow() {
     // Given
     let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceMock()
@@ -188,7 +189,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
 
     // Then
     let expectedResult = SyncResult.success(show: ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
-    let expectedEvent = next(201, expectedResult)
+    let expectedEvent = next(203, expectedResult)
 
     expect(res.events).to(containElementSatisfying({ element -> Bool in
       element == expectedEvent
@@ -205,6 +206,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     XCTAssertTrue(hideSpecial)
   }
 
+	// Failing because doesn't emit the show with seasons!
   func testShowEpisodeAPIRepository_removeFromHistorSuccess_emitsSyncResultWithShow() {
     // Given
     let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceMock()
@@ -239,7 +241,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
 
     // Then
     let expectedResult = SyncResult.success(show: ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
-    let expectedEvent = next(201, expectedResult)
+    let expectedEvent = next(203, expectedResult)
 
     expect(res.events).to(containElementSatisfying({ element -> Bool in
       element == expectedEvent
