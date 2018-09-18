@@ -29,7 +29,7 @@ final class SearchInteractorTest: XCTestCase {
 
     scheduler.scheduleAt(500) { disposable.dispose() }
 
-    let expectedEvents: [Recorded<Event<[SearchResult]>>] = [next(0, [SearchResult]()), completed(0)]
+    let expectedEvents: [Recorded<Event<[SearchResult]>>] = [next(0, [SearchResult]()), Recorded.completed(0)]
 
     RXAssertEvents(observer, expectedEvents)
     XCTAssertTrue(repository.searchInvoked)
@@ -53,7 +53,7 @@ final class SearchInteractorTest: XCTestCase {
 
     scheduler.scheduleAt(500) { disposable.dispose() }
 
-    let expectedEvents: [Recorded<Event<[SearchResult]>>] = [next(0, results), completed(0)]
+    let expectedEvents: [Recorded<Event<[SearchResult]>>] = [next(0, results), Recorded.completed(0)]
 
     RXAssertEvents(observer, expectedEvents)
   }

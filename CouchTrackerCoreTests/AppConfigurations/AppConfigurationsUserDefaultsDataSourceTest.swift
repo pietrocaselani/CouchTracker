@@ -139,7 +139,7 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
     }
 
     // Then
-    expectedEvents = [next(0, false), next(0, true)]
+    expectedEvents = [next(0, false), Recorded.next(0, true)]
     XCTAssertEqual(hideSpecialsObserver.events, expectedEvents)
   }
 }

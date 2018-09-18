@@ -55,12 +55,12 @@ final class TraktLoginStoreTest: XCTestCase {
 
     // Then
     let expectedEvents = [
-      next(0, TraktLoginState.notLogged),
-      next(0, TraktLoginState.logged),
-      next(0, TraktLoginState.notLogged),
-      next(0, TraktLoginState.notLogged),
-      next(0, TraktLoginState.logged),
-      next(0, TraktLoginState.logged),
+      Recorded.next(0, TraktLoginState.notLogged),
+      Recorded.next(0, TraktLoginState.logged),
+      Recorded.next(0, TraktLoginState.notLogged),
+      Recorded.next(0, TraktLoginState.notLogged),
+      Recorded.next(0, TraktLoginState.logged),
+      Recorded.next(0, TraktLoginState.logged),
     ]
 
     XCTAssertEqual(observer.events, expectedEvents)

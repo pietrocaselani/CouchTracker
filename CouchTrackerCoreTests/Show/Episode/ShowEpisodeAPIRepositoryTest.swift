@@ -41,7 +41,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     // Then
     let expectedResult = SyncResult.fail(error: dataSourceError)
 
-    let expectedEvent = next(203, expectedResult)
+    let expectedEvent = Recorded.next(203, expectedResult)
 
     expect(res.events).to(containElementSatisfying({ element -> Bool in
       element == expectedEvent
@@ -93,7 +93,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
 
     // Then
     let expectedResult = SyncResult.fail(error: dataSourceError)
-    let expectedEvent = next(203, expectedResult)
+    let expectedEvent = Recorded.next(203, expectedResult)
 
     expect(res.events).to(containElementSatisfying({ element -> Bool in
       element == expectedEvent
@@ -189,7 +189,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
 
     // Then
     let expectedResult = SyncResult.success(show: ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
-    let expectedEvent = next(203, expectedResult)
+    let expectedEvent = Recorded.next(203, expectedResult)
 
     expect(res.events).to(containElementSatisfying({ element -> Bool in
       element == expectedEvent
@@ -241,7 +241,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
 
     // Then
     let expectedResult = SyncResult.success(show: ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
-    let expectedEvent = next(203, expectedResult)
+    let expectedEvent = Recorded.next(203, expectedResult)
 
     expect(res.events).to(containElementSatisfying({ element -> Bool in
       element == expectedEvent
