@@ -46,6 +46,19 @@ final class DefaultGenreSynchronizerTest: XCTestCase {
   }
 
   func testSyncShows_shouldHitTheAPI_and_dataHolder() {
-    XCTFail("Not implemented")
+    // Given
+    setupMock(for: .shows)
+
+    // When
+    let res = schedulers.start { self.synchronizer.syncShowsGenres().asObservable() }
+
+    // Then
+    let expectedGenres = TraktEntitiesMock.createShowsGenresMock()
+    let expectedEvents = [Recorded.next(201, expectedGenres), Recorded.completed(202)]
+    XCTAssertEqual(res.events, expectedEvents)
+    XCTAssertEqual(holder.fetchGenresInvokedCount, 0)
+    XCTAssertEqual(holder.saveGenresInvokedCount, 1)
+    XCTAssertEqual(holder.saveGenresParameter, expectedGenres)
+    XCTAssertEqual((trakt.genres as! MoyaProviderMock).requestInvokedCount, 1)
   }
 }
