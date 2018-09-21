@@ -8,7 +8,7 @@ func createTraktProviderMock() -> TraktProviderMock {
 }
 
 final class TraktProviderMock: TraktProvider, TraktAuthenticationProvider {
-	 private let error: Swift.Error?
+  private let error: Swift.Error?
 
   func finishesAuthentication(with _: URLRequest) -> Single<AuthenticationResult> {
     guard let error = error else {
@@ -29,7 +29,7 @@ final class TraktProviderMock: TraktProvider, TraktAuthenticationProvider {
   var authentication: MoyaProvider<Authentication> = MoyaProviderMock<Authentication>(stubClosure: MoyaProvider.immediatelyStub)
   var sync: MoyaProvider<Sync> = MoyaProviderMock<Sync>(stubClosure: MoyaProvider.immediatelyStub)
   var episodes: MoyaProvider<Episodes> = MoyaProvider<Episodes>(stubClosure: MoyaProvider.immediatelyStub)
-	var seasons: MoyaProvider<Seasons> = MoyaProvider<Seasons>(stubClosure: MoyaProvider.immediatelyStub)
+  var seasons: MoyaProvider<Seasons> = MoyaProvider<Seasons>(stubClosure: MoyaProvider.immediatelyStub)
 
   var isAuthenticated: Bool {
     return oauth != nil

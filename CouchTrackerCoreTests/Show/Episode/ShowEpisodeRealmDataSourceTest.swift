@@ -75,10 +75,10 @@ final class ShowEpisodeRealmDataSourceTest: XCTestCase {
     let episodeIds = EpisodeIds(trakt: 73640, tmdb: 63056, imdb: "tt1480055", tvdb: 3_254_641, tvrage: 1_065_008_299)
     let episode = EpisodeEntity(ids: episodeIds, showIds: ids, title: "Winter Is Coming", overview: "Ned Stark, Lord of Winterfell learns that his mentor, Jon Arryn, has died and that King Robert is on his way north to offer Ned Arryn’s position as the King’s Hand. Across the Narrow Sea in Pentos, Viserys Targaryen plans to wed his sister Daenerys to the nomadic Dothraki warrior leader, Khal Drogo to forge an alliance to take the throne.", number: 1, season: 1, firstAired: nextEpisodeDate)
 
-			let nextEpisode = WatchedEpisodeEntity(episode: episode, lastWatched: nil)
+    let nextEpisode = WatchedEpisodeEntity(episode: episode, lastWatched: nil)
 
     let newShow = WatchedShowEntity(show: show.show, aired: show.aired, completed: show.completed,
-																																				nextEpisode: nextEpisode, lastWatched: show.lastWatched, seasons: show.seasons)
+                                    nextEpisode: nextEpisode, lastWatched: show.lastWatched, seasons: show.seasons)
 
     // When
     do {

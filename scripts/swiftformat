@@ -2,4 +2,4 @@
 
 swiftformat --indent 2 CouchTracker/
 swiftformat --indent 2 CouchTrackerCore/
-# swiftformat --indent 2 CouchTrackerCoreTests/
+swiftformat --indent 2 CouchTrackerCoreTests/

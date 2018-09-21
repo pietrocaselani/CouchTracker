@@ -11,7 +11,7 @@ struct EpisodeImageInputMock: EpisodeImageInput, Hashable {
     hash ^= number.hashValue
 
     tmdb.run { hash ^= $0.hashValue }
-			tvdb.run { hash ^= $0.hashValue }
+    tvdb.run { hash ^= $0.hashValue }
 
     return hash
   }

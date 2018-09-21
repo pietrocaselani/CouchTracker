@@ -10,7 +10,7 @@ final class MovieDetailsMocks {
     var toggleWatchedInvokedCount = 0
 
     func fetchDetails() -> Observable<MovieEntity> {
-					let entity = MovieEntityMapper.entity(for: TraktEntitiesMock.createMovieDetailsMock(), with: [Genre]())
+      let entity = MovieEntityMapper.entity(for: TraktEntitiesMock.createMovieDetailsMock(), with: [Genre]())
       return Observable.just(entity)
     }
 

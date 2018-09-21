@@ -16,13 +16,13 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
 //    var testableConfiguration = Realm.Configuration()
 //    testableConfiguration.inMemoryIdentifier = name
 
-    realmProvider = DefaultRealmProvider(buildConfig: TestBuildConfig()) //, configuration: testableConfiguration)
+    realmProvider = DefaultRealmProvider(buildConfig: TestBuildConfig()) // , configuration: testableConfiguration)
     schedulers = TestSchedulers()
     dataSource = ShowsProgressRealmDataSource(realmProvider: realmProvider, schedulers: schedulers)
 
-			try! realmProvider.realm.write {
-				realmProvider.realm.deleteAll()
-			}
+    try! realmProvider.realm.write {
+      realmProvider.realm.deleteAll()
+    }
   }
 
   override func tearDown() {
@@ -94,9 +94,9 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
     nextEpisode.title = "What?"
     nextEpisode.ids = episodeIds
 
-			let nextEpisodeEntity = WatchedEpisodeEntityRealm()
-			nextEpisodeEntity.episodeEntity = nextEpisode
-			nextEpisodeEntity.lastWatched = Date(timeIntervalSince1970: 6)
+    let nextEpisodeEntity = WatchedEpisodeEntityRealm()
+    nextEpisodeEntity.episodeEntity = nextEpisode
+    nextEpisodeEntity.lastWatched = Date(timeIntervalSince1970: 6)
 
     let realmEntity = WatchedShowEntityRealm()
     realmEntity.aired.value = 5
@@ -126,7 +126,7 @@ final class ShowsProgressRealmDataSourceTest: XCTestCase {
                                             overview: "TBD", number: 4, season: 1,
                                             firstAired: Date(timeIntervalSince1970: 0))
 
-			let expectedNextWatchedEpisode = WatchedEpisodeEntity(episode: expectedNextEpisode, lastWatched: Date(timeIntervalSince1970: 6))
+    let expectedNextWatchedEpisode = WatchedEpisodeEntity(episode: expectedNextEpisode, lastWatched: Date(timeIntervalSince1970: 6))
 
     let expectedEntity = WatchedShowEntity(show: expectedShowEntity, aired: 5, completed: 3, nextEpisode: expectedNextWatchedEpisode, lastWatched: Date(timeIntervalSince1970: 6), seasons: seasons)
 

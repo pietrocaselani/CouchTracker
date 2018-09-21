@@ -1,9 +1,9 @@
 import CouchTrackerCore
-import TraktSwift
 import RxSwift
+import TraktSwift
 
 final class ShowSeasonsRepositoryMock: ShowSeasonsRepository {
-	func fetchShowSeasons(showIds: ShowIds, extended: Extended) -> Single<[Season]> {
-		return Single.just([Season]())
-	}
+  func fetchShowSeasons(showIds _: ShowIds, extended _: Extended) -> Single<[Season]> {
+    return Single.just([Season]())
+  }
 }

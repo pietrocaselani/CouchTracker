@@ -175,7 +175,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
     let detailsRepository = MovieDetailsMocks.MovieDetailsRepositoryMock(watched: false)
     let genreRepository = GenreRepositoryMock()
     let movie = TraktEntitiesMock.createUnwatchedMovieDetailsMock()
-			let movieEntity = MovieEntityMapper.entity(for: movie, with: [Genre](), watchedAt: nil)
+    let movieEntity = MovieEntityMapper.entity(for: movie, with: [Genre](), watchedAt: nil)
     let interactor = MovieDetailsService(repository: detailsRepository,
                                          genreRepository: genreRepository,
                                          imageRepository: imageRepositoryMock,

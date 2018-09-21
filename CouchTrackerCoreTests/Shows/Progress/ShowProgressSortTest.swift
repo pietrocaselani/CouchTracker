@@ -1,6 +1,6 @@
 @testable import CouchTrackerCore
-import XCTest
 import TraktSwift
+import XCTest
 
 final class ShowProgressSortTest: XCTestCase {
   func testShowProgressSort_returnAllValues() {
@@ -29,7 +29,7 @@ final class ShowProgressSortTest: XCTestCase {
     let ids = mock.show.ids
     let seasons = [WatchedSeasonEntity]()
 
-			let genres = [Genre]()
+    let genres = [Genre]()
 
     let showA = ShowEntity(ids: ids, title: "A", overview: nil, network: nil, genres: genres, status: nil, firstAired: nil)
     let showB = ShowEntity(ids: ids, title: "b", overview: nil, network: nil, genres: genres, status: nil, firstAired: nil)
@@ -128,10 +128,10 @@ final class ShowProgressSortTest: XCTestCase {
 
     let episode4 = EpisodeEntity(ids: episodeIds, showIds: showIds, title: "", overview: nil, number: 0, season: 0, firstAired: date3)
 
-			let nextEpisode1 = WatchedEpisodeEntity(episode: episode1, lastWatched: nil)
-			let nextEpisode2 = WatchedEpisodeEntity(episode: episode2, lastWatched: nil)
-			let nextEpisode3 = WatchedEpisodeEntity(episode: episode3, lastWatched: nil)
-			let nextEpisode4 = WatchedEpisodeEntity(episode: episode4, lastWatched: nil)
+    let nextEpisode1 = WatchedEpisodeEntity(episode: episode1, lastWatched: nil)
+    let nextEpisode2 = WatchedEpisodeEntity(episode: episode2, lastWatched: nil)
+    let nextEpisode3 = WatchedEpisodeEntity(episode: episode3, lastWatched: nil)
+    let nextEpisode4 = WatchedEpisodeEntity(episode: episode4, lastWatched: nil)
 
     let watchedShow1 = WatchedShowEntity(show: show, aired: 10, completed: 10, nextEpisode: nextEpisode1, lastWatched: date1, seasons: seasons)
 

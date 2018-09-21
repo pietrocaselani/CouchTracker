@@ -4,7 +4,7 @@ import RxSwift
 import TraktSwift
 
 final class TraktErrorProviderMock: TraktProvider {
-	 func finishesAuthentication(with _: URLRequest) -> Single<AuthenticationResult> {
+  func finishesAuthentication(with _: URLRequest) -> Single<AuthenticationResult> {
     return Single.just(AuthenticationResult.undetermined)
   }
 
@@ -18,7 +18,7 @@ final class TraktErrorProviderMock: TraktProvider {
   var sync: MoyaProvider<Sync> = MoyaProviderMock<Sync>(stubClosure: MoyaProvider.immediatelyStub)
   var episodes: MoyaProvider<Episodes> = MoyaProviderMock<Episodes>(stubClosure: MoyaProvider.immediatelyStub)
   var users: MoyaProvider<Users> = MoyaProviderMock<Users>(stubClosure: MoyaProvider.delayedStub(100))
-	var seasons: MoyaProvider<Seasons> = MoyaProvider<Seasons>(stubClosure: MoyaProvider.immediatelyStub)
+  var seasons: MoyaProvider<Seasons> = MoyaProvider<Seasons>(stubClosure: MoyaProvider.immediatelyStub)
 
   init(oauthURL: URL? = nil) {
     oauth = oauthURL

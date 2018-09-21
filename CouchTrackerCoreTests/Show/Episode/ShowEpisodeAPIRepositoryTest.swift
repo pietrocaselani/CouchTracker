@@ -13,22 +13,22 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     let schedulers = TestSchedulers()
     let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
 
-			let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
-			let showSeasonsRepository = ShowSeasonsRepositoryMock()
+    let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
+    let showSeasonsRepository = ShowSeasonsRepositoryMock()
 
-			let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
+    let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
 
-			let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
-			let genreRepository = GenreRepositoryMock()
+    let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
+    let genreRepository = GenreRepositoryMock()
 
-			let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
+    let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
 
-			let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
-																																													network: network,
-																																													schedulers: schedulers,
-																																													assembler: assembler,
-																																													appConfigurationsObservable: appConfigsObservableMock,
-																																													hideSpecials: true)
+    let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
+                                              network: network,
+                                              schedulers: schedulers,
+                                              assembler: assembler,
+                                              appConfigurationsObservable: appConfigsObservableMock,
+                                              hideSpecials: true)
 
     // When
     let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
@@ -66,22 +66,22 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     let schedulers = TestSchedulers()
     let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
 
-			let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
-			let showSeasonsRepository = ShowSeasonsRepositoryMock()
+    let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
+    let showSeasonsRepository = ShowSeasonsRepositoryMock()
 
-			let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
+    let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
 
-			let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
-			let genreRepository = GenreRepositoryMock()
+    let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
+    let genreRepository = GenreRepositoryMock()
 
-			let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
+    let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
 
-			let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
-																																													network: network,
-																																													schedulers: schedulers,
-																																													assembler: assembler,
-																																													appConfigurationsObservable: appConfigsObservableMock,
-																																													hideSpecials: true)
+    let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
+                                              network: network,
+                                              schedulers: schedulers,
+                                              assembler: assembler,
+                                              appConfigurationsObservable: appConfigsObservableMock,
+                                              hideSpecials: true)
 
     // When
     let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
@@ -118,22 +118,22 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     let schedulers = TestSchedulers()
     let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
 
-			let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
-			let showSeasonsRepository = ShowSeasonsRepositoryMock()
+    let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
+    let showSeasonsRepository = ShowSeasonsRepositoryMock()
 
-			let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
+    let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
 
-			let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
-			let genreRepository = GenreRepositoryMock()
+    let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
+    let genreRepository = GenreRepositoryMock()
 
-			let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
+    let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
 
-			let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
-																																													network: network,
-																																													schedulers: schedulers,
-																																													assembler: assembler,
-																																													appConfigurationsObservable: appConfigsObservableMock,
-																																													hideSpecials: true)
+    let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
+                                              network: network,
+                                              schedulers: schedulers,
+                                              assembler: assembler,
+                                              appConfigurationsObservable: appConfigsObservableMock,
+                                              hideSpecials: true)
 
     appConfigsObservableMock.change(state: AppConfigurationsState(loginState: .notLogged, hideSpecials: false))
 
@@ -154,7 +154,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     XCTAssertFalse(hideSpecial)
   }
 
-	// Failing because doesn't emit the show with seasons!
+  // Failing because doesn't emit the show with seasons!
   func testShowEpisodeAPIRepository_addToHistorSuccess_emitsSyncResultWithShow() {
     // Given
     let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceMock()
@@ -162,22 +162,22 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     let schedulers = TestSchedulers()
     let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
 
-			let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
-			let showSeasonsRepository = ShowSeasonsRepositoryMock()
+    let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
+    let showSeasonsRepository = ShowSeasonsRepositoryMock()
 
-			let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
+    let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
 
-			let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
-			let genreRepository = GenreRepositoryMock()
+    let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
+    let genreRepository = GenreRepositoryMock()
 
-			let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
+    let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
 
-			let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
-																																													network: network,
-																																													schedulers: schedulers,
-																																													assembler: assembler,
-																																													appConfigurationsObservable: appConfigsObservableMock,
-																																													hideSpecials: true)
+    let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
+                                              network: network,
+                                              schedulers: schedulers,
+                                              assembler: assembler,
+                                              appConfigurationsObservable: appConfigsObservableMock,
+                                              hideSpecials: true)
 
     // When
     let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
@@ -206,7 +206,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     XCTAssertTrue(hideSpecial)
   }
 
-	// Failing because doesn't emit the show with seasons!
+  // Failing because doesn't emit the show with seasons!
   func testShowEpisodeAPIRepository_removeFromHistorSuccess_emitsSyncResultWithShow() {
     // Given
     let dataSource = ShowEpisodeMocks.ShowEpisodeDataSourceMock()
@@ -214,22 +214,22 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     let schedulers = TestSchedulers()
     let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
 
-			let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
-			let showSeasonsRepository = ShowSeasonsRepositoryMock()
+    let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
+    let showSeasonsRepository = ShowSeasonsRepositoryMock()
 
-			let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
+    let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
 
-			let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
-			let genreRepository = GenreRepositoryMock()
+    let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
+    let genreRepository = GenreRepositoryMock()
 
-			let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
+    let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
 
-			let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
-																																													network: network,
-																																													schedulers: schedulers,
-																																													assembler: assembler,
-																																													appConfigurationsObservable: appConfigsObservableMock,
-																																													hideSpecials: true)
+    let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
+                                              network: network,
+                                              schedulers: schedulers,
+                                              assembler: assembler,
+                                              appConfigurationsObservable: appConfigsObservableMock,
+                                              hideSpecials: true)
 
     // When
     let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()

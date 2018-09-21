@@ -142,7 +142,7 @@ final class TrendingServiceMock: TrendingInteractor {
 
     return moviesObservable.map {
       $0.map {
-							MovieEntityMapper.entity(for: $0, with: [Genre]())
+        MovieEntityMapper.entity(for: $0, with: [Genre]())
       }
     }
   }
@@ -150,7 +150,7 @@ final class TrendingServiceMock: TrendingInteractor {
   func fetchShows(page: Int, limit: Int) -> Single<[TrendingShowEntity]> {
     return trendingRepo.fetchShows(page: page, limit: limit).map {
       $0.map {
-							ShowEntityMapper.entity(for: $0, with: [Genre]())
+        ShowEntityMapper.entity(for: $0, with: [Genre]())
       }
     }
   }

@@ -7,7 +7,7 @@ final class ShowEpisodeMocks {
     Swift.fatalError("No instances for you!")
   }
 
-	final class Interactor: ShowEpisodeInteractor {
+  final class Interactor: ShowEpisodeInteractor {
     var fetchImageURLInvoked = false
     var fetchImageURLParameters: EpisodeImageInput?
     var toogleWatchInvoked = false

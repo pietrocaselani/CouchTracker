@@ -34,7 +34,7 @@ final class ShowProgressFilterTest: XCTestCase {
 
     let nonCompletedWatchedShow = WatchedShowEntity(show: mock.show, aired: 10, completed: 8, nextEpisode: nil, lastWatched: lastWatched, seasons: seasons)
 
-			let genres = [Genre]()
+    let genres = [Genre]()
 
     let cancelledShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.canceled, firstAired: nil)
 
@@ -76,7 +76,7 @@ final class ShowProgressFilterTest: XCTestCase {
 
     let nonCompletedWatchedShow = WatchedShowEntity(show: mock.show, aired: 10, completed: 8, nextEpisode: nil, lastWatched: lastWatched, seasons: seasons)
 
-			let genres = [Genre]()
+    let genres = [Genre]()
 
     let cancelledShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.canceled, firstAired: nil)
 
@@ -118,7 +118,7 @@ final class ShowProgressFilterTest: XCTestCase {
 
     let nonCompletedWatchedShow = WatchedShowEntity(show: mock.show, aired: 10, completed: 8, nextEpisode: nil, lastWatched: lastWatched, seasons: seasons)
 
-			let genres = [Genre]()
+    let genres = [Genre]()
 
     let cancelledShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.canceled, firstAired: nil)
 
@@ -160,7 +160,7 @@ final class ShowProgressFilterTest: XCTestCase {
 
     let nonCompletedWatchedShow = WatchedShowEntity(show: mock.show, aired: 10, completed: 8, nextEpisode: nil, lastWatched: lastWatched, seasons: seasons)
 
-			let genres = [Genre]()
+    let genres = [Genre]()
 
     let cancelledShow = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: Status.canceled, firstAired: nil)
 

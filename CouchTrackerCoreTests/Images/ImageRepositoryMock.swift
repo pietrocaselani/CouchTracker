@@ -112,11 +112,11 @@ final class ImageRepositoryMock: ImageRepository {
   }
 
   private func fetchEpisodeImageFromTVDB(_ episode: EpisodeImageInput, _ size: EpisodeImageSizes?) -> Maybe<URL> {
-			guard let tvdbId = episode.tvdb else {
-				return Maybe.empty()
-			}
+    guard let tvdbId = episode.tvdb else {
+      return Maybe.empty()
+    }
 
-			let single = tvdb.episodes.rx.request(TVDBEpisodes.episode(id: tvdbId)).map(EpisodeResponse.self)
+    let single = tvdb.episodes.rx.request(TVDBEpisodes.episode(id: tvdbId)).map(EpisodeResponse.self)
 
     return single.flatMapMaybe { response -> Maybe<URL> in
       guard let filename = response.episode.filename else { return Maybe.empty() }

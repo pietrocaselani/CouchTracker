@@ -28,7 +28,7 @@ final class TrendingInteractorTest: XCTestCase {
 
   func testTrendingInteractor_fetchMoviesSuccessReceivesNoData_emitsEmptyDataAndCompleted() {
     let repository = EmptyTrendingRepositoryMock()
-			let interactor = TrendingService(repository: repository, genreRepository: GenreRepositoryMock())
+    let interactor = TrendingService(repository: repository, genreRepository: GenreRepositoryMock())
 
     let subscription = interactor.fetchMovies(page: 0, limit: 10).asObservable().subscribe(moviesObserver)
     subscription.disposed(by: disposeBag)
@@ -42,7 +42,7 @@ final class TrendingInteractorTest: XCTestCase {
 
   func testTrendingInteractor_fetchShowsSuccessReceivesNoData_emitsOnlyCompleted() {
     let repository = EmptyTrendingRepositoryMock()
-			let interactor = TrendingService(repository: repository, genreRepository: GenreRepositoryMock())
+    let interactor = TrendingService(repository: repository, genreRepository: GenreRepositoryMock())
 
     let subscription = interactor.fetchShows(page: 0, limit: 10).asObservable().subscribe(showsObserver)
     subscription.disposed(by: disposeBag)
@@ -107,7 +107,7 @@ final class TrendingInteractorTest: XCTestCase {
     scheduler.start()
 
     let expectedMovies = movies.map { trendingMovie -> TrendingMovieEntity in
-					return MovieEntityMapper.entity(for: trendingMovie, with: [Genre]())
+      return MovieEntityMapper.entity(for: trendingMovie, with: [Genre]())
     }
 
     let events: [Recorded<Event<[TrendingMovieEntity]>>] = [next(0, expectedMovies), Recorded.completed(0)]

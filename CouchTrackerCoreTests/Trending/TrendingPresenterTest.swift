@@ -148,7 +148,7 @@ final class TrendingPresenterTest: XCTestCase {
 
     presenter.showDetailsOfTrending(at: movieIndex)
 
-			let expectedMovie = MovieEntityMapper.entity(for: movies[movieIndex].movie, with: [Genre]())
+    let expectedMovie = MovieEntityMapper.entity(for: movies[movieIndex].movie, with: [Genre]())
 
     XCTAssertTrue(router.invokedMovieDetails)
     XCTAssertEqual(router.invokedMovieDetailsParameters?.movie, expectedMovie)
@@ -165,7 +165,7 @@ final class TrendingPresenterTest: XCTestCase {
 
     presenter.showDetailsOfTrending(at: 1)
 
-			let expectedShow = ShowEntityMapper.entity(for: shows[showIndex].show, with: [Genre]())
+    let expectedShow = ShowEntityMapper.entity(for: shows[showIndex].show, with: [Genre]())
 
     XCTAssertTrue(router.invokedShowDetails)
     XCTAssertEqual(router.invokedShowDetailsParameters?.show, expectedShow)
