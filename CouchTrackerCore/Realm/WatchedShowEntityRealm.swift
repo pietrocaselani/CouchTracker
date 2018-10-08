@@ -16,10 +16,14 @@ final class WatchedShowEntityRealm: Object {
     set {
       backingShow = newValue
       if let traktId = newValue?.ids?.trakt {
-        let typeName = String(describing: WatchedShowEntity.self)
-        identifier = "\(typeName)-\(traktId)"
+        identifier = WatchedShowEntityRealm.createRealmId(using: traktId)
       }
     }
+  }
+
+  static func createRealmId(using traktId: Int) -> String {
+    let typeName = String(describing: WatchedShowEntity.self)
+    return "\(typeName)-\(traktId)"
   }
 
   override static func primaryKey() -> String? {

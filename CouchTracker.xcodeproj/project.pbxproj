@@ -538,14 +538,22 @@
 		64CC08911F7174F5004D164A /* ShowsManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC08901F7174F5004D164A /* ShowsManager.storyboard */; };
 		64CC08931F717597004D164A /* AppFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC08921F717597004D164A /* AppFlow.storyboard */; };
 		64D491591F6FE5D200EA0C80 /* AppConfigurations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D491581F6FE5D200EA0C80 /* AppConfigurations.storyboard */; };
+		6972311DCE7CB4703472A22E /* RealmShowsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69723B2DE85E11A441AE3CF7 /* RealmShowsDataSource.swift */; };
+		6972331A82E3E1F2B437E092 /* RealmShowDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697236062E78C293F50658F8 /* RealmShowDataSource.swift */; };
 		69723326BC60AE6BF9D35575 /* DefaultGenreSynchronizerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697237F52A36A813E592E389 /* DefaultGenreSynchronizerTest.swift */; };
 		6972342180DA70134A72C885 /* GenreDataSourceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69723B3226267C7F60CE9126 /* GenreDataSourceMock.swift */; };
+		697234EFB390F6BE2CE943B0 /* RealmShowsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69723B2DE85E11A441AE3CF7 /* RealmShowsDataSource.swift */; };
+		6972360928E4392D625FC6AD /* SynchronizerDataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69723AC6CAF4ED73AC5EA0EF /* SynchronizerDataSources.swift */; };
+		69723BFA8EDD4536AAB548A2 /* SynchronizerDataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69723AC6CAF4ED73AC5EA0EF /* SynchronizerDataSources.swift */; };
+		69723C569ACE2562F2D982E3 /* RealmShowDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697236062E78C293F50658F8 /* RealmShowDataSource.swift */; };
 		69723D12BBC0EFB62D7AD53B /* DefaultGenreSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6972303F90EFD1D16F080AFD /* DefaultGenreSynchronizer.swift */; };
 		69723FE3A384CD20E25A225C /* DefaultGenreSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6972303F90EFD1D16F080AFD /* DefaultGenreSynchronizer.swift */; };
 		7F56127439D6E9004952D704 /* Pods_CouchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD28A62B2A818658ECA0D22E /* Pods_CouchTracker.framework */; };
 		814105490AFC3A79252D1EB7 /* Pods_CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1448084EA5E5433EFA20D8B9 /* Pods_CouchTrackerCore.framework */; };
 		821874AD2153122600E56040 /* SynchronizerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821874AC2153122600E56040 /* SynchronizerContract.swift */; };
 		821874AE2153122600E56040 /* SynchronizerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821874AC2153122600E56040 /* SynchronizerContract.swift */; };
+		8239F813216C159500A29F01 /* DefaultWatchedShowsSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8239F812216C159500A29F01 /* DefaultWatchedShowsSynchronizer.swift */; };
+		8239F814216C159500A29F01 /* DefaultWatchedShowsSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8239F812216C159500A29F01 /* DefaultWatchedShowsSynchronizer.swift */; };
 		827BCD3D20EFF3F60080B242 /* ShowOverviewViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */; };
 		827BCD3E20EFF3F60080B242 /* ShowOverviewViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */; };
 		827BCD4020EFF5C30080B242 /* ShowOverviewImagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BCD3F20EFF5C30080B242 /* ShowOverviewImagesState.swift */; };
@@ -988,12 +996,16 @@
 		64FDE4FF1F7E629800A4C7AA /* SyncResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncResult.swift; sourceTree = "<group>"; };
 		64FDE5031F7E64F200A4C7AA /* ShowEpisodeDefaultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeDefaultPresenter.swift; sourceTree = "<group>"; };
 		6972303F90EFD1D16F080AFD /* DefaultGenreSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultGenreSynchronizer.swift; sourceTree = "<group>"; };
+		697236062E78C293F50658F8 /* RealmShowDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmShowDataSource.swift; sourceTree = "<group>"; };
 		697237F52A36A813E592E389 /* DefaultGenreSynchronizerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultGenreSynchronizerTest.swift; sourceTree = "<group>"; };
+		69723AC6CAF4ED73AC5EA0EF /* SynchronizerDataSources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizerDataSources.swift; sourceTree = "<group>"; };
+		69723B2DE85E11A441AE3CF7 /* RealmShowsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmShowsDataSource.swift; sourceTree = "<group>"; };
 		69723B3226267C7F60CE9126 /* GenreDataSourceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreDataSourceMock.swift; sourceTree = "<group>"; };
 		6E24F22C9196F9C4BBEAE2EF /* Pods-CouchTrackerCore-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerCore-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerCore-iOS/Pods-CouchTrackerCore-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		7D22040F8C3128B9E69F0873 /* Pods-CouchTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		80B871CE6441D89664DCB479 /* Pods-CouchTrackerCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerCoreTests/Pods-CouchTrackerCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 		821874AC2153122600E56040 /* SynchronizerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizerContract.swift; sourceTree = "<group>"; };
+		8239F812216C159500A29F01 /* DefaultWatchedShowsSynchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWatchedShowsSynchronizer.swift; sourceTree = "<group>"; };
 		827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOverviewViewState.swift; sourceTree = "<group>"; };
 		827BCD3F20EFF5C30080B242 /* ShowOverviewImagesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOverviewImagesState.swift; sourceTree = "<group>"; };
 		D1928DD97DF5EC94CEB6E55D /* Pods-CouchTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker.release.xcconfig"; sourceTree = "<group>"; };
@@ -2194,8 +2206,12 @@
 		821874AB2153121100E56040 /* Synchronizer */ = {
 			isa = PBXGroup;
 			children = (
-				821874AC2153122600E56040 /* SynchronizerContract.swift */,
 				6972303F90EFD1D16F080AFD /* DefaultGenreSynchronizer.swift */,
+				8239F812216C159500A29F01 /* DefaultWatchedShowsSynchronizer.swift */,
+				697236062E78C293F50658F8 /* RealmShowDataSource.swift */,
+				69723B2DE85E11A441AE3CF7 /* RealmShowsDataSource.swift */,
+				821874AC2153122600E56040 /* SynchronizerContract.swift */,
+				69723AC6CAF4ED73AC5EA0EF /* SynchronizerDataSources.swift */,
 			);
 			path = Synchronizer;
 			sourceTree = "<group>";
@@ -2873,6 +2889,7 @@
 				4F0F572C203D5FA000B86CB8 /* ImageEntity.swift in Sources */,
 				4F0F572D203D5FA000B86CB8 /* ImagesEntity.swift in Sources */,
 				4F0F572E203D5FA000B86CB8 /* ModulePage.swift in Sources */,
+				8239F813216C159500A29F01 /* DefaultWatchedShowsSynchronizer.swift in Sources */,
 				4F0F572F203D5FA000B86CB8 /* MovieEntity.swift in Sources */,
 				4F0F5730203D5FA000B86CB8 /* ShowEntity.swift in Sources */,
 				4F0F5731203D5FA000B86CB8 /* TrendingMovieEntity.swift in Sources */,
@@ -3015,6 +3032,9 @@
 				4F2F2832212930B30000CC17 /* WatchedShowEntityAssembler.swift in Sources */,
 				4F778D1520412C2A00FBCC2C /* BundleProvider.swift in Sources */,
 				69723FE3A384CD20E25A225C /* DefaultGenreSynchronizer.swift in Sources */,
+				6972360928E4392D625FC6AD /* SynchronizerDataSources.swift in Sources */,
+				6972311DCE7CB4703472A22E /* RealmShowsDataSource.swift in Sources */,
+				69723C569ACE2562F2D982E3 /* RealmShowDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3154,6 +3174,7 @@
 				4F0F5872203D7B0A00B86CB8 /* AppConfigurationsViewModel.swift in Sources */,
 				4F0F5873203D7B0A00B86CB8 /* AppConfigurationsMoyaNetwork.swift in Sources */,
 				4F0F5877203D7B0A00B86CB8 /* BaseView.swift in Sources */,
+				8239F814216C159500A29F01 /* DefaultWatchedShowsSynchronizer.swift in Sources */,
 				4F0F5878203D7B0A00B86CB8 /* BuildConfig.swift in Sources */,
 				4F0F5879203D7B0A00B86CB8 /* ConfigurationRepository.swift in Sources */,
 				4F0F587A203D7B0A00B86CB8 /* ConfigurationCachedRepository.swift in Sources */,
@@ -3296,6 +3317,9 @@
 				4F2F2833212930B30000CC17 /* WatchedShowEntityAssembler.swift in Sources */,
 				4F778D1620412C2A00FBCC2C /* BundleProvider.swift in Sources */,
 				69723D12BBC0EFB62D7AD53B /* DefaultGenreSynchronizer.swift in Sources */,
+				69723BFA8EDD4536AAB548A2 /* SynchronizerDataSources.swift in Sources */,
+				697234EFB390F6BE2CE943B0 /* RealmShowsDataSource.swift in Sources */,
+				6972331A82E3E1F2B437E092 /* RealmShowDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

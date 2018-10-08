@@ -1,16 +1,22 @@
 import RxSwift
 import TraktSwift
 
-public protocol EpisodeSynchronizer {
-  func syncDetailsOf(episode: Int, season: Int, from: ShowIds, extended: Extended) -> Single<WatchedEpisodeEntity>
+public struct ShowSyncOptions: Hashable {
+  public let hideSpecials: Bool
+  public let syncSeasons: Bool
+
+  public init(hideSpecials: Bool, syncSeasons: Bool) {
+    self.hideSpecials = hideSpecials
+    self.syncSeasons = syncSeasons
+  }
 }
 
 public protocol ShowWatchedProgressSynchronizer {
-  func syncShowWatchedProgress(showId: ShowIds, hideSpecials: Bool) -> Single<WatchedShowEntity>
+  func syncShowWatchedProgress(showId: ShowIds, options: ShowSyncOptions) -> Single<WatchedShowEntity>
 }
 
-public protocol SeasonsWatchedProgressSynchronizer {
-  func syncWatchedSeasons(using ids: ShowIds) -> Single<[WatchedSeasonEntity]>
+public protocol WatchedShowsSynchronizer {
+  func syncWatchedShows(extended: Extended, options: ShowSyncOptions) -> Observable<WatchedShowEntity>
 }
 
 public protocol MoviesGenreSynchronizer {
