@@ -14,9 +14,6 @@ final class ShowsProgressModule {
     let tmdb = Environment.instance.tmdb
     let tvdb = Environment.instance.tvdb
     let schedulers = Environment.instance.schedulers
-    let realmProvider = Environment.instance.realmProvider
-    let appConfigsObservable = Environment.instance.appConfigurationsObservable
-    let hideSpecials = Environment.instance.currentAppState.hideSpecials
     let traktLoginObservable = Environment.instance.loginObservable
 
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
@@ -25,23 +22,13 @@ final class ShowsProgressModule {
                                                 cofigurationRepository: configurationRepository,
                                                 schedulers: schedulers)
 
-    let assembler = WatchedShowsAssemblerModule.setupModule()
-    let showsProgressDataSource = ShowsProgressRealmDataSource(realmProvider: realmProvider, schedulers: schedulers)
-
-    let showsProgressRepository = ShowsProgressDefaultRepository(assembler: assembler,
-                                                                 dataSource: showsProgressDataSource,
-                                                                 schedulers: schedulers)
-
     let listStateDataSource = ShowsProgressListStateDefaultDataSource(userDefaults: UserDefaults.standard)
 
     let router = ShowsProgressiOSRouter(viewController: view)
     let viewDataSource = ShowsProgressTableViewDataSource(imageRepository: imageRepository)
 
-    let interactor = ShowsProgressService(repository: showsProgressRepository,
-                                          listStateDataSource: listStateDataSource,
-                                          appConfigurationsObservable: appConfigsObservable,
-                                          schedulers: schedulers,
-                                          hideSpecials: hideSpecials)
+    let interactor = ShowsProgressServiceVersionTwo(listStateDataSource: listStateDataSource,
+                                                    showsObserable: Environment.instance.watchedShowEntitiesObservable)
 
     let presenter = ShowsProgressDefaultPresenter(view: view,
                                                   interactor: interactor,

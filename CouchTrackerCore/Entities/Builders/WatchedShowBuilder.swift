@@ -1,16 +1,16 @@
 import TraktSwift
 
-public struct WatchedShowBuilder: Hashable {
+public final class WatchedShowBuilder: Hashable {
   public let ids: ShowIds
-  public var detailShow: BaseShow?
-  public var progressShow: BaseShow?
-  public var episode: WatchedEpisodeEntity?
-  public var seasons: [WatchedSeasonEntityBuilder]
-  public var genres: [Genre]?
+  public let detailShow: BaseShow?
+  public let progressShow: BaseShow?
+  public let episode: WatchedEpisodeEntity?
+  public let seasons: [WatchedSeasonEntity]
+  public let genres: [Genre]?
 
   public init(ids: ShowIds, detailShow: BaseShow? = nil,
               progressShow: BaseShow? = nil, episode: WatchedEpisodeEntity? = nil,
-              seasons: [WatchedSeasonEntityBuilder] = [WatchedSeasonEntityBuilder](), genres: [Genre]? = nil) {
+              seasons: [WatchedSeasonEntity] = [WatchedSeasonEntity](), genres: [Genre]? = nil) {
     self.ids = ids
     self.detailShow = detailShow
     self.progressShow = progressShow
@@ -19,6 +19,7 @@ public struct WatchedShowBuilder: Hashable {
     self.genres = genres
   }
 
+  @discardableResult
   public func set(episode: WatchedEpisodeEntity?) -> WatchedShowBuilder {
     return WatchedShowBuilder(ids: ids,
                               detailShow: detailShow,
@@ -28,6 +29,7 @@ public struct WatchedShowBuilder: Hashable {
                               genres: genres)
   }
 
+  @discardableResult
   public func set(progressShow: BaseShow?) -> WatchedShowBuilder {
     return WatchedShowBuilder(ids: ids,
                               detailShow: detailShow,
@@ -37,6 +39,7 @@ public struct WatchedShowBuilder: Hashable {
                               genres: genres)
   }
 
+  @discardableResult
   public func set(detailShow: BaseShow?) -> WatchedShowBuilder {
     return WatchedShowBuilder(ids: ids,
                               detailShow: detailShow,
@@ -47,7 +50,7 @@ public struct WatchedShowBuilder: Hashable {
   }
 
   @discardableResult
-  public func set(seasons: [WatchedSeasonEntityBuilder]) -> WatchedShowBuilder {
+  public func set(seasons: [WatchedSeasonEntity]) -> WatchedShowBuilder {
     return WatchedShowBuilder(ids: ids,
                               detailShow: detailShow,
                               progressShow: progressShow,
@@ -56,6 +59,7 @@ public struct WatchedShowBuilder: Hashable {
                               genres: genres)
   }
 
+  @discardableResult
   public func set(genres: [Genre]) -> WatchedShowBuilder {
     return WatchedShowBuilder(ids: ids,
                               detailShow: detailShow,
@@ -66,10 +70,12 @@ public struct WatchedShowBuilder: Hashable {
   }
 
   public func createEntity(using showEntity: ShowEntity) -> WatchedShowEntity {
-    let seasonEntities = seasons.map { $0.createEntity() }
-
-    return WatchedShowEntity(show: showEntity, aired: progressShow?.aired, completed: progressShow?.completed,
-                             nextEpisode: episode, lastWatched: progressShow?.lastWatchedAt, seasons: seasonEntities)
+    return WatchedShowEntity(show: showEntity,
+                             aired: progressShow?.aired,
+                             completed: progressShow?.completed,
+                             nextEpisode: episode,
+                             lastWatched: progressShow?.lastWatchedAt,
+                             seasons: seasons)
   }
 
   public func createEntity() -> WatchedShowEntity {
@@ -80,8 +86,13 @@ public struct WatchedShowBuilder: Hashable {
   private func createShowEntity(using show: Show?) -> ShowEntity {
     let showGenres = genres(for: detailShow?.show)
 
-    return ShowEntity(ids: ids, title: show?.title, overview: show?.overview, network: show?.network,
-                      genres: showGenres, status: show?.status, firstAired: show?.firstAired)
+    return ShowEntity(ids: ids,
+                      title: show?.title,
+                      overview: show?.overview,
+                      network: show?.network,
+                      genres: showGenres,
+                      status: show?.status,
+                      firstAired: show?.firstAired)
   }
 
   private func genres(for show: Show?) -> [Genre] {

@@ -24,16 +24,14 @@ public final class ShowEpisodeDefaultPresenter: ShowEpisodePresenter {
     return imageStateSubject.distinctUntilChanged()
   }
 
-  public func handleWatch() -> Maybe<SyncResult> {
-    guard let nextEpisode = show.nextEpisode else { return Maybe.empty() }
+  public func handleWatch() -> Completable {
+    guard let nextEpisode = show.nextEpisode else { return Completable.empty() }
 
     return interactor.toggleWatch(for: nextEpisode, of: show)
-      .do(onSuccess: { [weak self] syncResult in
-        if case let .success(newShow) = syncResult {
-          self?.show = newShow
-          self?.setupView()
-        }
-      }).asMaybe()
+      .do(onSuccess: { [weak self] newShow in
+        self?.show = newShow
+        self?.setupView()
+      }).asCompletable()
   }
 
   private func setupView() {

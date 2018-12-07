@@ -2,7 +2,7 @@ import RealmSwift
 import RxRealm
 import RxSwift
 
-public final class RealmShowsDataSource: ShowsDataSource {
+public final class RealmShowsDataSource: WatchedShowEntitiesObservable, ShowsDataHolder {
   private let realmProvider: RealmProvider
   private let schedulers: Schedulers
 

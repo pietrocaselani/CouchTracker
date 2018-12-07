@@ -16,15 +16,27 @@ final class Environment {
   let buildConfig: BuildConfig
   let appConfigurationsObservable: AppConfigurationsObservable
   let appConfigurationsOutput: AppConfigurationsOutput
+  let showsSynchronizer: WatchedShowsSynchronizer
+  let showSynchronizer: WatchedShowSynchronizer
+  let watchedShowEntitiesObservable: WatchedShowEntitiesObservable
+  let watchedShowEntityObserable: WatchedShowEntityObserable
+  let centralSynchronizer: CentralSynchronizer
+  let userDefaults: UserDefaults
+  let genreRepository: GenreRepository
 
   var currentAppState: AppConfigurationsState {
-    let userDefaults = UserDefaults.standard
+    return Environment.getAppState(userDefaults: userDefaults)
+  }
+
+  private static func getAppState(userDefaults: UserDefaults) -> AppConfigurationsState {
     let loginState = AppConfigurationsUserDefaultsDataSource.currentLoginValue(userDefaults)
     let hideSpecials = AppConfigurationsUserDefaultsDataSource.currentHideSpecialValue(userDefaults)
     return AppConfigurationsState(loginState: loginState, hideSpecials: hideSpecials)
   }
 
+  // swiftlint:disable function_body_length
   private init() {
+    userDefaults = UserDefaults.standard
     let schedulers = DefaultSchedulers()
 
     let debug: Bool
@@ -32,10 +44,6 @@ final class Environment {
     var plugins = [PluginType]()
 
     #if DEBUG
-      debug = true
-
-      plugins.append(NetworkLoggerPlugin(verbose: true))
-
       let traktClientId = Secrets.Trakt.clientId.isEmpty
       let tmdbAPIKey = Secrets.TMDB.apiKey.isEmpty
       let tvdbAPIKey = Secrets.TVDB.apiKey.isEmpty
@@ -43,6 +51,10 @@ final class Environment {
       if traktClientId || tmdbAPIKey || tvdbAPIKey {
         Swift.fatalError("One or more API keys are empty. Check the class Secrets.swift")
       }
+
+      debug = true
+
+      plugins.append(NetworkLoggerPlugin(verbose: true))
     #else
       debug = false
     #endif
@@ -86,5 +98,37 @@ final class Environment {
 
     appConfigurationsOutput = appConfigurationsStore
     appConfigurationsObservable = appConfigurationsStore
+
+    let genreDataSource = GenreRealmDataSource(realmProvider: realmProvider,
+                                               schedulers: schedulers)
+
+    genreRepository = TraktGenreRepository(traktProvider: trakt,
+                                           dataSource: genreDataSource,
+                                           schedulers: schedulers)
+
+    let showsDownloader = DefaultWatchedShowEntitiesDownloader(trakt: trakt,
+                                                               genreRepository: genreRepository,
+                                                               scheduler: schedulers)
+
+    let showDownloader = DefaultWatchedShowEntityDownloader(trakt: trakt,
+                                                            scheduler: schedulers)
+
+    let showDataSource = RealmShowDataSource(realmProvider: realmProvider, schedulers: schedulers)
+
+    let showsDataSource = RealmShowsDataSource(realmProvider: realmProvider, schedulers: schedulers)
+
+    watchedShowEntitiesObservable = showsDataSource
+    watchedShowEntityObserable = showDataSource
+
+    showsSynchronizer = DefaultWatchedShowsSynchronizer(downloader: showsDownloader,
+                                                        dataHolder: showsDataSource,
+                                                        schedulers: schedulers)
+
+    showSynchronizer = DefaultWatchedShowSynchronizer(downloader: showDownloader,
+                                                      dataSource: showDataSource,
+                                                      scheduler: schedulers)
+
+    centralSynchronizer = CentralSynchronizer.initializeCentralSynchronizer(watchedShowsSynchronizer: showsSynchronizer,
+                                                                            appConfigObservable: appConfigurationsObservable)
   }
 }

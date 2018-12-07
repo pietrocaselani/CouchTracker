@@ -13,8 +13,7 @@ final class TrendingModule {
     let tmdb = Environment.instance.tmdb
     let tvdb = Environment.instance.tvdb
     let schedulers = Environment.instance.schedulers
-
-    let genreRepository = GenreModule.setupGenreRepository()
+    let genreRepository = Environment.instance.genreRepository
 
     let repository = TrendingCacheRepository(traktProvider: traktProvider, schedulers: schedulers)
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)

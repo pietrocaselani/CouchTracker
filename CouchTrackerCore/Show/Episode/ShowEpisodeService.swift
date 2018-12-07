@@ -15,7 +15,7 @@ public final class ShowEpisodeService: ShowEpisodeInteractor {
     return imageRepository.fetchEpisodeImages(for: episode, size: size)
   }
 
-  public func toggleWatch(for episode: WatchedEpisodeEntity, of show: WatchedShowEntity) -> Single<SyncResult> {
+  public func toggleWatch(for episode: WatchedEpisodeEntity, of show: WatchedShowEntity) -> Single<WatchedShowEntity> {
     return episode.lastWatched == nil ?
       repository.addToHistory(of: show, episode: episode.episode) :
       repository.removeFromHistory(of: show, episode: episode.episode)

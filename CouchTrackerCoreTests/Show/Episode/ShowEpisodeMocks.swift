@@ -32,7 +32,7 @@ final class ShowEpisodeMocks {
       return Maybe.just(url)
     }
 
-    func toggleWatch(for episode: WatchedEpisodeEntity, of show: WatchedShowEntity) -> Single<SyncResult> {
+    func toggleWatch(for episode: WatchedEpisodeEntity, of show: WatchedShowEntity) -> Single<WatchedShowEntity> {
       toogleWatchInvoked = true
       toogleWatchParameters = (episode, show)
 
@@ -41,10 +41,10 @@ final class ShowEpisodeMocks {
       }
 
       if let toogleError = toogleFailError {
-        return Single.just(SyncResult.fail(error: toogleError))
+        return Single.error(toogleError)
       }
 
-      return Single.just(SyncResult.success(show: nextEntity))
+      return Single.just(nextEntity)
     }
   }
 
@@ -54,13 +54,13 @@ final class ShowEpisodeMocks {
     var removeFromHistoryInvoked = false
     var removeFromHistoryParameters: (show: WatchedShowEntity, episode: EpisodeEntity)?
 
-    func addToHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<SyncResult> {
+    func addToHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<WatchedShowEntity> {
       addToHistoryInvoked = true
       addToHistoryParameters = (show, episode)
       return Single.never()
     }
 
-    func removeFromHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<SyncResult> {
+    func removeFromHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<WatchedShowEntity> {
       removeFromHistoryInvoked = true
       removeFromHistoryParameters = (show, episode)
       return Single.never()

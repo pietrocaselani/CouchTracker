@@ -153,11 +153,6 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
       return
     }
 
-    let expectedHandleWatchedResults = [
-      Recorded.next(200, SyncResult.success(show: newShow)),
-      Recorded.completed(200),
-    ]
-
     let expectedViewEvents = [
       Recorded.next(0, ShowEpisodeViewState.loading),
       Recorded.next(0, ShowEpisodeViewState.showing(episode: nextEpisode)),
@@ -170,7 +165,14 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
       Recorded.next(200, ShowEpisodeImageState.none),
     ]
 
-    XCTAssertEqual(results.events, expectedHandleWatchedResults)
+    XCTAssertEqual(results.events.count, 1)
+    guard let firstEvent = results.events.first else {
+      XCTFail("Should contain one event")
+      return
+    }
+
+    XCTAssertEqual(firstEvent.time, 200)
+
     XCTAssertEqual(viewObserver.events, expectedViewEvents)
     XCTAssertEqual(imageObserver.events, expectedImageEvents)
 
@@ -199,11 +201,6 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
       return
     }
 
-    let expectedHandleWatchedResults = [
-      Recorded.next(200, SyncResult.fail(error: watchedError)),
-      Recorded.completed(200),
-    ]
-
     let expectedViewEvents = [
       Recorded.next(0, ShowEpisodeViewState.loading),
       Recorded.next(0, ShowEpisodeViewState.showing(episode: nextEpisode)),
@@ -214,7 +211,13 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
       Recorded.next(0, ShowEpisodeImageState.image(url: URL(string: "path/to/image.png")!)),
     ]
 
-    XCTAssertEqual(results.events, expectedHandleWatchedResults)
+    XCTAssertEqual(results.events.count, 1)
+    guard let firstEvent = results.events.first else {
+      XCTFail("Should contain one event")
+      return
+    }
+
+    XCTAssertEqual(firstEvent.time, 200)
     XCTAssertEqual(viewObserver.events, expectedViewEvents)
     XCTAssertEqual(imageObserver.events, expectedImageEvents)
 
@@ -235,8 +238,6 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
     let results = scheduler.start { self.presenter.handleWatch().asObservable() }
 
     // Then
-    let expectedHandleWatchedResults: [Recorded<Event<SyncResult>>] = [Recorded.completed(200)]
-
     let expectedViewEvents = [
       Recorded.next(0, ShowEpisodeViewState.loading),
       Recorded.next(0, ShowEpisodeViewState.empty),
@@ -247,7 +248,13 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
       Recorded.next(0, ShowEpisodeImageState.none),
     ]
 
-    XCTAssertEqual(results.events, expectedHandleWatchedResults)
+    XCTAssertEqual(results.events.count, 1)
+    guard let firstEvent = results.events.first else {
+      XCTFail("Should contain one event")
+      return
+    }
+
+    XCTAssertEqual(firstEvent.time, 200)
     XCTAssertEqual(viewObserver.events, expectedViewEvents)
     XCTAssertEqual(imageObserver.events, expectedImageEvents)
     XCTAssertFalse(interactor.toogleWatchInvoked)

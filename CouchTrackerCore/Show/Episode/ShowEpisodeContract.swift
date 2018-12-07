@@ -11,13 +11,13 @@ public protocol ShowEpisodeNetwork: class {
 }
 
 public protocol ShowEpisodeRepository: class {
-  func addToHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<SyncResult>
-  func removeFromHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<SyncResult>
+  func addToHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<WatchedShowEntity>
+  func removeFromHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<WatchedShowEntity>
 }
 
 public protocol ShowEpisodeInteractor: class {
   func fetchImageURL(for episode: EpisodeImageInput) -> Maybe<URL>
-  func toggleWatch(for episode: WatchedEpisodeEntity, of show: WatchedShowEntity) -> Single<SyncResult>
+  func toggleWatch(for episode: WatchedEpisodeEntity, of show: WatchedShowEntity) -> Single<WatchedShowEntity>
 }
 
 public protocol ShowEpisodePresenter: class {
@@ -26,7 +26,7 @@ public protocol ShowEpisodePresenter: class {
   func viewDidLoad()
   func observeViewState() -> Observable<ShowEpisodeViewState>
   func observeImageState() -> Observable<ShowEpisodeImageState>
-  func handleWatch() -> Maybe<SyncResult>
+  func handleWatch() -> Completable
 }
 
 public protocol ShowEpisodeView: class {

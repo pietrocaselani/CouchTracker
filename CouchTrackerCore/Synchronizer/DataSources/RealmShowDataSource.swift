@@ -26,11 +26,21 @@ public final class RealmShowDataSource: ShowDataSource {
         return Observable.empty()
       }
 
-      return Observable.from(object: show, emitInitialValue: false)
+      return Observable.from(object: show, emitInitialValue: true)
     }
 
     return observable.map { result -> WatchedShowEntity in
       result.toEntity()
     }.subscribeOn(schedulers.dataSourceScheduler)
+  }
+
+  public func save(show: WatchedShowEntity) throws {
+    let realmEntity = show.toRealm()
+
+    let realm = realmProvider.realm
+
+    try realm.write {
+      realm.add(realmEntity, update: true)
+    }
   }
 }
