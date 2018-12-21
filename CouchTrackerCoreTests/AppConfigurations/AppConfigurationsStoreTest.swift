@@ -19,7 +19,7 @@ final class AppConfigurationsStoreTest: XCTestCase {
     store.newConfiguration(state: state2)
 
     // Then
-    let expectedEvents = [next(0, state1), Recorded.next(0, state2)]
+    let expectedEvents = [Recorded.next(0, state1), Recorded.next(0, state2)]
     XCTAssertEqual(observer.events, expectedEvents)
   }
 
@@ -37,7 +37,7 @@ final class AppConfigurationsStoreTest: XCTestCase {
     store.newConfiguration(state: state1)
 
     // Then
-    let expectedEvents = [next(0, state1)]
+    let expectedEvents = [Recorded.next(0, state1)]
     XCTAssertEqual(observer.events, expectedEvents)
   }
 }

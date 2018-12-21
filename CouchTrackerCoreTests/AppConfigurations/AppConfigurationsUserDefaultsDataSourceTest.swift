@@ -38,7 +38,7 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
     scheduler.start()
 
     // Then
-    let expectedEvents: [Recorded<Event<LoginState>>] = [next(0, LoginState.notLogged)]
+    let expectedEvents: [Recorded<Event<LoginState>>] = [Recorded.next(0, LoginState.notLogged)]
 
     XCTAssertEqual(observer.events, expectedEvents)
   }
@@ -54,7 +54,7 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
     scheduler.start()
 
     // Then
-    let expectedEvents: [Recorded<Event<LoginState>>] = [next(0, LoginState.notLogged)]
+    let expectedEvents: [Recorded<Event<LoginState>>] = [Recorded.next(0, LoginState.notLogged)]
 
     XCTAssertEqual(observer.events, expectedEvents)
   }
@@ -71,7 +71,7 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
 
     // Then
     let expectedSettings = TraktEntitiesMock.createUserSettingsMock()
-    let expectedEvents = [next(0, LoginState.logged(settings: expectedSettings))]
+    let expectedEvents = [Recorded.next(0, LoginState.logged(settings: expectedSettings))]
 
     XCTAssertEqual(observer.events, expectedEvents)
   }
@@ -128,7 +128,7 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
     _ = dataSource.fetchHideSpecials().subscribe(hideSpecialsObserver)
 
     // Then
-    var expectedEvents = [next(0, false)]
+    var expectedEvents = [Recorded.next(0, false)]
     XCTAssertEqual(hideSpecialsObserver.events, expectedEvents)
 
     // When
@@ -139,7 +139,7 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
     }
 
     // Then
-    expectedEvents = [next(0, false), Recorded.next(0, true)]
+    expectedEvents = [Recorded.next(0, false), Recorded.next(0, true)]
     XCTAssertEqual(hideSpecialsObserver.events, expectedEvents)
   }
 }

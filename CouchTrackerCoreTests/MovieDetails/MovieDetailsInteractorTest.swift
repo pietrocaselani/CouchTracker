@@ -80,7 +80,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
     let expectedImageEntity = ImagesEntity(identifier: 550, backdrops: backdrops, posters: posters, stills: [ImageEntity]())
 
-    let events: [Recorded<Event<ImagesEntity>>] = [next(0, expectedImageEntity), Recorded.completed(0)]
+    let events: [Recorded<Event<ImagesEntity>>] = [Recorded.next(0, expectedImageEntity), Recorded.completed(0)]
 
     XCTAssertEqual(imagesObserver.events, events)
   }
@@ -124,7 +124,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
     let expectedMovie = MovieEntityMapper.entity(for: movie, with: moviesGenre, watchedAt: watchedAt)
 
-    let events: [Recorded<Event<MovieEntity>>] = [next(0, expectedMovie), Recorded.completed(0)]
+    let events: [Recorded<Event<MovieEntity>>] = [Recorded.next(0, expectedMovie), Recorded.completed(0)]
 
     XCTAssertEqual(observer.events, events)
   }
@@ -146,7 +146,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
     let expectedMovie = MovieEntityMapper.entity(for: movie, with: moviesGenre, watchedAt: nil)
 
-    let events: [Recorded<Event<MovieEntity>>] = [next(0, expectedMovie), Recorded.completed(0)]
+    let events: [Recorded<Event<MovieEntity>>] = [Recorded.next(0, expectedMovie), Recorded.completed(0)]
 
     XCTAssertEqual(observer.events, events)
   }

@@ -35,7 +35,7 @@ final class TrendingInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<[TrendingMovieEntity]>>] = [next(0, [TrendingMovieEntity]()), Recorded.completed(0)]
+    let events: [Recorded<Event<[TrendingMovieEntity]>>] = [Recorded.next(0, [TrendingMovieEntity]()), Recorded.completed(0)]
 
     RXAssertEvents(moviesObserver, events)
   }
@@ -49,7 +49,7 @@ final class TrendingInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<[TrendingShowEntity]>>] = [next(0, [TrendingShowEntity]()), Recorded.completed(0)]
+    let events: [Recorded<Event<[TrendingShowEntity]>>] = [Recorded.next(0, [TrendingShowEntity]()), Recorded.completed(0)]
 
     RXAssertEvents(showsObserver, events)
   }
@@ -110,7 +110,7 @@ final class TrendingInteractorTest: XCTestCase {
       return MovieEntityMapper.entity(for: trendingMovie, with: [Genre]())
     }
 
-    let events: [Recorded<Event<[TrendingMovieEntity]>>] = [next(0, expectedMovies), Recorded.completed(0)]
+    let events: [Recorded<Event<[TrendingMovieEntity]>>] = [Recorded.next(0, expectedMovies), Recorded.completed(0)]
 
     RXAssertEvents(moviesObserver, events)
   }
@@ -129,7 +129,7 @@ final class TrendingInteractorTest: XCTestCase {
 
     let expectedShows = TraktEntitiesMock.createTrendingShowsMock().map { ShowEntityMapper.entity(for: $0, with: [Genre]()) }
 
-    let events: [Recorded<Event<[TrendingShowEntity]>>] = [next(0, expectedShows), Recorded.completed(0)]
+    let events: [Recorded<Event<[TrendingShowEntity]>>] = [Recorded.next(0, expectedShows), Recorded.completed(0)]
 
     RXAssertEvents(showsObserver, events)
   }

@@ -21,7 +21,7 @@ final class TraktLoginStoreTest: XCTestCase {
     _ = store.observe().subscribe(observer)
 
     // Then
-    let expectedEvents = [next(0, TraktLoginState.logged)]
+    let expectedEvents = [Recorded.next(0, TraktLoginState.logged)]
     XCTAssertEqual(observer.events, expectedEvents)
   }
 
@@ -34,7 +34,7 @@ final class TraktLoginStoreTest: XCTestCase {
     _ = store.observe().subscribe(observer)
 
     // Then
-    let expectedEvents = [next(0, TraktLoginState.notLogged)]
+    let expectedEvents = [Recorded.next(0, TraktLoginState.notLogged)]
     XCTAssertEqual(observer.events, expectedEvents)
   }
 

@@ -48,7 +48,7 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
 
       let notLoggedState = LoginState.notLogged
       let loggedState = LoginState.logged(settings: TraktEntitiesMock.createUserSettingsMock())
-      let expectedEvents = [next(1, notLoggedState), Recorded.next(3, loggedState)]
+      let expectedEvents = [Recorded.next(1, notLoggedState), Recorded.next(3, loggedState)]
 
       XCTAssertEqual(self.observer.events, expectedEvents)
       XCTAssertTrue(self.network.fetchUserSettingsInvoked)
@@ -77,7 +77,7 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
       testExpectation.fulfill()
 
       let expectedLoginState = LoginState.logged(settings: settings)
-      let expectedEvents = [next(1, expectedLoginState)]
+      let expectedEvents = [Recorded.next(1, expectedLoginState)]
       XCTAssertEqual(self.observer.events, expectedEvents)
       XCTAssertFalse(self.network.fetchUserSettingsInvoked)
       XCTAssertEqual(self.network.fetchUserSettingsInvokedCount, 0)
@@ -107,7 +107,7 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
 //
 //      let notLoggedState = LoginState.notLogged
 //      let loggedState = LoginState.logged(settings: TraktEntitiesMock.createUserSettingsMock())
-//      let expectedEvents = [next(1, notLoggedState), Recorded.next(1, loggedState)]
+//      let expectedEvents = [Recorded.next(1, notLoggedState), Recorded.next(1, loggedState)]
 //
 //      XCTAssertEqual(self.observer.events, expectedEvents)
 //      XCTAssertTrue(network.fetchUserSettingsInvoked)

@@ -43,7 +43,7 @@ final class ShowsProgressServiceTest: XCTestCase {
 
     // Then
     let entity = ShowsProgressMocks.mockWatchedShowEntity()
-    let expectedEvents = [next(0, [entity])]
+    let expectedEvents = [Recorded.next(0, [entity])]
 
     RXAssertEvents(observer.events, expectedEvents)
   }
@@ -60,7 +60,7 @@ final class ShowsProgressServiceTest: XCTestCase {
 
     // Then
     let entity = ShowsProgressMocks.mockWatchedShowEntity()
-    let expectedEvents = [next(0, [entity])]
+    let expectedEvents = [Recorded.next(0, [entity])]
 
     RXAssertEvents(observer.events, expectedEvents)
   }
@@ -77,7 +77,7 @@ final class ShowsProgressServiceTest: XCTestCase {
 
     // Then
     let entity = ShowsProgressMocks.mockWatchedShowEntity()
-    let expectedEvents = [next(0, [entity]), Recorded.next(0, [WatchedShowEntity]())]
+    let expectedEvents = [Recorded.next(0, [entity]), Recorded.next(0, [WatchedShowEntity]())]
 
     RXAssertEvents(observer.events, expectedEvents)
   }

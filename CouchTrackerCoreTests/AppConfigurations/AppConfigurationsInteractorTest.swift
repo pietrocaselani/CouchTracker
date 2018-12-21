@@ -34,7 +34,7 @@ final class AppConfigurationsInteractorTest: XCTestCase {
     let disposable = observable.subscribe(observer)
     _ = disposeBag.insert(disposable)
 
-    let expectedEvents: [Recorded<Event<AppConfigurationsState>>] = [next(0, AppConfigurationsState.initialState()), Recorded.completed(0)]
+    let expectedEvents: [Recorded<Event<AppConfigurationsState>>] = [Recorded.next(0, AppConfigurationsState.initialState()), Recorded.completed(0)]
 
     XCTAssertEqual(observer.events, expectedEvents)
   }
@@ -52,7 +52,7 @@ final class AppConfigurationsInteractorTest: XCTestCase {
     let disposable = observable.subscribe(observer)
     _ = disposeBag.insert(disposable)
 
-    let expectedEvents = [next(0, AppConfigurationsState.initialState()), Recorded.completed(0)]
+    let expectedEvents = [Recorded.next(0, AppConfigurationsState.initialState()), Recorded.completed(0)]
     XCTAssertEqual(observer.events, expectedEvents)
   }
 
@@ -72,7 +72,7 @@ final class AppConfigurationsInteractorTest: XCTestCase {
     let expectedSettings = TraktEntitiesMock.createUserSettingsMock()
     let loginState = LoginState.logged(settings: expectedSettings)
     let expectedState = AppConfigurationsState(loginState: loginState, hideSpecials: false)
-    let expectedEvents = [next(0, expectedState), Recorded.completed(0)]
+    let expectedEvents = [Recorded.next(0, expectedState), Recorded.completed(0)]
     XCTAssertEqual(observer.events, expectedEvents)
   }
 
@@ -102,7 +102,7 @@ final class AppConfigurationsInteractorTest: XCTestCase {
 
     // Then
     let expectedState = AppConfigurationsState(loginState: .notLogged, hideSpecials: false)
-    let expectedEvents = [next(0, expectedState), Recorded.completed(0)]
+    let expectedEvents = [Recorded.next(0, expectedState), Recorded.completed(0)]
     XCTAssertEqual(observer.events, expectedEvents)
   }
 }

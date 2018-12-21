@@ -28,7 +28,7 @@ final class PosterCellInteractorTest: XCTestCase {
 
     let expectedURL = URL(string: "https:/image.tmdb.org/t/p/w92/2qg0MOwPD1G0FcYpDPeu6AOjh8i.jpg")!
 
-    let events: [Recorded<Event<URL>>] = [next(0, expectedURL), Recorded.completed(0)]
+    let events: [Recorded<Event<URL>>] = [Recorded.next(0, expectedURL), Recorded.completed(0)]
 
     XCTAssertEqual(observer.events, events)
   }
@@ -96,7 +96,7 @@ final class PosterCellInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<URL>>] = [next(0, URL(string: "https://pc.com")!), Recorded.completed(0)]
+    let events: [Recorded<Event<URL>>] = [Recorded.next(0, URL(string: "https://pc.com")!), Recorded.completed(0)]
 
     XCTAssertEqual(observer.events, events)
   }
