@@ -4,30 +4,38 @@ import RxTest
 import TraktSwift
 import XCTest
 
+private class WatchedShowEntitiesObservableMock: WatchedShowEntitiesObservable {
+  func observeWatchedShows() -> Observable<[WatchedShowEntity]> {
+    return Observable.empty()
+  }
+}
+
 final class ShowsProgressServiceTest: XCTestCase {
   private let scheduler = TestSchedulers()
   private var observer: TestableObserver<[WatchedShowEntity]>!
-  private var repository: ShowsProgressMocks.ShowsProgressRepositoryMock!
   private var listStateDataSource: ShowsProgressMocks.ListStateDataSource!
-  private var appConfigurations: AppConfigurationsMock.AppConfigurationsObservableMock!
+  private var watchedShowEntitiesObservableMock: WatchedShowEntitiesObservableMock!
 
   override func setUp() {
     super.setUp()
 
     observer = scheduler.createObserver([WatchedShowEntity].self)
 
-    repository = ShowsProgressMocks.ShowsProgressRepositoryMock(trakt: createTraktProviderMock())
     listStateDataSource = ShowsProgressMocks.ListStateDataSource()
-    appConfigurations = AppConfigurationsMock.AppConfigurationsObservableMock()
+    watchedShowEntitiesObservableMock = WatchedShowEntitiesObservableMock()
+  }
+
+  override func tearDown() {
+    observer = nil
+    listStateDataSource = nil
+    watchedShowEntitiesObservableMock = nil
+
+    super.tearDown()
   }
 
   func testShowsProgressService_fetchWatchedProgress() {
     // Given
-    let interactor = ShowsProgressService(repository: repository,
-                                          listStateDataSource: listStateDataSource,
-                                          appConfigurationsObservable: appConfigurations,
-                                          schedulers: scheduler,
-                                          hideSpecials: true)
+    let interactor = ShowsProgressService(listStateDataSource: listStateDataSource, showsObserable: watchedShowEntitiesObservableMock)
 
     // When
     _ = interactor.fetchWatchedShowsProgress().subscribe(observer)
@@ -42,16 +50,13 @@ final class ShowsProgressServiceTest: XCTestCase {
 
   func testShowsProgressService_receiveSameDataFromRepository_emitsOnlyOnce() {
     // Given
-    let interactor = ShowsProgressService(repository: repository,
-                                          listStateDataSource: listStateDataSource,
-                                          appConfigurationsObservable: appConfigurations,
-                                          schedulers: scheduler,
-                                          hideSpecials: true)
+    let interactor = ShowsProgressService(listStateDataSource: listStateDataSource, showsObserable: watchedShowEntitiesObservableMock)
     _ = interactor.fetchWatchedShowsProgress().subscribe(observer)
     scheduler.start()
 
     // When
-    repository.emitsAgain([ShowsProgressMocks.mockWatchedShowEntity()])
+    XCTFail("Implement")
+//    repository.emitsAgain([ShowsProgressMocks.mockWatchedShowEntity()])
 
     // Then
     let entity = ShowsProgressMocks.mockWatchedShowEntity()
@@ -62,16 +67,13 @@ final class ShowsProgressServiceTest: XCTestCase {
 
   func testShowsProgressService_receiveDifferentDataFromRepository_emitsNewData() {
     // Given
-    let interactor = ShowsProgressService(repository: repository,
-                                          listStateDataSource: listStateDataSource,
-                                          appConfigurationsObservable: appConfigurations,
-                                          schedulers: scheduler,
-                                          hideSpecials: true)
+    let interactor = ShowsProgressService(listStateDataSource: listStateDataSource, showsObserable: watchedShowEntitiesObservableMock)
     _ = interactor.fetchWatchedShowsProgress().subscribe(observer)
     scheduler.start()
 
     // When
-    repository.emitsAgain([WatchedShowEntity]())
+    XCTFail("Implement")
+//    repository.emitsAgain([WatchedShowEntity]())
 
     // Then
     let entity = ShowsProgressMocks.mockWatchedShowEntity()
@@ -82,11 +84,7 @@ final class ShowsProgressServiceTest: XCTestCase {
 
   func testShowsProgressService_receivesNewListState_shouldNotifyDataSource() {
     // Given
-    let interactor = ShowsProgressService(repository: repository,
-                                          listStateDataSource: listStateDataSource,
-                                          appConfigurationsObservable: appConfigurations,
-                                          schedulers: scheduler,
-                                          hideSpecials: true)
+    let interactor = ShowsProgressService(listStateDataSource: listStateDataSource, showsObserable: watchedShowEntitiesObservableMock)
 
     // When
     let listState = ShowProgressListState(sort: .lastWatched, filter: .watched, direction: .asc)

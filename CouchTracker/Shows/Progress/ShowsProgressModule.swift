@@ -27,8 +27,8 @@ final class ShowsProgressModule {
     let router = ShowsProgressiOSRouter(viewController: view)
     let viewDataSource = ShowsProgressTableViewDataSource(imageRepository: imageRepository)
 
-    let interactor = ShowsProgressServiceVersionTwo(listStateDataSource: listStateDataSource,
-                                                    showsObserable: Environment.instance.watchedShowEntitiesObservable)
+    let interactor = ShowsProgressService(listStateDataSource: listStateDataSource,
+                                          showsObserable: Environment.instance.watchedShowEntitiesObservable)
 
     let presenter = ShowsProgressDefaultPresenter(view: view,
                                                   interactor: interactor,

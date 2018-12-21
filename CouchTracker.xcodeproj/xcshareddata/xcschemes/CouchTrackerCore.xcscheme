@@ -38,14 +38,6 @@
                BlueprintName = "CouchTrackerCoreTests"
                ReferencedContainer = "container:CouchTracker.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "ShowEpisodeAPIRepositoryTest/testShowEpisodeAPIRepository_addToHistorSuccess_emitsSyncResultWithShow()">
-               </Test>
-               <Test
-                  Identifier = "ShowEpisodeAPIRepositoryTest/testShowEpisodeAPIRepository_removeFromHistorSuccess_emitsSyncResultWithShow()">
-               </Test>
-            </SkippedTests>
             <LocationScenarioReference
                identifier = "New York, NY, USA"
                referenceType = "1">

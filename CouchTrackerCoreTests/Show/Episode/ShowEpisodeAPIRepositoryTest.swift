@@ -16,17 +16,15 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
     let showSeasonsRepository = ShowSeasonsRepositoryMock()
 
-    let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
-
     let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
     let genreRepository = GenreRepositoryMock()
 
-    let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
+    let synchronizer = SynchronizerMocks.WatchedShowSynchronizerMock()
 
     let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
                                               network: network,
                                               schedulers: schedulers,
-                                              assembler: assembler,
+                                              synchronizer: synchronizer,
                                               appConfigurationsObservable: appConfigsObservableMock,
                                               hideSpecials: true)
 
@@ -39,13 +37,12 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     }
 
     // Then
-    let expectedResult = SyncResult.fail(error: dataSourceError)
+    XCTFail("Implement")
+//    let expectedEvent = Recorded.next(203, expectedResult)
 
-    let expectedEvent = Recorded.next(203, expectedResult)
-
-    expect(res.events).to(containElementSatisfying({ element -> Bool in
-      element == expectedEvent
-    }))
+//    expect(res.events).to(containElementSatisfying({ element -> Bool in
+//      element == expectedEvent
+//    }))
 
     XCTAssertTrue(network.addToHistoryInvoked)
     XCTAssertTrue(dataSource.updateWatchedShowInvoked)
@@ -69,17 +66,15 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
     let showSeasonsRepository = ShowSeasonsRepositoryMock()
 
-    let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
-
     let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
     let genreRepository = GenreRepositoryMock()
 
-    let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
+    let synchronizer = SynchronizerMocks.WatchedShowSynchronizerMock()
 
     let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
                                               network: network,
                                               schedulers: schedulers,
-                                              assembler: assembler,
+                                              synchronizer: synchronizer,
                                               appConfigurationsObservable: appConfigsObservableMock,
                                               hideSpecials: true)
 
@@ -92,12 +87,12 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     }
 
     // Then
-    let expectedResult = SyncResult.fail(error: dataSourceError)
-    let expectedEvent = Recorded.next(203, expectedResult)
+    XCTFail("Implement")
+//    let expectedEvent = Recorded.next(203, expectedResult)
 
-    expect(res.events).to(containElementSatisfying({ element -> Bool in
-      element == expectedEvent
-    }))
+//    expect(res.events).to(containElementSatisfying({ element -> Bool in
+//      element == expectedEvent
+//    }))
 
     XCTAssertTrue(network.removeFromHistoryInvoked)
     XCTAssertTrue(dataSource.updateWatchedShowInvoked)
@@ -121,17 +116,15 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
     let showSeasonsRepository = ShowSeasonsRepositoryMock()
 
-    let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
-
     let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
     let genreRepository = GenreRepositoryMock()
 
-    let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
+    let synchronizer = SynchronizerMocks.WatchedShowSynchronizerMock()
 
     let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
                                               network: network,
                                               schedulers: schedulers,
-                                              assembler: assembler,
+                                              synchronizer: synchronizer,
                                               appConfigurationsObservable: appConfigsObservableMock,
                                               hideSpecials: true)
 
@@ -165,17 +158,15 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
     let showSeasonsRepository = ShowSeasonsRepositoryMock()
 
-    let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
-
     let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
     let genreRepository = GenreRepositoryMock()
 
-    let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
+    let synchronizer = SynchronizerMocks.WatchedShowSynchronizerMock()
 
     let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
                                               network: network,
                                               schedulers: schedulers,
-                                              assembler: assembler,
+                                              synchronizer: synchronizer,
                                               appConfigurationsObservable: appConfigsObservableMock,
                                               hideSpecials: true)
 
@@ -188,12 +179,13 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     }
 
     // Then
-    let expectedResult = SyncResult.success(show: ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
-    let expectedEvent = Recorded.next(203, expectedResult)
+    XCTFail("Implement")
+//    let expectedResult = SyncResult.success(show: ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
+//    let expectedEvent = Recorded.next(203, expectedResult)
 
-    expect(res.events).to(containElementSatisfying({ element -> Bool in
-      element == expectedEvent
-    }))
+//    expect(res.events).to(containElementSatisfying({ element -> Bool in
+//      element == expectedEvent
+//    }))
 
     XCTAssertTrue(network.addToHistoryInvoked)
     XCTAssertTrue(dataSource.updateWatchedShowInvoked)
@@ -217,17 +209,15 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     let showWatchedRepository = ShowProgressMocks.ShowWatchedProgressRepositoryMock()
     let showSeasonsRepository = ShowSeasonsRepositoryMock()
 
-    let watchedSeasonAssembler = WatchedSeasonsAssembler(seasonRepository: showSeasonsRepository, schedulers: schedulers)
-
     let episodeDetailsRepository = EpisodeDetailsRepositoryMock()
     let genreRepository = GenreRepositoryMock()
 
-    let assembler = WatchedShowEntityAssembler(showProgressRepository: showWatchedRepository, watchedSeasonsAssembler: watchedSeasonAssembler, episodeRepository: episodeDetailsRepository, genreRepository: genreRepository, schedulers: schedulers)
+    let synchronizer = SynchronizerMocks.WatchedShowSynchronizerMock()
 
     let repository = ShowEpisodeAPIRepository(dataSource: dataSource,
                                               network: network,
                                               schedulers: schedulers,
-                                              assembler: assembler,
+                                              synchronizer: synchronizer,
                                               appConfigurationsObservable: appConfigsObservableMock,
                                               hideSpecials: true)
 
@@ -240,12 +230,13 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     }
 
     // Then
-    let expectedResult = SyncResult.success(show: ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
-    let expectedEvent = Recorded.next(203, expectedResult)
-
-    expect(res.events).to(containElementSatisfying({ element -> Bool in
-      element == expectedEvent
-    }))
+    XCTFail("Implement")
+//    let expectedResult = SyncResult.success(show: ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
+//    let expectedEvent = Recorded.next(203, expectedResult)
+//
+//    expect(res.events).to(containElementSatisfying({ element -> Bool in
+//      element == expectedEvent
+//    }))
 
     XCTAssertFalse(network.addToHistoryInvoked)
     XCTAssertTrue(dataSource.updateWatchedShowInvoked)

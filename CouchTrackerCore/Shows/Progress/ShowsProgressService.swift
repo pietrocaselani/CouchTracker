@@ -1,7 +1,7 @@
 import RxSwift
 import TraktSwift
 
-public final class ShowsProgressServiceVersionTwo: ShowsProgressInteractor {
+public final class ShowsProgressService: ShowsProgressInteractor {
   private let listStateDataSource: ShowsProgressListStateDataSource
   private let showsObserable: WatchedShowEntitiesObservable
 
