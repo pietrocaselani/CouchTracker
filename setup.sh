@@ -2,7 +2,7 @@
 
 function clone_dependency() {
     echo "Cloning $1"
-    git clone https://github.com/pietrocaselani/$1.git
+    git clone https://github.com/pietrocaselani/$1.git vendor/$1
 }
 
 brew install sonar-scanner
