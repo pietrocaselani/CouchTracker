@@ -7,7 +7,7 @@ Keep track of your favorite movies and tv shows on your iPhone
 [![codecov](https://codecov.io/gh/pietrocaselani/CouchTracker/branch/master/graph/badge.svg)](https://codecov.io/gh/pietrocaselani/CouchTracker)
 [![Twitter](https://img.shields.io/badge/twitter-@pietropc-red.svg?style=flat)](https://twitter.com/pietropc_)
 
-## Instructions
+## Setup for development
 
 Run the following commands
 
@@ -39,6 +39,6 @@ enum Secrets {
 }
 ```
 
-## Tests
+## Running tests
 
 Run the tests on `CouchTrackerCore` target.
