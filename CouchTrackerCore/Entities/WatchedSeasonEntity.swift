@@ -1,6 +1,6 @@
 import TraktSwift
 
-public struct WatchedSeasonEntity: Hashable {
+public struct WatchedSeasonEntity: Hashable, Codable {
   public let showIds: ShowIds
   public let seasonIds: SeasonIds
   public let number: Int

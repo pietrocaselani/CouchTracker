@@ -1,0 +1,415 @@
+{
+  "lastWatched" : 409685418,
+  "seasons" : [
+    {
+      "seasonIds" : {
+        "tvdb" : 465695,
+        "tmdb" : 46071,
+        "trakt" : 46907
+      },
+      "number" : 0,
+      "title" : "Specials",
+      "episodes" : [
+        {
+          "episode" : {
+            "showIds" : {
+              "tmdb" : 35339,
+              "slug" : "alcatraz",
+              "tvdb" : 248646,
+              "trakt" : 35187,
+              "imdb" : "tt1728102"
+            },
+            "number" : 1,
+            "title" : "First Look",
+            "season" : 0,
+            "firstAired" : 348112800,
+            "ids" : {
+              "tmdb" : 800111,
+              "tvdb" : 4239834,
+              "tvrage" : 0,
+              "trakt" : 807598
+            }
+          }
+        }
+      ],
+      "showIds" : {
+        "tmdb" : 35339,
+        "slug" : "alcatraz",
+        "tvdb" : 248646,
+        "trakt" : 35187,
+        "imdb" : "tt1728102"
+      }
+    },
+    {
+      "number" : 1,
+      "showIds" : {
+        "tmdb" : 35339,
+        "slug" : "alcatraz",
+        "tvdb" : 248646,
+        "trakt" : 35187,
+        "imdb" : "tt1728102"
+      },
+      "episodes" : [
+        {
+          "episode" : {
+            "number" : 1,
+            "season" : 1,
+            "showIds" : {
+              "tmdb" : 35339,
+              "slug" : "alcatraz",
+              "tvdb" : 248646,
+              "trakt" : 35187,
+              "imdb" : "tt1728102"
+            },
+            "ids" : {
+              "tmdb" : 800098,
+              "tvdb" : 4098243,
+              "tvrage" : 1065014395,
+              "trakt" : 807599,
+              "imdb" : "tt1941739"
+            },
+            "title" : "Pilot",
+            "overview" : "Detective Rebecca Madsen and Alcatraz historian Dr Diego Soto team up with a secret agency that is dedicated to finding and catching inmates from the infamous prison who went missing 50 years ago and are reappearing today.",
+            "firstAired" : 348458400
+          },
+          "lastWatched" : 409685418
+        },
+        {
+          "episode" : {
+            "number" : 2,
+            "season" : 1,
+            "showIds" : {
+              "tmdb" : 35339,
+              "slug" : "alcatraz",
+              "tvdb" : 248646,
+              "trakt" : 35187,
+              "imdb" : "tt1728102"
+            },
+            "ids" : {
+              "tmdb" : 800099,
+              "tvdb" : 4218955,
+              "tvrage" : 0,
+              "trakt" : 807600,
+              "imdb" : "tt2057521"
+            },
+            "title" : "Ernest Cobb",
+            "overview" : "When a sniper begins targeting young victims, the team is forced to retrace the steps of the past in order to solve this modern day mystery.",
+            "firstAired" : 348458400
+          },
+          "lastWatched" : 409685418
+        },
+        {
+          "episode" : {
+            "number" : 3,
+            "season" : 1,
+            "showIds" : {
+              "tmdb" : 35339,
+              "slug" : "alcatraz",
+              "tvdb" : 248646,
+              "trakt" : 35187,
+              "imdb" : "tt1728102"
+            },
+            "ids" : {
+              "tmdb" : 800100,
+              "tvdb" : 4218957,
+              "tvrage" : 0,
+              "trakt" : 807601,
+              "imdb" : "tt2099814"
+            },
+            "title" : "Kit Nelson",
+            "overview" : "When child killer Kit Nelson, a terrifying kidnapper who always returns his victims home - after he's killed them - reappears from the past, the team is in a race against time to catch the man before he kills again.",
+            "firstAired" : 349063200
+          },
+          "lastWatched" : 409685418
+        },
+        {
+          "episode" : {
+            "number" : 4,
+            "season" : 1,
+            "showIds" : {
+              "tmdb" : 35339,
+              "slug" : "alcatraz",
+              "tvdb" : 248646,
+              "trakt" : 35187,
+              "imdb" : "tt1728102"
+            },
+            "ids" : {
+              "tmdb" : 800101,
+              "tvdb" : 4218958,
+              "tvrage" : 0,
+              "trakt" : 807602,
+              "imdb" : "tt2077081"
+            },
+            "title" : "Cal Sweeney",
+            "overview" : "When a bank robbing criminal returns from the past and things go wrong in the present, Rebecca has to break him out of the hostage-filled bank before people can find out who he is.",
+            "firstAired" : 349668000
+          },
+          "lastWatched" : 409685418
+        },
+        {
+          "episode" : {
+            "number" : 5,
+            "season" : 1,
+            "showIds" : {
+              "tmdb" : 35339,
+              "slug" : "alcatraz",
+              "tvdb" : 248646,
+              "trakt" : 35187,
+              "imdb" : "tt1728102"
+            },
+            "ids" : {
+              "tmdb" : 800103,
+              "tvdb" : 4218960,
+              "tvrage" : 0,
+              "trakt" : 807603,
+              "imdb" : "tt2099815"
+            },
+            "title" : "Guy Hastings",
+            "overview" : "Guy Hastings, an Alcatraz guard, reappears. Although a good man, Hastings is being asked to do bad things and will come face-to-face with an old acquaintance.",
+            "firstAired" : 350272800
+          },
+          "lastWatched" : 409685418
+        },
+        {
+          "episode" : {
+            "number" : 6,
+            "season" : 1,
+            "showIds" : {
+              "tmdb" : 35339,
+              "slug" : "alcatraz",
+              "tvdb" : 248646,
+              "trakt" : 35187,
+              "imdb" : "tt1728102"
+            },
+            "ids" : {
+              "tmdb" : 800102,
+              "tvdb" : 4218959,
+              "tvrage" : 0,
+              "trakt" : 807604,
+              "imdb" : "tt2176143"
+            },
+            "title" : "Paxton Petty",
+            "overview" : "When Hauser, Madsen, and Soto track former inmate Paxton Petty, a landmine bomber who has returned and is placing bombs throughout populated areas of San Francisco, methods of the past are applied to the present. ",
+            "firstAired" : 350877600
+          },
+          "lastWatched" : 409685418
+        },
+        {
+          "episode" : {
+            "number" : 7,
+            "season" : 1,
+            "showIds" : {
+              "tmdb" : 35339,
+              "slug" : "alcatraz",
+              "tvdb" : 248646,
+              "trakt" : 35187,
+              "imdb" : "tt1728102"
+            },
+            "ids" : {
+              "tmdb" : 800104,
+              "tvdb" : 4218961,
+              "tvrage" : 0,
+              "trakt" : 807605,
+              "imdb" : "tt2097966"
+            },
+            "title" : "Johnny McKee",
+            "overview" : "Madsen and Hauser hunt down Johnny McKee, a former Alcatraz inmate and vicious killer with a background in chemistry. It’s a race against time before McKee horrifically poisons more innocent victims. Meanwhile, more details emerge about Madsen’s grandfather. ",
+            "firstAired" : 351482400
+          },
+          "lastWatched" : 409685418
+        },
+        {
+          "episode" : {
+            "number" : 8,
+            "season" : 1,
+            "showIds" : {
+              "tmdb" : 35339,
+              "slug" : "alcatraz",
+              "tvdb" : 248646,
+              "trakt" : 35187,
+              "imdb" : "tt1728102"
+            },
+            "ids" : {
+              "tmdb" : 800105,
+              "tvdb" : 4242009,
+              "tvrage" : 0,
+              "trakt" : 807606,
+              "imdb" : "tt2174289"
+            },
+            "title" : "The Ames Brothers",
+            "overview" : "Herman and Pinky Ames, who almost escaped in 1963, return to Alcatraz in the present day and find something strangely wrong",
+            "firstAired" : 352692000
+          },
+          "lastWatched" : 409685418
+        },
+        {
+          "episode" : {
+            "number" : 9,
+            "season" : 1,
+            "showIds" : {
+              "tmdb" : 35339,
+              "slug" : "alcatraz",
+              "tvdb" : 248646,
+              "trakt" : 35187,
+              "imdb" : "tt1728102"
+            },
+            "ids" : {
+              "tmdb" : 800106,
+              "tvdb" : 4240668,
+              "tvrage" : 0,
+              "trakt" : 807607,
+              "imdb" : "tt2201345"
+            },
+            "title" : "Sonny Burnett",
+            "overview" : "Sonny Burnett, a man with a dark side, who became extremely violent while at Alcatraz reappears",
+            "firstAired" : 352692000
+          },
+          "lastWatched" : 409685418
+        },
+        {
+          "episode" : {
+            "number" : 10,
+            "season" : 1,
+            "showIds" : {
+              "tmdb" : 35339,
+              "slug" : "alcatraz",
+              "tvdb" : 248646,
+              "trakt" : 35187,
+              "imdb" : "tt1728102"
+            },
+            "ids" : {
+              "tmdb" : 800109,
+              "tvdb" : 4251974,
+              "tvrage" : 0,
+              "trakt" : 807608,
+              "imdb" : "tt2097965"
+            },
+            "title" : "Clarence Montgomery",
+            "overview" : "Clarence Montgomery was the only innocent man in Alcatraz but he's returned and is committing crimes.\r\n\r\nThis episode was scheduled to premiere on February 27, 2012, however it was postponed due to the weather delay of the 2012 Daytona 500.\r\nIt is available online.\r\n\r\nIt will air again on March 12.",
+            "firstAired" : 353293200
+          },
+          "lastWatched" : 409685418
+        },
+        {
+          "episode" : {
+            "number" : 11,
+            "season" : 1,
+            "showIds" : {
+              "tmdb" : 35339,
+              "slug" : "alcatraz",
+              "tvdb" : 248646,
+              "trakt" : 35187,
+              "imdb" : "tt1728102"
+            },
+            "ids" : {
+              "tmdb" : 800107,
+              "tvdb" : 4251975,
+              "tvrage" : 0,
+              "trakt" : 807609,
+              "imdb" : "tt2201349"
+            },
+            "title" : "Webb Porter",
+            "overview" : "Rebecca, Doc, and Hauser set out to capture musically-inclined serial killer Webb Porter (guest star Malek), an unknown ’63 that returns more violent than ever ",
+            "firstAired" : 353898000
+          },
+          "lastWatched" : 409685418
+        },
+        {
+          "episode" : {
+            "number" : 12,
+            "season" : 1,
+            "showIds" : {
+              "tmdb" : 35339,
+              "slug" : "alcatraz",
+              "tvdb" : 248646,
+              "trakt" : 35187,
+              "imdb" : "tt1728102"
+            },
+            "ids" : {
+              "tmdb" : 800108,
+              "tvdb" : 4253440,
+              "tvrage" : 0,
+              "trakt" : 807610,
+              "imdb" : "tt2201347"
+            },
+            "title" : "Garrett Stillman",
+            "overview" : "Doc and Rebecca close in on a man who may be the key to revealing the secrets behind all the returning criminals. Meanwhile, Hauser makes a discovery beneath the halls of Alcatraz that brings him ever closer to the truth.",
+            "firstAired" : 354502800
+          },
+          "lastWatched" : 409685418
+        },
+        {
+          "episode" : {
+            "number" : 13,
+            "season" : 1,
+            "showIds" : {
+              "tmdb" : 35339,
+              "slug" : "alcatraz",
+              "tvdb" : 248646,
+              "trakt" : 35187,
+              "imdb" : "tt1728102"
+            },
+            "ids" : {
+              "tmdb" : 800110,
+              "tvdb" : 4253441,
+              "tvrage" : 0,
+              "trakt" : 807611,
+              "imdb" : "tt2276167"
+            },
+            "title" : "Tommy Madsen",
+            "overview" : "Revealing doors are opened and lives hang in the balance as Rebecca will stop at nothing in pursuit of the man who killed her partner.",
+            "firstAired" : 354502800
+          },
+          "lastWatched" : 409685418
+        }
+      ],
+      "title" : "Season 1",
+      "seasonIds" : {
+        "tvdb" : 465765,
+        "tmdb" : 46070,
+        "trakt" : 46908
+      },
+      "completed" : 13,
+      "aired" : 13
+    }
+  ],
+  "show" : {
+    "status" : "ended",
+    "genres" : [
+      {
+        "name" : "Action",
+        "slug" : "action"
+      },
+      {
+        "name" : "Adventure",
+        "slug" : "adventure"
+      },
+      {
+        "name" : "Crime",
+        "slug" : "crime"
+      },
+      {
+        "name" : "Drama",
+        "slug" : "drama"
+      },
+      {
+        "name" : "Mystery",
+        "slug" : "mystery"
+      }
+    ],
+    "ids" : {
+      "tmdb" : 35339,
+      "slug" : "alcatraz",
+      "tvdb" : 248646,
+      "trakt" : 35187,
+      "imdb" : "tt1728102"
+    },
+    "title" : "Alcatraz",
+    "overview" : "On March 21, 1963, the inmates and guards at Alcatraz prison mysteriously disappear. To cover up the problem, the government reported the prison has been closed because of unsafe conditions. A secret government unit was set up to find the prisoners. Now, in the present-day, the inmates begin returning - unaged and unaware of where they have spent the missing decades - and continue their criminal ways. They are acting out of character and appear to be searching for specific objects. A federal agent employs a police officer and a conspiracy theory novelist to help track them down.",
+    "network" : "FOX (US)",
+    "firstAired" : 348364800
+  },
+  "completed" : 13,
+  "aired" : 13
+}
+

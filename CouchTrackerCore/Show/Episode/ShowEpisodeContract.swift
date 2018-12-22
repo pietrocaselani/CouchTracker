@@ -1,10 +1,6 @@
 import RxSwift
 import TraktSwift
 
-public protocol ShowEpisodeDataSource: class {
-  func updateWatched(show: WatchedShowEntity) throws
-}
-
 public protocol ShowEpisodeNetwork: class {
   func addToHistory(items: SyncItems) -> Single<SyncResponse>
   func removeFromHistory(items: SyncItems) -> Single<SyncResponse>

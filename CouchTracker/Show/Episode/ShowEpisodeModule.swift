@@ -23,11 +23,9 @@ final class ShowEpisodeModule {
                                                 cofigurationRepository: configurationRepository,
                                                 schedulers: schedulers)
 
-    let showEpisodeDataSource = ShowEpisodeRealmDataSource(realmProvider: realmProvider)
     let showEpisodeNetwork = ShowEpisodeMoyaNetwork(trakt: trakt, schedulers: schedulers)
 
-    let repository = ShowEpisodeAPIRepository(dataSource: showEpisodeDataSource,
-                                              network: showEpisodeNetwork,
+    let repository = ShowEpisodeAPIRepository(network: showEpisodeNetwork,
                                               schedulers: schedulers,
                                               synchronizer: showSynchronizer,
                                               appConfigurationsObservable: appConfigsObservable,

@@ -1,6 +1,6 @@
 import TraktSwift
 
-public struct WatchedEpisodeEntity: Hashable {
+public struct WatchedEpisodeEntity: Hashable, Codable {
   public let episode: EpisodeEntity
   public let lastWatched: Date?
 

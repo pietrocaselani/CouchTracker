@@ -6,7 +6,7 @@ import XCTest
 final class AppConfigurationsStoreTest: XCTestCase {
   func testAppConfigurationsStore_receivesNewState_emitNewState() {
     // Given
-    let store = AppConfigurationsStore()
+    let store = AppConfigurationsStore(appState: AppConfigurationsState.initialState())
     let scheduler = TestScheduler(initialClock: 0)
     let observer = scheduler.createObserver(AppConfigurationsState.self)
     _ = store.observe().subscribe(observer)
@@ -25,7 +25,7 @@ final class AppConfigurationsStoreTest: XCTestCase {
 
   func testAppConfigurationsStore_doesnotEmitSameStateInARow() {
     // Given
-    let store = AppConfigurationsStore()
+    let store = AppConfigurationsStore(appState: AppConfigurationsState.initialState())
     let scheduler = TestScheduler(initialClock: 0)
     let observer = scheduler.createObserver(AppConfigurationsState.self)
     _ = store.observe().subscribe(observer)

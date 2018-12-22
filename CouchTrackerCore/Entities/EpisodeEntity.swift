@@ -1,7 +1,7 @@
 import Foundation
 import TraktSwift
 
-public struct EpisodeEntity: Hashable, EpisodeImageInput {
+public struct EpisodeEntity: Hashable, Codable, EpisodeImageInput {
   public let ids: EpisodeIds
   public let showIds: ShowIds
   public let title: String

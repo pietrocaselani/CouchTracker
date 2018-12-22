@@ -37,7 +37,7 @@ final class Environment {
   // swiftlint:disable function_body_length
   private init() {
     userDefaults = UserDefaults.standard
-    let schedulers = DefaultSchedulers()
+    let schedulers = DefaultSchedulers.instance
 
     let debug: Bool
 
@@ -94,7 +94,7 @@ final class Environment {
 
     realmProvider = DefaultRealmProvider(buildConfig: buildConfig)
 
-    let appConfigurationsStore = AppConfigurationsStore()
+    let appConfigurationsStore = AppConfigurationsStore(appState: AppConfigurationsState.initialState())
 
     appConfigurationsOutput = appConfigurationsStore
     appConfigurationsObservable = appConfigurationsStore

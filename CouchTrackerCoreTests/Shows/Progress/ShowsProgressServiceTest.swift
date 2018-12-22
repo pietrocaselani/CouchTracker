@@ -4,9 +4,20 @@ import RxTest
 import TraktSwift
 import XCTest
 
+// CT-TODO Move this to a proper place
 private class WatchedShowEntitiesObservableMock: WatchedShowEntitiesObservable {
+  private let subject: BehaviorSubject<[WatchedShowEntity]>
+
+  init(shows: [WatchedShowEntity]) {
+    subject = BehaviorSubject<[WatchedShowEntity]>(value: shows)
+  }
+
   func observeWatchedShows() -> Observable<[WatchedShowEntity]> {
-    return Observable.empty()
+    return subject
+  }
+
+  func emitsAgain(_ shows: [WatchedShowEntity]) {
+    subject.onNext(shows)
   }
 }
 
@@ -21,8 +32,10 @@ final class ShowsProgressServiceTest: XCTestCase {
 
     observer = scheduler.createObserver([WatchedShowEntity].self)
 
+    let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
+
     listStateDataSource = ShowsProgressMocks.ListStateDataSource()
-    watchedShowEntitiesObservableMock = WatchedShowEntitiesObservableMock()
+    watchedShowEntitiesObservableMock = WatchedShowEntitiesObservableMock(shows: [watchedShow])
   }
 
   override func tearDown() {
@@ -55,8 +68,7 @@ final class ShowsProgressServiceTest: XCTestCase {
     scheduler.start()
 
     // When
-    XCTFail("Implement")
-//    repository.emitsAgain([ShowsProgressMocks.mockWatchedShowEntity()])
+    watchedShowEntitiesObservableMock.emitsAgain([ShowsProgressMocks.mockWatchedShowEntity()])
 
     // Then
     let entity = ShowsProgressMocks.mockWatchedShowEntity()
@@ -72,8 +84,7 @@ final class ShowsProgressServiceTest: XCTestCase {
     scheduler.start()
 
     // When
-    XCTFail("Implement")
-//    repository.emitsAgain([WatchedShowEntity]())
+    watchedShowEntitiesObservableMock.emitsAgain([WatchedShowEntity]())
 
     // Then
     let entity = ShowsProgressMocks.mockWatchedShowEntity()

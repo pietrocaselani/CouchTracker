@@ -3,16 +3,16 @@ import TraktSwift
 
 public final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
   private let schedulers: Schedulers
-  private let dataSource: ShowEpisodeDataSource
   private let synchronizer: WatchedShowSynchronizer
   private let network: ShowEpisodeNetwork
   private let disposeBag = DisposeBag()
   private var hideSpecials: Bool
 
-  public init(dataSource: ShowEpisodeDataSource, network: ShowEpisodeNetwork,
-              schedulers: Schedulers, synchronizer: WatchedShowSynchronizer,
-              appConfigurationsObservable: AppConfigurationsObservable, hideSpecials: Bool) {
-    self.dataSource = dataSource
+  public init(network: ShowEpisodeNetwork,
+              schedulers: Schedulers = DefaultSchedulers.instance,
+              synchronizer: WatchedShowSynchronizer,
+              appConfigurationsObservable: AppConfigurationsObservable,
+              hideSpecials: Bool) {
     self.network = network
     self.schedulers = schedulers
     self.synchronizer = synchronizer

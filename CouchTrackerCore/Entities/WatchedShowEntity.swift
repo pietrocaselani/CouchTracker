@@ -1,6 +1,6 @@
 import Foundation
 
-public struct WatchedShowEntity: Hashable {
+public struct WatchedShowEntity: Hashable, Codable {
   public let show: ShowEntity
   public let aired: Int?
   public let completed: Int?

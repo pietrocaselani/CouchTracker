@@ -1,7 +1,7 @@
 import Foundation
 import TraktSwift
 
-public struct ShowEntity: Hashable {
+public struct ShowEntity: Hashable, Codable {
   public let ids: ShowIds
   public let title: String?
   public let overview: String?

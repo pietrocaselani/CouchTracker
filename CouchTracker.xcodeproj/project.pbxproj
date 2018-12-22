@@ -85,7 +85,6 @@
 		4F0F5770203D5FA000B86CB8 /* ShowEpisodeAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D4D1F7D9C6D00C26D10 /* ShowEpisodeAPIRepository.swift */; };
 		4F0F5771203D5FA000B86CB8 /* ShowEpisodeContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D491F7D964500C26D10 /* ShowEpisodeContract.swift */; };
 		4F0F5772203D5FA000B86CB8 /* ShowEpisodeDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDE5031F7E64F200A4C7AA /* ShowEpisodeDefaultPresenter.swift */; };
-		4F0F5774203D5FA000B86CB8 /* ShowEpisodeRealmDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F236DB9202C0837007FB1B9 /* ShowEpisodeRealmDataSource.swift */; };
 		4F0F5775203D5FA000B86CB8 /* ShowEpisodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D511F7D9E8500C26D10 /* ShowEpisodeService.swift */; };
 		4F0F5779203D5FA000B86CB8 /* ShowEpisodeMoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93153C203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift */; };
 		4F0F577A203D5FA000B86CB8 /* ShowManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D291F7D5C4C00C26D10 /* ShowManagerContract.swift */; };
@@ -306,7 +305,6 @@
 		4F0F58C2203D7B0A00B86CB8 /* ShowEpisodeAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D4D1F7D9C6D00C26D10 /* ShowEpisodeAPIRepository.swift */; };
 		4F0F58C3203D7B0A00B86CB8 /* ShowEpisodeContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D491F7D964500C26D10 /* ShowEpisodeContract.swift */; };
 		4F0F58C4203D7B0A00B86CB8 /* ShowEpisodeDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDE5031F7E64F200A4C7AA /* ShowEpisodeDefaultPresenter.swift */; };
-		4F0F58C6203D7B0A00B86CB8 /* ShowEpisodeRealmDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F236DB9202C0837007FB1B9 /* ShowEpisodeRealmDataSource.swift */; };
 		4F0F58C7203D7B0A00B86CB8 /* ShowEpisodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D511F7D9E8500C26D10 /* ShowEpisodeService.swift */; };
 		4F0F58CB203D7B0A00B86CB8 /* ShowEpisodeMoyaNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F93153C203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift */; };
 		4F0F58CC203D7B0A00B86CB8 /* ShowManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D291F7D5C4C00C26D10 /* ShowManagerContract.swift */; };
@@ -484,7 +482,6 @@
 		4FEF6AEC2125A1C200B7CF63 /* WatchedShowsRealmDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AEA2125A1C200B7CF63 /* WatchedShowsRealmDataSource.swift */; };
 		4FEF6AFD2128C98300B7CF63 /* WatchedSeasonEntityBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AFC2128C98300B7CF63 /* WatchedSeasonEntityBuilder.swift */; };
 		4FEF6AFE2128C98300B7CF63 /* WatchedSeasonEntityBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AFC2128C98300B7CF63 /* WatchedSeasonEntityBuilder.swift */; };
-		4FF6988F203FE73500726112 /* ShowEpisodeRealmDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF6988E203FE73500726112 /* ShowEpisodeRealmDataSourceTest.swift */; };
 		4FF9B10B2055BE3700FD28F1 /* MoviesManagerDefaultPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF9B10A2055BE3700FD28F1 /* MoviesManagerDefaultPresenterTest.swift */; };
 		4FFA6B2320EB1984008E0B78 /* ShowOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFA6B1F20EB1983008E0B78 /* ShowOverview.storyboard */; };
 		4FFA6B2520EB1984008E0B78 /* ShowOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFA6B2120EB1983008E0B78 /* ShowOverviewViewController.swift */; };
@@ -526,6 +523,11 @@
 		69723C569ACE2562F2D982E3 /* RealmShowDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697236062E78C293F50658F8 /* RealmShowDataSource.swift */; };
 		7F56127439D6E9004952D704 /* Pods_CouchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD28A62B2A818658ECA0D22E /* Pods_CouchTracker.framework */; };
 		814105490AFC3A79252D1EB7 /* Pods_CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1448084EA5E5433EFA20D8B9 /* Pods_CouchTrackerCore.framework */; };
+		8209AB0B21CED6800027BBF3 /* Error+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB0A21CED6800027BBF3 /* Error+Mock.swift */; };
+		8209AB1021CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB0F21CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift */; };
+		8209AB1221CEF3F40027BBF3 /* Bundle+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1121CEF3F40027BBF3 /* Bundle+Testing.swift */; };
+		8209AB1521CEF4970027BBF3 /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 8209AB1421CEF4970027BBF3 /* Fixtures */; };
+		8209AB1721CEF59F0027BBF3 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1621CEF59F0027BBF3 /* Fixtures.swift */; };
 		821874AD2153122600E56040 /* SynchronizerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821874AC2153122600E56040 /* SynchronizerContract.swift */; };
 		8239F813216C159500A29F01 /* DefaultWatchedShowEntitiesDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8239F812216C159500A29F01 /* DefaultWatchedShowEntitiesDownloader.swift */; };
 		827BCD3D20EFF3F60080B242 /* ShowOverviewViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */; };
@@ -658,7 +660,6 @@
 		4F202F6A202F20440040185F /* AppConfigurationsObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsObservable.swift; sourceTree = "<group>"; };
 		4F202F6E202F208F0040185F /* AppConfigurationsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsStore.swift; sourceTree = "<group>"; };
 		4F202F72202F228C0040185F /* AppConfigurationsOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsOutput.swift; sourceTree = "<group>"; };
-		4F236DB9202C0837007FB1B9 /* ShowEpisodeRealmDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeRealmDataSource.swift; sourceTree = "<group>"; };
 		4F236DBF202CB98E007FB1B9 /* BuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildConfig.swift; sourceTree = "<group>"; };
 		4F236DC3202CB9C5007FB1B9 /* DefaultBuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultBuildConfig.swift; sourceTree = "<group>"; };
 		4F236DC7202CCD83007FB1B9 /* TestBuildConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBuildConfig.swift; sourceTree = "<group>"; };
@@ -762,7 +763,6 @@
 		4FEF6AE72125A19500B7CF63 /* WatchedShowsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedShowsDataSource.swift; sourceTree = "<group>"; };
 		4FEF6AEA2125A1C200B7CF63 /* WatchedShowsRealmDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedShowsRealmDataSource.swift; sourceTree = "<group>"; };
 		4FEF6AFC2128C98300B7CF63 /* WatchedSeasonEntityBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedSeasonEntityBuilder.swift; sourceTree = "<group>"; };
-		4FF6988E203FE73500726112 /* ShowEpisodeRealmDataSourceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeRealmDataSourceTest.swift; sourceTree = "<group>"; };
 		4FF9B10A2055BE3700FD28F1 /* MoviesManagerDefaultPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerDefaultPresenterTest.swift; sourceTree = "<group>"; };
 		4FFA6B1F20EB1983008E0B78 /* ShowOverview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShowOverview.storyboard; sourceTree = "<group>"; };
 		4FFA6B2120EB1983008E0B78 /* ShowOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowOverviewViewController.swift; sourceTree = "<group>"; };
@@ -992,6 +992,12 @@
 		6E24F22C9196F9C4BBEAE2EF /* Pods-CouchTrackerCore-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerCore-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerCore-iOS/Pods-CouchTrackerCore-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		7D22040F8C3128B9E69F0873 /* Pods-CouchTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		80B871CE6441D89664DCB479 /* Pods-CouchTrackerCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerCoreTests/Pods-CouchTrackerCoreTests.release.xcconfig"; sourceTree = "<group>"; };
+		8209AB0A21CED6800027BBF3 /* Error+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Mock.swift"; sourceTree = "<group>"; };
+		8209AB0D21CEF3790027BBF3 /* ended_completed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ended_completed.json; path = ../../../../../../../../Desktop/Pessoal/CT/jsons_without_specials_episodes/ended_completed.json; sourceTree = "<group>"; };
+		8209AB0F21CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WatchedShowEntity+Mock.swift"; sourceTree = "<group>"; };
+		8209AB1121CEF3F40027BBF3 /* Bundle+Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Testing.swift"; sourceTree = "<group>"; };
+		8209AB1421CEF4970027BBF3 /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fixtures; sourceTree = "<group>"; };
+		8209AB1621CEF59F0027BBF3 /* Fixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		821874AC2153122600E56040 /* SynchronizerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizerContract.swift; sourceTree = "<group>"; };
 		8239F812216C159500A29F01 /* DefaultWatchedShowEntitiesDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWatchedShowEntitiesDownloader.swift; sourceTree = "<group>"; };
 		827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOverviewViewState.swift; sourceTree = "<group>"; };
@@ -1163,6 +1169,7 @@
 		4F0F5708203D5F4C00B86CB8 /* CouchTrackerCoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				8209AB1421CEF4970027BBF3 /* Fixtures */,
 				64C384021F6C134F00FC9930 /* AppConfigurations */,
 				4F3A5945204EABB60061ABB7 /* AppFlow */,
 				4F7B09532016B53B001F6C50 /* BaseViewMock.swift */,
@@ -1194,6 +1201,7 @@
 				6454D1701F703CFD008C4E5F /* TraktLogin */,
 				6434CA651F752ED400EA3AD8 /* TraktLoginObservableMock.swift */,
 				648390C81F504E7500911BA0 /* Trending */,
+				8209AB1621CEF59F0027BBF3 /* Fixtures.swift */,
 			);
 			path = CouchTrackerCoreTests;
 			sourceTree = "<group>";
@@ -1334,7 +1342,6 @@
 				641B9D4D1F7D9C6D00C26D10 /* ShowEpisodeAPIRepository.swift */,
 				641B9D491F7D964500C26D10 /* ShowEpisodeContract.swift */,
 				64FDE5031F7E64F200A4C7AA /* ShowEpisodeDefaultPresenter.swift */,
-				4F236DB9202C0837007FB1B9 /* ShowEpisodeRealmDataSource.swift */,
 				641B9D511F7D9E8500C26D10 /* ShowEpisodeService.swift */,
 				4F93153C203CA46000631D4A /* ShowEpisodeMoyaNetwork.swift */,
 				4FCF132E20FF66B300122734 /* ShowEpisodeViewState.swift */,
@@ -1473,6 +1480,9 @@
 				4F8AC26E20A5A27800E4E65B /* NSTimeZone+Override.h */,
 				4F8AC26F20A5A27800E4E65B /* NSTimeZone+Override.m */,
 				4F3A595F204EF6C30061ABB7 /* UserDefaultsExtensions.swift */,
+				8209AB0A21CED6800027BBF3 /* Error+Mock.swift */,
+				8209AB0F21CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift */,
+				8209AB1121CEF3F40027BBF3 /* Bundle+Testing.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1537,7 +1547,6 @@
 				4FC97A22203F683000C2B924 /* ShowEpisodeDefaultPresenterTest.swift */,
 				4F8EE017202E16EF0002189B /* ShowEpisodeMocks.swift */,
 				4FC97A26203FD2AD00C2B924 /* ShowEpisodeMoyaNetworkTest.swift */,
-				4FF6988E203FE73500726112 /* ShowEpisodeRealmDataSourceTest.swift */,
 				4F8EE014202E164D0002189B /* ShowEpisodeServiceTest.swift */,
 			);
 			path = Episode;
@@ -1999,6 +2008,7 @@
 		648390CC1F504E7500911BA0 /* JSONs */ = {
 			isa = PBXGroup;
 			children = (
+				8209AB0C21CEF19A0027BBF3 /* WatchedShowEntity */,
 				64B801EB1FA7949D004A6EEE /* tmdb_configuration.json */,
 				64B801E81FA7949D004A6EEE /* tmdb_episode_images.json */,
 				64B801EA1FA7949D004A6EEE /* tmdb_movie_images_20526.json */,
@@ -2171,6 +2181,14 @@
 				69723B3226267C7F60CE9126 /* GenreDataSourceMock.swift */,
 			);
 			path = Genre;
+			sourceTree = "<group>";
+		};
+		8209AB0C21CEF19A0027BBF3 /* WatchedShowEntity */ = {
+			isa = PBXGroup;
+			children = (
+				8209AB0D21CEF3790027BBF3 /* ended_completed.json */,
+			);
+			path = WatchedShowEntity;
 			sourceTree = "<group>";
 		};
 		821874AB2153121100E56040 /* Synchronizer */ = {
@@ -2502,6 +2520,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8209AB1521CEF4970027BBF3 /* Fixtures in Resources */,
 				4FA9B5EE209E6F1C00E99D59 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2688,7 +2707,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, using from Pods. Please download from https://github.com/realm/SwiftLint\"\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, using from Pods. Please download from https://github.com/realm/SwiftLint\"\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi\n";
 		};
 		4FAC4A91210F27F60096BCE0 /* SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2969,7 +2988,6 @@
 				4F0F5770203D5FA000B86CB8 /* ShowEpisodeAPIRepository.swift in Sources */,
 				4F0F5771203D5FA000B86CB8 /* ShowEpisodeContract.swift in Sources */,
 				4F0F5772203D5FA000B86CB8 /* ShowEpisodeDefaultPresenter.swift in Sources */,
-				4F0F5774203D5FA000B86CB8 /* ShowEpisodeRealmDataSource.swift in Sources */,
 				4F10101820A99C64003CA348 /* ShowsProgressListStateDefaultDataSource.swift in Sources */,
 				4F0F5775203D5FA000B86CB8 /* ShowEpisodeService.swift in Sources */,
 				4FEF6AE22125A07900B7CF63 /* EpisodeDetailsRepository.swift in Sources */,
@@ -3057,6 +3075,7 @@
 				4FDB45AE2130D671009B5C6F /* ShowSeasonsRepositoryMock.swift in Sources */,
 				4F0F5948203D994500B86CB8 /* TMDBEntitiesMock.swift in Sources */,
 				4F0F5949203D994500B86CB8 /* TraktLoginObservableMock.swift in Sources */,
+				8209AB1221CEF3F40027BBF3 /* Bundle+Testing.swift in Sources */,
 				4FDB45B02130D6CC009B5C6F /* EpisodeDetailsRepository.swift in Sources */,
 				4F0F5944203D991A00B86CB8 /* TraktEntitiesMock.swift in Sources */,
 				4FC97A1F203F163300C2B924 /* ShowProgressCellDefaultPresenterTest.swift in Sources */,
@@ -3078,12 +3097,14 @@
 				4F0F57E6203D61B300B86CB8 /* SearchMocks.swift in Sources */,
 				4F0F57E7203D61B300B86CB8 /* SearchPresenterTest.swift in Sources */,
 				4F0F57E8203D61B300B86CB8 /* ShowEpisodeAPIRepositoryTest.swift in Sources */,
-				4FF6988F203FE73500726112 /* ShowEpisodeRealmDataSourceTest.swift in Sources */,
 				4F0F57E9203D61B300B86CB8 /* ShowEpisodeMocks.swift in Sources */,
+				8209AB0B21CED6800027BBF3 /* Error+Mock.swift in Sources */,
 				4FD9E725209E69CB007673A3 /* NSLocale+Override.m in Sources */,
+				8209AB1021CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift in Sources */,
 				4F0F57EA203D61B300B86CB8 /* ShowEpisodeServiceTest.swift in Sources */,
 				4F3F67DF209E678100D3E403 /* NSObject+Swizzling.m in Sources */,
 				4FDBB663203E9FDA00448A60 /* ShowProgressCellServiceTest.swift in Sources */,
+				8209AB1721CEF59F0027BBF3 /* Fixtures.swift in Sources */,
 				4F0F57EC203D61B300B86CB8 /* ShowDetailsInteractorTest.swift in Sources */,
 				4F0F57ED203D61B300B86CB8 /* ShowDetailsMocks.swift in Sources */,
 				4F8AC27020A5A27800E4E65B /* NSTimeZone+Override.m in Sources */,
@@ -3271,7 +3292,6 @@
 				4F0F58C3203D7B0A00B86CB8 /* ShowEpisodeContract.swift in Sources */,
 				4F0F58C4203D7B0A00B86CB8 /* ShowEpisodeDefaultPresenter.swift in Sources */,
 				4F2F2830212924F20000CC17 /* SeasonIdsRealm.swift in Sources */,
-				4F0F58C6203D7B0A00B86CB8 /* ShowEpisodeRealmDataSource.swift in Sources */,
 				4FEF6AFE2128C98300B7CF63 /* WatchedSeasonEntityBuilder.swift in Sources */,
 				4F0F58C7203D7B0A00B86CB8 /* ShowEpisodeService.swift in Sources */,
 				4F0F58CB203D7B0A00B86CB8 /* ShowEpisodeMoyaNetwork.swift in Sources */,

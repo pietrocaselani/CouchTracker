@@ -6,7 +6,7 @@ public final class ShowEpisodeMoyaNetwork: ShowEpisodeNetwork {
   private let trakt: TraktProvider
   private let schedulers: Schedulers
 
-  public init(trakt: TraktProvider, schedulers: Schedulers) {
+  public init(trakt: TraktProvider, schedulers: Schedulers = DefaultSchedulers.instance) {
     self.trakt = trakt
     self.schedulers = schedulers
   }

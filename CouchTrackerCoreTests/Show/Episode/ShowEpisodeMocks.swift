@@ -67,32 +67,6 @@ final class ShowEpisodeMocks {
     }
   }
 
-  final class ShowEpisodeDataSourceMock: ShowEpisodeDataSource {
-    var updateWatchedShowInvoked = false
-    var updateWatchedShowParameter: WatchedShowEntity?
-
-    func updateWatched(show: WatchedShowEntity) throws {
-      updateWatchedShowInvoked = true
-      updateWatchedShowParameter = show
-    }
-  }
-
-  final class ShowEpisodeDataSourceErrorMock: ShowEpisodeDataSource {
-    var updateWatchedShowInvoked = false
-    var updateWatchedShowParameter: WatchedShowEntity?
-    let error: Error
-
-    init(error: Error) {
-      self.error = error
-    }
-
-    func updateWatched(show: WatchedShowEntity) throws {
-      updateWatchedShowInvoked = true
-      updateWatchedShowParameter = show
-      throw error
-    }
-  }
-
   final class ShowEpisodeNetworkMock: ShowEpisodeNetwork {
     var addToHistoryInvoked = false
     var removeFromHistoryInvoked = false
@@ -111,6 +85,26 @@ final class ShowEpisodeMocks {
         let syncResponse: SyncResponse = TraktEntitiesMock.decodeTraktJSON(with: "trakt_sync_removefromhistory")
         return Single.just(syncResponse)
       }
+    }
+  }
+
+  final class ShowEpisodeNetworkErrorMock: ShowEpisodeNetwork {
+    var addToHistoryInvoked = false
+    var removeFromHistoryInvoked = false
+    let error: Error
+
+    init(error: Error) {
+      self.error = error
+    }
+
+    func addToHistory(items _: SyncItems) -> Single<SyncResponse> {
+      addToHistoryInvoked = true
+      return Single.error(error)
+    }
+
+    func removeFromHistory(items _: SyncItems) -> Single<SyncResponse> {
+      removeFromHistoryInvoked = true
+      return Single.error(error)
     }
   }
 }
