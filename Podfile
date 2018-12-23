@@ -1,12 +1,12 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-RX_SWIFT_VERSION = '4.2.0'
+RX_SWIFT_VERSION = '4.2.0'.freeze
 
 def common_pods
   pod 'SwiftLint', '0.25.1'
-  pod 'Trakt', :path => './vendor/Trakt-Swift'
-  pod 'TMDB', :path => './vendor/TMDB-Swift'
-  pod 'TVDB', :path => './vendor/TVDB-Swift'
+  pod 'Trakt', path: './vendor/Trakt-Swift'
+  pod 'TMDB', path: './vendor/TMDB-Swift'
+  pod 'TVDB', path: './vendor/TVDB-Swift'
   pod 'RxRealm', '0.7.5'
   pod 'RealmSwift', '3.7.6'
   pod 'RxSwift', RX_SWIFT_VERSION
@@ -51,7 +51,7 @@ target 'CouchTrackerCoreTests' do
   tests_shared_pods
 end
 
-target 'CouchTracker' do
+target 'CouchTrackerApp' do
   platform :ios, '10.0'
   use_frameworks!
   inhibit_all_warnings!
