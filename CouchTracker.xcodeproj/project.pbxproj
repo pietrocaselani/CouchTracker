@@ -186,7 +186,6 @@
 		4F0F580C203D61B300B86CB8 /* TrendingCacheRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD27A3B201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift */; };
 		4F0F5815203D6AC500B86CB8 /* TrendingShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F5811203D6AB500B86CB8 /* TrendingShowEntity.swift */; };
 		4F0F5820203D779A00B86CB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6476323C1F44824900F277F1 /* AppDelegate.swift */; };
-		4F0F5825203D779A00B86CB8 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08B01F71A0D1004D164A /* Environment.swift */; };
 		4F0F5826203D779A00B86CB8 /* Tabman+CouchTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E7EECB201509D70008F488 /* Tabman+CouchTracker.swift */; };
 		4F0F5827203D779A00B86CB8 /* UIAlertController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE63201F4F6893002E55EA /* UIAlertController+Error.swift */; };
 		4F0F5828203D779A00B86CB8 /* UIColor+CouchTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEDB1F4DC353004661C4 /* UIColor+CouchTracker.swift */; };
@@ -524,6 +523,7 @@
 		820406FE21D003A500127F05 /* AppFlowiOSModuleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5958204EE4690061ABB7 /* AppFlowiOSModuleDataSource.swift */; };
 		820406FF21D003A500127F05 /* AppFlowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC088A1F717298004D164A /* AppFlowModule.swift */; };
 		8204070021D003A500127F05 /* AppFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08861F717205004D164A /* AppFlowViewController.swift */; };
+		8204070121D003C300127F05 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08B01F71A0D1004D164A /* Environment.swift */; };
 		8209AB0B21CED6800027BBF3 /* Error+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB0A21CED6800027BBF3 /* Error+Mock.swift */; };
 		8209AB1021CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB0F21CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift */; };
 		8209AB1221CEF3F40027BBF3 /* Bundle+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1121CEF3F40027BBF3 /* Bundle+Testing.swift */; };
@@ -1967,7 +1967,6 @@
 			children = (
 				6476323C1F44824900F277F1 /* AppDelegate.swift */,
 				647632431F44824900F277F1 /* Assets.xcassets */,
-				64CC08B01F71A0D1004D164A /* Environment.swift */,
 				6406BED61F4DC353004661C4 /* Extensions */,
 				647632481F44824900F277F1 /* Info.plist */,
 				647632451F44824900F277F1 /* LaunchScreen.storyboard */,
@@ -2212,6 +2211,7 @@
 		820406EE21D0032100127F05 /* CouchTrackerApp */ = {
 			isa = PBXGroup;
 			children = (
+				64CC08B01F71A0D1004D164A /* Environment.swift */,
 				64CC08851F7171E7004D164A /* AppFlow */,
 				644BF5051F6B07AF0010CE35 /* AppConfigurations */,
 				820406EF21D0032100127F05 /* CouchTrackerApp.h */,
@@ -3444,7 +3444,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F0F5820203D779A00B86CB8 /* AppDelegate.swift in Sources */,
-				4F0F5825203D779A00B86CB8 /* Environment.swift in Sources */,
 				4F0F5826203D779A00B86CB8 /* Tabman+CouchTracker.swift in Sources */,
 				4FFA6B2520EB1984008E0B78 /* ShowOverviewViewController.swift in Sources */,
 				4F0F5827203D779A00B86CB8 /* UIAlertController+Error.swift in Sources */,
@@ -3511,6 +3510,7 @@
 				820406FE21D003A500127F05 /* AppFlowiOSModuleDataSource.swift in Sources */,
 				820406FF21D003A500127F05 /* AppFlowModule.swift in Sources */,
 				820406FB21D0036400127F05 /* AppConfigurationsModule.swift in Sources */,
+				8204070121D003C300127F05 /* Environment.swift in Sources */,
 				820406FA21D0036400127F05 /* AppConfigurationsiOSRouter.swift in Sources */,
 				8204070021D003A500127F05 /* AppFlowViewController.swift in Sources */,
 				820406FC21D0036400127F05 /* AppConfigurationsViewController.swift in Sources */,
