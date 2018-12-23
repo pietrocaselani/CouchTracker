@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		037B1B659EFB63FBAB6F2AB5 /* Pods_CouchTrackerCoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C81CF20C8EA291D750ADACE /* Pods_CouchTrackerCoreTests.framework */; };
+		29CAA085A1603A80A8A58A31 /* Pods_CouchTrackerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF31C37B5587B21736E8BA65 /* Pods_CouchTrackerApp.framework */; };
 		392D91732CA7FDA4E71A3230 /* trakt_users_settings_invalid.json in Resources */ = {isa = PBXBuildFile; fileRef = 392D9C154DB74E65A233F9C3 /* trakt_users_settings_invalid.json */; };
 		4F02F1AC2128D63300869BEF /* WatchedEpisodeEntityBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F02F1AB2128D63300869BEF /* WatchedEpisodeEntityBuilder.swift */; };
 		4F02F1AD2128D63300869BEF /* WatchedEpisodeEntityBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F02F1AB2128D63300869BEF /* WatchedEpisodeEntityBuilder.swift */; };
@@ -185,49 +186,7 @@
 		4F0F580B203D61B300B86CB8 /* TrendingPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648390CB1F504E7500911BA0 /* TrendingPresenterTest.swift */; };
 		4F0F580C203D61B300B86CB8 /* TrendingCacheRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD27A3B201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift */; };
 		4F0F5815203D6AC500B86CB8 /* TrendingShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F5811203D6AB500B86CB8 /* TrendingShowEntity.swift */; };
-		4F0F581D203D779A00B86CB8 /* AppConfigurationsiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BF5091F6B07AF0010CE35 /* AppConfigurationsiOSRouter.swift */; };
-		4F0F581E203D779A00B86CB8 /* AppConfigurationsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D1571F6FF1FE008C4E5F /* AppConfigurationsModule.swift */; };
-		4F0F581F203D779A00B86CB8 /* AppConfigurationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D491551F6FE4DF00EA0C80 /* AppConfigurationsViewController.swift */; };
 		4F0F5820203D779A00B86CB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6476323C1F44824900F277F1 /* AppDelegate.swift */; };
-		4F0F5821203D779A00B86CB8 /* AppFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08861F717205004D164A /* AppFlowViewController.swift */; };
-		4F0F5822203D779A00B86CB8 /* AppFlowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC088A1F717298004D164A /* AppFlowModule.swift */; };
-		4F0F5825203D779A00B86CB8 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08B01F71A0D1004D164A /* Environment.swift */; };
-		4F0F5826203D779A00B86CB8 /* Tabman+CouchTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E7EECB201509D70008F488 /* Tabman+CouchTracker.swift */; };
-		4F0F5827203D779A00B86CB8 /* UIAlertController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE63201F4F6893002E55EA /* UIAlertController+Error.swift */; };
-		4F0F5828203D779A00B86CB8 /* UIColor+CouchTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEDB1F4DC353004661C4 /* UIColor+CouchTracker.swift */; };
-		4F0F5829203D779A00B86CB8 /* UIViewController+BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE633B1F4F7ED7002E55EA /* UIViewController+BaseView.swift */; };
-		4F0F582B203D779A00B86CB8 /* MovieDetailsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BF011F4DC41F004661C4 /* MovieDetailsModule.swift */; };
-		4F0F582C203D779A00B86CB8 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BF021F4DC41F004661C4 /* MovieDetailsViewController.swift */; };
-		4F0F582D203D779A00B86CB8 /* MoviesManageriOSModuleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC4102015460700AA0DC8 /* MoviesManageriOSModuleSetup.swift */; };
-		4F0F582E203D779A00B86CB8 /* MoviesManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC41C201549C100AA0DC8 /* MoviesManagerModule.swift */; };
-		4F0F582F203D779A00B86CB8 /* MoviesManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC4162015477F00AA0DC8 /* MoviesManagerViewController.swift */; };
-		4F0F5830203D779A00B86CB8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D2FFD91F44DFEA009E9ED3 /* R.generated.swift */; };
-		4F0F5831203D779A00B86CB8 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648391221F507F9500911BA0 /* SearchBarView.swift */; };
-		4F0F5832203D779A00B86CB8 /* SearchModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA353F1F50914A005BF4E3 /* SearchModule.swift */; };
-		4F0F5833203D779A00B86CB8 /* ShowEpisodeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D391F7D7AB300C26D10 /* ShowEpisodeModule.swift */; };
-		4F0F5834203D779A00B86CB8 /* ShowEpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434C3A41F83678C009B5A9F /* ShowEpisodeViewController.swift */; };
-		4F0F5835203D779A00B86CB8 /* ShowManageriOSModuleCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D3E1F7D7CEF00C26D10 /* ShowManageriOSModuleCreator.swift */; };
-		4F0F5836203D779A00B86CB8 /* ShowManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D401F7D7D5B00C26D10 /* ShowManagerModule.swift */; };
-		4F0F5837203D779A00B86CB8 /* ShowManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D441F7D7DBB00C26D10 /* ShowManagerViewController.swift */; };
-		4F0F5839203D779A00B86CB8 /* ShowSeasonsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D3C1F7D7C2800C26D10 /* ShowSeasonsModule.swift */; };
-		4F0F583D203D779A00B86CB8 /* ShowsManageriOSCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6E9E20339B3A00987AD1 /* ShowsManageriOSCreator.swift */; };
-		4F0F583E203D779A00B86CB8 /* ShowsManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC088C1F717330004D164A /* ShowsManagerModule.swift */; };
-		4F0F583F203D779A00B86CB8 /* ShowsManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08881F717249004D164A /* ShowsManagerViewController.swift */; };
-		4F0F5840203D779A00B86CB8 /* ShowsNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E903B1F72982F0089CD70 /* ShowsNowViewController.swift */; };
-		4F0F5841203D779A00B86CB8 /* ShowsNowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E903F1F72986B0089CD70 /* ShowsNowModule.swift */; };
-		4F0F5842203D779A00B86CB8 /* ShowProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896331F7C11EE00F95649 /* ShowProgressCell.swift */; };
-		4F0F5843203D779A00B86CB8 /* ShowsProgressiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D471F7D8EF700C26D10 /* ShowsProgressiOSRouter.swift */; };
-		4F0F5844203D779A00B86CB8 /* ShowsProgressModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90BF1F72944D0026B139 /* ShowsProgressModule.swift */; };
-		4F0F5845203D779A00B86CB8 /* ShowsProgressTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418AAFB1F7C1D1600D4D83C /* ShowsProgressTableViewDataSource.swift */; };
-		4F0F5846203D779A00B86CB8 /* ShowsProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90B51F7291650026B139 /* ShowsProgressViewController.swift */; };
-		4F0F5847203D779A00B86CB8 /* TraktLoginModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D1821F704BED008C4E5F /* TraktLoginModule.swift */; };
-		4F0F5848203D779A00B86CB8 /* TraktLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D17A1F704A1D008C4E5F /* TraktLoginViewController.swift */; };
-		4F0F5849203D779A00B86CB8 /* PosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405E4F01F5DE4F900756E79 /* PosterCell.swift */; };
-		4F0F584A203D779A00B86CB8 /* TrendingiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC761F4F55B0002A9FFD /* TrendingiOSRouter.swift */; };
-		4F0F584B203D779A00B86CB8 /* TrendingModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC751F4F55B0002A9FFD /* TrendingModule.swift */; };
-		4F0F584C203D779A00B86CB8 /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03ED41F4715D2009E37C9 /* TrendingViewController.swift */; };
-		4F0F584D203D779A00B86CB8 /* TrendingCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D43BD71F607628005CDBF7 /* TrendingCollectionViewDataSource.swift */; };
-		4F0F584E203D779A00B86CB8 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64343E1D1F7EB3B7004557E4 /* Secrets.swift */; };
 		4F0F584F203D789C00B86CB8 /* DefaultBuildConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F236DC3202CB9C5007FB1B9 /* DefaultBuildConfig.swift */; };
 		4F0F5850203D789C00B86CB8 /* DefaultSchedulers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D497820222F40002A4EAD /* DefaultSchedulers.swift */; };
 		4F0F585C203D7A5B00B86CB8 /* CouchTrackerCore_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F0F585A203D7A5B00B86CB8 /* CouchTrackerCore_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -396,7 +355,6 @@
 		4F3A5954204EBA850061ABB7 /* AppFlowDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5953204EBA850061ABB7 /* AppFlowDefaultPresenter.swift */; };
 		4F3A5955204EBA850061ABB7 /* AppFlowDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5953204EBA850061ABB7 /* AppFlowDefaultPresenter.swift */; };
 		4F3A5957204ED9300061ABB7 /* ModulePageMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5956204ED9300061ABB7 /* ModulePageMocks.swift */; };
-		4F3A5959204EE4690061ABB7 /* AppFlowiOSModuleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5958204EE4690061ABB7 /* AppFlowiOSModuleDataSource.swift */; };
 		4F3A595B204EF31A0061ABB7 /* AppFlowUserDefaultsRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A595A204EF31A0061ABB7 /* AppFlowUserDefaultsRepositoryTests.swift */; };
 		4F3A595D204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A595C204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift */; };
 		4F3A595E204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A595C204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift */; };
@@ -413,14 +371,12 @@
 		4F566C8820A724800003ACD7 /* ShowProgressListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F566C8720A724800003ACD7 /* ShowProgressListState.swift */; };
 		4F566C8920A724800003ACD7 /* ShowProgressListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F566C8720A724800003ACD7 /* ShowProgressListState.swift */; };
 		4F6102232052791D0079EDBA /* ShowManagerMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6102222052791D0079EDBA /* ShowManagerMocks.swift */; };
-		4F6DC4152015476000AA0DC8 /* MoviesManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F6DC4142015476000AA0DC8 /* MoviesManager.storyboard */; };
 		4F70910720D5F3650017B259 /* WatchedMovieResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F70910620D5F3650017B259 /* WatchedMovieResult.swift */; };
 		4F70910820D5F3650017B259 /* WatchedMovieResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F70910620D5F3650017B259 /* WatchedMovieResult.swift */; };
 		4F70910A20D5FC8F0017B259 /* trakt_sync_history.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F70910920D5FC8F0017B259 /* trakt_sync_history.json */; };
 		4F70BCBC20DC35380068A8BF /* trakt_unwatched_movie_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F70BCBB20DC35380068A8BF /* trakt_unwatched_movie_summary.json */; };
 		4F778D0B2041192200FBCC2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64BE63231F4F692B002E55EA /* Localizable.strings */; };
 		4F778D0C2041192E00FBCC2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64BE63231F4F692B002E55EA /* Localizable.strings */; };
-		4F778D0D20411DDE00FBCC2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64BE63231F4F692B002E55EA /* Localizable.strings */; };
 		4F778D1520412C2A00FBCC2C /* BundleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F778D1420412C2A00FBCC2C /* BundleProvider.swift */; };
 		4F778D1620412C2A00FBCC2C /* BundleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F778D1420412C2A00FBCC2C /* BundleProvider.swift */; };
 		4F8AC27020A5A27800E4E65B /* NSTimeZone+Override.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8AC26F20A5A27800E4E65B /* NSTimeZone+Override.m */; };
@@ -428,11 +384,7 @@
 		4F931544203CB34800631D4A /* trakt_sync_addtohistory.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F931543203CB34800631D4A /* trakt_sync_addtohistory.json */; };
 		4F9ABC112052982B00EA6456 /* MoviesManagerDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ABC102052982B00EA6456 /* MoviesManagerDefaultDataSource.swift */; };
 		4F9ABC122052982B00EA6456 /* MoviesManagerDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ABC102052982B00EA6456 /* MoviesManagerDefaultDataSource.swift */; };
-		4F9CE2C0205A84A80000CCD4 /* SearchViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9CE2BF205A84A80000CCD4 /* SearchViewModule.swift */; };
-		4F9CE2C2205A85410000CCD4 /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9CE2C1205A85400000CCD4 /* SearchBarView.xib */; };
-		4F9CE319205B1A080000CCD4 /* PosterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9CE318205B1A080000CCD4 /* PosterCell.xib */; };
 		4FA9B5EE209E6F1C00E99D59 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64BE63231F4F692B002E55EA /* Localizable.strings */; };
-		4FAA2543205693BE0006735A /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAA2542205693BE0006735A /* NoCacheMoyaPlugin.swift */; };
 		4FAAE3ED2122E2EA002BC040 /* ShowSeasonsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAE3EC2122E2EA002BC040 /* ShowSeasonsRepository.swift */; };
 		4FAAE3EE2122E2EA002BC040 /* ShowSeasonsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAE3EC2122E2EA002BC040 /* ShowSeasonsRepository.swift */; };
 		4FAAE3F02122E3B0002BC040 /* ShowSeasonsAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAE3EF2122E3B0002BC040 /* ShowSeasonsAPIRepository.swift */; };
@@ -452,8 +404,6 @@
 		4FDB45B02130D6CC009B5C6F /* EpisodeDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB45AF2130D6CC009B5C6F /* EpisodeDetailsRepository.swift */; };
 		4FDBB663203E9FDA00448A60 /* ShowProgressCellServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDBB662203E9FDA00448A60 /* ShowProgressCellServiceTest.swift */; };
 		4FE02E452105E98000196B8E /* GenreRealmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE02E442105E98000196B8E /* GenreRealmTests.swift */; };
-		4FE4BA322059E31800969AAF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4BA312059E31800969AAF /* SearchViewController.swift */; };
-		4FE4BA342059E32A00969AAF /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FE4BA332059E32A00969AAF /* Search.storyboard */; };
 		4FE4BA392059E8FA00969AAF /* PosterViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4BA382059E8FA00969AAF /* PosterViewModelType.swift */; };
 		4FE4BA3A2059E8FA00969AAF /* PosterViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4BA382059E8FA00969AAF /* PosterViewModelType.swift */; };
 		4FE4BA3C2059EA2B00969AAF /* PosterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4BA3B2059EA2B00969AAF /* PosterViewModel.swift */; };
@@ -481,23 +431,14 @@
 		4FEF6AFD2128C98300B7CF63 /* WatchedSeasonEntityBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AFC2128C98300B7CF63 /* WatchedSeasonEntityBuilder.swift */; };
 		4FEF6AFE2128C98300B7CF63 /* WatchedSeasonEntityBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AFC2128C98300B7CF63 /* WatchedSeasonEntityBuilder.swift */; };
 		4FF9B10B2055BE3700FD28F1 /* MoviesManagerDefaultPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF9B10A2055BE3700FD28F1 /* MoviesManagerDefaultPresenterTest.swift */; };
-		4FFA6B2320EB1984008E0B78 /* ShowOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFA6B1F20EB1983008E0B78 /* ShowOverview.storyboard */; };
-		4FFA6B2520EB1984008E0B78 /* ShowOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFA6B2120EB1983008E0B78 /* ShowOverviewViewController.swift */; };
-		4FFA6B2620EB1984008E0B78 /* ShowOverviewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFA6B2220EB1983008E0B78 /* ShowOverviewModule.swift */; };
 		5CF9C604B2D557B254CBF0B1 /* Pods_CouchTrackerCore_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC3B67169894ACEFB3998C8 /* Pods_CouchTrackerCore_iOS.framework */; };
 		640373111FABA80E005023D5 /* trakt_movies_trending.json in Resources */ = {isa = PBXBuildFile; fileRef = 640373101FABA80E005023D5 /* trakt_movies_trending.json */; };
 		640373131FABA8CD005023D5 /* trakt_movies_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 640373121FABA8CD005023D5 /* trakt_movies_summary.json */; };
-		6406BF031F4DC41F004661C4 /* MovieDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6406BF001F4DC41F004661C4 /* MovieDetails.storyboard */; };
-		641B9D431F7D7D9C00C26D10 /* ShowManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 641B9D421F7D7D9C00C26D10 /* ShowManager.storyboard */; };
-		6434C3A31F836762009B5A9F /* ShowEpisode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6434C3A21F836762009B5A9F /* ShowEpisode.storyboard */; };
 		6448372C2023C402008ECE2B /* trakt_shows_watchedprogress_without_nextepisode.json in Resources */ = {isa = PBXBuildFile; fileRef = 6448372B2023C402008ECE2B /* trakt_shows_watchedprogress_without_nextepisode.json */; };
 		6448372E2023CF4D008ECE2B /* tvdb_episodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 6448372D2023CF4D008ECE2B /* tvdb_episodes.json */; };
-		644E903E1F72985C0089CD70 /* ShowsNow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644E903D1F72985C0089CD70 /* ShowsNow.storyboard */; };
 		6454D1811F704AC0008C4E5F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6454D1801F704AC0008C4E5F /* WebKit.framework */; };
-		647632441F44824900F277F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 647632431F44824900F277F1 /* Assets.xcassets */; };
 		647632471F44824900F277F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 647632451F44824900F277F1 /* LaunchScreen.storyboard */; };
 		648830201FB2250C00BB217D /* trakt_sync_watched_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 6488301F1FB2250C00BB217D /* trakt_sync_watched_shows.json */; };
-		64B03EDC1F471BC1009E37C9 /* Trending.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B03EDB1F471BC1009E37C9 /* Trending.storyboard */; };
 		64B801D31FA79369004A6EEE /* trakt_episodes_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 64B801C41FA79362004A6EEE /* trakt_episodes_summary.json */; };
 		64B801D41FA79369004A6EEE /* trakt_genres_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 64B801C51FA79362004A6EEE /* trakt_genres_movies.json */; };
 		64B801D51FA79369004A6EEE /* trakt_genres_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 64B801C31FA79362004A6EEE /* trakt_genres_shows.json */; };
@@ -511,16 +452,79 @@
 		64B801F41FA794A5004A6EEE /* tmdb_movie_images_20526.json in Resources */ = {isa = PBXBuildFile; fileRef = 64B801EA1FA7949D004A6EEE /* tmdb_movie_images_20526.json */; };
 		64B801F51FA794A5004A6EEE /* tmdb_movie_images.json in Resources */ = {isa = PBXBuildFile; fileRef = 64B801EC1FA7949D004A6EEE /* tmdb_movie_images.json */; };
 		64B801F61FA794A5004A6EEE /* tmdb_show_images.json in Resources */ = {isa = PBXBuildFile; fileRef = 64B801E91FA7949D004A6EEE /* tmdb_show_images.json */; };
-		64CB90B41F7291400026B139 /* ShowsProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CB90B31F7291400026B139 /* ShowsProgress.storyboard */; };
-		64CC08911F7174F5004D164A /* ShowsManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC08901F7174F5004D164A /* ShowsManager.storyboard */; };
-		64CC08931F717597004D164A /* AppFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC08921F717597004D164A /* AppFlow.storyboard */; };
-		64D491591F6FE5D200EA0C80 /* AppConfigurations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D491581F6FE5D200EA0C80 /* AppConfigurations.storyboard */; };
 		6972311DCE7CB4703472A22E /* RealmShowsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69723B2DE85E11A441AE3CF7 /* RealmShowsDataSource.swift */; };
 		6972342180DA70134A72C885 /* GenreDataSourceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69723B3226267C7F60CE9126 /* GenreDataSourceMock.swift */; };
 		6972360928E4392D625FC6AD /* SynchronizerDataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69723AC6CAF4ED73AC5EA0EF /* SynchronizerDataSources.swift */; };
 		69723C569ACE2562F2D982E3 /* RealmShowDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697236062E78C293F50658F8 /* RealmShowDataSource.swift */; };
-		7F56127439D6E9004952D704 /* Pods_CouchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD28A62B2A818658ECA0D22E /* Pods_CouchTracker.framework */; };
 		814105490AFC3A79252D1EB7 /* Pods_CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1448084EA5E5433EFA20D8B9 /* Pods_CouchTrackerCore.framework */; };
+		820406F121D0032100127F05 /* CouchTrackerApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 820406EF21D0032100127F05 /* CouchTrackerApp.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		820406F421D0032100127F05 /* CouchTrackerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820406ED21D0032000127F05 /* CouchTrackerApp.framework */; };
+		820406F521D0032100127F05 /* CouchTrackerApp.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 820406ED21D0032000127F05 /* CouchTrackerApp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		820406F921D0036400127F05 /* AppConfigurations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D491581F6FE5D200EA0C80 /* AppConfigurations.storyboard */; };
+		820406FA21D0036400127F05 /* AppConfigurationsiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BF5091F6B07AF0010CE35 /* AppConfigurationsiOSRouter.swift */; };
+		820406FB21D0036400127F05 /* AppConfigurationsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D1571F6FF1FE008C4E5F /* AppConfigurationsModule.swift */; };
+		820406FC21D0036400127F05 /* AppConfigurationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D491551F6FE4DF00EA0C80 /* AppConfigurationsViewController.swift */; };
+		820406FD21D003A500127F05 /* AppFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC08921F717597004D164A /* AppFlow.storyboard */; };
+		820406FE21D003A500127F05 /* AppFlowiOSModuleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5958204EE4690061ABB7 /* AppFlowiOSModuleDataSource.swift */; };
+		820406FF21D003A500127F05 /* AppFlowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC088A1F717298004D164A /* AppFlowModule.swift */; };
+		8204070021D003A500127F05 /* AppFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08861F717205004D164A /* AppFlowViewController.swift */; };
+		8204070121D003C300127F05 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08B01F71A0D1004D164A /* Environment.swift */; };
+		8204070221D003F200127F05 /* Tabman+CouchTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E7EECB201509D70008F488 /* Tabman+CouchTracker.swift */; };
+		8204070321D003F200127F05 /* UIAlertController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE63201F4F6893002E55EA /* UIAlertController+Error.swift */; };
+		8204070421D003F200127F05 /* UIColor+CouchTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEDB1F4DC353004661C4 /* UIColor+CouchTracker.swift */; };
+		8204070521D003F200127F05 /* UIViewController+BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE633B1F4F7ED7002E55EA /* UIViewController+BaseView.swift */; };
+		8204070621D0041300127F05 /* MovieDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6406BF001F4DC41F004661C4 /* MovieDetails.storyboard */; };
+		8204070721D0041300127F05 /* MovieDetailsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BF011F4DC41F004661C4 /* MovieDetailsModule.swift */; };
+		8204070821D0041300127F05 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BF021F4DC41F004661C4 /* MovieDetailsViewController.swift */; };
+		8204070921D0043600127F05 /* MoviesManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F6DC4142015476000AA0DC8 /* MoviesManager.storyboard */; };
+		8204070A21D0043600127F05 /* MoviesManageriOSModuleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC4102015460700AA0DC8 /* MoviesManageriOSModuleSetup.swift */; };
+		8204070B21D0043600127F05 /* MoviesManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC41C201549C100AA0DC8 /* MoviesManagerModule.swift */; };
+		8204070C21D0043600127F05 /* MoviesManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC4162015477F00AA0DC8 /* MoviesManagerViewController.swift */; };
+		8204070D21D0046400127F05 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FE4BA332059E32A00969AAF /* Search.storyboard */; };
+		8204070E21D0046400127F05 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648391221F507F9500911BA0 /* SearchBarView.swift */; };
+		8204070F21D0046400127F05 /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9CE2C1205A85400000CCD4 /* SearchBarView.xib */; };
+		8204071021D0046400127F05 /* SearchModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA353F1F50914A005BF4E3 /* SearchModule.swift */; };
+		8204071121D0046400127F05 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4BA312059E31800969AAF /* SearchViewController.swift */; };
+		8204071221D0046400127F05 /* SearchViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9CE2BF205A84A80000CCD4 /* SearchViewModule.swift */; };
+		8204071321D0046D00127F05 /* ShowOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFA6B1F20EB1983008E0B78 /* ShowOverview.storyboard */; };
+		8204071421D0046D00127F05 /* ShowOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFA6B2120EB1983008E0B78 /* ShowOverviewViewController.swift */; };
+		8204071521D0046D00127F05 /* ShowOverviewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFA6B2220EB1983008E0B78 /* ShowOverviewModule.swift */; };
+		8204071621D0047400127F05 /* ShowEpisode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6434C3A21F836762009B5A9F /* ShowEpisode.storyboard */; };
+		8204071721D0047400127F05 /* ShowEpisodeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D391F7D7AB300C26D10 /* ShowEpisodeModule.swift */; };
+		8204071821D0047400127F05 /* ShowEpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434C3A41F83678C009B5A9F /* ShowEpisodeViewController.swift */; };
+		8204071921D0047B00127F05 /* ShowManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 641B9D421F7D7D9C00C26D10 /* ShowManager.storyboard */; };
+		8204071A21D0047B00127F05 /* ShowManageriOSModuleCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D3E1F7D7CEF00C26D10 /* ShowManageriOSModuleCreator.swift */; };
+		8204071B21D0047B00127F05 /* ShowManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D401F7D7D5B00C26D10 /* ShowManagerModule.swift */; };
+		8204071C21D0047B00127F05 /* ShowManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D441F7D7DBB00C26D10 /* ShowManagerViewController.swift */; };
+		8204071D21D0048300127F05 /* ShowSeasonsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D3C1F7D7C2800C26D10 /* ShowSeasonsModule.swift */; };
+		8204071E21D0048300127F05 /* ShowSeasonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836EB7219039DA0037A798 /* ShowSeasonsViewController.swift */; };
+		8204071F21D0048900127F05 /* ShowsManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC08901F7174F5004D164A /* ShowsManager.storyboard */; };
+		8204072021D0048900127F05 /* ShowsManageriOSCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6E9E20339B3A00987AD1 /* ShowsManageriOSCreator.swift */; };
+		8204072121D0048900127F05 /* ShowsManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC088C1F717330004D164A /* ShowsManagerModule.swift */; };
+		8204072221D0048900127F05 /* ShowsManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08881F717249004D164A /* ShowsManagerViewController.swift */; };
+		8204072321D0049000127F05 /* ShowsNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E903B1F72982F0089CD70 /* ShowsNowViewController.swift */; };
+		8204072421D0049000127F05 /* ShowsNow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644E903D1F72985C0089CD70 /* ShowsNow.storyboard */; };
+		8204072521D0049000127F05 /* ShowsNowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E903F1F72986B0089CD70 /* ShowsNowModule.swift */; };
+		8204072621D0049800127F05 /* ShowProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896331F7C11EE00F95649 /* ShowProgressCell.swift */; };
+		8204072721D0049800127F05 /* ShowsProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CB90B31F7291400026B139 /* ShowsProgress.storyboard */; };
+		8204072821D0049800127F05 /* ShowsProgressiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D471F7D8EF700C26D10 /* ShowsProgressiOSRouter.swift */; };
+		8204072921D0049800127F05 /* ShowsProgressModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90BF1F72944D0026B139 /* ShowsProgressModule.swift */; };
+		8204072A21D0049800127F05 /* ShowsProgressTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418AAFB1F7C1D1600D4D83C /* ShowsProgressTableViewDataSource.swift */; };
+		8204072B21D0049800127F05 /* ShowsProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90B51F7291650026B139 /* ShowsProgressViewController.swift */; };
+		8204072C21D0049F00127F05 /* TraktLoginModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D1821F704BED008C4E5F /* TraktLoginModule.swift */; };
+		8204072D21D0049F00127F05 /* TraktLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D17A1F704A1D008C4E5F /* TraktLoginViewController.swift */; };
+		8204072E21D004A500127F05 /* Trending.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B03EDB1F471BC1009E37C9 /* Trending.storyboard */; };
+		8204072F21D004A500127F05 /* TrendingiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC761F4F55B0002A9FFD /* TrendingiOSRouter.swift */; };
+		8204073021D004A500127F05 /* TrendingModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC751F4F55B0002A9FFD /* TrendingModule.swift */; };
+		8204073121D004A500127F05 /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03ED41F4715D2009E37C9 /* TrendingViewController.swift */; };
+		8204073221D004A500127F05 /* TrendingCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D43BD71F607628005CDBF7 /* TrendingCollectionViewDataSource.swift */; };
+		8204073321D004AF00127F05 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64343E1D1F7EB3B7004557E4 /* Secrets.swift */; };
+		8204073421D004AF00127F05 /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAA2542205693BE0006735A /* NoCacheMoyaPlugin.swift */; };
+		8204073521D0051C00127F05 /* PosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405E4F01F5DE4F900756E79 /* PosterCell.swift */; };
+		8204073621D0051C00127F05 /* PosterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9CE318205B1A080000CCD4 /* PosterCell.xib */; };
+		8204073E21D0180C00127F05 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204073D21D0180C00127F05 /* R.generated.swift */; };
+		8204073F21D0187800127F05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 647632431F44824900F277F1 /* Assets.xcassets */; };
+		8204074021D01A9D00127F05 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64BE63231F4F692B002E55EA /* Localizable.strings */; };
 		8209AB0B21CED6800027BBF3 /* Error+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB0A21CED6800027BBF3 /* Error+Mock.swift */; };
 		8209AB1021CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB0F21CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift */; };
 		8209AB1221CEF3F40027BBF3 /* Bundle+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1121CEF3F40027BBF3 /* Bundle+Testing.swift */; };
@@ -552,7 +556,6 @@
 		82836EAE218EC2C10037A798 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836EAC218EC2C10037A798 /* Defaults.swift */; };
 		82836EB5219034010037A798 /* CouchTrackerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836EB4219034010037A798 /* CouchTrackerError.swift */; };
 		82836EB6219034010037A798 /* CouchTrackerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836EB4219034010037A798 /* CouchTrackerError.swift */; };
-		82836EB8219039DA0037A798 /* ShowSeasonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836EB7219039DA0037A798 /* ShowSeasonsViewController.swift */; };
 		82930A19216C1C7B00A824F6 /* DefaultWatchedShowEntityDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82930A18216C1C7B00A824F6 /* DefaultWatchedShowEntityDownloader.swift */; };
 		82930A1C216C1C8500A824F6 /* DefaultWatchedShowEntityDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82930A18216C1C7B00A824F6 /* DefaultWatchedShowEntityDownloader.swift */; };
 		82930A1D216C1C8500A824F6 /* DefaultWatchedShowEntitiesDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8239F812216C159500A29F01 /* DefaultWatchedShowEntitiesDownloader.swift */; };
@@ -563,6 +566,7 @@
 		829A590121B2404700B67753 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829A590021B2404700B67753 /* Container.swift */; };
 		829A590221B2404700B67753 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829A590021B2404700B67753 /* Container.swift */; };
 		82D2434621C6DBA40003FC3D /* SynchronizerMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D2434521C6DBA40003FC3D /* SynchronizerMocks.swift */; };
+		A3145F5442CF1A9D833FEF0B /* Pods_CouchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD28A62B2A818658ECA0D22E /* Pods_CouchTracker.framework */; };
 		DF30110BDD6DE3CD2E358CB4 /* MoviesManagerMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32DD5EA6CF4B9E5350531C /* MoviesManagerMocks.swift */; };
 		DF3731C24B5C60D69EB3571C /* MoviesManagerDefaultDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E4B47D06AF91EF740E598 /* MoviesManagerDefaultDataSourceTest.swift */; };
 		DF3797479EC01964EA326A67 /* ShowManagerDefaultPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3675592013A20171297DD1 /* ShowManagerDefaultPresenterTest.swift */; };
@@ -604,6 +608,20 @@
 			remoteGlobalIDString = 4F0F5857203D7A5B00B86CB8;
 			remoteInfo = "CouchTrackerCore-iOS";
 		};
+		820406F221D0032100127F05 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 647632311F44824900F277F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 820406EC21D0032000127F05;
+			remoteInfo = CouchTrackerApp;
+		};
+		8204073721D0060600127F05 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 647632311F44824900F277F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F0F5857203D7A5B00B86CB8;
+			remoteInfo = "CouchTrackerCore-iOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -613,6 +631,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				820406F521D0032100127F05 /* CouchTrackerApp.framework in Embed Frameworks */,
 				4F2F0FD32040093700A76E95 /* CouchTrackerCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -769,6 +788,8 @@
 		4FFA6B1F20EB1983008E0B78 /* ShowOverview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShowOverview.storyboard; sourceTree = "<group>"; };
 		4FFA6B2120EB1983008E0B78 /* ShowOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowOverviewViewController.swift; sourceTree = "<group>"; };
 		4FFA6B2220EB1983008E0B78 /* ShowOverviewModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowOverviewModule.swift; sourceTree = "<group>"; };
+		593773791DBA0A150C0B4B02 /* Pods-CouchTrackerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerApp/Pods-CouchTrackerApp.debug.xcconfig"; sourceTree = "<group>"; };
+		5D6EAE0E7BCD1A275528B87F /* Pods-CouchTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		640330421F67FEBA001CCEDB /* ImagesViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModelMapper.swift; sourceTree = "<group>"; };
 		640373101FABA80E005023D5 /* trakt_movies_trending.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_movies_trending.json; sourceTree = "<group>"; };
 		640373121FABA8CD005023D5 /* trakt_movies_summary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_movies_summary.json; sourceTree = "<group>"; };
@@ -969,7 +990,6 @@
 		64D29C3B1F55A968008E344E /* SearchDefaultPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDefaultPresenter.swift; sourceTree = "<group>"; };
 		64D29C3C1F55A968008E344E /* SearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		64D29C3D1F55A96C008E344E /* SearchAPIRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAPIRepository.swift; sourceTree = "<group>"; };
-		64D2FFD91F44DFEA009E9ED3 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		64D43BCA1F605DB0005CDBF7 /* PosterCellDefaultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCellDefaultPresenter.swift; sourceTree = "<group>"; };
 		64D43BCE1F605DE4005CDBF7 /* PosterCellService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCellService.swift; sourceTree = "<group>"; };
 		64D43BD11F605DFB005CDBF7 /* PosterCellContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCellContract.swift; sourceTree = "<group>"; };
@@ -991,8 +1011,12 @@
 		69723B2DE85E11A441AE3CF7 /* RealmShowsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmShowsDataSource.swift; sourceTree = "<group>"; };
 		69723B3226267C7F60CE9126 /* GenreDataSourceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreDataSourceMock.swift; sourceTree = "<group>"; };
 		6E24F22C9196F9C4BBEAE2EF /* Pods-CouchTrackerCore-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerCore-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerCore-iOS/Pods-CouchTrackerCore-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		7D22040F8C3128B9E69F0873 /* Pods-CouchTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		80B010F67F463BB97DFE9805 /* Pods-CouchTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker.release.xcconfig"; sourceTree = "<group>"; };
 		80B871CE6441D89664DCB479 /* Pods-CouchTrackerCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerCoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerCoreTests/Pods-CouchTrackerCoreTests.release.xcconfig"; sourceTree = "<group>"; };
+		820406ED21D0032000127F05 /* CouchTrackerApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CouchTrackerApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		820406EF21D0032100127F05 /* CouchTrackerApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouchTrackerApp.h; sourceTree = "<group>"; };
+		820406F021D0032100127F05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8204073D21D0180C00127F05 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = GeneratedFiles/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		8209AB0A21CED6800027BBF3 /* Error+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Mock.swift"; sourceTree = "<group>"; };
 		8209AB0D21CEF3790027BBF3 /* ended_completed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ended_completed.json; path = ../../../../../../../../Desktop/Pessoal/CT/jsons_without_specials_episodes/ended_completed.json; sourceTree = "<group>"; };
 		8209AB0F21CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WatchedShowEntity+Mock.swift"; sourceTree = "<group>"; };
@@ -1017,7 +1041,8 @@
 		82930A18216C1C7B00A824F6 /* DefaultWatchedShowEntityDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWatchedShowEntityDownloader.swift; sourceTree = "<group>"; };
 		829A590021B2404700B67753 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		82D2434521C6DBA40003FC3D /* SynchronizerMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizerMocks.swift; sourceTree = "<group>"; };
-		D1928DD97DF5EC94CEB6E55D /* Pods-CouchTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker.release.xcconfig"; sourceTree = "<group>"; };
+		AF31C37B5587B21736E8BA65 /* Pods_CouchTrackerApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2E9D990267FD1A6C20A6C5E /* Pods-CouchTrackerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerApp/Pods-CouchTrackerApp.release.xcconfig"; sourceTree = "<group>"; };
 		DF32DD5EA6CF4B9E5350531C /* MoviesManagerMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesManagerMocks.swift; sourceTree = "<group>"; };
 		DF3675592013A20171297DD1 /* ShowManagerDefaultPresenterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowManagerDefaultPresenterTest.swift; sourceTree = "<group>"; };
 		DF3E4B47D06AF91EF740E598 /* MoviesManagerDefaultDataSourceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesManagerDefaultDataSourceTest.swift; sourceTree = "<group>"; };
@@ -1063,9 +1088,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				820406F421D0032100127F05 /* CouchTrackerApp.framework in Frameworks */,
 				6454D1811F704AC0008C4E5F /* WebKit.framework in Frameworks */,
 				4F2F0FD22040093700A76E95 /* CouchTrackerCore.framework in Frameworks */,
-				7F56127439D6E9004952D704 /* Pods_CouchTracker.framework in Frameworks */,
+				A3145F5442CF1A9D833FEF0B /* Pods_CouchTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1083,6 +1109,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		820406EA21D0032000127F05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29CAA085A1603A80A8A58A31 /* Pods_CouchTrackerApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -1094,6 +1128,7 @@
 				1448084EA5E5433EFA20D8B9 /* Pods_CouchTrackerCore.framework */,
 				FBC3B67169894ACEFB3998C8 /* Pods_CouchTrackerCore_iOS.framework */,
 				4C81CF20C8EA291D750ADACE /* Pods_CouchTrackerCoreTests.framework */,
+				AF31C37B5587B21736E8BA65 /* Pods_CouchTrackerApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1101,14 +1136,16 @@
 		35F4540E74D8632B2F76B8F1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7D22040F8C3128B9E69F0873 /* Pods-CouchTracker.debug.xcconfig */,
-				D1928DD97DF5EC94CEB6E55D /* Pods-CouchTracker.release.xcconfig */,
 				1D8384700ADF9873D8688801 /* Pods-CouchTrackerCore.debug.xcconfig */,
 				3C835172215EB21E106EE41B /* Pods-CouchTrackerCore.release.xcconfig */,
 				39365FEFFC65836EDF9F6E8C /* Pods-CouchTrackerCoreTests.debug.xcconfig */,
 				80B871CE6441D89664DCB479 /* Pods-CouchTrackerCoreTests.release.xcconfig */,
 				EAC4758F955CE7FB43AA4A2B /* Pods-CouchTrackerCore-iOS.debug.xcconfig */,
 				6E24F22C9196F9C4BBEAE2EF /* Pods-CouchTrackerCore-iOS.release.xcconfig */,
+				593773791DBA0A150C0B4B02 /* Pods-CouchTrackerApp.debug.xcconfig */,
+				C2E9D990267FD1A6C20A6C5E /* Pods-CouchTrackerApp.release.xcconfig */,
+				5D6EAE0E7BCD1A275528B87F /* Pods-CouchTracker.debug.xcconfig */,
+				80B010F67F463BB97DFE9805 /* Pods-CouchTracker.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1272,13 +1309,13 @@
 			isa = PBXGroup;
 			children = (
 				645B83871F73FC04009DDF53 /* Date+Presentable.swift */,
+				4F2F282B2129213B0000CC17 /* Movie+Genres.swift */,
 				64DF60551F61D3A200E1B0CC /* MovieIds+TMDBType.swift */,
 				4F2F282521290B060000CC17 /* NSError+CouchTracker.swift */,
 				6453230C2024DA3200449B0A /* OptionalExtensions.swift */,
+				4F2F282821291EFD0000CC17 /* Show+Genres.swift */,
 				64DF605A1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift */,
 				64BE63331F4F6F63002E55EA /* String+Localizable.swift */,
-				4F2F282821291EFD0000CC17 /* Show+Genres.swift */,
-				4F2F282B2129213B0000CC17 /* Movie+Genres.swift */,
 				8209AB1821CF343E0027BBF3 /* URLExtensions.swift */,
 			);
 			path = Extensions;
@@ -1909,6 +1946,7 @@
 			isa = PBXGroup;
 			children = (
 				6476323B1F44824900F277F1 /* CouchTracker */,
+				820406EE21D0032100127F05 /* CouchTrackerApp */,
 				4F0F56FD203D5F4C00B86CB8 /* CouchTrackerCore */,
 				4F0F5859203D7A5B00B86CB8 /* CouchTrackerCore-iOS */,
 				4F0F5708203D5F4C00B86CB8 /* CouchTrackerCoreTests */,
@@ -1934,6 +1972,7 @@
 				4F0F56FC203D5F4C00B86CB8 /* CouchTrackerCore.framework */,
 				4F0F5704203D5F4C00B86CB8 /* CouchTrackerCoreTests.xctest */,
 				4F0F5858203D7A5B00B86CB8 /* CouchTrackerCore.framework */,
+				820406ED21D0032000127F05 /* CouchTrackerApp.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1941,24 +1980,9 @@
 		6476323B1F44824900F277F1 /* CouchTracker */ = {
 			isa = PBXGroup;
 			children = (
-				644BF5051F6B07AF0010CE35 /* AppConfigurations */,
 				6476323C1F44824900F277F1 /* AppDelegate.swift */,
-				64CC08851F7171E7004D164A /* AppFlow */,
-				647632431F44824900F277F1 /* Assets.xcassets */,
-				64CC08B01F71A0D1004D164A /* Environment.swift */,
-				6406BED61F4DC353004661C4 /* Extensions */,
 				647632481F44824900F277F1 /* Info.plist */,
 				647632451F44824900F277F1 /* LaunchScreen.storyboard */,
-				6406BEBB1F4DBEFA004661C4 /* MovieDetails */,
-				4F6DC40A2015448800AA0DC8 /* Movies */,
-				64D2FFD91F44DFEA009E9ED3 /* R.generated.swift */,
-				648390E31F504EE500911BA0 /* Search */,
-				641B9D271F7D5C3000C26D10 /* Show */,
-				64CC085F1F716155004D164A /* Shows */,
-				6454D15A1F703587008C4E5F /* TraktLogin */,
-				64B03ECE1F4715D2009E37C9 /* Trending */,
-				648391141F505E3F00911BA0 /* Utils */,
-				4FE4BA352059E78400969AAF /* Views */,
 			);
 			path = CouchTracker;
 			sourceTree = "<group>";
@@ -2187,6 +2211,30 @@
 			path = Genre;
 			sourceTree = "<group>";
 		};
+		820406EE21D0032100127F05 /* CouchTrackerApp */ = {
+			isa = PBXGroup;
+			children = (
+				644BF5051F6B07AF0010CE35 /* AppConfigurations */,
+				64CC08851F7171E7004D164A /* AppFlow */,
+				647632431F44824900F277F1 /* Assets.xcassets */,
+				820406EF21D0032100127F05 /* CouchTrackerApp.h */,
+				64CC08B01F71A0D1004D164A /* Environment.swift */,
+				6406BED61F4DC353004661C4 /* Extensions */,
+				820406F021D0032100127F05 /* Info.plist */,
+				6406BEBB1F4DBEFA004661C4 /* MovieDetails */,
+				4F6DC40A2015448800AA0DC8 /* Movies */,
+				8204073D21D0180C00127F05 /* R.generated.swift */,
+				648390E31F504EE500911BA0 /* Search */,
+				641B9D271F7D5C3000C26D10 /* Show */,
+				64CC085F1F716155004D164A /* Shows */,
+				6454D15A1F703587008C4E5F /* TraktLogin */,
+				64B03ECE1F4715D2009E37C9 /* Trending */,
+				648391141F505E3F00911BA0 /* Utils */,
+				4FE4BA352059E78400969AAF /* Views */,
+			);
+			path = CouchTrackerApp;
+			sourceTree = "<group>";
+		};
 		8209AB0C21CEF19A0027BBF3 /* WatchedShowEntity */ = {
 			isa = PBXGroup;
 			children = (
@@ -2292,6 +2340,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		820406E821D0032000127F05 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				820406F121D0032100127F05 /* CouchTrackerApp.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -2382,20 +2438,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 647632561F44824900F277F1 /* Build configuration list for PBXNativeTarget "CouchTracker" */;
 			buildPhases = (
-				D366AEF3F84BE5392EF5AC55 /* [CP] Check Pods Manifest.lock */,
-				64D2FFD81F44DF7F009E9ED3 /* RSwift */,
+				EB6C6EE4FCE9F4239E708FE0 /* [CP] Check Pods Manifest.lock */,
 				647632351F44824900F277F1 /* Sources */,
 				647632361F44824900F277F1 /* Frameworks */,
 				647632371F44824900F277F1 /* Resources */,
 				6455BA751F45B862000660C6 /* SwiftLint */,
 				6405CA021F549BE90039D6E6 /* Embed Frameworks */,
 				4FAC4A93210F28310096BCE0 /* SwiftFormat */,
-				9733866B18E1C8A0F48F07D3 /* [CP] Embed Pods Frameworks */,
+				303657ACD85152B4015403F8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				4F2F0FD52040093700A76E95 /* PBXTargetDependency */,
+				820406F321D0032100127F05 /* PBXTargetDependency */,
 			);
 			name = CouchTracker;
 			productName = CouchTracker;
@@ -2435,6 +2491,29 @@
 			productName = TMDBTestsResources;
 			productReference = 64B801E21FA7947F004A6EEE /* TMDBTestsResources.bundle */;
 			productType = "com.apple.product-type.bundle";
+		};
+		820406EC21D0032000127F05 /* CouchTrackerApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 820406F821D0032100127F05 /* Build configuration list for PBXNativeTarget "CouchTrackerApp" */;
+			buildPhases = (
+				D0E48687768EE9472747F11C /* [CP] Check Pods Manifest.lock */,
+				8204073A21D0073200127F05 /* RSwift */,
+				820406E821D0032000127F05 /* Headers */,
+				820406E921D0032000127F05 /* Sources */,
+				820406EA21D0032000127F05 /* Frameworks */,
+				820406EB21D0032000127F05 /* Resources */,
+				8204073B21D0074C00127F05 /* Swiftlint */,
+				8204073C21D0076D00127F05 /* SwiftFormat */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8204073821D0060600127F05 /* PBXTargetDependency */,
+			);
+			name = CouchTrackerApp;
+			productName = CouchTrackerApp;
+			productReference = 820406ED21D0032000127F05 /* CouchTrackerApp.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -2484,6 +2563,11 @@
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Manual;
 					};
+					820406EC21D0032000127F05 = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = B5RPM7SE3L;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 647632341F44824900F277F1 /* Build configuration list for PBXProject "CouchTracker" */;
@@ -2501,6 +2585,7 @@
 			projectRoot = "";
 			targets = (
 				647632381F44824900F277F1 /* CouchTracker */,
+				820406EC21D0032000127F05 /* CouchTrackerApp */,
 				4F0F56FB203D5F4C00B86CB8 /* CouchTrackerCore */,
 				4F0F5857203D7A5B00B86CB8 /* CouchTrackerCore-iOS */,
 				4F0F5703203D5F4C00B86CB8 /* CouchTrackerCoreTests */,
@@ -2549,23 +2634,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F9CE319205B1A080000CCD4 /* PosterCell.xib in Resources */,
-				64CB90B41F7291400026B139 /* ShowsProgress.storyboard in Resources */,
-				6406BF031F4DC41F004661C4 /* MovieDetails.storyboard in Resources */,
-				64B03EDC1F471BC1009E37C9 /* Trending.storyboard in Resources */,
-				64CC08931F717597004D164A /* AppFlow.storyboard in Resources */,
-				644E903E1F72985C0089CD70 /* ShowsNow.storyboard in Resources */,
 				647632471F44824900F277F1 /* LaunchScreen.storyboard in Resources */,
-				4F6DC4152015476000AA0DC8 /* MoviesManager.storyboard in Resources */,
-				64CC08911F7174F5004D164A /* ShowsManager.storyboard in Resources */,
-				4FFA6B2320EB1984008E0B78 /* ShowOverview.storyboard in Resources */,
-				4F9CE2C2205A85410000CCD4 /* SearchBarView.xib in Resources */,
-				6434C3A31F836762009B5A9F /* ShowEpisode.storyboard in Resources */,
-				4F778D0D20411DDE00FBCC2C /* Localizable.strings in Resources */,
-				647632441F44824900F277F1 /* Assets.xcassets in Resources */,
-				64D491591F6FE5D200EA0C80 /* AppConfigurations.storyboard in Resources */,
-				4FE4BA342059E32A00969AAF /* Search.storyboard in Resources */,
-				641B9D431F7D7D9C00C26D10 /* ShowManager.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2606,6 +2675,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		820406EB21D0032000127F05 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8204074021D01A9D00127F05 /* Localizable.strings in Resources */,
+				8204073621D0051C00127F05 /* PosterCell.xib in Resources */,
+				8204072421D0049000127F05 /* ShowsNow.storyboard in Resources */,
+				8204070F21D0046400127F05 /* SearchBarView.xib in Resources */,
+				8204071321D0046D00127F05 /* ShowOverview.storyboard in Resources */,
+				8204073F21D0187800127F05 /* Assets.xcassets in Resources */,
+				820406FD21D003A500127F05 /* AppFlow.storyboard in Resources */,
+				8204072721D0049800127F05 /* ShowsProgress.storyboard in Resources */,
+				8204070921D0043600127F05 /* MoviesManager.storyboard in Resources */,
+				820406F921D0036400127F05 /* AppConfigurations.storyboard in Resources */,
+				8204070621D0041300127F05 /* MovieDetails.storyboard in Resources */,
+				8204072E21D004A500127F05 /* Trending.storyboard in Resources */,
+				8204070D21D0046400127F05 /* Search.storyboard in Resources */,
+				8204071921D0047B00127F05 /* ShowManager.storyboard in Resources */,
+				8204071621D0047400127F05 /* ShowEpisode.storyboard in Resources */,
+				8204071F21D0048900127F05 /* ShowsManager.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -2621,6 +2713,7 @@
 				"${BUILT_PRODUCTS_DIR}/Realm-macOS/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift-macOS/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-macOS/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic-macOS/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRealm-macOS/RxRealm.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-macOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/TMDB-macOS/TMDBSwift.framework",
@@ -2636,6 +2729,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TMDBSwift.framework",
@@ -2683,6 +2777,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		303657ACD85152B4015403F8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya-iOS/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm-iOS/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift-iOS/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic-iOS/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRealm-iOS/RxRealm.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/TMDB-iOS/TMDBSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/TVDB-iOS/TVDBSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Trakt-iOS/TraktSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
+				"${BUILT_PRODUCTS_DIR}/AutoInsetter/AutoInsetter.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Pageboy/Pageboy.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/Tabman/Tabman.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TMDBSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TVDBSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TraktSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AutoInsetter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pageboy.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tabman.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4F0F581C203D75FB00B86CB8 /* SwiftLint */ = {
@@ -2783,67 +2933,61 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, using from Pods. Please download from https://github.com/realm/SwiftLint\"\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi\n";
 		};
-		64D2FFD81F44DF7F009E9ED3 /* RSwift */ = {
+		8204073A21D0073200127F05 /* RSwift */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
 			);
 			name = RSwift;
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"$SRCROOT/GeneratedFiles/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/GeneratedFiles/R.generated.swift\"\n";
 		};
-		9733866B18E1C8A0F48F07D3 /* [CP] Embed Pods Frameworks */ = {
+		8204073B21D0074C00127F05 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya-iOS/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm-iOS/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift-iOS/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRealm-iOS/RxRealm.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/TMDB-iOS/TMDBSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/TVDB-iOS/TVDBSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Trakt-iOS/TraktSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/Pageboy/Pageboy.framework",
-				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/Tabman/Tabman.framework",
+			inputFileListPaths = (
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TMDBSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TVDBSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TraktSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pageboy.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tabman.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, using from Pods. Please download from https://github.com/realm/SwiftLint\"\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi\n";
+		};
+		8204073C21D0076D00127F05 /* SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftFormat;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh $SRCROOT/scripts/swiftformat\n";
 		};
 		9C6F0D2340CF87135C62A2BE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2863,16 +3007,42 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D366AEF3F84BE5392EF5AC55 /* [CP] Check Pods Manifest.lock */ = {
+		D0E48687768EE9472747F11C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CouchTrackerApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB6C6EE4FCE9F4239E708FE0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-CouchTracker-checkManifestLockResult.txt",
 			);
@@ -3370,56 +3540,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F0F581D203D779A00B86CB8 /* AppConfigurationsiOSRouter.swift in Sources */,
-				4F0F581E203D779A00B86CB8 /* AppConfigurationsModule.swift in Sources */,
-				4F3A5959204EE4690061ABB7 /* AppFlowiOSModuleDataSource.swift in Sources */,
-				4F0F581F203D779A00B86CB8 /* AppConfigurationsViewController.swift in Sources */,
 				4F0F5820203D779A00B86CB8 /* AppDelegate.swift in Sources */,
-				4F0F5821203D779A00B86CB8 /* AppFlowViewController.swift in Sources */,
-				4F0F5822203D779A00B86CB8 /* AppFlowModule.swift in Sources */,
-				4F0F5825203D779A00B86CB8 /* Environment.swift in Sources */,
-				4F0F5826203D779A00B86CB8 /* Tabman+CouchTracker.swift in Sources */,
-				4FFA6B2520EB1984008E0B78 /* ShowOverviewViewController.swift in Sources */,
-				4F0F5827203D779A00B86CB8 /* UIAlertController+Error.swift in Sources */,
-				82836EB8219039DA0037A798 /* ShowSeasonsViewController.swift in Sources */,
-				4F0F5828203D779A00B86CB8 /* UIColor+CouchTracker.swift in Sources */,
-				4F0F5829203D779A00B86CB8 /* UIViewController+BaseView.swift in Sources */,
-				4F0F582B203D779A00B86CB8 /* MovieDetailsModule.swift in Sources */,
-				4F0F582C203D779A00B86CB8 /* MovieDetailsViewController.swift in Sources */,
-				4F0F582D203D779A00B86CB8 /* MoviesManageriOSModuleSetup.swift in Sources */,
-				4F0F582E203D779A00B86CB8 /* MoviesManagerModule.swift in Sources */,
-				4F0F582F203D779A00B86CB8 /* MoviesManagerViewController.swift in Sources */,
-				4F0F5830203D779A00B86CB8 /* R.generated.swift in Sources */,
-				4F0F5831203D779A00B86CB8 /* SearchBarView.swift in Sources */,
-				4F0F5832203D779A00B86CB8 /* SearchModule.swift in Sources */,
-				4F0F5833203D779A00B86CB8 /* ShowEpisodeModule.swift in Sources */,
-				4F0F5834203D779A00B86CB8 /* ShowEpisodeViewController.swift in Sources */,
-				4F0F5835203D779A00B86CB8 /* ShowManageriOSModuleCreator.swift in Sources */,
-				4F0F5836203D779A00B86CB8 /* ShowManagerModule.swift in Sources */,
-				4F0F5837203D779A00B86CB8 /* ShowManagerViewController.swift in Sources */,
-				4FAA2543205693BE0006735A /* NoCacheMoyaPlugin.swift in Sources */,
-				4F0F5839203D779A00B86CB8 /* ShowSeasonsModule.swift in Sources */,
-				4F0F583D203D779A00B86CB8 /* ShowsManageriOSCreator.swift in Sources */,
-				4FE4BA322059E31800969AAF /* SearchViewController.swift in Sources */,
-				4F0F583E203D779A00B86CB8 /* ShowsManagerModule.swift in Sources */,
-				4F0F583F203D779A00B86CB8 /* ShowsManagerViewController.swift in Sources */,
-				4F0F5840203D779A00B86CB8 /* ShowsNowViewController.swift in Sources */,
-				4F0F5841203D779A00B86CB8 /* ShowsNowModule.swift in Sources */,
-				4F0F5842203D779A00B86CB8 /* ShowProgressCell.swift in Sources */,
-				4F0F5843203D779A00B86CB8 /* ShowsProgressiOSRouter.swift in Sources */,
-				4FFA6B2620EB1984008E0B78 /* ShowOverviewModule.swift in Sources */,
-				4F9CE2C0205A84A80000CCD4 /* SearchViewModule.swift in Sources */,
-				4F0F5844203D779A00B86CB8 /* ShowsProgressModule.swift in Sources */,
-				4F0F5845203D779A00B86CB8 /* ShowsProgressTableViewDataSource.swift in Sources */,
-				4F0F5846203D779A00B86CB8 /* ShowsProgressViewController.swift in Sources */,
-				4F0F5847203D779A00B86CB8 /* TraktLoginModule.swift in Sources */,
-				4F0F5848203D779A00B86CB8 /* TraktLoginViewController.swift in Sources */,
-				4F0F5849203D779A00B86CB8 /* PosterCell.swift in Sources */,
-				4F0F584A203D779A00B86CB8 /* TrendingiOSRouter.swift in Sources */,
-				4F0F584B203D779A00B86CB8 /* TrendingModule.swift in Sources */,
-				4F0F584C203D779A00B86CB8 /* TrendingViewController.swift in Sources */,
-				4F0F584D203D779A00B86CB8 /* TrendingCollectionViewDataSource.swift in Sources */,
-				4F0F584E203D779A00B86CB8 /* Secrets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3434,6 +3555,62 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		820406E921D0032000127F05 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8204070221D003F200127F05 /* Tabman+CouchTracker.swift in Sources */,
+				8204072021D0048900127F05 /* ShowsManageriOSCreator.swift in Sources */,
+				820406FE21D003A500127F05 /* AppFlowiOSModuleDataSource.swift in Sources */,
+				8204072121D0048900127F05 /* ShowsManagerModule.swift in Sources */,
+				8204070821D0041300127F05 /* MovieDetailsViewController.swift in Sources */,
+				8204071021D0046400127F05 /* SearchModule.swift in Sources */,
+				8204071121D0046400127F05 /* SearchViewController.swift in Sources */,
+				820406FF21D003A500127F05 /* AppFlowModule.swift in Sources */,
+				8204073521D0051C00127F05 /* PosterCell.swift in Sources */,
+				8204071A21D0047B00127F05 /* ShowManageriOSModuleCreator.swift in Sources */,
+				8204070321D003F200127F05 /* UIAlertController+Error.swift in Sources */,
+				8204071E21D0048300127F05 /* ShowSeasonsViewController.swift in Sources */,
+				820406FB21D0036400127F05 /* AppConfigurationsModule.swift in Sources */,
+				8204071D21D0048300127F05 /* ShowSeasonsModule.swift in Sources */,
+				8204073121D004A500127F05 /* TrendingViewController.swift in Sources */,
+				8204070121D003C300127F05 /* Environment.swift in Sources */,
+				820406FA21D0036400127F05 /* AppConfigurationsiOSRouter.swift in Sources */,
+				8204072521D0049000127F05 /* ShowsNowModule.swift in Sources */,
+				8204071421D0046D00127F05 /* ShowOverviewViewController.swift in Sources */,
+				8204070021D003A500127F05 /* AppFlowViewController.swift in Sources */,
+				8204072A21D0049800127F05 /* ShowsProgressTableViewDataSource.swift in Sources */,
+				8204072621D0049800127F05 /* ShowProgressCell.swift in Sources */,
+				820406FC21D0036400127F05 /* AppConfigurationsViewController.swift in Sources */,
+				8204072821D0049800127F05 /* ShowsProgressiOSRouter.swift in Sources */,
+				8204072221D0048900127F05 /* ShowsManagerViewController.swift in Sources */,
+				8204070A21D0043600127F05 /* MoviesManageriOSModuleSetup.swift in Sources */,
+				8204070C21D0043600127F05 /* MoviesManagerViewController.swift in Sources */,
+				8204072F21D004A500127F05 /* TrendingiOSRouter.swift in Sources */,
+				8204072321D0049000127F05 /* ShowsNowViewController.swift in Sources */,
+				8204071B21D0047B00127F05 /* ShowManagerModule.swift in Sources */,
+				8204071C21D0047B00127F05 /* ShowManagerViewController.swift in Sources */,
+				8204070421D003F200127F05 /* UIColor+CouchTracker.swift in Sources */,
+				8204070B21D0043600127F05 /* MoviesManagerModule.swift in Sources */,
+				8204072C21D0049F00127F05 /* TraktLoginModule.swift in Sources */,
+				8204072B21D0049800127F05 /* ShowsProgressViewController.swift in Sources */,
+				8204071221D0046400127F05 /* SearchViewModule.swift in Sources */,
+				8204073E21D0180C00127F05 /* R.generated.swift in Sources */,
+				8204073221D004A500127F05 /* TrendingCollectionViewDataSource.swift in Sources */,
+				8204070521D003F200127F05 /* UIViewController+BaseView.swift in Sources */,
+				8204071821D0047400127F05 /* ShowEpisodeViewController.swift in Sources */,
+				8204071521D0046D00127F05 /* ShowOverviewModule.swift in Sources */,
+				8204071721D0047400127F05 /* ShowEpisodeModule.swift in Sources */,
+				8204070E21D0046400127F05 /* SearchBarView.swift in Sources */,
+				8204070721D0041300127F05 /* MovieDetailsModule.swift in Sources */,
+				8204073021D004A500127F05 /* TrendingModule.swift in Sources */,
+				8204073421D004AF00127F05 /* NoCacheMoyaPlugin.swift in Sources */,
+				8204073321D004AF00127F05 /* Secrets.swift in Sources */,
+				8204072921D0049800127F05 /* ShowsProgressModule.swift in Sources */,
+				8204072D21D0049F00127F05 /* TraktLoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3464,6 +3641,16 @@
 			isa = PBXTargetDependency;
 			target = 4F0F5857203D7A5B00B86CB8 /* CouchTrackerCore-iOS */;
 			targetProxy = 4F2F0FD42040093700A76E95 /* PBXContainerItemProxy */;
+		};
+		820406F321D0032100127F05 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 820406EC21D0032000127F05 /* CouchTrackerApp */;
+			targetProxy = 820406F221D0032100127F05 /* PBXContainerItemProxy */;
+		};
+		8204073821D0060600127F05 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F0F5857203D7A5B00B86CB8 /* CouchTrackerCore-iOS */;
+			targetProxy = 8204073721D0060600127F05 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3520,7 +3707,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -3558,7 +3745,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -3594,7 +3781,7 @@
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "CouchTrackerCoreTests/CouchTrackerCoreTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -3627,7 +3814,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "CouchTrackerCoreTests/CouchTrackerCoreTests-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -3662,7 +3849,7 @@
 				PRODUCT_NAME = CouchTrackerCore;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -3700,7 +3887,7 @@
 				PRODUCT_NAME = CouchTrackerCore;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -3862,7 +4049,7 @@
 		};
 		647632571F44824900F277F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D22040F8C3128B9E69F0873 /* Pods-CouchTracker.debug.xcconfig */;
+			baseConfigurationReference = 5D6EAE0E7BCD1A275528B87F /* Pods-CouchTracker.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -3877,13 +4064,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
 		647632581F44824900F277F1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D1928DD97DF5EC94CEB6E55D /* Pods-CouchTracker.release.xcconfig */;
+			baseConfigurationReference = 80B010F67F463BB97DFE9805 /* Pods-CouchTracker.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -3897,7 +4084,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.couchtracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -4013,6 +4200,87 @@
 			};
 			name = Release;
 		};
+		820406F621D0032100127F05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 593773791DBA0A150C0B4B02 /* Pods-CouchTrackerApp.debug.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B5RPM7SE3L;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CouchTrackerApp/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.CouchTrackerApp;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		820406F721D0032100127F05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2E9D990267FD1A6C20A6C5E /* Pods-CouchTrackerApp.release.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B5RPM7SE3L;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CouchTrackerApp/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.CouchTrackerApp;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -4084,6 +4352,15 @@
 			buildConfigurations = (
 				64B801E61FA7947F004A6EEE /* Debug */,
 				64B801E71FA7947F004A6EEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		820406F821D0032100127F05 /* Build configuration list for PBXNativeTarget "CouchTrackerApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				820406F621D0032100127F05 /* Debug */,
+				820406F721D0032100127F05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

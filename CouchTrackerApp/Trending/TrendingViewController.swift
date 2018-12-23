@@ -22,7 +22,7 @@ final class TrendingViewController: UIViewController {
       fatalError("dataSource should be an instance of UICollectionViewDataSource")
     }
 
-    collectionView.register(R.nib.posterCell(), forCellWithReuseIdentifier: R.nib.posterCell.identifier)
+    collectionView.register(R.nib.posterCell)
 
     emptyLabel.text = "No movies to show right now".localized
 

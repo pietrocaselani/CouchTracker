@@ -1,35 +1,40 @@
 PODS:
   - ActionSheetPicker-3.0 (2.2.0)
   - Alamofire (4.8.0)
-  - Kingfisher (4.2.0)
+  - AutoInsetter (1.4.1)
+  - Kingfisher (5.0.1)
   - Moya/Core (12.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 4.0)
   - Moya/RxSwift (12.0.1):
     - Moya/Core
     - RxSwift (~> 4.0)
-  - Nimble (7.1.1)
-  - Pageboy (2.3.4)
-  - R.swift (4.0.0):
-    - R.swift.Library (~> 4.0.0)
-  - R.swift.Library (4.0.0)
+  - Nimble (7.3.1)
+  - Pageboy (3.0.1)
+  - R.swift (5.0.0):
+    - R.swift.Library (~> 5.0.0)
+  - R.swift.Library (5.0.0)
   - Realm (3.7.6):
     - Realm/Headers (= 3.7.6)
   - Realm/Headers (3.7.6)
   - RealmSwift (3.7.6):
     - Realm (= 3.7.6)
   - Result (4.0.0)
-  - RxCocoa (4.2.0):
+  - RxAtomic (4.4.0)
+  - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
   - RxRealm (0.7.5):
     - RealmSwift (~> 3.0)
     - RxSwift (~> 4.0)
-  - RxSwift (4.2.0)
-  - RxTest (4.2.0):
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
+  - RxTest (4.4.0):
+    - RxAtomic (~> 4.4)
     - RxSwift (~> 4.0)
   - SwiftLint (0.25.1)
-  - Tabman (1.4.0):
-    - Pageboy (~> 2.3.0)
+  - Tabman (2.1.0):
+    - AutoInsetter (~> 1.4.1)
+    - Pageboy (~> 3.0.1)
   - TMDB (0.1.0):
     - Moya/RxSwift (= 12.0.1)
     - SwiftLint (= 0.25.1)
@@ -42,16 +47,16 @@ PODS:
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.2.0)
-  - Kingfisher (= 4.2.0)
-  - Nimble (= 7.1.1)
-  - R.swift (= 4.0.0)
+  - Kingfisher (= 5.0.1)
+  - Nimble (= 7.3.1)
+  - R.swift (= 5.0.0)
   - RealmSwift (= 3.7.6)
-  - RxCocoa (= 4.2.0)
+  - RxCocoa (= 4.4.0)
   - RxRealm (= 0.7.5)
-  - RxSwift (= 4.2.0)
-  - RxTest (= 4.2.0)
+  - RxSwift (= 4.4.0)
+  - RxTest (= 4.4.0)
   - SwiftLint (= 0.25.1)
-  - Tabman (= 1.4.0)
+  - Tabman (= 2.1.0)
   - TMDB (from `./vendor/TMDB-Swift`)
   - Trakt (from `./vendor/Trakt-Swift`)
   - TVDB (from `./vendor/TVDB-Swift`)
@@ -60,6 +65,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ActionSheetPicker-3.0
     - Alamofire
+    - AutoInsetter
     - Kingfisher
     - Moya
     - Nimble
@@ -69,6 +75,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - Result
+    - RxAtomic
     - RxCocoa
     - RxRealm
     - RxSwift
@@ -87,25 +94,27 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
-  Kingfisher: 9ee7e788d8ba07c3f21ce0d43f33cec310a4f781
+  AutoInsetter: d0eafc611d686f83f925ded729084cf916a39863
+  Kingfisher: 4f771421b9208185217550528a06fd48756cb7c2
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
-  Nimble: 391f07782af4b37914f9bd7b2ffbb952731b8202
-  Pageboy: 502560f49b0357eaf8a3b6075e4cab29505079a3
-  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
-  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
+  Pageboy: ec0170fd880ea6fa3589219edfd64b554443ff6e
+  R.swift: f88c7d7d48a2be4dffa132dde1b3d389620310eb
+  R.swift.Library: 0bf390e729bc10bb2c9e4fb78bd043164a7be4ff
   Realm: 9eaecad54712d6246d08ba34c10f354e4715d7d3
   RealmSwift: 1fe08b4ebaeeaacf17f9ba0343f7b25c9fc31fa6
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
-  RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxRealm: a6c6c0a07cb61f34209969ca6657734edfdfff30
-  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
-  RxTest: 8da864c0ee47534f586ff18fb0c7e5b2f1fe5023
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  RxTest: 19d03286bdc0a3aaea5d61d4cde31fdf4bb8a5ba
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
-  Tabman: 348ff2d3fc88587ef60bae5bce6698a8e1984cc2
+  Tabman: 1903b01c88a728895ca1bd1f69d1e842e2ca8b1a
   TMDB: 6026dd2389feb5dc538cc61082ab162bf0fc454f
   Trakt: 734dbeffec883ffe6a0c00091eeed0f5fae795e5
   TVDB: cfbf782bffda651a4f80304a0c96f28a02fdfcdc
 
-PODFILE CHECKSUM: 45eacaba963177aa50cb74a4ab9c012d6a1c4958
+PODFILE CHECKSUM: 62a74a4a62cc7aff659c2c4d8d8edc68d3d40c71
 
 COCOAPODS: 1.5.3

@@ -1,12 +1,12 @@
 import CouchTrackerCore
 import UIKit
 
-final class AppFlowModule {
+public final class AppFlowModule {
   private init() {
     Swift.fatalError("No instances for you!")
   }
 
-  static func setupModule() -> BaseView {
+  public static func setupModule() -> BaseView {
     guard let appFlowViewController = R.storyboard.appFlow.appFlowViewController() else {
       fatalError("Can't instantiate AppFlowViewController from Storyboard")
     }

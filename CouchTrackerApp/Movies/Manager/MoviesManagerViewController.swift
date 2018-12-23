@@ -1,51 +1,43 @@
 import CouchTrackerCore
 import Pageboy
 import Tabman
-import UIKit
 
-final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
-  var presenter: ShowsManagerPresenter!
-  private var moduleViews: [BaseView]?
+final class MoviesManagerViewController: TabmanViewController, MoviesManagerView, TMBarCouchTracker {
+  var presenter: MoviesManagerPresenter!
+  private var pages = [ModulePage]()
   private var defaultPageIndex = 0
 
   override func awakeFromNib() {
     super.awakeFromNib()
 
-    title = R.string.localizable.shows()
+    title = R.string.localizable.movies()
     navigationItem.title = nil
     dataSource = self
     delegate = self
-    bar.defaultCTAppearance()
+
+    // CT-TODO fix this
+    let bar = defaultCTBar()
+
+    addBar(bar, dataSource: self, at: .top)
+
+//    bar.defaultCTAppearance()
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     guard presenter != nil else {
-      fatalError("ShowsManagerViewController was loaded without a presenter")
+      fatalError("MoviesManagerViewController was loaded without a presenter")
     }
 
     presenter.viewDidLoad()
   }
 
   func show(pages: [ModulePage], withDefault index: Int) {
-    moduleViews = pages.map { $0.page }
+    self.pages = pages
     defaultPageIndex = index
 
-    bar.items = pages.map { Item(title: $0.title) }
-
-    reloadPages()
-  }
-
-  func showNeedsTraktLogin() {
-    let message = "You need to log in on Trakt to use this screen"
-    let alert = UIAlertController(title: "Trakt", message: message, preferredStyle: .alert)
-
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-      alert.dismiss(animated: true, completion: nil)
-    }))
-
-    present(alert, animated: true, completion: nil)
+    reloadData()
   }
 
   override func pageboyViewController(_ pageboyViewController: PageboyViewController, didScrollToPageAt index: Int,
@@ -57,19 +49,23 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
 
     navigationItem.leftBarButtonItems = currentViewController?.navigationItem.leftBarButtonItems
     navigationItem.rightBarButtonItems = currentViewController?.navigationItem.rightBarButtonItems
-
-    presenter.selectTab(index: index)
   }
 }
 
-extension ShowsManagerViewController: PageboyViewControllerDataSource {
+extension MoviesManagerViewController: TMBarDataSource {
+  func barItem(for _: TMBar, at index: Int) -> TMBarItemable {
+    return TMBarItem(title: pages[index].title)
+  }
+}
+
+extension MoviesManagerViewController: PageboyViewControllerDataSource {
   func numberOfViewControllers(in _: PageboyViewController) -> Int {
-    return moduleViews?.count ?? 0
+    return pages.count
   }
 
   func viewController(for _: PageboyViewController,
                       at index: PageboyViewController.PageIndex) -> UIViewController? {
-    return moduleViews?[index] as? UIViewController
+    return pages[index].page as? UIViewController
   }
 
   func defaultPage(for _: PageboyViewController) -> PageboyViewController.Page? {

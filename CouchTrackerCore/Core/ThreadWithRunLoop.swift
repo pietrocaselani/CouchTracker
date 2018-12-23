@@ -5,7 +5,7 @@ final class ThreadWithRunLoop: Thread {
 
   override func main() {
     runLoop = RunLoop.current
-    runLoop.add(Port(), forMode: .commonModes)
+    runLoop.add(Port(), forMode: .common)
     runLoop.run()
   }
 }
