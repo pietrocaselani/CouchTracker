@@ -23,12 +23,7 @@ final class ShowProgressCell: UITableViewCell, ShowProgressCellView {
   }
 
   func showPosterImage(with url: URL) {
-			// CT-TODO fix this
-//    posterImageView.kf.setImage(with: url,
-//																																placeholder: R.image.posterListPlaceholder(),
-//                                options: nil,
-//																																progressBlock: nil,
-//																																completionHandler: nil)
+    posterImageView.kf.setImage(with: url, placeholder: R.image.posterListPlaceholder())
   }
 
   override func prepareForReuse() {

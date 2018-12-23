@@ -18,12 +18,7 @@ final class PosterCell: UICollectionViewCell, PosterCellView {
   }
 
   func showPosterImage(with url: URL) {
-			// CT-TODO fix this
-//    coverImageView.kf.setImage(with: url,
-//																															placeholder: R.image.posterPlacehoder(),
-//                               options: nil,
-//																															progressBlock: nil,
-//																															completionHandler: nil)
+    coverImageView.kf.setImage(with: url, placeholder: R.image.posterPlacehoder())
   }
 
   override func prepareForReuse() {
