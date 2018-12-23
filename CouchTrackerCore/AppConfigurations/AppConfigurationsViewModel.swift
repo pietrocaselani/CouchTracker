@@ -45,6 +45,7 @@ public struct AppConfigurationViewModel: Hashable {
 
 public enum AppConfigurationViewModelValue {
   case none
-  case boolean(value: Bool)
+  case traktLogin(wantsToLogin: Bool)
   case externalURL(url: URL)
+  case hideSpecials(wantsToHideSpecials: Bool)
 }

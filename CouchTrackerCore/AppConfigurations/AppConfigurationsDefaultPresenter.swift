@@ -5,7 +5,6 @@ public final class AppConfigurationsDefaultPresenter: AppConfigurationsPresenter
   private let interactor: AppConfigurationsInteractor
   fileprivate let router: AppConfigurationsRouter
   private let disposeBag = DisposeBag()
-  private var options = [AppConfigurationOptions]()
 
   public init(view: AppConfigurationsView, interactor: AppConfigurationsInteractor, router: AppConfigurationsRouter) {
     self.view = view
@@ -17,16 +16,17 @@ public final class AppConfigurationsDefaultPresenter: AppConfigurationsPresenter
     updateView()
   }
 
-  public func optionSelectedAt(index: Int) {
-    let option = options[index]
-    switch option {
-    case .connectToTrakt:
-      router.showTraktLogin(output: self)
+  public func select(configuration: AppConfigurationViewModel) {
+    switch configuration.value {
+    case .none: break
+    case let .externalURL(url):
+      router.showExternal(url: url)
+    case let .traktLogin(wantsToLogin):
+      if wantsToLogin {
+        router.showTraktLogin(output: self)
+      }
     case .hideSpecials:
       interactor.toggleHideSpecials().subscribe().disposed(by: disposeBag)
-    case .goToGithub:
-      router.showSourceCode()
-    default: break
     }
   }
 
@@ -53,41 +53,34 @@ public final class AppConfigurationsDefaultPresenter: AppConfigurationsPresenter
     let loginState = state.loginState
 
     let connectedConfiguration: AppConfigurationViewModel
-    let connectedOption: AppConfigurationOptions
 
     if case let .logged(settings) = loginState {
-      connectedOption = .connectedToTrakt
       connectedConfiguration = AppConfigurationViewModel(title: "Connected".localized,
                                                          subtitle: settings.user.name,
                                                          value: .none)
     } else {
-      connectedOption = .connectToTrakt
       connectedConfiguration = AppConfigurationViewModel(title: "Connect to Trakt".localized,
                                                          subtitle: nil,
-                                                         value: .none)
+                                                         value: .traktLogin(wantsToLogin: false))
     }
 
     let configurations = [connectedConfiguration]
-    options.append(connectedOption)
 
     return AppConfigurationsViewModel(title: "Trakt", configurations: configurations)
   }
 
   private func otherConfigurationsViewModel() -> AppConfigurationsViewModel {
-    options.append(.goToGithub)
     let value = AppConfigurationViewModelValue.externalURL(url: Constants.githubURL)
     let appOnGithub = AppConfigurationViewModel(title: "\(Constants.appName) on GitHub", subtitle: nil, value: value)
     return AppConfigurationsViewModel(title: "Other", configurations: [appOnGithub])
   }
 
   private func generalConfigurationsViewModel(_ state: AppConfigurationsState) -> AppConfigurationsViewModel {
-    let configurations = [AppConfigurationViewModel(title: "Hide specials",
-                                                    subtitle: "Will not show special episodes",
-                                                    value: .boolean(value: state.hideSpecials))]
+    let hideSpecialConfiguration = AppConfigurationViewModel(title: "Hide specials",
+                                                             subtitle: "Will not show special episodes",
+                                                             value: .hideSpecials(wantsToHideSpecials: state.hideSpecials))
 
-    options.append(.hideSpecials)
-
-    return AppConfigurationsViewModel(title: "General", configurations: configurations)
+    return AppConfigurationsViewModel(title: "General", configurations: [hideSpecialConfiguration])
   }
 }
 

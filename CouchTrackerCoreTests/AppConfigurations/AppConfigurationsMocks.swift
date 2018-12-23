@@ -92,14 +92,16 @@ final class AppConfigurationsRouterMock: AppConfigurationsRouter {
   var invokedShowTraktLogin = false
   var invokedShowErrorMessage = false
   var invokedShowErrorMessageParameters: (message: String, Void)?
-  var showSourceCodeInvokedCount = 0
+  var showExternalURLInvokedCount = 0
+  var showExternalURLLastParameter: URL?
 
   func showTraktLogin(output _: TraktLoginOutput) {
     invokedShowTraktLogin = true
   }
 
-  func showSourceCode() {
-    showSourceCodeInvokedCount += 1
+  func showExternal(url: URL) {
+    showExternalURLInvokedCount += 1
+    showExternalURLLastParameter = url
   }
 
   func showError(message: String) {

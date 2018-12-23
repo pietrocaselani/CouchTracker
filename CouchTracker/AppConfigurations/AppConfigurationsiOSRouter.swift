@@ -26,8 +26,8 @@ final class AppConfigurationsiOSRouter: AppConfigurationsRouter {
     navigationController.pushViewController(loginViewController, animated: true)
   }
 
-  func showSourceCode() {
-    UIApplication.shared.open(Constants.githubURL, options: [String: Any](), completionHandler: nil)
+  func showExternal(url: URL) {
+    UIApplication.shared.open(url, options: [String: Any](), completionHandler: nil)
   }
 
   func showError(message: String) {

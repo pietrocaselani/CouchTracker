@@ -63,8 +63,10 @@ final class AppConfigurationsViewController: UIViewController, AppConfigurations
     switch configuration.value {
     case .none:
       cell.accessoryType = .none
-    case let .boolean(value):
-      cell.accessoryType = value ? .checkmark : .none
+    case let .hideSpecials(wantsToHideSpecials):
+      cell.accessoryType = wantsToHideSpecials ? .checkmark : .none
+    case let .traktLogin(wantsToLogin):
+      cell.accessoryType = wantsToLogin ? .checkmark : .none
     case .externalURL:
       cell.accessoryType = .disclosureIndicator
     }
@@ -77,8 +79,9 @@ extension AppConfigurationsViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
 
-    let index = indexPath.section + indexPath.row
+    let selectedConfigurationSection = configurationSections[indexPath.section]
+    let selectedConfiguration = selectedConfigurationSection.configurations[indexPath.row]
 
-    presenter.optionSelectedAt(index: index)
+    presenter.select(configuration: selectedConfiguration)
   }
 }

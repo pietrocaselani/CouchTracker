@@ -63,7 +63,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     let connectToTraktViewModel = AppConfigurationViewModel(title: "Connect to Trakt", subtitle: nil, value: .none)
     let traktViewModel = AppConfigurationsViewModel(title: "Trakt", configurations: [connectToTraktViewModel])
 
-    let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .boolean(value: false))
+    let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .hideSpecials(wantsToHideSpecials: false))
     let generalViewModel = AppConfigurationsViewModel(title: "General", configurations: [hideSpecialsViewModel])
 
     let goToGithubViewModel = AppConfigurationViewModel(title: "CouchTracker on GitHub", value: .externalURL(url: Constants.githubURL))
@@ -89,7 +89,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     let connectToTraktViewModel = AppConfigurationViewModel(title: "Connect to Trakt", subtitle: nil, value: .none)
     let traktViewModel = AppConfigurationsViewModel(title: "Trakt", configurations: [connectToTraktViewModel])
 
-    let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .boolean(value: false))
+    let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .hideSpecials(wantsToHideSpecials: false))
     let generalViewModel = AppConfigurationsViewModel(title: "General", configurations: [hideSpecialsViewModel])
 
     let goToGithubViewModel = AppConfigurationViewModel(title: "CouchTracker on GitHub", value: .externalURL(url: Constants.githubURL))
@@ -117,7 +117,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     let connectToTraktViewModel = AppConfigurationViewModel(title: "Connected", subtitle: expectedUserName, value: .none)
     let traktViewModel = AppConfigurationsViewModel(title: "Trakt", configurations: [connectToTraktViewModel])
 
-    let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .boolean(value: false))
+    let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .hideSpecials(wantsToHideSpecials: false))
     let generalViewModel = AppConfigurationsViewModel(title: "General", configurations: [hideSpecialsViewModel])
 
     let goToGithubViewModel = AppConfigurationViewModel(title: "CouchTracker on GitHub", value: .externalURL(url: Constants.githubURL))
@@ -140,7 +140,9 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 
     // When
     presenter.viewDidLoad()
-    presenter.optionSelectedAt(index: 0)
+
+    let connectToTrakt = AppConfigurationViewModel(title: "", subtitle: "", value: .none)
+    presenter.select(configuration: connectToTrakt)
 
     // Then
     XCTAssertFalse(router.invokedShowTraktLogin)
@@ -152,7 +154,8 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     presenter.viewDidLoad()
 
     // When
-    presenter.optionSelectedAt(index: 0)
+    let connectToTrakt = AppConfigurationViewModel(title: "", subtitle: "", value: .traktLogin(wantsToLogin: true))
+    presenter.select(configuration: connectToTrakt)
 
     // Then
     XCTAssertTrue(router.invokedShowTraktLogin)
@@ -164,10 +167,13 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     presenter.viewDidLoad()
 
     // When
-    presenter.optionSelectedAt(index: 2)
+    let url = URL(validURL: "https://github.com")
+    let connectToTrakt = AppConfigurationViewModel(title: "", subtitle: "", value: .externalURL(url: url))
+    presenter.select(configuration: connectToTrakt)
 
     // Then
-    XCTAssertEqual(router.showSourceCodeInvokedCount, 1)
+    XCTAssertEqual(router.showExternalURLInvokedCount, 1)
+    XCTAssertEqual(router.showExternalURLLastParameter, url)
   }
 
   func testAppConfigurationsPresenter_receivesEventToggleHideSpecials_notifyInteractor() {
@@ -176,7 +182,8 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     presenter.viewDidLoad()
 
     // When
-    presenter.optionSelectedAt(index: 1)
+    let connectToTrakt = AppConfigurationViewModel(title: "", subtitle: "", value: .hideSpecials(wantsToHideSpecials: false))
+    presenter.select(configuration: connectToTrakt)
 
     // Then
     XCTAssertTrue(interactor.toggleHideSpecialsInvoked)
