@@ -60,3 +60,11 @@ target 'CouchTrackerApp' do
 
   ios_pods
 end
+
+target 'CouchTracker' do
+  platform :ios, IOS_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  ios_pods
+end

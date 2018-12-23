@@ -27,7 +27,7 @@ final class AppConfigurationsiOSRouter: AppConfigurationsRouter {
   }
 
   func showExternal(url: URL) {
-    UIApplication.shared.open(url, options: [String: Any](), completionHandler: nil)
+			UIApplication.shared.open(url, options: [:], completionHandler: nil)
   }
 
   func showError(message: String) {

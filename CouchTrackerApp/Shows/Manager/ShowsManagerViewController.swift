@@ -4,8 +4,8 @@ import Tabman
 import UIKit
 
 final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
-  var presenter: ShowsManagerPresenter!
-  private var moduleViews: [BaseView]?
+	 var presenter: ShowsManagerPresenter!
+  private var pages = [ModulePage]()
   private var defaultPageIndex = 0
 
   override func awakeFromNib() {
@@ -15,7 +15,12 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
     navigationItem.title = nil
     dataSource = self
     delegate = self
-    bar.defaultCTAppearance()
+
+			// CT-TODO fix this
+			let bar = TMBar.ButtonBar()
+			addBar(bar, dataSource: self, at: .top)
+
+//    bar.defaultCTAppearance()
   }
 
   override func viewDidLoad() {
@@ -29,12 +34,10 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
   }
 
   func show(pages: [ModulePage], withDefault index: Int) {
-    moduleViews = pages.map { $0.page }
+			self.pages = pages
     defaultPageIndex = index
 
-    bar.items = pages.map { Item(title: $0.title) }
-
-    reloadPages()
+    reloadData()
   }
 
   func showNeedsTraktLogin() {
@@ -62,14 +65,20 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
   }
 }
 
+extension ShowsManagerViewController: TMBarDataSource {
+	func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
+		return TMBarItem(title: pages[index].title)
+	}
+}
+
 extension ShowsManagerViewController: PageboyViewControllerDataSource {
   func numberOfViewControllers(in _: PageboyViewController) -> Int {
-    return moduleViews?.count ?? 0
+    return pages.count
   }
 
   func viewController(for _: PageboyViewController,
                       at index: PageboyViewController.PageIndex) -> UIViewController? {
-    return moduleViews?[index] as? UIViewController
+			return pages[index].page as? UIViewController
   }
 
   func defaultPage(for _: PageboyViewController) -> PageboyViewController.Page? {

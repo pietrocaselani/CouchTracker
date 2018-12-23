@@ -23,7 +23,7 @@ final class SearchViewController: UIViewController, SearchResultOutput {
       Swift.fatalError("searchView should be an instance of UIView")
     }
 
-    collectionView.register(R.nib.posterCell(), forCellWithReuseIdentifier: R.nib.posterCell.identifier)
+			collectionView.register(R.nib.posterCell)
 
     searchViewContainer.addSubview(searchView)
     collectionView.dataSource = self
