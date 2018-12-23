@@ -54,7 +54,7 @@ final class Environment {
 
       debug = true
 
-      plugins.append(NetworkLoggerPlugin(verbose: true))
+      plugins.append(NetworkLoggerPlugin(verbose: false))
     #else
       debug = false
     #endif
