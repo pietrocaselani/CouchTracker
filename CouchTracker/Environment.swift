@@ -94,7 +94,7 @@ final class Environment {
 
     realmProvider = DefaultRealmProvider(buildConfig: buildConfig)
 
-    let appConfigurationsStore = AppConfigurationsStore(appState: AppConfigurationsState.initialState())
+    let appConfigurationsStore = AppConfigurationsStore(appState: Environment.getAppState(userDefaults: userDefaults))
 
     appConfigurationsOutput = appConfigurationsStore
     appConfigurationsObservable = appConfigurationsStore
