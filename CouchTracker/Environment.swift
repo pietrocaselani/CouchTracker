@@ -54,7 +54,7 @@ final class Environment {
 
       debug = true
 
-      plugins.append(NetworkLoggerPlugin(verbose: true))
+      plugins.append(NetworkLoggerPlugin(verbose: false))
     #else
       debug = false
     #endif
@@ -94,7 +94,7 @@ final class Environment {
 
     realmProvider = DefaultRealmProvider(buildConfig: buildConfig)
 
-    let appConfigurationsStore = AppConfigurationsStore(appState: AppConfigurationsState.initialState())
+    let appConfigurationsStore = AppConfigurationsStore(appState: Environment.getAppState(userDefaults: userDefaults))
 
     appConfigurationsOutput = appConfigurationsStore
     appConfigurationsObservable = appConfigurationsStore
