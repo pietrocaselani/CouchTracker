@@ -528,6 +528,10 @@
 		8209AB1221CEF3F40027BBF3 /* Bundle+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1121CEF3F40027BBF3 /* Bundle+Testing.swift */; };
 		8209AB1521CEF4970027BBF3 /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 8209AB1421CEF4970027BBF3 /* Fixtures */; };
 		8209AB1721CEF59F0027BBF3 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1621CEF59F0027BBF3 /* Fixtures.swift */; };
+		8209AB1921CF343E0027BBF3 /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1821CF343E0027BBF3 /* URLExtensions.swift */; };
+		8209AB1A21CF343E0027BBF3 /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1821CF343E0027BBF3 /* URLExtensions.swift */; };
+		8209AB1E21CF37EA0027BBF3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1D21CF37EA0027BBF3 /* Constants.swift */; };
+		8209AB2021CF3A010027BBF3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1D21CF37EA0027BBF3 /* Constants.swift */; };
 		821874AD2153122600E56040 /* SynchronizerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821874AC2153122600E56040 /* SynchronizerContract.swift */; };
 		8239F813216C159500A29F01 /* DefaultWatchedShowEntitiesDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8239F812216C159500A29F01 /* DefaultWatchedShowEntitiesDownloader.swift */; };
 		827BCD3D20EFF3F60080B242 /* ShowOverviewViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */; };
@@ -998,6 +1002,8 @@
 		8209AB1121CEF3F40027BBF3 /* Bundle+Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Testing.swift"; sourceTree = "<group>"; };
 		8209AB1421CEF4970027BBF3 /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fixtures; sourceTree = "<group>"; };
 		8209AB1621CEF59F0027BBF3 /* Fixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
+		8209AB1821CF343E0027BBF3 /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
+		8209AB1D21CF37EA0027BBF3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		821874AC2153122600E56040 /* SynchronizerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizerContract.swift; sourceTree = "<group>"; };
 		8239F812216C159500A29F01 /* DefaultWatchedShowEntitiesDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWatchedShowEntitiesDownloader.swift; sourceTree = "<group>"; };
 		827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOverviewViewState.swift; sourceTree = "<group>"; };
@@ -1140,7 +1146,6 @@
 				4F0F5921203D93C900B86CB8 /* Configuration */,
 				4F0F5920203D939500B86CB8 /* Core */,
 				4F0F56FE203D5F4C00B86CB8 /* CouchTrackerCore.h */,
-				82836EAC218EC2C10037A798 /* Defaults.swift */,
 				644EE1501F55E8C10053D631 /* Entities */,
 				4F562E04202E763500CB1AE0 /* EntityMappers */,
 				4F0F5922203D940900B86CB8 /* Extensions */,
@@ -1241,9 +1246,11 @@
 				4F236DBF202CB98E007FB1B9 /* BuildConfig.swift */,
 				4F778D1420412C2A00FBCC2C /* BundleProvider.swift */,
 				64CC08AC1F719B85004D164A /* CompositeLoginOutput.swift */,
+				8209AB1D21CF37EA0027BBF3 /* Constants.swift */,
 				829A590021B2404700B67753 /* Container.swift */,
 				82836EB4219034010037A798 /* CouchTrackerError.swift */,
 				4F236DC3202CB9C5007FB1B9 /* DefaultBuildConfig.swift */,
+				82836EAC218EC2C10037A798 /* Defaults.swift */,
 				641D497820222F40002A4EAD /* DefaultSchedulers.swift */,
 				64F05BF51F69527900E3B861 /* ImagesSize.swift */,
 				64BE632E1F4F6F3F002E55EA /* Localizable.swift */,
@@ -1276,6 +1283,7 @@
 				64BE63331F4F6F63002E55EA /* String+Localizable.swift */,
 				4F2F282821291EFD0000CC17 /* Show+Genres.swift */,
 				4F2F282B2129213B0000CC17 /* Movie+Genres.swift */,
+				8209AB1821CF343E0027BBF3 /* URLExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2919,6 +2927,7 @@
 				8239F813216C159500A29F01 /* DefaultWatchedShowEntitiesDownloader.swift in Sources */,
 				4F0F572F203D5FA000B86CB8 /* MovieEntity.swift in Sources */,
 				4F0F5730203D5FA000B86CB8 /* ShowEntity.swift in Sources */,
+				8209AB1E21CF37EA0027BBF3 /* Constants.swift in Sources */,
 				4F0F5731203D5FA000B86CB8 /* TrendingMovieEntity.swift in Sources */,
 				4F0F5732203D5FA000B86CB8 /* EpisodeEntityMapper.swift in Sources */,
 				4F3A5954204EBA850061ABB7 /* AppFlowDefaultPresenter.swift in Sources */,
@@ -2952,6 +2961,7 @@
 				4F0F574C203D5FA000B86CB8 /* MovieDetailsContract.swift in Sources */,
 				4F0F574D203D5FA000B86CB8 /* MovieDetailsError.swift in Sources */,
 				4F0F574E203D5FA000B86CB8 /* MovieDetailsDefaultPresenter.swift in Sources */,
+				8209AB1921CF343E0027BBF3 /* URLExtensions.swift in Sources */,
 				4F0F5751203D5FA000B86CB8 /* MovieDetailsService.swift in Sources */,
 				4F0F5754203D5FA000B86CB8 /* MoviesManagerContract.swift in Sources */,
 				4F0F5756203D5FA000B86CB8 /* MoviesManagerDefaultPresenter.swift in Sources */,
@@ -3207,6 +3217,7 @@
 				4F0F5878203D7B0A00B86CB8 /* BuildConfig.swift in Sources */,
 				4F0F5879203D7B0A00B86CB8 /* ConfigurationRepository.swift in Sources */,
 				4F0F587A203D7B0A00B86CB8 /* ConfigurationCachedRepository.swift in Sources */,
+				8209AB2021CF3A010027BBF3 /* Constants.swift in Sources */,
 				4F0F587B203D7B0A00B86CB8 /* DefaultBuildConfig.swift in Sources */,
 				4F3A5955204EBA850061ABB7 /* AppFlowDefaultPresenter.swift in Sources */,
 				4F0F587C203D7B0A00B86CB8 /* DefaultSchedulers.swift in Sources */,
@@ -3240,6 +3251,7 @@
 				4F0F5891203D7B0A00B86CB8 /* String+Localizable.swift in Sources */,
 				4F0F5896203D7B0A00B86CB8 /* GenreRepository.swift in Sources */,
 				4F0F5897203D7B0A00B86CB8 /* TraktGenreRepository.swift in Sources */,
+				8209AB1A21CF343E0027BBF3 /* URLExtensions.swift in Sources */,
 				4F0F5898203D7B0A00B86CB8 /* EpisodeImageInput.swift in Sources */,
 				4F0F5899203D7B0A00B86CB8 /* ImageCachedRepository.swift in Sources */,
 				4F0F589A203D7B0A00B86CB8 /* ImageRepository.swift in Sources */,

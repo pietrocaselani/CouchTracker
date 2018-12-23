@@ -24,6 +24,8 @@ public final class AppConfigurationsDefaultPresenter: AppConfigurationsPresenter
       router.showTraktLogin(output: self)
     case .hideSpecials:
       interactor.toggleHideSpecials().subscribe().disposed(by: disposeBag)
+    case .goToGithub:
+      router.showSourceCode()
     default: break
     }
   }
@@ -42,8 +44,9 @@ public final class AppConfigurationsDefaultPresenter: AppConfigurationsPresenter
   private func createViewModel(_ appConfigurationsState: AppConfigurationsState) -> [AppConfigurationsViewModel] {
     let traktConfigs = traktConfigurationsViewModel(appConfigurationsState)
     let generalConfigs = generalConfigurationsViewModel(appConfigurationsState)
+    let otherConfigs = otherConfigurationsViewModel()
 
-    return [traktConfigs, generalConfigs]
+    return [traktConfigs, generalConfigs, otherConfigs]
   }
 
   private func traktConfigurationsViewModel(_ state: AppConfigurationsState) -> AppConfigurationsViewModel {
@@ -68,6 +71,13 @@ public final class AppConfigurationsDefaultPresenter: AppConfigurationsPresenter
     options.append(connectedOption)
 
     return AppConfigurationsViewModel(title: "Trakt", configurations: configurations)
+  }
+
+  private func otherConfigurationsViewModel() -> AppConfigurationsViewModel {
+    options.append(.goToGithub)
+    let value = AppConfigurationViewModelValue.externalURL(url: Constants.githubURL)
+    let appOnGithub = AppConfigurationViewModel(title: "\(Constants.appName) on GitHub", subtitle: nil, value: value)
+    return AppConfigurationsViewModel(title: "Other", configurations: [appOnGithub])
   }
 
   private func generalConfigurationsViewModel(_ state: AppConfigurationsState) -> AppConfigurationsViewModel {

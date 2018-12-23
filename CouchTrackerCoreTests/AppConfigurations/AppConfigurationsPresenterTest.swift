@@ -66,7 +66,10 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .boolean(value: false))
     let generalViewModel = AppConfigurationsViewModel(title: "General", configurations: [hideSpecialsViewModel])
 
-    let viewModels = [traktViewModel, generalViewModel]
+    let goToGithubViewModel = AppConfigurationViewModel(title: "CouchTracker on GitHub", value: .externalURL(url: Constants.githubURL))
+    let otherViewModel = AppConfigurationsViewModel(title: "Other", configurations: [goToGithubViewModel])
+
+    let viewModels = [traktViewModel, generalViewModel, otherViewModel]
 
     if view.invokedShowConfigurationsParameters?.models == nil {
       XCTFail("Parameters can't be nil")
@@ -89,7 +92,10 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .boolean(value: false))
     let generalViewModel = AppConfigurationsViewModel(title: "General", configurations: [hideSpecialsViewModel])
 
-    let viewModels = [traktViewModel, generalViewModel]
+    let goToGithubViewModel = AppConfigurationViewModel(title: "CouchTracker on GitHub", value: .externalURL(url: Constants.githubURL))
+    let otherViewModel = AppConfigurationsViewModel(title: "Other", configurations: [goToGithubViewModel])
+
+    let viewModels = [traktViewModel, generalViewModel, otherViewModel]
 
     XCTAssertTrue(view.invokedShowConfigurations)
     if view.invokedShowConfigurationsParameters?.models == nil {
@@ -114,7 +120,10 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .boolean(value: false))
     let generalViewModel = AppConfigurationsViewModel(title: "General", configurations: [hideSpecialsViewModel])
 
-    let viewModels = [traktViewModel, generalViewModel]
+    let goToGithubViewModel = AppConfigurationViewModel(title: "CouchTracker on GitHub", value: .externalURL(url: Constants.githubURL))
+    let otherViewModel = AppConfigurationsViewModel(title: "Other", configurations: [goToGithubViewModel])
+
+    let viewModels = [traktViewModel, generalViewModel, otherViewModel]
 
     XCTAssertTrue(view.invokedShowConfigurations)
 
@@ -147,6 +156,18 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 
     // Then
     XCTAssertTrue(router.invokedShowTraktLogin)
+  }
+
+  func testAppConfigurationsPresenter_receivesEventGoToGithubFromView_notifyRouter() {
+    // Given
+    setupModule(empty: true)
+    presenter.viewDidLoad()
+
+    // When
+    presenter.optionSelectedAt(index: 2)
+
+    // Then
+    XCTAssertEqual(router.showSourceCodeInvokedCount, 1)
   }
 
   func testAppConfigurationsPresenter_receivesEventToggleHideSpecials_notifyInteractor() {

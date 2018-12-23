@@ -21,6 +21,7 @@ public protocol AppConfigurationsDataSource: class {
 
 public protocol AppConfigurationsRouter: class {
   func showTraktLogin(output: TraktLoginOutput)
+  func showSourceCode()
   func showError(message: String)
 }
 

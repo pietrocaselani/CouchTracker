@@ -65,6 +65,8 @@ final class AppConfigurationsViewController: UIViewController, AppConfigurations
       cell.accessoryType = .none
     case let .boolean(value):
       cell.accessoryType = value ? .checkmark : .none
+    case .externalURL:
+      cell.accessoryType = .disclosureIndicator
     }
 
     return cell
