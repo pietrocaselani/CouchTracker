@@ -186,8 +186,6 @@
 		4F0F580C203D61B300B86CB8 /* TrendingCacheRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD27A3B201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift */; };
 		4F0F5815203D6AC500B86CB8 /* TrendingShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F5811203D6AB500B86CB8 /* TrendingShowEntity.swift */; };
 		4F0F5820203D779A00B86CB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6476323C1F44824900F277F1 /* AppDelegate.swift */; };
-		4F0F582B203D779A00B86CB8 /* MovieDetailsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BF011F4DC41F004661C4 /* MovieDetailsModule.swift */; };
-		4F0F582C203D779A00B86CB8 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BF021F4DC41F004661C4 /* MovieDetailsViewController.swift */; };
 		4F0F582D203D779A00B86CB8 /* MoviesManageriOSModuleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC4102015460700AA0DC8 /* MoviesManageriOSModuleSetup.swift */; };
 		4F0F582E203D779A00B86CB8 /* MoviesManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC41C201549C100AA0DC8 /* MoviesManagerModule.swift */; };
 		4F0F582F203D779A00B86CB8 /* MoviesManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC4162015477F00AA0DC8 /* MoviesManagerViewController.swift */; };
@@ -476,7 +474,6 @@
 		5CF9C604B2D557B254CBF0B1 /* Pods_CouchTrackerCore_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC3B67169894ACEFB3998C8 /* Pods_CouchTrackerCore_iOS.framework */; };
 		640373111FABA80E005023D5 /* trakt_movies_trending.json in Resources */ = {isa = PBXBuildFile; fileRef = 640373101FABA80E005023D5 /* trakt_movies_trending.json */; };
 		640373131FABA8CD005023D5 /* trakt_movies_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 640373121FABA8CD005023D5 /* trakt_movies_summary.json */; };
-		6406BF031F4DC41F004661C4 /* MovieDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6406BF001F4DC41F004661C4 /* MovieDetails.storyboard */; };
 		641B9D431F7D7D9C00C26D10 /* ShowManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 641B9D421F7D7D9C00C26D10 /* ShowManager.storyboard */; };
 		6434C3A31F836762009B5A9F /* ShowEpisode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6434C3A21F836762009B5A9F /* ShowEpisode.storyboard */; };
 		6448372C2023C402008ECE2B /* trakt_shows_watchedprogress_without_nextepisode.json in Resources */ = {isa = PBXBuildFile; fileRef = 6448372B2023C402008ECE2B /* trakt_shows_watchedprogress_without_nextepisode.json */; };
@@ -524,6 +521,9 @@
 		8204070321D003F200127F05 /* UIAlertController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE63201F4F6893002E55EA /* UIAlertController+Error.swift */; };
 		8204070421D003F200127F05 /* UIColor+CouchTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BEDB1F4DC353004661C4 /* UIColor+CouchTracker.swift */; };
 		8204070521D003F200127F05 /* UIViewController+BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE633B1F4F7ED7002E55EA /* UIViewController+BaseView.swift */; };
+		8204070621D0041300127F05 /* MovieDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6406BF001F4DC41F004661C4 /* MovieDetails.storyboard */; };
+		8204070721D0041300127F05 /* MovieDetailsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BF011F4DC41F004661C4 /* MovieDetailsModule.swift */; };
+		8204070821D0041300127F05 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BF021F4DC41F004661C4 /* MovieDetailsViewController.swift */; };
 		8209AB0B21CED6800027BBF3 /* Error+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB0A21CED6800027BBF3 /* Error+Mock.swift */; };
 		8209AB1021CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB0F21CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift */; };
 		8209AB1221CEF3F40027BBF3 /* Bundle+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1121CEF3F40027BBF3 /* Bundle+Testing.swift */; };
@@ -1969,7 +1969,6 @@
 				647632431F44824900F277F1 /* Assets.xcassets */,
 				647632481F44824900F277F1 /* Info.plist */,
 				647632451F44824900F277F1 /* LaunchScreen.storyboard */,
-				6406BEBB1F4DBEFA004661C4 /* MovieDetails */,
 				4F6DC40A2015448800AA0DC8 /* Movies */,
 				64D2FFD91F44DFEA009E9ED3 /* R.generated.swift */,
 				648390E31F504EE500911BA0 /* Search */,
@@ -2216,6 +2215,7 @@
 				64CC08B01F71A0D1004D164A /* Environment.swift */,
 				6406BED61F4DC353004661C4 /* Extensions */,
 				820406F021D0032100127F05 /* Info.plist */,
+				6406BEBB1F4DBEFA004661C4 /* MovieDetails */,
 			);
 			path = CouchTrackerApp;
 			sourceTree = "<group>";
@@ -2617,7 +2617,6 @@
 			files = (
 				4F9CE319205B1A080000CCD4 /* PosterCell.xib in Resources */,
 				64CB90B41F7291400026B139 /* ShowsProgress.storyboard in Resources */,
-				6406BF031F4DC41F004661C4 /* MovieDetails.storyboard in Resources */,
 				64B03EDC1F471BC1009E37C9 /* Trending.storyboard in Resources */,
 				644E903E1F72985C0089CD70 /* ShowsNow.storyboard in Resources */,
 				647632471F44824900F277F1 /* LaunchScreen.storyboard in Resources */,
@@ -2676,6 +2675,7 @@
 			files = (
 				820406FD21D003A500127F05 /* AppFlow.storyboard in Resources */,
 				820406F921D0036400127F05 /* AppConfigurations.storyboard in Resources */,
+				8204070621D0041300127F05 /* MovieDetails.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3446,8 +3446,6 @@
 				4F0F5820203D779A00B86CB8 /* AppDelegate.swift in Sources */,
 				4FFA6B2520EB1984008E0B78 /* ShowOverviewViewController.swift in Sources */,
 				82836EB8219039DA0037A798 /* ShowSeasonsViewController.swift in Sources */,
-				4F0F582B203D779A00B86CB8 /* MovieDetailsModule.swift in Sources */,
-				4F0F582C203D779A00B86CB8 /* MovieDetailsViewController.swift in Sources */,
 				4F0F582D203D779A00B86CB8 /* MoviesManageriOSModuleSetup.swift in Sources */,
 				4F0F582E203D779A00B86CB8 /* MoviesManagerModule.swift in Sources */,
 				4F0F582F203D779A00B86CB8 /* MoviesManagerViewController.swift in Sources */,
@@ -3505,6 +3503,7 @@
 			files = (
 				8204070221D003F200127F05 /* Tabman+CouchTracker.swift in Sources */,
 				820406FE21D003A500127F05 /* AppFlowiOSModuleDataSource.swift in Sources */,
+				8204070821D0041300127F05 /* MovieDetailsViewController.swift in Sources */,
 				820406FF21D003A500127F05 /* AppFlowModule.swift in Sources */,
 				8204070321D003F200127F05 /* UIAlertController+Error.swift in Sources */,
 				820406FB21D0036400127F05 /* AppConfigurationsModule.swift in Sources */,
@@ -3514,6 +3513,7 @@
 				820406FC21D0036400127F05 /* AppConfigurationsViewController.swift in Sources */,
 				8204070421D003F200127F05 /* UIColor+CouchTracker.swift in Sources */,
 				8204070521D003F200127F05 /* UIViewController+BaseView.swift in Sources */,
+				8204070721D0041300127F05 /* MovieDetailsModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
