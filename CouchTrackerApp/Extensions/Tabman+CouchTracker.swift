@@ -1,14 +1,21 @@
 import Tabman
 
-// CT-TODO fix this
-// extension TabmanBar.Config {
-//  func defaultCTAppearance() {
-//    style = .scrollingButtonBar
-//    appearance = TabmanBar.Appearance({ appearance in
-//      appearance.style.background = .solid(color: UIColor.ctdarkerBunker)
-//      appearance.state.selectedColor = UIColor.white
-//      appearance.state.color = UIColor.lightGray
-//      appearance.indicator.color = UIColor.ctfog
-//    })
-//  }
-// }
+protocol TMBarCouchTracker {}
+
+extension TMBarCouchTracker {
+  func defaultCTBar() -> TMBar.ButtonBar {
+    let bar = TMBar.ButtonBar()
+
+    bar.backgroundView.style = .flat(color: .ctdarkerBunker)
+    bar.indicator.tintColor = .ctfog
+    bar.indicator.weight = .light
+    bar.buttons.customize { button in
+      button.selectedTintColor = .white
+      button.tintColor = .lightGray
+      button.font = button.font.withSize(UIFont.systemFontSize)
+      button.selectedFont = button.selectedFont?.withSize(UIFont.systemFontSize)
+    }
+
+    return bar
+  }
+}

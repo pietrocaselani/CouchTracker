@@ -3,7 +3,7 @@ import Pageboy
 import Tabman
 import UIKit
 
-final class ShowManagerViewController: TabmanViewController, ShowManagerView {
+final class ShowManagerViewController: TabmanViewController, ShowManagerView, TMBarCouchTracker {
   var presenter: ShowManagerPresenter!
   private var pages = [ModulePage]()
   private var defaultPageIndex = 0
@@ -15,7 +15,7 @@ final class ShowManagerViewController: TabmanViewController, ShowManagerView {
     delegate = self
 
     // CT-TODO fix this
-    let bar = TMBar.ButtonBar()
+    let bar = defaultCTBar()
     addBar(bar, dataSource: self, at: .top)
 
 //    bar.defaultCTAppearance()
