@@ -21,6 +21,7 @@ public protocol AppConfigurationsDataSource: class {
 
 public protocol AppConfigurationsRouter: class {
   func showTraktLogin(output: TraktLoginOutput)
+  func showExternal(url: URL)
   func showError(message: String)
 }
 
@@ -35,15 +36,11 @@ public protocol AppConfigurationsPresenter: class {
   init(view: AppConfigurationsView, interactor: AppConfigurationsInteractor, router: AppConfigurationsRouter)
 
   func viewDidLoad()
-  func optionSelectedAt(index: Int)
+  func select(configuration: AppConfigurationViewModel)
 }
 
 public protocol AppConfigurationsView: class {
   var presenter: AppConfigurationsPresenter! { get set }
 
   func showConfigurations(models: [AppConfigurationsViewModel])
-}
-
-public protocol AppConfigurationsPresentable: class {
-  func showAppSettings()
 }

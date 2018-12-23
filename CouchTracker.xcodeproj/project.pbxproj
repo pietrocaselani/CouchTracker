@@ -14,7 +14,6 @@
 		4F09A6FF207FD9DB00E0A64C /* SearchResultMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F09A6FE207FD9DB00E0A64C /* SearchResultMock.swift */; };
 		4F0F5705203D5F4C00B86CB8 /* CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F56FC203D5F4C00B86CB8 /* CouchTrackerCore.framework */; };
 		4F0F570C203D5F4D00B86CB8 /* CouchTrackerCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F0F56FE203D5F4C00B86CB8 /* CouchTrackerCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4F0F5713203D5FA000B86CB8 /* AppConfigurationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BF5061F6B07AF0010CE35 /* AppConfigurationOptions.swift */; };
 		4F0F5714203D5FA000B86CB8 /* AppConfigurationsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BF5071F6B07AF0010CE35 /* AppConfigurationsContract.swift */; };
 		4F0F5715203D5FA000B86CB8 /* AppConfigurationsDefaultRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BF50B1F6B07AF0010CE35 /* AppConfigurationsDefaultRepository.swift */; };
 		4F0F5716203D5FA000B86CB8 /* AppConfigurationsDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BF5081F6B07AF0010CE35 /* AppConfigurationsDefaultPresenter.swift */; };
@@ -232,7 +231,6 @@
 		4F0F584F203D789C00B86CB8 /* DefaultBuildConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F236DC3202CB9C5007FB1B9 /* DefaultBuildConfig.swift */; };
 		4F0F5850203D789C00B86CB8 /* DefaultSchedulers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D497820222F40002A4EAD /* DefaultSchedulers.swift */; };
 		4F0F585C203D7A5B00B86CB8 /* CouchTrackerCore_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F0F585A203D7A5B00B86CB8 /* CouchTrackerCore_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4F0F5865203D7B0A00B86CB8 /* AppConfigurationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BF5061F6B07AF0010CE35 /* AppConfigurationOptions.swift */; };
 		4F0F5866203D7B0A00B86CB8 /* AppConfigurationsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BF5071F6B07AF0010CE35 /* AppConfigurationsContract.swift */; };
 		4F0F5867203D7B0A00B86CB8 /* AppConfigurationsDefaultRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BF50B1F6B07AF0010CE35 /* AppConfigurationsDefaultRepository.swift */; };
 		4F0F5868203D7B0A00B86CB8 /* AppConfigurationsDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BF5081F6B07AF0010CE35 /* AppConfigurationsDefaultPresenter.swift */; };
@@ -528,6 +526,10 @@
 		8209AB1221CEF3F40027BBF3 /* Bundle+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1121CEF3F40027BBF3 /* Bundle+Testing.swift */; };
 		8209AB1521CEF4970027BBF3 /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 8209AB1421CEF4970027BBF3 /* Fixtures */; };
 		8209AB1721CEF59F0027BBF3 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1621CEF59F0027BBF3 /* Fixtures.swift */; };
+		8209AB1921CF343E0027BBF3 /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1821CF343E0027BBF3 /* URLExtensions.swift */; };
+		8209AB1A21CF343E0027BBF3 /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1821CF343E0027BBF3 /* URLExtensions.swift */; };
+		8209AB1E21CF37EA0027BBF3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1D21CF37EA0027BBF3 /* Constants.swift */; };
+		8209AB2021CF3A010027BBF3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1D21CF37EA0027BBF3 /* Constants.swift */; };
 		821874AD2153122600E56040 /* SynchronizerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821874AC2153122600E56040 /* SynchronizerContract.swift */; };
 		8239F813216C159500A29F01 /* DefaultWatchedShowEntitiesDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8239F812216C159500A29F01 /* DefaultWatchedShowEntitiesDownloader.swift */; };
 		827BCD3D20EFF3F60080B242 /* ShowOverviewViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */; };
@@ -823,7 +825,6 @@
 		6442F9FA1F61A0E4008E3E12 /* ShowOverviewContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOverviewContract.swift; sourceTree = "<group>"; };
 		6448372B2023C402008ECE2B /* trakt_shows_watchedprogress_without_nextepisode.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_shows_watchedprogress_without_nextepisode.json; sourceTree = "<group>"; };
 		6448372D2023CF4D008ECE2B /* tvdb_episodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tvdb_episodes.json; sourceTree = "<group>"; };
-		644BF5061F6B07AF0010CE35 /* AppConfigurationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigurationOptions.swift; sourceTree = "<group>"; };
 		644BF5071F6B07AF0010CE35 /* AppConfigurationsContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigurationsContract.swift; sourceTree = "<group>"; };
 		644BF5081F6B07AF0010CE35 /* AppConfigurationsDefaultPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigurationsDefaultPresenter.swift; sourceTree = "<group>"; };
 		644BF5091F6B07AF0010CE35 /* AppConfigurationsiOSRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigurationsiOSRouter.swift; sourceTree = "<group>"; };
@@ -998,6 +999,8 @@
 		8209AB1121CEF3F40027BBF3 /* Bundle+Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Testing.swift"; sourceTree = "<group>"; };
 		8209AB1421CEF4970027BBF3 /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fixtures; sourceTree = "<group>"; };
 		8209AB1621CEF59F0027BBF3 /* Fixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
+		8209AB1821CF343E0027BBF3 /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
+		8209AB1D21CF37EA0027BBF3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		821874AC2153122600E56040 /* SynchronizerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizerContract.swift; sourceTree = "<group>"; };
 		8239F812216C159500A29F01 /* DefaultWatchedShowEntitiesDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWatchedShowEntitiesDownloader.swift; sourceTree = "<group>"; };
 		827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOverviewViewState.swift; sourceTree = "<group>"; };
@@ -1140,7 +1143,6 @@
 				4F0F5921203D93C900B86CB8 /* Configuration */,
 				4F0F5920203D939500B86CB8 /* Core */,
 				4F0F56FE203D5F4C00B86CB8 /* CouchTrackerCore.h */,
-				82836EAC218EC2C10037A798 /* Defaults.swift */,
 				644EE1501F55E8C10053D631 /* Entities */,
 				4F562E04202E763500CB1AE0 /* EntityMappers */,
 				4F0F5922203D940900B86CB8 /* Extensions */,
@@ -1218,7 +1220,6 @@
 		4F0F591F203D934400B86CB8 /* AppConfigurations */ = {
 			isa = PBXGroup;
 			children = (
-				644BF5061F6B07AF0010CE35 /* AppConfigurationOptions.swift */,
 				644BF5071F6B07AF0010CE35 /* AppConfigurationsContract.swift */,
 				644BF50B1F6B07AF0010CE35 /* AppConfigurationsDefaultRepository.swift */,
 				644BF5081F6B07AF0010CE35 /* AppConfigurationsDefaultPresenter.swift */,
@@ -1241,9 +1242,11 @@
 				4F236DBF202CB98E007FB1B9 /* BuildConfig.swift */,
 				4F778D1420412C2A00FBCC2C /* BundleProvider.swift */,
 				64CC08AC1F719B85004D164A /* CompositeLoginOutput.swift */,
+				8209AB1D21CF37EA0027BBF3 /* Constants.swift */,
 				829A590021B2404700B67753 /* Container.swift */,
 				82836EB4219034010037A798 /* CouchTrackerError.swift */,
 				4F236DC3202CB9C5007FB1B9 /* DefaultBuildConfig.swift */,
+				82836EAC218EC2C10037A798 /* Defaults.swift */,
 				641D497820222F40002A4EAD /* DefaultSchedulers.swift */,
 				64F05BF51F69527900E3B861 /* ImagesSize.swift */,
 				64BE632E1F4F6F3F002E55EA /* Localizable.swift */,
@@ -1276,6 +1279,7 @@
 				64BE63331F4F6F63002E55EA /* String+Localizable.swift */,
 				4F2F282821291EFD0000CC17 /* Show+Genres.swift */,
 				4F2F282B2129213B0000CC17 /* Movie+Genres.swift */,
+				8209AB1821CF343E0027BBF3 /* URLExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2886,7 +2890,6 @@
 			files = (
 				4F0F584F203D789C00B86CB8 /* DefaultBuildConfig.swift in Sources */,
 				4F0F5850203D789C00B86CB8 /* DefaultSchedulers.swift in Sources */,
-				4F0F5713203D5FA000B86CB8 /* AppConfigurationOptions.swift in Sources */,
 				4F0F5714203D5FA000B86CB8 /* AppConfigurationsContract.swift in Sources */,
 				4FCF133220FF678300122734 /* ShowEpisodeImageState.swift in Sources */,
 				4FEF6AE52125A0E300B7CF63 /* EpisodeDetailsAPIRepository.swift in Sources */,
@@ -2919,6 +2922,7 @@
 				8239F813216C159500A29F01 /* DefaultWatchedShowEntitiesDownloader.swift in Sources */,
 				4F0F572F203D5FA000B86CB8 /* MovieEntity.swift in Sources */,
 				4F0F5730203D5FA000B86CB8 /* ShowEntity.swift in Sources */,
+				8209AB1E21CF37EA0027BBF3 /* Constants.swift in Sources */,
 				4F0F5731203D5FA000B86CB8 /* TrendingMovieEntity.swift in Sources */,
 				4F0F5732203D5FA000B86CB8 /* EpisodeEntityMapper.swift in Sources */,
 				4F3A5954204EBA850061ABB7 /* AppFlowDefaultPresenter.swift in Sources */,
@@ -2952,6 +2956,7 @@
 				4F0F574C203D5FA000B86CB8 /* MovieDetailsContract.swift in Sources */,
 				4F0F574D203D5FA000B86CB8 /* MovieDetailsError.swift in Sources */,
 				4F0F574E203D5FA000B86CB8 /* MovieDetailsDefaultPresenter.swift in Sources */,
+				8209AB1921CF343E0027BBF3 /* URLExtensions.swift in Sources */,
 				4F0F5751203D5FA000B86CB8 /* MovieDetailsService.swift in Sources */,
 				4F0F5754203D5FA000B86CB8 /* MoviesManagerContract.swift in Sources */,
 				4F0F5756203D5FA000B86CB8 /* MoviesManagerDefaultPresenter.swift in Sources */,
@@ -3185,7 +3190,6 @@
 				4F0F5942203D988300B86CB8 /* TraktTokenPolicyDecider.swift in Sources */,
 				4F0F591B203D7E9900B86CB8 /* MovieDetailsService.swift in Sources */,
 				4FE4BA3D2059EA2B00969AAF /* PosterViewModel.swift in Sources */,
-				4F0F5865203D7B0A00B86CB8 /* AppConfigurationOptions.swift in Sources */,
 				4FE6C60E205FCB8800444B12 /* SearchResultDefaultPresenter.swift in Sources */,
 				82930A1C216C1C8500A824F6 /* DefaultWatchedShowEntityDownloader.swift in Sources */,
 				4F458B1D20DD86E3008595D8 /* SyncMovieResult.swift in Sources */,
@@ -3207,6 +3211,7 @@
 				4F0F5878203D7B0A00B86CB8 /* BuildConfig.swift in Sources */,
 				4F0F5879203D7B0A00B86CB8 /* ConfigurationRepository.swift in Sources */,
 				4F0F587A203D7B0A00B86CB8 /* ConfigurationCachedRepository.swift in Sources */,
+				8209AB2021CF3A010027BBF3 /* Constants.swift in Sources */,
 				4F0F587B203D7B0A00B86CB8 /* DefaultBuildConfig.swift in Sources */,
 				4F3A5955204EBA850061ABB7 /* AppFlowDefaultPresenter.swift in Sources */,
 				4F0F587C203D7B0A00B86CB8 /* DefaultSchedulers.swift in Sources */,
@@ -3240,6 +3245,7 @@
 				4F0F5891203D7B0A00B86CB8 /* String+Localizable.swift in Sources */,
 				4F0F5896203D7B0A00B86CB8 /* GenreRepository.swift in Sources */,
 				4F0F5897203D7B0A00B86CB8 /* TraktGenreRepository.swift in Sources */,
+				8209AB1A21CF343E0027BBF3 /* URLExtensions.swift in Sources */,
 				4F0F5898203D7B0A00B86CB8 /* EpisodeImageInput.swift in Sources */,
 				4F0F5899203D7B0A00B86CB8 /* ImageCachedRepository.swift in Sources */,
 				4F0F589A203D7B0A00B86CB8 /* ImageRepository.swift in Sources */,

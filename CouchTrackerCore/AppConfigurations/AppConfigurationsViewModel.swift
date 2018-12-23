@@ -1,3 +1,5 @@
+import Foundation
+
 public struct AppConfigurationsViewModel: Hashable {
   public let title: String
   public let configurations: [AppConfigurationViewModel]
@@ -20,6 +22,12 @@ public struct AppConfigurationViewModel: Hashable {
   public let subtitle: String?
   public let value: AppConfigurationViewModelValue
 
+  init(title: String, subtitle: String? = nil, value: AppConfigurationViewModelValue) {
+    self.title = title
+    self.subtitle = subtitle
+    self.value = value
+  }
+
   public var hashValue: Int {
     var hash = title.hashValue
 
@@ -37,5 +45,7 @@ public struct AppConfigurationViewModel: Hashable {
 
 public enum AppConfigurationViewModelValue {
   case none
-  case boolean(value: Bool)
+  case traktLogin(wantsToLogin: Bool)
+  case externalURL(url: URL)
+  case hideSpecials(wantsToHideSpecials: Bool)
 }

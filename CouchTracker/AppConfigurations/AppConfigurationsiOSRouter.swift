@@ -26,6 +26,10 @@ final class AppConfigurationsiOSRouter: AppConfigurationsRouter {
     navigationController.pushViewController(loginViewController, animated: true)
   }
 
+  func showExternal(url: URL) {
+    UIApplication.shared.open(url, options: [String: Any](), completionHandler: nil)
+  }
+
   func showError(message: String) {
     guard let view = viewController else { return }
 

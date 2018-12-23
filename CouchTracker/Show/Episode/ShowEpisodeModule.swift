@@ -11,7 +11,6 @@ final class ShowEpisodeModule {
     let tmdb = Environment.instance.tmdb
     let tvdb = Environment.instance.tvdb
     let schedulers = Environment.instance.schedulers
-    let realmProvider = Environment.instance.realmProvider
     let appConfigsObservable = Environment.instance.appConfigurationsObservable
     let hideSpecials = Environment.instance.currentAppState.hideSpecials
     let showSynchronizer = Environment.instance.showSynchronizer

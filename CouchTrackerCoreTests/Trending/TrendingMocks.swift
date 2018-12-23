@@ -6,7 +6,6 @@ import TraktSwift
 let trendingRepositoryMock = TrendingRepositoryMock(traktProvider: createTraktProviderMock())
 
 final class TrendingViewMock: TrendingView {
-  var appConfigurationsPresentable: AppConfigurationsPresentable!
   var presenter: TrendingPresenter!
   var searchView: SearchView!
   var invokedShowEmptyView = false
@@ -22,7 +21,7 @@ final class TrendingViewMock: TrendingView {
   }
 }
 
-final class TrendingRouterMock: TrendingRouter, AppConfigurationsPresentable {
+final class TrendingRouterMock: TrendingRouter {
   var invokedMovieDetails = false
   var invokedMovieDetailsParameters: (movie: MovieEntity, Void)?
 
@@ -45,12 +44,6 @@ final class TrendingRouterMock: TrendingRouter, AppConfigurationsPresentable {
   func showError(message: String) {
     invokedShowError = true
     invokedShowErrorParameters = (message, ())
-  }
-
-  var invokedShowAppSettings = false
-
-  func showAppSettings() {
-    invokedShowAppSettings = true
   }
 }
 
