@@ -71,11 +71,11 @@ final class ShowOverviewViewController: UIViewController, ShowOverviewView {
 
   func show(images: ImagesViewModel) {
     if let posterLink = images.posterLink {
-					posterImageView.kf.setImage(with: URL(string: posterLink), placeholder: R.image.posterPlacehoder())
+      posterImageView.kf.setImage(with: URL(string: posterLink), placeholder: R.image.posterPlacehoder())
     }
 
     if let backdropLink = images.backdropLink {
-					backdropImageView.kf.setImage(with: URL(string: backdropLink), placeholder: R.image.backdropPlaceholder())
+      backdropImageView.kf.setImage(with: URL(string: backdropLink), placeholder: R.image.backdropPlaceholder())
     }
   }
 }

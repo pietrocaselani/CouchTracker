@@ -14,9 +14,9 @@ final class ShowManagerViewController: TabmanViewController, ShowManagerView {
     dataSource = self
     delegate = self
 
-			// CT-TODO fix this
-			let bar = TMBar.ButtonBar()
-			addBar(bar, dataSource: self, at: .top)
+    // CT-TODO fix this
+    let bar = TMBar.ButtonBar()
+    addBar(bar, dataSource: self, at: .top)
 
 //    bar.defaultCTAppearance()
   }
@@ -35,7 +35,7 @@ final class ShowManagerViewController: TabmanViewController, ShowManagerView {
     self.pages = pages
     defaultPageIndex = index
 
-			reloadData()
+    reloadData()
   }
 
   override func pageboyViewController(_ pageboyViewController: PageboyViewController, didScrollToPageAt index: Int,
@@ -48,9 +48,9 @@ final class ShowManagerViewController: TabmanViewController, ShowManagerView {
 }
 
 extension ShowManagerViewController: TMBarDataSource {
-	func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
-		return TMBarItem(title: pages[index].title)
-	}
+  func barItem(for _: TMBar, at index: Int) -> TMBarItemable {
+    return TMBarItem(title: pages[index].title)
+  }
 }
 
 extension ShowManagerViewController: PageboyViewControllerDataSource {

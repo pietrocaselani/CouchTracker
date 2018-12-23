@@ -4,7 +4,7 @@ import Tabman
 import UIKit
 
 final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
-	 var presenter: ShowsManagerPresenter!
+  var presenter: ShowsManagerPresenter!
   private var pages = [ModulePage]()
   private var defaultPageIndex = 0
 
@@ -16,9 +16,10 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
     dataSource = self
     delegate = self
 
-			// CT-TODO fix this
-			let bar = TMBar.ButtonBar()
-			addBar(bar, dataSource: self, at: .top)
+    // CT-TODO fix this
+    let bar = TMBar.ButtonBar()
+
+    addBar(bar, dataSource: self, at: .top)
 
 //    bar.defaultCTAppearance()
   }
@@ -34,7 +35,7 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
   }
 
   func show(pages: [ModulePage], withDefault index: Int) {
-			self.pages = pages
+    self.pages = pages
     defaultPageIndex = index
 
     reloadData()
@@ -66,9 +67,9 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView {
 }
 
 extension ShowsManagerViewController: TMBarDataSource {
-	func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
-		return TMBarItem(title: pages[index].title)
-	}
+  func barItem(for _: TMBar, at index: Int) -> TMBarItemable {
+    return TMBarItem(title: pages[index].title)
+  }
 }
 
 extension ShowsManagerViewController: PageboyViewControllerDataSource {
@@ -78,7 +79,7 @@ extension ShowsManagerViewController: PageboyViewControllerDataSource {
 
   func viewController(for _: PageboyViewController,
                       at index: PageboyViewController.PageIndex) -> UIViewController? {
-			return pages[index].page as? UIViewController
+    return pages[index].page as? UIViewController
   }
 
   func defaultPage(for _: PageboyViewController) -> PageboyViewController.Page? {

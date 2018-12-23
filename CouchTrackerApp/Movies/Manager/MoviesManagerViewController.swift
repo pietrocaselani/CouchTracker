@@ -15,9 +15,9 @@ final class MoviesManagerViewController: TabmanViewController, MoviesManagerView
     dataSource = self
     delegate = self
 
-			// CT-TODO fix this
-			let bar = TMBar.ButtonBar()
-			addBar(bar, dataSource: self, at: .top)
+    // CT-TODO fix this
+    let bar = TMBar.ButtonBar()
+    addBar(bar, dataSource: self, at: .top)
 
 //    bar.defaultCTAppearance()
   }
@@ -52,9 +52,9 @@ final class MoviesManagerViewController: TabmanViewController, MoviesManagerView
 }
 
 extension MoviesManagerViewController: TMBarDataSource {
-	func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
-		return TMBarItem(title: pages[index].title)
-	}
+  func barItem(for _: TMBar, at index: Int) -> TMBarItemable {
+    return TMBarItem(title: pages[index].title)
+  }
 }
 
 extension MoviesManagerViewController: PageboyViewControllerDataSource {

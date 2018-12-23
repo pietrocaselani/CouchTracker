@@ -1,7 +1,7 @@
 import Tabman
 
 // CT-TODO fix this
-//extension TabmanBar.Config {
+// extension TabmanBar.Config {
 //  func defaultCTAppearance() {
 //    style = .scrollingButtonBar
 //    appearance = TabmanBar.Appearance({ appearance in
@@ -11,4 +11,4 @@ import Tabman
 //      appearance.indicator.color = UIColor.ctfog
 //    })
 //  }
-//}
+// }
