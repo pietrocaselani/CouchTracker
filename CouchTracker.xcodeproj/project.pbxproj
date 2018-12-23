@@ -186,8 +186,6 @@
 		4F0F580C203D61B300B86CB8 /* TrendingCacheRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD27A3B201B1CE1001D1234 /* TrendingCacheRepositoryTest.swift */; };
 		4F0F5815203D6AC500B86CB8 /* TrendingShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F5811203D6AB500B86CB8 /* TrendingShowEntity.swift */; };
 		4F0F5820203D779A00B86CB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6476323C1F44824900F277F1 /* AppDelegate.swift */; };
-		4F0F5821203D779A00B86CB8 /* AppFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08861F717205004D164A /* AppFlowViewController.swift */; };
-		4F0F5822203D779A00B86CB8 /* AppFlowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC088A1F717298004D164A /* AppFlowModule.swift */; };
 		4F0F5825203D779A00B86CB8 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08B01F71A0D1004D164A /* Environment.swift */; };
 		4F0F5826203D779A00B86CB8 /* Tabman+CouchTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E7EECB201509D70008F488 /* Tabman+CouchTracker.swift */; };
 		4F0F5827203D779A00B86CB8 /* UIAlertController+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE63201F4F6893002E55EA /* UIAlertController+Error.swift */; };
@@ -393,7 +391,6 @@
 		4F3A5954204EBA850061ABB7 /* AppFlowDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5953204EBA850061ABB7 /* AppFlowDefaultPresenter.swift */; };
 		4F3A5955204EBA850061ABB7 /* AppFlowDefaultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5953204EBA850061ABB7 /* AppFlowDefaultPresenter.swift */; };
 		4F3A5957204ED9300061ABB7 /* ModulePageMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5956204ED9300061ABB7 /* ModulePageMocks.swift */; };
-		4F3A5959204EE4690061ABB7 /* AppFlowiOSModuleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5958204EE4690061ABB7 /* AppFlowiOSModuleDataSource.swift */; };
 		4F3A595B204EF31A0061ABB7 /* AppFlowUserDefaultsRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A595A204EF31A0061ABB7 /* AppFlowUserDefaultsRepositoryTests.swift */; };
 		4F3A595D204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A595C204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift */; };
 		4F3A595E204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A595C204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift */; };
@@ -510,7 +507,6 @@
 		64B801F61FA794A5004A6EEE /* tmdb_show_images.json in Resources */ = {isa = PBXBuildFile; fileRef = 64B801E91FA7949D004A6EEE /* tmdb_show_images.json */; };
 		64CB90B41F7291400026B139 /* ShowsProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CB90B31F7291400026B139 /* ShowsProgress.storyboard */; };
 		64CC08911F7174F5004D164A /* ShowsManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC08901F7174F5004D164A /* ShowsManager.storyboard */; };
-		64CC08931F717597004D164A /* AppFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC08921F717597004D164A /* AppFlow.storyboard */; };
 		6972311DCE7CB4703472A22E /* RealmShowsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69723B2DE85E11A441AE3CF7 /* RealmShowsDataSource.swift */; };
 		6972342180DA70134A72C885 /* GenreDataSourceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69723B3226267C7F60CE9126 /* GenreDataSourceMock.swift */; };
 		6972360928E4392D625FC6AD /* SynchronizerDataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69723AC6CAF4ED73AC5EA0EF /* SynchronizerDataSources.swift */; };
@@ -524,6 +520,10 @@
 		820406FA21D0036400127F05 /* AppConfigurationsiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BF5091F6B07AF0010CE35 /* AppConfigurationsiOSRouter.swift */; };
 		820406FB21D0036400127F05 /* AppConfigurationsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D1571F6FF1FE008C4E5F /* AppConfigurationsModule.swift */; };
 		820406FC21D0036400127F05 /* AppConfigurationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D491551F6FE4DF00EA0C80 /* AppConfigurationsViewController.swift */; };
+		820406FD21D003A500127F05 /* AppFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC08921F717597004D164A /* AppFlow.storyboard */; };
+		820406FE21D003A500127F05 /* AppFlowiOSModuleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5958204EE4690061ABB7 /* AppFlowiOSModuleDataSource.swift */; };
+		820406FF21D003A500127F05 /* AppFlowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC088A1F717298004D164A /* AppFlowModule.swift */; };
+		8204070021D003A500127F05 /* AppFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08861F717205004D164A /* AppFlowViewController.swift */; };
 		8209AB0B21CED6800027BBF3 /* Error+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB0A21CED6800027BBF3 /* Error+Mock.swift */; };
 		8209AB1021CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB0F21CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift */; };
 		8209AB1221CEF3F40027BBF3 /* Bundle+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1121CEF3F40027BBF3 /* Bundle+Testing.swift */; };
@@ -1966,7 +1966,6 @@
 			isa = PBXGroup;
 			children = (
 				6476323C1F44824900F277F1 /* AppDelegate.swift */,
-				64CC08851F7171E7004D164A /* AppFlow */,
 				647632431F44824900F277F1 /* Assets.xcassets */,
 				64CC08B01F71A0D1004D164A /* Environment.swift */,
 				6406BED61F4DC353004661C4 /* Extensions */,
@@ -2213,6 +2212,7 @@
 		820406EE21D0032100127F05 /* CouchTrackerApp */ = {
 			isa = PBXGroup;
 			children = (
+				64CC08851F7171E7004D164A /* AppFlow */,
 				644BF5051F6B07AF0010CE35 /* AppConfigurations */,
 				820406EF21D0032100127F05 /* CouchTrackerApp.h */,
 				820406F021D0032100127F05 /* Info.plist */,
@@ -2619,7 +2619,6 @@
 				64CB90B41F7291400026B139 /* ShowsProgress.storyboard in Resources */,
 				6406BF031F4DC41F004661C4 /* MovieDetails.storyboard in Resources */,
 				64B03EDC1F471BC1009E37C9 /* Trending.storyboard in Resources */,
-				64CC08931F717597004D164A /* AppFlow.storyboard in Resources */,
 				644E903E1F72985C0089CD70 /* ShowsNow.storyboard in Resources */,
 				647632471F44824900F277F1 /* LaunchScreen.storyboard in Resources */,
 				4F6DC4152015476000AA0DC8 /* MoviesManager.storyboard in Resources */,
@@ -2675,6 +2674,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				820406FD21D003A500127F05 /* AppFlow.storyboard in Resources */,
 				820406F921D0036400127F05 /* AppConfigurations.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3443,10 +3443,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F3A5959204EE4690061ABB7 /* AppFlowiOSModuleDataSource.swift in Sources */,
 				4F0F5820203D779A00B86CB8 /* AppDelegate.swift in Sources */,
-				4F0F5821203D779A00B86CB8 /* AppFlowViewController.swift in Sources */,
-				4F0F5822203D779A00B86CB8 /* AppFlowModule.swift in Sources */,
 				4F0F5825203D779A00B86CB8 /* Environment.swift in Sources */,
 				4F0F5826203D779A00B86CB8 /* Tabman+CouchTracker.swift in Sources */,
 				4FFA6B2520EB1984008E0B78 /* ShowOverviewViewController.swift in Sources */,
@@ -3511,8 +3508,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				820406FE21D003A500127F05 /* AppFlowiOSModuleDataSource.swift in Sources */,
+				820406FF21D003A500127F05 /* AppFlowModule.swift in Sources */,
 				820406FB21D0036400127F05 /* AppConfigurationsModule.swift in Sources */,
 				820406FA21D0036400127F05 /* AppConfigurationsiOSRouter.swift in Sources */,
+				8204070021D003A500127F05 /* AppFlowViewController.swift in Sources */,
 				820406FC21D0036400127F05 /* AppConfigurationsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
