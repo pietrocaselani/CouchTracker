@@ -614,6 +614,13 @@
 			remoteGlobalIDString = 820406EC21D0032000127F05;
 			remoteInfo = CouchTrackerApp;
 		};
+		8204073721D0060600127F05 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 647632311F44824900F277F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F0F5857203D7A5B00B86CB8;
+			remoteInfo = "CouchTrackerCore-iOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -2491,6 +2498,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8204073821D0060600127F05 /* PBXTargetDependency */,
 			);
 			name = CouchTrackerApp;
 			productName = CouchTrackerApp;
@@ -3506,6 +3514,11 @@
 			isa = PBXTargetDependency;
 			target = 820406EC21D0032000127F05 /* CouchTrackerApp */;
 			targetProxy = 820406F221D0032100127F05 /* PBXContainerItemProxy */;
+		};
+		8204073821D0060600127F05 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F0F5857203D7A5B00B86CB8 /* CouchTrackerCore-iOS */;
+			targetProxy = 8204073721D0060600127F05 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

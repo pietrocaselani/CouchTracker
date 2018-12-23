@@ -1,6 +1,8 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 RX_SWIFT_VERSION = '4.2.0'.freeze
+OSX_VERSION = '10.11'.freeze
+IOS_VERSION = '10.0'.freeze
 
 def common_pods
   pod 'SwiftLint', '0.25.1'
@@ -14,11 +16,11 @@ end
 
 def ios_pods
   common_pods
-  pod 'R.swift', '4.0.0'
+  pod 'R.swift', '5.0.0'
   pod 'Kingfisher', '4.2.0'
   pod 'RxCocoa', RX_SWIFT_VERSION
   pod 'ActionSheetPicker-3.0', '2.2.0'
-  pod 'Tabman', '1.4.0'
+  pod 'Tabman', '2.1.0'
 end
 
 def tests_shared_pods
@@ -27,7 +29,7 @@ def tests_shared_pods
 end
 
 target 'CouchTrackerCore' do
-  platform :osx, '10.11'
+  platform :osx, OSX_VERSION
   use_frameworks!
   inhibit_all_warnings!
 
@@ -35,7 +37,7 @@ target 'CouchTrackerCore' do
 end
 
 target 'CouchTrackerCore-iOS' do
-  platform :ios, '10.0'
+  platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
 
@@ -43,7 +45,7 @@ target 'CouchTrackerCore-iOS' do
 end
 
 target 'CouchTrackerCoreTests' do
-  platform :osx, '10.11'
+  platform :osx, OSX_VERSION
   use_frameworks!
   inhibit_all_warnings!
 
@@ -52,7 +54,7 @@ target 'CouchTrackerCoreTests' do
 end
 
 target 'CouchTrackerApp' do
-  platform :ios, '10.0'
+  platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
 
