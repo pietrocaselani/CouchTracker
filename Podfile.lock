@@ -9,7 +9,7 @@ PODS:
   - Moya/RxSwift (12.0.1):
     - Moya/Core
     - RxSwift (~> 4.0)
-  - Nimble (7.1.1)
+  - Nimble (7.3.1)
   - Pageboy (3.0.1)
   - R.swift (5.0.0):
     - R.swift.Library (~> 5.0.0)
@@ -48,7 +48,7 @@ PODS:
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.2.0)
   - Kingfisher (= 5.0.1)
-  - Nimble (= 7.1.1)
+  - Nimble (= 7.3.1)
   - R.swift (= 5.0.0)
   - RealmSwift (= 3.7.6)
   - RxCocoa (= 4.4.0)
@@ -97,7 +97,7 @@ SPEC CHECKSUMS:
   AutoInsetter: d0eafc611d686f83f925ded729084cf916a39863
   Kingfisher: 4f771421b9208185217550528a06fd48756cb7c2
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
-  Nimble: 391f07782af4b37914f9bd7b2ffbb952731b8202
+  Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
   Pageboy: ec0170fd880ea6fa3589219edfd64b554443ff6e
   R.swift: f88c7d7d48a2be4dffa132dde1b3d389620310eb
   R.swift.Library: 0bf390e729bc10bb2c9e4fb78bd043164a7be4ff
@@ -115,6 +115,6 @@ SPEC CHECKSUMS:
   Trakt: 734dbeffec883ffe6a0c00091eeed0f5fae795e5
   TVDB: cfbf782bffda651a4f80304a0c96f28a02fdfcdc
 
-PODFILE CHECKSUM: 99224740bfea4699b1c28cb454392dd7a9a8e532
+PODFILE CHECKSUM: 62a74a4a62cc7aff659c2c4d8d8edc68d3d40c71
 
 COCOAPODS: 1.5.3

@@ -25,7 +25,7 @@ end
 
 def tests_shared_pods
   pod 'RxTest', RX_SWIFT_VERSION
-  pod 'Nimble', '7.1.1'
+  pod 'Nimble', '7.3.1'
 end
 
 target 'CouchTrackerCore' do
