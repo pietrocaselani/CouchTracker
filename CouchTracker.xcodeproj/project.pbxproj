@@ -187,32 +187,6 @@
 		4F0F5815203D6AC500B86CB8 /* TrendingShowEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F5811203D6AB500B86CB8 /* TrendingShowEntity.swift */; };
 		4F0F5820203D779A00B86CB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6476323C1F44824900F277F1 /* AppDelegate.swift */; };
 		4F0F5830203D779A00B86CB8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D2FFD91F44DFEA009E9ED3 /* R.generated.swift */; };
-		4F0F5831203D779A00B86CB8 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648391221F507F9500911BA0 /* SearchBarView.swift */; };
-		4F0F5832203D779A00B86CB8 /* SearchModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA353F1F50914A005BF4E3 /* SearchModule.swift */; };
-		4F0F5833203D779A00B86CB8 /* ShowEpisodeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D391F7D7AB300C26D10 /* ShowEpisodeModule.swift */; };
-		4F0F5834203D779A00B86CB8 /* ShowEpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434C3A41F83678C009B5A9F /* ShowEpisodeViewController.swift */; };
-		4F0F5835203D779A00B86CB8 /* ShowManageriOSModuleCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D3E1F7D7CEF00C26D10 /* ShowManageriOSModuleCreator.swift */; };
-		4F0F5836203D779A00B86CB8 /* ShowManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D401F7D7D5B00C26D10 /* ShowManagerModule.swift */; };
-		4F0F5837203D779A00B86CB8 /* ShowManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D441F7D7DBB00C26D10 /* ShowManagerViewController.swift */; };
-		4F0F5839203D779A00B86CB8 /* ShowSeasonsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D3C1F7D7C2800C26D10 /* ShowSeasonsModule.swift */; };
-		4F0F583D203D779A00B86CB8 /* ShowsManageriOSCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6E9E20339B3A00987AD1 /* ShowsManageriOSCreator.swift */; };
-		4F0F583E203D779A00B86CB8 /* ShowsManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC088C1F717330004D164A /* ShowsManagerModule.swift */; };
-		4F0F583F203D779A00B86CB8 /* ShowsManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08881F717249004D164A /* ShowsManagerViewController.swift */; };
-		4F0F5840203D779A00B86CB8 /* ShowsNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E903B1F72982F0089CD70 /* ShowsNowViewController.swift */; };
-		4F0F5841203D779A00B86CB8 /* ShowsNowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E903F1F72986B0089CD70 /* ShowsNowModule.swift */; };
-		4F0F5842203D779A00B86CB8 /* ShowProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896331F7C11EE00F95649 /* ShowProgressCell.swift */; };
-		4F0F5843203D779A00B86CB8 /* ShowsProgressiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D471F7D8EF700C26D10 /* ShowsProgressiOSRouter.swift */; };
-		4F0F5844203D779A00B86CB8 /* ShowsProgressModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90BF1F72944D0026B139 /* ShowsProgressModule.swift */; };
-		4F0F5845203D779A00B86CB8 /* ShowsProgressTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418AAFB1F7C1D1600D4D83C /* ShowsProgressTableViewDataSource.swift */; };
-		4F0F5846203D779A00B86CB8 /* ShowsProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90B51F7291650026B139 /* ShowsProgressViewController.swift */; };
-		4F0F5847203D779A00B86CB8 /* TraktLoginModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D1821F704BED008C4E5F /* TraktLoginModule.swift */; };
-		4F0F5848203D779A00B86CB8 /* TraktLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D17A1F704A1D008C4E5F /* TraktLoginViewController.swift */; };
-		4F0F5849203D779A00B86CB8 /* PosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405E4F01F5DE4F900756E79 /* PosterCell.swift */; };
-		4F0F584A203D779A00B86CB8 /* TrendingiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC761F4F55B0002A9FFD /* TrendingiOSRouter.swift */; };
-		4F0F584B203D779A00B86CB8 /* TrendingModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC751F4F55B0002A9FFD /* TrendingModule.swift */; };
-		4F0F584C203D779A00B86CB8 /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03ED41F4715D2009E37C9 /* TrendingViewController.swift */; };
-		4F0F584D203D779A00B86CB8 /* TrendingCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D43BD71F607628005CDBF7 /* TrendingCollectionViewDataSource.swift */; };
-		4F0F584E203D779A00B86CB8 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64343E1D1F7EB3B7004557E4 /* Secrets.swift */; };
 		4F0F584F203D789C00B86CB8 /* DefaultBuildConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F236DC3202CB9C5007FB1B9 /* DefaultBuildConfig.swift */; };
 		4F0F5850203D789C00B86CB8 /* DefaultSchedulers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D497820222F40002A4EAD /* DefaultSchedulers.swift */; };
 		4F0F585C203D7A5B00B86CB8 /* CouchTrackerCore_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F0F585A203D7A5B00B86CB8 /* CouchTrackerCore_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -411,11 +385,7 @@
 		4F931544203CB34800631D4A /* trakt_sync_addtohistory.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F931543203CB34800631D4A /* trakt_sync_addtohistory.json */; };
 		4F9ABC112052982B00EA6456 /* MoviesManagerDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ABC102052982B00EA6456 /* MoviesManagerDefaultDataSource.swift */; };
 		4F9ABC122052982B00EA6456 /* MoviesManagerDefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9ABC102052982B00EA6456 /* MoviesManagerDefaultDataSource.swift */; };
-		4F9CE2C0205A84A80000CCD4 /* SearchViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9CE2BF205A84A80000CCD4 /* SearchViewModule.swift */; };
-		4F9CE2C2205A85410000CCD4 /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9CE2C1205A85400000CCD4 /* SearchBarView.xib */; };
-		4F9CE319205B1A080000CCD4 /* PosterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9CE318205B1A080000CCD4 /* PosterCell.xib */; };
 		4FA9B5EE209E6F1C00E99D59 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64BE63231F4F692B002E55EA /* Localizable.strings */; };
-		4FAA2543205693BE0006735A /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAA2542205693BE0006735A /* NoCacheMoyaPlugin.swift */; };
 		4FAAE3ED2122E2EA002BC040 /* ShowSeasonsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAE3EC2122E2EA002BC040 /* ShowSeasonsRepository.swift */; };
 		4FAAE3EE2122E2EA002BC040 /* ShowSeasonsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAE3EC2122E2EA002BC040 /* ShowSeasonsRepository.swift */; };
 		4FAAE3F02122E3B0002BC040 /* ShowSeasonsAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAE3EF2122E3B0002BC040 /* ShowSeasonsAPIRepository.swift */; };
@@ -435,8 +405,6 @@
 		4FDB45B02130D6CC009B5C6F /* EpisodeDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDB45AF2130D6CC009B5C6F /* EpisodeDetailsRepository.swift */; };
 		4FDBB663203E9FDA00448A60 /* ShowProgressCellServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDBB662203E9FDA00448A60 /* ShowProgressCellServiceTest.swift */; };
 		4FE02E452105E98000196B8E /* GenreRealmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE02E442105E98000196B8E /* GenreRealmTests.swift */; };
-		4FE4BA322059E31800969AAF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4BA312059E31800969AAF /* SearchViewController.swift */; };
-		4FE4BA342059E32A00969AAF /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FE4BA332059E32A00969AAF /* Search.storyboard */; };
 		4FE4BA392059E8FA00969AAF /* PosterViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4BA382059E8FA00969AAF /* PosterViewModelType.swift */; };
 		4FE4BA3A2059E8FA00969AAF /* PosterViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4BA382059E8FA00969AAF /* PosterViewModelType.swift */; };
 		4FE4BA3C2059EA2B00969AAF /* PosterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4BA3B2059EA2B00969AAF /* PosterViewModel.swift */; };
@@ -464,22 +432,15 @@
 		4FEF6AFD2128C98300B7CF63 /* WatchedSeasonEntityBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AFC2128C98300B7CF63 /* WatchedSeasonEntityBuilder.swift */; };
 		4FEF6AFE2128C98300B7CF63 /* WatchedSeasonEntityBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF6AFC2128C98300B7CF63 /* WatchedSeasonEntityBuilder.swift */; };
 		4FF9B10B2055BE3700FD28F1 /* MoviesManagerDefaultPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF9B10A2055BE3700FD28F1 /* MoviesManagerDefaultPresenterTest.swift */; };
-		4FFA6B2320EB1984008E0B78 /* ShowOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFA6B1F20EB1983008E0B78 /* ShowOverview.storyboard */; };
-		4FFA6B2520EB1984008E0B78 /* ShowOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFA6B2120EB1983008E0B78 /* ShowOverviewViewController.swift */; };
-		4FFA6B2620EB1984008E0B78 /* ShowOverviewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFA6B2220EB1983008E0B78 /* ShowOverviewModule.swift */; };
 		5CF9C604B2D557B254CBF0B1 /* Pods_CouchTrackerCore_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC3B67169894ACEFB3998C8 /* Pods_CouchTrackerCore_iOS.framework */; };
 		640373111FABA80E005023D5 /* trakt_movies_trending.json in Resources */ = {isa = PBXBuildFile; fileRef = 640373101FABA80E005023D5 /* trakt_movies_trending.json */; };
 		640373131FABA8CD005023D5 /* trakt_movies_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 640373121FABA8CD005023D5 /* trakt_movies_summary.json */; };
-		641B9D431F7D7D9C00C26D10 /* ShowManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 641B9D421F7D7D9C00C26D10 /* ShowManager.storyboard */; };
-		6434C3A31F836762009B5A9F /* ShowEpisode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6434C3A21F836762009B5A9F /* ShowEpisode.storyboard */; };
 		6448372C2023C402008ECE2B /* trakt_shows_watchedprogress_without_nextepisode.json in Resources */ = {isa = PBXBuildFile; fileRef = 6448372B2023C402008ECE2B /* trakt_shows_watchedprogress_without_nextepisode.json */; };
 		6448372E2023CF4D008ECE2B /* tvdb_episodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 6448372D2023CF4D008ECE2B /* tvdb_episodes.json */; };
-		644E903E1F72985C0089CD70 /* ShowsNow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644E903D1F72985C0089CD70 /* ShowsNow.storyboard */; };
 		6454D1811F704AC0008C4E5F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6454D1801F704AC0008C4E5F /* WebKit.framework */; };
 		647632441F44824900F277F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 647632431F44824900F277F1 /* Assets.xcassets */; };
 		647632471F44824900F277F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 647632451F44824900F277F1 /* LaunchScreen.storyboard */; };
 		648830201FB2250C00BB217D /* trakt_sync_watched_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 6488301F1FB2250C00BB217D /* trakt_sync_watched_shows.json */; };
-		64B03EDC1F471BC1009E37C9 /* Trending.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B03EDB1F471BC1009E37C9 /* Trending.storyboard */; };
 		64B801D31FA79369004A6EEE /* trakt_episodes_summary.json in Resources */ = {isa = PBXBuildFile; fileRef = 64B801C41FA79362004A6EEE /* trakt_episodes_summary.json */; };
 		64B801D41FA79369004A6EEE /* trakt_genres_movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 64B801C51FA79362004A6EEE /* trakt_genres_movies.json */; };
 		64B801D51FA79369004A6EEE /* trakt_genres_shows.json in Resources */ = {isa = PBXBuildFile; fileRef = 64B801C31FA79362004A6EEE /* trakt_genres_shows.json */; };
@@ -493,8 +454,6 @@
 		64B801F41FA794A5004A6EEE /* tmdb_movie_images_20526.json in Resources */ = {isa = PBXBuildFile; fileRef = 64B801EA1FA7949D004A6EEE /* tmdb_movie_images_20526.json */; };
 		64B801F51FA794A5004A6EEE /* tmdb_movie_images.json in Resources */ = {isa = PBXBuildFile; fileRef = 64B801EC1FA7949D004A6EEE /* tmdb_movie_images.json */; };
 		64B801F61FA794A5004A6EEE /* tmdb_show_images.json in Resources */ = {isa = PBXBuildFile; fileRef = 64B801E91FA7949D004A6EEE /* tmdb_show_images.json */; };
-		64CB90B41F7291400026B139 /* ShowsProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CB90B31F7291400026B139 /* ShowsProgress.storyboard */; };
-		64CC08911F7174F5004D164A /* ShowsManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC08901F7174F5004D164A /* ShowsManager.storyboard */; };
 		6972311DCE7CB4703472A22E /* RealmShowsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69723B2DE85E11A441AE3CF7 /* RealmShowsDataSource.swift */; };
 		6972342180DA70134A72C885 /* GenreDataSourceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69723B3226267C7F60CE9126 /* GenreDataSourceMock.swift */; };
 		6972360928E4392D625FC6AD /* SynchronizerDataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69723AC6CAF4ED73AC5EA0EF /* SynchronizerDataSources.swift */; };
@@ -524,6 +483,48 @@
 		8204070A21D0043600127F05 /* MoviesManageriOSModuleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC4102015460700AA0DC8 /* MoviesManageriOSModuleSetup.swift */; };
 		8204070B21D0043600127F05 /* MoviesManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC41C201549C100AA0DC8 /* MoviesManagerModule.swift */; };
 		8204070C21D0043600127F05 /* MoviesManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC4162015477F00AA0DC8 /* MoviesManagerViewController.swift */; };
+		8204070D21D0046400127F05 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FE4BA332059E32A00969AAF /* Search.storyboard */; };
+		8204070E21D0046400127F05 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648391221F507F9500911BA0 /* SearchBarView.swift */; };
+		8204070F21D0046400127F05 /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9CE2C1205A85400000CCD4 /* SearchBarView.xib */; };
+		8204071021D0046400127F05 /* SearchModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DA353F1F50914A005BF4E3 /* SearchModule.swift */; };
+		8204071121D0046400127F05 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4BA312059E31800969AAF /* SearchViewController.swift */; };
+		8204071221D0046400127F05 /* SearchViewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9CE2BF205A84A80000CCD4 /* SearchViewModule.swift */; };
+		8204071321D0046D00127F05 /* ShowOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFA6B1F20EB1983008E0B78 /* ShowOverview.storyboard */; };
+		8204071421D0046D00127F05 /* ShowOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFA6B2120EB1983008E0B78 /* ShowOverviewViewController.swift */; };
+		8204071521D0046D00127F05 /* ShowOverviewModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFA6B2220EB1983008E0B78 /* ShowOverviewModule.swift */; };
+		8204071621D0047400127F05 /* ShowEpisode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6434C3A21F836762009B5A9F /* ShowEpisode.storyboard */; };
+		8204071721D0047400127F05 /* ShowEpisodeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D391F7D7AB300C26D10 /* ShowEpisodeModule.swift */; };
+		8204071821D0047400127F05 /* ShowEpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434C3A41F83678C009B5A9F /* ShowEpisodeViewController.swift */; };
+		8204071921D0047B00127F05 /* ShowManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 641B9D421F7D7D9C00C26D10 /* ShowManager.storyboard */; };
+		8204071A21D0047B00127F05 /* ShowManageriOSModuleCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D3E1F7D7CEF00C26D10 /* ShowManageriOSModuleCreator.swift */; };
+		8204071B21D0047B00127F05 /* ShowManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D401F7D7D5B00C26D10 /* ShowManagerModule.swift */; };
+		8204071C21D0047B00127F05 /* ShowManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D441F7D7DBB00C26D10 /* ShowManagerViewController.swift */; };
+		8204071D21D0048300127F05 /* ShowSeasonsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D3C1F7D7C2800C26D10 /* ShowSeasonsModule.swift */; };
+		8204071E21D0048300127F05 /* ShowSeasonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836EB7219039DA0037A798 /* ShowSeasonsViewController.swift */; };
+		8204071F21D0048900127F05 /* ShowsManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC08901F7174F5004D164A /* ShowsManager.storyboard */; };
+		8204072021D0048900127F05 /* ShowsManageriOSCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6E9E20339B3A00987AD1 /* ShowsManageriOSCreator.swift */; };
+		8204072121D0048900127F05 /* ShowsManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC088C1F717330004D164A /* ShowsManagerModule.swift */; };
+		8204072221D0048900127F05 /* ShowsManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08881F717249004D164A /* ShowsManagerViewController.swift */; };
+		8204072321D0049000127F05 /* ShowsNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E903B1F72982F0089CD70 /* ShowsNowViewController.swift */; };
+		8204072421D0049000127F05 /* ShowsNow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644E903D1F72985C0089CD70 /* ShowsNow.storyboard */; };
+		8204072521D0049000127F05 /* ShowsNowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E903F1F72986B0089CD70 /* ShowsNowModule.swift */; };
+		8204072621D0049800127F05 /* ShowProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896331F7C11EE00F95649 /* ShowProgressCell.swift */; };
+		8204072721D0049800127F05 /* ShowsProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CB90B31F7291400026B139 /* ShowsProgress.storyboard */; };
+		8204072821D0049800127F05 /* ShowsProgressiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D471F7D8EF700C26D10 /* ShowsProgressiOSRouter.swift */; };
+		8204072921D0049800127F05 /* ShowsProgressModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90BF1F72944D0026B139 /* ShowsProgressModule.swift */; };
+		8204072A21D0049800127F05 /* ShowsProgressTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418AAFB1F7C1D1600D4D83C /* ShowsProgressTableViewDataSource.swift */; };
+		8204072B21D0049800127F05 /* ShowsProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90B51F7291650026B139 /* ShowsProgressViewController.swift */; };
+		8204072C21D0049F00127F05 /* TraktLoginModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D1821F704BED008C4E5F /* TraktLoginModule.swift */; };
+		8204072D21D0049F00127F05 /* TraktLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D17A1F704A1D008C4E5F /* TraktLoginViewController.swift */; };
+		8204072E21D004A500127F05 /* Trending.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B03EDB1F471BC1009E37C9 /* Trending.storyboard */; };
+		8204072F21D004A500127F05 /* TrendingiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC761F4F55B0002A9FFD /* TrendingiOSRouter.swift */; };
+		8204073021D004A500127F05 /* TrendingModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1CC751F4F55B0002A9FFD /* TrendingModule.swift */; };
+		8204073121D004A500127F05 /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B03ED41F4715D2009E37C9 /* TrendingViewController.swift */; };
+		8204073221D004A500127F05 /* TrendingCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D43BD71F607628005CDBF7 /* TrendingCollectionViewDataSource.swift */; };
+		8204073321D004AF00127F05 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64343E1D1F7EB3B7004557E4 /* Secrets.swift */; };
+		8204073421D004AF00127F05 /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAA2542205693BE0006735A /* NoCacheMoyaPlugin.swift */; };
+		8204073521D0051C00127F05 /* PosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405E4F01F5DE4F900756E79 /* PosterCell.swift */; };
+		8204073621D0051C00127F05 /* PosterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9CE318205B1A080000CCD4 /* PosterCell.xib */; };
 		8209AB0B21CED6800027BBF3 /* Error+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB0A21CED6800027BBF3 /* Error+Mock.swift */; };
 		8209AB1021CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB0F21CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift */; };
 		8209AB1221CEF3F40027BBF3 /* Bundle+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209AB1121CEF3F40027BBF3 /* Bundle+Testing.swift */; };
@@ -555,7 +556,6 @@
 		82836EAE218EC2C10037A798 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836EAC218EC2C10037A798 /* Defaults.swift */; };
 		82836EB5219034010037A798 /* CouchTrackerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836EB4219034010037A798 /* CouchTrackerError.swift */; };
 		82836EB6219034010037A798 /* CouchTrackerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836EB4219034010037A798 /* CouchTrackerError.swift */; };
-		82836EB8219039DA0037A798 /* ShowSeasonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836EB7219039DA0037A798 /* ShowSeasonsViewController.swift */; };
 		82930A19216C1C7B00A824F6 /* DefaultWatchedShowEntityDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82930A18216C1C7B00A824F6 /* DefaultWatchedShowEntityDownloader.swift */; };
 		82930A1C216C1C8500A824F6 /* DefaultWatchedShowEntityDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82930A18216C1C7B00A824F6 /* DefaultWatchedShowEntityDownloader.swift */; };
 		82930A1D216C1C8500A824F6 /* DefaultWatchedShowEntitiesDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8239F812216C159500A29F01 /* DefaultWatchedShowEntitiesDownloader.swift */; };
@@ -1970,13 +1970,6 @@
 				647632481F44824900F277F1 /* Info.plist */,
 				647632451F44824900F277F1 /* LaunchScreen.storyboard */,
 				64D2FFD91F44DFEA009E9ED3 /* R.generated.swift */,
-				648390E31F504EE500911BA0 /* Search */,
-				641B9D271F7D5C3000C26D10 /* Show */,
-				64CC085F1F716155004D164A /* Shows */,
-				6454D15A1F703587008C4E5F /* TraktLogin */,
-				64B03ECE1F4715D2009E37C9 /* Trending */,
-				648391141F505E3F00911BA0 /* Utils */,
-				4FE4BA352059E78400969AAF /* Views */,
 			);
 			path = CouchTracker;
 			sourceTree = "<group>";
@@ -2208,7 +2201,6 @@
 		820406EE21D0032100127F05 /* CouchTrackerApp */ = {
 			isa = PBXGroup;
 			children = (
-				4F6DC40A2015448800AA0DC8 /* Movies */,
 				644BF5051F6B07AF0010CE35 /* AppConfigurations */,
 				64CC08851F7171E7004D164A /* AppFlow */,
 				820406EF21D0032100127F05 /* CouchTrackerApp.h */,
@@ -2216,6 +2208,14 @@
 				6406BED61F4DC353004661C4 /* Extensions */,
 				820406F021D0032100127F05 /* Info.plist */,
 				6406BEBB1F4DBEFA004661C4 /* MovieDetails */,
+				4F6DC40A2015448800AA0DC8 /* Movies */,
+				648390E31F504EE500911BA0 /* Search */,
+				641B9D271F7D5C3000C26D10 /* Show */,
+				64CC085F1F716155004D164A /* Shows */,
+				6454D15A1F703587008C4E5F /* TraktLogin */,
+				64B03ECE1F4715D2009E37C9 /* Trending */,
+				648391141F505E3F00911BA0 /* Utils */,
+				4FE4BA352059E78400969AAF /* Views */,
 			);
 			path = CouchTrackerApp;
 			sourceTree = "<group>";
@@ -2566,13 +2566,13 @@
 			projectRoot = "";
 			targets = (
 				647632381F44824900F277F1 /* CouchTracker */,
+				820406EC21D0032000127F05 /* CouchTrackerApp */,
 				4F0F56FB203D5F4C00B86CB8 /* CouchTrackerCore */,
 				4F0F5857203D7A5B00B86CB8 /* CouchTrackerCore-iOS */,
 				4F0F5703203D5F4C00B86CB8 /* CouchTrackerCoreTests */,
 				64B801BA1FA7933F004A6EEE /* TraktTestsResources */,
 				64B801E11FA7947F004A6EEE /* TMDBTestsResources */,
 				641D49C3202356AA002A4EAD /* TVDBTestsResources */,
-				820406EC21D0032000127F05 /* CouchTrackerApp */,
 			);
 		};
 /* End PBXProject section */
@@ -2615,19 +2615,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F9CE319205B1A080000CCD4 /* PosterCell.xib in Resources */,
-				64CB90B41F7291400026B139 /* ShowsProgress.storyboard in Resources */,
-				64B03EDC1F471BC1009E37C9 /* Trending.storyboard in Resources */,
-				644E903E1F72985C0089CD70 /* ShowsNow.storyboard in Resources */,
 				647632471F44824900F277F1 /* LaunchScreen.storyboard in Resources */,
-				64CC08911F7174F5004D164A /* ShowsManager.storyboard in Resources */,
-				4FFA6B2320EB1984008E0B78 /* ShowOverview.storyboard in Resources */,
-				4F9CE2C2205A85410000CCD4 /* SearchBarView.xib in Resources */,
-				6434C3A31F836762009B5A9F /* ShowEpisode.storyboard in Resources */,
 				4F778D0D20411DDE00FBCC2C /* Localizable.strings in Resources */,
 				647632441F44824900F277F1 /* Assets.xcassets in Resources */,
-				4FE4BA342059E32A00969AAF /* Search.storyboard in Resources */,
-				641B9D431F7D7D9C00C26D10 /* ShowManager.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2672,10 +2662,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8204073621D0051C00127F05 /* PosterCell.xib in Resources */,
+				8204072421D0049000127F05 /* ShowsNow.storyboard in Resources */,
+				8204070F21D0046400127F05 /* SearchBarView.xib in Resources */,
+				8204071321D0046D00127F05 /* ShowOverview.storyboard in Resources */,
 				820406FD21D003A500127F05 /* AppFlow.storyboard in Resources */,
+				8204072721D0049800127F05 /* ShowsProgress.storyboard in Resources */,
 				8204070921D0043600127F05 /* MoviesManager.storyboard in Resources */,
 				820406F921D0036400127F05 /* AppConfigurations.storyboard in Resources */,
 				8204070621D0041300127F05 /* MovieDetails.storyboard in Resources */,
+				8204072E21D004A500127F05 /* Trending.storyboard in Resources */,
+				8204070D21D0046400127F05 /* Search.storyboard in Resources */,
+				8204071921D0047B00127F05 /* ShowManager.storyboard in Resources */,
+				8204071621D0047400127F05 /* ShowEpisode.storyboard in Resources */,
+				8204071F21D0048900127F05 /* ShowsManager.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3444,39 +3444,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F0F5820203D779A00B86CB8 /* AppDelegate.swift in Sources */,
-				4FFA6B2520EB1984008E0B78 /* ShowOverviewViewController.swift in Sources */,
-				82836EB8219039DA0037A798 /* ShowSeasonsViewController.swift in Sources */,
 				4F0F5830203D779A00B86CB8 /* R.generated.swift in Sources */,
-				4F0F5831203D779A00B86CB8 /* SearchBarView.swift in Sources */,
-				4F0F5832203D779A00B86CB8 /* SearchModule.swift in Sources */,
-				4F0F5833203D779A00B86CB8 /* ShowEpisodeModule.swift in Sources */,
-				4F0F5834203D779A00B86CB8 /* ShowEpisodeViewController.swift in Sources */,
-				4F0F5835203D779A00B86CB8 /* ShowManageriOSModuleCreator.swift in Sources */,
-				4F0F5836203D779A00B86CB8 /* ShowManagerModule.swift in Sources */,
-				4F0F5837203D779A00B86CB8 /* ShowManagerViewController.swift in Sources */,
-				4FAA2543205693BE0006735A /* NoCacheMoyaPlugin.swift in Sources */,
-				4F0F5839203D779A00B86CB8 /* ShowSeasonsModule.swift in Sources */,
-				4F0F583D203D779A00B86CB8 /* ShowsManageriOSCreator.swift in Sources */,
-				4FE4BA322059E31800969AAF /* SearchViewController.swift in Sources */,
-				4F0F583E203D779A00B86CB8 /* ShowsManagerModule.swift in Sources */,
-				4F0F583F203D779A00B86CB8 /* ShowsManagerViewController.swift in Sources */,
-				4F0F5840203D779A00B86CB8 /* ShowsNowViewController.swift in Sources */,
-				4F0F5841203D779A00B86CB8 /* ShowsNowModule.swift in Sources */,
-				4F0F5842203D779A00B86CB8 /* ShowProgressCell.swift in Sources */,
-				4F0F5843203D779A00B86CB8 /* ShowsProgressiOSRouter.swift in Sources */,
-				4FFA6B2620EB1984008E0B78 /* ShowOverviewModule.swift in Sources */,
-				4F9CE2C0205A84A80000CCD4 /* SearchViewModule.swift in Sources */,
-				4F0F5844203D779A00B86CB8 /* ShowsProgressModule.swift in Sources */,
-				4F0F5845203D779A00B86CB8 /* ShowsProgressTableViewDataSource.swift in Sources */,
-				4F0F5846203D779A00B86CB8 /* ShowsProgressViewController.swift in Sources */,
-				4F0F5847203D779A00B86CB8 /* TraktLoginModule.swift in Sources */,
-				4F0F5848203D779A00B86CB8 /* TraktLoginViewController.swift in Sources */,
-				4F0F5849203D779A00B86CB8 /* PosterCell.swift in Sources */,
-				4F0F584A203D779A00B86CB8 /* TrendingiOSRouter.swift in Sources */,
-				4F0F584B203D779A00B86CB8 /* TrendingModule.swift in Sources */,
-				4F0F584C203D779A00B86CB8 /* TrendingViewController.swift in Sources */,
-				4F0F584D203D779A00B86CB8 /* TrendingCollectionViewDataSource.swift in Sources */,
-				4F0F584E203D779A00B86CB8 /* Secrets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3499,21 +3467,53 @@
 			buildActionMask = 2147483647;
 			files = (
 				8204070221D003F200127F05 /* Tabman+CouchTracker.swift in Sources */,
+				8204072021D0048900127F05 /* ShowsManageriOSCreator.swift in Sources */,
 				820406FE21D003A500127F05 /* AppFlowiOSModuleDataSource.swift in Sources */,
+				8204072121D0048900127F05 /* ShowsManagerModule.swift in Sources */,
 				8204070821D0041300127F05 /* MovieDetailsViewController.swift in Sources */,
+				8204071021D0046400127F05 /* SearchModule.swift in Sources */,
+				8204071121D0046400127F05 /* SearchViewController.swift in Sources */,
 				820406FF21D003A500127F05 /* AppFlowModule.swift in Sources */,
+				8204073521D0051C00127F05 /* PosterCell.swift in Sources */,
+				8204071A21D0047B00127F05 /* ShowManageriOSModuleCreator.swift in Sources */,
 				8204070321D003F200127F05 /* UIAlertController+Error.swift in Sources */,
+				8204071E21D0048300127F05 /* ShowSeasonsViewController.swift in Sources */,
 				820406FB21D0036400127F05 /* AppConfigurationsModule.swift in Sources */,
+				8204071D21D0048300127F05 /* ShowSeasonsModule.swift in Sources */,
+				8204073121D004A500127F05 /* TrendingViewController.swift in Sources */,
 				8204070121D003C300127F05 /* Environment.swift in Sources */,
 				820406FA21D0036400127F05 /* AppConfigurationsiOSRouter.swift in Sources */,
+				8204072521D0049000127F05 /* ShowsNowModule.swift in Sources */,
+				8204071421D0046D00127F05 /* ShowOverviewViewController.swift in Sources */,
 				8204070021D003A500127F05 /* AppFlowViewController.swift in Sources */,
+				8204072A21D0049800127F05 /* ShowsProgressTableViewDataSource.swift in Sources */,
+				8204072621D0049800127F05 /* ShowProgressCell.swift in Sources */,
 				820406FC21D0036400127F05 /* AppConfigurationsViewController.swift in Sources */,
+				8204072821D0049800127F05 /* ShowsProgressiOSRouter.swift in Sources */,
+				8204072221D0048900127F05 /* ShowsManagerViewController.swift in Sources */,
 				8204070A21D0043600127F05 /* MoviesManageriOSModuleSetup.swift in Sources */,
 				8204070C21D0043600127F05 /* MoviesManagerViewController.swift in Sources */,
+				8204072F21D004A500127F05 /* TrendingiOSRouter.swift in Sources */,
+				8204072321D0049000127F05 /* ShowsNowViewController.swift in Sources */,
+				8204071B21D0047B00127F05 /* ShowManagerModule.swift in Sources */,
+				8204071C21D0047B00127F05 /* ShowManagerViewController.swift in Sources */,
 				8204070421D003F200127F05 /* UIColor+CouchTracker.swift in Sources */,
 				8204070B21D0043600127F05 /* MoviesManagerModule.swift in Sources */,
+				8204072C21D0049F00127F05 /* TraktLoginModule.swift in Sources */,
+				8204072B21D0049800127F05 /* ShowsProgressViewController.swift in Sources */,
+				8204071221D0046400127F05 /* SearchViewModule.swift in Sources */,
+				8204073221D004A500127F05 /* TrendingCollectionViewDataSource.swift in Sources */,
 				8204070521D003F200127F05 /* UIViewController+BaseView.swift in Sources */,
+				8204071821D0047400127F05 /* ShowEpisodeViewController.swift in Sources */,
+				8204071521D0046D00127F05 /* ShowOverviewModule.swift in Sources */,
+				8204071721D0047400127F05 /* ShowEpisodeModule.swift in Sources */,
+				8204070E21D0046400127F05 /* SearchBarView.swift in Sources */,
 				8204070721D0041300127F05 /* MovieDetailsModule.swift in Sources */,
+				8204073021D004A500127F05 /* TrendingModule.swift in Sources */,
+				8204073421D004AF00127F05 /* NoCacheMoyaPlugin.swift in Sources */,
+				8204073321D004AF00127F05 /* Secrets.swift in Sources */,
+				8204072921D0049800127F05 /* ShowsProgressModule.swift in Sources */,
+				8204072D21D0049F00127F05 /* TraktLoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
