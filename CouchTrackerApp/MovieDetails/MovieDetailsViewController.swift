@@ -3,8 +3,8 @@ import Kingfisher
 import RxSwift
 import UIKit
 
-final class MovieDetailsViewController: UIViewController, MovieDetailsView {
-  var presenter: MovieDetailsPresenter!
+public final class MovieDetailsViewController: UIViewController, MovieDetailsView {
+  public var presenter: MovieDetailsPresenter!
 
   private let disposeBag = DisposeBag()
 
@@ -18,7 +18,7 @@ final class MovieDetailsViewController: UIViewController, MovieDetailsView {
   @IBOutlet var watchedLabel: UILabel!
   @IBOutlet var watchedSwtich: UISwitch!
 
-  override func viewDidLoad() {
+  public override func viewDidLoad() {
     super.viewDidLoad()
 
     watchedSwtich.isOn = false

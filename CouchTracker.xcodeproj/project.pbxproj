@@ -1017,6 +1017,7 @@
 		820406EF21D0032100127F05 /* CouchTrackerApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouchTrackerApp.h; sourceTree = "<group>"; };
 		820406F021D0032100127F05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8204073D21D0180C00127F05 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = GeneratedFiles/R.generated.swift; sourceTree = SOURCE_ROOT; };
+		8204074121D042BF00127F05 /* CouchTrackerPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CouchTrackerPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8209AB0A21CED6800027BBF3 /* Error+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Mock.swift"; sourceTree = "<group>"; };
 		8209AB0D21CEF3790027BBF3 /* ended_completed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = ended_completed.json; path = ../../../../../../../../Desktop/Pessoal/CT/jsons_without_specials_episodes/ended_completed.json; sourceTree = "<group>"; };
 		8209AB0F21CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WatchedShowEntity+Mock.swift"; sourceTree = "<group>"; };
@@ -1945,6 +1946,7 @@
 		647632301F44824900F277F1 = {
 			isa = PBXGroup;
 			children = (
+				8204074121D042BF00127F05 /* CouchTrackerPlayground.playground */,
 				6476323B1F44824900F277F1 /* CouchTracker */,
 				820406EE21D0032100127F05 /* CouchTrackerApp */,
 				4F0F56FD203D5F4C00B86CB8 /* CouchTrackerCore */,
@@ -2947,7 +2949,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/GeneratedFiles/R.generated.swift",
+				$SRCROOT/GeneratedFiles/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
