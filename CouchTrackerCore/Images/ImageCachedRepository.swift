@@ -37,7 +37,11 @@ public final class ImageCachedRepository: ImageRepository {
   }
 
   public func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes? = nil) -> Maybe<URL> {
-    let tvdbObservable = fetchEpisodeImageFromTVDB(episode.tvdb, size?.tvdb ?? .normal)
+    guard let tvdbId = episode.tvdb else {
+      return Maybe.empty()
+    }
+
+    let tvdbObservable = fetchEpisodeImageFromTVDB(tvdbId, size?.tvdb ?? .normal)
 
     guard let tmdbId = episode.tmdb else {
       return tvdbObservable

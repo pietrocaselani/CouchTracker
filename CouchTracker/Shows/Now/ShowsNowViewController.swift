@@ -1,4 +1,3 @@
 import UIKit
 
-final class ShowsNowViewController: UIViewController {
-}
+final class ShowsNowViewController: UIViewController {}

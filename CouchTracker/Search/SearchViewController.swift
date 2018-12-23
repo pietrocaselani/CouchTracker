@@ -29,8 +29,7 @@ final class SearchViewController: UIViewController, SearchResultOutput {
     collectionView.dataSource = self
   }
 
-  func searchChangedTo(state _: SearchState) {
-  }
+  func searchChangedTo(state _: SearchState) {}
 
   func handleEmptySearchResult() {
     infoLabel.text = "No results"

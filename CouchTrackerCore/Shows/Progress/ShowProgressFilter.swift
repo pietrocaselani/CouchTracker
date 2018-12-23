@@ -40,7 +40,7 @@ public enum ShowProgressFilter: String {
   }
 
   private func filterWatched() -> (WatchedShowEntity) -> Bool {
-    return { (entity: WatchedShowEntity) in entity.aired - entity.completed > 0 }
+    return { (entity: WatchedShowEntity) in (entity.aired ?? -1) - (entity.completed ?? -1) > 0 }
   }
 
   private func filterReturning() -> (WatchedShowEntity) -> Bool {
@@ -49,7 +49,7 @@ public enum ShowProgressFilter: String {
 
   private func filterReturningWatched() -> (WatchedShowEntity) -> Bool {
     return { (entity: WatchedShowEntity) in
-      entity.aired - entity.completed > 0 || entity.show.status == Status.returning
+      (entity.aired ?? -1) - (entity.completed ?? -1) > 0 || entity.show.status == Status.returning
     }
   }
 }

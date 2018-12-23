@@ -2,9 +2,8 @@ import RxSwift
 import TraktSwift
 
 public final class ShowsProgressService: ShowsProgressInteractor {
-  private let repository: ShowsProgressRepository
   private let listStateDataSource: ShowsProgressListStateDataSource
-  private let schedulers: Schedulers
+  private let showsObserable: WatchedShowEntitiesObservable
 
   public var listState: ShowProgressListState {
     get {
@@ -15,18 +14,13 @@ public final class ShowsProgressService: ShowsProgressInteractor {
     }
   }
 
-  public init(repository: ShowsProgressRepository,
-              listStateDataSource: ShowsProgressListStateDataSource,
-              schedulers: Schedulers) {
-    self.repository = repository
+  public init(listStateDataSource: ShowsProgressListStateDataSource,
+              showsObserable: WatchedShowEntitiesObservable) {
     self.listStateDataSource = listStateDataSource
-    self.schedulers = schedulers
+    self.showsObserable = showsObserable
   }
 
   public func fetchWatchedShowsProgress() -> Observable<[WatchedShowEntity]> {
-    return repository.fetchWatchedShows(extended: .fullEpisodes)
-      .distinctUntilChanged({ (lhs, rhs) -> Bool in
-        lhs == rhs
-      })
+    return showsObserable.observeWatchedShows().distinctUntilChanged()
   }
 }

@@ -4,7 +4,7 @@ import TraktSwift
 public final class MovieEntityMapper {
   private init() {}
 
-  public static func entity(for movie: Movie, with genres: [Genre]? = nil, watchedAt: Date? = nil) -> MovieEntity {
+  public static func entity(for movie: Movie, with genres: [Genre], watchedAt: Date? = nil) -> MovieEntity {
     return MovieEntity(ids: movie.ids,
                        title: movie.title,
                        genres: genres,
@@ -14,7 +14,7 @@ public final class MovieEntityMapper {
                        watchedAt: watchedAt)
   }
 
-  public static func entity(for trendingMovie: TrendingMovie, with genres: [Genre]? = nil) -> TrendingMovieEntity {
+  public static func entity(for trendingMovie: TrendingMovie, with genres: [Genre]) -> TrendingMovieEntity {
     let movie = entity(for: trendingMovie.movie, with: genres)
     return TrendingMovieEntity(movie: movie)
   }

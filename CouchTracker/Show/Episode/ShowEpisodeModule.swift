@@ -14,6 +14,7 @@ final class ShowEpisodeModule {
     let realmProvider = Environment.instance.realmProvider
     let appConfigsObservable = Environment.instance.appConfigurationsObservable
     let hideSpecials = Environment.instance.currentAppState.hideSpecials
+    let showSynchronizer = Environment.instance.showSynchronizer
 
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
 
@@ -22,16 +23,14 @@ final class ShowEpisodeModule {
                                                 cofigurationRepository: configurationRepository,
                                                 schedulers: schedulers)
 
-    let showProgressRepository = ShowProgressAPIRepository(trakt: trakt)
-
-    let showEpisodeDataSource = ShowEpisodeRealmDataSource(realmProvider: realmProvider)
     let showEpisodeNetwork = ShowEpisodeMoyaNetwork(trakt: trakt, schedulers: schedulers)
-    let repository = ShowEpisodeAPIRepository(dataSource: showEpisodeDataSource,
-                                              network: showEpisodeNetwork,
+
+    let repository = ShowEpisodeAPIRepository(network: showEpisodeNetwork,
                                               schedulers: schedulers,
-                                              showProgressRepository: showProgressRepository,
+                                              synchronizer: showSynchronizer,
                                               appConfigurationsObservable: appConfigsObservable,
                                               hideSpecials: hideSpecials)
+
     let interactor = ShowEpisodeService(repository: repository, imageRepository: imageRepository)
     let presenter = ShowEpisodeDefaultPresenter(interactor: interactor, show: show)
 

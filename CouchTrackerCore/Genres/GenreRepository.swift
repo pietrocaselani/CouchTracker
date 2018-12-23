@@ -2,6 +2,6 @@ import RxSwift
 import TraktSwift
 
 public protocol GenreRepository {
-  func fetchMoviesGenres() -> Observable<[Genre]>
-  func fetchShowsGenres() -> Observable<[Genre]>
+  func fetchMoviesGenres() -> Single<[Genre]>
+  func fetchShowsGenres() -> Single<[Genre]>
 }

@@ -58,7 +58,8 @@ final class ShowOverviewViewController: UIViewController, ShowOverviewView {
 
   func show(details: ShowEntity) {
     let firstAired = details.firstAired?.parse() ?? "Unknown".localized
-    let genres = details.genres?.map { $0.name }.joined(separator: " | ")
+
+    let genres = details.genres.map { $0.name }.joined(separator: " | ")
 
     titleLabel.text = details.title ?? "TBA".localized
     statusLabel.text = details.status?.rawValue.localized ?? "Unknown".localized

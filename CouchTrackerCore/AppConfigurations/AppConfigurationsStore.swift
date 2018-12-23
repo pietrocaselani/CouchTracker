@@ -1,9 +1,11 @@
 import RxSwift
 
 public final class AppConfigurationsStore: AppConfigurationsObservable, AppConfigurationsOutput {
-  private let subject = PublishSubject<AppConfigurationsState>()
+  private let subject: BehaviorSubject<AppConfigurationsState>
 
-  public init() {}
+  public init(appState: AppConfigurationsState) {
+    subject = BehaviorSubject<AppConfigurationsState>(value: appState)
+  }
 
   public func observe() -> Observable<AppConfigurationsState> {
     return subject.asObservable().distinctUntilChanged()

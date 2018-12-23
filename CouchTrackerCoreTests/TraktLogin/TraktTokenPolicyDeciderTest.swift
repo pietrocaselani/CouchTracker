@@ -40,7 +40,7 @@ final class TraktTokenPolicyDeciderTest: XCTestCase {
     }
 
     // Then
-    let expectedEvent = error(201, genericError, AuthenticationResult.self)
+    let expectedEvent = Recorded.error(201, genericError, AuthenticationResult.self)
 
     expect(res.events).to(containElementSatisfying({ element -> Bool in
       element == expectedEvent
@@ -61,7 +61,7 @@ final class TraktTokenPolicyDeciderTest: XCTestCase {
 
     // Then
     let expectedResult = AuthenticationResult.undetermined
-    let expectedEvent = next(201, expectedResult)
+    let expectedEvent = Recorded.next(201, expectedResult)
 
     expect(res.events).to(containElementSatisfying({ element -> Bool in
       element == expectedEvent
@@ -83,7 +83,7 @@ final class TraktTokenPolicyDeciderTest: XCTestCase {
 
     // Then
     let expectedResult = AuthenticationResult.authenticated
-    let expectedEvent = next(201, expectedResult)
+    let expectedEvent = Recorded.next(201, expectedResult)
 
     expect(res.events).to(containElementSatisfying({ element -> Bool in
       element == expectedEvent

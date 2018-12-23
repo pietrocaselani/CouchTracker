@@ -17,7 +17,7 @@ public final class MovieDetailsService: MovieDetailsInteractor {
 
   public func fetchDetails() -> Observable<MovieEntity> {
     let detailsObservable = repository.fetchDetails(movieId: movieIds.slug)
-    let genresObservable = genreRepository.fetchMoviesGenres()
+    let genresObservable = genreRepository.fetchMoviesGenres().asObservable()
     let watchedObservable = repository.watched(movieId: movieIds.trakt).asObservable()
 
     return Observable.combineLatest(detailsObservable,

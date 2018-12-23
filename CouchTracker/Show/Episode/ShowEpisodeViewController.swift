@@ -36,22 +36,20 @@ final class ShowEpisodeViewController: UIViewController, ShowEpisodeView {
     watchedSwich.isOn = false
 
     watchedSwich.rx.isOn.changed
-      .flatMap { [weak self] _ -> Observable<SyncResult> in
+      .flatMap { [weak self] _ -> Observable<Never> in
         guard let strongSelf = self else { return Observable.empty() }
         return strongSelf.presenter.handleWatch().asObservable()
       }.observeOn(MainScheduler.instance)
-      .subscribe(onNext: { [weak self] syncResult in
-        self?.handleSyncResult(syncResult)
+      .subscribe(onError: { [weak self] error in
+        self?.handleSync(error: error)
       }).disposed(by: disposeBag)
 
     presenter.viewDidLoad()
   }
 
-  private func handleSyncResult(_ syncResult: SyncResult) {
-    if case let .fail(error) = syncResult {
-      let alert = UIAlertController.createErrorAlert(message: error.localizedDescription)
-      self.present(alert, animated: true, completion: nil)
-    }
+  private func handleSync(error: Error) {
+    let alert = UIAlertController.createErrorAlert(message: error.localizedDescription)
+    present(alert, animated: true, completion: nil)
   }
 
   private func showEmptyView() {
@@ -66,10 +64,10 @@ final class ShowEpisodeViewController: UIViewController, ShowEpisodeView {
     print("Error view: \(error.localizedDescription)")
   }
 
-  func show(episode: EpisodeEntity) {
-    titleLabel.text = episode.title
-    numberLabel.text = "Season \(episode.season) Episode \(episode.number)"
-    dateLabel.text = episode.firstAired?.shortString() ?? "Unknown".localized
+  private func show(episode: WatchedEpisodeEntity) {
+    titleLabel.text = episode.episode.title
+    numberLabel.text = "Season \(episode.episode.season) Episode \(episode.episode.number)"
+    dateLabel.text = episode.episode.firstAired?.shortString() ?? "Unknown".localized
     watchedSwich.isOn = episode.lastWatched != nil
   }
 

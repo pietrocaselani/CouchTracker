@@ -10,7 +10,7 @@ final class MovieDetailsMocks {
     var toggleWatchedInvokedCount = 0
 
     func fetchDetails() -> Observable<MovieEntity> {
-      let entity = MovieEntityMapper.entity(for: TraktEntitiesMock.createMovieDetailsMock())
+      let entity = MovieEntityMapper.entity(for: TraktEntitiesMock.createMovieDetailsMock(), with: [Genre]())
       return Observable.just(entity)
     }
 
@@ -157,8 +157,8 @@ final class MovieDetailsServiceMock: MovieDetailsInteractor {
   }
 
   func fetchDetails() -> Observable<MovieEntity> {
-    let detailsObservable = repository.fetchDetails(movieId: movieIds.slug)
-    let genresObservable = genreRepository.fetchMoviesGenres()
+    let detailsObservable = repository.fetchDetails(movieId: movieIds.slug).asObservable()
+    let genresObservable = genreRepository.fetchMoviesGenres().asObservable()
     let watchedObservable = repository.watched(movieId: movieIds.trakt).asObservable()
 
     return Observable.combineLatest(detailsObservable, genresObservable, watchedObservable) { movie, genres, watched in

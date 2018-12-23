@@ -1,4 +1,5 @@
 @testable import CouchTrackerCore
+import TraktSwift
 import XCTest
 
 final class ShowProgressSortTest: XCTestCase {
@@ -28,9 +29,11 @@ final class ShowProgressSortTest: XCTestCase {
     let ids = mock.show.ids
     let seasons = [WatchedSeasonEntity]()
 
-    let showA = ShowEntity(ids: ids, title: "A", overview: nil, network: nil, genres: nil, status: nil, firstAired: nil)
-    let showB = ShowEntity(ids: ids, title: "b", overview: nil, network: nil, genres: nil, status: nil, firstAired: nil)
-    let showNil = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: nil, status: nil, firstAired: nil)
+    let genres = [Genre]()
+
+    let showA = ShowEntity(ids: ids, title: "A", overview: nil, network: nil, genres: genres, status: nil, firstAired: nil)
+    let showB = ShowEntity(ids: ids, title: "b", overview: nil, network: nil, genres: genres, status: nil, firstAired: nil)
+    let showNil = ShowEntity(ids: ids, title: nil, overview: nil, network: nil, genres: genres, status: nil, firstAired: nil)
 
     let watchedShowA = WatchedShowEntity(show: showA, aired: 0, completed: 0, nextEpisode: nil, lastWatched: nil, seasons: seasons)
 
@@ -117,21 +120,26 @@ final class ShowProgressSortTest: XCTestCase {
     let date2 = Date(timeIntervalSince1970: 10)
     let date3: Date? = nil
 
-    let episode1 = EpisodeEntity(ids: episodeIds, showIds: showIds, title: "", overview: nil, number: 0, season: 0, firstAired: date1, lastWatched: nil)
+    let episode1 = EpisodeEntity(ids: episodeIds, showIds: showIds, title: "", overview: nil, number: 0, season: 0, firstAired: date1)
 
-    let episode2 = EpisodeEntity(ids: episodeIds, showIds: showIds, title: "", overview: nil, number: 0, season: 0, firstAired: date2, lastWatched: nil)
+    let episode2 = EpisodeEntity(ids: episodeIds, showIds: showIds, title: "", overview: nil, number: 0, season: 0, firstAired: date2)
 
-    let episode3 = EpisodeEntity(ids: episodeIds, showIds: showIds, title: "", overview: nil, number: 0, season: 0, firstAired: date3, lastWatched: nil)
+    let episode3 = EpisodeEntity(ids: episodeIds, showIds: showIds, title: "", overview: nil, number: 0, season: 0, firstAired: date3)
 
-    let episode4 = EpisodeEntity(ids: episodeIds, showIds: showIds, title: "", overview: nil, number: 0, season: 0, firstAired: date3, lastWatched: nil)
+    let episode4 = EpisodeEntity(ids: episodeIds, showIds: showIds, title: "", overview: nil, number: 0, season: 0, firstAired: date3)
 
-    let watchedShow1 = WatchedShowEntity(show: show, aired: 10, completed: 10, nextEpisode: episode1, lastWatched: date1, seasons: seasons)
+    let nextEpisode1 = WatchedEpisodeEntity(episode: episode1, lastWatched: nil)
+    let nextEpisode2 = WatchedEpisodeEntity(episode: episode2, lastWatched: nil)
+    let nextEpisode3 = WatchedEpisodeEntity(episode: episode3, lastWatched: nil)
+    let nextEpisode4 = WatchedEpisodeEntity(episode: episode4, lastWatched: nil)
 
-    let watchedShow2 = WatchedShowEntity(show: show, aired: 10, completed: 5, nextEpisode: episode2, lastWatched: date2, seasons: seasons)
+    let watchedShow1 = WatchedShowEntity(show: show, aired: 10, completed: 10, nextEpisode: nextEpisode1, lastWatched: date1, seasons: seasons)
 
-    let watchedShow3 = WatchedShowEntity(show: show, aired: 3, completed: 1, nextEpisode: episode3, lastWatched: date3, seasons: seasons)
+    let watchedShow2 = WatchedShowEntity(show: show, aired: 10, completed: 5, nextEpisode: nextEpisode2, lastWatched: date2, seasons: seasons)
 
-    let watchedShow4 = WatchedShowEntity(show: show, aired: 3, completed: 3, nextEpisode: episode4, lastWatched: date3, seasons: seasons)
+    let watchedShow3 = WatchedShowEntity(show: show, aired: 3, completed: 1, nextEpisode: nextEpisode3, lastWatched: date3, seasons: seasons)
+
+    let watchedShow4 = WatchedShowEntity(show: show, aired: 3, completed: 3, nextEpisode: nextEpisode4, lastWatched: date3, seasons: seasons)
 
     let shows = [watchedShow2, watchedShow4, watchedShow1, watchedShow3]
 

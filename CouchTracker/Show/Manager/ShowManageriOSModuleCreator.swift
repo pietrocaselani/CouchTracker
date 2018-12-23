@@ -14,7 +14,7 @@ final class ShowManageriOSModuleCreator: ShowManagerModuleCreator {
     case .episode:
       return ShowEpisodeModule.setupModule(for: show)
     case .seasons:
-      return ShowSeasonsModule.setupModule()
+      return ShowSeasonsModule.setupModule(for: show)
     }
   }
 }

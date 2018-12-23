@@ -16,7 +16,7 @@ public final class ShowOverviewService: ShowOverviewInteractor {
   }
 
   public func fetchDetailsOfShow() -> Single<ShowEntity> {
-    let genreObservable = genreRepository.fetchShowsGenres()
+    let genreObservable = genreRepository.fetchShowsGenres().asObservable()
     let showObservable = repository.fetchDetailsOfShow(with: showIds.slug, extended: .full).asObservable()
 
     return Observable.combineLatest(showObservable, genreObservable) { (show, genres) -> ShowEntity in

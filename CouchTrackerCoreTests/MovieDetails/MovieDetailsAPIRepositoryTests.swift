@@ -26,7 +26,7 @@ final class MovieDetailsAPIRepositoryTests: XCTestCase {
     // Given
     let trakt = createTraktProviderMock()
     let repository = MovieDetailsAPIRepository(traktProvider: trakt, schedulers: schedulers)
-    let movie = MovieEntityMapper.entity(for: TraktEntitiesMock.createMovieDetailsMock())
+    let movie = MovieEntityMapper.entity(for: TraktEntitiesMock.createMovieDetailsMock(), with: [Genre]())
     let observer = schedulers.createObserver(SyncMovieResult.self)
 
     // When
@@ -46,7 +46,7 @@ final class MovieDetailsAPIRepositoryTests: XCTestCase {
     // Given
     let trakt = createTraktProviderMock()
     let repository = MovieDetailsAPIRepository(traktProvider: trakt, schedulers: schedulers)
-    let movie = MovieEntityMapper.entity(for: TraktEntitiesMock.createMovieDetailsMock())
+    let movie = MovieEntityMapper.entity(for: TraktEntitiesMock.createMovieDetailsMock(), with: [Genre]())
     let observer = schedulers.createObserver(SyncMovieResult.self)
 
     // When

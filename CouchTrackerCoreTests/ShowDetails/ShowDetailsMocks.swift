@@ -46,7 +46,7 @@ final class ShowOverviewInteractorMock: ShowOverviewInteractor {
   }
 
   func fetchDetailsOfShow() -> Single<ShowEntity> {
-    let genresObservable = genreRepository.fetchShowsGenres()
+    let genresObservable = genreRepository.fetchShowsGenres().asObservable()
     let showObservable = repository.fetchDetailsOfShow(with: showIds.slug, extended: .full).asObservable()
 
     return Observable.combineLatest(showObservable, genresObservable, resultSelector: { (show, genres) -> ShowEntity in

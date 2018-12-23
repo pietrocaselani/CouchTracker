@@ -52,8 +52,8 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let viewStateShowing = MovieDetailsViewState.showing(movie: movieEntity)
 
     let expectedViewStateEvents = [
-      next(0, viewStateLoading),
-      next(0, viewStateShowing),
+      Recorded.next(0, viewStateLoading),
+      Recorded.next(0, viewStateShowing),
     ]
     XCTAssertEqual(viewObserver.events, expectedViewStateEvents)
   }
@@ -80,8 +80,8 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let viewStateShowing = MovieDetailsViewState.showing(movie: movieEntity)
 
     let expectedViewStateEvents = [
-      next(0, viewStateLoading),
-      next(0, viewStateShowing),
+      Recorded.next(0, viewStateLoading),
+      Recorded.next(0, viewStateShowing),
     ]
     XCTAssertEqual(viewObserver.events, expectedViewStateEvents)
   }
@@ -103,8 +103,8 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let viewModel = ImagesViewModel(posterLink: posterLink, backdropLink: backdropLink)
 
     let expectedImagesEvents = [
-      next(0, MovieDetailsImagesState.loading),
-      next(0, MovieDetailsImagesState.showing(images: viewModel)),
+      Recorded.next(0, MovieDetailsImagesState.loading),
+      Recorded.next(0, MovieDetailsImagesState.showing(images: viewModel)),
     ]
 
     XCTAssertEqual(imageObserver.events, expectedImagesEvents)
@@ -129,8 +129,8 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
     let expectedError = MovieDetailsError.noImageAvailable
     let expectedEvents = [
-      next(0, MovieDetailsImagesState.loading),
-      next(0, MovieDetailsImagesState.error(error: expectedError)),
+      Recorded.next(0, MovieDetailsImagesState.loading),
+      Recorded.next(0, MovieDetailsImagesState.error(error: expectedError)),
     ]
 
     XCTAssertEqual(imageObserver.events, expectedEvents)
@@ -152,8 +152,8 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
     let expectedError = MovieDetailsError.noConnection(errorMessage)
     let expectedEvents = [
-      next(0, MovieDetailsViewState.loading),
-      next(0, MovieDetailsViewState.error(error: expectedError)),
+      Recorded.next(0, MovieDetailsViewState.loading),
+      Recorded.next(0, MovieDetailsViewState.error(error: expectedError)),
     ]
 
     XCTAssertEqual(viewObserver.events, expectedEvents)
@@ -174,8 +174,8 @@ final class MovieDetailsPresenterTest: XCTestCase {
     presenter.viewDidLoad()
 
     let expectedEvents = [
-      next(0, MovieDetailsViewState.loading),
-      next(0, MovieDetailsViewState.error(error: error)),
+      Recorded.next(0, MovieDetailsViewState.loading),
+      Recorded.next(0, MovieDetailsViewState.error(error: error)),
     ]
 
     XCTAssertEqual(viewObserver.events, expectedEvents)

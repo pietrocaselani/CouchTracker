@@ -75,9 +75,7 @@ extension ShowEntity {
     entity.status = status?.rawValue
     entity.firstAired = firstAired
 
-    if let realmGenres = self.genres?.map({ $0.toRealm() }) {
-      entity.genres.append(objectsIn: realmGenres)
-    }
+    genres.forEach { entity.genres.append($0.toRealm()) }
 
     return entity
   }

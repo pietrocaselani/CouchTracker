@@ -45,25 +45,24 @@ public final class TrendingDefaultPresenter: TrendingPresenter {
 
   private func fetchMovies() {
     let observable = interactor.fetchMovies(page: currentMoviesPage, limit: TrendingDefaultPresenter.limitPerPage)
-      .do(onNext: { [unowned self] in
+      .do(onSuccess: { [unowned self] in
         self.movies = $0
       }).map { [unowned self] in self.transformToViewModels(entities: $0) }
 
-    subscribe(on: observable, for: .movies)
+    subscribe(on: observable)
   }
 
   private func fetchShows() {
     let observable = interactor.fetchShows(page: currentShowsPage, limit: TrendingDefaultPresenter.limitPerPage)
-      .do(onNext: { [unowned self] in
+      .do(onSuccess: { [unowned self] in
         self.shows = $0
       }).map { [unowned self] in self.transformToViewModels(entities: $0) }
 
-    subscribe(on: observable, for: .shows)
+    subscribe(on: observable)
   }
 
-  private func subscribe(on observable: Observable<[PosterViewModel]>, for _: TrendingType) {
-    observable.asSingle()
-      .observeOn(schedulers.mainScheduler)
+  private func subscribe(on single: Single<[PosterViewModel]>) {
+    single.observeOn(schedulers.mainScheduler)
       .subscribe(onSuccess: { [unowned self] in
         self.present(viewModels: $0)
       }, onError: { error in

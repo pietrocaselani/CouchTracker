@@ -9,7 +9,6 @@ final class EpisodeEntityRealm: Object {
   @objc dynamic var number = -1
   @objc dynamic var season = -1
   @objc dynamic var firstAired: Date?
-  @objc dynamic var lastWatched: Date?
 
   var ids: EpisodeIdsRealm? {
     get {
@@ -46,8 +45,7 @@ final class EpisodeEntityRealm: Object {
       lhs.overview == rhs.overview &&
       lhs.number == rhs.number &&
       lhs.season == rhs.season &&
-      lhs.firstAired == rhs.firstAired &&
-      lhs.lastWatched == rhs.lastWatched
+      lhs.firstAired == rhs.firstAired
   }
 
   func toEntity() -> EpisodeEntity {
@@ -65,8 +63,7 @@ final class EpisodeEntityRealm: Object {
                          overview: overview,
                          number: number,
                          season: season,
-                         firstAired: firstAired,
-                         lastWatched: lastWatched)
+                         firstAired: firstAired)
   }
 }
 
@@ -81,7 +78,6 @@ extension EpisodeEntity {
     entity.number = number
     entity.season = season
     entity.firstAired = firstAired
-    entity.lastWatched = lastWatched
 
     return entity
   }

@@ -55,12 +55,12 @@ final class TrendingRouterMock: TrendingRouter, AppConfigurationsPresentable {
 }
 
 final class EmptyTrendingRepositoryMock: TrendingRepository {
-  func fetchMovies(page _: Int, limit _: Int) -> Observable<[TrendingMovie]> {
-    return Observable.just([TrendingMovie]())
+  func fetchMovies(page _: Int, limit _: Int) -> Single<[TrendingMovie]> {
+    return Single.just([TrendingMovie]())
   }
 
-  func fetchShows(page _: Int, limit _: Int) -> Observable<[TrendingShow]> {
-    return Observable.just([TrendingShow]())
+  func fetchShows(page _: Int, limit _: Int) -> Single<[TrendingShow]> {
+    return Single.just([TrendingShow]())
   }
 }
 
@@ -71,12 +71,12 @@ final class ErrorTrendingRepositoryMock: TrendingRepository {
     self.error = error
   }
 
-  func fetchMovies(page _: Int, limit _: Int) -> Observable<[TrendingMovie]> {
-    return Observable.error(error)
+  func fetchMovies(page _: Int, limit _: Int) -> Single<[TrendingMovie]> {
+    return Single.error(error)
   }
 
-  func fetchShows(page _: Int, limit _: Int) -> Observable<[TrendingShow]> {
-    return Observable.error(error)
+  func fetchShows(page _: Int, limit _: Int) -> Single<[TrendingShow]> {
+    return Single.error(error)
   }
 }
 
@@ -87,12 +87,12 @@ final class TrendingMoviesRepositoryMock: TrendingRepository {
     self.movies = movies
   }
 
-  func fetchMovies(page _: Int, limit: Int) -> Observable<[TrendingMovie]> {
-    return Observable.just(movies).take(limit)
+  func fetchMovies(page _: Int, limit: Int) -> Single<[TrendingMovie]> {
+    return Single.just(movies)
   }
 
-  func fetchShows(page _: Int, limit _: Int) -> Observable<[TrendingShow]> {
-    return Observable.empty()
+  func fetchShows(page _: Int, limit _: Int) -> Single<[TrendingShow]> {
+    return Single.just([TrendingShow]())
   }
 }
 
@@ -103,12 +103,12 @@ final class TrendingShowsRepositoryMock: TrendingRepository {
     self.shows = shows
   }
 
-  func fetchMovies(page _: Int, limit _: Int) -> Observable<[TrendingMovie]> {
-    return Observable.empty()
+  func fetchMovies(page _: Int, limit _: Int) -> Single<[TrendingMovie]> {
+    return Single.just([TrendingMovie]())
   }
 
-  func fetchShows(page _: Int, limit: Int) -> Observable<[TrendingShow]> {
-    return Observable.just(shows).take(limit)
+  func fetchShows(page _: Int, limit: Int) -> Single<[TrendingShow]> {
+    return Single.just(shows)
   }
 }
 
@@ -119,14 +119,14 @@ final class TrendingRepositoryMock: TrendingRepository {
     self.traktProvider = traktProvider
   }
 
-  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovie]> {
+  func fetchMovies(page: Int, limit: Int) -> Single<[TrendingMovie]> {
     return traktProvider.movies.rx.request(.trending(page: page, limit: limit, extended: .full))
-      .map([TrendingMovie].self).asObservable()
+      .map([TrendingMovie].self)
   }
 
-  func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShow]> {
+  func fetchShows(page: Int, limit: Int) -> Single<[TrendingShow]> {
     return traktProvider.shows.rx.request(.trending(page: page, limit: limit, extended: .full))
-      .map([TrendingShow].self).asObservable()
+      .map([TrendingShow].self)
   }
 }
 
@@ -137,20 +137,20 @@ final class TrendingServiceMock: TrendingInteractor {
     trendingRepo = repository
   }
 
-  func fetchMovies(page: Int, limit: Int) -> Observable<[TrendingMovieEntity]> {
+  func fetchMovies(page: Int, limit: Int) -> Single<[TrendingMovieEntity]> {
     let moviesObservable = trendingRepo.fetchMovies(page: page, limit: limit)
 
     return moviesObservable.map {
       $0.map {
-        MovieEntityMapper.entity(for: $0)
+        MovieEntityMapper.entity(for: $0, with: [Genre]())
       }
     }
   }
 
-  func fetchShows(page: Int, limit: Int) -> Observable<[TrendingShowEntity]> {
+  func fetchShows(page: Int, limit: Int) -> Single<[TrendingShowEntity]> {
     return trendingRepo.fetchShows(page: page, limit: limit).map {
       $0.map {
-        ShowEntityMapper.entity(for: $0)
+        ShowEntityMapper.entity(for: $0, with: [Genre]())
       }
     }
   }

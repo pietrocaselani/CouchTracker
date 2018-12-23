@@ -10,7 +10,7 @@ public struct AppConfigurationsState: Hashable {
   }
 
   public static func initialState() -> AppConfigurationsState {
-    return AppConfigurationsState(loginState: .notLogged, hideSpecials: false)
+    return Defaults.appState
   }
 
   public func newBuilder() -> AppConfigurationsStateBuilder {
@@ -23,6 +23,14 @@ public struct AppConfigurationsState: Hashable {
 
   public static func == (lhs: AppConfigurationsState, rhs: AppConfigurationsState) -> Bool {
     return lhs.hashValue == rhs.hashValue
+  }
+
+  public static func isLoginStateSame(lhs: AppConfigurationsState, rhs: AppConfigurationsState) -> Bool {
+    return lhs.loginState == rhs.loginState
+  }
+
+  public static func isHideSpecialsSame(lhs: AppConfigurationsState, rhs: AppConfigurationsState) -> Bool {
+    return lhs.hideSpecials == rhs.hideSpecials
   }
 }
 

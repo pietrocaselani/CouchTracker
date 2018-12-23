@@ -1,8 +1,13 @@
 import CouchTrackerCore
+import RxSwift
 import UIKit
 
 final class ShowSeasonsModule {
-  static func setupModule() -> BaseView {
-    return UIViewController()
+  private init() {}
+
+  static func setupModule(for show: WatchedShowEntity) -> BaseView {
+    let observable = Environment.instance.watchedShowEntityObserable.observeWatchedShow(showIds: show.show.ids)
+
+    return ShowSeasonsViewController(show: observable)
   }
 }

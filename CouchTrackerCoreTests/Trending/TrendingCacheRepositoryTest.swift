@@ -20,23 +20,23 @@ final class TrendingCacheRepositoryTest: XCTestCase {
   }
 
   func testFetchMoviesEmitMoviesAndComplete() {
-    repository.fetchMovies(page: 0, limit: 50).subscribe(moviesObserver).disposed(by: disposeBag)
+    repository.fetchMovies(page: 0, limit: 50).asObservable().subscribe(moviesObserver).disposed(by: disposeBag)
 
     scheduler.start()
 
     let expectedMovies = TraktEntitiesMock.createTrendingMoviesMock()
-    let expectedEvents: [Recorded<Event<[TrendingMovie]>>] = [next(0, expectedMovies), completed(0)]
+    let expectedEvents: [Recorded<Event<[TrendingMovie]>>] = [Recorded.next(0, expectedMovies), Recorded.completed(0)]
 
     RXAssertEvents(moviesObserver, expectedEvents)
   }
 
   func testFetchShowsEmitShowsAndComplete() {
-    repository.fetchShows(page: 0, limit: 50).subscribe(showsObserver).disposed(by: disposeBag)
+    repository.fetchShows(page: 0, limit: 50).asObservable().subscribe(showsObserver).disposed(by: disposeBag)
 
     scheduler.start()
 
     let expectedShows = TraktEntitiesMock.createTrendingShowsMock()
-    let expectedEvents: [Recorded<Event<[TrendingShow]>>] = [next(0, expectedShows), completed(0)]
+    let expectedEvents: [Recorded<Event<[TrendingShow]>>] = [Recorded.next(0, expectedShows), Recorded.completed(0)]
 
     RXAssertEvents(showsObserver, expectedEvents)
   }

@@ -55,7 +55,7 @@ final class ShowEpisodeServiceTest: XCTestCase {
   func testShowEpisodeService_toggleWatch_forUnwatchedEpisode_shouldAddOnHistory() {
     // Given
     let show = ShowsProgressMocks.mockWatchedShowEntity()
-    let episode = ShowsProgressMocks.mockEpisodeEntity(watched: nil)
+    let episode = ShowsProgressMocks.mockWatchedEpisode(watched: nil)
 
     // When
     _ = interactor.toggleWatch(for: episode, of: show)
@@ -64,13 +64,13 @@ final class ShowEpisodeServiceTest: XCTestCase {
     XCTAssertTrue(repository.addToHistoryInvoked)
     XCTAssertFalse(repository.removeFromHistoryInvoked)
     XCTAssertEqual(repository.addToHistoryParameters!.show, show)
-    XCTAssertEqual(repository.addToHistoryParameters!.episode, episode)
+    XCTAssertEqual(repository.addToHistoryParameters!.episode, episode.episode)
   }
 
   func testShowEpisodeService_toggleWatch_forWwatchedEpisode_shoulRemoveFromHistory() {
     // Given
     let show = ShowsProgressMocks.mockWatchedShowEntity()
-    let episode = ShowsProgressMocks.mockEpisodeEntity(watched: Date(timeIntervalSince1970: 0))
+    let episode = ShowsProgressMocks.mockWatchedEpisode(watched: Date(timeIntervalSince1970: 0))
 
     // When
     _ = interactor.toggleWatch(for: episode, of: show)
@@ -79,6 +79,6 @@ final class ShowEpisodeServiceTest: XCTestCase {
     XCTAssertFalse(repository.addToHistoryInvoked)
     XCTAssertTrue(repository.removeFromHistoryInvoked)
     XCTAssertEqual(repository.removeFromHistoryParameters!.show, show)
-    XCTAssertEqual(repository.removeFromHistoryParameters!.episode, episode)
+    XCTAssertEqual(repository.removeFromHistoryParameters!.episode, episode.episode)
   }
 }

@@ -96,6 +96,7 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
     view?.reloadList()
   }
 
+  // TODO: change this to use view state pls!!
   private func fetchShows() {
     view?.showLoading()
 

@@ -34,7 +34,7 @@ final class ImageCachedRepositoryTest: XCTestCase {
 
     let images = ImagesEntity(identifier: 550, backdrops: [backdrop], posters: [poster], stills: [ImageEntity]())
 
-    let expectedEvents = [next(2, images), completed(2)]
+    let expectedEvents = [Recorded.next(2, images), Recorded.completed(2)]
 
     XCTAssertEqual(observer.events, expectedEvents)
   }
@@ -53,7 +53,7 @@ final class ImageCachedRepositoryTest: XCTestCase {
 
     let images = ImagesEntity(identifier: 550, backdrops: [backdrop], posters: [poster], stills: [ImageEntity]())
 
-    let expectedEvents = [next(2, images), completed(2)]
+    let expectedEvents = [Recorded.next(2, images), Recorded.completed(2)]
 
     XCTAssertEqual(observer.events, expectedEvents)
   }
@@ -117,7 +117,7 @@ final class ImageCachedRepositoryTest: XCTestCase {
 
     let expectedURL = URL(string: "https:/image.tmdb.org/t/p/w300/wrGWeW4WKxnaeA8sxJb2T9O6ryo.jpg")!
 
-    let expectedEvents = [next(2, expectedURL), completed(2)]
+    let expectedEvents = [Recorded.next(2, expectedURL), Recorded.completed(2)]
 
     XCTAssertEqual(episodeObserver.events, expectedEvents)
   }
@@ -133,7 +133,7 @@ final class ImageCachedRepositoryTest: XCTestCase {
 
     let expectedURL = URL(string: "https:/image.tmdb.org/t/p/w185/wrGWeW4WKxnaeA8sxJb2T9O6ryo.jpg")!
 
-    let expectedEvents = [next(2, expectedURL), completed(2)]
+    let expectedEvents = [Recorded.next(2, expectedURL), Recorded.completed(2)]
 
     XCTAssertEqual(episodeObserver.events, expectedEvents)
   }
@@ -147,7 +147,7 @@ final class ImageCachedRepositoryTest: XCTestCase {
 
     let expectedURL = URL(string: "https://www.thetvdb.com/banners/episodes/121361/3254641.jpg")!
 
-    let expectedEvents = [next(0, expectedURL), completed(0)]
+    let expectedEvents = [Recorded.next(0, expectedURL), Recorded.completed(0)]
 
     XCTAssertEqual(episodeObserver.events, expectedEvents)
   }
@@ -163,7 +163,7 @@ final class ImageCachedRepositoryTest: XCTestCase {
 
     let expectedURL = URL(string: "https://www.thetvdb.com/banners/_cache/episodes/121361/3254641.jpg")!
 
-    let expectedEvents = [next(0, expectedURL), completed(0)]
+    let expectedEvents = [Recorded.next(0, expectedURL), Recorded.completed(0)]
 
     XCTAssertEqual(episodeObserver.events, expectedEvents)
   }
@@ -182,7 +182,7 @@ final class ImageCachedRepositoryTest: XCTestCase {
 
     let expectedURL = URL(string: "https://www.thetvdb.com/banners/_cache/episodes/121361/3254641.jpg")!
 
-    let expectedEvents = [next(1, expectedURL), completed(1)]
+    let expectedEvents = [Recorded.next(1, expectedURL), Recorded.completed(1)]
 
     XCTAssertEqual(episodeObserver.events, expectedEvents)
   }
