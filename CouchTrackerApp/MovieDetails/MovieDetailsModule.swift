@@ -1,10 +1,10 @@
 import CouchTrackerCore
 import TraktSwift
 
-final class MovieDetailsModule {
+public final class MovieDetailsModule {
   private init() {}
 
-  static func setupModule(movieIds: MovieIds) -> BaseView {
+  public static func setupModule(movieIds: MovieIds) -> BaseView {
     let trakt = Environment.instance.trakt
     let tmdb = Environment.instance.tmdb
     let tvdb = Environment.instance.tvdb
