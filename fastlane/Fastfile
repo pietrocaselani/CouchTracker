@@ -2,7 +2,7 @@ fastlane_version '2.93.1'
 
 desc 'Run bundle exec pod install --repo-update'
 lane :pods do
-  cocoapods(podfile: '.', repo_update: false)
+  cocoapods(podfile: '.', repo_update: true)
 end
 
 desc 'Run CouchTrackerCore tests'
