@@ -4,14 +4,16 @@
 
 osx_image: xcode10.1
 language: objective-c
+cache:
+  - bundler
+  - cocoapods
 
 before_install:
-- bundle install
-- bundle exec pod repo update
-- bash setup.sh
-- git remote set-url origin "https://${GITHUB_TOKEN}@github.com/pietrocaselani/CouchTracker.git"
+  - bash setup.sh
+  - bundle exec pod repo update
+  - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/pietrocaselani/CouchTracker.git"
 script:
-- bash ci/travis.sh
+  - bash ci/travis.sh
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 notifications:
