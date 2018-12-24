@@ -7,11 +7,8 @@ language: objective-c
 cache:
   - bundler
   - cocoapods
-
 before_install:
   - bash setup.sh
-  - bundle exec pod repo update
-  - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/pietrocaselani/CouchTracker.git"
 script:
   - bash ci/travis.sh
 after_success:
