@@ -20,7 +20,6 @@ let data = """
 
 let movieIds = try! JSONDecoder().decode(MovieIds.self, from: data)
 
-print(movieIds)
-
 let viewController = MovieDetailsModule.setupModule(movieIds: movieIds)
+
 PlaygroundPage.current.liveView = viewController as! UIViewController
