@@ -4,10 +4,12 @@
 
 osx_image: xcode10.1
 language: objective-c
+cache:
+  - bundler
+  - cocoapods
 before_install:
   - bash setup.sh
 script:
-  - bundle exec pod install --repo-update
   - bash ci/travis.sh
 after_success:
   - bash <(curl -s https://codecov.io/bash)
