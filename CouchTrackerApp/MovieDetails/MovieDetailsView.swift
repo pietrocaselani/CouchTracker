@@ -78,7 +78,7 @@ public final class MovieDetailsView: View {
   private lazy var posterShadowView: UIView = {
     let view = UIView()
     view.backgroundColor = .black
-    view.alpha = 0.85
+    view.alpha = 0.75
     return view
   }()
 
