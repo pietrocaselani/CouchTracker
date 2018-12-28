@@ -7,21 +7,21 @@ public final class MovieDetailsView: View {
 
   // Public Views
 
-  public lazy var posterImageView: UIImageView = {
+  public let posterImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.contentMode = UIView.ContentMode.scaleAspectFill
     return imageView
   }()
 
-  public lazy var backdropImageView: UIImageView = {
+  public let backdropImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.contentMode = UIView.ContentMode.scaleAspectFill
     imageView.isUserInteractionEnabled = true
-    imageView.addGestureRecognizer(tapGesture(using: #selector(didTapOnBackdrop)))
+    imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapOnBackdrop)))
     return imageView
   }()
 
-  public lazy var titleLabel: UILabel = {
+  public let titleLabel: UILabel = {
     let label = UILabel()
     label.font = UIFont.boldSystemFont(ofSize: 22)
     label.textColor = .white
@@ -29,21 +29,21 @@ public final class MovieDetailsView: View {
     return label
   }()
 
-  public lazy var taglineLabel: UILabel = {
+  public let taglineLabel: UILabel = {
     let label = UILabel()
     label.textColor = .lightGray
     label.numberOfLines = 0
     return label
   }()
 
-  public lazy var overviewLabel: UILabel = {
+  public let overviewLabel: UILabel = {
     let label = UILabel()
     label.textColor = .lightGray
     label.numberOfLines = 0
     return label
   }()
 
-  public lazy var genresLabel: UILabel = {
+  public let genresLabel: UILabel = {
     let label = UILabel()
     label.textColor = .lightGray
     label.numberOfLines = 0
@@ -51,19 +51,19 @@ public final class MovieDetailsView: View {
     return label
   }()
 
-  public lazy var releaseDateLabel: UILabel = {
+  public let releaseDateLabel: UILabel = {
     let label = UILabel()
     label.textColor = .lightGray
     return label
   }()
 
-  public lazy var watchedAtLabel: UILabel = {
+  public let watchedAtLabel: UILabel = {
     let label = UILabel()
     label.textColor = .lightGray
     return label
   }()
 
-  public lazy var watchButton: UIButton = {
+  public let watchButton: UIButton = {
     let button = UIButton()
     button.addTarget(self, action: #selector(didTapOnWatch), for: .touchUpInside)
     return button
@@ -71,11 +71,11 @@ public final class MovieDetailsView: View {
 
   // Private Views
 
-  private lazy var scrollView: UIScrollView = {
+  private let scrollView: UIScrollView = {
     UIScrollView()
   }()
 
-  private lazy var posterShadowView: UIView = {
+  private let posterShadowView: UIView = {
     let view = UIView()
     view.backgroundColor = .black
     view.alpha = 0.75
@@ -95,7 +95,7 @@ public final class MovieDetailsView: View {
     stackView.distribution = .equalSpacing
     stackView.layoutMargins = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
     stackView.isLayoutMarginsRelativeArrangement = true
-    stackView.addGestureRecognizer(tapGesture(using: #selector(didTapOnPoster)))
+    stackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapOnPoster)))
 
     return stackView
   }()
@@ -134,10 +134,6 @@ public final class MovieDetailsView: View {
       content.bottom == content.superview!.bottom
       content.trailing == content.superview!.trailing
     }
-  }
-
-  private func tapGesture(using selector: Selector) -> UITapGestureRecognizer {
-    return UITapGestureRecognizer(target: self, action: selector)
   }
 
   @objc private func didTapOnPoster() {
