@@ -5,11 +5,11 @@ OSX_VERSION = '10.11'.freeze
 IOS_VERSION = '10.0'.freeze
 
 def common_pods
-  pod 'SwiftLint', '0.25.1'
+  pod 'SwiftLint', '0.29.2'
   pod 'Trakt', path: './vendor/Trakt-Swift'
   pod 'TMDB', path: './vendor/TMDB-Swift'
   pod 'TVDB', path: './vendor/TVDB-Swift'
-  pod 'RxRealm', '0.7.5'
+  pod 'RxRealm', '0.7.6'
   pod 'RealmSwift', '3.7.6'
   pod 'RxSwift', RX_SWIFT_VERSION
 end
@@ -21,6 +21,7 @@ def ios_pods
   pod 'RxCocoa', RX_SWIFT_VERSION
   pod 'ActionSheetPicker-3.0', '2.2.0'
   pod 'Tabman', '2.1.0'
+  pod 'Cartography', '3.1.0'
 end
 
 def tests_shared_pods

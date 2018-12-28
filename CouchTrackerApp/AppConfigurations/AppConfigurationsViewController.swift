@@ -66,7 +66,7 @@ final class AppConfigurationsViewController: UIViewController, AppConfigurations
     case let .hideSpecials(wantsToHideSpecials):
       cell.accessoryType = wantsToHideSpecials ? .checkmark : .none
     case let .traktLogin(wantsToLogin):
-      cell.accessoryType = wantsToLogin ? .checkmark : .none
+      cell.accessoryType = wantsToLogin ? .none : .checkmark
     case .externalURL:
       cell.accessoryType = .disclosureIndicator
     }
