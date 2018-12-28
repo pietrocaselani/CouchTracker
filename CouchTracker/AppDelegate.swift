@@ -3,7 +3,7 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  var window: UIWindow?
+  let window = UIWindow()
 
   func application(_: UIApplication,
                    didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
@@ -18,9 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       fatalError("view should be an instance of UIViewController")
     }
 
-    window = UIWindow(frame: UIScreen.main.bounds)
-    window?.rootViewController = viewController
-    window?.makeKeyAndVisible()
+    window.rootViewController = viewController
+    window.makeKeyAndVisible()
 
     return true
   }

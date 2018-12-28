@@ -302,11 +302,11 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     // Then
     let viewExpectation = expectation(description: "Should update view")
 
-    let watched1 = WatchedShowViewModel(title: "The Americans", nextEpisode: "1x1 Winter Is Coming", nextEpisodeDate: "17 de setembro", status: "5 remaining FX (US)", tmdbId: 46533)
+    let watched1 = WatchedShowViewModel(title: "The Americans", nextEpisode: "1x1 Winter Is Coming", nextEpisodeDate: "17 de setembro", status: "5 faltando FX (US)", tmdbId: 46533)
 
-    let watched2 = WatchedShowViewModel(title: "The Americans", nextEpisode: nil, nextEpisodeDate: "Em exibição", status: "5 remaining FX (US)", tmdbId: 46533)
+    let watched2 = WatchedShowViewModel(title: "The Americans", nextEpisode: nil, nextEpisodeDate: "Em exibição", status: "5 faltando FX (US)", tmdbId: 46533)
 
-    let watched3 = WatchedShowViewModel(title: "The Americans", nextEpisode: "1x1 Winter Is Coming", nextEpisodeDate: "Em exibição", status: "5 remaining FX (US)", tmdbId: 46533)
+    let watched3 = WatchedShowViewModel(title: "The Americans", nextEpisode: "1x1 Winter Is Coming", nextEpisodeDate: "Em exibição", status: "5 faltando FX (US)", tmdbId: 46533)
 
     let expectedViewModels = [watched1, watched2, watched3]
 

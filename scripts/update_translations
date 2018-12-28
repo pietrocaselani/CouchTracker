@@ -1,0 +1,21 @@
+#!/bin/bash
+
+SCRIPTS_DIR=$(cd `dirname $0`; pwd)
+COUCH_TRACKER_CORE_DIR=$(cd $SCRIPTS_DIR/../CouchTrackerCore; pwd)
+TRANSLATIONS_ZIP_PATH="${SCRIPTS_DIR}/translations.zip"
+
+function copy_to_languange() {
+    LANGUAGE_DIR=$1
+
+    cp -rfv "$SCRIPTS_DIR/couchtracker-strings-archive/$LANGUAGE_DIR/Localizable.strings" "$COUCH_TRACKER_CORE_DIR/$LANGUAGE_DIR"
+}
+
+curl https://localise.biz/api/export/archive/strings.zip?key=${LOCALISE_BIZ_KEY} > $TRANSLATIONS_ZIP_PATH
+
+unzip $TRANSLATIONS_ZIP_PATH -d $SCRIPTS_DIR
+
+copy_to_languange "en.lproj"
+copy_to_languange "pt-BR.lproj"
+
+rm -rf $SCRIPTS_DIR/couchtracker-strings-archive
+rm -rf $SCRIPTS_DIR/translations.zip

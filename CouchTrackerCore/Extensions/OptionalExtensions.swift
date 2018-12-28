@@ -5,9 +5,9 @@ extension Optional {
     }
   }
 
-  func flatMap<T>(with f: @autoclosure () -> T?) -> (Wrapped, T)? {
+  func flatMap<T>(with function: @autoclosure () -> T?) -> (Wrapped, T)? {
     return flatMap { lhs in
-      f().map { rhs in
+      function().map { rhs in
         (lhs, rhs)
       }
     }

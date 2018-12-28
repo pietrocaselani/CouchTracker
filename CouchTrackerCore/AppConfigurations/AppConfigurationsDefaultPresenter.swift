@@ -61,7 +61,7 @@ public final class AppConfigurationsDefaultPresenter: AppConfigurationsPresenter
     } else {
       connectedConfiguration = AppConfigurationViewModel(title: "Connect to Trakt".localized,
                                                          subtitle: nil,
-                                                         value: .traktLogin(wantsToLogin: false))
+                                                         value: .traktLogin(wantsToLogin: true))
     }
 
     let configurations = [connectedConfiguration]

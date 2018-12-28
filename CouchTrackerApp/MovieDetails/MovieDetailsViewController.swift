@@ -3,77 +3,70 @@ import Kingfisher
 import RxSwift
 import UIKit
 
-public final class MovieDetailsViewController: UIViewController, MovieDetailsView {
-  public var presenter: MovieDetailsPresenter!
-
+public final class MovieDetailsViewController: UIViewController {
+  private let presenter: MovieDetailsPresenter
+  private let schedulers: Schedulers
   private let disposeBag = DisposeBag()
 
-  @IBOutlet var titleLabel: UILabel!
-  @IBOutlet var taglineLabel: UILabel!
-  @IBOutlet var overviewLabel: UILabel!
-  @IBOutlet var releaseDateLabel: UILabel!
-  @IBOutlet var genresLabel: UILabel!
-  @IBOutlet var backdropImageView: UIImageView!
-  @IBOutlet var posterImageView: UIImageView!
-  @IBOutlet var watchedLabel: UILabel!
-  @IBOutlet var watchedSwtich: UISwitch!
+  var movieView: MovieDetailsView {
+    guard let movieView = self.view as? MovieDetailsView else {
+      preconditionFailure("self.view should be of type MovieDetailsView")
+    }
+    return movieView
+  }
+
+  public init(presenter: MovieDetailsPresenter, schedulers: Schedulers = DefaultSchedulers.instance) {
+    self.presenter = presenter
+    self.schedulers = schedulers
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  required init?(coder _: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  public override func loadView() {
+    view = MovieDetailsView()
+  }
 
   public override func viewDidLoad() {
     super.viewDidLoad()
 
-    watchedSwtich.isOn = false
+    adjustForNavigationBar()
 
     presenter.observeViewState()
-      .observeOn(MainScheduler.instance)
+      .observeOn(schedulers.mainScheduler)
       .subscribe(onNext: { [weak self] viewState in
         self?.handleViewState(viewState)
       }).disposed(by: disposeBag)
 
     presenter.observeImagesState()
-      .observeOn(MainScheduler.instance)
+      .observeOn(schedulers.mainScheduler)
       .subscribe(onNext: { [weak self] imagesState in
         self?.handleImagesState(imagesState)
       }).disposed(by: disposeBag)
 
+    movieView.didTouchOnWatch = { [weak self] in
+      self?.handleWatch()
+    }
+
     presenter.viewDidLoad()
   }
 
-  @IBAction func toggleWatched(_: Any) {
+  private func handleWatch() {
     presenter.handleWatched()
-      .observeOn(MainScheduler.instance)
+      .observeOn(schedulers.mainScheduler)
       .subscribe(onCompleted: nil) { [weak self] error in
-        guard let strongSelf = self else { return }
-
-        strongSelf.showError(error)
+        self?.showError(error)
       }.disposed(by: disposeBag)
-  }
-
-  private func showError(_ error: Error) {
-    let message: String
-
-    if let traktError = error as? TraktError {
-      switch traktError {
-      case .loginRequired: message = "Trakt login required".localized
-      }
-    } else {
-      message = error.localizedDescription
-    }
-
-    let alertController = UIAlertController.createErrorAlert(message: message)
-
-    present(alertController, animated: true) {
-      let isOn = self.watchedSwtich.isOn
-      self.watchedSwtich.isOn = !isOn
-    }
   }
 
   private func handleViewState(_ viewState: MovieDetailsViewState) {
     switch viewState {
     case .loading:
-      print("Loading...")
+      showLoadingView()
     case let .error(error):
-      let errorAlert = UIAlertController.createErrorAlert(message: error.localizedDescription)
-      present(errorAlert, animated: true)
+      showErrorView(error)
     case let .showing(movie):
       show(details: movie)
     }
@@ -81,13 +74,33 @@ public final class MovieDetailsViewController: UIViewController, MovieDetailsVie
 
   private func handleImagesState(_ imagesState: MovieDetailsImagesState) {
     switch imagesState {
-    case .loading:
-      print("Loading images...")
-    case let .error(error):
-      print("Error images \(error.localizedDescription)")
     case let .showing(images):
       show(images: images)
+    default: break
     }
+  }
+
+  private func showLoadingView() {}
+
+  private func showErrorView(_ error: Error) {
+    let errorAlert = UIAlertController.createErrorAlert(message: error.localizedDescription)
+    present(errorAlert, animated: true)
+  }
+
+  private func showError(_ error: Error) {
+    let message: String
+
+    if let traktError = error as? TraktError {
+      switch traktError {
+      case .loginRequired: message = R.string.localizable.traktLoginRequired()
+      }
+    } else {
+      message = error.localizedDescription
+    }
+
+    let alertController = UIAlertController.createErrorAlert(message: message)
+
+    present(alertController, animated: true)
   }
 
   private func show(details: MovieEntity) {
@@ -96,32 +109,35 @@ public final class MovieDetailsViewController: UIViewController, MovieDetailsVie
     formatter.timeStyle = .none
 
     let watchedText: String
+    let watchButtonTitle: String
 
     if let watchedDate = details.watchedAt {
-      watchedText = "Watched at".localized + formatter.string(from: watchedDate)
+      watchedText = R.string.localizable.watchedAt() + formatter.string(from: watchedDate)
+      watchButtonTitle = R.string.localizable.removeFromHistory()
     } else {
-      watchedText = "Unwatched".localized
+      watchedText = R.string.localizable.unwatched()
+      watchButtonTitle = R.string.localizable.addToHistory()
     }
 
-    let releaseDate = details.releaseDate.map(formatter.string(from:)) ?? "Unknown".localized
+    let releaseDate = details.releaseDate.map(formatter.string(from:)) ?? R.string.localizable.unknown()
     let genres = details.genres?.map { $0.name }.joined(separator: " | ")
 
-    titleLabel.text = details.title
-    taglineLabel.text = details.tagline
-    overviewLabel.text = details.overview
-    releaseDateLabel.text = releaseDate
-    genresLabel.text = genres
-    watchedLabel.text = watchedText
-    watchedSwtich.isOn = details.watchedAt != nil
+    movieView.titleLabel.text = details.title
+    movieView.taglineLabel.text = details.tagline
+    movieView.overviewLabel.text = details.overview
+    movieView.releaseDateLabel.text = releaseDate
+    movieView.genresLabel.text = genres
+    movieView.watchedAtLabel.text = watchedText
+    movieView.watchButton.setTitle(watchButtonTitle, for: .normal)
   }
 
   private func show(images: ImagesViewModel) {
     if let backdropLink = images.backdropLink {
-      backdropImageView.kf.setImage(with: URL(string: backdropLink), placeholder: R.image.backdropPlaceholder())
+      movieView.backdropImageView.kf.setImage(with: backdropLink.toURL, placeholder: R.image.backdropPlaceholder())
     }
 
     if let posterLink = images.posterLink {
-      posterImageView.kf.setImage(with: URL(string: posterLink), placeholder: R.image.posterPlacehoder())
+      movieView.posterImageView.kf.setImage(with: posterLink.toURL, placeholder: R.image.posterPlacehoder())
     }
   }
 }

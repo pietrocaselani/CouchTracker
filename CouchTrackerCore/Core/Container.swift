@@ -5,8 +5,8 @@ public enum Container<E> {
 
 extension Container {
   var value: E? {
-    guard case let .value(v) = self else { return nil }
-    return v
+    guard case let .value(element) = self else { return nil }
+    return element
   }
 }
 

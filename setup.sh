@@ -10,6 +10,7 @@ brew install tailor
 brew install swiftformat
 sudo pip install lizard
 bundle install --path vendor/bundle
+bundle exec pod repo update
 clone_dependency "Trakt-Swift"
 clone_dependency "TMDB-Swift"
 clone_dependency "TVDB-Swift"
