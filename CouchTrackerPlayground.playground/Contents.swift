@@ -11,5 +11,4 @@ import TVDBSwift
 import Kingfisher
 import Cartography
 
-
-PlaygroundPage.current.liveView = ShowOverviewViewControllerDemo()
+PlaygroundPage.current.liveView = ColorsViewController()

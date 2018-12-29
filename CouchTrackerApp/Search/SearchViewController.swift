@@ -23,6 +23,9 @@ final class SearchViewController: UIViewController, SearchResultOutput {
       Swift.fatalError("searchView should be an instance of UIView")
     }
 
+    view.backgroundColor = Colors.View.background
+    collectionView.backgroundColor = Colors.View.background
+
     collectionView.register(R.nib.posterCell)
 
     searchViewContainer.addSubview(searchView)

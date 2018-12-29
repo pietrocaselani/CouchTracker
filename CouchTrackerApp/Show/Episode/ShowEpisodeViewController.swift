@@ -21,6 +21,8 @@ final class ShowEpisodeViewController: UIViewController, ShowEpisodeView {
 
     guard presenter != nil else { fatalError("view loaded without presenter") }
 
+    view.backgroundColor = Colors.View.background
+
     presenter.observeViewState()
       .observeOn(MainScheduler.instance)
       .subscribe(onNext: { [weak self] viewState in

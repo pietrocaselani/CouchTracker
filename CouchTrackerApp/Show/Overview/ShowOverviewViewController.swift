@@ -33,6 +33,7 @@ public final class ShowOverviewViewController: UIViewController {
     super.viewDidLoad()
 
     adjustForNavigationBar()
+    showView.backgroundColor = Colors.View.background
 
     presenter.observeImagesState()
       .observeOn(schedulers.mainScheduler)

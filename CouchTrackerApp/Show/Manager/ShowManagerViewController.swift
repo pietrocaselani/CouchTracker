@@ -28,6 +28,8 @@ final class ShowManagerViewController: TabmanViewController, ShowManagerView, TM
       fatalError("View loaded without a prenseter")
     }
 
+    view.backgroundColor = Colors.View.background
+
     presenter.viewDidLoad()
   }
 

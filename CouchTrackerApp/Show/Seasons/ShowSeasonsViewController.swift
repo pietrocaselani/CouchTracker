@@ -29,6 +29,8 @@ final class ShowSeasonsViewController: UITableViewController {
     super.viewDidLoad()
 
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ShowSeasonCell")
+
+    view.backgroundColor = Colors.View.background
   }
 
   override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {

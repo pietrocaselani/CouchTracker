@@ -22,6 +22,9 @@ final class TrendingViewController: UIViewController {
       fatalError("dataSource should be an instance of UICollectionViewDataSource")
     }
 
+    view.backgroundColor = Colors.View.background
+    collectionView.backgroundColor = Colors.View.background
+
     collectionView.register(R.nib.posterCell)
 
     emptyLabel.text = "No movies to show right now".localized
