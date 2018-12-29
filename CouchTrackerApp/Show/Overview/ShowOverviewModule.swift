@@ -22,14 +22,8 @@ final class ShowOverviewModule {
     let interactor = ShowOverviewService(showIds: showIds, repository: repository,
                                          genreRepository: genreRepository, imageRepository: imageRepository)
 
-    guard let view = R.storyboard.showOverview.showOverviewViewController() else {
-      Swift.fatalError("view should be an instance of ShowOverviewViewController")
-    }
-
     let presenter = ShowOverviewDefaultPresenter(interactor: interactor)
 
-    view.presenter = presenter
-
-    return view
+    return ShowOverviewViewController(presenter: presenter)
   }
 }

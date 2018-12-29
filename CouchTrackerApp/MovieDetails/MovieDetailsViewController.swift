@@ -8,7 +8,7 @@ public final class MovieDetailsViewController: UIViewController {
   private let schedulers: Schedulers
   private let disposeBag = DisposeBag()
 
-  var movieView: MovieDetailsView {
+  private var movieView: MovieDetailsView {
     guard let movieView = self.view as? MovieDetailsView else {
       preconditionFailure("self.view should be of type MovieDetailsView")
     }

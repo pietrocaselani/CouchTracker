@@ -3,31 +3,45 @@ import Kingfisher
 import RxSwift
 import UIKit
 
-final class ShowOverviewViewController: UIViewController, ShowOverviewView {
-  var presenter: ShowOverviewPresenter!
-
+public final class ShowOverviewViewController: UIViewController {
+  private let presenter: ShowOverviewPresenter
+  private let schedulers: Schedulers
   private let disposeBag = DisposeBag()
 
-  @IBOutlet var firstAiredLabel: UILabel!
-  @IBOutlet var genresLabel: UILabel!
-  @IBOutlet var overviewLabel: UILabel!
-  @IBOutlet var networkLabel: UILabel!
-  @IBOutlet var statusLabel: UILabel!
-  @IBOutlet var titleLabel: UILabel!
-  @IBOutlet var backdropImageView: UIImageView!
-  @IBOutlet var posterImageView: UIImageView!
+  private var showView: ShowOverviewView {
+    guard let showView = self.view as? ShowOverviewView else {
+      preconditionFailure("self.view should be of type ShowOverviewView")
+    }
+    return showView
+  }
 
-  override func viewDidLoad() {
+  public init(presenter: ShowOverviewPresenter, schedulers: Schedulers = DefaultSchedulers.instance) {
+    self.presenter = presenter
+    self.schedulers = schedulers
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  required init?(coder _: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  public override func loadView() {
+    view = ShowOverviewView()
+  }
+
+  public override func viewDidLoad() {
     super.viewDidLoad()
 
+    adjustForNavigationBar()
+
     presenter.observeImagesState()
-      .observeOn(MainScheduler.instance)
+      .observeOn(schedulers.mainScheduler)
       .subscribe(onNext: { [weak self] imageState in
         self?.handleImageState(imageState)
       }).disposed(by: disposeBag)
 
     presenter.observeViewState()
-      .observeOn(MainScheduler.instance)
+      .observeOn(schedulers.mainScheduler)
       .subscribe(onNext: { [weak self] viewState in
         self?.handleViewState(viewState)
       }).disposed(by: disposeBag)
@@ -61,21 +75,21 @@ final class ShowOverviewViewController: UIViewController, ShowOverviewView {
 
     let genres = details.genres.map { $0.name }.joined(separator: " | ")
 
-    titleLabel.text = details.title ?? "TBA".localized
-    statusLabel.text = details.status?.rawValue.localized ?? "Unknown".localized
-    networkLabel.text = details.network ?? "Unknown".localized
-    overviewLabel.text = details.overview
-    genresLabel.text = genres
-    firstAiredLabel.text = firstAired
+    showView.titleLabel.text = details.title ?? R.string.localizable.tbA()
+    showView.statusLabel.text = details.status?.rawValue.localized ?? R.string.localizable.unknown()
+    showView.networkLabel.text = details.network ?? R.string.localizable.unknown()
+    showView.overviewLabel.text = details.overview
+    showView.genresLabel.text = genres
+    showView.releaseDateLabel.text = firstAired
   }
 
   func show(images: ImagesViewModel) {
     if let posterLink = images.posterLink {
-      posterImageView.kf.setImage(with: URL(string: posterLink), placeholder: R.image.posterPlacehoder())
+      showView.posterImageView.kf.setImage(with: URL(string: posterLink), placeholder: R.image.posterPlacehoder())
     }
 
     if let backdropLink = images.backdropLink {
-      backdropImageView.kf.setImage(with: URL(string: backdropLink), placeholder: R.image.backdropPlaceholder())
+      showView.backdropImageView.kf.setImage(with: URL(string: backdropLink), placeholder: R.image.backdropPlaceholder())
     }
   }
 }
