@@ -1,9 +1,8 @@
 import Cartography
 
-public final class MovieDetailsView: View {
+public final class ShowOverviewView: View {
   public var didTouchOnPoster: (() -> Void)?
   public var didTouchOnBackdrop: (() -> Void)?
-  public var didTouchOnWatch: (() -> Void)?
 
   // Public Views
 
@@ -29,9 +28,17 @@ public final class MovieDetailsView: View {
     return label
   }()
 
-  public let taglineLabel: UILabel = {
+  public let statusLabel: UILabel = {
     let label = UILabel()
     label.textColor = .lightGray
+    label.numberOfLines = 0
+    return label
+  }()
+
+  public let networkLabel: UILabel = {
+    let label = UILabel()
+    label.textColor = .lightGray
+    label.textAlignment = .right
     label.numberOfLines = 0
     return label
   }()
@@ -57,18 +64,6 @@ public final class MovieDetailsView: View {
     return label
   }()
 
-  public let watchedAtLabel: UILabel = {
-    let label = UILabel()
-    label.textColor = .lightGray
-    return label
-  }()
-
-  public let watchButton: UIButton = {
-    let button = UIButton()
-    button.addTarget(self, action: #selector(didTapOnWatch), for: .touchUpInside)
-    return button
-  }()
-
   // Private Views
 
   private let scrollView: UIScrollView = {
@@ -82,9 +77,19 @@ public final class MovieDetailsView: View {
     return view
   }()
 
+  private lazy var statusAndNetworkStackView: UIStackView = {
+    let stackView = UIStackView(arrangedSubviews: [statusLabel, networkLabel])
+
+    stackView.axis = .horizontal
+    stackView.alignment = .fill
+    stackView.distribution = .fill
+
+    return stackView
+  }()
+
   private lazy var contentStackView: UIStackView = {
-    let subviews = [backdropImageView, titleLabel, taglineLabel, overviewLabel,
-                    genresLabel, releaseDateLabel, watchedAtLabel, watchButton]
+    let subviews = [backdropImageView, titleLabel, statusAndNetworkStackView,
+                    overviewLabel, genresLabel, releaseDateLabel]
     let stackView = UIStackView(arrangedSubviews: subviews)
 
     let spacing: CGFloat = 20
@@ -129,7 +134,7 @@ public final class MovieDetailsView: View {
       backdrop.height == scroll.superview!.height * 0.27
 
       content.width == content.superview!.width
-      content.top == content.superview!.top + 20
+      content.top == content.superview!.top
       content.leading == content.superview!.leading
       content.bottom == content.superview!.bottom
       content.trailing == content.superview!.trailing
@@ -142,9 +147,5 @@ public final class MovieDetailsView: View {
 
   @objc private func didTapOnBackdrop() {
     didTouchOnBackdrop?()
-  }
-
-  @objc private func didTapOnWatch() {
-    didTouchOnWatch?()
   }
 }

@@ -20,7 +20,3 @@ public protocol ShowOverviewPresenter: class {
   func observeViewState() -> Observable<ShowOverviewViewState>
   func observeImagesState() -> Observable<ShowOverviewImagesState>
 }
-
-public protocol ShowOverviewView: class {
-  var presenter: ShowOverviewPresenter! { get set }
-}
