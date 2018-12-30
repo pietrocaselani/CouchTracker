@@ -5,13 +5,22 @@ import Tabman
 import UIKit
 
 final class ShowsManagerViewController: TabmanViewController, TMBarCouchTracker {
+  private let presenter: ShowsManagerPresenter
   private let disposeBag = DisposeBag()
-  var presenter: ShowsManagerPresenter!
   private var pages = [ModulePage]()
   private var defaultPageIndex = 0
 
-  override func awakeFromNib() {
-    super.awakeFromNib()
+  init(presenter: ShowsManagerPresenter) {
+    self.presenter = presenter
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  required init?(coder _: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
     title = R.string.localizable.shows()
     navigationItem.title = nil
@@ -20,14 +29,6 @@ final class ShowsManagerViewController: TabmanViewController, TMBarCouchTracker 
 
     let bar = defaultCTBar()
     addBar(bar, dataSource: self, at: .top)
-  }
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    guard presenter != nil else {
-      fatalError("ShowsManagerViewController was loaded without a presenter")
-    }
 
     view.backgroundColor = Colors.View.background
 

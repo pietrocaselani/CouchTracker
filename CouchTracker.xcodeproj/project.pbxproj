@@ -491,7 +491,6 @@
 		8204071C21D0047B00127F05 /* ShowManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D441F7D7DBB00C26D10 /* ShowManagerViewController.swift */; };
 		8204071D21D0048300127F05 /* ShowSeasonsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D3C1F7D7C2800C26D10 /* ShowSeasonsModule.swift */; };
 		8204071E21D0048300127F05 /* ShowSeasonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836EB7219039DA0037A798 /* ShowSeasonsViewController.swift */; };
-		8204071F21D0048900127F05 /* ShowsManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC08901F7174F5004D164A /* ShowsManager.storyboard */; };
 		8204072021D0048900127F05 /* ShowsManageriOSCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D6E9E20339B3A00987AD1 /* ShowsManageriOSCreator.swift */; };
 		8204072121D0048900127F05 /* ShowsManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC088C1F717330004D164A /* ShowsManagerModule.swift */; };
 		8204072221D0048900127F05 /* ShowsManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08881F717249004D164A /* ShowsManagerViewController.swift */; };
@@ -972,7 +971,6 @@
 		64CC08881F717249004D164A /* ShowsManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerViewController.swift; sourceTree = "<group>"; };
 		64CC088A1F717298004D164A /* AppFlowModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowModule.swift; sourceTree = "<group>"; };
 		64CC088C1F717330004D164A /* ShowsManagerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerModule.swift; sourceTree = "<group>"; };
-		64CC08901F7174F5004D164A /* ShowsManager.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowsManager.storyboard; sourceTree = "<group>"; };
 		64CC08941F7188E1004D164A /* TraktLoginStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginStore.swift; sourceTree = "<group>"; };
 		64CC08981F718BE2004D164A /* TraktLoginState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginState.swift; sourceTree = "<group>"; };
 		64CC089C1F718F63004D164A /* TraktLoginStoreTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginStoreTest.swift; sourceTree = "<group>"; };
@@ -2193,7 +2191,6 @@
 		64CC08821F7170CB004D164A /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				64CC08901F7174F5004D164A /* ShowsManager.storyboard */,
 				4F6D6E9E20339B3A00987AD1 /* ShowsManageriOSCreator.swift */,
 				64CC088C1F717330004D164A /* ShowsManagerModule.swift */,
 				64CC08881F717249004D164A /* ShowsManagerViewController.swift */,
@@ -2718,7 +2715,6 @@
 				8204070D21D0046400127F05 /* Search.storyboard in Resources */,
 				8204071921D0047B00127F05 /* ShowManager.storyboard in Resources */,
 				8204071621D0047400127F05 /* ShowEpisode.storyboard in Resources */,
-				8204071F21D0048900127F05 /* ShowsManager.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
