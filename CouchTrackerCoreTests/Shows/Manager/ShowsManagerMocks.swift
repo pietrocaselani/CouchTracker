@@ -1,17 +1,5 @@
 @testable import CouchTrackerCore
 
-final class ShowsManagerViewMock: ShowsManagerView {
-  var presenter: ShowsManagerPresenter!
-  var showNeedsTraktLoginInvoked = false
-  var showPagesInvoked = false
-  var showPagesParameters: (pages: [ModulePage], index: Int)?
-
-  func show(pages: [ModulePage], withDefault index: Int) {
-    showPagesInvoked = true
-    showPagesParameters = (pages, index)
-  }
-}
-
 final class ShowsManagerDataSourceMock: ShowsManagerDataSource {
   var defaultModuleIndexInvoked = false
   var defaultModuleIndexParameter: Int?

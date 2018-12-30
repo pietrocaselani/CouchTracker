@@ -1,26 +1,15 @@
 import CouchTrackerCore
 import UIKit
 
-final class ShowsManagerModule {
-  private init() {
-    fatalError("No instances for you!")
-  }
-
+enum ShowsManagerModule {
   static func setupModule() -> BaseView {
-    guard let view = R.storyboard.showsManager().instantiateInitialViewController() as? UINavigationController else {
-      fatalError("Initial view controller from ShowsManager storyboard should be an UINavigation")
-    }
-
-    guard let showsManagerView = view.topViewController as? ShowsManagerViewController else {
-      fatalError("Can't instantiate ShowsManagerViewController from Storyboard")
-    }
+    let userDefaults = Environment.instance.userDefaults
 
     let moduleCreator = ShowsManageriOSCreator()
-    let modulesSetup = ShowsManagerDefaultModuleSetup(creator: moduleCreator, userDefaults: UserDefaults.standard)
-    let presenter = ShowsManagerDefaultPresenter(view: showsManagerView, moduleSetup: modulesSetup)
+    let modulesSetup = ShowsManagerDefaultModuleSetup(creator: moduleCreator, userDefaults: userDefaults)
+    let presenter = ShowsManagerDefaultPresenter(dataSource: modulesSetup)
 
-    showsManagerView.presenter = presenter
-
-    return view
+    let showsManagerViewController = ShowsManagerViewController(presenter: presenter)
+    return UINavigationController(rootViewController: showsManagerViewController)
   }
 }

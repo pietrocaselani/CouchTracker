@@ -1,20 +1,22 @@
 import RxSwift
 
 public final class ShowsManagerDefaultPresenter: ShowsManagerPresenter {
-  private weak var view: ShowsManagerView?
-  private let disposeBag = DisposeBag()
+  private let viewStateSubject = BehaviorSubject<ShowsManagerViewState>(value: .loading)
   private let dataSource: ShowsManagerDataSource
 
-  public init(view: ShowsManagerView, moduleSetup: ShowsManagerDataSource) {
-    self.view = view
-    dataSource = moduleSetup
+  public init(dataSource: ShowsManagerDataSource) {
+    self.dataSource = dataSource
+  }
+
+  public func observeViewState() -> Observable<ShowsManagerViewState> {
+    return viewStateSubject.distinctUntilChanged()
   }
 
   public func viewDidLoad() {
     let pages = dataSource.modulePages
     let defaultIndex = dataSource.defaultModuleIndex
 
-    view?.show(pages: pages, withDefault: defaultIndex)
+    viewStateSubject.onNext(.showing(pages: pages, selectedIndex: defaultIndex))
   }
 
   public func selectTab(index: Int) {
