@@ -24,4 +24,9 @@ public enum Colors {
   public enum Cell {
     public static let backgroundColor = UIColor.ctconcord
   }
+
+  public enum Text {
+    public static let primaryTextColor = UIColor.white
+    public static let secondaryTextColor = UIColor.lightGray
+  }
 }

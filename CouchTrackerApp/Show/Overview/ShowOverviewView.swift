@@ -23,35 +23,35 @@ public final class ShowOverviewView: View {
   public let titleLabel: UILabel = {
     let label = UILabel()
     label.font = UIFont.boldSystemFont(ofSize: 22)
-    label.textColor = .white
+    label.textColor = Colors.Text.primaryTextColor
     label.numberOfLines = 0
     return label
   }()
 
   public let statusLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .lightGray
+    label.textColor = Colors.Text.secondaryTextColor
     label.numberOfLines = 0
     return label
   }()
 
   public let networkLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .lightGray
+    label.textColor = Colors.Text.secondaryTextColor
     label.numberOfLines = 0
     return label
   }()
 
   public let overviewLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .lightGray
+    label.textColor = Colors.Text.secondaryTextColor
     label.numberOfLines = 0
     return label
   }()
 
   public let genresLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .lightGray
+    label.textColor = Colors.Text.secondaryTextColor
     label.numberOfLines = 0
     label.font = UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)
     return label
@@ -59,7 +59,7 @@ public final class ShowOverviewView: View {
 
   public let releaseDateLabel: UILabel = {
     let label = UILabel()
-    label.textColor = .lightGray
+    label.textColor = Colors.Text.secondaryTextColor
     return label
   }()
 

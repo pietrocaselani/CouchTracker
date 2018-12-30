@@ -17,7 +17,7 @@ public final class PosterAndTitleCell: CollectionViewCell {
     let label = UILabel()
     label.numberOfLines = 2
     label.font = UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)
-    label.textColor = .white
+    label.textColor = Colors.Text.primaryTextColor
     return label
   }()
 

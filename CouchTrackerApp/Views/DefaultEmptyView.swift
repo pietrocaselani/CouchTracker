@@ -1,7 +1,13 @@
 import Cartography
 
 public final class DefaultEmptyView: View {
-  public let label = UILabel()
+  public let label: UILabel = {
+    let label = UILabel()
+    label.textAlignment = .center
+    label.numberOfLines = 0
+    label.textColor = Colors.Text.secondaryTextColor
+    return label
+  }()
 
   public override func initialize() {
     addSubview(label)
