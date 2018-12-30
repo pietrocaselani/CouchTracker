@@ -1,26 +1,27 @@
+import RxSwift
+
 public final class AppFlowDefaultPresenter: AppFlowPresenter {
-  private weak var view: AppFlowView?
-  private let interactor: AppFlowInteractor
+  private let viewStateSubject = BehaviorSubject<AppFlowViewState>(value: AppFlowViewState.loading)
+  private let repository: AppFlowRepository
   private let dataSource: AppFlowModuleDataSource
 
-  public init(view: AppFlowView, interactor: AppFlowInteractor, moduleDataSource: AppFlowModuleDataSource) {
-    self.view = view
-    self.interactor = interactor
+  public init(repository: AppFlowRepository, moduleDataSource: AppFlowModuleDataSource) {
+    self.repository = repository
     dataSource = moduleDataSource
   }
 
-  public func viewDidLoad() {
-    guard let view = view else {
-      return
-    }
+  public func observeViewState() -> Observable<AppFlowViewState> {
+    return viewStateSubject.distinctUntilChanged()
+  }
 
-    let selectedIndex = interactor.lastSelectedTab
+  public func viewDidLoad() {
+    let selectedIndex = repository.lastSelectedTab
     let pages = dataSource.modulePages
 
-    view.show(pages: pages, selectedIndex: selectedIndex)
+    viewStateSubject.onNext(AppFlowViewState.showing(pages: pages, selectedIndex: selectedIndex))
   }
 
   public func selectTab(index: Int) {
-    interactor.lastSelectedTab = index
+    repository.lastSelectedTab = index
   }
 }

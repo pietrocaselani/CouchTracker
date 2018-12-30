@@ -1,59 +1,76 @@
 @testable import CouchTrackerCore
+import RxTest
 import XCTest
 
 final class AppFlowPresenterTests: XCTestCase {
-  private var view: AppFlowMocks.View!
-  private var interactor: AppFlowMocks.Interactor!
   private var dataSource: AppFlowMocks.ModuleDataSource!
+  private var repository: AppFlowMocks.Repository!
   private var presenter: AppFlowDefaultPresenter!
+  private var scheduler: TestScheduler!
+  private var testableObserver: TestableObserver<AppFlowViewState>!
 
   override func setUp() {
     super.setUp()
 
-    view = AppFlowMocks.View()
-    interactor = AppFlowMocks.Interactor()
+    scheduler = TestScheduler(initialClock: 0)
+    testableObserver = scheduler.createObserver(AppFlowViewState.self)
+    repository = AppFlowMocks.Repository()
     dataSource = AppFlowMocks.ModuleDataSource()
-    presenter = AppFlowDefaultPresenter(view: view, interactor: interactor, moduleDataSource: dataSource)
+    presenter = AppFlowDefaultPresenter(repository: repository, moduleDataSource: dataSource)
   }
 
   override func tearDown() {
     super.tearDown()
 
-    view = nil
-    interactor = nil
+    repository = nil
     dataSource = nil
     presenter = nil
   }
 
-  func testAppFlowPresenter_viewDidLoad_shouldNotifyView() {
+  func testAppFlowPresenter_viewStateAlwaysStartsLoading() {
+    // When
+    let res = scheduler.start {
+      self.presenter.observeViewState()
+    }
+
+    presenter.viewDidLoad()
+
+    // Then
+    let firstEvent = res.events.first
+    let expectedFirstEvent = Recorded.next(200, AppFlowViewState.loading)
+
+    XCTAssertEqual(firstEvent, expectedFirstEvent)
+  }
+
+  func testAppFlowPresenter_viewDidLoad_shoulEmitViewState() {
     // Given
-    interactor.lastSelectedTab = 2
+    repository.lastSelectedTab = 2
+
+    _ = presenter.observeViewState().subscribe(testableObserver)
 
     // When
     presenter.viewDidLoad()
 
     // Then
-    XCTAssertTrue(view.showPagesInvoked)
+    let pages = ModulePageMocks.createPages(count: 3)
+    let tabIndex = 2
 
-    guard let parameters = view.showPagesParameters else {
-      XCTFail("Parameters can't be nil")
-      return
-    }
+    let expectedEvents = [Recorded.next(0, AppFlowViewState.loading),
+                          Recorded.next(0, AppFlowViewState.showing(pages: pages, selectedIndex: tabIndex))]
 
-    XCTAssertEqual(parameters.selectedIndex, 2)
-    XCTAssertTrue(parameters.pages.count >= 3)
-    XCTAssertTrue(interactor.lastSelectedTabInvoked)
+    XCTAssertEqual(testableObserver.events, expectedEvents)
+    XCTAssertTrue(repository.lastSelectedTabInvoked)
     XCTAssertTrue(dataSource.modulePagesInvoked)
   }
 
-  func testAppFlowPresenter_receivesNewTabSelected_shouldNotifyInteractor() {
+  func testAppFlowPresenter_receivesNewTabSelected_shouldNotifyRepository() {
     // Given
-    interactor.lastSelectedTab = 1
+    repository.lastSelectedTab = 1
 
     // When
     presenter.selectTab(index: 2)
 
     // Then
-    XCTAssertEqual(interactor.lastSelectedTab, 2)
+    XCTAssertEqual(repository.lastSelectedTab, 2)
   }
 }

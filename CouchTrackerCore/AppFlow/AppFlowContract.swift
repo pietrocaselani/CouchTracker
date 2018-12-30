@@ -1,24 +1,17 @@
-public protocol AppFlowView: class {
-  var presenter: AppFlowPresenter! { get set }
-
-  func show(pages: [ModulePage], selectedIndex: Int)
-}
+import RxSwift
 
 public protocol AppFlowModuleDataSource: class {
   var modulePages: [ModulePage] { get }
 }
 
 public protocol AppFlowPresenter: class {
-  init(view: AppFlowView, interactor: AppFlowInteractor, moduleDataSource: AppFlowModuleDataSource)
+  init(repository: AppFlowRepository, moduleDataSource: AppFlowModuleDataSource)
 
+  func observeViewState() -> Observable<AppFlowViewState>
   func viewDidLoad()
   func selectTab(index: Int)
 }
 
 public protocol AppFlowRepository: class {
-  var lastSelectedTab: Int { get set }
-}
-
-public protocol AppFlowInteractor: class {
   var lastSelectedTab: Int { get set }
 }
