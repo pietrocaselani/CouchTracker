@@ -38,7 +38,6 @@ public final class ShowOverviewView: View {
   public let networkLabel: UILabel = {
     let label = UILabel()
     label.textColor = .lightGray
-    label.textAlignment = .right
     label.numberOfLines = 0
     return label
   }()
@@ -77,18 +76,8 @@ public final class ShowOverviewView: View {
     return view
   }()
 
-  private lazy var statusAndNetworkStackView: UIStackView = {
-    let stackView = UIStackView(arrangedSubviews: [statusLabel, networkLabel])
-
-    stackView.axis = .horizontal
-    stackView.alignment = .fill
-    stackView.distribution = .fill
-
-    return stackView
-  }()
-
   private lazy var contentStackView: UIStackView = {
-    let subviews = [backdropImageView, titleLabel, statusAndNetworkStackView,
+    let subviews = [backdropImageView, titleLabel, statusLabel, networkLabel,
                     overviewLabel, genresLabel, releaseDateLabel]
     let stackView = UIStackView(arrangedSubviews: subviews)
 

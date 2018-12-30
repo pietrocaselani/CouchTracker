@@ -14,19 +14,37 @@ final class TrendingCollectionViewDataSource: NSObject, TrendingDataSource, UICo
     return viewModels.count
   }
 
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let identifier = R.reuseIdentifier.posterCell
+//  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.posterCell, for: indexPath)
+//
+//    guard let posterCell = cell else {
+//      Swift.fatalError("cell should be an instance of PosterCellNew")
+//    }
+//
+//    let viewModel = viewModels[indexPath.row]
+//    let interactor = PosterCellService(imageRepository: imageRepository)
+//    let presenter = PosterCellDefaultPresenter(view: posterCell, interactor: interactor, viewModel: viewModel)
+//
+//    posterCell.presenter = presenter
+//
+//    return posterCell
+//  }
 
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) else {
-      Swift.fatalError("Poster cell should not be nil")
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let identifier = PosterCellNew.identifier
+
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+
+    guard let posterCell = cell as? PosterCellNew else {
+      Swift.fatalError("cell should be an instance of PosterCellNew")
     }
 
     let viewModel = viewModels[indexPath.row]
     let interactor = PosterCellService(imageRepository: imageRepository)
-    let presenter = PosterCellDefaultPresenter(view: cell, interactor: interactor, viewModel: viewModel)
+    let presenter = PosterCellDefaultPresenter(view: posterCell, interactor: interactor, viewModel: viewModel)
 
-    cell.presenter = presenter
+    posterCell.presenter = presenter
 
-    return cell
+    return posterCell
   }
 }

@@ -42,6 +42,8 @@ final class ShowSeasonsViewController: UITableViewController {
 
     let season = show?.seasons[indexPath.row]
 
+    cell.textLabel?.textColor = .white
+
     cell.textLabel?.text = "Season \(season?.number ?? -1) completed: \(season?.completed ?? 0)/\(season?.aired ?? 0)"
 
     return cell

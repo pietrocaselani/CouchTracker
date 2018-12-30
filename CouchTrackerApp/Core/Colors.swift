@@ -20,4 +20,8 @@ public enum Colors {
     public static let backgroundColor = UIColor.ctjaguar
     public static let tintColor = UIColor.ctzircon
   }
+
+  public enum Cell {
+    public static let backgroundColor = UIColor.ctconcord
+  }
 }
