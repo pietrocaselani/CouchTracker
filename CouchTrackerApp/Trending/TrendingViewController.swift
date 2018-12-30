@@ -49,12 +49,17 @@ public final class TrendingViewController: UIViewController {
     trendingView.backgroundColor = Colors.View.background
     trendingView.collectionView.backgroundColor = Colors.View.background
 
-    let emptyText = trendingType == .movies ?
-      R.string.localizable.noMoviesToShowRightNow() :
-      R.string.localizable.noTvShowsToShowRightNow()
+    let emptyText: String
+
+    if trendingType == .movies {
+      emptyText = R.string.localizable.noMoviesToShowRightNow()
+    } else {
+      emptyText = R.string.localizable.noTvShowsToShowRightNow()
+    }
 
     trendingView.emptyView.label.text = emptyText
-    trendingView.collectionView.register(PosterAndTitleCell.self, forCellWithReuseIdentifier: PosterAndTitleCell.identifier)
+    trendingView.collectionView.register(PosterAndTitleCell.self,
+                                         forCellWithReuseIdentifier: PosterAndTitleCell.identifier)
 
     trendingView.collectionView.dataSource = collectionViewDataSource
     trendingView.collectionView.delegate = self

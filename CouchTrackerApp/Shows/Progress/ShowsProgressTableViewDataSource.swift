@@ -19,7 +19,7 @@ final class ShowsProgressTableViewDataSource: NSObject, UITableViewDataSource, S
       fatalError("Can't dequeue cell with identifier \(identifier.identifier) on ShowsProgressViewController")
     }
 
-    let viewModel = viewModels[indexPath.row]
+    let viewModel: WatchedShowViewModel = viewModels[indexPath.row]
     let interactor = ShowProgressCellService(imageRepository: imageRepository)
     let presenter = ShowProgressCellDefaultPresenter(view: cell, interactor: interactor, viewModel: viewModel)
 

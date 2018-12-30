@@ -1,7 +1,7 @@
 import TraktSwift
 
 public enum SeasonSyncOptions {
-  case no
+  case none
   case yes(number: Int?, extended: Extended)
 }
 

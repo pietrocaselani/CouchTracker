@@ -128,7 +128,7 @@ final class Environment {
                                                       dataSource: showDataSource,
                                                       scheduler: schedulers)
 
-    centralSynchronizer = CentralSynchronizer.initializeCentralSynchronizer(watchedShowsSynchronizer: showsSynchronizer,
-                                                                            appConfigObservable: appConfigurationsObservable)
+    centralSynchronizer = CentralSynchronizer.initialize(watchedShowsSynchronizer: showsSynchronizer,
+                                                         appConfigObservable: appConfigurationsObservable)
   }
 }
