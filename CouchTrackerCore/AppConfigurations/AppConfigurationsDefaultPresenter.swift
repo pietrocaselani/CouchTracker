@@ -76,9 +76,10 @@ public final class AppConfigurationsDefaultPresenter: AppConfigurationsPresenter
   }
 
   private func generalConfigurationsViewModel(_ state: AppConfigurationsState) -> AppConfigurationsViewModel {
+    let value = AppConfigurationViewModelValue.hideSpecials(wantsToHideSpecials: state.hideSpecials)
     let hideSpecialConfiguration = AppConfigurationViewModel(title: "Hide specials",
                                                              subtitle: "Will not show special episodes",
-                                                             value: .hideSpecials(wantsToHideSpecials: state.hideSpecials))
+                                                             value: value)
 
     return AppConfigurationsViewModel(title: "General", configurations: [hideSpecialConfiguration])
   }

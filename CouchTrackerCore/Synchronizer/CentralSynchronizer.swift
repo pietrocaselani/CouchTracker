@@ -7,8 +7,8 @@ public final class CentralSynchronizer {
   private let disposeBag = DisposeBag()
   private let watchedShowsSynchronizer: WatchedShowsSynchronizer
 
-  public static func initializeCentralSynchronizer(watchedShowsSynchronizer: WatchedShowsSynchronizer,
-                                                   appConfigObservable: AppConfigurationsObservable) -> CentralSynchronizer {
+  public static func initialize(watchedShowsSynchronizer: WatchedShowsSynchronizer,
+                                appConfigObservable: AppConfigurationsObservable) -> CentralSynchronizer {
     return CentralSynchronizer(watchedShowsSynchronizer: watchedShowsSynchronizer,
                                appConfigObservable: appConfigObservable)
   }

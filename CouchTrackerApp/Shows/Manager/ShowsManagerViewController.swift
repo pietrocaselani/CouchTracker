@@ -16,12 +16,8 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView, 
     dataSource = self
     delegate = self
 
-    // CT-TODO fix this
     let bar = defaultCTBar()
-
     addBar(bar, dataSource: self, at: .top)
-
-//    bar.defaultCTAppearance()
   }
 
   override func viewDidLoad() {
