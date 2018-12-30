@@ -471,7 +471,6 @@
 		8204070521D003F200127F05 /* UIViewController+BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE633B1F4F7ED7002E55EA /* UIViewController+BaseView.swift */; };
 		8204070721D0041300127F05 /* MovieDetailsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BF011F4DC41F004661C4 /* MovieDetailsModule.swift */; };
 		8204070821D0041300127F05 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6406BF021F4DC41F004661C4 /* MovieDetailsViewController.swift */; };
-		8204070921D0043600127F05 /* MoviesManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F6DC4142015476000AA0DC8 /* MoviesManager.storyboard */; };
 		8204070A21D0043600127F05 /* MoviesManageriOSModuleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC4102015460700AA0DC8 /* MoviesManageriOSModuleSetup.swift */; };
 		8204070B21D0043600127F05 /* MoviesManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC41C201549C100AA0DC8 /* MoviesManagerModule.swift */; };
 		8204070C21D0043600127F05 /* MoviesManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6DC4162015477F00AA0DC8 /* MoviesManagerViewController.swift */; };
@@ -569,6 +568,8 @@
 		82D2434621C6DBA40003FC3D /* SynchronizerMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D2434521C6DBA40003FC3D /* SynchronizerMocks.swift */; };
 		82E1DE6321D95B9A006C8EA8 /* AppFlowViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1DE6221D95B9A006C8EA8 /* AppFlowViewState.swift */; };
 		82E1DE6421D95B9C006C8EA8 /* AppFlowViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1DE6221D95B9A006C8EA8 /* AppFlowViewState.swift */; };
+		82E1DE6621D9657A006C8EA8 /* MoviesManagerViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1DE6521D9657A006C8EA8 /* MoviesManagerViewState.swift */; };
+		82E1DE6721D9657A006C8EA8 /* MoviesManagerViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1DE6521D9657A006C8EA8 /* MoviesManagerViewState.swift */; };
 		82F85FD821D5ACCF006A66B9 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F85FD721D5ACCF006A66B9 /* StringExtensions.swift */; };
 		82F85FD921D5ACCF006A66B9 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F85FD721D5ACCF006A66B9 /* StringExtensions.swift */; };
 		82F85FDB21D5AE1F006A66B9 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F85FDA21D5AE1F006A66B9 /* UIViewControllerExtensions.swift */; };
@@ -732,7 +733,6 @@
 		4F6D6EA92033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsMoyaNetwork.swift; sourceTree = "<group>"; };
 		4F6DC40C201544E200AA0DC8 /* MoviesManagerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerContract.swift; sourceTree = "<group>"; };
 		4F6DC4102015460700AA0DC8 /* MoviesManageriOSModuleSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManageriOSModuleSetup.swift; sourceTree = "<group>"; };
-		4F6DC4142015476000AA0DC8 /* MoviesManager.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MoviesManager.storyboard; sourceTree = "<group>"; };
 		4F6DC4162015477F00AA0DC8 /* MoviesManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerViewController.swift; sourceTree = "<group>"; };
 		4F6DC4182015499B00AA0DC8 /* MoviesManagerDefaultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerDefaultPresenter.swift; sourceTree = "<group>"; };
 		4F6DC41C201549C100AA0DC8 /* MoviesManagerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerModule.swift; sourceTree = "<group>"; };
@@ -1050,6 +1050,7 @@
 		82C6477F21D7345200175B24 /* PosterAndTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterAndTitleCell.swift; sourceTree = "<group>"; };
 		82D2434521C6DBA40003FC3D /* SynchronizerMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizerMocks.swift; sourceTree = "<group>"; };
 		82E1DE6221D95B9A006C8EA8 /* AppFlowViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowViewState.swift; sourceTree = "<group>"; };
+		82E1DE6521D9657A006C8EA8 /* MoviesManagerViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerViewState.swift; sourceTree = "<group>"; };
 		82F85FD721D5ACCF006A66B9 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		82F85FDA21D5AE1F006A66B9 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		AF31C37B5587B21736E8BA65 /* Pods_CouchTrackerApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1363,6 +1364,7 @@
 				4F6DC40C201544E200AA0DC8 /* MoviesManagerContract.swift */,
 				4F9ABC102052982B00EA6456 /* MoviesManagerDefaultDataSource.swift */,
 				4F6DC4182015499B00AA0DC8 /* MoviesManagerDefaultPresenter.swift */,
+				82E1DE6521D9657A006C8EA8 /* MoviesManagerViewState.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1575,7 +1577,6 @@
 		4F6DC40B201544AC00AA0DC8 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				4F6DC4142015476000AA0DC8 /* MoviesManager.storyboard */,
 				4F6DC4102015460700AA0DC8 /* MoviesManageriOSModuleSetup.swift */,
 				4F6DC41C201549C100AA0DC8 /* MoviesManagerModule.swift */,
 				4F6DC4162015477F00AA0DC8 /* MoviesManagerViewController.swift */,
@@ -2709,7 +2710,6 @@
 				8204070F21D0046400127F05 /* SearchBarView.xib in Resources */,
 				8204073F21D0187800127F05 /* Assets.xcassets in Resources */,
 				8204072721D0049800127F05 /* ShowsProgress.storyboard in Resources */,
-				8204070921D0043600127F05 /* MoviesManager.storyboard in Resources */,
 				820406F921D0036400127F05 /* AppConfigurations.storyboard in Resources */,
 				8204070D21D0046400127F05 /* Search.storyboard in Resources */,
 				8204071921D0047B00127F05 /* ShowManager.storyboard in Resources */,
@@ -3235,6 +3235,7 @@
 				82836EAA218EC29E0037A798 /* CentralSynchronizer.swift in Sources */,
 				4F9ABC112052982B00EA6456 /* MoviesManagerDefaultDataSource.swift in Sources */,
 				4F0F57B2203D5FA100B86CB8 /* TraktLoginService.swift in Sources */,
+				82E1DE6621D9657A006C8EA8 /* MoviesManagerViewState.swift in Sources */,
 				4F0F57B3203D5FA100B86CB8 /* TraktLoginState.swift in Sources */,
 				4F0F57B4203D5FA100B86CB8 /* TraktLoginStore.swift in Sources */,
 				4F0F57B6203D5FA100B86CB8 /* TraktTokenPolicyDecider.swift in Sources */,
@@ -3524,6 +3525,7 @@
 				4FEF6AEC2125A1C200B7CF63 /* WatchedShowsRealmDataSource.swift in Sources */,
 				4F0F58F2203D7B0A00B86CB8 /* ShowsProgressContract.swift in Sources */,
 				82836EAB218EC29E0037A798 /* CentralSynchronizer.swift in Sources */,
+				82E1DE6721D9657A006C8EA8 /* MoviesManagerViewState.swift in Sources */,
 				82930A1F216C1C8500A824F6 /* RealmShowsDataSource.swift in Sources */,
 				4F9ABC122052982B00EA6456 /* MoviesManagerDefaultDataSource.swift in Sources */,
 				4F0F58FA203D7B0A00B86CB8 /* TMDB+APIProvider.swift in Sources */,

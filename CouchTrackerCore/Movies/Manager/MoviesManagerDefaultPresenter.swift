@@ -1,15 +1,22 @@
-public final class MoviesManagerDefaultPresenter: MoviesManagerPresenter {
-  private weak var view: MoviesManagerView?
-  private let defaultIndex: Int
-  private let modules: [ModulePage]
+import RxSwift
 
-  public init(view: MoviesManagerView, dataSource: MoviesManagerDataSource) {
-    self.view = view
-    defaultIndex = dataSource.defaultModuleIndex
-    modules = dataSource.modulePages
+public final class MoviesManagerDefaultPresenter: MoviesManagerPresenter {
+  private let viewStateSubject = BehaviorSubject<MoviesManagerViewState>(value: .loading)
+  private let dataSource: MoviesManagerDataSource
+
+  public init(dataSource: MoviesManagerDataSource) {
+    self.dataSource = dataSource
+  }
+
+  public func observeViewState() -> Observable<MoviesManagerViewState> {
+    return viewStateSubject.distinctUntilChanged()
   }
 
   public func viewDidLoad() {
-    view?.show(pages: modules, withDefault: defaultIndex)
+    viewStateSubject.onNext(.showing(pages: dataSource.modulePages, selectedIndex: dataSource.defaultModuleIndex))
+  }
+
+  public func selectTab(index: Int) {
+    dataSource.defaultModuleIndex = index
   }
 }
