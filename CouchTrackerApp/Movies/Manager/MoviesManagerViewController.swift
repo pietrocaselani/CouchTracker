@@ -4,13 +4,22 @@ import RxSwift
 import Tabman
 
 final class MoviesManagerViewController: TabmanViewController, TMBarCouchTracker {
+  private let presenter: MoviesManagerPresenter
   private let disposeBag = DisposeBag()
-  var presenter: MoviesManagerPresenter!
   private var pages = [ModulePage]()
   private var defaultPageIndex = 0
 
-  override func awakeFromNib() {
-    super.awakeFromNib()
+  init(presenter: MoviesManagerPresenter) {
+    self.presenter = presenter
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  required init?(coder _: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
     title = R.string.localizable.movies()
     navigationItem.title = nil
@@ -19,14 +28,6 @@ final class MoviesManagerViewController: TabmanViewController, TMBarCouchTracker
 
     let bar = defaultCTBar()
     addBar(bar, dataSource: self, at: .top)
-  }
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    guard presenter != nil else {
-      fatalError("MoviesManagerViewController was loaded without a presenter")
-    }
 
     view.backgroundColor = Colors.View.background
 
