@@ -7,9 +7,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_: UIApplication,
                    didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-    UINavigationBar.appearance().barTintColor = UIColor.ctblack
-    UINavigationBar.appearance().tintColor = UIColor.white
-    UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.ctzircon]
+    UINavigationBar.appearance().barTintColor = Colors.NavigationBar.barTintColor
+    UINavigationBar.appearance().isTranslucent = false
+    UINavigationBar.appearance().tintColor = Colors.NavigationBar.tintColor
+    UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: Colors.NavigationBar.titleTextColor]
+
+    UITabBar.appearance().barTintColor = Colors.TabBar.backgroundColor
+    UITabBar.appearance().tintColor = Colors.TabBar.tintColor
+
     UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self]).textColor = UIColor.ctzircon
 
     let view = AppFlowModule.setupModule()

@@ -31,6 +31,8 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView, 
       fatalError("ShowsManagerViewController was loaded without a presenter")
     }
 
+    view.backgroundColor = Colors.View.background
+
     presenter.viewDidLoad()
   }
 

@@ -24,6 +24,8 @@ final class ShowsProgressViewController: UIViewController, ShowsProgressView {
     tableView.dataSource = dataSource
     tableView.delegate = self
 
+    view.backgroundColor = Colors.View.background
+
     presenter.viewDidLoad()
 
     let refreshItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: nil, action: nil)

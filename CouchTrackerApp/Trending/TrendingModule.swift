@@ -5,10 +5,6 @@ final class TrendingModule {
   private init() {}
 
   static func setupModule(for trendingType: TrendingType) -> BaseView {
-    guard let view = R.storyboard.trending.instantiateInitialViewController() else {
-      fatalError("Could not instantiate view controller from storyboard")
-    }
-
     let traktProvider = Environment.instance.trakt
     let tmdb = Environment.instance.tmdb
     let tvdb = Environment.instance.tvdb
@@ -21,6 +17,8 @@ final class TrendingModule {
                                                 tvdb: tvdb,
                                                 cofigurationRepository: configurationRepository,
                                                 schedulers: schedulers)
+
+    let view = TrendingViewController()
 
     let interactor = TrendingService(repository: repository, genreRepository: genreRepository)
     let router = TrendingiOSRouter(viewController: view)
@@ -35,6 +33,7 @@ final class TrendingModule {
                                              schedulers: schedulers)
 
     view.presenter = presenter
+    view.trendingType = trendingType
 
     return view
   }

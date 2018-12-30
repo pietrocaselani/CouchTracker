@@ -16,6 +16,8 @@ final class AppConfigurationsViewController: UIViewController, AppConfigurations
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    view.backgroundColor = Colors.View.background
+
     guard presenter != nil else {
       fatalError("AppConfigurationsViewController was loaded without a presenter")
     }

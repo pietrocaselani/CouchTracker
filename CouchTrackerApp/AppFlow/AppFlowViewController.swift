@@ -11,7 +11,7 @@ final class AppFlowViewController: UITabBarController, AppFlowView {
       Swift.fatalError("view was loaded without a presenter")
     }
 
-    view.backgroundColor = UIColor.ctdarkerBunker
+    view.backgroundColor = Colors.View.background
 
     presenter.viewDidLoad()
 

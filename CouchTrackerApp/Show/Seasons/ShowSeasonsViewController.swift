@@ -29,6 +29,8 @@ final class ShowSeasonsViewController: UITableViewController {
     super.viewDidLoad()
 
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ShowSeasonCell")
+
+    view.backgroundColor = Colors.View.background
   }
 
   override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
@@ -39,6 +41,8 @@ final class ShowSeasonsViewController: UITableViewController {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ShowSeasonCell", for: indexPath)
 
     let season = show?.seasons[indexPath.row]
+
+    cell.textLabel?.textColor = Colors.Text.primaryTextColor
 
     cell.textLabel?.text = "Season \(season?.number ?? -1) completed: \(season?.completed ?? 0)/\(season?.aired ?? 0)"
 

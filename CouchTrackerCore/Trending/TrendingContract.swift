@@ -9,14 +9,14 @@ public enum TrendingType {
 public protocol TrendingPresenter: class {
   var dataSource: TrendingDataSource { get }
 
-  init(view: TrendingView, interactor: TrendingInteractor,
+  init(view: TrendingViewProtocol, interactor: TrendingInteractor,
        router: TrendingRouter, dataSource: TrendingDataSource, type: TrendingType, schedulers: Schedulers)
 
   func viewDidLoad()
   func showDetailsOfTrending(at index: Int)
 }
 
-public protocol TrendingView: BaseView {
+public protocol TrendingViewProtocol: BaseView {
   var presenter: TrendingPresenter! { get set }
 
   func showEmptyView()

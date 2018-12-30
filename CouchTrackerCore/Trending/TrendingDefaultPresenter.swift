@@ -2,9 +2,7 @@ import RxSwift
 import TraktSwift
 
 public final class TrendingDefaultPresenter: TrendingPresenter {
-  private static let limitPerPage = 25
-
-  public weak var view: TrendingView?
+  public weak var view: TrendingViewProtocol?
   public var dataSource: TrendingDataSource
 
   private let trendingType: TrendingType
@@ -17,8 +15,8 @@ public final class TrendingDefaultPresenter: TrendingPresenter {
   private var currentMoviesPage = 0
   private var currentShowsPage = 0
 
-  public init(view: TrendingView, interactor: TrendingInteractor,
-              router: TrendingRouter, dataSource: TrendingDataSource, type: TrendingType, schedulers: Schedulers) {
+  public init(view: TrendingViewProtocol, interactor: TrendingInteractor, router: TrendingRouter,
+              dataSource: TrendingDataSource, type: TrendingType, schedulers: Schedulers = DefaultSchedulers.instance) {
     self.view = view
     self.interactor = interactor
     self.router = router
@@ -44,7 +42,7 @@ public final class TrendingDefaultPresenter: TrendingPresenter {
   }
 
   private func fetchMovies() {
-    let observable = interactor.fetchMovies(page: currentMoviesPage, limit: TrendingDefaultPresenter.limitPerPage)
+    let observable = interactor.fetchMovies(page: currentMoviesPage, limit: Defaults.itemsPerPage)
       .do(onSuccess: { [unowned self] in
         self.movies = $0
       }).map { [unowned self] in self.transformToViewModels(entities: $0) }
@@ -53,7 +51,7 @@ public final class TrendingDefaultPresenter: TrendingPresenter {
   }
 
   private func fetchShows() {
-    let observable = interactor.fetchShows(page: currentShowsPage, limit: TrendingDefaultPresenter.limitPerPage)
+    let observable = interactor.fetchShows(page: currentShowsPage, limit: Defaults.itemsPerPage)
       .do(onSuccess: { [unowned self] in
         self.shows = $0
       }).map { [unowned self] in self.transformToViewModels(entities: $0) }

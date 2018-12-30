@@ -3,55 +3,85 @@ import RxCocoa
 import RxSwift
 import UIKit
 
-final class TrendingViewController: UIViewController {
-  var presenter: TrendingPresenter!
+public final class TrendingViewController: UIViewController {
+  public var presenter: TrendingPresenter!
+  public var trendingType: TrendingType = .movies
 
-  @IBOutlet var collectionView: UICollectionView!
-  @IBOutlet var emptyLabel: UILabel!
-
-  override func awakeFromNib() {
-    super.awakeFromNib()
-
-    title = "Trending"
+  private var trendingView: TrendingView {
+    guard let trendingView = self.view as? TrendingView else {
+      preconditionFailure("self.view should be an instance of TrendingView")
+    }
+    return trendingView
   }
 
-  override func viewDidLoad() {
+  init() {
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  required init?(coder _: NSCoder) {
+    Swift.fatalError("init(coder:) has not been implemented")
+  }
+
+  public override func loadView() {
+    let cellSize = ViewCalculations.posterAndTitleCellSize()
+
+    let layout = UICollectionViewFlowLayout()
+    layout.scrollDirection = .vertical
+    layout.itemSize = cellSize
+    layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+    layout.minimumInteritemSpacing = 5
+    layout.minimumLineSpacing = 5
+
+    view = TrendingView(collectionViewLayout: layout)
+  }
+
+  public override func viewDidLoad() {
     super.viewDidLoad()
+
+    guard presenter != nil else {
+      fatalError("view initialized without a presenter!")
+    }
 
     guard let collectionViewDataSource = presenter.dataSource as? UICollectionViewDataSource else {
       fatalError("dataSource should be an instance of UICollectionViewDataSource")
     }
 
-    collectionView.register(R.nib.posterCell)
+    trendingView.backgroundColor = Colors.View.background
+    trendingView.collectionView.backgroundColor = Colors.View.background
 
-    emptyLabel.text = "No movies to show right now".localized
+    let emptyText = trendingType == .movies ?
+      R.string.localizable.noMoviesToShowRightNow() :
+      R.string.localizable.noTvShowsToShowRightNow()
 
-    collectionView.delegate = self
-    collectionView.dataSource = collectionViewDataSource
+    trendingView.emptyView.label.text = emptyText
+    trendingView.collectionView.register(PosterAndTitleCell.self, forCellWithReuseIdentifier: PosterAndTitleCell.identifier)
+
+    trendingView.collectionView.dataSource = collectionViewDataSource
+    trendingView.collectionView.delegate = self
 
     presenter.viewDidLoad()
   }
 }
 
-extension TrendingViewController: TrendingView {
-  func showTrendingsView() {
-    makeListVisible()
-    collectionView.reloadData()
-  }
-
-  func showEmptyView() {
-    emptyLabel.isHidden = false
-    collectionView.isHidden = true
-  }
-
-  private func makeListVisible() {
-    emptyLabel.isHidden = true
-    collectionView.isHidden = false
+extension TrendingViewController: UICollectionViewDelegate {
+  public func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    presenter.showDetailsOfTrending(at: indexPath.row)
   }
 }
 
-extension TrendingViewController: UICollectionViewDelegate {
-  func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    presenter.showDetailsOfTrending(at: indexPath.row)
+extension TrendingViewController: TrendingViewProtocol {
+  public func showTrendingsView() {
+    makeListVisible()
+    trendingView.collectionView.reloadData()
+  }
+
+  public func showEmptyView() {
+    trendingView.collectionView.isHidden = true
+    trendingView.emptyView.isHidden = false
+  }
+
+  private func makeListVisible() {
+    trendingView.collectionView.isHidden = false
+    trendingView.emptyView.isHidden = true
   }
 }

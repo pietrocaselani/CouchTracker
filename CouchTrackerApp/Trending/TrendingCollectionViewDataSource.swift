@@ -15,18 +15,20 @@ final class TrendingCollectionViewDataSource: NSObject, TrendingDataSource, UICo
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let identifier = R.reuseIdentifier.posterCell
+    let identifier = PosterAndTitleCell.identifier
 
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) else {
-      Swift.fatalError("Poster cell should not be nil")
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+
+    guard let posterCell = cell as? PosterAndTitleCell else {
+      Swift.fatalError("cell should be an instance of PosterAndTitleCell")
     }
 
     let viewModel = viewModels[indexPath.row]
     let interactor = PosterCellService(imageRepository: imageRepository)
-    let presenter = PosterCellDefaultPresenter(view: cell, interactor: interactor, viewModel: viewModel)
+    let presenter = PosterCellDefaultPresenter(view: posterCell, interactor: interactor, viewModel: viewModel)
 
-    cell.presenter = presenter
+    posterCell.presenter = presenter
 
-    return cell
+    return posterCell
   }
 }

@@ -30,6 +30,8 @@ final class MoviesManagerViewController: TabmanViewController, MoviesManagerView
       fatalError("MoviesManagerViewController was loaded without a presenter")
     }
 
+    view.backgroundColor = Colors.View.background
+
     presenter.viewDidLoad()
   }
 

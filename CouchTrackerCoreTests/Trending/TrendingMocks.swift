@@ -5,7 +5,7 @@ import TraktSwift
 
 let trendingRepositoryMock = TrendingRepositoryMock(traktProvider: createTraktProviderMock())
 
-final class TrendingViewMock: TrendingView {
+final class TrendingViewMock: TrendingViewProtocol {
   var presenter: TrendingPresenter!
   var searchView: SearchView!
   var invokedShowEmptyView = false
