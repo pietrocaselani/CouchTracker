@@ -4,14 +4,19 @@ import UIKit
 
 final class AppFlowViewController: UITabBarController {
   private let disposeBag = DisposeBag()
-  var presenter: AppFlowPresenter!
+  private let presenter: AppFlowPresenter
+
+  init(presenter: AppFlowPresenter) {
+    self.presenter = presenter
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  required init?(coder _: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    guard let presenter = presenter else {
-      Swift.fatalError("view was loaded without a presenter")
-    }
 
     view.backgroundColor = Colors.View.background
     delegate = self

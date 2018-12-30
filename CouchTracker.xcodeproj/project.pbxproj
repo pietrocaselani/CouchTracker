@@ -461,7 +461,6 @@
 		820406FA21D0036400127F05 /* AppConfigurationsiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BF5091F6B07AF0010CE35 /* AppConfigurationsiOSRouter.swift */; };
 		820406FB21D0036400127F05 /* AppConfigurationsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D1571F6FF1FE008C4E5F /* AppConfigurationsModule.swift */; };
 		820406FC21D0036400127F05 /* AppConfigurationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D491551F6FE4DF00EA0C80 /* AppConfigurationsViewController.swift */; };
-		820406FD21D003A500127F05 /* AppFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CC08921F717597004D164A /* AppFlow.storyboard */; };
 		820406FE21D003A500127F05 /* AppFlowiOSModuleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A5958204EE4690061ABB7 /* AppFlowiOSModuleDataSource.swift */; };
 		820406FF21D003A500127F05 /* AppFlowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC088A1F717298004D164A /* AppFlowModule.swift */; };
 		8204070021D003A500127F05 /* AppFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08861F717205004D164A /* AppFlowViewController.swift */; };
@@ -972,7 +971,6 @@
 		64CC088A1F717298004D164A /* AppFlowModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowModule.swift; sourceTree = "<group>"; };
 		64CC088C1F717330004D164A /* ShowsManagerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerModule.swift; sourceTree = "<group>"; };
 		64CC08901F7174F5004D164A /* ShowsManager.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowsManager.storyboard; sourceTree = "<group>"; };
-		64CC08921F717597004D164A /* AppFlow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppFlow.storyboard; sourceTree = "<group>"; };
 		64CC08941F7188E1004D164A /* TraktLoginStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginStore.swift; sourceTree = "<group>"; };
 		64CC08981F718BE2004D164A /* TraktLoginState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginState.swift; sourceTree = "<group>"; };
 		64CC089C1F718F63004D164A /* TraktLoginStoreTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraktLoginStoreTest.swift; sourceTree = "<group>"; };
@@ -2201,7 +2199,6 @@
 		64CC08851F7171E7004D164A /* AppFlow */ = {
 			isa = PBXGroup;
 			children = (
-				64CC08921F717597004D164A /* AppFlow.storyboard */,
 				4F3A5958204EE4690061ABB7 /* AppFlowiOSModuleDataSource.swift */,
 				64CC088A1F717298004D164A /* AppFlowModule.swift */,
 				64CC08861F717205004D164A /* AppFlowViewController.swift */,
@@ -2711,7 +2708,6 @@
 				8204072421D0049000127F05 /* ShowsNow.storyboard in Resources */,
 				8204070F21D0046400127F05 /* SearchBarView.xib in Resources */,
 				8204073F21D0187800127F05 /* Assets.xcassets in Resources */,
-				820406FD21D003A500127F05 /* AppFlow.storyboard in Resources */,
 				8204072721D0049800127F05 /* ShowsProgress.storyboard in Resources */,
 				8204070921D0043600127F05 /* MoviesManager.storyboard in Resources */,
 				820406F921D0036400127F05 /* AppConfigurations.storyboard in Resources */,
