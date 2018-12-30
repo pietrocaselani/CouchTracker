@@ -31,8 +31,6 @@ public final class PosterAndTitleCell: CollectionViewCell {
   }()
 
   public override func initialize() {
-//    labelContainerView.addSubview(titleLabel)
-
     contentView.addSubview(stackView)
 
     backgroundColor = Colors.Cell.backgroundColor
@@ -43,10 +41,6 @@ public final class PosterAndTitleCell: CollectionViewCell {
       stack.size == stack.superview!.size
 
       label.height == label.superview!.height * 0.17
-
-//      labelContainer.top == imageView.bottom
-
-//      label.size == label.superview!.size
     }
   }
 }

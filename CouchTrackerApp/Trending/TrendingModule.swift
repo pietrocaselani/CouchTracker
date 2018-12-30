@@ -1,8 +1,6 @@
 import CouchTrackerCore
 import UIKit
 
-import TraktSwift
-
 final class TrendingModule {
   private init() {}
 
