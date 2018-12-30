@@ -1,9 +1,11 @@
 import CouchTrackerCore
 import Pageboy
+import RxSwift
 import Tabman
 import UIKit
 
-final class ShowsManagerViewController: TabmanViewController, ShowsManagerView, TMBarCouchTracker {
+final class ShowsManagerViewController: TabmanViewController, TMBarCouchTracker {
+  private let disposeBag = DisposeBag()
   var presenter: ShowsManagerPresenter!
   private var pages = [ModulePage]()
   private var defaultPageIndex = 0
@@ -29,25 +31,26 @@ final class ShowsManagerViewController: TabmanViewController, ShowsManagerView, 
 
     view.backgroundColor = Colors.View.background
 
+    presenter.observeViewState().subscribe(onNext: { [weak self] viewState in
+      self?.handleViewState(viewState)
+    }).disposed(by: disposeBag)
+
     presenter.viewDidLoad()
   }
 
-  func show(pages: [ModulePage], withDefault index: Int) {
+  private func handleViewState(_ viewState: ShowsManagerViewState) {
+    switch viewState {
+    case let .showing(pages, selectedIndex):
+      show(pages: pages, withDefault: selectedIndex)
+    default: break
+    }
+  }
+
+  private func show(pages: [ModulePage], withDefault index: Int) {
     self.pages = pages
     defaultPageIndex = index
 
     reloadData()
-  }
-
-  func showNeedsTraktLogin() {
-    let message = "You need to log in on Trakt to use this screen"
-    let alert = UIAlertController(title: "Trakt", message: message, preferredStyle: .alert)
-
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-      alert.dismiss(animated: true, completion: nil)
-    }))
-
-    present(alert, animated: true, completion: nil)
   }
 
   override func pageboyViewController(_ pageboyViewController: PageboyViewController, didScrollToPageAt index: Int,

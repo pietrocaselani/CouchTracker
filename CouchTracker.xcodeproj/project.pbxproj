@@ -570,6 +570,8 @@
 		82E1DE6421D95B9C006C8EA8 /* AppFlowViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1DE6221D95B9A006C8EA8 /* AppFlowViewState.swift */; };
 		82E1DE6621D9657A006C8EA8 /* MoviesManagerViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1DE6521D9657A006C8EA8 /* MoviesManagerViewState.swift */; };
 		82E1DE6721D9657A006C8EA8 /* MoviesManagerViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1DE6521D9657A006C8EA8 /* MoviesManagerViewState.swift */; };
+		82E1DE6921D96E2C006C8EA8 /* ShowsManagerViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1DE6821D96E2C006C8EA8 /* ShowsManagerViewState.swift */; };
+		82E1DE6A21D96E2C006C8EA8 /* ShowsManagerViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1DE6821D96E2C006C8EA8 /* ShowsManagerViewState.swift */; };
 		82F85FD821D5ACCF006A66B9 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F85FD721D5ACCF006A66B9 /* StringExtensions.swift */; };
 		82F85FD921D5ACCF006A66B9 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F85FD721D5ACCF006A66B9 /* StringExtensions.swift */; };
 		82F85FDB21D5AE1F006A66B9 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F85FDA21D5AE1F006A66B9 /* UIViewControllerExtensions.swift */; };
@@ -1051,6 +1053,7 @@
 		82D2434521C6DBA40003FC3D /* SynchronizerMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizerMocks.swift; sourceTree = "<group>"; };
 		82E1DE6221D95B9A006C8EA8 /* AppFlowViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowViewState.swift; sourceTree = "<group>"; };
 		82E1DE6521D9657A006C8EA8 /* MoviesManagerViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerViewState.swift; sourceTree = "<group>"; };
+		82E1DE6821D96E2C006C8EA8 /* ShowsManagerViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerViewState.swift; sourceTree = "<group>"; };
 		82F85FD721D5ACCF006A66B9 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		82F85FDA21D5AE1F006A66B9 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		AF31C37B5587B21736E8BA65 /* Pods_CouchTrackerApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1445,6 +1448,7 @@
 				64CC08601F71616E004D164A /* ShowsManagerContract.swift */,
 				64CB90BD1F7294290026B139 /* ShowsManagerDefaultModuleSetup.swift */,
 				64CB90B91F72922F0026B139 /* ShowsManagerDefaultPresenter.swift */,
+				82E1DE6821D96E2C006C8EA8 /* ShowsManagerViewState.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -3189,6 +3193,7 @@
 				4F10101820A99C64003CA348 /* ShowsProgressListStateDefaultDataSource.swift in Sources */,
 				4F0F5775203D5FA000B86CB8 /* ShowEpisodeService.swift in Sources */,
 				4FEF6AE22125A07900B7CF63 /* EpisodeDetailsRepository.swift in Sources */,
+				82E1DE6921D96E2C006C8EA8 /* ShowsManagerViewState.swift in Sources */,
 				4F70910720D5F3650017B259 /* WatchedMovieResult.swift in Sources */,
 				4F0F5779203D5FA000B86CB8 /* ShowEpisodeMoyaNetwork.swift in Sources */,
 				4F0F577A203D5FA000B86CB8 /* ShowManagerContract.swift in Sources */,
@@ -3479,6 +3484,7 @@
 				4F0F58B9203D7B0A00B86CB8 /* WatchedShowEntityRealm.swift in Sources */,
 				4F0F58BA203D7B0A00B86CB8 /* Schedulers.swift in Sources */,
 				82930A20216C1C8500A824F6 /* SynchronizerContract.swift in Sources */,
+				82E1DE6A21D96E2C006C8EA8 /* ShowsManagerViewState.swift in Sources */,
 				4F10101920A99C64003CA348 /* ShowsProgressListStateDefaultDataSource.swift in Sources */,
 				4F0F58BB203D7B0A00B86CB8 /* SearchAPIRepository.swift in Sources */,
 				4FEF6AE32125A07900B7CF63 /* EpisodeDetailsRepository.swift in Sources */,

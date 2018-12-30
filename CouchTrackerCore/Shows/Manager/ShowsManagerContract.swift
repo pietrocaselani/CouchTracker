@@ -1,3 +1,5 @@
+import RxSwift
+
 public enum ShowsManagerOption: String {
   case progress
   case now
@@ -6,16 +8,11 @@ public enum ShowsManagerOption: String {
 }
 
 public protocol ShowsManagerPresenter: class {
-  init(view: ShowsManagerView, moduleSetup: ShowsManagerDataSource)
+  init(dataSource: ShowsManagerDataSource)
 
+  func observeViewState() -> Observable<ShowsManagerViewState>
   func viewDidLoad()
   func selectTab(index: Int)
-}
-
-public protocol ShowsManagerView: class {
-  var presenter: ShowsManagerPresenter! { get set }
-
-  func show(pages: [ModulePage], withDefault index: Int)
 }
 
 public protocol ShowsManagerDataSource: class {
