@@ -1,8 +1,10 @@
 import CouchTrackerCore
 import Pageboy
+import RxSwift
 import Tabman
 
-final class MoviesManagerViewController: TabmanViewController, MoviesManagerView, TMBarCouchTracker {
+final class MoviesManagerViewController: TabmanViewController, TMBarCouchTracker {
+  private let disposeBag = DisposeBag()
   var presenter: MoviesManagerPresenter!
   private var pages = [ModulePage]()
   private var defaultPageIndex = 0
@@ -28,10 +30,23 @@ final class MoviesManagerViewController: TabmanViewController, MoviesManagerView
 
     view.backgroundColor = Colors.View.background
 
+    presenter.observeViewState()
+      .subscribe(onNext: { [weak self] viewState in
+        self?.handleViewState(viewState)
+      }).disposed(by: disposeBag)
+
     presenter.viewDidLoad()
   }
 
-  func show(pages: [ModulePage], withDefault index: Int) {
+  private func handleViewState(_ viewState: MoviesManagerViewState) {
+    switch viewState {
+    case let .showing(pages, selectedIndex):
+      show(pages: pages, withDefault: selectedIndex)
+    default: break
+    }
+  }
+
+  private func show(pages: [ModulePage], withDefault index: Int) {
     self.pages = pages
     defaultPageIndex = index
 
@@ -47,6 +62,8 @@ final class MoviesManagerViewController: TabmanViewController, MoviesManagerView
 
     navigationItem.leftBarButtonItems = currentViewController?.navigationItem.leftBarButtonItems
     navigationItem.rightBarButtonItems = currentViewController?.navigationItem.rightBarButtonItems
+
+    presenter.selectTab(index: index)
   }
 }
 

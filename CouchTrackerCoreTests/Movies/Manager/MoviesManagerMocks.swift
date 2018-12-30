@@ -1,27 +1,15 @@
 @testable import CouchTrackerCore
 
-final class MoviesManagerMocks {
-  private init() {
-    Swift.fatalError("No instances for you!")
-  }
-
-  final class View: MoviesManagerView {
-    var showPagesInvoked = false
-    var showPagesParameters: (pages: [ModulePage], index: Int)?
-    var presenter: MoviesManagerPresenter!
-
-    func show(pages: [ModulePage], withDefault index: Int) {
-      showPagesInvoked = true
-      showPagesParameters = (pages, index)
-    }
-  }
-
+enum MoviesManagerMocks {
   final class DataSource: MoviesManagerDataSource {
+    var defaultModuleIndexInvokedCount = 0
     var options: [MoviesManagerOption]
-
     var modulePages: [ModulePage]
-
-    var defaultModuleIndex: Int
+    var defaultModuleIndex: Int {
+      didSet {
+        defaultModuleIndexInvokedCount += 1
+      }
+    }
 
     init(creator _: MoviesManagerModuleCreator) {
       defaultModuleIndex = 2

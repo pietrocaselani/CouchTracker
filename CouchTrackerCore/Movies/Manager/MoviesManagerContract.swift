@@ -1,18 +1,16 @@
+import RxSwift
+
 public enum MoviesManagerOption: String {
   case trending
   case search
 }
 
 public protocol MoviesManagerPresenter: class {
-  init(view: MoviesManagerView, dataSource: MoviesManagerDataSource)
+  init(dataSource: MoviesManagerDataSource)
 
+  func observeViewState() -> Observable<MoviesManagerViewState>
   func viewDidLoad()
-}
-
-public protocol MoviesManagerView: class {
-  var presenter: MoviesManagerPresenter! { get set }
-
-  func show(pages: [ModulePage], withDefault index: Int)
+  func selectTab(index: Int)
 }
 
 public protocol MoviesManagerModuleCreator: class {
@@ -22,7 +20,7 @@ public protocol MoviesManagerModuleCreator: class {
 public protocol MoviesManagerDataSource: class {
   var options: [MoviesManagerOption] { get }
   var modulePages: [ModulePage] { get }
-  var defaultModuleIndex: Int { get }
+  var defaultModuleIndex: Int { get set }
 
   init(creator: MoviesManagerModuleCreator)
 }
