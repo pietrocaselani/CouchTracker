@@ -2,8 +2,8 @@ import Cartography
 import CouchTrackerCore
 import Kingfisher
 
-public final class PosterCellNew: CollectionViewCell {
-  public static let identifier = "PosterCellNew"
+public final class PosterAndTitleCell: CollectionViewCell {
+  public static let identifier = "PosterAndTitleCell"
 
   public var presenter: PosterCellPresenter! {
     didSet {
@@ -51,7 +51,7 @@ public final class PosterCellNew: CollectionViewCell {
   }
 }
 
-extension PosterCellNew: PosterCellView {
+extension PosterAndTitleCell: PosterCellView {
   public func show(viewModel: PosterCellViewModel) {
     titleLabel.text = viewModel.title
   }

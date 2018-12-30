@@ -26,7 +26,7 @@ final class SearchViewController: UIViewController, SearchResultOutput {
     view.backgroundColor = Colors.View.background
     collectionView.backgroundColor = Colors.View.background
 
-    collectionView.register(R.nib.posterCell)
+    collectionView.register(PosterAndTitleCell.self, forCellWithReuseIdentifier: PosterAndTitleCell.identifier)
 
     searchViewContainer.addSubview(searchView)
     collectionView.dataSource = self
@@ -60,10 +60,12 @@ extension SearchViewController: UICollectionViewDataSource {
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let identifier = R.reuseIdentifier.posterCell
+    let identifier = PosterAndTitleCell.identifier
 
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) else {
-      Swift.fatalError("cell can't be nil")
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+
+    guard let posterCell = cell as? PosterAndTitleCell else {
+      Swift.fatalError("cell should be an instance of PosterAndTitleCell")
     }
 
     let result = results[indexPath.row]
@@ -82,9 +84,9 @@ extension SearchViewController: UICollectionViewDataSource {
     }
 
     let interactor = PosterCellService(imageRepository: imageRepository)
-    let presenter = PosterCellDefaultPresenter(view: cell, interactor: interactor, viewModel: viewModel)
+    let presenter = PosterCellDefaultPresenter(view: posterCell, interactor: interactor, viewModel: viewModel)
 
-    cell.presenter = presenter
+    posterCell.presenter = presenter
 
     return cell
   }

@@ -54,7 +54,7 @@ public final class TrendingViewController: UIViewController {
       R.string.localizable.noTvShowsToShowRightNow()
 
     trendingView.emptyView.label.text = emptyText
-    trendingView.collectionView.register(PosterCellNew.self, forCellWithReuseIdentifier: PosterCellNew.identifier)
+    trendingView.collectionView.register(PosterAndTitleCell.self, forCellWithReuseIdentifier: PosterAndTitleCell.identifier)
 
     trendingView.collectionView.dataSource = collectionViewDataSource
     trendingView.collectionView.delegate = self

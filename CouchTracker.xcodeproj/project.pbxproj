@@ -517,8 +517,6 @@
 		8204073221D004A500127F05 /* TrendingCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D43BD71F607628005CDBF7 /* TrendingCollectionViewDataSource.swift */; };
 		8204073321D004AF00127F05 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64343E1D1F7EB3B7004557E4 /* Secrets.swift */; };
 		8204073421D004AF00127F05 /* NoCacheMoyaPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAA2542205693BE0006735A /* NoCacheMoyaPlugin.swift */; };
-		8204073521D0051C00127F05 /* PosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6405E4F01F5DE4F900756E79 /* PosterCell.swift */; };
-		8204073621D0051C00127F05 /* PosterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9CE318205B1A080000CCD4 /* PosterCell.xib */; };
 		8204073E21D0180C00127F05 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204073D21D0180C00127F05 /* R.generated.swift */; };
 		8204073F21D0187800127F05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 647632431F44824900F277F1 /* Assets.xcassets */; };
 		8204074021D01A9D00127F05 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64BE63231F4F692B002E55EA /* Localizable.strings */; };
@@ -571,7 +569,7 @@
 		829A590221B2404700B67753 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829A590021B2404700B67753 /* Container.swift */; };
 		82C6477C21D72F3500175B24 /* TrendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C6477B21D72F3500175B24 /* TrendingView.swift */; };
 		82C6477E21D72F5200175B24 /* DefaultEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C6477D21D72F5200175B24 /* DefaultEmptyView.swift */; };
-		82C6478021D7345200175B24 /* PosterCellNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C6477F21D7345200175B24 /* PosterCellNew.swift */; };
+		82C6478021D7345200175B24 /* PosterAndTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C6477F21D7345200175B24 /* PosterAndTitleCell.swift */; };
 		82D2434621C6DBA40003FC3D /* SynchronizerMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D2434521C6DBA40003FC3D /* SynchronizerMocks.swift */; };
 		82F85FD821D5ACCF006A66B9 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F85FD721D5ACCF006A66B9 /* StringExtensions.swift */; };
 		82F85FD921D5ACCF006A66B9 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F85FD721D5ACCF006A66B9 /* StringExtensions.swift */; };
@@ -758,7 +756,6 @@
 		4F9ABC102052982B00EA6456 /* MoviesManagerDefaultDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerDefaultDataSource.swift; sourceTree = "<group>"; };
 		4F9CE2BF205A84A80000CCD4 /* SearchViewModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModule.swift; sourceTree = "<group>"; };
 		4F9CE2C1205A85400000CCD4 /* SearchBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchBarView.xib; sourceTree = "<group>"; };
-		4F9CE318205B1A080000CCD4 /* PosterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PosterCell.xib; sourceTree = "<group>"; };
 		4FA0C76120326DBA008656B7 /* AppConfigurationsStoreTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsStoreTest.swift; sourceTree = "<group>"; };
 		4FA9B5F0209E749800E99D59 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4FAA2542205693BE0006735A /* NoCacheMoyaPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCacheMoyaPlugin.swift; sourceTree = "<group>"; };
@@ -802,7 +799,6 @@
 		640330421F67FEBA001CCEDB /* ImagesViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewModelMapper.swift; sourceTree = "<group>"; };
 		640373101FABA80E005023D5 /* trakt_movies_trending.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_movies_trending.json; sourceTree = "<group>"; };
 		640373121FABA8CD005023D5 /* trakt_movies_summary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = trakt_movies_summary.json; sourceTree = "<group>"; };
-		6405E4F01F5DE4F900756E79 /* PosterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCell.swift; sourceTree = "<group>"; };
 		6405E4F21F5DE59600756E79 /* TrendingContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingContract.swift; sourceTree = "<group>"; };
 		6406BEB21F4DB69C004661C4 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		6406BEBC1F4DBEFA004661C4 /* MovieDetailsContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsContract.swift; sourceTree = "<group>"; };
@@ -1056,7 +1052,7 @@
 		829A590021B2404700B67753 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		82C6477B21D72F3500175B24 /* TrendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingView.swift; sourceTree = "<group>"; };
 		82C6477D21D72F5200175B24 /* DefaultEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEmptyView.swift; sourceTree = "<group>"; };
-		82C6477F21D7345200175B24 /* PosterCellNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCellNew.swift; sourceTree = "<group>"; };
+		82C6477F21D7345200175B24 /* PosterAndTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterAndTitleCell.swift; sourceTree = "<group>"; };
 		82D2434521C6DBA40003FC3D /* SynchronizerMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizerMocks.swift; sourceTree = "<group>"; };
 		82F85FD721D5ACCF006A66B9 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		82F85FDA21D5AE1F006A66B9 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
@@ -1660,10 +1656,8 @@
 		4FE4BA352059E78400969AAF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6405E4F01F5DE4F900756E79 /* PosterCell.swift */,
-				4F9CE318205B1A080000CCD4 /* PosterCell.xib */,
 				82C6477D21D72F5200175B24 /* DefaultEmptyView.swift */,
-				82C6477F21D7345200175B24 /* PosterCellNew.swift */,
+				82C6477F21D7345200175B24 /* PosterAndTitleCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2717,7 +2711,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8204074021D01A9D00127F05 /* Localizable.strings in Resources */,
-				8204073621D0051C00127F05 /* PosterCell.xib in Resources */,
 				8204072421D0049000127F05 /* ShowsNow.storyboard in Resources */,
 				8204070F21D0046400127F05 /* SearchBarView.xib in Resources */,
 				8204073F21D0187800127F05 /* Assets.xcassets in Resources */,
@@ -3603,13 +3596,12 @@
 				8204070221D003F200127F05 /* Tabman+CouchTracker.swift in Sources */,
 				8204072021D0048900127F05 /* ShowsManageriOSCreator.swift in Sources */,
 				820406FE21D003A500127F05 /* AppFlowiOSModuleDataSource.swift in Sources */,
-				82C6478021D7345200175B24 /* PosterCellNew.swift in Sources */,
+				82C6478021D7345200175B24 /* PosterAndTitleCell.swift in Sources */,
 				8204072121D0048900127F05 /* ShowsManagerModule.swift in Sources */,
 				8204070821D0041300127F05 /* MovieDetailsViewController.swift in Sources */,
 				8204071021D0046400127F05 /* SearchModule.swift in Sources */,
 				8204071121D0046400127F05 /* SearchViewController.swift in Sources */,
 				820406FF21D003A500127F05 /* AppFlowModule.swift in Sources */,
-				8204073521D0051C00127F05 /* PosterCell.swift in Sources */,
 				8204071A21D0047B00127F05 /* ShowManageriOSModuleCreator.swift in Sources */,
 				8226D9EB21D72731007BB979 /* CollectionViewCell.swift in Sources */,
 				8204070321D003F200127F05 /* UIAlertController+Error.swift in Sources */,

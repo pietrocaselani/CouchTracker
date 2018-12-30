@@ -18,7 +18,7 @@ final class TrendingCollectionViewDataSource: NSObject, TrendingDataSource, UICo
 //    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.posterCell, for: indexPath)
 //
 //    guard let posterCell = cell else {
-//      Swift.fatalError("cell should be an instance of PosterCellNew")
+//      Swift.fatalError("cell should be an instance of PosterAndTitleCell")
 //    }
 //
 //    let viewModel = viewModels[indexPath.row]
@@ -31,12 +31,12 @@ final class TrendingCollectionViewDataSource: NSObject, TrendingDataSource, UICo
 //  }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let identifier = PosterCellNew.identifier
+    let identifier = PosterAndTitleCell.identifier
 
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
 
-    guard let posterCell = cell as? PosterCellNew else {
-      Swift.fatalError("cell should be an instance of PosterCellNew")
+    guard let posterCell = cell as? PosterAndTitleCell else {
+      Swift.fatalError("cell should be an instance of PosterAndTitleCell")
     }
 
     let viewModel = viewModels[indexPath.row]
