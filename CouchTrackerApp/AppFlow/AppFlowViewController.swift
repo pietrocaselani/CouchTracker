@@ -1,7 +1,9 @@
 import CouchTrackerCore
+import RxSwift
 import UIKit
 
-final class AppFlowViewController: UITabBarController, AppFlowView {
+final class AppFlowViewController: UITabBarController {
+  private let disposeBag = DisposeBag()
   var presenter: AppFlowPresenter!
 
   override func viewDidLoad() {
@@ -12,13 +14,25 @@ final class AppFlowViewController: UITabBarController, AppFlowView {
     }
 
     view.backgroundColor = Colors.View.background
+    delegate = self
+
+    presenter.observeViewState()
+      .subscribe(onNext: { [weak self] viewState in
+        self?.handleViewState(viewState)
+      }).disposed(by: disposeBag)
 
     presenter.viewDidLoad()
-
-    delegate = self
   }
 
-  func show(pages: [ModulePage], selectedIndex: Int) {
+  private func handleViewState(_ viewState: AppFlowViewState) {
+    switch viewState {
+    case let .showing(pages, selectedIndex):
+      show(pages: pages, selectedIndex: selectedIndex)
+    default: break
+    }
+  }
+
+  private func show(pages: [ModulePage], selectedIndex: Int) {
     let viewControllers = pages.map { modulePage -> UIViewController in
       guard let viewController = modulePage.page as? UIViewController else {
         Swift.fatalError("page should be an instance of UIViewController")

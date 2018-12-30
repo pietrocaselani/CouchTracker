@@ -11,11 +11,11 @@ public final class AppFlowModule {
       fatalError("Can't instantiate AppFlowViewController from Storyboard")
     }
 
-    let repository = AppFlowUserDefaultsRepository(userDefaults: UserDefaults.standard)
-    let interactor = AppFlowService(repository: repository)
+    let userDefaults = Environment.instance.userDefaults
+
+    let repository = AppFlowUserDefaultsRepository(userDefaults: userDefaults)
     let dataSource = AppFlowiOSModuleDataSource()
-    let presenter = AppFlowDefaultPresenter(view: appFlowViewController,
-                                            interactor: interactor,
+    let presenter = AppFlowDefaultPresenter(repository: repository,
                                             moduleDataSource: dataSource)
 
     appFlowViewController.presenter = presenter
