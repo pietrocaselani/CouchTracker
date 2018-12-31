@@ -1,0 +1,24 @@
+{
+    "episode": {
+        "number": 1,
+        "season": 5,
+        "showIds": {
+            "tmdb": 61056,
+            "slug": "how-to-get-away-with-murder",
+            "tvdb": 281620,
+            "tvrage": 37307,
+            "trakt": 60576,
+            "imdb": "tt3205802"
+        },
+        "ids": {
+            "tmdb": 1559132,
+            "tvdb": 6703614,
+            "tvrage": 0,
+            "trakt": 3015130,
+            "imdb": "tt8405182"
+        },
+        "title": "Your Funeral",
+        "overview": "Annalise selects students for her new legal clinic and juggles job offers from competing firms; the Keating 4 attempt to move on from last semester's turmoil; a new mystery is introduced and it shakes things up for everyone.\r\n",
+        "firstAired": 559792800
+    }
+}

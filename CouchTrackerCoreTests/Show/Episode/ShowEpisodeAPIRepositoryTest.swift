@@ -21,11 +21,10 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
                                               hideSpecials: true)
 
     // When
-    let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
     let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
 
     let res = schedulers.start {
-      repository.addToHistory(of: watchedShow, episode: episodeEntity).asObservable()
+      repository.addToHistory(episode: episodeEntity).asObservable()
     }
 
     // Then
@@ -53,11 +52,10 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
                                               hideSpecials: true)
 
     // When
-    let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
     let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
 
     let res = schedulers.start {
-      repository.removeFromHistory(of: watchedShow, episode: episodeEntity).asObservable()
+      repository.removeFromHistory(episode: episodeEntity).asObservable()
     }
 
     // Then
@@ -86,11 +84,10 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     appConfigsObservableMock.change(state: AppConfigurationsState(loginState: .notLogged, hideSpecials: false))
 
     // When
-    let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
     let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
 
     _ = schedulers.start {
-      repository.removeFromHistory(of: watchedShow, episode: episodeEntity).asObservable()
+      repository.removeFromHistory(episode: episodeEntity).asObservable()
     }
 
     // Then
@@ -112,11 +109,10 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
                                               hideSpecials: true)
 
     // When
-    let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
     let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
 
     let res = schedulers.start {
-      repository.addToHistory(of: watchedShow, episode: episodeEntity).asObservable()
+      repository.addToHistory(episode: episodeEntity).asObservable()
     }
 
     // Then
@@ -141,11 +137,10 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
                                               hideSpecials: true)
 
     // When
-    let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
     let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
 
     let res = schedulers.start {
-      repository.removeFromHistory(of: watchedShow, episode: episodeEntity).asObservable()
+      repository.removeFromHistory(episode: episodeEntity).asObservable()
     }
 
     // Then

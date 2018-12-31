@@ -23,29 +23,29 @@ public final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
     }).disposed(by: disposeBag)
   }
 
-  public func addToHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<WatchedShowEntity> {
+  public func addToHistory(episode: EpisodeEntity) -> Single<WatchedShowEntity> {
     let syncEpisode = SyncEpisode(ids: episode.ids)
     let items = SyncItems(episodes: [syncEpisode])
     let single = network.addToHistory(items: items)
 
-    return performSync(single, show.show, episode.season)
+    return performSync(single, episode.showIds, episode.season)
   }
 
-  public func removeFromHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<WatchedShowEntity> {
+  public func removeFromHistory(episode: EpisodeEntity) -> Single<WatchedShowEntity> {
     let syncEpisode = SyncEpisode(ids: episode.ids)
     let items = SyncItems(episodes: [syncEpisode])
     let single = network.removeFromHistory(items: items)
 
-    return performSync(single, show.show, episode.season)
+    return performSync(single, episode.showIds, episode.season)
   }
 
   private func performSync(_ single: Single<SyncResponse>,
-                           _ show: ShowEntity,
+                           _ showIds: ShowIds,
                            _ season: Int) -> Single<WatchedShowEntity> {
     return single.flatMap { [weak self] _ -> Single<WatchedShowEntity> in
       guard let strongSelf = self else { return Single.error(CouchTrackerError.selfDeinitialized) }
 
-      let options = WatchedShowEntitySyncOptions(showIds: show.ids,
+      let options = WatchedShowEntitySyncOptions(showIds: showIds,
                                                  episodeExtended: .fullEpisodes,
                                                  seasonOptions: .yes(number: season, extended: .fullEpisodes),
                                                  hiddingSpecials: strongSelf.hideSpecials)

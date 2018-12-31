@@ -3,49 +3,54 @@ import Kingfisher
 import RxCocoa
 import RxSwift
 
-final class ShowEpisodeViewController: UIViewController, ShowEpisodeView {
-  var presenter: ShowEpisodePresenter!
-
+final class ShowEpisodeViewController: UIViewController {
+  private let presenter: ShowEpisodePresenter
+  private let schedulers: Schedulers
   private let disposeBag = DisposeBag()
 
-  @IBOutlet var screenshotImageView: UIImageView!
-  @IBOutlet var titleLabel: UILabel!
-  @IBOutlet var numberLabel: UILabel!
-  @IBOutlet var dateLabel: UILabel!
-  @IBOutlet var watchedLabel: UILabel!
-  @IBOutlet var watchedSwich: UISwitch!
+  private var episodeView: ShowEpisodeView {
+    guard let episodeView = self.view as? ShowEpisodeView else {
+      preconditionFailure("self.view should be of type ShowEpisodeView")
+    }
+    return episodeView
+  }
+
+  init(presenter: ShowEpisodePresenter, schedulers: Schedulers = DefaultSchedulers.instance) {
+    self.presenter = presenter
+    self.schedulers = schedulers
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  required init?(coder _: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  override func loadView() {
+    view = ShowEpisodeView()
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    guard presenter != nil else { fatalError("view loaded without presenter") }
-
-    view.backgroundColor = Colors.View.background
-
     presenter.observeViewState()
-      .observeOn(MainScheduler.instance)
+      .observeOn(schedulers.mainScheduler)
       .subscribe(onNext: { [weak self] viewState in
         self?.handleViewState(viewState)
       }).disposed(by: disposeBag)
 
-    presenter.observeImageState()
-      .observeOn(MainScheduler.instance)
-      .subscribe(onNext: { [weak self] imageState in
-        self?.handleImageState(imageState)
-      }).disposed(by: disposeBag)
-
-    watchedSwich.isOn = false
-
-    watchedSwich.rx.isOn.changed
-      .flatMap { [weak self] _ -> Observable<Never> in
-        guard let strongSelf = self else { return Observable.empty() }
-        return strongSelf.presenter.handleWatch().asObservable()
-      }.observeOn(MainScheduler.instance)
-      .subscribe(onError: { [weak self] error in
-        self?.handleSync(error: error)
-      }).disposed(by: disposeBag)
+    episodeView.didTouchOnWatch = { [weak self] in
+      self?.handleWatch()
+    }
 
     presenter.viewDidLoad()
+  }
+
+  private func handleWatch() {
+    presenter.handleWatch()
+      .observeOn(schedulers.mainScheduler)
+      .subscribe { [weak self] error in
+        self?.handleSync(error: error)
+      }.disposed(by: disposeBag)
   }
 
   private func handleSync(error: Error) {
@@ -65,23 +70,20 @@ final class ShowEpisodeViewController: UIViewController, ShowEpisodeView {
     print("Error view: \(error.localizedDescription)")
   }
 
-  private func show(episode: WatchedEpisodeEntity) {
-    titleLabel.text = episode.episode.title
-    numberLabel.text = "Season \(episode.episode.season) Episode \(episode.episode.number)"
-    dateLabel.text = episode.episode.firstAired?.shortString() ?? "Unknown".localized
-    watchedSwich.isOn = episode.lastWatched != nil
-  }
+  private func updateView(episode: WatchedEpisodeEntity, images: ShowEpisodeImages? = nil) {
+    episodeView.previewImageView.kf.setImage(with: images?.previewURL)
+    episodeView.posterImageView.kf.setImage(with: images?.posterURL)
 
-  private func showDefaultImage() {
-    print("No image for episode")
-  }
+    episodeView.titleLabel.text = episode.episode.title
+    episodeView.overviewLabel.text = episode.episode.overview ?? "No overview"
+    episodeView.releaseDateLabel.text = episode.episode.firstAired?.shortString() ?? "Unknown".localized
+    episodeView.watchedAtLabel.text = episode.lastWatched?.shortString() ?? "Unwatched"
 
-  private func showLoadingImage() {
-    print("loading image for episode")
-  }
+    let buttonTitle = episode.lastWatched == nil ?
+      R.string.localizable.addToHistory() :
+      R.string.localizable.removeFromHistory()
 
-  private func showEpisodeImage(with url: URL) {
-    screenshotImageView.kf.setImage(with: url)
+    episodeView.watchButton.setTitle(buttonTitle, for: .normal)
   }
 
   private func handleViewState(_ viewState: ShowEpisodeViewState) {
@@ -92,21 +94,10 @@ final class ShowEpisodeViewController: UIViewController, ShowEpisodeView {
       showEmptyView()
     case let .error(error):
       showErrorView(error)
-    case let .showing(episode):
-      show(episode: episode)
-    }
-  }
-
-  private func handleImageState(_ imageState: ShowEpisodeImageState) {
-    switch imageState {
-    case .none:
-      showDefaultImage()
-    case let .image(url):
-      showEpisodeImage(with: url)
-    case .loading:
-      showLoadingImage()
-    case .error:
-      showDefaultImage()
+    case let .showing(episode, images):
+      updateView(episode: episode, images: images)
+    case let .showingEpisode(episode):
+      updateView(episode: episode)
     }
   }
 }

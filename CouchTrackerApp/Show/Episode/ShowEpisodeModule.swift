@@ -2,10 +2,6 @@ import CouchTrackerCore
 
 final class ShowEpisodeModule {
   static func setupModule(for show: WatchedShowEntity) -> BaseView {
-    guard let view = R.storyboard.showEpisode.showEpisodeViewController() else {
-      fatalError("Unable to instantiate view controller from Storyboard")
-    }
-
     let trakt = Environment.instance.trakt
     let tmdb = Environment.instance.tmdb
     let tvdb = Environment.instance.tvdb
@@ -32,8 +28,6 @@ final class ShowEpisodeModule {
     let interactor = ShowEpisodeService(repository: repository, imageRepository: imageRepository)
     let presenter = ShowEpisodeDefaultPresenter(interactor: interactor, show: show)
 
-    view.presenter = presenter
-
-    return view
+    return ShowEpisodeViewController(presenter: presenter)
   }
 }
