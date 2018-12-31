@@ -571,6 +571,8 @@
 		82E1DE6721D9657A006C8EA8 /* MoviesManagerViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1DE6521D9657A006C8EA8 /* MoviesManagerViewState.swift */; };
 		82E1DE6921D96E2C006C8EA8 /* ShowsManagerViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1DE6821D96E2C006C8EA8 /* ShowsManagerViewState.swift */; };
 		82E1DE6A21D96E2C006C8EA8 /* ShowsManagerViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1DE6821D96E2C006C8EA8 /* ShowsManagerViewState.swift */; };
+		82E1DE6C21D9A530006C8EA8 /* ShowManagerViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1DE6B21D9A530006C8EA8 /* ShowManagerViewState.swift */; };
+		82E1DE6D21D9A533006C8EA8 /* ShowManagerViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1DE6B21D9A530006C8EA8 /* ShowManagerViewState.swift */; };
 		82F85FD821D5ACCF006A66B9 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F85FD721D5ACCF006A66B9 /* StringExtensions.swift */; };
 		82F85FD921D5ACCF006A66B9 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F85FD721D5ACCF006A66B9 /* StringExtensions.swift */; };
 		82F85FDB21D5AE1F006A66B9 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F85FDA21D5AE1F006A66B9 /* UIViewControllerExtensions.swift */; };
@@ -1052,6 +1054,7 @@
 		82E1DE6221D95B9A006C8EA8 /* AppFlowViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowViewState.swift; sourceTree = "<group>"; };
 		82E1DE6521D9657A006C8EA8 /* MoviesManagerViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesManagerViewState.swift; sourceTree = "<group>"; };
 		82E1DE6821D96E2C006C8EA8 /* ShowsManagerViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerViewState.swift; sourceTree = "<group>"; };
+		82E1DE6B21D9A530006C8EA8 /* ShowManagerViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManagerViewState.swift; sourceTree = "<group>"; };
 		82F85FD721D5ACCF006A66B9 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		82F85FDA21D5AE1F006A66B9 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		AF31C37B5587B21736E8BA65 /* Pods_CouchTrackerApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1412,6 +1415,7 @@
 				641B9D291F7D5C4C00C26D10 /* ShowManagerContract.swift */,
 				4FAC751A20509E2F00266930 /* ShowManagerDefaultDataSource.swift */,
 				641B9D2B1F7D664C00C26D10 /* ShowManagerDefaultPresenter.swift */,
+				82E1DE6B21D9A530006C8EA8 /* ShowManagerViewState.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -3171,6 +3175,7 @@
 				4F0F5764203D5FA000B86CB8 /* ShowIdsRealm.swift in Sources */,
 				4F0F5765203D5FA000B86CB8 /* WatchedEpisodeEntityRealm.swift in Sources */,
 				4F0F5766203D5FA000B86CB8 /* WatchedSeasonEntityRealm.swift in Sources */,
+				82E1DE6C21D9A530006C8EA8 /* ShowManagerViewState.swift in Sources */,
 				4F0F5767203D5FA000B86CB8 /* WatchedShowEntityRealm.swift in Sources */,
 				4F0F5768203D5FA000B86CB8 /* Schedulers.swift in Sources */,
 				4F0F5769203D5FA000B86CB8 /* SearchAPIRepository.swift in Sources */,
@@ -3462,6 +3467,7 @@
 				4F0F58AC203D7B0A00B86CB8 /* TraktProvider.swift in Sources */,
 				4F0F58AD203D7B0A00B86CB8 /* TVDBProvider.swift in Sources */,
 				4F0F58AE203D7B0A00B86CB8 /* TraktAuthenticationProvider.swift in Sources */,
+				82E1DE6D21D9A533006C8EA8 /* ShowManagerViewState.swift in Sources */,
 				4F0F58B0203D7B0A00B86CB8 /* DefaultRealmProvider.swift in Sources */,
 				4F0F58B1203D7B0A00B86CB8 /* EpisodeEntityRealm.swift in Sources */,
 				4F0F58B2203D7B0A00B86CB8 /* EpisodeIdsRealm.swift in Sources */,
