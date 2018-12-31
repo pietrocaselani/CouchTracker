@@ -1,6 +1,5 @@
 import CouchTrackerCore
 import RxSwift
-import UIKit
 
 final class ShowSeasonsModule {
   private init() {}

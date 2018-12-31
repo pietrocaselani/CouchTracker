@@ -1,6 +1,5 @@
 import CouchTrackerCore
 import TraktSwift
-import UIKit
 
 final class SearchModule {
   private init() {}

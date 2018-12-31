@@ -1,5 +1,4 @@
 import CouchTrackerCore
-import UIKit
 
 extension UIAlertController {
   static func createErrorAlert(with title: String = "Error".localized, message: String) -> UIAlertController {

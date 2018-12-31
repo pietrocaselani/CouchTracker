@@ -1,5 +1,4 @@
 import CouchTrackerCore
-import UIKit
 
 final class AppConfigurationsViewController: UIViewController, AppConfigurationsView, UITableViewDataSource {
   var presenter: AppConfigurationsPresenter!

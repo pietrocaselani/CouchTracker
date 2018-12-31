@@ -1,6 +1,5 @@
 import CouchTrackerCore
 import TraktSwift
-import UIKit
 
 final class SearchViewController: UIViewController, SearchResultOutput {
   @IBOutlet var searchViewContainer: UIView!

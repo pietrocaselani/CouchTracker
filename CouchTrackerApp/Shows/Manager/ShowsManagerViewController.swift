@@ -2,7 +2,6 @@ import CouchTrackerCore
 import Pageboy
 import RxSwift
 import Tabman
-import UIKit
 
 final class ShowsManagerViewController: TabmanViewController, TMBarCouchTracker {
   private let presenter: ShowsManagerPresenter

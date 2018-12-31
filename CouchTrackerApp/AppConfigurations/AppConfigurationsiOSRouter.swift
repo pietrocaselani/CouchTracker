@@ -1,5 +1,4 @@
 import CouchTrackerCore
-import UIKit
 
 final class AppConfigurationsiOSRouter: AppConfigurationsRouter {
   private weak var viewController: UIViewController?
