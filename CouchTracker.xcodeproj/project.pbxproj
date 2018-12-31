@@ -494,7 +494,6 @@
 		8204072121D0048900127F05 /* ShowsManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC088C1F717330004D164A /* ShowsManagerModule.swift */; };
 		8204072221D0048900127F05 /* ShowsManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08881F717249004D164A /* ShowsManagerViewController.swift */; };
 		8204072321D0049000127F05 /* ShowsNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E903B1F72982F0089CD70 /* ShowsNowViewController.swift */; };
-		8204072421D0049000127F05 /* ShowsNow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644E903D1F72985C0089CD70 /* ShowsNow.storyboard */; };
 		8204072521D0049000127F05 /* ShowsNowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E903F1F72986B0089CD70 /* ShowsNowModule.swift */; };
 		8204072621D0049800127F05 /* ShowProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896331F7C11EE00F95649 /* ShowProgressCell.swift */; };
 		8204072721D0049800127F05 /* ShowsProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CB90B31F7291400026B139 /* ShowsProgress.storyboard */; };
@@ -854,7 +853,6 @@
 		644BF50B1F6B07AF0010CE35 /* AppConfigurationsDefaultRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigurationsDefaultRepository.swift; sourceTree = "<group>"; };
 		644BF50C1F6B07AF0010CE35 /* AppConfigurationsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigurationsViewModel.swift; sourceTree = "<group>"; };
 		644E903B1F72982F0089CD70 /* ShowsNowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsNowViewController.swift; sourceTree = "<group>"; };
-		644E903D1F72985C0089CD70 /* ShowsNow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowsNow.storyboard; sourceTree = "<group>"; };
 		644E903F1F72986B0089CD70 /* ShowsNowModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsNowModule.swift; sourceTree = "<group>"; };
 		644E90451F72E18E0089CD70 /* ShowsProgressContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressContract.swift; sourceTree = "<group>"; };
 		644E90491F72E5C40089CD70 /* WatchedShowEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedShowEntity.swift; sourceTree = "<group>"; };
@@ -1888,7 +1886,6 @@
 			isa = PBXGroup;
 			children = (
 				644E903B1F72982F0089CD70 /* ShowsNowViewController.swift */,
-				644E903D1F72985C0089CD70 /* ShowsNow.storyboard */,
 				644E903F1F72986B0089CD70 /* ShowsNowModule.swift */,
 			);
 			path = Now;
@@ -2708,7 +2705,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8204074021D01A9D00127F05 /* Localizable.strings in Resources */,
-				8204072421D0049000127F05 /* ShowsNow.storyboard in Resources */,
 				8204070F21D0046400127F05 /* SearchBarView.xib in Resources */,
 				8204073F21D0187800127F05 /* Assets.xcassets in Resources */,
 				8204072721D0049800127F05 /* ShowsProgress.storyboard in Resources */,
