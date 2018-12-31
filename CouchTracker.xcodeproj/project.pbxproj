@@ -485,7 +485,6 @@
 		8204071621D0047400127F05 /* ShowEpisode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6434C3A21F836762009B5A9F /* ShowEpisode.storyboard */; };
 		8204071721D0047400127F05 /* ShowEpisodeModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D391F7D7AB300C26D10 /* ShowEpisodeModule.swift */; };
 		8204071821D0047400127F05 /* ShowEpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6434C3A41F83678C009B5A9F /* ShowEpisodeViewController.swift */; };
-		8204071921D0047B00127F05 /* ShowManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 641B9D421F7D7D9C00C26D10 /* ShowManager.storyboard */; };
 		8204071A21D0047B00127F05 /* ShowManageriOSModuleCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D3E1F7D7CEF00C26D10 /* ShowManageriOSModuleCreator.swift */; };
 		8204071B21D0047B00127F05 /* ShowManagerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D401F7D7D5B00C26D10 /* ShowManagerModule.swift */; };
 		8204071C21D0047B00127F05 /* ShowManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D441F7D7DBB00C26D10 /* ShowManagerViewController.swift */; };
@@ -817,7 +816,6 @@
 		641B9D3C1F7D7C2800C26D10 /* ShowSeasonsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSeasonsModule.swift; sourceTree = "<group>"; };
 		641B9D3E1F7D7CEF00C26D10 /* ShowManageriOSModuleCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManageriOSModuleCreator.swift; sourceTree = "<group>"; };
 		641B9D401F7D7D5B00C26D10 /* ShowManagerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManagerModule.swift; sourceTree = "<group>"; };
-		641B9D421F7D7D9C00C26D10 /* ShowManager.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowManager.storyboard; sourceTree = "<group>"; };
 		641B9D441F7D7DBB00C26D10 /* ShowManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManagerViewController.swift; sourceTree = "<group>"; };
 		641B9D471F7D8EF700C26D10 /* ShowsProgressiOSRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressiOSRouter.swift; sourceTree = "<group>"; };
 		641B9D491F7D964500C26D10 /* ShowEpisodeContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeContract.swift; sourceTree = "<group>"; };
@@ -1770,7 +1768,6 @@
 		641B9D281F7D5C3C00C26D10 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				641B9D421F7D7D9C00C26D10 /* ShowManager.storyboard */,
 				641B9D3E1F7D7CEF00C26D10 /* ShowManageriOSModuleCreator.swift */,
 				641B9D401F7D7D5B00C26D10 /* ShowManagerModule.swift */,
 				641B9D441F7D7DBB00C26D10 /* ShowManagerViewController.swift */,
@@ -2717,7 +2714,6 @@
 				8204072721D0049800127F05 /* ShowsProgress.storyboard in Resources */,
 				820406F921D0036400127F05 /* AppConfigurations.storyboard in Resources */,
 				8204070D21D0046400127F05 /* Search.storyboard in Resources */,
-				8204071921D0047B00127F05 /* ShowManager.storyboard in Resources */,
 				8204071621D0047400127F05 /* ShowEpisode.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
