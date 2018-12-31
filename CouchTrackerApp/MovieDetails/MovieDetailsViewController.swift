@@ -1,7 +1,6 @@
 import CouchTrackerCore
 import Kingfisher
 import RxSwift
-import UIKit
 
 public final class MovieDetailsViewController: UIViewController {
   private let presenter: MovieDetailsPresenter

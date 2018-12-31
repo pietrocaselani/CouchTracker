@@ -1,5 +1,4 @@
 import CouchTrackerCore
-import UIKit
 
 final class AppConfigurationsModule {
   private init() {

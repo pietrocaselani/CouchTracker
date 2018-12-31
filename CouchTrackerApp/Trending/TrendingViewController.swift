@@ -1,7 +1,6 @@
 import CouchTrackerCore
 import RxCocoa
 import RxSwift
-import UIKit
 
 public final class TrendingViewController: UIViewController {
   public var presenter: TrendingPresenter!

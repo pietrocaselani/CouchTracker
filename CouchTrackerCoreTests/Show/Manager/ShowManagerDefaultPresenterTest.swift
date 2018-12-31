@@ -1,38 +1,43 @@
+@testable import CouchTrackerCore
+import RxTest
 import XCTest
 
-@testable import CouchTrackerCore
-
 final class ShowManagerDefaultPresenterTest: XCTestCase {
-  private var view: ShowManagerMocks.View!
   private var dataSource: ShowManagerMocks.DataSource!
   private var presenter: ShowManagerDefaultPresenter!
+  private var observer: TestableObserver<ShowManagerViewState>!
+  private var scheduler: TestScheduler!
 
   override func setUp() {
     super.setUp()
 
-    view = ShowManagerMocks.View()
+    scheduler = TestScheduler(initialClock: 0)
+    observer = scheduler.createObserver(ShowManagerViewState.self)
     dataSource = ShowManagerMocks.DataSource()
-
-    presenter = ShowManagerDefaultPresenter(view: view, dataSource: dataSource)
+    presenter = ShowManagerDefaultPresenter(dataSource: dataSource)
   }
 
   override func tearDown() {
-    view = nil
+    scheduler = nil
+    observer = nil
     dataSource = nil
     presenter = nil
 
     super.tearDown()
   }
 
-  func testShowManagerDefaultPresenterTest_viewWasLoaded_shouldUpdateView() {
+  func testShowManagerDefaultPresenterTest_viewWasLoaded_emitViewState() {
     // Given
+    _ = presenter.observeViewState().subscribe(observer)
 
     // When
     presenter.viewDidLoad()
 
     // Then
-    XCTAssertTrue(view.showInvoked)
-    XCTAssertTrue(view.titleInvoked)
+    let expectedEvents = [Recorded.next(0, ShowManagerViewState.loading),
+                          Recorded.next(0, ShowManagerViewState.showing(title: nil, pages: [], index: 0))]
+
+    XCTAssertEqual(observer.events, expectedEvents)
   }
 
   func testShowManagerDefaultPresenter_whenSelectTab_shouldNotifyDataSource() {

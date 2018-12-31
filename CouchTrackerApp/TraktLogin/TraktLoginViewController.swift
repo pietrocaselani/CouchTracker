@@ -1,7 +1,7 @@
 import CouchTrackerCore
 import RxSwift
 import TraktSwift
-import UIKit
+
 import WebKit
 
 final class TraktLoginViewController: UIViewController, TraktLoginView {

@@ -1,3 +1,5 @@
+import RxSwift
+
 public enum ShowManagerOption: String {
   case overview
   case episode
@@ -5,8 +7,9 @@ public enum ShowManagerOption: String {
 }
 
 public protocol ShowManagerPresenter: class {
-  init(view: ShowManagerView, dataSource: ShowManagerDataSource)
+  init(dataSource: ShowManagerDataSource)
 
+  func observeViewState() -> Observable<ShowManagerViewState>
   func viewDidLoad()
   func selectTab(index: Int)
 }
@@ -22,11 +25,4 @@ public protocol ShowManagerDataSource: class {
   var options: [ShowManagerOption] { get }
   var modulePages: [ModulePage] { get }
   var defaultModuleIndex: Int { get set }
-}
-
-public protocol ShowManagerView: class {
-  var presenter: ShowManagerPresenter! { get set }
-  var title: String? { get set }
-
-  func show(pages: [ModulePage], withDefault index: Int)
 }

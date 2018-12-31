@@ -1,6 +1,5 @@
 import CouchTrackerCore
 import RxSwift
-import UIKit
 
 final class AppFlowViewController: UITabBarController {
   private let disposeBag = DisposeBag()

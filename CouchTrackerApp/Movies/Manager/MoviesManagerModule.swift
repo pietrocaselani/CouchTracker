@@ -1,5 +1,4 @@
 import CouchTrackerCore
-import UIKit
 
 enum MoviesManagerModule {
   static func setupModule() -> BaseView {

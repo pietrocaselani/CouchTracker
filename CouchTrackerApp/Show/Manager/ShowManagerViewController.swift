@@ -1,36 +1,52 @@
 import CouchTrackerCore
 import Pageboy
+import RxSwift
 import Tabman
-import UIKit
 
-final class ShowManagerViewController: TabmanViewController, ShowManagerView, TMBarCouchTracker {
+final class ShowManagerViewController: TabmanViewController, TMBarCouchTracker {
+  private let disposeBag = DisposeBag()
   var presenter: ShowManagerPresenter!
   private var pages = [ModulePage]()
   private var defaultPageIndex = 0
 
-  override func awakeFromNib() {
-    super.awakeFromNib()
+  init(presenter: ShowManagerPresenter) {
+    self.presenter = presenter
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  required init?(coder _: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
     dataSource = self
     delegate = self
 
     let bar = defaultCTBar()
     addBar(bar, dataSource: self, at: .top)
-  }
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    guard presenter != nil else {
-      fatalError("View loaded without a prenseter")
-    }
 
     view.backgroundColor = Colors.View.background
+
+    presenter.observeViewState()
+      .subscribe(onNext: { [weak self] viewState in
+        self?.handleViewState(viewState)
+      }).disposed(by: disposeBag)
 
     presenter.viewDidLoad()
   }
 
-  func show(pages: [ModulePage], withDefault index: Int) {
+  private func handleViewState(_ viewState: ShowManagerViewState) {
+    switch viewState {
+    case let .showing(title, pages, index):
+      show(title: title, pages: pages, withDefault: index)
+    default: break
+    }
+  }
+
+  private func show(title: String?, pages: [ModulePage], withDefault index: Int) {
+    self.title = title
     self.pages = pages
     defaultPageIndex = index
 

@@ -1,29 +1,9 @@
 @testable import CouchTrackerCore
 
-final class ShowManagerMocks {
-  private init() {
-    Swift.fatalError("No instances for you!")
-  }
-
+enum ShowManagerMocks {
   final class ModuleCreator: ShowManagerModuleCreator {
     func createModule(for option: ShowManagerOption) -> BaseView {
       return BaseViewMock(title: option.rawValue)
-    }
-  }
-
-  final class View: ShowManagerView {
-    var titleInvoked = false
-    var showInvoked = false
-
-    var presenter: ShowManagerPresenter!
-    var title: String? {
-      didSet {
-        titleInvoked = true
-      }
-    }
-
-    func show(pages _: [ModulePage], withDefault _: Int) {
-      showInvoked = true
     }
   }
 

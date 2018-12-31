@@ -1,5 +1,4 @@
 import CouchTrackerCore
-import UIKit
 
 enum ShowsManagerModule {
   static func setupModule() -> BaseView {

@@ -1,6 +1,5 @@
 import CouchTrackerCore
 import RxSwift
-import UIKit
 
 final class ShowSeasonsViewController: UITableViewController {
   private let disposeBag = DisposeBag()
