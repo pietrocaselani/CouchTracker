@@ -449,7 +449,6 @@
 		820406F121D0032100127F05 /* CouchTrackerApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 820406EF21D0032100127F05 /* CouchTrackerApp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		820406F421D0032100127F05 /* CouchTrackerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820406ED21D0032000127F05 /* CouchTrackerApp.framework */; };
 		820406F521D0032100127F05 /* CouchTrackerApp.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 820406ED21D0032000127F05 /* CouchTrackerApp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		820406F921D0036400127F05 /* AppConfigurations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64D491581F6FE5D200EA0C80 /* AppConfigurations.storyboard */; };
 		820406FA21D0036400127F05 /* AppConfigurationsiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644BF5091F6B07AF0010CE35 /* AppConfigurationsiOSRouter.swift */; };
 		820406FB21D0036400127F05 /* AppConfigurationsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D1571F6FF1FE008C4E5F /* AppConfigurationsModule.swift */; };
 		820406FC21D0036400127F05 /* AppConfigurationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D491551F6FE4DF00EA0C80 /* AppConfigurationsViewController.swift */; };
@@ -989,7 +988,6 @@
 		64D43BD11F605DFB005CDBF7 /* PosterCellContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCellContract.swift; sourceTree = "<group>"; };
 		64D43BD71F607628005CDBF7 /* TrendingCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		64D491551F6FE4DF00EA0C80 /* AppConfigurationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsViewController.swift; sourceTree = "<group>"; };
-		64D491581F6FE5D200EA0C80 /* AppConfigurations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppConfigurations.storyboard; sourceTree = "<group>"; };
 		64DA353F1F50914A005BF4E3 /* SearchModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModule.swift; sourceTree = "<group>"; };
 		64DF60551F61D3A200E1B0CC /* MovieIds+TMDBType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieIds+TMDBType.swift"; sourceTree = "<group>"; };
 		64DF605A1F61D3DD00E1B0CC /* ShowIds+TMDBType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShowIds+TMDBType.swift"; sourceTree = "<group>"; };
@@ -1872,7 +1870,6 @@
 		644BF5051F6B07AF0010CE35 /* AppConfigurations */ = {
 			isa = PBXGroup;
 			children = (
-				64D491581F6FE5D200EA0C80 /* AppConfigurations.storyboard */,
 				644BF5091F6B07AF0010CE35 /* AppConfigurationsiOSRouter.swift */,
 				6454D1571F6FF1FE008C4E5F /* AppConfigurationsModule.swift */,
 				64D491551F6FE4DF00EA0C80 /* AppConfigurationsViewController.swift */,
@@ -2716,7 +2713,6 @@
 				8204070F21D0046400127F05 /* SearchBarView.xib in Resources */,
 				8204073F21D0187800127F05 /* Assets.xcassets in Resources */,
 				8204072721D0049800127F05 /* ShowsProgress.storyboard in Resources */,
-				820406F921D0036400127F05 /* AppConfigurations.storyboard in Resources */,
 				8204070D21D0046400127F05 /* Search.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

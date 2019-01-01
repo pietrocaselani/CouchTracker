@@ -1,19 +1,7 @@
 import CouchTrackerCore
 
-final class AppConfigurationsModule {
-  private init() {
-    Swift.fatalError("No instances for you!")
-  }
-
+enum AppConfigurationsModule {
   static func setupModule() -> BaseView {
-    guard let navigationController = R.storyboard.appConfigurations.instantiateInitialViewController() else {
-      fatalError("Impossible to instantiate initial view controller from AppConfigurations storyboard")
-    }
-
-    guard let view = navigationController.topViewController as? AppConfigurationsViewController else {
-      fatalError("topViewController should be an instance of AppConfigurationsViewController")
-    }
-
     let appConfigurationsOutput = Environment.instance.appConfigurationsOutput
     let traktProvider = Environment.instance.trakt
     let schedulers = Environment.instance.schedulers
@@ -25,11 +13,13 @@ final class AppConfigurationsModule {
                                                         network: appConfigurationsNetwork,
                                                         schedulers: schedulers)
     let interactor = AppConfigurationsService(repository: repository, output: appConfigurationsOutput)
-    let router = AppConfigurationsiOSRouter(viewController: view)
+    let router = AppConfigurationsiOSRouter()
     let presenter = AppConfigurationsDefaultPresenter(interactor: interactor, router: router)
 
-    view.presenter = presenter
+    let viewController = AppConfigurationsViewController(presenter: presenter)
 
-    return navigationController
+    router.viewController = viewController
+
+    return UINavigationController(rootViewController: viewController)
   }
 }

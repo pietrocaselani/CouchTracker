@@ -1,11 +1,7 @@
 import CouchTrackerCore
 
 final class AppConfigurationsiOSRouter: AppConfigurationsRouter {
-  private weak var viewController: UIViewController?
-
-  init(viewController: UIViewController) {
-    self.viewController = viewController
-  }
+  weak var viewController: UIViewController?
 
   func showTraktLogin(output: TraktLoginOutput) {
     guard let view = viewController else { return }
