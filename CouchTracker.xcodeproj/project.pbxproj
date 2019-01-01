@@ -1266,14 +1266,12 @@
 		4F0F591F203D934400B86CB8 /* AppConfigurations */ = {
 			isa = PBXGroup;
 			children = (
+				827EB79821DAED1100B02001 /* Store */,
 				644BF5071F6B07AF0010CE35 /* AppConfigurationsContract.swift */,
 				644BF50B1F6B07AF0010CE35 /* AppConfigurationsDefaultRepository.swift */,
 				644BF5081F6B07AF0010CE35 /* AppConfigurationsDefaultPresenter.swift */,
-				4F202F6A202F20440040185F /* AppConfigurationsObservable.swift */,
-				4F202F72202F228C0040185F /* AppConfigurationsOutput.swift */,
 				644BF50A1F6B07AF0010CE35 /* AppConfigurationsService.swift */,
 				4F202F66202F1FE40040185F /* AppConfigurationsState.swift */,
-				4F202F6E202F208F0040185F /* AppConfigurationsStore.swift */,
 				392D9D85E8E3DD59D4898217 /* AppConfigurationsUserDefaultsDataSource.swift */,
 				644BF50C1F6B07AF0010CE35 /* AppConfigurationsViewModel.swift */,
 				4F6D6EA92033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift */,
@@ -2273,6 +2271,16 @@
 				82609F0E21D870C90038EB29 /* ViewCalculations.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		827EB79821DAED1100B02001 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				4F202F6A202F20440040185F /* AppConfigurationsObservable.swift */,
+				4F202F72202F228C0040185F /* AppConfigurationsOutput.swift */,
+				4F202F6E202F208F0040185F /* AppConfigurationsStore.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 		82836E94218EA8670037A798 /* DataSources */ = {
