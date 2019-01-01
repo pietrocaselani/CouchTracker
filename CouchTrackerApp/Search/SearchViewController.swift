@@ -1,92 +1,100 @@
 import CouchTrackerCore
+import RxSwift
 import TraktSwift
 
-final class SearchViewController: UIViewController, SearchResultOutput {
-  @IBOutlet var searchViewContainer: UIView!
-  @IBOutlet var collectionView: UICollectionView!
-  @IBOutlet var infoLabel: UILabel!
+final class SearchViewController: UIViewController {
+  private let disposeBag = DisposeBag()
+  private let presenter: SearchPresenter
+  private let schedulers: Schedulers
+  private let dataSource: UICollectionViewDataSource
 
-  var imageRepository: ImageRepository!
-  var searchView: SearchView!
+  private var searchView: SearchView {
+    guard let searchView = self.view as? SearchView else {
+      preconditionFailure("self.view should be an instance of SearchView")
+    }
 
-  private var results = [SearchResult]()
+    return searchView
+  }
+
+  init(presenter: SearchPresenter,
+       dataSource: UICollectionViewDataSource,
+       schedulers: Schedulers = DefaultSchedulers.instance) {
+    self.presenter = presenter
+    self.schedulers = schedulers
+    self.dataSource = dataSource
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  required init?(coder _: NSCoder) {
+    Swift.fatalError("init(coder:) has not been implemented")
+  }
+
+  override func loadView() {
+    view = SearchView()
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    guard imageRepository != nil else {
-      Swift.fatalError("view loaded without imageRepository")
-    }
-
-    guard let searchView = searchView as? UIView else {
-      Swift.fatalError("searchView should be an instance of UIView")
-    }
+    adjustForNavigationBar()
+    extendedLayoutIncludesOpaqueBars = true
+    configureCollectionView()
 
     view.backgroundColor = Colors.View.background
-    collectionView.backgroundColor = Colors.View.background
 
-    collectionView.register(PosterAndTitleCell.self, forCellWithReuseIdentifier: PosterAndTitleCell.identifier)
+    searchView.emptyView.label.text = "HeyyY!!"
 
-    searchViewContainer.addSubview(searchView)
-    collectionView.dataSource = self
+    presenter.observeSearchResults()
+      .observeOn(schedulers.mainScheduler)
+      .subscribe(onNext: { [weak self] resultState in
+        self?.handleSearchResultState(resultState)
+      }).disposed(by: disposeBag)
+
+    presenter.observeSearchState()
+      .observeOn(schedulers.mainScheduler)
+      .subscribe(onNext: { [weak self] searchState in
+        self?.handleSearchState(searchState)
+      }).disposed(by: disposeBag)
   }
 
-  func searchChangedTo(state _: SearchState) {}
+  private func configureCollectionView() {
+    searchView.collectionView.backgroundColor = Colors.View.background
 
-  func handleEmptySearchResult() {
-    infoLabel.text = "No results"
-    collectionView.isHidden = true
-    infoLabel.isHidden = false
+    searchView.collectionView.register(PosterAndTitleCell.self,
+                                       forCellWithReuseIdentifier: PosterAndTitleCell.identifier)
+
+    searchView.collectionView.dataSource = dataSource
+    searchView.collectionView.delegate = self
   }
 
-  func handleSearch(results: [SearchResult]) {
-    self.results = results
-    collectionView.reloadData()
-    collectionView.isHidden = false
-    infoLabel.isHidden = true
+  private func handleSearchResultState(_: SearchResultState) {}
+
+  private func handleSearchState(_: SearchState) {}
+
+  private func searchChangedTo(state _: SearchState) {}
+
+  private func handleEmptySearchResult() {
+//    infoLabel.text = "No results"
+//    collectionView.isHidden = true
+//    infoLabel.isHidden = false
   }
 
-  func handleError(message: String) {
-    infoLabel.text = message
-    collectionView.isHidden = true
-    infoLabel.isHidden = false
+  private func handleSearch(results _: [SearchResult]) {
+//    self.results = results
+//    collectionView.reloadData()
+//    collectionView.isHidden = false
+//    infoLabel.isHidden = true
+  }
+
+  private func handleError(message _: String) {
+//    infoLabel.text = message
+//    collectionView.isHidden = true
+//    infoLabel.isHidden = false
   }
 }
 
-extension SearchViewController: UICollectionViewDataSource {
-  func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-    return results.count
-  }
-
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let identifier = PosterAndTitleCell.identifier
-
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
-
-    guard let posterCell = cell as? PosterAndTitleCell else {
-      Swift.fatalError("cell should be an instance of PosterAndTitleCell")
-    }
-
-    let result = results[indexPath.row]
-
-    let viewModel: PosterViewModel
-
-    switch result.type {
-    case .movie:
-      guard let movie = result.movie else { Swift.fatalError("Result type is movie, but there is no movie!") }
-      viewModel = PosterMovieViewModelMapper.viewModel(for: movie)
-    case .show:
-      guard let show = result.show else { Swift.fatalError("Result type is show, but there is no show!") }
-      viewModel = PosterShowViewModelMapper.viewModel(for: show)
-    default:
-      Swift.fatalError("Result type not implemented yet")
-    }
-
-    let interactor = PosterCellService(imageRepository: imageRepository)
-    let presenter = PosterCellDefaultPresenter(view: posterCell, interactor: interactor, viewModel: viewModel)
-
-    posterCell.presenter = presenter
-
-    return cell
+extension SearchViewController: UICollectionViewDelegate {
+  func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    print("Selected item at \(indexPath.row)")
   }
 }
