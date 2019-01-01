@@ -5,13 +5,13 @@ import TraktSwift
 import XCTest
 
 final class SearchInteractorTest: XCTestCase {
-  private var scheduler: TestScheduler!
+  private var scheduler: TestSchedulers!
   private var observer: TestableObserver<[SearchResult]>!
 
   override func setUp() {
     super.setUp()
 
-    scheduler = TestScheduler(initialClock: 0)
+    scheduler = TestSchedulers()
     observer = scheduler.createObserver([SearchResult].self)
   }
 
@@ -22,46 +22,32 @@ final class SearchInteractorTest: XCTestCase {
   }
 
   func testSearchInteractor_fetchSuccessEmptyData_andEmitsEmptyDataAndOnCompleted() {
-    let repository = SearchMocks.Repository()
-    let interactor = SearchService(repository: repository)
+    let trakt = createTraktProviderMock()
+    let searchProviderMock = trakt.search as! MoyaProviderMock
 
-    let disposable = interactor.search(query: "Cool movie", types: [SearchType.movie]).asObservable().subscribe(observer)
+    let interactor = SearchService(traktProvider: trakt, schedulers: scheduler)
 
-    scheduler.scheduleAt(500) { disposable.dispose() }
-
-    let expectedEvents: [Recorded<Event<[SearchResult]>>] = [Recorded.next(0, [SearchResult]()), Recorded.completed(0)]
-
-    RXAssertEvents(observer, expectedEvents)
-    XCTAssertTrue(repository.searchInvoked)
-
-    guard let parameters = repository.searchParameters else {
-      XCTFail("searchParameters can't be nil")
-      return
+    let res = scheduler.start {
+      interactor.search(query: "empty", types: [SearchType.movie], page: 0, limit: 30).asObservable()
     }
 
-    XCTAssertEqual(parameters.query, "Cool movie")
-    XCTAssertEqual(parameters.types, [SearchType.movie])
-    XCTAssertEqual(parameters.page, 0)
-    XCTAssertEqual(parameters.limit, 50)
+    let expectedEvents = [Recorded.next(201, [SearchResult]()), Recorded.completed(202)]
+    XCTAssertEqual(res.events, expectedEvents)
+
+    XCTAssertTrue(searchProviderMock.requestInvoked)
   }
 
   func testSearchInteractor_fetchSuccessReceivesData_andEmitDataAndOnCompleted() {
     let results = TraktEntitiesMock.createSearchResultsMock()
+    let trakt = createTraktProviderMock()
+    let interactor = SearchService(traktProvider: trakt, schedulers: scheduler)
 
-    let interactor = SearchService(repository: SearchMocks.Repository(results: results))
-    let disposable = interactor.search(query: "Tron", types: [SearchType.movie]).asObservable().subscribe(observer)
+    let res = scheduler.start {
+      interactor.search(query: "Tron", types: [SearchType.movie], page: 0, limit: 30).asObservable()
+    }
 
-    scheduler.scheduleAt(500) { disposable.dispose() }
+    let expectedEvents = [Recorded.next(201, results), Recorded.completed(202)]
 
-    let expectedEvents: [Recorded<Event<[SearchResult]>>] = [Recorded.next(0, results), Recorded.completed(0)]
-
-    RXAssertEvents(observer, expectedEvents)
-  }
-
-  func testSearchInteractor_invokeRepositoryWithCorrectParameters() {
-    let repository = SearchMocks.Repository()
-    let interactor = SearchService(repository: repository)
-
-    _ = interactor.search(query: "Query cool", types: [.list, .movie, .person, .none])
+    XCTAssertEqual(res.events, expectedEvents)
   }
 }

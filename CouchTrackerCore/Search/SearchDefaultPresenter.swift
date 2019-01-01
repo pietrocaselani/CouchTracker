@@ -2,41 +2,49 @@ import RxSwift
 import TraktSwift
 
 public final class SearchDefaultPresenter: SearchPresenter {
-  private weak var view: SearchView?
-  private weak var output: SearchResultOutput?
-  private let interactor: SearchInteractor
-  private let searchTypes: [SearchType]
   private let disposeBag = DisposeBag()
+  private let searchStateSubject = BehaviorSubject<SearchState>(value: .notSearching)
+  private let searchResultsSubject = BehaviorSubject<SearchResultState>(value: .emptyResults)
+  private let interactor: SearchInteractor
+  private let schedulers: Schedulers
+  private let searchTypes: [SearchType]
+  private var currentPage = 0
 
-  public init(view: SearchView, interactor: SearchInteractor, resultOutput: SearchResultOutput, types: [SearchType]) {
-    self.view = view
+  public init(interactor: SearchInteractor, types: [SearchType], schedulers: Schedulers = DefaultSchedulers.instance) {
     self.interactor = interactor
-    output = resultOutput
+    self.schedulers = schedulers
     searchTypes = types
   }
 
-  public func viewDidLoad() {
-    view?.showHint(message: "Type something".localized)
+  public func observeSearchState() -> Observable<SearchState> {
+    return searchStateSubject.distinctUntilChanged()
+  }
+
+  public func observeSearchResults() -> Observable<SearchResultState> {
+    return searchResultsSubject.distinctUntilChanged()
   }
 
   public func search(query: String) {
-    output?.searchChangedTo(state: .searching)
+    searchStateSubject.onNext(.searching)
 
-    interactor.search(query: query, types: searchTypes)
-      .observeOn(MainScheduler.instance)
+    interactor.search(query: query, types: searchTypes, page: currentPage, limit: Defaults.itemsPerPage)
+      .observeOn(schedulers.mainScheduler)
       .subscribe(onSuccess: { [weak self] results in
+        self?.searchStateSubject.onNext(.notSearching)
+
         guard results.count > 0 else {
-          self?.output?.handleEmptySearchResult()
+          self?.searchResultsSubject.onNext(.emptyResults)
           return
         }
 
-        self?.output?.handleSearch(results: results)
+        self?.searchResultsSubject.onNext(.results(results: results))
+
       }, onError: { [weak self] error in
-        self?.output?.handleError(message: error.localizedDescription)
+        self?.searchStateSubject.onNext(.error(error: error))
       }).disposed(by: disposeBag)
   }
 
   public func cancelSearch() {
-    output?.searchChangedTo(state: .notSearching)
+    searchStateSubject.onNext(.notSearching)
   }
 }

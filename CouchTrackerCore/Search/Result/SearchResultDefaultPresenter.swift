@@ -1,7 +1,7 @@
 import RxSwift
 import TraktSwift
 
-public final class SearchResultDefaultPresenter: SearchResultPresenter, SearchResultOutput {
+public final class SearchResultDefaultPresenter: SearchResultPresenter {
   private weak var view: SearchResultView?
   private let router: SearchResultRouter
   private var results = [SearchResult]()
