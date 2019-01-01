@@ -29,7 +29,7 @@ public struct AppConfigurationViewModel: Hashable {
   }
 
   public var hashValue: Int {
-    var hash = title.hashValue
+    var hash = title.hashValue ^ value.hashValue
 
     if let subtitleHash = subtitle?.hashValue {
       hash ^= subtitleHash
@@ -43,7 +43,7 @@ public struct AppConfigurationViewModel: Hashable {
   }
 }
 
-public enum AppConfigurationViewModelValue {
+public enum AppConfigurationViewModelValue: Hashable {
   case none
   case traktLogin(wantsToLogin: Bool)
   case externalURL(url: URL)

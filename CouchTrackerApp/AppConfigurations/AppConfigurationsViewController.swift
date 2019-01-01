@@ -1,6 +1,8 @@
 import CouchTrackerCore
+import RxSwift
 
-final class AppConfigurationsViewController: UIViewController, AppConfigurationsView, UITableViewDataSource {
+final class AppConfigurationsViewController: UIViewController, UITableViewDataSource {
+  private let disposeBag = DisposeBag()
   var presenter: AppConfigurationsPresenter!
   private var configurationSections = [AppConfigurationsViewModel]()
 
@@ -24,10 +26,25 @@ final class AppConfigurationsViewController: UIViewController, AppConfigurations
     tableView.dataSource = self
     tableView.delegate = self
 
+    presenter.observeViewState()
+      .observeOn(MainScheduler.instance)
+      .subscribe(onNext: { [weak self] viewState in
+        self?.handleViewState(viewState)
+      }).disposed(by: disposeBag)
+
     presenter.viewDidLoad()
   }
 
-  func showConfigurations(models: [AppConfigurationsViewModel]) {
+  private func handleViewState(_ state: AppConfigurationsViewState) {
+    switch state {
+    case .loading:
+      print("Loading...")
+    case let .showing(configs):
+      showConfigurations(models: configs)
+    }
+  }
+
+  private func showConfigurations(models: [AppConfigurationsViewModel]) {
     configurationSections.removeAll()
     configurationSections.append(contentsOf: models)
     tableView.reloadData()

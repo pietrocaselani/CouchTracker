@@ -532,6 +532,8 @@
 		827EB79C21DAED9300B02001 /* AppConfigurationsObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F202F6A202F20440040185F /* AppConfigurationsObservable.swift */; };
 		827EB79D21DAED9300B02001 /* AppConfigurationsOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F202F72202F228C0040185F /* AppConfigurationsOutput.swift */; };
 		827EB79E21DAED9300B02001 /* AppConfigurationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F202F6E202F208F0040185F /* AppConfigurationsStore.swift */; };
+		827EB7A021DAEDD800B02001 /* AppConfigurationsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827EB79F21DAEDD800B02001 /* AppConfigurationsViewState.swift */; };
+		827EB7A121DAEDD800B02001 /* AppConfigurationsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827EB79F21DAEDD800B02001 /* AppConfigurationsViewState.swift */; };
 		82836E98218EAAFE0037A798 /* ShowsSynchronizerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836E97218EAAFE0037A798 /* ShowsSynchronizerContract.swift */; };
 		82836E99218EAAFE0037A798 /* ShowsSynchronizerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836E97218EAAFE0037A798 /* ShowsSynchronizerContract.swift */; };
 		82836E9B218EAB580037A798 /* DefaultWatchedShowsSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836E9A218EAB580037A798 /* DefaultWatchedShowsSynchronizer.swift */; };
@@ -1029,6 +1031,7 @@
 		826F9A0B21D9B02F001A4E05 /* ShowEpisodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeView.swift; sourceTree = "<group>"; };
 		827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOverviewViewState.swift; sourceTree = "<group>"; };
 		827BCD3F20EFF5C30080B242 /* ShowOverviewImagesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOverviewImagesState.swift; sourceTree = "<group>"; };
+		827EB79F21DAEDD800B02001 /* AppConfigurationsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationsViewState.swift; sourceTree = "<group>"; };
 		82836E97218EAAFE0037A798 /* ShowsSynchronizerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsSynchronizerContract.swift; sourceTree = "<group>"; };
 		82836E9A218EAB580037A798 /* DefaultWatchedShowsSynchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWatchedShowsSynchronizer.swift; sourceTree = "<group>"; };
 		82836E9D218EABE20037A798 /* SyncOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncOptions.swift; sourceTree = "<group>"; };
@@ -1275,6 +1278,7 @@
 				392D9D85E8E3DD59D4898217 /* AppConfigurationsUserDefaultsDataSource.swift */,
 				644BF50C1F6B07AF0010CE35 /* AppConfigurationsViewModel.swift */,
 				4F6D6EA92033A5D800987AD1 /* AppConfigurationsMoyaNetwork.swift */,
+				827EB79F21DAEDD800B02001 /* AppConfigurationsViewState.swift */,
 			);
 			path = AppConfigurations;
 			sourceTree = "<group>";
@@ -3129,6 +3133,7 @@
 				4F0F573C203D5FA000B86CB8 /* OptionalExtensions.swift in Sources */,
 				4F0F573D203D5FA000B86CB8 /* ShowIds+TMDBType.swift in Sources */,
 				4F3A595D204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift in Sources */,
+				827EB7A021DAEDD800B02001 /* AppConfigurationsViewState.swift in Sources */,
 				4F0F5815203D6AC500B86CB8 /* TrendingShowEntity.swift in Sources */,
 				4FEF6AE82125A19500B7CF63 /* WatchedShowsDataSource.swift in Sources */,
 				4FE6C60A205FCA8800444B12 /* SearchResultContract.swift in Sources */,
@@ -3420,6 +3425,7 @@
 				4F0F5885203D7B0A00B86CB8 /* EpisodeEntityMapper.swift in Sources */,
 				4F3A595E204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift in Sources */,
 				4F0F5886203D7B0A00B86CB8 /* ImagesEntityMapper.swift in Sources */,
+				827EB7A121DAEDD800B02001 /* AppConfigurationsViewState.swift in Sources */,
 				82930A1D216C1C8500A824F6 /* DefaultWatchedShowEntitiesDownloader.swift in Sources */,
 				4FEF6AE92125A19500B7CF63 /* WatchedShowsDataSource.swift in Sources */,
 				4FE6C60B205FCA8800444B12 /* SearchResultContract.swift in Sources */,

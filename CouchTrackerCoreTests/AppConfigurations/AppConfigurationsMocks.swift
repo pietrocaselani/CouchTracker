@@ -77,17 +77,6 @@ final class AppConfigurationsInteractorMock: AppConfigurationsInteractor {
   }
 }
 
-final class AppConfigurationsViewMock: AppConfigurationsView {
-  var presenter: AppConfigurationsPresenter!
-  var invokedShowConfigurations = false
-  var invokedShowConfigurationsParameters: (models: [AppConfigurationsViewModel], Void)?
-
-  func showConfigurations(models: [AppConfigurationsViewModel]) {
-    invokedShowConfigurations = true
-    invokedShowConfigurationsParameters = (models, ())
-  }
-}
-
 final class AppConfigurationsRouterMock: AppConfigurationsRouter {
   var invokedShowTraktLogin = false
   var invokedShowErrorMessage = false

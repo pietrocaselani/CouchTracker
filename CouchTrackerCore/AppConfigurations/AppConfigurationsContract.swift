@@ -33,14 +33,9 @@ public protocol AppConfigurationsInteractor: class {
 }
 
 public protocol AppConfigurationsPresenter: class {
-  init(view: AppConfigurationsView, interactor: AppConfigurationsInteractor, router: AppConfigurationsRouter)
+  init(interactor: AppConfigurationsInteractor, router: AppConfigurationsRouter, schedulers: Schedulers)
 
   func viewDidLoad()
+  func observeViewState() -> Observable<AppConfigurationsViewState>
   func select(configuration: AppConfigurationViewModel)
-}
-
-public protocol AppConfigurationsView: class {
-  var presenter: AppConfigurationsPresenter! { get set }
-
-  func showConfigurations(models: [AppConfigurationsViewModel])
 }
