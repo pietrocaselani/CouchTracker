@@ -8,7 +8,6 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
   private var presenter: ShowEpisodeDefaultPresenter!
   private var scheduler: TestScheduler!
   private var viewObserver: TestableObserver<ShowEpisodeViewState>!
-  private var imageObserver: TestableObserver<ShowEpisodeImageState>!
   private var disposeBag: DisposeBag!
 
   override func setUp() {
@@ -18,7 +17,6 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
     scheduler = TestScheduler(initialClock: 0)
     disposeBag = DisposeBag()
     viewObserver = scheduler.createObserver(ShowEpisodeViewState.self)
-    imageObserver = scheduler.createObserver(ShowEpisodeImageState.self)
   }
 
   override func tearDown() {
@@ -27,11 +25,12 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
     scheduler = nil
     disposeBag = nil
     viewObserver = nil
-    imageObserver = nil
     super.tearDown()
   }
 
-  private func setupPresenter(_ show: WatchedShowEntity) {
+  private func setupPresenter(_ show: WatchedShowEntity, _ error: Error? = nil, _ emitsImage: Bool = true) {
+    interactor.error = error
+    interactor.shouldEmitImages = emitsImage
     presenter = ShowEpisodeDefaultPresenter(interactor: interactor, show: show)
   }
 
@@ -40,25 +39,17 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
     let show = ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode()
     setupPresenter(show)
 
-    presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
-    presenter.observeImageState().subscribe(imageObserver).disposed(by: disposeBag)
+    _ = presenter.observeViewState().subscribe(viewObserver)
 
     // When
     presenter.viewDidLoad()
 
     // Then
     let expectedViewEvents = [
-      Recorded.next(0, ShowEpisodeViewState.loading),
       Recorded.next(0, ShowEpisodeViewState.empty),
     ]
 
-    let expectedImageEvents = [
-      Recorded.next(0, ShowEpisodeImageState.loading),
-      Recorded.next(0, ShowEpisodeImageState.none),
-    ]
-
     XCTAssertEqual(viewObserver.events, expectedViewEvents)
-    XCTAssertEqual(imageObserver.events, expectedImageEvents)
 
     XCTAssertFalse(interactor.fetchImageURLInvoked)
     XCTAssertFalse(interactor.toogleWatchInvoked)
@@ -67,12 +58,10 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
   func testShowEpisodeDefaultPresenter_receivesShowWrongImageId_updateViewWithoutImage() {
     // Given
     let show = ShowsProgressMocks.mockWatchedShowEntity()
-    setupPresenter(show)
     let imageError = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 234, userInfo: nil)
-    interactor.error = imageError
+    setupPresenter(show, imageError)
 
     presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
-    presenter.observeImageState().subscribe(imageObserver).disposed(by: disposeBag)
 
     // When
     presenter.viewDidLoad()
@@ -84,17 +73,10 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
     }
 
     let expectedViewEvents = [
-      Recorded.next(0, ShowEpisodeViewState.loading),
-      Recorded.next(0, ShowEpisodeViewState.showing(episode: nextEpisode)),
-    ]
-
-    let expectedImageEvents = [
-      Recorded.next(0, ShowEpisodeImageState.loading),
-      Recorded.next(0, ShowEpisodeImageState.error(error: imageError)),
+      Recorded.next(0, ShowEpisodeViewState.showingEpisode(episode: nextEpisode)),
     ]
 
     XCTAssertEqual(viewObserver.events, expectedViewEvents)
-    XCTAssertEqual(imageObserver.events, expectedImageEvents)
     XCTAssertTrue(interactor.fetchImageURLInvoked)
   }
 
@@ -104,7 +86,6 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
     setupPresenter(show)
 
     presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
-    presenter.observeImageState().subscribe(imageObserver).disposed(by: disposeBag)
 
     // When
     presenter.viewDidLoad()
@@ -116,20 +97,37 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
     }
 
     let imageURL = URL(string: "path/to/image.png")!
+    let images = ShowEpisodeImages(posterURL: imageURL, previewURL: imageURL)
 
     let expectedViewEvents = [
-      Recorded.next(0, ShowEpisodeViewState.loading),
-      Recorded.next(0, ShowEpisodeViewState.showing(episode: nextEpisode)),
-    ]
-
-    let expectedImageEvents = [
-      Recorded.next(0, ShowEpisodeImageState.loading),
-      Recorded.next(0, ShowEpisodeImageState.image(url: imageURL)),
+      Recorded.next(0, ShowEpisodeViewState.showing(episode: nextEpisode, images: images)),
     ]
 
     XCTAssertEqual(viewObserver.events, expectedViewEvents)
-    XCTAssertEqual(imageObserver.events, expectedImageEvents)
     XCTAssertTrue(interactor.fetchImageURLInvoked)
+  }
+
+  func testShowEpisodeDefaultPresenter_whenThereIsNoImage_emitCorrectOnlyEpisode() {
+    // Given
+    let show = ShowsProgressMocks.mockWatchedShowEntity()
+    setupPresenter(show, nil, false)
+
+    presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
+
+    // When
+    presenter.viewDidLoad()
+
+    guard let nextEpisode = show.nextEpisode else {
+      XCTFail("Next Episode can't be nil")
+      return
+    }
+
+    // Then
+    let expectedViewEvents = [
+      Recorded.next(0, ShowEpisodeViewState.showingEpisode(episode: nextEpisode)),
+    ]
+
+    XCTAssertEqual(viewObserver.events, expectedViewEvents)
   }
 
   func testShowEpisodeDefaultPresenter_handleWatch_invokesInteractorAndUpdateView() {
@@ -140,12 +138,11 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
     interactor.nextEntity = newShow
 
     presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
-    presenter.observeImageState().subscribe(imageObserver).disposed(by: disposeBag)
 
     presenter.viewDidLoad()
 
     // When
-    let results = scheduler.start { self.presenter.handleWatch().asObservable() }
+    _ = scheduler.start { self.presenter.handleWatch().asObservable() }
 
     // Then
     guard let nextEpisode = show.nextEpisode else {
@@ -153,73 +150,51 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
       return
     }
 
+    let url = URL(string: "path/to/image.png")!
+    let images = ShowEpisodeImages(posterURL: url, previewURL: url)
+
     let expectedViewEvents = [
-      Recorded.next(0, ShowEpisodeViewState.loading),
-      Recorded.next(0, ShowEpisodeViewState.showing(episode: nextEpisode)),
+      Recorded.next(0, ShowEpisodeViewState.showing(episode: nextEpisode, images: images)),
       Recorded.next(200, ShowEpisodeViewState.empty),
     ]
 
-    let expectedImageEvents = [
-      Recorded.next(0, ShowEpisodeImageState.loading),
-      Recorded.next(0, ShowEpisodeImageState.image(url: URL(string: "path/to/image.png")!)),
-      Recorded.next(200, ShowEpisodeImageState.none),
-    ]
-
-    XCTAssertEqual(results.events.count, 1)
-    guard let firstEvent = results.events.first else {
-      XCTFail("Should contain one event")
-      return
-    }
-
-    XCTAssertEqual(firstEvent.time, 200)
-
     XCTAssertEqual(viewObserver.events, expectedViewEvents)
-    XCTAssertEqual(imageObserver.events, expectedImageEvents)
 
     XCTAssertTrue(interactor.toogleWatchInvoked)
     XCTAssertTrue(interactor.fetchImageURLInvoked)
   }
 
-  func testShowEpisodeDefaultPresenter_handleWatchFail_notifyRouter() {
+  func testShowEpisodeDefaultPresenter_handleWatchFail_keepViewStateAndEmitError() {
     // Given
     let show = ShowsProgressMocks.mockWatchedShowEntity()
-    setupPresenter(show)
     let watchedError = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 234, userInfo: nil)
     interactor.toogleFailError = watchedError
+    setupPresenter(show)
 
     presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
-    presenter.observeImageState().subscribe(imageObserver).disposed(by: disposeBag)
 
     presenter.viewDidLoad()
 
     // When
-    let results = scheduler.start { self.presenter.handleWatch().asObservable() }
+    let watchedResults = scheduler.start { self.presenter.handleWatch().asObservable() }
 
     // Then
-    guard let nextEpisode = show.nextEpisode else {
-      XCTFail("Next Episode can't be nil")
-      return
-    }
+    let episode = show.nextEpisode!
+    let url = URL(string: "path/to/image.png")!
+    let images = ShowEpisodeImages(posterURL: url, previewURL: url)
 
     let expectedViewEvents = [
-      Recorded.next(0, ShowEpisodeViewState.loading),
-      Recorded.next(0, ShowEpisodeViewState.showing(episode: nextEpisode)),
+      Recorded.next(0, ShowEpisodeViewState.showing(episode: episode, images: images)),
     ]
 
-    let expectedImageEvents = [
-      Recorded.next(0, ShowEpisodeImageState.loading),
-      Recorded.next(0, ShowEpisodeImageState.image(url: URL(string: "path/to/image.png")!)),
-    ]
+    let watchedEvent: Recorded<Event<Never>> = Recorded.error(200, watchedError)
 
-    XCTAssertEqual(results.events.count, 1)
-    guard let firstEvent = results.events.first else {
-      XCTFail("Should contain one event")
-      return
-    }
-
-    XCTAssertEqual(firstEvent.time, 200)
     XCTAssertEqual(viewObserver.events, expectedViewEvents)
-    XCTAssertEqual(imageObserver.events, expectedImageEvents)
+    XCTAssertEqual(watchedResults.events.count, 1)
+
+    let errorEvent = watchedResults.events.first!
+    XCTAssertEqual(errorEvent.time, watchedEvent.time)
+    XCTAssertEqual(errorEvent.value.error! as NSError, watchedError)
 
     XCTAssertTrue(interactor.toogleWatchInvoked)
   }
@@ -230,7 +205,6 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
     setupPresenter(show)
 
     presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
-    presenter.observeImageState().subscribe(imageObserver).disposed(by: disposeBag)
 
     presenter.viewDidLoad()
 
@@ -239,24 +213,12 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
 
     // Then
     let expectedViewEvents = [
-      Recorded.next(0, ShowEpisodeViewState.loading),
       Recorded.next(0, ShowEpisodeViewState.empty),
     ]
 
-    let expectedImageEvents = [
-      Recorded.next(0, ShowEpisodeImageState.loading),
-      Recorded.next(0, ShowEpisodeImageState.none),
-    ]
-
-    XCTAssertEqual(results.events.count, 1)
-    guard let firstEvent = results.events.first else {
-      XCTFail("Should contain one event")
-      return
-    }
-
-    XCTAssertEqual(firstEvent.time, 200)
     XCTAssertEqual(viewObserver.events, expectedViewEvents)
-    XCTAssertEqual(imageObserver.events, expectedImageEvents)
+    XCTAssertEqual(results.events.count, 1)
+    XCTAssertTrue(results.events.first!.value.isCompleted)
     XCTAssertFalse(interactor.toogleWatchInvoked)
   }
 }

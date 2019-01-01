@@ -7,24 +7,17 @@ public protocol ShowEpisodeNetwork: class {
 }
 
 public protocol ShowEpisodeRepository: class {
-  func addToHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<WatchedShowEntity>
-  func removeFromHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<WatchedShowEntity>
+  func addToHistory(episode: EpisodeEntity) -> Single<WatchedShowEntity>
+  func removeFromHistory(episode: EpisodeEntity) -> Single<WatchedShowEntity>
 }
 
 public protocol ShowEpisodeInteractor: class {
-  func fetchImageURL(for episode: EpisodeImageInput) -> Maybe<URL>
-  func toggleWatch(for episode: WatchedEpisodeEntity, of show: WatchedShowEntity) -> Single<WatchedShowEntity>
+  func fetchImages(for episode: EpisodeImageInput) -> Maybe<ShowEpisodeImages>
+  func toggleWatch(for episode: WatchedEpisodeEntity) -> Single<WatchedShowEntity>
 }
 
 public protocol ShowEpisodePresenter: class {
-  init(interactor: ShowEpisodeInteractor, show: WatchedShowEntity)
-
   func viewDidLoad()
   func observeViewState() -> Observable<ShowEpisodeViewState>
-  func observeImageState() -> Observable<ShowEpisodeImageState>
   func handleWatch() -> Completable
-}
-
-public protocol ShowEpisodeView: class {
-  var presenter: ShowEpisodePresenter! { get set }
 }

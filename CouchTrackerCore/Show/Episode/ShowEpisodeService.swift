@@ -10,14 +10,32 @@ public final class ShowEpisodeService: ShowEpisodeInteractor {
     self.imageRepository = imageRepository
   }
 
-  public func fetchImageURL(for episode: EpisodeImageInput) -> Maybe<URL> {
+  public func fetchImages(for episode: EpisodeImageInput) -> Maybe<ShowEpisodeImages> {
+    guard let tmdbId = episode.tmdb else { return Maybe.empty() }
+
     let size = EpisodeImageSizes(tvdb: .normal, tmdb: .w300)
-    return imageRepository.fetchEpisodeImages(for: episode, size: size)
+    let episodeURLObservable = imageRepository.fetchEpisodeImages(for: episode, size: size).asObservable()
+    let posterImageObservable = fetchShowPosterURL(tmdbId: tmdbId).asObservable()
+
+    return Observable.combineLatest(posterImageObservable, episodeURLObservable) { posterURL, episodeURL in
+      ShowEpisodeImages(posterURL: posterURL, previewURL: episodeURL)
+    }.asMaybe()
   }
 
-  public func toggleWatch(for episode: WatchedEpisodeEntity, of show: WatchedShowEntity) -> Single<WatchedShowEntity> {
+  public func toggleWatch(for episode: WatchedEpisodeEntity) -> Single<WatchedShowEntity> {
     return episode.lastWatched == nil ?
-      repository.addToHistory(of: show, episode: episode.episode) :
-      repository.removeFromHistory(of: show, episode: episode.episode)
+      repository.addToHistory(episode: episode.episode) :
+      repository.removeFromHistory(episode: episode.episode)
+  }
+
+  private func fetchShowPosterURL(tmdbId: Int) -> Maybe<URL> {
+    return imageRepository.fetchShowImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)
+      .flatMap { entity -> Maybe<URL> in
+        guard let link = entity.posterImage()?.link, let url = URL(string: link) else {
+          return Maybe.empty()
+        }
+
+        return Maybe.just(url)
+      }
   }
 }

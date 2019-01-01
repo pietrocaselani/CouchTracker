@@ -1,5 +1,3 @@
-
-
 /**
  CouchTracker Palette
  **/

@@ -11,16 +11,17 @@ final class ShowEpisodeMocks {
     var fetchImageURLInvoked = false
     var fetchImageURLParameters: EpisodeImageInput?
     var toogleWatchInvoked = false
-    var toogleWatchParameters: (episode: WatchedEpisodeEntity, show: WatchedShowEntity)?
+    var toogleWatchParameters: WatchedEpisodeEntity?
     var error: Error?
     var toogleFailError: Error?
     var nextEntity: WatchedShowEntity!
+    var shouldEmitImages = true
 
     init() {
       nextEntity = ShowsProgressMocks.mockWatchedShowEntity()
     }
 
-    func fetchImageURL(for episode: EpisodeImageInput) -> Maybe<URL> {
+    func fetchImages(for episode: EpisodeImageInput) -> Maybe<ShowEpisodeImages> {
       fetchImageURLInvoked = true
       fetchImageURLParameters = episode
 
@@ -28,13 +29,15 @@ final class ShowEpisodeMocks {
         return Maybe.error(fetchError)
       }
 
+      guard shouldEmitImages else { return Maybe.empty() }
+
       let url = URL(fileURLWithPath: "path/to/image.png")
-      return Maybe.just(url)
+      return Maybe.just(ShowEpisodeImages(posterURL: url, previewURL: url))
     }
 
-    func toggleWatch(for episode: WatchedEpisodeEntity, of show: WatchedShowEntity) -> Single<WatchedShowEntity> {
+    func toggleWatch(for episode: WatchedEpisodeEntity) -> Single<WatchedShowEntity> {
       toogleWatchInvoked = true
-      toogleWatchParameters = (episode, show)
+      toogleWatchParameters = episode
 
       if let toogleError = error {
         return Single.error(toogleError)
@@ -50,19 +53,19 @@ final class ShowEpisodeMocks {
 
   final class ShowEpisodeRepositoryMock: ShowEpisodeRepository {
     var addToHistoryInvoked = false
-    var addToHistoryParameters: (show: WatchedShowEntity, episode: EpisodeEntity)?
+    var addToHistoryParameters: EpisodeEntity?
     var removeFromHistoryInvoked = false
-    var removeFromHistoryParameters: (show: WatchedShowEntity, episode: EpisodeEntity)?
+    var removeFromHistoryParameters: EpisodeEntity?
 
-    func addToHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<WatchedShowEntity> {
+    func addToHistory(episode: EpisodeEntity) -> Single<WatchedShowEntity> {
       addToHistoryInvoked = true
-      addToHistoryParameters = (show, episode)
+      addToHistoryParameters = episode
       return Single.never()
     }
 
-    func removeFromHistory(of show: WatchedShowEntity, episode: EpisodeEntity) -> Single<WatchedShowEntity> {
+    func removeFromHistory(episode: EpisodeEntity) -> Single<WatchedShowEntity> {
       removeFromHistoryInvoked = true
-      removeFromHistoryParameters = (show, episode)
+      removeFromHistoryParameters = episode
       return Single.never()
     }
   }

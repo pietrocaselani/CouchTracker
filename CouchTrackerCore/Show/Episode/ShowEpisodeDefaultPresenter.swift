@@ -1,58 +1,54 @@
 import RxSwift
 
 public final class ShowEpisodeDefaultPresenter: ShowEpisodePresenter {
-  private var show: WatchedShowEntity
+  private let schedulers: Schedulers
   private let interactor: ShowEpisodeInteractor
-  private let viewStateSubject = BehaviorSubject<ShowEpisodeViewState>(value: ShowEpisodeViewState.loading)
-  private let imageStateSubject = BehaviorSubject<ShowEpisodeImageState>(value: ShowEpisodeImageState.loading)
+  private let viewStateSubject = BehaviorSubject<ShowEpisodeViewState>(value: ShowEpisodeViewState.empty)
   private let disposeBag = DisposeBag()
 
-  public init(interactor: ShowEpisodeInteractor, show: WatchedShowEntity) {
+  public init(interactor: ShowEpisodeInteractor,
+              show: WatchedShowEntity,
+              schedulers: Schedulers = DefaultSchedulers.instance) {
     self.interactor = interactor
-    self.show = show
+    self.schedulers = schedulers
+    setupView(episode: show.nextEpisode)
   }
 
-  public func viewDidLoad() {
-    setupView()
-  }
+  public func viewDidLoad() {}
 
   public func observeViewState() -> Observable<ShowEpisodeViewState> {
     return viewStateSubject.distinctUntilChanged()
   }
 
-  public func observeImageState() -> Observable<ShowEpisodeImageState> {
-    return imageStateSubject.distinctUntilChanged()
-  }
-
   public func handleWatch() -> Completable {
-    guard let nextEpisode = show.nextEpisode else { return Completable.empty() }
+    guard let viewState = try? viewStateSubject.value(),
+      case let ShowEpisodeViewState.showing(episode, _) = viewState else {
+      return Completable.empty()
+    }
 
-    return interactor.toggleWatch(for: nextEpisode, of: show)
+    return interactor.toggleWatch(for: episode)
+      .observeOn(schedulers.mainScheduler)
       .do(onSuccess: { [weak self] newShow in
-        self?.show = newShow
-        self?.setupView()
+        self?.setupView(episode: newShow.nextEpisode)
       }).asCompletable()
   }
 
-  private func setupView() {
-    guard let nextEpisode = show.nextEpisode else {
+  private func setupView(episode: WatchedEpisodeEntity?) {
+    guard let nextEpisode = episode else {
       viewStateSubject.onNext(.empty)
-      imageStateSubject.onNext(.none)
       return
     }
 
-    interactor.fetchImageURL(for: nextEpisode.asImageInput())
-      .map { ShowEpisodeImageState.image(url: $0) }
-      .ifEmpty(default: ShowEpisodeImageState.none)
-      .catchError { Single.just(ShowEpisodeImageState.error(error: $0)) }
+    interactor.fetchImages(for: nextEpisode.asImageInput())
+      .map { ShowEpisodeViewState.showing(episode: nextEpisode, images: $0) }
+      .ifEmpty(default: ShowEpisodeViewState.showingEpisode(episode: nextEpisode))
+      .catchError { _ in Single.just(ShowEpisodeViewState.showingEpisode(episode: nextEpisode)) }
+      .observeOn(schedulers.mainScheduler)
       .do(onSubscribe: { [weak self] in
-        self?.imageStateSubject.onNext(.loading)
+        self?.viewStateSubject.onNext(.loading)
       })
-      .observeOn(MainScheduler.instance)
-      .subscribe(onSuccess: { [weak self] imageState in
-        self?.imageStateSubject.onNext(imageState)
+      .subscribe(onSuccess: { [weak self] viewState in
+        self?.viewStateSubject.onNext(viewState)
       }).disposed(by: disposeBag)
-
-    viewStateSubject.onNext(.showing(episode: nextEpisode))
   }
 }
