@@ -9,6 +9,7 @@ public class ShowEpisodeView: View {
   public let posterImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.contentMode = UIView.ContentMode.scaleAspectFill
+    imageView.clipsToBounds = true
     return imageView
   }()
 
