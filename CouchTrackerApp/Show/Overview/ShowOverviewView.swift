@@ -9,6 +9,7 @@ public final class ShowOverviewView: View {
   public let posterImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.contentMode = UIView.ContentMode.scaleAspectFill
+    imageView.clipsToBounds = true
     return imageView
   }()
 
