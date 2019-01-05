@@ -60,6 +60,7 @@ lane :beta do
   end
 
   commit_version_bump(
+    xcodeproj: 'CouchTracker.xcodeproj',
     message: "Bump build #{new_build_number} [ci skip]",
     include: './changelog.md',
     force: true
