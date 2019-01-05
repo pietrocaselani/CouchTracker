@@ -69,7 +69,9 @@ lane :beta do
 
   add_git_tag(tag: tag_name.to_s)
 
-  push_to_git_remote
+  `git remote add github https://pietrocaselani:$GITHUB_TOKEN@github.com/pietrocaselani/CouchTracker.git`
+
+  push_to_git_remote(remote: 'github')
 
   # build_app(scheme: 'CouchTracker')
 
