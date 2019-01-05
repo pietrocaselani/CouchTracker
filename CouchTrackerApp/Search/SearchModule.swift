@@ -1,18 +1,17 @@
 import CouchTrackerCore
 import TraktSwift
 
-final class SearchModule {
-  private init() {}
+protocol SearchDataSource: UICollectionViewDataSource {
+  var entities: [SearchResultEntity] { get set }
+}
 
+enum SearchModule {
   static func setupModule(searchTypes: [SearchType]) -> BaseView {
-    guard let viewController = R.storyboard.search.searchViewController() else {
-      Swift.fatalError("Could not instantiate view controller from storyboard")
-    }
-
     let environment = Environment.instance
     let tmdb = environment.tmdb
     let tvdb = environment.tvdb
     let schedulers = environment.schedulers
+    let trakt = environment.trakt
 
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
 
@@ -21,15 +20,18 @@ final class SearchModule {
                                                 cofigurationRepository: configurationRepository,
                                                 schedulers: schedulers)
 
-    viewController.imageRepository = imageRepository
+    let posterCellInteractor = PosterCellService(imageRepository: imageRepository)
 
-    let searchBaseView = SearchViewModule.setupModule(searchTypes: searchTypes, resultOutput: viewController)
+    let dataSource = SearchCollectionViewDataSource(interactor: posterCellInteractor)
 
-    guard let searchView = searchBaseView as? SearchView else {
-      Swift.fatalError("searchBaseView should be an instance of SearchView")
-    }
+    let interactor = SearchService(traktProvider: trakt)
+    let router = SearchiOSRouter()
 
-    viewController.searchView = searchView
+    let presenter = SearchDefaultPresenter(interactor: interactor, types: searchTypes, router: router)
+
+    let viewController = SearchViewController(presenter: presenter, dataSource: dataSource)
+
+    router.viewController = viewController
 
     return viewController
   }

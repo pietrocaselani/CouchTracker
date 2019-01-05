@@ -1,5 +1,6 @@
 @testable import CouchTrackerCore
 import RxSwift
+import RxTest
 import XCTest
 
 final class TraktLoginPresenterTest: XCTestCase {
@@ -10,7 +11,9 @@ final class TraktLoginPresenterTest: XCTestCase {
   override func setUp() {
     super.setUp()
 
-    schedulers = TestSchedulers(initialClock: 0)
+    let testScheduler = TestScheduler(initialClock: 0)
+
+    schedulers = TestSchedulers(mainScheduler: testScheduler, scheduler: testScheduler)
     view = TraktLoginViewMock()
     output = TraktLoginOutputMock()
   }

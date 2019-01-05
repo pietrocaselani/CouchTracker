@@ -1,9 +1,7 @@
 import TraktSwift
 
-public final class ShowEntityMapper {
-  private init() {}
-
-  public static func entity(for show: Show, with genres: [Genre]) -> ShowEntity {
+public enum ShowEntityMapper {
+  public static func entity(for show: Show, with genres: [Genre] = [Genre]()) -> ShowEntity {
     return ShowEntity(ids: show.ids, title: show.title,
                       overview: show.overview, network: show.network,
                       genres: genres, status: show.status, firstAired: show.firstAired)

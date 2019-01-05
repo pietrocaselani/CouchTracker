@@ -2,13 +2,19 @@ import RxSwift
 import TraktSwift
 
 public final class SearchService: SearchInteractor {
-  private let repository: SearchRepository
+  private let trakt: TraktProvider
+  private let schedulers: Schedulers
 
-  public init(repository: SearchRepository) {
-    self.repository = repository
+  public init(traktProvider: TraktProvider, schedulers: Schedulers = DefaultSchedulers.instance) {
+    trakt = traktProvider
+    self.schedulers = schedulers
   }
 
-  public func search(query: String, types: [SearchType]) -> Single<[SearchResult]> {
-    return repository.search(query: query, types: types, page: 0, limit: 50)
+  public func search(query: String, types: [SearchType], page: Int, limit: Int) -> Single<[SearchResult]> {
+    let target = Search.textQuery(types: types, query: query, page: page, limit: limit)
+
+    return trakt.search.rx.request(target)
+      .observeOn(schedulers.networkScheduler)
+      .map([SearchResult].self)
   }
 }

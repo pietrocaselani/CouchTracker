@@ -39,4 +39,8 @@ final class TraktProviderMock: TraktProvider, TraktAuthenticationProvider {
     oauth = oauthURL
     self.error = error
   }
+
+  func createProvider<T: TraktType>(stub: @escaping MoyaProvider<T>.StubClosure) -> MoyaProviderMock<T> {
+    return MoyaProviderMock<T>(stubClosure: stub)
+  }
 }
