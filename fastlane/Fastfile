@@ -55,6 +55,10 @@ lane :beta do
 
   full_version_name = "#{version_number} (#{new_build_number})"
 
+  open('../changelog.md', 'a') do |f|
+    f << "# #{full_version_name} \n#{formatted_changelog}"
+  end
+
   commit_version_bump(
     message: "Bump build #{new_build_number} [ci skip]",
     include: './changelog.md',
@@ -66,10 +70,6 @@ lane :beta do
   push_to_git_remote
 
   # build_app(scheme: 'CouchTracker')
-
-  open('../changelog.md', 'a') do |f|
-    f << "# #{full_version_name} \n#{formatted_changelog}"
-  end
 
   upload_sonar
 end
