@@ -54,6 +54,7 @@ lane :beta do
   version_number = get_version_number(target: 'CouchTracker')
 
   full_version_name = "#{version_number} (#{new_build_number})"
+  tag_name = "#{version_number}-#{new_build_number}"
 
   open('../changelog.md', 'a') do |f|
     f << "# #{full_version_name} \n#{formatted_changelog}"
@@ -66,7 +67,7 @@ lane :beta do
     force: true
   )
 
-  add_git_tag(tag: full_version_name.to_s)
+  add_git_tag(tag: tag_name.to_s)
 
   push_to_git_remote
 
