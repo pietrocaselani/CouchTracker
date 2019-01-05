@@ -13,8 +13,12 @@ final class TestSchedulers: Schedulers {
   var mainQueue: DispatchQueue
   let testScheduler: TestScheduler
 
-  init(initialClock _: TestTime = 0) {
-    let scheduler = TestScheduler(initialClock: 0)
+  convenience init(initialClock: TestTime = 0) {
+    self.init(mainScheduler: MainScheduler.instance,
+              scheduler: TestScheduler(initialClock: initialClock))
+  }
+
+  init(mainScheduler: ImmediateSchedulerType, scheduler: TestScheduler) {
     testScheduler = scheduler
     networkQueue = DispatchQueue.main
     networkScheduler = scheduler
@@ -23,7 +27,7 @@ final class TestSchedulers: Schedulers {
     ioQueue = DispatchQueue.main
     ioScheduler = scheduler
     mainQueue = DispatchQueue.main
-    mainScheduler = scheduler
+    self.mainScheduler = mainScheduler
   }
 
   func start() {

@@ -42,8 +42,12 @@ public final class SearchView: View {
 
   public override func installConstraints() {
     constrain(stackView, emptyView, searchBar) { stack, empty, search in
-      search.width == search.superview!.width
+      /*
+       CT-TODO Fix this + 43
+       Without this constant, the search bar appears behind the top bar
+       */
       search.top == search.superview!.top + 43
+      search.width == search.superview!.width
 
       stack.size == stack.superview!.size
       stack.top == stack.superview!.top

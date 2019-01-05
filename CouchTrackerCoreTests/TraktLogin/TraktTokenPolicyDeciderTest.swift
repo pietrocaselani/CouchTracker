@@ -14,7 +14,9 @@ final class TraktTokenPolicyDeciderTest: XCTestCase {
     super.setUp()
 
     output = TraktLoginOutputMock()
-    schedulers = TestSchedulers(initialClock: 0)
+    let testScheduler = TestScheduler(initialClock: 0)
+
+    schedulers = TestSchedulers(mainScheduler: testScheduler, scheduler: testScheduler)
   }
 
   override func tearDown() {

@@ -6,7 +6,7 @@ final class SearchViewController: UIViewController {
   private let disposeBag = DisposeBag()
   private let presenter: SearchPresenter
   private let schedulers: Schedulers
-  private let dataSource: UICollectionViewDataSource
+  private let dataSource: SearchDataSource
 
   private var searchView: SearchView {
     guard let searchView = self.view as? SearchView else {
@@ -17,7 +17,7 @@ final class SearchViewController: UIViewController {
   }
 
   init(presenter: SearchPresenter,
-       dataSource: UICollectionViewDataSource,
+       dataSource: SearchDataSource,
        schedulers: Schedulers = DefaultSchedulers.instance) {
     self.presenter = presenter
     self.schedulers = schedulers
@@ -36,19 +36,9 @@ final class SearchViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    adjustForNavigationBar()
-    extendedLayoutIncludesOpaqueBars = true
     configureCollectionView()
-
+    searchView.searchBar.delegate = self
     view.backgroundColor = Colors.View.background
-
-    searchView.emptyView.label.text = "HeyyY!!"
-
-    presenter.observeSearchResults()
-      .observeOn(schedulers.mainScheduler)
-      .subscribe(onNext: { [weak self] resultState in
-        self?.handleSearchResultState(resultState)
-      }).disposed(by: disposeBag)
 
     presenter.observeSearchState()
       .observeOn(schedulers.mainScheduler)
@@ -67,34 +57,68 @@ final class SearchViewController: UIViewController {
     searchView.collectionView.delegate = self
   }
 
-  private func handleSearchResultState(_: SearchResultState) {}
+  private func handleSearchState(_ state: SearchState) {
+    switch state {
+    case .notSearching:
+      searchView.searchBar.resignFirstResponder()
+    case .emptyResults:
+      handleEmptySearchResult()
+    case let .results(entities):
+      handleSearch(entities: entities)
+    case let .error(error):
+      handleError(message: error.localizedDescription)
+    case .searching:
+      handleSearching()
+    }
+  }
 
-  private func handleSearchState(_: SearchState) {}
-
-  private func searchChangedTo(state _: SearchState) {}
+  private func handleSearching() {
+    searchView.emptyView.label.text = "Searching"
+    searchView.emptyView.isHidden = false
+  }
 
   private func handleEmptySearchResult() {
-//    infoLabel.text = "No results"
-//    collectionView.isHidden = true
-//    infoLabel.isHidden = false
+    searchView.emptyView.label.text = "Nothing found"
+    searchView.emptyView.isHidden = false
   }
 
-  private func handleSearch(results _: [SearchResult]) {
-//    self.results = results
-//    collectionView.reloadData()
-//    collectionView.isHidden = false
-//    infoLabel.isHidden = true
+  private func handleSearch(entities: [SearchResultEntity]) {
+    dataSource.entities = entities
+    searchView.collectionView.reloadData()
+    searchView.emptyView.isHidden = true
   }
 
-  private func handleError(message _: String) {
-//    infoLabel.text = message
-//    collectionView.isHidden = true
-//    infoLabel.isHidden = false
+  private func handleError(message: String) {
+    searchView.emptyView.isHidden = false
+    searchView.emptyView.label.text = message
   }
 }
 
 extension SearchViewController: UICollectionViewDelegate {
   func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    print("Selected item at \(indexPath.row)")
+    let entity = dataSource.entities[indexPath.row]
+    presenter.select(entity: entity)
+  }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+  func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    searchBar.setShowsCancelButton(true, animated: true)
+  }
+
+  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    searchBar.text = nil
+    searchBar.setShowsCancelButton(false, animated: true)
+    searchBar.resignFirstResponder()
+
+    presenter.cancelSearch()
+  }
+
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    searchBar.resignFirstResponder()
+
+    guard let query = searchBar.text else { return }
+
+    presenter.search(query: query)
   }
 }

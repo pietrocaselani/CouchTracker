@@ -1,9 +1,11 @@
 import CouchTrackerCore
 import TraktSwift
 
-final class SearchModule {
-  private init() {}
+protocol SearchDataSource: UICollectionViewDataSource {
+  var entities: [SearchResultEntity] { get set }
+}
 
+enum SearchModule {
   static func setupModule(searchTypes: [SearchType]) -> BaseView {
     let environment = Environment.instance
     let tmdb = environment.tmdb
@@ -23,9 +25,14 @@ final class SearchModule {
     let dataSource = SearchCollectionViewDataSource(interactor: posterCellInteractor)
 
     let interactor = SearchService(traktProvider: trakt)
+    let router = SearchiOSRouter()
 
-    let presenter = SearchDefaultPresenter(interactor: interactor, types: searchTypes)
+    let presenter = SearchDefaultPresenter(interactor: interactor, types: searchTypes, router: router)
 
-    return SearchViewController(presenter: presenter, dataSource: dataSource)
+    let viewController = SearchViewController(presenter: presenter, dataSource: dataSource)
+
+    router.viewController = viewController
+
+    return viewController
   }
 }

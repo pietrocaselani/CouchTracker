@@ -1,3 +1,4 @@
+import CouchTrackerCore
 import TraktSwift
 
 final class TraktEntitiesMock {
@@ -33,6 +34,24 @@ final class TraktEntitiesMock {
     let data = Search.textQuery(types: [.movie], query: "Tron", page: 0, limit: 100).sampleData
 
     return try! jsonDecoder.decode([SearchResult].self, from: data)
+  }
+
+  static func createSearchResultEntitiesMock() -> [SearchResultEntity] {
+    let data = Search.textQuery(types: [.movie], query: "Tron", page: 0, limit: 100).sampleData
+
+    return try! jsonDecoder.decode([SearchResult].self, from: data).compactMap { result in
+      let type: SearchResultType
+      switch result.type {
+      case .movie:
+        type = result.movie.map(SearchResultType.movie(movie:))!
+      case .show:
+        type = result.show.map(SearchResultType.show(show:))!
+      default:
+        return nil
+      }
+
+      return SearchResultEntity(score: result.score, type: type)
+    }
   }
 
   static func createMoviesGenresMock() -> [Genre] {

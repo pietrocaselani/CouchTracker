@@ -13,7 +13,9 @@ final class TrendingPresenterTest: XCTestCase {
   override func setUp() {
     super.setUp()
 
-    schedulers = TestSchedulers(initialClock: 0)
+    let testScheduler = TestScheduler(initialClock: 0)
+
+    schedulers = TestSchedulers(mainScheduler: testScheduler, scheduler: testScheduler)
     view = TrendingViewMock()
     router = TrendingRouterMock()
     dataSource = TrendingDataSourceMock()
