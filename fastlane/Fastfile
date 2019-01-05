@@ -49,19 +49,21 @@ lane :beta do
     formatted_changelog << "* #{l}\n"
   end
 
-  new_build_number = increment_build_number(
-    build_number: '1'
-  )
+  new_build_number = increment_build_number
 
   version_number = get_version_number(target: 'CouchTracker')
 
   full_version_name = "#{version_number} (#{new_build_number})"
 
-  # commit_version_bump(
-  #   message: "Bump build #{new_build_number}",
-  #   include: './changelog.md',
-  #   force: true
-  # )
+  commit_version_bump(
+    message: "Bump build #{new_build_number} [ci skip]",
+    include: './changelog.md',
+    force: true
+  )
+
+  add_git_tag(tag: full_version_name.to_s)
+
+  push_to_git_remote
 
   # build_app(scheme: 'CouchTracker')
 
