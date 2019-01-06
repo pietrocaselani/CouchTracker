@@ -38,7 +38,7 @@ desc 'Release a new build'
 lane :beta do
   setup_git_on_ci
 
-  changelog = get_raw_changelog
+  changelog = get_changelog
   new_build_number = increment_build_number
   version_number = get_version_number(target: 'CouchTracker')
 
@@ -53,39 +53,23 @@ lane :beta do
   upload_sonar
 end
 
-private_lane :get_raw_changelog do
+private_lane :get_changelog do
   link_to_commit = 'http://github.com/pietrocaselani/CouchTracker/commit/%H'
   log_format = "* %s [view commit](#{link_to_commit})"
   tag = `git describe --tags --abbrev=0`.chomp
   `git log #{tag}...HEAD --pretty=format:"#{log_format}"`.chomp ||= ''
 end
 
-private_lane :format_changelog do |options|
-  changelog = options[:changelog]
-  lines = changelog.split("\n")
-  new_changelog = (lines[1..-1] ||= []).join("\n")
-
-  formatted_changelog = "#{lines[0]}\n"
-
-  new_changelog.each_line.reverse_each do |line|
-    l = line.strip
-    formatted_changelog << "* #{l}\n"
-  end
-
-  formatted_changelog
-end
-
 private_lane :commit_and_release do |options|
   new_build_number = options[:build_number]
   changelog = options[:changelog]
-  formatted_changelog = format_changelog(changelog: changelog)
 
   full_version_name = "#{options[:version_number]} (#{new_build_number})"
   tag_name = "#{options[:version_number]}-#{new_build_number}"
 
   update_changelog_file(
     version_name: full_version_name,
-    changelog: formatted_changelog
+    changelog: changelog
   )
 
   commit_version_bump(
