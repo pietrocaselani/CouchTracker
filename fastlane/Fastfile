@@ -86,5 +86,5 @@ lane :beta do
 
   # build_app(scheme: 'CouchTracker')
 
-  # upload_sonar
+  upload_sonar
 end
