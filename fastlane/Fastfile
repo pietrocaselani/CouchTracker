@@ -36,9 +36,30 @@ end
 
 desc 'Release a new build'
 lane :beta do
-  tag = `git describe --tags --abbrev=0`.chomp
-  changelog = `git shortlog #{tag}..HEAD`.chomp ||= ''
+  setup_git_on_ci
 
+  changelog = get_raw_changelog
+  new_build_number = increment_build_number
+  version_number = get_version_number(target: 'CouchTracker')
+
+  commit_and_release(
+    build_number: new_build_number,
+    version_number: version_number,
+    changelog: changelog
+  )
+
+  # build_app(scheme: 'CouchTracker')
+
+  upload_sonar
+end
+
+private_lane :get_raw_changelog do
+  tag = `git describe --tags --abbrev=0`.chomp
+  `git shortlog #{tag}..HEAD`.chomp ||= ''
+end
+
+private_lane :format_changelog do |options|
+  changelog = options[:changelog]
   lines = changelog.split("\n")
   new_changelog = (lines[1..-1] ||= []).join("\n")
 
@@ -49,19 +70,21 @@ lane :beta do
     formatted_changelog << "* #{l}\n"
   end
 
-  new_build_number = increment_build_number
+  formatted_changelog
+end
 
-  version_number = get_version_number(target: 'CouchTracker')
+private_lane :commit_and_release do |options|
+  new_build_number = options[:build_number]
+  changelog = options[:changelog]
+  formatted_changelog = format_changelog(changelog: changelog)
 
-  full_version_name = "#{version_number} (#{new_build_number})"
-  tag_name = "#{version_number}-#{new_build_number}"
+  full_version_name = "#{options[:version_number]} (#{new_build_number})"
+  tag_name = "#{options[:version_number]}-#{new_build_number}"
 
-  open('../changelog.md', 'a') do |f|
-    f << "# #{full_version_name} \n#{formatted_changelog}"
-  end
-
-  `git remote add github https://pietrocaselani:$GITHUB_TOKEN@github.com/pietrocaselani/CouchTracker.git`
-  `git checkout master`
+  update_changelog_file(
+    version_name: full_version_name,
+    changelog: formatted_changelog
+  )
 
   commit_version_bump(
     message: "Bump build #{new_build_number} [ci skip]",
@@ -70,6 +93,32 @@ lane :beta do
     force: true
   )
 
+  push_to_github
+
+  add_git_tag(tag: tag_name.to_s)
+
+  create_github_release(
+    name: full_version_name.to_s,
+    tag_name: full_version_name.to_s,
+    description: changelog
+  )
+end
+
+private_lane :update_changelog_file do |options|
+  version_name = options[:version_name]
+  changelog = options[:changelog]
+
+  open('../changelog.md', 'a') do |f|
+    f << "# #{version_name} \n#{changelog}"
+  end
+end
+
+private_lane :setup_git_on_ci do
+  `git remote add github https://pietrocaselani:$GITHUB_TOKEN@github.com/pietrocaselani/CouchTracker.git`
+  `git checkout master`
+end
+
+private_lane :push_to_github do
   push_to_git_remote(
     remote: 'github',
     local_branch: 'master',
@@ -77,19 +126,15 @@ lane :beta do
     tags: false,
     force: true
   )
+end
 
-  add_git_tag(tag: tag_name.to_s)
-
+private_lane :create_github_release do |options|
   set_github_release(
     api_token: ENV['GITHUB_TOKEN'],
     repository_name: 'pietrocaselani/CouchTracker',
-    name: full_version_name.to_s,
-    tag_name: tag_name.to_s,
-    description: changelog,
+    name: options[:name],
+    tag_name: options[:tag_name],
+    description: options[:description],
     commitish: 'master'
   )
-
-  # build_app(scheme: 'CouchTracker')
-
-  upload_sonar
 end
