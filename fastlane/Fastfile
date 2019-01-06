@@ -37,10 +37,10 @@ end
 desc 'Release a new build'
 lane :beta do
   tag = `git describe --tags --abbrev=0`.chomp
-  changelog = File.read('../changelog.md') + `git shortlog #{tag}..HEAD`.chomp
+  changelog = `git shortlog #{tag}..HEAD`.chomp ||= ''
 
   lines = changelog.split("\n")
-  new_changelog = changelog.split("\n")[1..-1].join("\n")
+  new_changelog = (lines[1..-1] ||= []).join("\n")
 
   formatted_changelog = "#{lines[0]}\n"
 
