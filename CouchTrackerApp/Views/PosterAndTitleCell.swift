@@ -7,6 +7,7 @@ public final class PosterAndTitleCell: CollectionViewCell {
 
   public var presenter: PosterCellPresenter! {
     didSet {
+      posterImageView.image = nil
       presenter.viewWillAppear()
     }
   }
