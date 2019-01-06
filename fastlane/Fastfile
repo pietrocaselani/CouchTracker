@@ -99,7 +99,7 @@ private_lane :commit_and_release do |options|
 
   create_github_release(
     name: full_version_name.to_s,
-    tag_name: full_version_name.to_s,
+    tag_name: tag_name.to_s,
     description: changelog
   )
 end
