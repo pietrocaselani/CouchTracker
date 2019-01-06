@@ -44,7 +44,7 @@ lane :beta do
 
   formatted_changelog = "#{lines[0]}\n"
 
-  new_changelog.each_line do |line|
+  new_changelog.each_line.reverse_each do |line|
     l = line.strip
     formatted_changelog << "* #{l}\n"
   end
@@ -64,7 +64,7 @@ lane :beta do
   `git checkout master`
 
   commit_version_bump(
-    message: "Bump build #{new_build_number}",
+    message: "Bump build #{new_build_number} [ci skip]",
     xcodeproj: './CouchTracker.xcodeproj',
     include: './changelog.md',
     force: true
