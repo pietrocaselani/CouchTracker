@@ -54,8 +54,10 @@ lane :beta do
 end
 
 private_lane :get_raw_changelog do
+  link_to_commit = 'http://github.com/pietrocaselani/CouchTracker/commit/%H'
+  log_format = "* %s [view commit](#{link_to_commit})"
   tag = `git describe --tags --abbrev=0`.chomp
-  `git shortlog #{tag}..HEAD`.chomp ||= ''
+  `git log #{tag}...HEAD --pretty=format:"#{log_format}"`.chomp ||= ''
 end
 
 private_lane :format_changelog do |options|
