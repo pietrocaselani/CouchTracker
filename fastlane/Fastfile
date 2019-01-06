@@ -73,7 +73,8 @@ lane :beta do
     remote: 'github',
     local_branch: 'master',
     remote_branch: 'master',
-    tags: false
+    tags: false,
+    force: true
   )
 
   add_git_tag(tag: tag_name.to_s)
