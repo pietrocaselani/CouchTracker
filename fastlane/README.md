@@ -35,6 +35,11 @@ Run tests and linters
 fastlane upload_sonar
 ```
 Run tests and linters then upload metrics to sonar
+### beta
+```
+fastlane beta
+```
+Release a new build
 
 ----
 

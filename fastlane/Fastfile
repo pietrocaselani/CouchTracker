@@ -33,3 +33,47 @@ lane :upload_sonar do
   lint
   sonar(sonar_login: ENV['SONAR_LOGIN'])
 end
+
+desc 'Release a new build'
+lane :beta do
+  tag = `git describe --tags --abbrev=0`.chomp
+  changelog = File.read('../changelog.md') + `git shortlog #{tag}..HEAD`.chomp
+
+  lines = changelog.split("\n")
+  new_changelog = changelog.split("\n")[1..-1].join("\n")
+
+  formatted_changelog = "#{lines[0]}\n"
+
+  new_changelog.each_line do |line|
+    l = line.strip
+    formatted_changelog << "* #{l}\n"
+  end
+
+  new_build_number = increment_build_number
+
+  version_number = get_version_number(target: 'CouchTracker')
+
+  full_version_name = "#{version_number} (#{new_build_number})"
+  tag_name = "#{version_number}-#{new_build_number}"
+
+  open('../changelog.md', 'a') do |f|
+    f << "# #{full_version_name} \n#{formatted_changelog}"
+  end
+
+  commit_version_bump(
+    xcodeproj: 'CouchTracker.xcodeproj',
+    message: "Bump build #{new_build_number} [ci skip]",
+    include: './changelog.md',
+    force: true
+  )
+
+  add_git_tag(tag: tag_name.to_s)
+
+  `git remote add github https://pietrocaselani:$GITHUB_TOKEN@github.com/pietrocaselani/CouchTracker.git`
+
+  push_to_git_remote(remote: 'github')
+
+  # build_app(scheme: 'CouchTracker')
+
+  upload_sonar
+end
