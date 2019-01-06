@@ -67,14 +67,24 @@ lane :beta do
     force: true
   )
 
-  add_git_tag(tag: tag_name.to_s)
-
   `git remote add github https://pietrocaselani:$GITHUB_TOKEN@github.com/pietrocaselani/CouchTracker.git`
 
   push_to_git_remote(
     remote: 'github',
     local_branch: 'master',
-    remote_branch: 'master'
+    remote_branch: 'master',
+    tags: false
+  )
+
+  add_git_tag(tag: tag_name.to_s)
+
+  set_github_release(
+    api_token: ENV['GITHUB_TOKEN'],
+    repository_name: 'pietrocaselani/CouchTracker',
+    name: full_version_name.to_s,
+    tag_name: tag_name.to_s,
+    description: changelog,
+    commitish: 'master'
   )
 
   # build_app(scheme: 'CouchTracker')
