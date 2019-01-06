@@ -1,11 +1,11 @@
 import CouchTrackerCore
 
-final class ShowsProgressTableViewDataSource: NSObject, UITableViewDataSource, ShowsProgressViewDataSource {
-  private let imageRepository: ImageRepository
+final class ShowsProgressTableViewDataSource: NSObject, ShowsProgressViewDataSource {
+  private let interactor: ShowProgressCellInteractor
   var viewModels: [WatchedShowViewModel] = [WatchedShowViewModel]()
 
-  init(imageRepository: ImageRepository) {
-    self.imageRepository = imageRepository
+  init(interactor: ShowProgressCellInteractor) {
+    self.interactor = interactor
   }
 
   func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
@@ -13,21 +13,18 @@ final class ShowsProgressTableViewDataSource: NSObject, UITableViewDataSource, S
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let identifier = R.reuseIdentifier.showProgressCell
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) else {
-      fatalError("Can't dequeue cell with identifier \(identifier.identifier) on ShowsProgressViewController")
+    let identifier = "ShowProgressCellIdentifier"
+    let tableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+
+    guard let cell = tableViewCell as? ShowProgressCellView else {
+      fatalError("Can't dequeue cell with identifier \(identifier) on ShowsProgressViewController")
     }
 
     let viewModel: WatchedShowViewModel = viewModels[indexPath.row]
-    let interactor = ShowProgressCellService(imageRepository: imageRepository)
     let presenter = ShowProgressCellDefaultPresenter(view: cell, interactor: interactor, viewModel: viewModel)
 
     cell.presenter = presenter
 
-    return cell
-  }
-
-  func update() {
-    viewModels.removeAll()
+    return tableViewCell
   }
 }

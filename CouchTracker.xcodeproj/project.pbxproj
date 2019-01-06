@@ -449,7 +449,6 @@
 		8204072321D0049000127F05 /* ShowsNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E903B1F72982F0089CD70 /* ShowsNowViewController.swift */; };
 		8204072521D0049000127F05 /* ShowsNowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E903F1F72986B0089CD70 /* ShowsNowModule.swift */; };
 		8204072621D0049800127F05 /* ShowProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896331F7C11EE00F95649 /* ShowProgressCell.swift */; };
-		8204072721D0049800127F05 /* ShowsProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64CB90B31F7291400026B139 /* ShowsProgress.storyboard */; };
 		8204072821D0049800127F05 /* ShowsProgressiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D471F7D8EF700C26D10 /* ShowsProgressiOSRouter.swift */; };
 		8204072921D0049800127F05 /* ShowsProgressModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90BF1F72944D0026B139 /* ShowsProgressModule.swift */; };
 		8204072A21D0049800127F05 /* ShowsProgressTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418AAFB1F7C1D1600D4D83C /* ShowsProgressTableViewDataSource.swift */; };
@@ -517,6 +516,8 @@
 		82836EAE218EC2C10037A798 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836EAC218EC2C10037A798 /* Defaults.swift */; };
 		82836EB5219034010037A798 /* CouchTrackerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836EB4219034010037A798 /* CouchTrackerError.swift */; };
 		82836EB6219034010037A798 /* CouchTrackerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836EB4219034010037A798 /* CouchTrackerError.swift */; };
+		82854F2421E2468D00F0BAEA /* ShowProgressViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82854F2321E2468D00F0BAEA /* ShowProgressViewState.swift */; };
+		82854F2521E2468D00F0BAEA /* ShowProgressViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82854F2321E2468D00F0BAEA /* ShowProgressViewState.swift */; };
 		82882F5721DED60E00B1A732 /* SearchResultEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82882F5621DED60E00B1A732 /* SearchResultEntity.swift */; };
 		82882F5821DED60E00B1A732 /* SearchResultEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82882F5621DED60E00B1A732 /* SearchResultEntity.swift */; };
 		82882F5A21DED8BA00B1A732 /* SearchiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82882F5921DED8BA00B1A732 /* SearchiOSRouter.swift */; };
@@ -903,7 +904,6 @@
 		64C384051F6C134F00FC9930 /* AppConfigurationsPresenterTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigurationsPresenterTest.swift; sourceTree = "<group>"; };
 		64C384061F6C134F00FC9930 /* AppConfigurationsDefaultRepositoryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfigurationsDefaultRepositoryTest.swift; sourceTree = "<group>"; };
 		64CB309A1F6077B800FD6171 /* PosterCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCellViewModel.swift; sourceTree = "<group>"; };
-		64CB90B31F7291400026B139 /* ShowsProgress.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowsProgress.storyboard; sourceTree = "<group>"; };
 		64CB90B51F7291650026B139 /* ShowsProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressViewController.swift; sourceTree = "<group>"; };
 		64CB90B91F72922F0026B139 /* ShowsManagerDefaultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerDefaultPresenter.swift; sourceTree = "<group>"; };
 		64CB90BD1F7294290026B139 /* ShowsManagerDefaultModuleSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsManagerDefaultModuleSetup.swift; sourceTree = "<group>"; };
@@ -990,6 +990,7 @@
 		82836EAC218EC2C10037A798 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		82836EB4219034010037A798 /* CouchTrackerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouchTrackerError.swift; sourceTree = "<group>"; };
 		82836EB7219039DA0037A798 /* ShowSeasonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSeasonsViewController.swift; sourceTree = "<group>"; };
+		82854F2321E2468D00F0BAEA /* ShowProgressViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressViewState.swift; sourceTree = "<group>"; };
 		82882F5621DED60E00B1A732 /* SearchResultEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultEntity.swift; sourceTree = "<group>"; };
 		82882F5921DED8BA00B1A732 /* SearchiOSRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchiOSRouter.swift; sourceTree = "<group>"; };
 		82930A18216C1C7B00A824F6 /* DefaultWatchedShowEntityDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWatchedShowEntityDownloader.swift; sourceTree = "<group>"; };
@@ -1409,6 +1410,7 @@
 				4F566C8720A724800003ACD7 /* ShowProgressListState.swift */,
 				4F10101720A99C64003CA348 /* ShowsProgressListStateDefaultDataSource.swift */,
 				82836EA3218EAFDC0037A798 /* ShowsProgressService.swift */,
+				82854F2321E2468D00F0BAEA /* ShowProgressViewState.swift */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -2067,7 +2069,6 @@
 			isa = PBXGroup;
 			children = (
 				646896351F7C11F400F95649 /* Cell */,
-				64CB90B31F7291400026B139 /* ShowsProgress.storyboard */,
 				641B9D471F7D8EF700C26D10 /* ShowsProgressiOSRouter.swift */,
 				64CB90BF1F72944D0026B139 /* ShowsProgressModule.swift */,
 				6418AAFB1F7C1D1600D4D83C /* ShowsProgressTableViewDataSource.swift */,
@@ -2606,7 +2607,6 @@
 			files = (
 				8204074021D01A9D00127F05 /* Localizable.strings in Resources */,
 				8204073F21D0187800127F05 /* Assets.xcassets in Resources */,
-				8204072721D0049800127F05 /* ShowsProgress.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2865,7 +2865,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/GeneratedFiles/R.generated.swift",
+				$SRCROOT/GeneratedFiles/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3115,6 +3115,7 @@
 				4F0F57AC203D5FA100B86CB8 /* Trakt+APIProvider.swift in Sources */,
 				4F2F337020C8943D00061C13 /* MovieDetailsImagesState.swift in Sources */,
 				4F0F57AD203D5FA100B86CB8 /* TraktLoginContract.swift in Sources */,
+				82854F2421E2468D00F0BAEA /* ShowProgressViewState.swift in Sources */,
 				4F0F57AE203D5FA100B86CB8 /* TraktLoginDefaultPresenter.swift in Sources */,
 				4F0F57B0203D5FA100B86CB8 /* TraktLoginObservable.swift in Sources */,
 				4F0F57B1203D5FA100B86CB8 /* TraktLoginOutputProvider.swift in Sources */,
@@ -3389,6 +3390,7 @@
 				4F0F58EB203D7B0A00B86CB8 /* ShowProgressCellContract.swift in Sources */,
 				4F0F58EC203D7B0A00B86CB8 /* ShowProgressCellDefaultPresenter.swift in Sources */,
 				4F0F58ED203D7B0A00B86CB8 /* ShowProgressCellService.swift in Sources */,
+				82854F2521E2468D00F0BAEA /* ShowProgressViewState.swift in Sources */,
 				4F0F58EE203D7B0A00B86CB8 /* ShowProgressFilter.swift in Sources */,
 				4F0F58EF203D7B0A00B86CB8 /* ShowsProgressDefaultPresenter.swift in Sources */,
 				4F0F58F0203D7B0A00B86CB8 /* ShowProgressSort.swift in Sources */,

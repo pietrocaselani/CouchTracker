@@ -1,11 +1,7 @@
 import CouchTrackerCore
 
 final class ShowsProgressiOSRouter: ShowsProgressRouter {
-  private weak var viewController: UIViewController?
-
-  init(viewController: UIViewController) {
-    self.viewController = viewController
-  }
+  weak var viewController: UIViewController?
 
   func show(tvShow entity: WatchedShowEntity) {
     guard let navigationController = viewController?.navigationController else { return }
