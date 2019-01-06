@@ -71,7 +71,11 @@ lane :beta do
 
   `git remote add github https://pietrocaselani:$GITHUB_TOKEN@github.com/pietrocaselani/CouchTracker.git`
 
-  push_to_git_remote(remote: 'github')
+  push_to_git_remote(
+    remote: 'github',
+    local_branch: 'master',
+    remote_branch: 'master'
+  )
 
   # build_app(scheme: 'CouchTracker')
 
