@@ -60,11 +60,14 @@ lane :beta do
     f << "# #{full_version_name} \n#{formatted_changelog}"
   end
 
-  `git config --global user.name "Pietro Caselani"`
-  `git config --global user.email "pc1992@gmail.com"`
   `git remote add github https://pietrocaselani:$GITHUB_TOKEN@github.com/pietrocaselani/CouchTracker.git`
-  `git add -A`
-  `git commit -m "Bump build #{new_build_number} [ci skip]"`
+
+  commit_version_bump(
+    message: "Bump build #{new_build_number}",
+    xcodeproj: './CouchTracker.xcodeproj',
+    include: './changelog.md',
+    force: true
+  )
 
   push_to_git_remote(
     remote: 'github',
