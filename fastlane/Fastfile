@@ -61,6 +61,7 @@ lane :beta do
   end
 
   `git remote add github https://pietrocaselani:$GITHUB_TOKEN@github.com/pietrocaselani/CouchTracker.git`
+  `git checkout master`
 
   commit_version_bump(
     message: "Bump build #{new_build_number}",
