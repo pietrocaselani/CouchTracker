@@ -1,9 +1,11 @@
 import Cartography
 import CouchTrackerCore
+import Kingfisher
 import RxSwift
 
 final class ShowProgressCell: TableViewCell {
   static let identifier = "ShowProgressCell"
+  private var imageTask: DownloadTask?
   private var disposable: Disposable?
 
   var presenter: ShowProgressCellPresenter? {
@@ -17,10 +19,11 @@ final class ShowProgressCell: TableViewCell {
   }
 
   override func prepareForReuse() {
-    super.prepareForReuse()
-
+    imageTask?.cancel()
     posterImageView.image = nil
     disposable = nil
+
+    super.prepareForReuse()
   }
 
   private func handleViewState(_ viewState: ShowProgressCellViewState) {
@@ -41,7 +44,7 @@ final class ShowProgressCell: TableViewCell {
   }
 
   private func showPosterImage(with url: URL) {
-    posterImageView.kf.setImage(with: url)
+    imageTask = posterImageView.kf.setImage(with: url)
   }
 
   let posterImageView = UIImageView()

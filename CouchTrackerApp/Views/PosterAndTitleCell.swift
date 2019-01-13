@@ -4,18 +4,20 @@ import Kingfisher
 
 public final class PosterAndTitleCell: CollectionViewCell {
   public static let identifier = "PosterAndTitleCell"
+  private var imageTask: DownloadTask?
 
   public var presenter: PosterCellPresenter! {
     didSet {
+      imageTask?.cancel()
       posterImageView.image = nil
       presenter.viewWillAppear()
     }
   }
 
   public override func prepareForReuse() {
-    super.prepareForReuse()
-
+    imageTask?.cancel()
     posterImageView.image = nil
+    super.prepareForReuse()
   }
 
   public let posterImageView = UIImageView()
@@ -58,6 +60,6 @@ extension PosterAndTitleCell: PosterCellView {
   }
 
   public func showPosterImage(with url: URL) {
-    posterImageView.kf.setImage(with: url)
+    imageTask = posterImageView.kf.setImage(with: url)
   }
 }
