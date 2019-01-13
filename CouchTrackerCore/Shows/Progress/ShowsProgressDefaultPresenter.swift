@@ -36,17 +36,19 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
     return viewStateSubject.distinctUntilChanged()
   }
 
-  public func change(sort: ShowProgressSort, filter: ShowProgressFilter) {
-    guard let currentViewState = try? viewStateSubject.value(),
-      case let ShowProgressViewState.shows(entities, _) = currentViewState else { return }
-
-    let newListState = interactor.listState.builder().sort(sort).filter(filter).build()
-
+  public func toggleDirection() {
+    let currentListState = interactor.listState
+    let newListState = currentListState.builder().direction(currentListState.direction.toggle()).build()
     interactor.listState = newListState
 
-    let newViewState = createViewState(entities: Array(entities), listState: newListState)
+    fetchShows()
+  }
 
-    viewStateSubject.onNext(newViewState)
+  public func change(sort: ShowProgressSort, filter: ShowProgressFilter) {
+    let newListState = interactor.listState.builder().sort(sort).filter(filter).build()
+    interactor.listState = newListState
+
+    fetchShows()
   }
 
   public func select(show: WatchedShowEntity) {
@@ -80,7 +82,7 @@ private func createViewState(entities: [WatchedShowEntity],
     newEntities = newEntities.reversed()
   }
 
-  guard let headEntity = newEntities.first else { return .empty }
+  guard let headEntity = newEntities.first else { return .filterEmpty }
 
   let nonEmptyEntities = NonEmptyArray<WatchedShowEntity>(headEntity, Array(newEntities.dropFirst()))
 

@@ -1,9 +1,5 @@
 import CouchTrackerCore
 
-public protocol ShowsProgressViewDataSource: UITableViewDataSource {
-  var viewModels: [WatchedShowViewModel] { get set }
-}
-
 enum ShowsProgressModule {
   private init() {
     Swift.fatalError("No instances for you!")
@@ -26,7 +22,6 @@ enum ShowsProgressModule {
 
     let router = ShowsProgressiOSRouter()
     let cellInteractor = ShowProgressCellService(imageRepository: imageRepository)
-    let viewDataSource = ShowsProgressTableViewDataSource(interactor: cellInteractor)
 
     let interactor = ShowsProgressService(listStateDataSource: listStateDataSource,
                                           showsObserable: Environment.instance.watchedShowEntitiesObservable)
@@ -35,7 +30,7 @@ enum ShowsProgressModule {
                                                   router: router,
                                                   loginObservable: traktLoginObservable)
 
-    let viewController = ShowsProgressViewController(presenter: presenter, dataSource: viewDataSource)
+    let viewController = ShowsProgressViewController(presenter: presenter, cellInteractor: cellInteractor)
 
     router.viewController = viewController
 

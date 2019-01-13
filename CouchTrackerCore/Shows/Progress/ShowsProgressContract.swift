@@ -29,5 +29,6 @@ public protocol ShowsProgressPresenter: class {
   func observeViewState() -> Observable<ShowProgressViewState>
 
   func change(sort: ShowProgressSort, filter: ShowProgressFilter)
+  func toggleDirection()
   func select(show: WatchedShowEntity)
 }

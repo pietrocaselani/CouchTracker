@@ -102,7 +102,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     loginObservable.changeTo(state: TraktLoginState.notLogged)
 
     // Then
-    let expectedViewState = [Recorded.next(0, ShowProgressViewState.empty),
+    let expectedViewState = [Recorded.next(0, ShowProgressViewState.filterEmpty),
                              Recorded.next(0, ShowProgressViewState.notLogged)]
 
     XCTAssertEqual(viewStateObserver.events, expectedViewState)
@@ -166,18 +166,23 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     XCTAssertEqual(expectedListState, interactor.listState)
   }
 
-  func testShowsProgressPresenter_cantChangeSortAndFilterWhenIsNotShowingData() {
+  func testShowsProgressPresenter_whenChangeDirection_shouldNotifyInteractor() {
     // Given
-    interactor = ShowsProgressMocks.ShowsProgressInteractorMock()
+    var entities = [WatchedShowEntity]()
+    entities.append(ShowsProgressMocks.mockWatchedShowEntity())
+    entities.append(ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
+    entities.append(ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisodeDate())
+
+    interactor = ShowsProgressMocks.ShowsProgressInteractorMock(entities: entities)
     setupPresenter(TraktLoginState.logged)
 
     _ = presenter.observeViewState().subscribe(viewStateObserver)
 
     // When
-    presenter.change(sort: .releaseDate, filter: .watched)
+    presenter.toggleDirection()
 
     // Then
-    let expectedListState = ShowProgressListState.initialState
+    let expectedListState = ShowProgressListState(sort: .title, filter: .none, direction: .desc)
     XCTAssertEqual(expectedListState, interactor.listState)
   }
 

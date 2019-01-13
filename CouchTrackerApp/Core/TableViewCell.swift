@@ -1,6 +1,6 @@
-open class CollectionViewCell: UICollectionViewCell {
-  public override init(frame: CGRect) {
-    super.init(frame: frame)
+open class TableViewCell: UITableViewCell {
+  public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
     setup()
   }
 

@@ -22,7 +22,8 @@ public enum Colors {
   }
 
   public enum Cell {
-    public static let backgroundColor = UIColor.ctconcord
+    public static let foregroundColor = UIColor.ctconcord
+    public static let backgroundColor = UIColor.ctdarkerBunker
   }
 
   public enum Text {

@@ -12,6 +12,7 @@ public enum ShowProgressViewState: Hashable {
   case loading
   case empty
   case shows(entities: NonEmptyArray<WatchedShowEntity>, menu: ShowsProgressMenuOptions)
+  case filterEmpty
   case error(error: Error)
 
   public func hash(into hasher: inout Hasher) {
@@ -19,6 +20,7 @@ public enum ShowProgressViewState: Hashable {
     case .notLogged: hasher.combine("ShowProgressViewState.notLogged")
     case .loading: hasher.combine("ShowProgressViewState.loading")
     case .empty: hasher.combine("ShowProgressViewState.empty")
+    case .filterEmpty: hasher.combine("ShowProgressViewState.filterEmpty")
     case let .shows(entities, menu):
       hasher.combine("ShowProgressViewState.shows")
       hasher.combine(entities)

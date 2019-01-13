@@ -34,7 +34,7 @@ public final class PosterAndTitleCell: CollectionViewCell {
   public override func initialize() {
     contentView.addSubview(stackView)
 
-    backgroundColor = Colors.Cell.backgroundColor
+    backgroundColor = Colors.Cell.foregroundColor
   }
 
   public override func installConstraints() {

@@ -448,10 +448,8 @@
 		8204072221D0048900127F05 /* ShowsManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CC08881F717249004D164A /* ShowsManagerViewController.swift */; };
 		8204072321D0049000127F05 /* ShowsNowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E903B1F72982F0089CD70 /* ShowsNowViewController.swift */; };
 		8204072521D0049000127F05 /* ShowsNowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E903F1F72986B0089CD70 /* ShowsNowModule.swift */; };
-		8204072621D0049800127F05 /* ShowProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896331F7C11EE00F95649 /* ShowProgressCell.swift */; };
 		8204072821D0049800127F05 /* ShowsProgressiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641B9D471F7D8EF700C26D10 /* ShowsProgressiOSRouter.swift */; };
 		8204072921D0049800127F05 /* ShowsProgressModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90BF1F72944D0026B139 /* ShowsProgressModule.swift */; };
-		8204072A21D0049800127F05 /* ShowsProgressTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418AAFB1F7C1D1600D4D83C /* ShowsProgressTableViewDataSource.swift */; };
 		8204072B21D0049800127F05 /* ShowsProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CB90B51F7291650026B139 /* ShowsProgressViewController.swift */; };
 		8204072C21D0049F00127F05 /* TraktLoginModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D1821F704BED008C4E5F /* TraktLoginModule.swift */; };
 		8204072D21D0049F00127F05 /* TraktLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454D17A1F704A1D008C4E5F /* TraktLoginViewController.swift */; };
@@ -481,6 +479,8 @@
 		822A02FD21D2352400440AF8 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A02FC21D2352400440AF8 /* View.swift */; };
 		822A02FF21D2354A00440AF8 /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822A02FE21D2354A00440AF8 /* MovieDetailsView.swift */; };
 		8239F813216C159500A29F01 /* DefaultWatchedShowEntitiesDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8239F812216C159500A29F01 /* DefaultWatchedShowEntitiesDownloader.swift */; };
+		8243FFF521EA467400B2E556 /* ShowProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8243FFF421EA467400B2E556 /* ShowProgressCell.swift */; };
+		8243FFF721EA46CC00B2E556 /* ShowsProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8243FFF621EA46CC00B2E556 /* ShowsProgressView.swift */; };
 		82609F0F21D870C90038EB29 /* ViewCalculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82609F0E21D870C90038EB29 /* ViewCalculations.swift */; };
 		826F9A0C21D9B02F001A4E05 /* ShowEpisodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826F9A0B21D9B02F001A4E05 /* ShowEpisodeView.swift */; };
 		827BCD3D20EFF3F60080B242 /* ShowOverviewViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */; };
@@ -518,6 +518,7 @@
 		82836EB6219034010037A798 /* CouchTrackerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82836EB4219034010037A798 /* CouchTrackerError.swift */; };
 		82854F2421E2468D00F0BAEA /* ShowProgressViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82854F2321E2468D00F0BAEA /* ShowProgressViewState.swift */; };
 		82854F2521E2468D00F0BAEA /* ShowProgressViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82854F2321E2468D00F0BAEA /* ShowProgressViewState.swift */; };
+		82854F2721E2B41400F0BAEA /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82854F2621E2B41400F0BAEA /* TableViewCell.swift */; };
 		82882F5721DED60E00B1A732 /* SearchResultEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82882F5621DED60E00B1A732 /* SearchResultEntity.swift */; };
 		82882F5821DED60E00B1A732 /* SearchResultEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82882F5621DED60E00B1A732 /* SearchResultEntity.swift */; };
 		82882F5A21DED8BA00B1A732 /* SearchiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82882F5921DED8BA00B1A732 /* SearchiOSRouter.swift */; };
@@ -754,7 +755,6 @@
 		6406BEEC1F4DC372004661C4 /* GenreRepositoryMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreRepositoryMock.swift; sourceTree = "<group>"; };
 		6406BF011F4DC41F004661C4 /* MovieDetailsModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsModule.swift; sourceTree = "<group>"; };
 		6406BF021F4DC41F004661C4 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
-		6418AAFB1F7C1D1600D4D83C /* ShowsProgressTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressTableViewDataSource.swift; sourceTree = "<group>"; };
 		641B9D1F1F7D3DC900C26D10 /* ShowProgressSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressSort.swift; sourceTree = "<group>"; };
 		641B9D211F7D3DE600C26D10 /* ShowProgressFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressFilter.swift; sourceTree = "<group>"; };
 		641B9D291F7D5C4C00C26D10 /* ShowManagerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManagerContract.swift; sourceTree = "<group>"; };
@@ -840,7 +840,6 @@
 		645EEEDE1F61ADE30034EB66 /* ShowOverviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOverviewService.swift; sourceTree = "<group>"; };
 		645EEEE31F61AEA10034EB66 /* ShowDetailsMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsMocks.swift; sourceTree = "<group>"; };
 		646896301F7BFECB00F95649 /* ShowsProgressPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressPresenterTest.swift; sourceTree = "<group>"; };
-		646896331F7C11EE00F95649 /* ShowProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCell.swift; sourceTree = "<group>"; };
 		646896361F7C123D00F95649 /* ShowProgressCellContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellContract.swift; sourceTree = "<group>"; };
 		646896381F7C12A400F95649 /* ShowProgressCellDefaultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellDefaultPresenter.swift; sourceTree = "<group>"; };
 		6468963E1F7C132C00F95649 /* ShowProgressCellService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCellService.swift; sourceTree = "<group>"; };
@@ -972,6 +971,8 @@
 		822A02FC21D2352400440AF8 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		822A02FE21D2354A00440AF8 /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
 		8239F812216C159500A29F01 /* DefaultWatchedShowEntitiesDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWatchedShowEntitiesDownloader.swift; sourceTree = "<group>"; };
+		8243FFF421EA467400B2E556 /* ShowProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressCell.swift; sourceTree = "<group>"; };
+		8243FFF621EA46CC00B2E556 /* ShowsProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsProgressView.swift; sourceTree = "<group>"; };
 		82609F0E21D870C90038EB29 /* ViewCalculations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCalculations.swift; sourceTree = "<group>"; };
 		826F9A0B21D9B02F001A4E05 /* ShowEpisodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeView.swift; sourceTree = "<group>"; };
 		827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOverviewViewState.swift; sourceTree = "<group>"; };
@@ -991,6 +992,7 @@
 		82836EB4219034010037A798 /* CouchTrackerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouchTrackerError.swift; sourceTree = "<group>"; };
 		82836EB7219039DA0037A798 /* ShowSeasonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSeasonsViewController.swift; sourceTree = "<group>"; };
 		82854F2321E2468D00F0BAEA /* ShowProgressViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressViewState.swift; sourceTree = "<group>"; };
+		82854F2621E2B41400F0BAEA /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		82882F5621DED60E00B1A732 /* SearchResultEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultEntity.swift; sourceTree = "<group>"; };
 		82882F5921DED8BA00B1A732 /* SearchiOSRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchiOSRouter.swift; sourceTree = "<group>"; };
 		82930A18216C1C7B00A824F6 /* DefaultWatchedShowEntityDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWatchedShowEntityDownloader.swift; sourceTree = "<group>"; };
@@ -1852,14 +1854,6 @@
 			path = TraktLogin;
 			sourceTree = "<group>";
 		};
-		646896351F7C11F400F95649 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				646896331F7C11EE00F95649 /* ShowProgressCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
 		647632301F44824900F277F1 = {
 			isa = PBXGroup;
 			children = (
@@ -2068,11 +2062,11 @@
 		64CB90B21F7290C90026B139 /* Progress */ = {
 			isa = PBXGroup;
 			children = (
-				646896351F7C11F400F95649 /* Cell */,
+				8243FFF421EA467400B2E556 /* ShowProgressCell.swift */,
 				641B9D471F7D8EF700C26D10 /* ShowsProgressiOSRouter.swift */,
 				64CB90BF1F72944D0026B139 /* ShowsProgressModule.swift */,
-				6418AAFB1F7C1D1600D4D83C /* ShowsProgressTableViewDataSource.swift */,
 				64CB90B51F7291650026B139 /* ShowsProgressViewController.swift */,
+				8243FFF621EA46CC00B2E556 /* ShowsProgressView.swift */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -2174,6 +2168,7 @@
 			children = (
 				8226D9EA21D72731007BB979 /* CollectionViewCell.swift */,
 				8226D9E821D71719007BB979 /* Colors.swift */,
+				82854F2621E2B41400F0BAEA /* TableViewCell.swift */,
 				822A02FC21D2352400440AF8 /* View.swift */,
 				82609F0E21D870C90038EB29 /* ViewCalculations.swift */,
 			);
@@ -2717,6 +2712,7 @@
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/AutoInsetter/AutoInsetter.framework",
 				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
+				"${BUILT_PRODUCTS_DIR}/FlowKitManager/FlowKitManager.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Pageboy/Pageboy.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
@@ -2742,6 +2738,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AutoInsetter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FlowKitManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pageboy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
@@ -3483,8 +3480,6 @@
 				8204072521D0049000127F05 /* ShowsNowModule.swift in Sources */,
 				8204071421D0046D00127F05 /* ShowOverviewViewController.swift in Sources */,
 				8204070021D003A500127F05 /* AppFlowViewController.swift in Sources */,
-				8204072A21D0049800127F05 /* ShowsProgressTableViewDataSource.swift in Sources */,
-				8204072621D0049800127F05 /* ShowProgressCell.swift in Sources */,
 				822A02FD21D2352400440AF8 /* View.swift in Sources */,
 				820406FC21D0036400127F05 /* AppConfigurationsViewController.swift in Sources */,
 				8204072821D0049800127F05 /* ShowsProgressiOSRouter.swift in Sources */,
@@ -3513,8 +3508,11 @@
 				8204071821D0047400127F05 /* ShowEpisodeViewController.swift in Sources */,
 				8204071521D0046D00127F05 /* ShowOverviewModule.swift in Sources */,
 				822A02FF21D2354A00440AF8 /* MovieDetailsView.swift in Sources */,
+				82854F2721E2B41400F0BAEA /* TableViewCell.swift in Sources */,
+				8243FFF721EA46CC00B2E556 /* ShowsProgressView.swift in Sources */,
 				8204071721D0047400127F05 /* ShowEpisodeModule.swift in Sources */,
 				8204070721D0041300127F05 /* MovieDetailsModule.swift in Sources */,
+				8243FFF521EA467400B2E556 /* ShowProgressCell.swift in Sources */,
 				8204073021D004A500127F05 /* TrendingModule.swift in Sources */,
 				8204073421D004AF00127F05 /* NoCacheMoyaPlugin.swift in Sources */,
 				827EB7A921DBF8AF00B02001 /* UICollectionViewLayout.swift in Sources */,

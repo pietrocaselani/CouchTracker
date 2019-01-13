@@ -23,6 +23,7 @@ def ios_pods
   pod 'ActionSheetPicker-3.0', '2.2.0'
   pod 'Tabman', '2.1.0'
   pod 'Cartography', '3.1.0'
+  pod 'FlowKitManager', '0.6.1'
 end
 
 def tests_shared_pods
