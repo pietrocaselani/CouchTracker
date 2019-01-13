@@ -12,6 +12,12 @@ public final class PosterAndTitleCell: CollectionViewCell {
     }
   }
 
+  public override func prepareForReuse() {
+    super.prepareForReuse()
+
+    posterImageView.image = nil
+  }
+
   public let posterImageView = UIImageView()
 
   public let titleLabel: UILabel = {
