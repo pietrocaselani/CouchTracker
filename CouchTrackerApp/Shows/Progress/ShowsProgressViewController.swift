@@ -132,11 +132,8 @@ final class ShowsProgressViewController: UIViewController {
       self?.presenter.toggleDirection()
     }).disposed(by: disposeBag)
 
-    if let pageboy = parentPageboy {
-      pageboy.navigationItem.rightBarButtonItems = [filterItem, directionItem]
-    } else {
-      navigationItem.rightBarButtonItems = [filterItem, directionItem]
-    }
+    parentPageboy?.navigationItem.rightBarButtonItems = [filterItem, directionItem]
+    navigationItem.rightBarButtonItems = [filterItem, directionItem]
   }
 
   private func showOptions(sorting: [String], filtering: [String],
