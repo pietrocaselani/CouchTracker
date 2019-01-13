@@ -2,25 +2,6 @@
 import RxSwift
 
 final class ShowProgressCellMocks {
-  final class View: ShowProgressCellView {
-    var presenter: ShowProgressCellPresenter!
-
-    var showViewModelInvoked = false
-    var showViewModelParameters: WatchedShowViewModel?
-    var showPosterImageInvoked = false
-    var showPosterImageParameters: URL?
-
-    func show(viewModel: WatchedShowViewModel) {
-      showViewModelInvoked = true
-      showViewModelParameters = viewModel
-    }
-
-    func showPosterImage(with url: URL) {
-      showPosterImageInvoked = true
-      showPosterImageParameters = url
-    }
-  }
-
   final class Interactor: ShowProgressCellInteractor {
     var fetchPosterImageURLInvoked = false
     var fetchPosterImageURLParameters: (tmdbId: Int, size: PosterImageSize?)?

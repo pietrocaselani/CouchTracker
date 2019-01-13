@@ -4,12 +4,12 @@ public enum ShowProgressDirection: String {
   case asc
   case desc
 
-  static func create(from value: String?) -> ShowProgressDirection {
+  public static func create(from value: String?) -> ShowProgressDirection {
     guard let stringValue = value else { return ShowProgressDirection.asc }
     return ShowProgressDirection(rawValue: stringValue) ?? ShowProgressDirection.asc
   }
 
-  func toggle() -> ShowProgressDirection {
+  public func toggle() -> ShowProgressDirection {
     return self == .asc ? .desc : .asc
   }
 }
@@ -20,16 +20,16 @@ public enum ShowProgressSort: String {
   case lastWatched
   case releaseDate
 
-  static func create(from value: String?) -> ShowProgressSort {
+  public static func create(from value: String?) -> ShowProgressSort {
     guard let stringValue = value else { return ShowProgressSort.title }
     return ShowProgressSort(rawValue: stringValue) ?? ShowProgressSort.title
   }
 
-  static func allValues() -> [ShowProgressSort] {
+  public static func allValues() -> [ShowProgressSort] {
     return [.title, .remaining, .lastWatched, .releaseDate]
   }
 
-  static func sort(for index: Int) -> ShowProgressSort {
+  public static func sort(for index: Int) -> ShowProgressSort {
     let allValues = ShowProgressSort.allValues()
     if index < 0 || index >= allValues.count {
       return ShowProgressSort.title
@@ -38,11 +38,11 @@ public enum ShowProgressSort: String {
     return allValues[index]
   }
 
-  func index() -> Int {
+  public func index() -> Int {
     return ShowProgressSort.allValues().index(of: self) ?? 0
   }
 
-  func comparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool {
+  public func comparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool {
     if self == .title { return titleComparator() }
     if self == .remaining { return remainingComparator() }
     if self == .lastWatched { return lastWatchedComparator() }

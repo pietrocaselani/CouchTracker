@@ -1,131 +1,95 @@
+import NonEmpty
 import RxSwift
 
 public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
-  private let loginObservable: TraktLoginObservable
-  private weak var view: ShowsProgressView?
+  private let viewStateSubject = BehaviorSubject<ShowProgressViewState>(value: .empty)
+  private let disposeBag = DisposeBag()
+
   private let interactor: ShowsProgressInteractor
   private let router: ShowsProgressRouter
-  private let disposeBag = DisposeBag()
-  private var entities = [WatchedShowEntity]()
-  private var originalEntities = [WatchedShowEntity]()
-  public var dataSource: ShowsProgressViewDataSource
 
-  public init(view: ShowsProgressView, interactor: ShowsProgressInteractor, viewDataSource: ShowsProgressViewDataSource,
-              router: ShowsProgressRouter, loginObservable: TraktLoginObservable) {
-    self.view = view
+  public init(interactor: ShowsProgressInteractor,
+              router: ShowsProgressRouter,
+              loginObservable: TraktLoginObservable) {
     self.interactor = interactor
-    dataSource = viewDataSource
     self.router = router
-    self.loginObservable = loginObservable
-  }
 
-  public func viewDidLoad() {
     loginObservable.observe()
       .distinctUntilChanged()
-      .observeOn(MainScheduler.instance)
-      .subscribe(onNext: { [unowned self] loginState in
-        guard let view = self.view else { return }
-
+      .subscribe(onNext: { [weak self] loginState in
         if loginState == .notLogged {
-          view.showError(message: "You need to login on Trakt to access this content".localized)
-          self.dataSource.update()
+          self?.viewStateSubject.onNext(.notLogged)
         } else {
-          self.fetchShows()
+          self?.fetchShows()
         }
-
       }).disposed(by: disposeBag)
   }
 
-  public func updateShows() {
-    dataSource.update()
+  public func observeViewState() -> Observable<ShowProgressViewState> {
+    /* CT-TODO
+     This view state should be tied to SynchonizationState,
+     that will be implemented in a near future.
+     This is necessary to avoid a flow state
+     NotLogged -> Loading -> Empty -> Data
+     because realm emits empty and then, the sync finishes and realm will emit data
+     */
+    return viewStateSubject.distinctUntilChanged()
+  }
+
+  public func toggleDirection() {
+    let currentListState = interactor.listState
+    let newListState = currentListState.builder().direction(currentListState.direction.toggle()).build()
+    interactor.listState = newListState
+
     fetchShows()
   }
 
-  public func handleFilter() {
-    let sorting = ShowProgressSort.allValues().map { $0.rawValue.localized }
-    let filtering = ShowProgressFilter.allValues().map { $0.rawValue.localized }
-
-    let listState = interactor.listState
-
-    let sortIndex = listState.sort.index()
-    let filterIndex = listState.filter.index()
-    view?.showOptions(for: sorting, for: filtering, currentSort: sortIndex, currentFilter: filterIndex)
-  }
-
-  public func handleDirection() {
-    let newListState = interactor.listState.builder().toggleDirection().build()
-    interactor.listState = newListState
-    reloadViewModels()
-  }
-
-  public func changeSort(to index: Int, filter: Int) {
-    let sort = ShowProgressSort.sort(for: index)
-    let filter = ShowProgressFilter.filter(for: filter)
-
+  public func change(sort: ShowProgressSort, filter: ShowProgressFilter) {
     let newListState = interactor.listState.builder().sort(sort).filter(filter).build()
-
     interactor.listState = newListState
 
-    reloadViewModels()
+    fetchShows()
   }
 
-  public func selectedShow(at index: Int) {
-    let entity = entities[index]
-    router.show(tvShow: entity)
+  public func select(show: WatchedShowEntity) {
+    router.show(tvShow: show)
   }
 
-  private func applyFilterAndSort() -> [WatchedShowViewModel] {
-    let listState = interactor.listState
-    let currentFilter = listState.filter
-    let currentSort = listState.sort
-    let currentDirection = listState.direction
-
-    entities = originalEntities.filter(currentFilter.filter()).sorted(by: currentSort.comparator())
-
-    if currentDirection == .desc {
-      entities = entities.reversed()
-    }
-
-    return entities.map { WatchedShowEntityMapper.viewModel(for: $0) }
-  }
-
-  private func reloadViewModels() {
-    let sortedViewModels = applyFilterAndSort()
-
-    dataSource.viewModels = sortedViewModels
-    view?.reloadList()
-  }
-
-  // TODO: change this to use view state pls!!
   private func fetchShows() {
-    view?.showLoading()
-
     interactor.fetchWatchedShowsProgress()
-      .do(onNext: { [unowned self] in
-        self.originalEntities = $0
-        self.entities = $0
+      .map { [weak self] entities -> ShowProgressViewState in
+        guard let listState = self?.interactor.listState else { return .empty }
+        return createViewState(entities: entities, listState: listState)
+      }
+      .ifEmpty(default: .empty)
+      .catchError { error -> Observable<ShowProgressViewState> in
+        Observable.just(ShowProgressViewState.error(error: error))
+      }
+      .do(onSubscribe: { [weak self] in
+        self?.viewStateSubject.onNext(.loading)
       })
-      .map { $0.map { WatchedShowEntityMapper.viewModel(for: $0) } }
-      .observeOn(MainScheduler.instance)
-      .subscribe(onNext: { [unowned self] _ in
-        guard let view = self.view else { return }
-
-        let viewModels = self.applyFilterAndSort()
-
-        self.dataSource.viewModels = viewModels
-
-        if viewModels.count > 0 {
-          view.show(viewModels: viewModels)
-        } else {
-          view.showEmptyView()
-        }
-      }, onError: { [unowned self] error in
-        self.view?.showError(message: error.localizedDescription)
-        self.dataSource.update()
-      }, onCompleted: { [unowned self] in
-        if self.dataSource.viewModels.isEmpty {
-          self.view?.showEmptyView()
-        }
+      .subscribe(onNext: { [weak self] newViewState in
+        self?.viewStateSubject.onNext(newViewState)
       }).disposed(by: disposeBag)
   }
+}
+
+private func createViewState(entities: [WatchedShowEntity],
+                             listState: ShowProgressListState) -> ShowProgressViewState {
+  var newEntities = entities.filter(listState.filter.filter()).sorted(by: listState.sort.comparator())
+
+  if listState.direction == .desc {
+    newEntities = newEntities.reversed()
+  }
+
+  guard let headEntity = newEntities.first else { return .filterEmpty }
+
+  let nonEmptyEntities = NonEmptyArray<WatchedShowEntity>(headEntity, Array(newEntities.dropFirst()))
+
+  let menu = ShowsProgressMenuOptions(sort: ShowProgressSort.allValues(),
+                                      filter: ShowProgressFilter.allValues(),
+                                      currentFilter: listState.filter,
+                                      currentSort: listState.sort)
+
+  return .shows(entities: nonEmptyEntities, menu: menu)
 }

@@ -1,106 +1,194 @@
 import ActionSheetPicker_3_0
 import CouchTrackerCore
+import FlowKitManager
+import NonEmpty
 import RxCocoa
 import RxSwift
 
-final class ShowsProgressViewController: UIViewController, ShowsProgressView {
-  var presenter: ShowsProgressPresenter!
+final class ShowsProgressViewController: UIViewController {
+  private let presenter: ShowsProgressPresenter
+  private let cellInteractor: ShowProgressCellInteractor
+  private let schedulers: Schedulers
   private let disposeBag = DisposeBag()
-  @IBOutlet var tableView: UITableView!
-  @IBOutlet var infoLabel: UILabel!
+
+  private var showsView: ShowsProgressView {
+    guard let showsView = self.view as? ShowsProgressView else {
+      preconditionFailure("self.view should be an instance of ShowsProgressView")
+    }
+    return showsView
+  }
+
+  init(presenter: ShowsProgressPresenter,
+       cellInteractor: ShowProgressCellInteractor,
+       schedulers: Schedulers = DefaultSchedulers.instance) {
+    self.presenter = presenter
+    self.cellInteractor = cellInteractor
+    self.schedulers = schedulers
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  required init?(coder _: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  override func loadView() {
+    view = ShowsProgressView()
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    guard presenter != nil else {
-      fatalError("view loaded without a presenter")
+    presenter.observeViewState()
+      .observeOn(schedulers.mainScheduler)
+      .subscribe(onNext: { [weak self] viewState in
+        self?.handleViewState(viewState)
+      }).disposed(by: disposeBag)
+  }
+
+  private func handleViewState(_ state: ShowProgressViewState) {
+    cleanBarButtonItems()
+
+    switch state {
+    case .empty:
+      showEmptyData()
+    case .filterEmpty:
+      showEmptyData()
+    case .notLogged:
+      showNotLogged()
+    case .loading:
+      showLoadingData()
+    case let .error(error):
+      showError(error: error)
+    case let .shows(entities, menu):
+      showData(entities: entities, menu: menu)
+    }
+  }
+
+  private func showEmptyData() {
+    showsView.tableView.isHidden = true
+    showsView.emptyView.isHidden = false
+    showsView.emptyView.label.text = "Nothing to show"
+  }
+
+  private func showData(entities: NonEmpty<[WatchedShowEntity]>, menu: ShowsProgressMenuOptions) {
+    configureBarButtonItems(menu: menu)
+
+    let tableView = showsView.tableView
+    let director = tableView.director
+
+    if !director.sections.isEmpty {
+      director.removeAll()
     }
 
-    guard let dataSource = presenter.dataSource as? UITableViewDataSource else {
-      fatalError("dataSource should be an instance of UITableViewDataSource")
-    }
+    let viewModels = Array(entities.map(WatchedShowEntityMapper.viewModel(for:)))
 
-    tableView.dataSource = dataSource
-    tableView.delegate = self
+    let adapter = ShowProgressTableAdapter(presenter: presenter, interactor: cellInteractor, entities: Array(entities))
 
-    view.backgroundColor = Colors.View.background
+    // CT-TODO Remove this line when this got fixed: https://github.com/malcommac/FlowKit/issues/21
+    tableView.register(ShowProgressCell.self, forCellReuseIdentifier: ShowProgressCell.identifier)
 
-    presenter.viewDidLoad()
+    director.register(adapter: adapter)
+    director.add(models: viewModels)
+    director.rowHeight = .fixed(height: 100)
+    director.reloadData()
 
-    let refreshItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: nil, action: nil)
-    refreshItem.rx.tap.asDriver().drive(onNext: { [unowned self] in
-      self.presenter.updateShows()
-      self.tableView.reloadData()
-    }).disposed(by: disposeBag)
+    showsView.emptyView.isHidden = true
+    showsView.tableView.isHidden = false
+  }
+
+  private func showError(error: Error) {
+    let errorAlert = UIAlertController.createErrorAlert(message: error.localizedDescription)
+    present(errorAlert, animated: true, completion: nil)
+  }
+
+  private func showNotLogged() {
+    showsView.tableView.isHidden = true
+    showsView.emptyView.isHidden = false
+    showsView.emptyView.label.text = R.string.localizable.traktLoginRequired()
+  }
+
+  private func showLoadingData() {
+    showsView.tableView.isHidden = true
+    showsView.emptyView.isHidden = false
+    showsView.emptyView.label.text = "Loading..."
+  }
+
+  private func cleanBarButtonItems() {
+    navigationItem.rightBarButtonItems = nil
+  }
+
+  private func configureBarButtonItems(menu: ShowsProgressMenuOptions) {
+    let sortTitles = menu.sort.map { $0.rawValue.localized }
+    let filterTitles = menu.filter.map { $0.rawValue.localized }
 
     let filterItem = UIBarButtonItem(image: R.image.filter(), style: .plain, target: nil, action: nil)
-    filterItem.rx.tap.asDriver().drive(onNext: { [unowned self] in
-      self.presenter.handleFilter()
+    filterItem.rx.tap.asDriver().drive(onNext: { [weak self] in
+      self?.showOptions(sorting: sortTitles, filtering: filterTitles,
+                        currentSort: menu.currentSort, currentFilter: menu.currentFilter)
     }).disposed(by: disposeBag)
 
     let directionItem = UIBarButtonItem(image: R.image.direction(), style: .plain, target: nil, action: nil)
-    directionItem.rx.tap.asDriver().drive(onNext: { [unowned self] in
-      self.presenter.handleDirection()
+    directionItem.rx.tap.asDriver().drive(onNext: { [weak self] in
+      self?.presenter.toggleDirection()
     }).disposed(by: disposeBag)
 
-    navigationItem.rightBarButtonItems = [filterItem, directionItem, refreshItem]
+    if let pageboy = parentPageboy {
+      pageboy.navigationItem.rightBarButtonItems = [filterItem, directionItem]
+    } else {
+      navigationItem.rightBarButtonItems = [filterItem, directionItem]
+    }
   }
 
-  func show(viewModels _: [WatchedShowViewModel]) {
-    showList()
-    reloadList()
-  }
+  private func showOptions(sorting: [String], filtering: [String],
+                           currentSort: ShowProgressSort, currentFilter: ShowProgressFilter) {
+    let initialSort = sorting.firstIndex(of: currentSort.rawValue.localized) ?? 0
+    let initialFilter = filtering.firstIndex(of: currentFilter.rawValue.localized) ?? 0
 
-  func showLoading() {
-    infoLabel.text = "Loading"
-    showInfoLabel()
-  }
-
-  func showError(message: String) {
-    infoLabel.text = message
-    showInfoLabel()
-  }
-
-  func showEmptyView() {
-    infoLabel.text = "No data"
-    showInfoLabel()
-  }
-
-  func reloadList() {
-    tableView.reloadData()
-  }
-
-  func showOptions(for sorting: [String], for filtering: [String], currentSort: Int, currentFilter: Int) {
     let title = "Sort & Filter"
     let rows = [sorting, filtering]
-    let initial = [currentSort, currentFilter]
+    let initial = [initialSort, initialFilter]
 
     let picker = ActionSheetMultipleStringPicker(title: title,
                                                  rows: rows,
                                                  initialSelection: initial,
-                                                 doneBlock: { [unowned self] _, indexes, _ in
+                                                 doneBlock: { [weak self] _, indexes, _ in
                                                    let sortIndex = (indexes?[0] as? Int) ?? 0
                                                    let filterIndex = (indexes?[1] as? Int) ?? 0
-                                                   self.presenter.changeSort(to: sortIndex, filter: filterIndex) },
+
+                                                   let sort = ShowProgressSort.allValues()[sortIndex]
+                                                   let filter = ShowProgressFilter.allValues()[filterIndex]
+
+                                                   self?.presenter.change(sort: sort, filter: filter)
+                                                 },
                                                  cancel: { _ in },
                                                  origin: view)
     picker?.show()
   }
+}
 
-  private func showList() {
-    infoLabel.isHidden = true
-    tableView.isHidden = false
-  }
-
-  private func showInfoLabel() {
-    infoLabel.isHidden = false
-    tableView.isHidden = true
+extension WatchedShowViewModel: ModelProtocol {
+  public var modelID: Int {
+    return hashValue
   }
 }
 
-extension ShowsProgressViewController: UITableViewDelegate {
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    tableView.deselectRow(at: indexPath, animated: true)
-    presenter.selectedShow(at: indexPath.row)
+private class ShowProgressTableAdapter: TableAdapter<WatchedShowViewModel, ShowProgressCell> {
+  init(presenter: ShowsProgressPresenter, interactor: ShowProgressCellInteractor, entities: [WatchedShowEntity]) {
+    super.init()
+
+    on.dequeue = { context in
+      guard let cell = context.cell else { return }
+
+      let viewModel = context.model
+      let presenter = ShowProgressCellDefaultPresenter(interactor: interactor, viewModel: viewModel)
+
+      cell.presenter = presenter
+    }
+
+    on.tap = { context in
+      let entity = entities[context.indexPath.row]
+      presenter.select(show: entity)
+      return .deselectAnimated
+    }
   }
 }

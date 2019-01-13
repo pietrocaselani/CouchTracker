@@ -1,19 +1,16 @@
 import CouchTrackerCore
 
-final class ShowsProgressModule {
+enum ShowsProgressModule {
   private init() {
     Swift.fatalError("No instances for you!")
   }
 
   static func setupModule() -> BaseView {
-    guard let view = R.storyboard.showsProgress.showsProgressViewController() else {
-      Swift.fatalError("Can't instantiate showsProgressController from Shows storyboard")
-    }
-
     let tmdb = Environment.instance.tmdb
     let tvdb = Environment.instance.tvdb
     let schedulers = Environment.instance.schedulers
     let traktLoginObservable = Environment.instance.loginObservable
+    let userDefaults = Environment.instance.userDefaults
 
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
@@ -21,22 +18,22 @@ final class ShowsProgressModule {
                                                 cofigurationRepository: configurationRepository,
                                                 schedulers: schedulers)
 
-    let listStateDataSource = ShowsProgressListStateDefaultDataSource(userDefaults: UserDefaults.standard)
+    let listStateDataSource = ShowsProgressListStateDefaultDataSource(userDefaults: userDefaults)
 
-    let router = ShowsProgressiOSRouter(viewController: view)
-    let viewDataSource = ShowsProgressTableViewDataSource(imageRepository: imageRepository)
+    let router = ShowsProgressiOSRouter()
+    let cellInteractor = ShowProgressCellService(imageRepository: imageRepository)
 
     let interactor = ShowsProgressService(listStateDataSource: listStateDataSource,
                                           showsObserable: Environment.instance.watchedShowEntitiesObservable)
 
-    let presenter = ShowsProgressDefaultPresenter(view: view,
-                                                  interactor: interactor,
-                                                  viewDataSource: viewDataSource,
+    let presenter = ShowsProgressDefaultPresenter(interactor: interactor,
                                                   router: router,
                                                   loginObservable: traktLoginObservable)
 
-    view.presenter = presenter
+    let viewController = ShowsProgressViewController(presenter: presenter, cellInteractor: cellInteractor)
 
-    return view
+    router.viewController = viewController
+
+    return viewController
   }
 }

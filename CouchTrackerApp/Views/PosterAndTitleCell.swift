@@ -7,6 +7,7 @@ public final class PosterAndTitleCell: CollectionViewCell {
 
   public var presenter: PosterCellPresenter! {
     didSet {
+      posterImageView.image = nil
       presenter.viewWillAppear()
     }
   }
@@ -33,7 +34,7 @@ public final class PosterAndTitleCell: CollectionViewCell {
   public override func initialize() {
     contentView.addSubview(stackView)
 
-    backgroundColor = Colors.Cell.backgroundColor
+    backgroundColor = Colors.Cell.foregroundColor
   }
 
   public override func installConstraints() {

@@ -18,6 +18,7 @@ public class ShowEpisodeView: View {
     imageView.contentMode = UIView.ContentMode.scaleAspectFill
     imageView.isUserInteractionEnabled = true
     imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapOnPreview)))
+    imageView.clipsToBounds = true
     return imageView
   }()
 

@@ -7,6 +7,14 @@ public struct WatchedShowViewModel: Hashable {
   public let status: String
   public let tmdbId: Int?
 
+  public init(title: String, nextEpisode: String?, nextEpisodeDate: String?, status: String, tmdbId: Int?) {
+    self.title = title
+    self.nextEpisode = nextEpisode
+    self.nextEpisodeDate = nextEpisodeDate
+    self.status = status
+    self.tmdbId = tmdbId
+  }
+
   public var hashValue: Int {
     var hash = title.hashValue ^ status.hashValue
 

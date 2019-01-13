@@ -3,6 +3,7 @@ PODS:
   - Alamofire (4.8.0)
   - AutoInsetter (1.4.1)
   - Cartography (3.1.0)
+  - FlowKitManager (0.6.1)
   - Kingfisher (5.0.1)
   - Moya/Core (12.0.1):
     - Alamofire (~> 4.1)
@@ -11,6 +12,7 @@ PODS:
     - Moya/Core
     - RxSwift (~> 4.0)
   - Nimble (7.3.1)
+  - NonEmpty (0.1.2)
   - Pageboy (3.0.1)
   - R.swift (5.0.0):
     - R.swift.Library (~> 5.0.0)
@@ -49,8 +51,10 @@ PODS:
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.2.0)
   - Cartography (= 3.1.0)
+  - FlowKitManager (= 0.6.1)
   - Kingfisher (= 5.0.1)
   - Nimble (= 7.3.1)
+  - NonEmpty (= 0.1.2)
   - R.swift (= 5.0.0)
   - RealmSwift (= 3.7.6)
   - RxCocoa (= 4.4.0)
@@ -69,9 +73,11 @@ SPEC REPOS:
     - Alamofire
     - AutoInsetter
     - Cartography
+    - FlowKitManager
     - Kingfisher
     - Moya
     - Nimble
+    - NonEmpty
     - Pageboy
     - R.swift
     - R.swift.Library
@@ -99,9 +105,11 @@ SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   AutoInsetter: d0eafc611d686f83f925ded729084cf916a39863
   Cartography: 1988b7578871a56c036e7af17195cb2190edf18c
+  FlowKitManager: fd5ac628b3ed7047228eae653f5f2cde89a862f7
   Kingfisher: 4f771421b9208185217550528a06fd48756cb7c2
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
+  NonEmpty: b1054f956f717e9f771d379485c9dd7c2bc65a74
   Pageboy: ec0170fd880ea6fa3589219edfd64b554443ff6e
   R.swift: f88c7d7d48a2be4dffa132dde1b3d389620310eb
   R.swift.Library: 0bf390e729bc10bb2c9e4fb78bd043164a7be4ff
@@ -119,6 +127,6 @@ SPEC CHECKSUMS:
   Trakt: 40017d9fb9e02eac04953d0b8d10b36abc2f32f9
   TVDB: 02147961f77ddc25989b72bff5746e3da78ffb3d
 
-PODFILE CHECKSUM: 1049b3c9ed13eebe23dac2472aa44ec3adbd8d92
+PODFILE CHECKSUM: be2587171474cfbb80a77c8554476d84b5f6a069
 
 COCOAPODS: 1.5.3

@@ -2,9 +2,16 @@
 import RxSwift
 import TraktSwift
 
-final class ShowsProgressMocks {
-  private init() {}
+extension ShowsProgressMenuOptions {
+  static var mock: ShowsProgressMenuOptions {
+    return ShowsProgressMenuOptions(sort: ShowProgressSort.allValues(),
+                                    filter: ShowProgressFilter.allValues(),
+                                    currentFilter: ShowProgressFilter.allValues().first!,
+                                    currentSort: ShowProgressSort.allValues().first!)
+  }
+}
 
+enum ShowsProgressMocks {
   static func createWatchedShowsMock() -> [BaseShow] {
     return try! JSONDecoder().decode([BaseShow].self, from: Sync.watched(type: .shows, extended: .full).sampleData)
   }
@@ -132,77 +139,42 @@ final class ShowsProgressMocks {
     }
   }
 
-  final class ShowsProgressViewMock: ShowsProgressView {
-    var presenter: ShowsProgressPresenter!
-    var reloadListInvoked = false
-    var showOptionsInvoked = false
-    var showViewModelsInvoked = false
-    var showErrorInvoked = false
-    var showLoadingInvoked = false
-    var showEmptyViewInvoked = false
-    var showViewModelsParameters: [WatchedShowViewModel]?
-    var showErrorParameters: String?
-    var showOptionsParameters: (sorting: [String], filtering: [String], currentSort: Int, currentFilter: Int)?
-
-    func show(viewModels: [WatchedShowViewModel]) {
-      showViewModelsInvoked = true
-      showViewModelsParameters = viewModels
-    }
-
-    func showError(message: String) {
-      showErrorInvoked = true
-      showErrorParameters = message
-    }
-
-    func showLoading() {
-      showLoadingInvoked = true
-    }
-
-    func showEmptyView() {
-      showEmptyViewInvoked = true
-    }
-
-    func reloadList() {
-      reloadListInvoked = true
-    }
-
-    func showOptions(for sorting: [String], for filtering: [String], currentSort: Int, currentFilter: Int) {
-      showOptionsInvoked = true
-      showOptionsParameters = (sorting, filtering, currentSort, currentFilter)
-    }
-  }
-
   final class EmptyShowsProgressInteractorMock: ShowsProgressInteractor {
     var listState: ShowProgressListState = ShowProgressListState.initialState
-
-    init(repository _: ShowsProgressRepository,
-         listStateDataSource _: ShowsProgressListStateDataSource,
-         schedulers _: Schedulers) {}
 
     func fetchWatchedShowsProgress() -> Observable<[WatchedShowEntity]> {
       return Observable.empty()
     }
   }
 
+  final class DelayEmptyShowsProgressInteractorMock: ShowsProgressInteractor {
+    var listState: ShowProgressListState = ShowProgressListState.initialState
+
+    private let schedulers: TestSchedulers
+
+    init(schedulers: TestSchedulers) {
+      self.schedulers = schedulers
+    }
+
+    func fetchWatchedShowsProgress() -> Observable<[WatchedShowEntity]> {
+//      return Observable.empty().delaySubscription(10, scheduler: schedulers.mainScheduler as! SchedulerType)
+      return Observable.empty().delay(2, scheduler: schedulers.mainScheduler as! SchedulerType)
+    }
+  }
+
   final class ShowsProgressInteractorMock: ShowsProgressInteractor {
     var listState: ShowProgressListState = ShowProgressListState.initialState
-    var error: Error?
-    var empty = false
-    var entities = [WatchedShowEntity]()
+    let error: Error?
+    let entities: [WatchedShowEntity]
 
-    init(repository _: ShowsProgressRepository,
-         listStateDataSource _: ShowsProgressListStateDataSource,
-         schedulers _: Schedulers) {}
+    init(entities: [WatchedShowEntity] = [WatchedShowEntity](), error: Error? = nil) {
+      self.entities = entities
+      self.error = error
+    }
 
     func fetchWatchedShowsProgress() -> Observable<[WatchedShowEntity]> {
       if let error = error {
         return Observable.error(error)
-      }
-
-      if !empty && entities.count == 0 {
-        entities.append(ShowsProgressMocks.mockWatchedShowEntity())
-        entities.append(ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
-        entities.append(ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisodeDate())
       }
 
       return Observable.just(entities)
@@ -246,21 +218,6 @@ final class ShowsProgressMocks {
       newEntities.append(contentsOf: shows)
 
       watchedShowsSubject.onNext(newEntities)
-    }
-  }
-
-  final class ShowProgressViewDataSourceMock: ShowsProgressViewDataSource {
-    var viewModels = [WatchedShowViewModel]() {
-      didSet {
-        setViewModelInvoked = true
-      }
-    }
-
-    var updateInvoked = false
-    var setViewModelInvoked = false
-
-    func update() {
-      updateInvoked = true
     }
   }
 

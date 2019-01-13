@@ -6,16 +6,16 @@ public enum ShowProgressFilter: String {
   case returning
   case returningWatched
 
-  static func create(from value: String?) -> ShowProgressFilter {
+  public static func create(from value: String?) -> ShowProgressFilter {
     guard let stringValue = value else { return ShowProgressFilter.none }
     return ShowProgressFilter(rawValue: stringValue) ?? ShowProgressFilter.none
   }
 
-  static func allValues() -> [ShowProgressFilter] {
+  public static func allValues() -> [ShowProgressFilter] {
     return [.none, .watched, .returning, returningWatched]
   }
 
-  static func filter(for index: Int) -> ShowProgressFilter {
+  public static func filter(for index: Int) -> ShowProgressFilter {
     let allValues = ShowProgressFilter.allValues()
     if index < 0 || index >= allValues.count {
       return ShowProgressFilter.none
@@ -24,11 +24,11 @@ public enum ShowProgressFilter: String {
     return allValues[index]
   }
 
-  func index() -> Int {
+  public func index() -> Int {
     return ShowProgressFilter.allValues().index(of: self) ?? 0
   }
 
-  func filter() -> (WatchedShowEntity) -> Bool {
+  public func filter() -> (WatchedShowEntity) -> Bool {
     if self == .none { return filterNone() }
     if self == .watched { return filterWatched() }
     if self == .returning { return filterReturning() }

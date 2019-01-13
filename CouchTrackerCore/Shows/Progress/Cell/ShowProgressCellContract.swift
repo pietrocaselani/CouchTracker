@@ -1,16 +1,15 @@
 import RxSwift
 
-public protocol ShowProgressCellView: class {
-  var presenter: ShowProgressCellPresenter! { get set }
-
-  func show(viewModel: WatchedShowViewModel)
-  func showPosterImage(with url: URL)
+public enum ShowProgressCellViewState: Hashable {
+  case viewModel(viewModel: WatchedShowViewModel)
+  case viewModelAndPosterURL(viewModel: WatchedShowViewModel, url: URL)
 }
 
 public protocol ShowProgressCellPresenter: class {
-  init(view: ShowProgressCellView, interactor: ShowProgressCellInteractor, viewModel: WatchedShowViewModel)
+  init(interactor: ShowProgressCellInteractor, viewModel: WatchedShowViewModel)
 
   func viewWillAppear()
+  func observeViewState() -> Observable<ShowProgressCellViewState>
 }
 
 public protocol ShowProgressCellInteractor: class {
