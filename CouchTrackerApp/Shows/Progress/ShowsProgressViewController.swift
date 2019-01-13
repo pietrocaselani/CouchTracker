@@ -180,7 +180,7 @@ private class ShowProgressTableAdapter: TableAdapter<WatchedShowViewModel, ShowP
       guard let cell = context.cell else { return }
 
       let viewModel = context.model
-      let presenter = ShowProgressCellDefaultPresenter(view: cell, interactor: interactor, viewModel: viewModel)
+      let presenter = ShowProgressCellDefaultPresenter(interactor: interactor, viewModel: viewModel)
 
       cell.presenter = presenter
     }

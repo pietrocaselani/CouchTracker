@@ -20,7 +20,7 @@ public final class WatchedShowEntityMapper {
     var status = episodesRemaining == 0 ? "" : "episodes remaining".localized(String(episodesRemaining))
 
     if let network = entity.show.network {
-      status = episodesRemaining == 0 ? network : "\(status) \(network)"
+      status = episodesRemaining == 0 ? network : "\(status) - \(network)"
     }
 
     return status

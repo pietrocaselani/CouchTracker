@@ -1,28 +1,48 @@
 import Cartography
 import CouchTrackerCore
+import RxSwift
 
-final class ShowProgressCell: TableViewCell, ShowProgressCellView {
+final class ShowProgressCell: TableViewCell {
   static let identifier = "ShowProgressCell"
-  // Remove
-  var presenter: ShowProgressCellPresenter! {
+  private var disposable: Disposable?
+
+  var presenter: ShowProgressCellPresenter? {
     didSet {
-      posterImageView.image = nil
-      presenter.viewWillAppear()
+      disposable = presenter?.observeViewState().subscribe(onNext: { [weak self] viewState in
+        self?.handleViewState(viewState)
+      })
+
+      presenter?.viewWillAppear()
     }
   }
 
-  func show(viewModel: WatchedShowViewModel) {
+  override func prepareForReuse() {
+    super.prepareForReuse()
+
+    posterImageView.image = nil
+    disposable = nil
+  }
+
+  private func handleViewState(_ viewState: ShowProgressCellViewState) {
+    switch viewState {
+    case let .viewModel(viewModel):
+      show(viewModel: viewModel)
+    case let .viewModelAndPosterURL(viewModel, url):
+      show(viewModel: viewModel)
+      showPosterImage(with: url)
+    }
+  }
+
+  private func show(viewModel: WatchedShowViewModel) {
     showTitleLabel.text = viewModel.title
     episodeTitleLabel.text = viewModel.nextEpisode
     statusAndDateLabel.text = viewModel.nextEpisodeDate
     remainingAndNetworkLabel.text = viewModel.status
   }
 
-  func showPosterImage(with url: URL) {
+  private func showPosterImage(with url: URL) {
     posterImageView.kf.setImage(with: url)
   }
-
-  // Remove
 
   let posterImageView = UIImageView()
 
