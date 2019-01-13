@@ -1,3 +1,9 @@
+# 0.0.1 (16) 
+* Merge pull request #183 from pietrocaselani/fix_actionitems_and_cell_reutilization [view commit](http://github.com/pietrocaselani/CouchTracker/commit/8c5670cc94ba9e5ab86764a74275aede79d164cb)
+* Cancel image download task on cell reuse [view commit](http://github.com/pietrocaselani/CouchTracker/commit/2936cc618fccefd91165372fb89e809e198a2587)
+* Resets image when PosterAndTitleCell will be reused [view commit](http://github.com/pietrocaselani/CouchTracker/commit/aa513ab42f9999f3619f24c9a199bd8fafa47eb6)
+* Always sets action items on current view controller and pageboy view controller [view commit](http://github.com/pietrocaselani/CouchTracker/commit/a7203b852da6eb3a36ec415be932047e9dd36633)
+
 # 0.0.1 (15) 
 * Merge pull request #182 from pietrocaselani/fix_changelog [view commit](http://github.com/pietrocaselani/CouchTracker/commit/324f1fdbe19a7f82b6cc47c677a10e1a7cc578b0)
 * Append new changes on the top of file [view commit](http://github.com/pietrocaselani/CouchTracker/commit/3be58afa4bfdfcb4129b1a0aa06d4f2f03c59cc1)
