@@ -94,9 +94,11 @@ private_lane :update_changelog_file do |options|
   version_name = options[:version_name]
   changelog = options[:changelog]
 
-  open('../changelog.md', 'a') do |f|
-    f << "# #{version_name} \n#{changelog}"
-  end
+  current_changelog = File.read('../changelog.md')
+
+  new_changelog = "# #{version_name} \n#{changelog}\n\n" + current_changelog
+
+  File.write('../changelog.md', new_changelog)
 end
 
 private_lane :setup_git_on_ci do
