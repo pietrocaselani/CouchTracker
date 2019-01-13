@@ -1,3 +1,8 @@
+# 0.0.1 (15) 
+* Merge pull request #182 from pietrocaselani/fix_changelog [view commit](http://github.com/pietrocaselani/CouchTracker/commit/324f1fdbe19a7f82b6cc47c677a10e1a7cc578b0)
+* Append new changes on the top of file [view commit](http://github.com/pietrocaselani/CouchTracker/commit/3be58afa4bfdfcb4129b1a0aa06d4f2f03c59cc1)
+* Reorder changelog file [view commit](http://github.com/pietrocaselani/CouchTracker/commit/5ccdca3e81adc90d7055b2d6b7410aad17ee95e6)
+
 # 0.0.1 (14)
 * Merge pull request #181 from pietrocaselani/showsprogress_viewcode_no_storyboard [view commit](http://github.com/pietrocaselani/CouchTracker/commit/332882052c750cb3133d3e940643c2819c7bfef0)
 * Refact ShowProgressCell to ViewState [view commit](http://github.com/pietrocaselani/CouchTracker/commit/f7c4315650d8a897d5df46bc17b1b58caccf48ef)
