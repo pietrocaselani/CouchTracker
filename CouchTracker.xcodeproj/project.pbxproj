@@ -529,8 +529,17 @@
 		82930A1F216C1C8500A824F6 /* RealmShowsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69723B2DE85E11A441AE3CF7 /* RealmShowsDataSource.swift */; };
 		82930A20216C1C8500A824F6 /* SynchronizerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821874AC2153122600E56040 /* SynchronizerContract.swift */; };
 		82930A21216C1C8500A824F6 /* SynchronizerDataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69723AC6CAF4ED73AC5EA0EF /* SynchronizerDataSources.swift */; };
+		8296594221F3887100DB1B4D /* SyncStateStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296594121F3887100DB1B4D /* SyncStateStoreTests.swift */; };
 		829A590121B2404700B67753 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829A590021B2404700B67753 /* Container.swift */; };
 		829A590221B2404700B67753 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829A590021B2404700B67753 /* Container.swift */; };
+		82AC56E321F12E2300DCF165 /* SyncState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC56E221F12E2300DCF165 /* SyncState.swift */; };
+		82AC56E421F12E2300DCF165 /* SyncState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC56E221F12E2300DCF165 /* SyncState.swift */; };
+		82AC56E621F12E9800DCF165 /* SyncStateObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC56E521F12E9800DCF165 /* SyncStateObservable.swift */; };
+		82AC56E721F12E9800DCF165 /* SyncStateObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC56E521F12E9800DCF165 /* SyncStateObservable.swift */; };
+		82AC56E921F12EBF00DCF165 /* SyncStateOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC56E821F12EBF00DCF165 /* SyncStateOutput.swift */; };
+		82AC56EA21F12EBF00DCF165 /* SyncStateOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC56E821F12EBF00DCF165 /* SyncStateOutput.swift */; };
+		82AC56EC21F12EE300DCF165 /* SyncStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC56EB21F12EE300DCF165 /* SyncStateStore.swift */; };
+		82AC56ED21F12EE300DCF165 /* SyncStateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC56EB21F12EE300DCF165 /* SyncStateStore.swift */; };
 		82C6477C21D72F3500175B24 /* TrendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C6477B21D72F3500175B24 /* TrendingView.swift */; };
 		82C6477E21D72F5200175B24 /* DefaultEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C6477D21D72F5200175B24 /* DefaultEmptyView.swift */; };
 		82C6478021D7345200175B24 /* PosterAndTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C6477F21D7345200175B24 /* PosterAndTitleCell.swift */; };
@@ -996,7 +1005,12 @@
 		82882F5621DED60E00B1A732 /* SearchResultEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultEntity.swift; sourceTree = "<group>"; };
 		82882F5921DED8BA00B1A732 /* SearchiOSRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchiOSRouter.swift; sourceTree = "<group>"; };
 		82930A18216C1C7B00A824F6 /* DefaultWatchedShowEntityDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWatchedShowEntityDownloader.swift; sourceTree = "<group>"; };
+		8296594121F3887100DB1B4D /* SyncStateStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStateStoreTests.swift; sourceTree = "<group>"; };
 		829A590021B2404700B67753 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		82AC56E221F12E2300DCF165 /* SyncState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncState.swift; sourceTree = "<group>"; };
+		82AC56E521F12E9800DCF165 /* SyncStateObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStateObservable.swift; sourceTree = "<group>"; };
+		82AC56E821F12EBF00DCF165 /* SyncStateOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStateOutput.swift; sourceTree = "<group>"; };
+		82AC56EB21F12EE300DCF165 /* SyncStateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStateStore.swift; sourceTree = "<group>"; };
 		82C6477B21D72F3500175B24 /* TrendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingView.swift; sourceTree = "<group>"; };
 		82C6477D21D72F5200175B24 /* DefaultEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEmptyView.swift; sourceTree = "<group>"; };
 		82C6477F21D7345200175B24 /* PosterAndTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterAndTitleCell.swift; sourceTree = "<group>"; };
@@ -2154,11 +2168,12 @@
 		821874AB2153121100E56040 /* Synchronizer */ = {
 			isa = PBXGroup;
 			children = (
+				82836EA9218EC29E0037A798 /* CentralSynchronizer.swift */,
 				82836E94218EA8670037A798 /* DataSources */,
 				82836E95218EA8840037A798 /* Downloaders */,
+				82AC56E121F12E1400DCF165 /* State */,
 				82836E96218EAAEB0037A798 /* Synchronizers */,
 				82836E9D218EABE20037A798 /* SyncOptions.swift */,
-				82836EA9218EC29E0037A798 /* CentralSynchronizer.swift */,
 			);
 			path = Synchronizer;
 			sourceTree = "<group>";
@@ -2215,9 +2230,29 @@
 			path = Synchronizers;
 			sourceTree = "<group>";
 		};
+		8296594021F3886800DB1B4D /* State */ = {
+			isa = PBXGroup;
+			children = (
+				8296594121F3887100DB1B4D /* SyncStateStoreTests.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		82AC56E121F12E1400DCF165 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				82AC56E221F12E2300DCF165 /* SyncState.swift */,
+				82AC56E521F12E9800DCF165 /* SyncStateObservable.swift */,
+				82AC56E821F12EBF00DCF165 /* SyncStateOutput.swift */,
+				82AC56EB21F12EE300DCF165 /* SyncStateStore.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
 		82D2434421C6DB8F0003FC3D /* Synchronizer */ = {
 			isa = PBXGroup;
 			children = (
+				8296594021F3886800DB1B4D /* State */,
 				82D2434521C6DBA40003FC3D /* SynchronizerMocks.swift */,
 			);
 			path = Synchronizer;
@@ -2981,6 +3016,7 @@
 				82930A19216C1C7B00A824F6 /* DefaultWatchedShowEntityDownloader.swift in Sources */,
 				827EB79E21DAED9300B02001 /* AppConfigurationsStore.swift in Sources */,
 				4F0F571B203D5FA000B86CB8 /* AppConfigurationsService.swift in Sources */,
+				82AC56E321F12E2300DCF165 /* SyncState.swift in Sources */,
 				82F85FD821D5ACCF006A66B9 /* StringExtensions.swift in Sources */,
 				4FE4BA3C2059EA2B00969AAF /* PosterViewModel.swift in Sources */,
 				4F0F571C203D5FA000B86CB8 /* AppConfigurationsState.swift in Sources */,
@@ -2997,6 +3033,7 @@
 				4F0F572C203D5FA000B86CB8 /* ImageEntity.swift in Sources */,
 				4F0F572D203D5FA000B86CB8 /* ImagesEntity.swift in Sources */,
 				4F0F572E203D5FA000B86CB8 /* ModulePage.swift in Sources */,
+				82AC56E621F12E9800DCF165 /* SyncStateObservable.swift in Sources */,
 				82836EB5219034010037A798 /* CouchTrackerError.swift in Sources */,
 				82836E9B218EAB580037A798 /* DefaultWatchedShowsSynchronizer.swift in Sources */,
 				8239F813216C159500A29F01 /* DefaultWatchedShowEntitiesDownloader.swift in Sources */,
@@ -3005,6 +3042,7 @@
 				827EB79C21DAED9300B02001 /* AppConfigurationsObservable.swift in Sources */,
 				8209AB1E21CF37EA0027BBF3 /* Constants.swift in Sources */,
 				4F0F5731203D5FA000B86CB8 /* TrendingMovieEntity.swift in Sources */,
+				82AC56EC21F12EE300DCF165 /* SyncStateStore.swift in Sources */,
 				4F0F5732203D5FA000B86CB8 /* EpisodeEntityMapper.swift in Sources */,
 				4F3A5954204EBA850061ABB7 /* AppFlowDefaultPresenter.swift in Sources */,
 				4F0F5733203D5FA000B86CB8 /* ImagesEntityMapper.swift in Sources */,
@@ -3034,6 +3072,7 @@
 				4F0F574A203D5FA000B86CB8 /* Localizable.swift in Sources */,
 				4F0F574B203D5FA000B86CB8 /* MovieDetailsAPIRepository.swift in Sources */,
 				4F0F574C203D5FA000B86CB8 /* MovieDetailsContract.swift in Sources */,
+				82AC56E921F12EBF00DCF165 /* SyncStateOutput.swift in Sources */,
 				4F0F574D203D5FA000B86CB8 /* MovieDetailsError.swift in Sources */,
 				4F0F574E203D5FA000B86CB8 /* MovieDetailsDefaultPresenter.swift in Sources */,
 				8209AB1921CF343E0027BBF3 /* URLExtensions.swift in Sources */,
@@ -3210,6 +3249,7 @@
 				4F0F5802203D61B300B86CB8 /* TraktLoginPresenterTest.swift in Sources */,
 				4F0F5803203D61B300B86CB8 /* TraktLoginStoreTest.swift in Sources */,
 				4F0F5804203D61B300B86CB8 /* TraktTokenPolicyDeciderTest.swift in Sources */,
+				8296594221F3887100DB1B4D /* SyncStateStoreTests.swift in Sources */,
 				4FC97A21203F166400C2B924 /* ShowProgressCellMocks.swift in Sources */,
 				4F0F5806203D61B300B86CB8 /* PosterCellInteractorTest.swift in Sources */,
 				4F0F5807203D61B300B86CB8 /* PosterCellPresenterTest.swift in Sources */,
@@ -3256,6 +3296,7 @@
 				4F0F5940203D988300B86CB8 /* TraktLoginState.swift in Sources */,
 				4F0F5941203D988300B86CB8 /* TraktLoginStore.swift in Sources */,
 				827EB79B21DAED9200B02001 /* AppConfigurationsStore.swift in Sources */,
+				82AC56E421F12E2300DCF165 /* SyncState.swift in Sources */,
 				4F0F5942203D988300B86CB8 /* TraktTokenPolicyDecider.swift in Sources */,
 				4F0F591B203D7E9900B86CB8 /* MovieDetailsService.swift in Sources */,
 				82F85FD921D5ACCF006A66B9 /* StringExtensions.swift in Sources */,
@@ -3272,6 +3313,7 @@
 				4F0F5872203D7B0A00B86CB8 /* AppConfigurationsViewModel.swift in Sources */,
 				4F0F5873203D7B0A00B86CB8 /* AppConfigurationsMoyaNetwork.swift in Sources */,
 				4F0F5877203D7B0A00B86CB8 /* BaseView.swift in Sources */,
+				82AC56E721F12E9800DCF165 /* SyncStateObservable.swift in Sources */,
 				82836EB6219034010037A798 /* CouchTrackerError.swift in Sources */,
 				82836E9C218EAB580037A798 /* DefaultWatchedShowsSynchronizer.swift in Sources */,
 				4F0F5878203D7B0A00B86CB8 /* BuildConfig.swift in Sources */,
@@ -3280,6 +3322,7 @@
 				827EB79921DAED9200B02001 /* AppConfigurationsObservable.swift in Sources */,
 				8209AB2021CF3A010027BBF3 /* Constants.swift in Sources */,
 				4F0F587B203D7B0A00B86CB8 /* DefaultBuildConfig.swift in Sources */,
+				82AC56ED21F12EE300DCF165 /* SyncStateStore.swift in Sources */,
 				4F3A5955204EBA850061ABB7 /* AppFlowDefaultPresenter.swift in Sources */,
 				4F0F587C203D7B0A00B86CB8 /* DefaultSchedulers.swift in Sources */,
 				4F0F587D203D7B0A00B86CB8 /* EpisodeEntity.swift in Sources */,
@@ -3309,6 +3352,7 @@
 				4F0F588F203D7B0A00B86CB8 /* OptionalExtensions.swift in Sources */,
 				4F0F5890203D7B0A00B86CB8 /* ShowIds+TMDBType.swift in Sources */,
 				4F0F5891203D7B0A00B86CB8 /* String+Localizable.swift in Sources */,
+				82AC56EA21F12EBF00DCF165 /* SyncStateOutput.swift in Sources */,
 				4F0F5896203D7B0A00B86CB8 /* GenreRepository.swift in Sources */,
 				4F0F5897203D7B0A00B86CB8 /* TraktGenreRepository.swift in Sources */,
 				8209AB1A21CF343E0027BBF3 /* URLExtensions.swift in Sources */,
