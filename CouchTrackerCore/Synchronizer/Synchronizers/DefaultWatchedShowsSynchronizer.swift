@@ -5,15 +5,22 @@ public final class DefaultWatchedShowsSynchronizer: WatchedShowsSynchronizer {
   private let downloader: WatchedShowEntitiesDownloader
   private let dataHolder: ShowsDataHolder
   private let schedulers: Schedulers
+  private let syncStateOutput: SyncStateOutput
 
-  public init(downloader: WatchedShowEntitiesDownloader, dataHolder: ShowsDataHolder, schedulers: Schedulers) {
+  public init(downloader: WatchedShowEntitiesDownloader,
+              dataHolder: ShowsDataHolder,
+              syncStateOutput: SyncStateOutput,
+              schedulers: Schedulers = DefaultSchedulers.instance) {
     self.downloader = downloader
     self.dataHolder = dataHolder
+    self.syncStateOutput = syncStateOutput
     self.schedulers = schedulers
   }
 
   public func syncWatchedShows(using options: WatchedShowEntitiesSyncOptions) -> Single<[WatchedShowEntity]> {
     return downloader.syncWatchedShowEntities(using: options)
+      .debug(">>> [Sync]", trimOutput: false)
+      .notifySyncState(syncStateOutput)
       .observeOn(schedulers.networkScheduler)
       .toArray()
       .observeOn(schedulers.dataSourceScheduler)
@@ -21,5 +28,17 @@ public final class DefaultWatchedShowsSynchronizer: WatchedShowsSynchronizer {
         guard let strongSelf = self else { return }
         try strongSelf.dataHolder.save(shows: shows)
       }).asSingle()
+  }
+}
+
+private extension Observable where Element == WatchedShowEntity {
+  func notifySyncState(_ syncStateOutput: SyncStateOutput) -> Observable<WatchedShowEntity> {
+    return `do`(onError: { _ in
+      syncStateOutput.newSyncState(state: SyncState(watchedShowsSyncState: .notSyncing))
+    }, onCompleted: {
+      syncStateOutput.newSyncState(state: SyncState(watchedShowsSyncState: .notSyncing))
+    }, onSubscribe: {
+      syncStateOutput.newSyncState(state: SyncState(watchedShowsSyncState: .syncing))
+    })
   }
 }

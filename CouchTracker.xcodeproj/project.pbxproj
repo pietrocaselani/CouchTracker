@@ -530,6 +530,8 @@
 		82930A20216C1C8500A824F6 /* SynchronizerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821874AC2153122600E56040 /* SynchronizerContract.swift */; };
 		82930A21216C1C8500A824F6 /* SynchronizerDataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69723AC6CAF4ED73AC5EA0EF /* SynchronizerDataSources.swift */; };
 		8296594221F3887100DB1B4D /* SyncStateStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296594121F3887100DB1B4D /* SyncStateStoreTests.swift */; };
+		8296594421F38DB500DB1B4D /* DefaultWatchedShowsSynchronizerSyncStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296594321F38DB500DB1B4D /* DefaultWatchedShowsSynchronizerSyncStateTests.swift */; };
+		8296594621F3905200DB1B4D /* SyncStateMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296594521F3905200DB1B4D /* SyncStateMocks.swift */; };
 		829A590121B2404700B67753 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829A590021B2404700B67753 /* Container.swift */; };
 		829A590221B2404700B67753 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829A590021B2404700B67753 /* Container.swift */; };
 		82AC56E321F12E2300DCF165 /* SyncState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC56E221F12E2300DCF165 /* SyncState.swift */; };
@@ -1006,6 +1008,8 @@
 		82882F5921DED8BA00B1A732 /* SearchiOSRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchiOSRouter.swift; sourceTree = "<group>"; };
 		82930A18216C1C7B00A824F6 /* DefaultWatchedShowEntityDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWatchedShowEntityDownloader.swift; sourceTree = "<group>"; };
 		8296594121F3887100DB1B4D /* SyncStateStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStateStoreTests.swift; sourceTree = "<group>"; };
+		8296594321F38DB500DB1B4D /* DefaultWatchedShowsSynchronizerSyncStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWatchedShowsSynchronizerSyncStateTests.swift; sourceTree = "<group>"; };
+		8296594521F3905200DB1B4D /* SyncStateMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStateMocks.swift; sourceTree = "<group>"; };
 		829A590021B2404700B67753 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		82AC56E221F12E2300DCF165 /* SyncState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncState.swift; sourceTree = "<group>"; };
 		82AC56E521F12E9800DCF165 /* SyncStateObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStateObservable.swift; sourceTree = "<group>"; };
@@ -2254,6 +2258,8 @@
 			children = (
 				8296594021F3886800DB1B4D /* State */,
 				82D2434521C6DBA40003FC3D /* SynchronizerMocks.swift */,
+				8296594321F38DB500DB1B4D /* DefaultWatchedShowsSynchronizerSyncStateTests.swift */,
+				8296594521F3905200DB1B4D /* SyncStateMocks.swift */,
 			);
 			path = Synchronizer;
 			sourceTree = "<group>";
@@ -3215,11 +3221,13 @@
 				4F0F57E5203D61B300B86CB8 /* SearchInteractorTest.swift in Sources */,
 				4F0F57E6203D61B300B86CB8 /* SearchMocks.swift in Sources */,
 				4F0F57E7203D61B300B86CB8 /* SearchPresenterTest.swift in Sources */,
+				8296594421F38DB500DB1B4D /* DefaultWatchedShowsSynchronizerSyncStateTests.swift in Sources */,
 				4F0F57E8203D61B300B86CB8 /* ShowEpisodeAPIRepositoryTest.swift in Sources */,
 				4F0F57E9203D61B300B86CB8 /* ShowEpisodeMocks.swift in Sources */,
 				8209AB0B21CED6800027BBF3 /* Error+Mock.swift in Sources */,
 				4FD9E725209E69CB007673A3 /* NSLocale+Override.m in Sources */,
 				8209AB1021CEF39E0027BBF3 /* WatchedShowEntity+Mock.swift in Sources */,
+				8296594621F3905200DB1B4D /* SyncStateMocks.swift in Sources */,
 				4F0F57EA203D61B300B86CB8 /* ShowEpisodeServiceTest.swift in Sources */,
 				4F3F67DF209E678100D3E403 /* NSObject+Swizzling.m in Sources */,
 				4FDBB663203E9FDA00448A60 /* ShowProgressCellServiceTest.swift in Sources */,

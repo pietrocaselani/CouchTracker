@@ -20,4 +20,20 @@ enum SynchronizerMocks {
       return Single.error(error)
     }
   }
+
+  final class WatchedShowEntitiesDownloaderMock: WatchedShowEntitiesDownloader {
+    func syncWatchedShowEntities(using _: WatchedShowEntitiesSyncOptions) -> Observable<WatchedShowEntity> {
+      return Observable.empty()
+    }
+  }
+
+  final class ShowsDataHolderMock: ShowsDataHolder {
+    var saveShowsLastestParemeter: [WatchedShowEntity]?
+    var saveShowInvokedCount = 0
+
+    func save(shows: [WatchedShowEntity]) throws {
+      saveShowsLastestParemeter = shows
+      saveShowInvokedCount += 1
+    }
+  }
 }
