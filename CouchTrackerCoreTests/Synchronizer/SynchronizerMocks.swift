@@ -22,8 +22,17 @@ enum SynchronizerMocks {
   }
 
   final class WatchedShowEntitiesDownloaderMock: WatchedShowEntitiesDownloader {
+    private let error: Error?
+
+    init(error: Error? = nil) {
+      self.error = error
+    }
+
     func syncWatchedShowEntities(using _: WatchedShowEntitiesSyncOptions) -> Observable<WatchedShowEntity> {
-      return Observable.empty()
+      guard let error = error else {
+        return Observable.empty()
+      }
+      return Observable.error(error)
     }
   }
 

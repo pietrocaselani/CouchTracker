@@ -532,6 +532,8 @@
 		8296594221F3887100DB1B4D /* SyncStateStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296594121F3887100DB1B4D /* SyncStateStoreTests.swift */; };
 		8296594421F38DB500DB1B4D /* DefaultWatchedShowsSynchronizerSyncStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296594321F38DB500DB1B4D /* DefaultWatchedShowsSynchronizerSyncStateTests.swift */; };
 		8296594621F3905200DB1B4D /* SyncStateMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296594521F3905200DB1B4D /* SyncStateMocks.swift */; };
+		8296594821F3A4AC00DB1B4D /* Observable+SyncState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296594721F3A4AC00DB1B4D /* Observable+SyncState.swift */; };
+		8296594921F3A4B200DB1B4D /* Observable+SyncState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296594721F3A4AC00DB1B4D /* Observable+SyncState.swift */; };
 		829A590121B2404700B67753 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829A590021B2404700B67753 /* Container.swift */; };
 		829A590221B2404700B67753 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829A590021B2404700B67753 /* Container.swift */; };
 		82AC56E321F12E2300DCF165 /* SyncState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC56E221F12E2300DCF165 /* SyncState.swift */; };
@@ -1010,6 +1012,7 @@
 		8296594121F3887100DB1B4D /* SyncStateStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStateStoreTests.swift; sourceTree = "<group>"; };
 		8296594321F38DB500DB1B4D /* DefaultWatchedShowsSynchronizerSyncStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWatchedShowsSynchronizerSyncStateTests.swift; sourceTree = "<group>"; };
 		8296594521F3905200DB1B4D /* SyncStateMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStateMocks.swift; sourceTree = "<group>"; };
+		8296594721F3A4AC00DB1B4D /* Observable+SyncState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+SyncState.swift"; sourceTree = "<group>"; };
 		829A590021B2404700B67753 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		82AC56E221F12E2300DCF165 /* SyncState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncState.swift; sourceTree = "<group>"; };
 		82AC56E521F12E9800DCF165 /* SyncStateObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStateObservable.swift; sourceTree = "<group>"; };
@@ -2230,6 +2233,7 @@
 				82836E97218EAAFE0037A798 /* ShowsSynchronizerContract.swift */,
 				82836E9A218EAB580037A798 /* DefaultWatchedShowsSynchronizer.swift */,
 				82836EA0218EAD730037A798 /* DefaultWatchedShowSynchronizer.swift */,
+				8296594721F3A4AC00DB1B4D /* Observable+SyncState.swift */,
 			);
 			path = Synchronizers;
 			sourceTree = "<group>";
@@ -3063,6 +3067,7 @@
 				4F0F573B203D5FA000B86CB8 /* MovieIds+TMDBType.swift in Sources */,
 				4F0F573C203D5FA000B86CB8 /* OptionalExtensions.swift in Sources */,
 				4F0F573D203D5FA000B86CB8 /* ShowIds+TMDBType.swift in Sources */,
+				8296594821F3A4AC00DB1B4D /* Observable+SyncState.swift in Sources */,
 				4F3A595D204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift in Sources */,
 				827EB7A021DAEDD800B02001 /* AppConfigurationsViewState.swift in Sources */,
 				4F0F5815203D6AC500B86CB8 /* TrendingShowEntity.swift in Sources */,
@@ -3345,6 +3350,7 @@
 				4F0F5884203D7B0A00B86CB8 /* TrendingShowEntity.swift in Sources */,
 				4F0F5885203D7B0A00B86CB8 /* EpisodeEntityMapper.swift in Sources */,
 				4F3A595E204EF5120061ABB7 /* AppFlowUserDefaultsRepository.swift in Sources */,
+				8296594921F3A4B200DB1B4D /* Observable+SyncState.swift in Sources */,
 				4F0F5886203D7B0A00B86CB8 /* ImagesEntityMapper.swift in Sources */,
 				827EB7A121DAEDD800B02001 /* AppConfigurationsViewState.swift in Sources */,
 				82930A1D216C1C8500A824F6 /* DefaultWatchedShowEntitiesDownloader.swift in Sources */,
