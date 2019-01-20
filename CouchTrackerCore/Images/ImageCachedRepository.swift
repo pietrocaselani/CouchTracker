@@ -74,7 +74,7 @@ public final class ImageCachedRepository: ImageRepository {
   private func fetchEpisodeImageFromTVDB(_ tvdbId: Int, _ size: TVDBEpisodeImageSize) -> Maybe<URL> {
     let target = TVDBEpisodes.episode(id: tvdbId)
 
-    let api = tvdb.episodes.rx.request(target).map(EpisodeResponse.self)
+    let api = tvdb.episodes.rx.request(target).filterSuccessfulStatusAndRedirectCodes().map(EpisodeResponse.self)
 
     return api.flatMapMaybe { [unowned self] episodeResponse -> Maybe<URL> in
       guard let filename = episodeResponse.episode.filename else { return Maybe.empty() }
@@ -103,6 +103,6 @@ public final class ImageCachedRepository: ImageRepository {
   }
 
   private func imagesFromAPI<T: TMDBType>(using provider: MoyaProvider<T>, with target: T) -> Observable<Images> {
-    return provider.rx.request(target).map(Images.self).asObservable()
+    return provider.rx.request(target).filterSuccessfulStatusAndRedirectCodes().map(Images.self).asObservable()
   }
 }
