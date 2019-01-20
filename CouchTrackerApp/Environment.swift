@@ -41,7 +41,7 @@ final class Environment {
 
     let debug: Bool
 
-    var plugins = [PluginType]()
+    let plugins = [PluginType]()
 
     #if DEBUG
       let traktClientId = Secrets.Trakt.clientId.isEmpty
@@ -53,8 +53,6 @@ final class Environment {
       }
 
       debug = true
-
-//      plugins.append(NetworkLoggerPlugin(verbose: false))
     #else
       debug = false
     #endif
