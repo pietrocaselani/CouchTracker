@@ -5,11 +5,16 @@ import TraktSwift
 public final class DefaultWatchedShowSynchronizer: WatchedShowSynchronizer {
   private let downloader: WatchedShowEntityDownloader
   private let dataSource: ShowDataSource
+  private let syncStateOutput: SyncStateOutput
   private let scheduler: Schedulers
 
-  public init(downloader: WatchedShowEntityDownloader, dataSource: ShowDataSource, scheduler: Schedulers) {
+  public init(downloader: WatchedShowEntityDownloader,
+              dataSource: ShowDataSource,
+              syncStateOutput: SyncStateOutput,
+              scheduler: Schedulers = DefaultSchedulers.instance) {
     self.downloader = downloader
     self.dataSource = dataSource
+    self.syncStateOutput = syncStateOutput
     self.scheduler = scheduler
   }
 
@@ -19,12 +24,12 @@ public final class DefaultWatchedShowSynchronizer: WatchedShowSynchronizer {
 
     return Observable.zip(localObservable, remoteObservable) {
       try DefaultWatchedShowSynchronizer.merge(old: $0, with: $1)
-    }
-    .observeOn(scheduler.dataSourceScheduler)
-    .do(onNext: { [weak self] show in
-      guard let strongSelf = self else { return }
-      try strongSelf.dataSource.save(show: show)
-    }).asSingle()
+    }.notifySyncState(syncStateOutput)
+      .observeOn(scheduler.dataSourceScheduler)
+      .do(onNext: { [weak self] show in
+        guard let strongSelf = self else { return }
+        try strongSelf.dataSource.save(show: show)
+      }).asSingle()
   }
 
   private func fetchCurrentEntity(_ showIds: ShowIds) -> Observable<WatchedShowEntity> {

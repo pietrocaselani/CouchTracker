@@ -534,6 +534,8 @@
 		8296594621F3905200DB1B4D /* SyncStateMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296594521F3905200DB1B4D /* SyncStateMocks.swift */; };
 		8296594821F3A4AC00DB1B4D /* Observable+SyncState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296594721F3A4AC00DB1B4D /* Observable+SyncState.swift */; };
 		8296594921F3A4B200DB1B4D /* Observable+SyncState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296594721F3A4AC00DB1B4D /* Observable+SyncState.swift */; };
+		8296594B21F3F74B00DB1B4D /* DefaultWatchedShowSynchronizerSyncStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296594A21F3F74B00DB1B4D /* DefaultWatchedShowSynchronizerSyncStateTests.swift */; };
+		8296594E21F3F98500DB1B4D /* ShowIdsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296594D21F3F98500DB1B4D /* ShowIdsMock.swift */; };
 		829A590121B2404700B67753 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829A590021B2404700B67753 /* Container.swift */; };
 		829A590221B2404700B67753 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829A590021B2404700B67753 /* Container.swift */; };
 		82AC56E321F12E2300DCF165 /* SyncState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC56E221F12E2300DCF165 /* SyncState.swift */; };
@@ -1013,6 +1015,8 @@
 		8296594321F38DB500DB1B4D /* DefaultWatchedShowsSynchronizerSyncStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWatchedShowsSynchronizerSyncStateTests.swift; sourceTree = "<group>"; };
 		8296594521F3905200DB1B4D /* SyncStateMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStateMocks.swift; sourceTree = "<group>"; };
 		8296594721F3A4AC00DB1B4D /* Observable+SyncState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+SyncState.swift"; sourceTree = "<group>"; };
+		8296594A21F3F74B00DB1B4D /* DefaultWatchedShowSynchronizerSyncStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWatchedShowSynchronizerSyncStateTests.swift; sourceTree = "<group>"; };
+		8296594D21F3F98500DB1B4D /* ShowIdsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowIdsMock.swift; sourceTree = "<group>"; };
 		829A590021B2404700B67753 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		82AC56E221F12E2300DCF165 /* SyncState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncState.swift; sourceTree = "<group>"; };
 		82AC56E521F12E9800DCF165 /* SyncStateObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStateObservable.swift; sourceTree = "<group>"; };
@@ -1195,13 +1199,14 @@
 		4F0F5708203D5F4C00B86CB8 /* CouchTrackerCoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				8209AB1421CEF4970027BBF3 /* Fixtures */,
 				64C384021F6C134F00FC9930 /* AppConfigurations */,
 				4F3A5945204EABB60061ABB7 /* AppFlow */,
 				4F7B09532016B53B001F6C50 /* BaseViewMock.swift */,
 				644EE1491F55E01E0053D631 /* Configuration */,
 				4F3F67D9209E66F900D3E403 /* CouchTrackerCoreTests-Bridging-Header.h */,
 				4F3F67D6209E665700D3E403 /* Extensions */,
+				8209AB1421CEF4970027BBF3 /* Fixtures */,
+				8209AB1621CEF59F0027BBF3 /* Fixtures.swift */,
 				69723117CCF8B5DEDE1B3046 /* Genre */,
 				6406BEEC1F4DC372004661C4 /* GenreRepositoryMock.swift */,
 				647B66451F5888CE00B38D2A /* Images */,
@@ -1225,8 +1230,8 @@
 				392D91617733B7EB5EBA114A /* TraktEntitiesMock.swift */,
 				6454D1701F703CFD008C4E5F /* TraktLogin */,
 				6434CA651F752ED400EA3AD8 /* TraktLoginObservableMock.swift */,
+				8296594C21F3F97100DB1B4D /* TraktMocks */,
 				648390C81F504E7500911BA0 /* Trending */,
-				8209AB1621CEF59F0027BBF3 /* Fixtures.swift */,
 			);
 			path = CouchTrackerCoreTests;
 			sourceTree = "<group>";
@@ -2246,6 +2251,14 @@
 			path = State;
 			sourceTree = "<group>";
 		};
+		8296594C21F3F97100DB1B4D /* TraktMocks */ = {
+			isa = PBXGroup;
+			children = (
+				8296594D21F3F98500DB1B4D /* ShowIdsMock.swift */,
+			);
+			path = TraktMocks;
+			sourceTree = "<group>";
+		};
 		82AC56E121F12E1400DCF165 /* State */ = {
 			isa = PBXGroup;
 			children = (
@@ -2264,6 +2277,7 @@
 				82D2434521C6DBA40003FC3D /* SynchronizerMocks.swift */,
 				8296594321F38DB500DB1B4D /* DefaultWatchedShowsSynchronizerSyncStateTests.swift */,
 				8296594521F3905200DB1B4D /* SyncStateMocks.swift */,
+				8296594A21F3F74B00DB1B4D /* DefaultWatchedShowSynchronizerSyncStateTests.swift */,
 			);
 			path = Synchronizer;
 			sourceTree = "<group>";
@@ -3225,6 +3239,7 @@
 				4F0F57E3203D61B300B86CB8 /* TVDBProviderMock.swift in Sources */,
 				4F0F57E5203D61B300B86CB8 /* SearchInteractorTest.swift in Sources */,
 				4F0F57E6203D61B300B86CB8 /* SearchMocks.swift in Sources */,
+				8296594B21F3F74B00DB1B4D /* DefaultWatchedShowSynchronizerSyncStateTests.swift in Sources */,
 				4F0F57E7203D61B300B86CB8 /* SearchPresenterTest.swift in Sources */,
 				8296594421F38DB500DB1B4D /* DefaultWatchedShowsSynchronizerSyncStateTests.swift in Sources */,
 				4F0F57E8203D61B300B86CB8 /* ShowEpisodeAPIRepositoryTest.swift in Sources */,
@@ -3293,6 +3308,7 @@
 				4FF9B10B2055BE3700FD28F1 /* MoviesManagerDefaultPresenterTest.swift in Sources */,
 				DF3731C24B5C60D69EB3571C /* MoviesManagerDefaultDataSourceTest.swift in Sources */,
 				DF30110BDD6DE3CD2E358CB4 /* MoviesManagerMocks.swift in Sources */,
+				8296594E21F3F98500DB1B4D /* ShowIdsMock.swift in Sources */,
 				6972342180DA70134A72C885 /* GenreDataSourceMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
