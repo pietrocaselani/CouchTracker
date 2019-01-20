@@ -16,7 +16,7 @@ final class ShowOverviewModule {
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
                                                 tvdb: tvdb,
-                                                cofigurationRepository: configurationRepository,
+                                                configurationRepository: configurationRepository,
                                                 schedulers: schedulers)
 
     let interactor = ShowOverviewService(showIds: showIds, repository: repository,

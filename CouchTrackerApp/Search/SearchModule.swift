@@ -17,7 +17,7 @@ enum SearchModule {
 
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
                                                 tvdb: tvdb,
-                                                cofigurationRepository: configurationRepository,
+                                                configurationRepository: configurationRepository,
                                                 schedulers: schedulers)
 
     let posterCellInteractor = PosterCellService(imageRepository: imageRepository)

@@ -17,7 +17,7 @@ public final class MovieDetailsModule {
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRespository = ImageCachedRepository(tmdb: tmdb,
                                                  tvdb: tvdb,
-                                                 cofigurationRepository: configurationRepository,
+                                                 configurationRepository: configurationRepository,
                                                  schedulers: schedulers)
 
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,

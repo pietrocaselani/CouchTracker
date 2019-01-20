@@ -15,7 +15,7 @@ enum ShowsProgressModule {
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
                                                 tvdb: tvdb,
-                                                cofigurationRepository: configurationRepository,
+                                                configurationRepository: configurationRepository,
                                                 schedulers: schedulers)
 
     let listStateDataSource = ShowsProgressListStateDefaultDataSource(userDefaults: userDefaults)

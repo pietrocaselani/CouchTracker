@@ -14,7 +14,7 @@ final class TrendingModule {
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
                                                 tvdb: tvdb,
-                                                cofigurationRepository: configurationRepository,
+                                                configurationRepository: configurationRepository,
                                                 schedulers: schedulers)
 
     let view = TrendingViewController()

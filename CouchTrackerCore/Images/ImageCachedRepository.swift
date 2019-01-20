@@ -14,9 +14,9 @@ public final class ImageCachedRepository: ImageRepository {
 
   public init(tmdb: TMDBProvider,
               tvdb: TVDBProvider,
-              cofigurationRepository: ConfigurationRepository,
+              configurationRepository: ConfigurationRepository,
               schedulers: Schedulers) {
-    configurationRepository = cofigurationRepository
+    self.configurationRepository = configurationRepository
     self.tmdb = tmdb
     self.tvdb = tvdb
     self.schedulers = schedulers

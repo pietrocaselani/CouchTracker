@@ -14,7 +14,7 @@ final class ShowEpisodeModule {
 
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
                                                 tvdb: tvdb,
-                                                cofigurationRepository: configurationRepository,
+                                                configurationRepository: configurationRepository,
                                                 schedulers: schedulers)
 
     let showEpisodeNetwork = ShowEpisodeMoyaNetwork(trakt: trakt, schedulers: schedulers)
