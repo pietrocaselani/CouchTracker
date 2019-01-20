@@ -14,7 +14,7 @@ final class ImageCachedRepositoryTest: XCTestCase {
     super.setUp()
 
     repository = ImageCachedRepository(tmdb: tmdbProviderMock, tvdb: tvdbProviderMock,
-                                       cofigurationRepository: configurationRepositoryMock, schedulers: scheduler)
+                                       configurationRepository: configurationRepositoryMock, schedulers: scheduler)
 
     observer = scheduler.createObserver(ImagesEntity.self)
     episodeObserver = scheduler.createObserver(URL.self)
@@ -170,7 +170,7 @@ final class ImageCachedRepositoryTest: XCTestCase {
 
   func testImageCachedRepository_fetchEpisodeImages_fromTVDB_becauseTMDBThrowsError_withSpecificSizes() {
     let repository = ImageCachedRepository(tmdb: TMDBErrorProviderMock(), tvdb: tvdbProviderMock,
-                                           cofigurationRepository: configurationRepositoryMock, schedulers: scheduler)
+                                           configurationRepository: configurationRepositoryMock, schedulers: scheduler)
 
     let input = EpisodeImageInputMock(tmdb: 1399, tvdb: 3_254_641, season: 1, number: 1)
 
