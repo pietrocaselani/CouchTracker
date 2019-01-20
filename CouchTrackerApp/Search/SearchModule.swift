@@ -8,17 +8,8 @@ protocol SearchDataSource: UICollectionViewDataSource {
 enum SearchModule {
   static func setupModule(searchTypes: [SearchType]) -> BaseView {
     let environment = Environment.instance
-    let tmdb = environment.tmdb
-    let tvdb = environment.tvdb
-    let schedulers = environment.schedulers
     let trakt = environment.trakt
-
-    let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
-
-    let imageRepository = ImageCachedRepository(tmdb: tmdb,
-                                                tvdb: tvdb,
-                                                configurationRepository: configurationRepository,
-                                                schedulers: schedulers)
+    let imageRepository = Environment.instance.imageRepository
 
     let posterCellInteractor = PosterCellService(imageRepository: imageRepository)
 
