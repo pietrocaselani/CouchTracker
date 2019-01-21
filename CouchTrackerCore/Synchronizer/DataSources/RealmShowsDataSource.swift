@@ -5,9 +5,11 @@ import RxSwift
 public final class RealmShowsDataSource: WatchedShowEntitiesObservable, ShowsDataHolder {
   private let realmProvider: RealmProvider
   private let schedulers: Schedulers
+  private let syncObservable: SyncStateObservable
 
-  public init(realmProvider: RealmProvider, schedulers: Schedulers) {
+  public init(realmProvider: RealmProvider, syncObservable: SyncStateObservable, schedulers: Schedulers) {
     self.realmProvider = realmProvider
+    self.syncObservable = syncObservable
     self.schedulers = schedulers
   }
 
@@ -22,9 +24,15 @@ public final class RealmShowsDataSource: WatchedShowEntitiesObservable, ShowsDat
       return Observable.array(from: results)
     }
 
-    return observable.map { results -> [WatchedShowEntity] in
+    let realmObservable = observable.map { results -> [WatchedShowEntity] in
       results.map { $0.toEntity() }
     }.subscribeOn(schedulers.dataSourceScheduler)
+
+    return Observable.combineLatest(syncObservable.observe(), realmObservable) { syncState, entities in
+      print("ViewState realm is sync = \(syncState.isSyncing)")
+
+      return entities
+    }
   }
 
   public func save(shows: [WatchedShowEntity]) throws {

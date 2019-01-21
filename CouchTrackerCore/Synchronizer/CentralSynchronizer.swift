@@ -1,31 +1,40 @@
 import RxSwift
 import TraktSwift
 
-// TODO: Add sync state
-
 public final class CentralSynchronizer {
   private let disposeBag = DisposeBag()
   private let watchedShowsSynchronizer: WatchedShowsSynchronizer
+  private let syncStateOutput: SyncStateOutput
 
   public static func initialize(watchedShowsSynchronizer: WatchedShowsSynchronizer,
-                                appConfigObservable: AppConfigurationsObservable) -> CentralSynchronizer {
+                                appConfigObservable: AppConfigurationsObservable,
+                                syncStateOutput: SyncStateOutput) -> CentralSynchronizer {
     return CentralSynchronizer(watchedShowsSynchronizer: watchedShowsSynchronizer,
-                               appConfigObservable: appConfigObservable)
+                               appConfigObservable: appConfigObservable,
+                               syncStateOutput: syncStateOutput)
   }
 
   private init(watchedShowsSynchronizer: WatchedShowsSynchronizer,
-               appConfigObservable: AppConfigurationsObservable) {
+               appConfigObservable: AppConfigurationsObservable,
+               syncStateOutput: SyncStateOutput) {
     self.watchedShowsSynchronizer = watchedShowsSynchronizer
+    self.syncStateOutput = syncStateOutput
 
-    appConfigObservable.observe().distinctUntilChanged().subscribe(onNext: { [weak self] newAppState in
-      self?.handleNew(appState: newAppState)
-    }).disposed(by: disposeBag)
+    appConfigObservable.observe()
+      .filter { $0.loginState != LoginState.notLogged }
+      .subscribe(onNext: { [weak self] newAppState in
+        self?.handleNew(appState: newAppState)
+      }).disposed(by: disposeBag)
   }
 
   private func handleNew(appState: AppConfigurationsState) {
     let options = CentralSynchronizer.syncOptionsFor(appState: appState)
 
-    watchedShowsSynchronizer.syncWatchedShows(using: options).subscribe().disposed(by: disposeBag)
+			syncStateOutput.newSyncState(state: SyncState(watchedShowsSyncState: .syncing))
+
+    watchedShowsSynchronizer.syncWatchedShows(using: options)
+      .notifySyncState(syncStateOutput)
+      .subscribe().disposed(by: disposeBag)
   }
 
   private static func syncOptionsFor(appState: AppConfigurationsState) -> WatchedShowEntitiesSyncOptions {

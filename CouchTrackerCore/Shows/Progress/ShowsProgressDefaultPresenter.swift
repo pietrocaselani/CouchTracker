@@ -2,20 +2,21 @@ import NonEmpty
 import RxSwift
 
 public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
-  private let viewStateSubject = BehaviorSubject<ShowProgressViewState>(value: .empty)
+  private let viewStateSubject = BehaviorSubject<ShowProgressViewState>(value: .loading)
   private let disposeBag = DisposeBag()
-
   private let interactor: ShowsProgressInteractor
   private let router: ShowsProgressRouter
+  private let syncStateObservable: SyncStateObservable
 
   public init(interactor: ShowsProgressInteractor,
               router: ShowsProgressRouter,
-              loginObservable: TraktLoginObservable) {
+              loginObservable: TraktLoginObservable,
+              syncStateObservable: SyncStateObservable) {
     self.interactor = interactor
     self.router = router
+    self.syncStateObservable = syncStateObservable
 
     loginObservable.observe()
-      .distinctUntilChanged()
       .subscribe(onNext: { [weak self] loginState in
         if loginState == .notLogged {
           self?.viewStateSubject.onNext(.notLogged)
@@ -23,6 +24,10 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
           self?.fetchShows()
         }
       }).disposed(by: disposeBag)
+
+    syncStateObservable.observe().subscribe(onNext: { syncState in
+      print("ViewState IsSync = \(syncState.isSyncing)")
+    }).disposed(by: disposeBag)
   }
 
   public func observeViewState() -> Observable<ShowProgressViewState> {
@@ -56,18 +61,17 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
   }
 
   private func fetchShows() {
-    interactor.fetchWatchedShowsProgress()
-      .map { [weak self] entities -> ShowProgressViewState in
-        guard let listState = self?.interactor.listState else { return .empty }
-        return createViewState(entities: entities, listState: listState)
-      }
-      .ifEmpty(default: .empty)
+    let showsObservable = interactor.fetchWatchedShowsProgress()
+    let syncStateStream = syncStateObservable.observe()
+    Observable.combineLatest(syncStateStream, showsObservable) { [weak self] syncState, entities in
+      guard let strongSelf = self else { return .empty }
+
+      let listState = strongSelf.interactor.listState
+      return createViewState(entities: entities, listState: listState, syncState: syncState)
+    }.ifEmpty(default: .empty)
       .catchError { error -> Observable<ShowProgressViewState> in
         Observable.just(ShowProgressViewState.error(error: error))
       }
-      .do(onSubscribe: { [weak self] in
-        self?.viewStateSubject.onNext(.loading)
-      })
       .subscribe(onNext: { [weak self] newViewState in
         self?.viewStateSubject.onNext(newViewState)
       }).disposed(by: disposeBag)
@@ -75,7 +79,18 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
 }
 
 private func createViewState(entities: [WatchedShowEntity],
-                             listState: ShowProgressListState) -> ShowProgressViewState {
+                             listState: ShowProgressListState,
+                             syncState: SyncState) -> ShowProgressViewState {
+  if syncState.isSyncing {
+    print("ViewState if do isSyncing")
+    return .loading
+  }
+
+  if entities.isEmpty {
+    print("ViewState if do isEmpty")
+    return .empty
+  }
+
   var newEntities = entities.filter(listState.filter.filter()).sorted(by: listState.sort.comparator())
 
   if listState.direction == .desc {

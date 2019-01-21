@@ -50,24 +50,30 @@ final class ShowsProgressViewController: UIViewController {
 
     switch state {
     case .empty:
-      showEmptyData()
+      print("ViewState = Empty")
+      showEmptyData(message: "Go watch some shows")
     case .filterEmpty:
-      showEmptyData()
+      print("ViewState = FilterEmpty")
+      showEmptyData(message: "A lot of filters!")
     case .notLogged:
+      print("ViewState = NotLogged")
       showNotLogged()
     case .loading:
+      print("ViewState = Loading")
       showLoadingData()
     case let .error(error):
+      print("ViewState = Error")
       showError(error: error)
     case let .shows(entities, menu):
+      print("ViewState = Shows")
       showData(entities: entities, menu: menu)
     }
   }
 
-  private func showEmptyData() {
+  private func showEmptyData(message: String) {
     showsView.tableView.isHidden = true
     showsView.emptyView.isHidden = false
-    showsView.emptyView.label.text = "Nothing to show"
+    showsView.emptyView.label.text = message
   }
 
   private func showData(entities: NonEmpty<[WatchedShowEntity]>, menu: ShowsProgressMenuOptions) {

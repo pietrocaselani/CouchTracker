@@ -8,7 +8,7 @@ public final class SyncStateStore: SyncStateObservable, SyncStateOutput {
   }
 
   public func observe() -> Observable<SyncState> {
-    return subject.distinctUntilChanged()
+    return subject
   }
 
   public func newSyncState(state: SyncState) {

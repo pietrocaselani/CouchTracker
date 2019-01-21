@@ -11,6 +11,7 @@ enum ShowsProgressModule {
     let schedulers = Environment.instance.schedulers
     let traktLoginObservable = Environment.instance.loginObservable
     let userDefaults = Environment.instance.userDefaults
+    let syncStateObservable = Environment.instance.syncStateObservable
 
     let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
     let imageRepository = ImageCachedRepository(tmdb: tmdb,
@@ -28,7 +29,8 @@ enum ShowsProgressModule {
 
     let presenter = ShowsProgressDefaultPresenter(interactor: interactor,
                                                   router: router,
-                                                  loginObservable: traktLoginObservable)
+                                                  loginObservable: traktLoginObservable,
+                                                  syncStateObservable: syncStateObservable)
 
     let viewController = ShowsProgressViewController(presenter: presenter, cellInteractor: cellInteractor)
 

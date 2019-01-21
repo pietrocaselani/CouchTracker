@@ -38,8 +38,7 @@ final class AppConfigurationsViewController: UITableViewController {
 
   private func handleViewState(_ state: AppConfigurationsViewState) {
     switch state {
-    case .loading:
-      print("Loading...")
+    case .loading: break
     case let .showing(configs):
       showConfigurations(models: configs)
     }

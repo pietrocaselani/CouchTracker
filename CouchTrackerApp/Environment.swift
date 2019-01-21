@@ -4,27 +4,29 @@ import TMDBSwift
 import TraktSwift
 import TVDBSwift
 
-final class Environment {
-  static let instance = Environment()
-  let trakt: TraktProvider
-  let tmdb: TMDBProvider
-  let tvdb: TVDBProvider
-  let loginObservable: TraktLoginObservable
-  let defaultOutput: TraktLoginOutput
-  let schedulers: Schedulers
-  let realmProvider: RealmProvider
-  let buildConfig: BuildConfig
-  let appConfigurationsObservable: AppConfigurationsObservable
-  let appConfigurationsOutput: AppConfigurationsOutput
-  let showsSynchronizer: WatchedShowsSynchronizer
-  let showSynchronizer: WatchedShowSynchronizer
-  let watchedShowEntitiesObservable: WatchedShowEntitiesObservable
-  let watchedShowEntityObserable: WatchedShowEntityObserable
-  let centralSynchronizer: CentralSynchronizer
-  let userDefaults: UserDefaults
-  let genreRepository: GenreRepository
+public final class Environment {
+  public static let instance = Environment()
+  public let trakt: TraktProvider
+  public let tmdb: TMDBProvider
+  public let tvdb: TVDBProvider
+  public let loginObservable: TraktLoginObservable
+  public let defaultOutput: TraktLoginOutput
+  public let schedulers: Schedulers
+  public let realmProvider: RealmProvider
+  public let buildConfig: BuildConfig
+  public let appConfigurationsObservable: AppConfigurationsObservable
+  public let appConfigurationsOutput: AppConfigurationsOutput
+  public let showsSynchronizer: WatchedShowsSynchronizer
+  public let showSynchronizer: WatchedShowSynchronizer
+  public let watchedShowEntitiesObservable: WatchedShowEntitiesObservable
+  public let watchedShowEntityObserable: WatchedShowEntityObserable
+  public let centralSynchronizer: CentralSynchronizer
+  public let userDefaults: UserDefaults
+  public let genreRepository: GenreRepository
+  public let syncStateObservable: SyncStateObservable
+  public let syncStateOutput: SyncStateOutput
 
-  var currentAppState: AppConfigurationsState {
+  public var currentAppState: AppConfigurationsState {
     return Environment.getAppState(userDefaults: userDefaults)
   }
 
@@ -38,6 +40,10 @@ final class Environment {
   private init() {
     userDefaults = UserDefaults.standard
     let schedulers = DefaultSchedulers.instance
+
+    let syncStateStore = SyncStateStore()
+    syncStateObservable = syncStateStore
+    syncStateOutput = syncStateStore
 
     let debug: Bool
 
@@ -115,20 +121,25 @@ final class Environment {
 
     let showDataSource = RealmShowDataSource(realmProvider: realmProvider, schedulers: schedulers)
 
-    let showsDataSource = RealmShowsDataSource(realmProvider: realmProvider, schedulers: schedulers)
+    let showsDataSource = RealmShowsDataSource(realmProvider: realmProvider,
+                                               syncObservable: syncStateStore,
+                                               schedulers: schedulers)
 
     watchedShowEntitiesObservable = showsDataSource
     watchedShowEntityObserable = showDataSource
 
     showsSynchronizer = DefaultWatchedShowsSynchronizer(downloader: showsDownloader,
                                                         dataHolder: showsDataSource,
+                                                        syncStateOutput: syncStateStore,
                                                         schedulers: schedulers)
 
     showSynchronizer = DefaultWatchedShowSynchronizer(downloader: showDownloader,
                                                       dataSource: showDataSource,
+                                                      syncStateOutput: syncStateStore,
                                                       scheduler: schedulers)
 
     centralSynchronizer = CentralSynchronizer.initialize(watchedShowsSynchronizer: showsSynchronizer,
-                                                         appConfigObservable: appConfigurationsObservable)
+                                                         appConfigObservable: appConfigurationsObservable,
+                                                         syncStateOutput: syncStateOutput)
   }
 }
