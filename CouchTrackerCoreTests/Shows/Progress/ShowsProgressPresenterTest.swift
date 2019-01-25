@@ -24,10 +24,12 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     loginObservable = TraktLoginObservableMock(state: loginState)
     router = ShowsProgressMocks.ShowsProgressRouterMock()
     listStateDataSource = ShowsProgressMocks.ListStateDataSource()
+    let syncStateObservable = SyncStateMocks.SyncStateObservableMock()
 
     presenter = ShowsProgressDefaultPresenter(interactor: interactor,
                                               router: router,
-                                              loginObservable: loginObservable)
+                                              loginObservable: loginObservable,
+                                              syncStateObservable: syncStateObservable)
   }
 
   override func tearDown() {

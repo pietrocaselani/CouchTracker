@@ -6,18 +6,11 @@ enum ShowsProgressModule {
   }
 
   static func setupModule() -> BaseView {
-    let tmdb = Environment.instance.tmdb
-    let tvdb = Environment.instance.tvdb
     let schedulers = Environment.instance.schedulers
     let traktLoginObservable = Environment.instance.loginObservable
     let userDefaults = Environment.instance.userDefaults
     let syncStateObservable = Environment.instance.syncStateObservable
-
-    let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
-    let imageRepository = ImageCachedRepository(tmdb: tmdb,
-                                                tvdb: tvdb,
-                                                cofigurationRepository: configurationRepository,
-                                                schedulers: schedulers)
+    let imageRepository = Environment.instance.imageRepository
 
     let listStateDataSource = ShowsProgressListStateDefaultDataSource(userDefaults: userDefaults)
 

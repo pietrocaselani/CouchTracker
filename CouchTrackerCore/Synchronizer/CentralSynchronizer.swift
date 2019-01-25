@@ -30,7 +30,7 @@ public final class CentralSynchronizer {
   private func handleNew(appState: AppConfigurationsState) {
     let options = CentralSynchronizer.syncOptionsFor(appState: appState)
 
-			syncStateOutput.newSyncState(state: SyncState(watchedShowsSyncState: .syncing))
+    syncStateOutput.newSyncState(state: SyncState(watchedShowsSyncState: .syncing))
 
     watchedShowsSynchronizer.syncWatchedShows(using: options)
       .notifySyncState(syncStateOutput)

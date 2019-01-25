@@ -5,17 +5,11 @@ final class TrendingModule {
 
   static func setupModule(for trendingType: TrendingType) -> BaseView {
     let traktProvider = Environment.instance.trakt
-    let tmdb = Environment.instance.tmdb
-    let tvdb = Environment.instance.tvdb
     let schedulers = Environment.instance.schedulers
     let genreRepository = Environment.instance.genreRepository
+    let imageRepository = Environment.instance.imageRepository
 
     let repository = TrendingCacheRepository(traktProvider: traktProvider, schedulers: schedulers)
-    let configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
-    let imageRepository = ImageCachedRepository(tmdb: tmdb,
-                                                tvdb: tvdb,
-                                                cofigurationRepository: configurationRepository,
-                                                schedulers: schedulers)
 
     let view = TrendingViewController()
 

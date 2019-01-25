@@ -23,10 +23,15 @@ public final class Environment {
   public let centralSynchronizer: CentralSynchronizer
   public let userDefaults: UserDefaults
   public let genreRepository: GenreRepository
+  public let imageRepository: ImageRepository
+  public let configurationRepository: ConfigurationCachedRepository
+  public let movieImageRepository: MovieImageCachedRepository
+  public let showImageRepository: ShowImageCachedRepository
+  public let episodeImageRepository: EpisodeImageCachedRepository
   public let syncStateObservable: SyncStateObservable
   public let syncStateOutput: SyncStateOutput
 
-  public var currentAppState: AppConfigurationsState {
+  var currentAppState: AppConfigurationsState {
     return Environment.getAppState(userDefaults: userDefaults)
   }
 
@@ -47,7 +52,7 @@ public final class Environment {
 
     let debug: Bool
 
-    var plugins = [PluginType]()
+    let plugins = [PluginType]()
 
     #if DEBUG
       let traktClientId = Secrets.Trakt.clientId.isEmpty
@@ -59,8 +64,6 @@ public final class Environment {
       }
 
       debug = true
-
-//      plugins.append(NetworkLoggerPlugin(verbose: false))
     #else
       debug = false
     #endif
@@ -141,5 +144,21 @@ public final class Environment {
     centralSynchronizer = CentralSynchronizer.initialize(watchedShowsSynchronizer: showsSynchronizer,
                                                          appConfigObservable: appConfigurationsObservable,
                                                          syncStateOutput: syncStateOutput)
+
+    configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
+
+    movieImageRepository = MovieImageCachedRepository(tmdb: tmdb,
+                                                      configurationRepository: configurationRepository)
+
+    showImageRepository = ShowImageCachedRepository(tmdb: tmdb,
+                                                    configurationRepository: configurationRepository)
+
+    episodeImageRepository = EpisodeImageCachedRepository(tmdb: tmdb,
+                                                          tvdb: tvdb,
+                                                          configurationRepository: configurationRepository)
+
+    imageRepository = DefaultImageRepository(movieImageRepository: movieImageRepository,
+                                             showImageRepository: showImageRepository,
+                                             episodeImageRepository: episodeImageRepository)
   }
 }
