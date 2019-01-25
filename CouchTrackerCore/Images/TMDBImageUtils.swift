@@ -2,7 +2,7 @@ import Moya
 import RxSwift
 import TMDBSwift
 
-public enum TMDBImageUtils {
+enum TMDBImageUtils {
   static func createImagesEntities(_ configurationRepository: ConfigurationRepository,
                                    _ imagesObservable: Observable<Images>,
                                    posterSize: PosterImageSize? = nil,

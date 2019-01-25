@@ -146,8 +146,8 @@ final class Environment {
                                                           tvdb: tvdb,
                                                           configurationRepository: configurationRepository)
 
-    imageRepository = ImageCachedRepository(movieImageRepository: movieImageRepository,
-                                            showImageRepository: showImageRepository,
-                                            episodeImageRepository: episodeImageRepository)
+    imageRepository = DefaultImageRepository(movieImageRepository: movieImageRepository,
+                                             showImageRepository: showImageRepository,
+                                             episodeImageRepository: episodeImageRepository)
   }
 }

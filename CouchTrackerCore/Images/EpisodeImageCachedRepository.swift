@@ -10,23 +10,26 @@ public final class EpisodeImageCachedRepository: EpisodeImageRepository {
   private let configurationRepository: ConfigurationRepository
   private let tmdb: TMDBProvider
   private let tvdb: TVDBProvider
-  private var cache = [Int: URL]()
+  private var cache: [Int: URL]
 
   public init(tmdb: TMDBProvider,
               tvdb: TVDBProvider,
-              configurationRepository: ConfigurationRepository) {
+              configurationRepository: ConfigurationRepository,
+              cache: [Int: URL] = [Int: URL]()) {
     self.configurationRepository = configurationRepository
     self.tmdb = tmdb
     self.tvdb = tvdb
+    self.cache = cache
   }
 
   public func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes? = nil) -> Maybe<URL> {
-    let cacheKey = EpisodeImageCachedRepository.cacheKey(episode: episode, size: size)
+    let cacheKey = EpisodeImageUtils.cacheKey(episode: episode, size: size)
 
     guard let imageURL = cache[cacheKey] else {
-      return fetchImageFromAPIs(episode: episode, size: size).do(onNext: { [weak self] url in
-        self?.cache[cacheKey] = url
-      })
+      return fetchImageFromAPIs(episode: episode, size: size)
+        .do(onNext: { [weak self] url in
+          self?.cache[cacheKey] = url
+        })
     }
 
     return Maybe.just(imageURL)
@@ -34,7 +37,11 @@ public final class EpisodeImageCachedRepository: EpisodeImageRepository {
 
   private func fetchImageFromAPIs(episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Maybe<URL> {
     guard let tvdbId = episode.tvdb else {
-      return Maybe.empty()
+      guard let tmdbId = episode.tmdb else {
+        return Maybe.empty()
+      }
+
+      return tmdbObservable(tmdbId, episode.season, episode.number, size?.tmdb ?? .w300)
     }
 
     let tvdbObservable = fetchEpisodeImageFromTVDB(tvdbId, size?.tvdb ?? .normal)
@@ -43,9 +50,14 @@ public final class EpisodeImageCachedRepository: EpisodeImageRepository {
       return tvdbObservable
     }
 
-    return fetchEpisodeImageFromTMDB(tmdbId, episode.season, episode.number, size?.tmdb ?? .w300)
+    return tmdbObservable(tmdbId, episode.season, episode.number, size?.tmdb ?? .w300)
       .catchError { _ in tvdbObservable }
       .ifEmpty(switchTo: tvdbObservable)
+  }
+
+  private func tmdbObservable(_ showId: Int, _ season: Int,
+                              _ number: Int, _ size: StillImageSize) -> Maybe<URL> {
+    return fetchEpisodeImageFromTMDB(showId, season, number, size)
   }
 
   private func fetchEpisodeImageFromTMDB(_ showId: Int, _ season: Int,
@@ -70,19 +82,8 @@ public final class EpisodeImageCachedRepository: EpisodeImageRepository {
 
     return api.flatMapMaybe { episodeResponse -> Maybe<URL> in
       guard let filename = episodeResponse.episode.filename else { return Maybe.empty() }
-      let url = EpisodeImageCachedRepository.tvdbBaseURLFor(size: size).appendingPathComponent(filename)
+      let url = EpisodeImageUtils.tvdbBaseURLFor(size: size).appendingPathComponent(filename)
       return Maybe.just(url)
     }
-  }
-
-  private static func tvdbBaseURLFor(size: TVDBEpisodeImageSize?) -> URL {
-    return (size ?? .normal) == .normal ? TVDB.bannersImageURL : TVDB.smallBannersImageURL
-  }
-
-  private static func cacheKey(episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Int {
-    var hasher = Hasher()
-    hasher.combine(HashableEpisodeImageInput(episode))
-    size.run { hasher.combine($0) }
-    return hasher.finalize()
   }
 }

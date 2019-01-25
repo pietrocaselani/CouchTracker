@@ -1,6 +1,6 @@
 import RxSwift
 
-public final class ImageCachedRepository: ImageRepository {
+public final class DefaultImageRepository: ImageRepository {
   private let movieImageRepository: MovieImageRepository
   private let showImageRepository: ShowImageRepository
   private let episodeImageRepository: EpisodeImageRepository

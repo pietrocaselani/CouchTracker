@@ -4,6 +4,16 @@ import TVDBSwift
 
 let tvdbProviderMock = TVDBProviderMock()
 
+func createTVDBProviderMock(error: Error? = nil) -> TVDBProviderMock {
+  return TVDBProviderMock(error: error)
+}
+
 final class TVDBProviderMock: TVDBProvider {
-  var episodes: MoyaProvider<Episodes> = MoyaProviderMock<Episodes>(stubClosure: MoyaProvider.immediatelyStub)
+  lazy var episodes: MoyaProvider<Episodes> = MoyaProviderMock<Episodes>.createProvider(error: error, target: Episodes.self)
+
+  private let error: Error?
+
+  init(error: Error? = nil) {
+    self.error = error
+  }
 }

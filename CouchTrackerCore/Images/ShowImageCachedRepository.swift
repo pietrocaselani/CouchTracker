@@ -5,12 +5,14 @@ import TMDBSwift
 public final class ShowImageCachedRepository: ShowImageRepository {
   private let configurationRepository: ConfigurationRepository
   private let tmdb: TMDBProvider
-  private var cache = [Int: ImagesEntity]()
+  private var cache: [Int: ImagesEntity]
 
   public init(tmdb: TMDBProvider,
-              configurationRepository: ConfigurationRepository) {
+              configurationRepository: ConfigurationRepository,
+              cache: [Int: ImagesEntity] = [Int: ImagesEntity]()) {
     self.configurationRepository = configurationRepository
     self.tmdb = tmdb
+    self.cache = cache
   }
 
   public func fetchShowImages(for showId: Int,
