@@ -24,6 +24,16 @@ public enum ShowEpisodeViewState: Hashable {
     }
   }
 
+  var episode: WatchedEpisodeEntity? {
+    switch self {
+    case .showing(let episode, _):
+      return episode
+    case let .showingEpisode(episode):
+      return episode
+    default: return nil
+    }
+  }
+
   public static func == (lhs: ShowEpisodeViewState, rhs: ShowEpisodeViewState) -> Bool {
     return lhs.hashValue == rhs.hashValue
   }

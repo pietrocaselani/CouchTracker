@@ -21,10 +21,7 @@ public final class ShowEpisodeDefaultPresenter: ShowEpisodePresenter {
   }
 
   public func handleWatch() -> Completable {
-    guard let viewState = try? viewStateSubject.value(),
-      case let ShowEpisodeViewState.showing(episode, _) = viewState else {
-      return Completable.empty()
-    }
+    guard let episode = (try? viewStateSubject.value())?.episode else { return Completable.empty() }
 
     return interactor.toggleWatch(for: episode)
       .observeOn(schedulers.mainScheduler)

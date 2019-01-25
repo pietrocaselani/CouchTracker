@@ -23,6 +23,11 @@ final class Environment {
   let centralSynchronizer: CentralSynchronizer
   let userDefaults: UserDefaults
   let genreRepository: GenreRepository
+  let imageRepository: ImageRepository
+  let configurationRepository: ConfigurationCachedRepository
+  let movieImageRepository: MovieImageCachedRepository
+  let showImageRepository: ShowImageCachedRepository
+  let episodeImageRepository: EpisodeImageCachedRepository
 
   var currentAppState: AppConfigurationsState {
     return Environment.getAppState(userDefaults: userDefaults)
@@ -41,7 +46,7 @@ final class Environment {
 
     let debug: Bool
 
-    var plugins = [PluginType]()
+    let plugins = [PluginType]()
 
     #if DEBUG
       let traktClientId = Secrets.Trakt.clientId.isEmpty
@@ -53,8 +58,6 @@ final class Environment {
       }
 
       debug = true
-
-//      plugins.append(NetworkLoggerPlugin(verbose: false))
     #else
       debug = false
     #endif
@@ -130,5 +133,21 @@ final class Environment {
 
     centralSynchronizer = CentralSynchronizer.initialize(watchedShowsSynchronizer: showsSynchronizer,
                                                          appConfigObservable: appConfigurationsObservable)
+
+    configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
+
+    movieImageRepository = MovieImageCachedRepository(tmdb: tmdb,
+                                                      configurationRepository: configurationRepository)
+
+    showImageRepository = ShowImageCachedRepository(tmdb: tmdb,
+                                                    configurationRepository: configurationRepository)
+
+    episodeImageRepository = EpisodeImageCachedRepository(tmdb: tmdb,
+                                                          tvdb: tvdb,
+                                                          configurationRepository: configurationRepository)
+
+    imageRepository = DefaultImageRepository(movieImageRepository: movieImageRepository,
+                                             showImageRepository: showImageRepository,
+                                             episodeImageRepository: episodeImageRepository)
   }
 }
