@@ -1,3 +1,12 @@
+# 0.0.1 (17) 
+* Merge pull request #185 from pietrocaselani/episode_image_fix [view commit](http://github.com/pietrocaselani/CouchTracker/commit/fd23d6c37300ea5106bb6a14b2a96b87b27f45a6)
+* Add tests for each image repository [view commit](http://github.com/pietrocaselani/CouchTracker/commit/8d8d27ff11e5895a3cb3873cf8714a41779e770a)
+* Split ImageRepository into Movie/Show/EpisodeImageRepository and implement a simple cache for each one [view commit](http://github.com/pietrocaselani/CouchTracker/commit/c3055feb8897614d2af36d2ed0ffa03e3b29c49a)
+* Implement a simple cache for TMDB Configuration [view commit](http://github.com/pietrocaselani/CouchTracker/commit/75527ece796e270828103e860973da8289f9c99a)
+* Filter status code on ImageRepository [view commit](http://github.com/pietrocaselani/CouchTracker/commit/0256aabdb81d0c476326d563c1e631995bec5dc8)
+* Fix warnings and remove unnecessary code [view commit](http://github.com/pietrocaselani/CouchTracker/commit/3ae012de251169d13f433da5752fc2edf2e45cbe)
+* Fix typo [view commit](http://github.com/pietrocaselani/CouchTracker/commit/946dbfe6ea42cda9ae2d6b2877a9bcc8210d52f5)
+
 # 0.0.1 (16) 
 * Merge pull request #183 from pietrocaselani/fix_actionitems_and_cell_reutilization [view commit](http://github.com/pietrocaselani/CouchTracker/commit/8c5670cc94ba9e5ab86764a74275aede79d164cb)
 * Cancel image download task on cell reuse [view commit](http://github.com/pietrocaselani/CouchTracker/commit/2936cc618fccefd91165372fb89e809e198a2587)
