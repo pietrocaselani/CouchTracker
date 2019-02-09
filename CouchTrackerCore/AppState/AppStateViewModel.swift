@@ -1,6 +1,6 @@
 import Foundation
 
-public struct AppConfigurationsViewModel: Hashable {
+public struct AppStateViewModel: Hashable {
   public let title: String
   public let configurations: [AppConfigurationViewModel]
 
@@ -12,7 +12,7 @@ public struct AppConfigurationsViewModel: Hashable {
     return hash
   }
 
-  public static func == (lhs: AppConfigurationsViewModel, rhs: AppConfigurationsViewModel) -> Bool {
+  public static func == (lhs: AppStateViewModel, rhs: AppStateViewModel) -> Bool {
     return lhs.hashValue == rhs.hashValue
   }
 }

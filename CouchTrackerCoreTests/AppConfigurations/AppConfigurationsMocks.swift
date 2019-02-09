@@ -3,7 +3,7 @@ import Moya
 import RxSwift
 import TraktSwift
 
-final class AppConfigurationsMock {
+final class AppStateMock {
   private init() {}
 
   static func createUserMock() -> User {
@@ -15,35 +15,35 @@ final class AppConfigurationsMock {
     return MoyaError.statusCode(response)
   }
 
-  final class AppConfigurationsObservableMock: AppConfigurationsObservable {
-    var subject = PublishSubject<AppConfigurationsState>()
+  final class AppStateObservableMock: AppStateObservable {
+    var subject = PublishSubject<AppState>()
 
-    func change(state: AppConfigurationsState) {
+    func change(state: AppState) {
       subject.onNext(state)
     }
 
-    func observe() -> Observable<AppConfigurationsState> {
+    func observe() -> Observable<AppState> {
       return subject.asObservable()
     }
   }
 
-  final class AppConfigurationsOutputMock: AppConfigurationsOutput {
+  final class AppStateOutputMock: AppStateOutput {
     var newConfigurationInvoked = false
-    var newConfigurationParameters: AppConfigurationsState?
+    var newConfigurationParameters: AppState?
 
-    func newConfiguration(state: AppConfigurationsState) {
+    func newConfiguration(state: AppState) {
       newConfigurationInvoked = true
       newConfigurationParameters = state
     }
   }
 }
 
-final class AppConfigurationsInteractorErrorMock: AppConfigurationsInteractor {
+final class AppStateInteractorErrorMock: AppStateInteractor {
   var error: Error!
 
-  init(repository _: AppConfigurationsRepository, output _: AppConfigurationsOutput) {}
+  init(repository _: AppStateRepository, output _: AppStateOutput) {}
 
-  func fetchAppConfigurationsState() -> Observable<AppConfigurationsState> {
+  func fetchAppState() -> Observable<AppState> {
     return Observable.error(error)
   }
 
@@ -52,23 +52,23 @@ final class AppConfigurationsInteractorErrorMock: AppConfigurationsInteractor {
   }
 }
 
-final class AppConfigurationsInteractorMock: AppConfigurationsInteractor {
-  private let repository: AppConfigurationsRepository
+final class AppStateInteractorMock: AppStateInteractor {
+  private let repository: AppStateRepository
   var hideSpecials = false
   var loginState = LoginState.notLogged
   var toggleHideSpecialsInvoked = false
 
-  init(repository: AppConfigurationsRepository, output _: AppConfigurationsOutput) {
+  init(repository: AppStateRepository, output _: AppStateOutput) {
     self.repository = repository
   }
 
-  func fetchAppConfigurationsState() -> Observable<AppConfigurationsState> {
+  func fetchAppState() -> Observable<AppState> {
     let hideSpecial = repository.fetchHideSpecials()
     let loginState = repository.fetchLoginState()
 
-    return Observable.combineLatest(loginState, hideSpecial, resultSelector: { (loginState, hideSpecials) -> AppConfigurationsState in
-      AppConfigurationsState(loginState: loginState, hideSpecials: hideSpecials)
-    }).catchErrorJustReturn(AppConfigurationsState.initialState())
+    return Observable.combineLatest(loginState, hideSpecial, resultSelector: { (loginState, hideSpecials) -> AppState in
+      AppState(loginState: loginState, hideSpecials: hideSpecials)
+    }).catchErrorJustReturn(AppState.initialState())
   }
 
   func toggleHideSpecials() -> Completable {
@@ -77,7 +77,7 @@ final class AppConfigurationsInteractorMock: AppConfigurationsInteractor {
   }
 }
 
-final class AppConfigurationsRouterMock: AppConfigurationsRouter {
+final class AppStateRouterMock: AppStateRouter {
   var invokedShowTraktLogin = false
   var invokedShowErrorMessage = false
   var invokedShowErrorMessageParameters: (message: String, Void)?
@@ -99,7 +99,7 @@ final class AppConfigurationsRouterMock: AppConfigurationsRouter {
   }
 }
 
-final class AppConfigurationsRepositoryMock: AppConfigurationsRepository {
+final class AppStateRepositoryMock: AppStateRepository {
   private let usersProvider: MoyaProvider<Users>
   private let isEmpty: Bool
   var invokedSaveSettings = false
@@ -108,7 +108,7 @@ final class AppConfigurationsRepositoryMock: AppConfigurationsRepository {
   var invokedToggleHideSpecials = false
   var invokedFetchHideSpecials = false
 
-  init(usersProvider: MoyaProvider<Users>, isEmpty: Bool = false, dataSource _: AppConfigurationsDataSource = AppConfigurationDataSourceMock(settings: nil)) {
+  init(usersProvider: MoyaProvider<Users>, isEmpty: Bool = false, dataSource _: AppStateDataSource = AppConfigurationDataSourceMock(settings: nil)) {
     self.usersProvider = usersProvider
     self.isEmpty = isEmpty
   }
@@ -133,7 +133,7 @@ final class AppConfigurationsRepositoryMock: AppConfigurationsRepository {
   }
 }
 
-final class AppConfigurationsRepositoryErrorMock: AppConfigurationsRepository {
+final class AppStateRepositoryErrorMock: AppStateRepository {
   private let error: Swift.Error?
   private let loginError: Swift.Error?
 
@@ -171,7 +171,7 @@ final class AppConfigurationsRepositoryErrorMock: AppConfigurationsRepository {
   }
 }
 
-final class AppConfigurationDataSourceMock: AppConfigurationsDataSource {
+final class AppConfigurationDataSourceMock: AppStateDataSource {
   var invokedSaveSettings = false
   var invokedFetchLoginState = false
   var hideSpecials = false
@@ -219,7 +219,7 @@ final class AppConfigurationDataSourceMock: AppConfigurationsDataSource {
   }
 }
 
-final class AppConfigurationsDataSourceErrorMock: AppConfigurationsDataSource {
+final class AppStateDataSourceErrorMock: AppStateDataSource {
   private let error: Error
   var saveSettingsInvoked = false
 
@@ -245,7 +245,7 @@ final class AppConfigurationsDataSourceErrorMock: AppConfigurationsDataSource {
   }
 }
 
-final class AppConfigurationsNetworkMock: AppConfigurationsNetwork {
+final class AppStateNetworkMock: AppStateNetwork {
   var fetchUserSettingsInvoked = false
   var fetchUserSettingsInvokedCount = 0
 

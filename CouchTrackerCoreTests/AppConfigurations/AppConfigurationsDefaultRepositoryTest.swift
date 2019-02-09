@@ -4,10 +4,10 @@ import RxTest
 import TraktSwift
 import XCTest
 
-final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
-  private var repository: AppConfigurationsDefaultRepository!
+final class AppStateUserDefaultsRepositoryTest: XCTestCase {
+  private var repository: AppStateDefaultRepository!
   private var dataSource: AppConfigurationDataSourceMock!
-  private var network: AppConfigurationsNetworkMock!
+  private var network: AppStateNetworkMock!
   private var schedulers: TestSchedulers!
   private var observer: TestableObserver<LoginState>!
 
@@ -20,8 +20,8 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
 
   private func setupWithSettings(_ settings: Settings? = nil) {
     dataSource = AppConfigurationDataSourceMock(settings: settings)
-    network = AppConfigurationsNetworkMock()
-    repository = AppConfigurationsDefaultRepository(dataSource: dataSource, network: network, schedulers: schedulers)
+    network = AppStateNetworkMock()
+    repository = AppStateDefaultRepository(dataSource: dataSource, network: network, schedulers: schedulers)
   }
 
   override func tearDown() {
@@ -32,7 +32,7 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
     super.tearDown()
   }
 
-  func testAppConfigurationsUserDefaultsRepository_fetchLoginStateWithEmptyDataSource_emitsNotLoggedAndTriesOnNetworkAndSavesOnDataSource() {
+  func testAppStateUserDefaultsRepository_fetchLoginStateWithEmptyDataSource_emitsNotLoggedAndTriesOnNetworkAndSavesOnDataSource() {
     // Given an empty repository
     setupWithSettings()
 
@@ -59,12 +59,12 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
     wait(for: [testExpectation], timeout: 1)
   }
 
-  func testAppConfigurationsUserDefaultsRepository_fetchLoginStateFromDataSource() {
+  func testAppStateUserDefaultsRepository_fetchLoginStateFromDataSource() {
     // Given
     let settings = TraktEntitiesMock.createUserSettingsMock()
     setupWithSettings(settings)
 
-    let repository = AppConfigurationsDefaultRepository(dataSource: dataSource, network: network, schedulers: schedulers)
+    let repository = AppStateDefaultRepository(dataSource: dataSource, network: network, schedulers: schedulers)
 
     // When
     _ = repository.fetchLoginState().subscribe(observer)
@@ -88,12 +88,12 @@ final class AppConfigurationsUserDefaultsRepositoryTest: XCTestCase {
   }
 
   // TODO: Search more about tests and Rx. Because if the data source emits an error, the stream should retry from the datasource, after finish the network operation
-  //  func testAppConfigurationsDefaultRepository_fetchLoginStateFromDataSourceWithError_thenEmitsNotLoggedAndTriesFetchFromAPI() {
+  //  func testAppStateDefaultRepository_fetchLoginStateFromDataSourceWithError_thenEmitsNotLoggedAndTriesFetchFromAPI() {
 //    //Given
 //    let error = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 44)
-//    let dataSource = AppConfigurationsDataSourceErrorMock(error: error)
-//    let network = AppConfigurationsNetworkMock()
-//    let repository = AppConfigurationsDefaultRepository(dataSource: dataSource, network: network, schedulers: schedulers)
+//    let dataSource = AppStateDataSourceErrorMock(error: error)
+//    let network = AppStateNetworkMock()
+//    let repository = AppStateDefaultRepository(dataSource: dataSource, network: network, schedulers: schedulers)
 //
 //    //When
 //    _ = repository.fetchLoginState().subscribe(observer)

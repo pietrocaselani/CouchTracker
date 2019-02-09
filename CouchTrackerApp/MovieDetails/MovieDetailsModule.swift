@@ -7,7 +7,7 @@ public final class MovieDetailsModule {
   public static func setupModule(movieIds: MovieIds) -> BaseView {
     let trakt = Environment.instance.trakt
     let schedulers = Environment.instance.schedulers
-    let appConfigObservable = Environment.instance.appConfigurationsObservable
+    let appStateManager = Environment.instance.appStateManager
     let genreRepository = Environment.instance.genreRepository
     let imageRespository = Environment.instance.imageRepository
 
@@ -16,7 +16,7 @@ public final class MovieDetailsModule {
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
                                          imageRepository: imageRespository, movieIds: movieIds)
 
-    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appConfigObservable)
+    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appStateManager)
 
     return MovieDetailsViewController(presenter: presenter)
   }

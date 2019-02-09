@@ -3,13 +3,13 @@ import RxSwift
 import RxTest
 import XCTest
 
-final class AppConfigurationsInteractorTest: XCTestCase {
+final class AppStateInteractorTest: XCTestCase {
   private let scheduler = TestScheduler(initialClock: 0)
   private var disposeBag: CompositeDisposable!
-  private var observer: TestableObserver<AppConfigurationsState>!
+  private var observer: TestableObserver<AppState>!
 
   override func setUp() {
-    observer = scheduler.createObserver(AppConfigurationsState.self)
+    observer = scheduler.createObserver(AppState.self)
     disposeBag = CompositeDisposable()
     super.setUp()
   }
@@ -19,51 +19,51 @@ final class AppConfigurationsInteractorTest: XCTestCase {
     super.tearDown()
   }
 
-  func testAppConfigurationsInteractor_fetchAppStateFailure_emitsAppInitialState() {
+  func testAppStateInteractor_fetchAppStateFailure_emitsAppInitialState() {
     // Given
     let message = "decrypt error"
     let genericError = NSError(domain: "io.github.pietrocaselani", code: 203, userInfo: [NSLocalizedDescriptionKey: message])
-    let repository = AppConfigurationsRepositoryErrorMock(error: genericError)
-    let output = AppConfigurationsMock.AppConfigurationsOutputMock()
-    let interactor = AppConfigurationsService(repository: repository, output: output)
+    let repository = AppStateRepositoryErrorMock(error: genericError)
+    let output = AppStateMock.AppStateOutputMock()
+    let interactor = AppStateService(repository: repository, output: output)
 
     // When
-    let observable = interactor.fetchAppConfigurationsState()
+    let observable = interactor.fetchAppState()
 
     // Then
     let disposable = observable.subscribe(observer)
     _ = disposeBag.insert(disposable)
 
-    let expectedEvents: [Recorded<Event<AppConfigurationsState>>] = [Recorded.next(0, AppConfigurationsState.initialState()), Recorded.completed(0)]
+    let expectedEvents: [Recorded<Event<AppState>>] = [Recorded.next(0, AppState.initialState()), Recorded.completed(0)]
 
     XCTAssertEqual(observer.events, expectedEvents)
   }
 
-  func testAppConfigurationsInteractor_fetchUserFailure_emitsInitialState() {
+  func testAppStateInteractor_fetchUserFailure_emitsInitialState() {
     // Given an empty repository
-    let repository = AppConfigurationsRepositoryMock(usersProvider: createTraktProviderMock().users, isEmpty: true)
-    let output = AppConfigurationsMock.AppConfigurationsOutputMock()
-    let interactor = AppConfigurationsService(repository: repository, output: output)
+    let repository = AppStateRepositoryMock(usersProvider: createTraktProviderMock().users, isEmpty: true)
+    let output = AppStateMock.AppStateOutputMock()
+    let interactor = AppStateService(repository: repository, output: output)
 
     // When
-    let observable = interactor.fetchAppConfigurationsState()
+    let observable = interactor.fetchAppState()
 
     // Then
     let disposable = observable.subscribe(observer)
     _ = disposeBag.insert(disposable)
 
-    let expectedEvents = [Recorded.next(0, AppConfigurationsState.initialState()), Recorded.completed(0)]
+    let expectedEvents = [Recorded.next(0, AppState.initialState()), Recorded.completed(0)]
     XCTAssertEqual(observer.events, expectedEvents)
   }
 
-  func testAppConfigurationsInteractor_fetchUser_emitsAppStateLogged() {
+  func testAppStateInteractor_fetchUser_emitsAppStateLogged() {
     // Given a repository with token
-    let repository = AppConfigurationsRepositoryMock(usersProvider: createTraktProviderMock().users)
-    let output = AppConfigurationsMock.AppConfigurationsOutputMock()
-    let interactor = AppConfigurationsService(repository: repository, output: output)
+    let repository = AppStateRepositoryMock(usersProvider: createTraktProviderMock().users)
+    let output = AppStateMock.AppStateOutputMock()
+    let interactor = AppStateService(repository: repository, output: output)
 
     // When
-    let observable = interactor.fetchAppConfigurationsState()
+    let observable = interactor.fetchAppState()
 
     // Then
     let disposable = observable.subscribe(observer)
@@ -71,16 +71,16 @@ final class AppConfigurationsInteractorTest: XCTestCase {
 
     let expectedSettings = TraktEntitiesMock.createUserSettingsMock()
     let loginState = LoginState.logged(settings: expectedSettings)
-    let expectedState = AppConfigurationsState(loginState: loginState, hideSpecials: false)
+    let expectedState = AppState(loginState: loginState, hideSpecials: false)
     let expectedEvents = [Recorded.next(0, expectedState), Recorded.completed(0)]
     XCTAssertEqual(observer.events, expectedEvents)
   }
 
-  func testAppConfigurationsInteractor_toggleHideSpecials_notifyRepository() {
+  func testAppStateInteractor_toggleHideSpecials_notifyRepository() {
     // Given
-    let repository = AppConfigurationsRepositoryMock(usersProvider: createTraktProviderMock().users)
-    let output = AppConfigurationsMock.AppConfigurationsOutputMock()
-    let interactor = AppConfigurationsService(repository: repository, output: output)
+    let repository = AppStateRepositoryMock(usersProvider: createTraktProviderMock().users)
+    let output = AppStateMock.AppStateOutputMock()
+    let interactor = AppStateService(repository: repository, output: output)
 
     // When
     _ = interactor.toggleHideSpecials().subscribe()
@@ -89,19 +89,19 @@ final class AppConfigurationsInteractorTest: XCTestCase {
     XCTAssertTrue(repository.invokedToggleHideSpecials)
   }
 
-  func testAppConfigurationsInteractor_fetchLoginStateWithError_emitsNotLogged() {
+  func testAppStateInteractor_fetchLoginStateWithError_emitsNotLogged() {
     // Given
     let message = "decrypt error"
     let genericError = NSError(domain: "io.github.pietrocaselani", code: 203, userInfo: [NSLocalizedDescriptionKey: message])
-    let repository = AppConfigurationsRepositoryErrorMock(loginError: genericError)
-    let output = AppConfigurationsMock.AppConfigurationsOutputMock()
-    let interactor = AppConfigurationsService(repository: repository, output: output)
+    let repository = AppStateRepositoryErrorMock(loginError: genericError)
+    let output = AppStateMock.AppStateOutputMock()
+    let interactor = AppStateService(repository: repository, output: output)
 
     // When
-    _ = interactor.fetchAppConfigurationsState().subscribe(observer)
+    _ = interactor.fetchAppState().subscribe(observer)
 
     // Then
-    let expectedState = AppConfigurationsState(loginState: .notLogged, hideSpecials: false)
+    let expectedState = AppState(loginState: .notLogged, hideSpecials: false)
     let expectedEvents = [Recorded.next(0, expectedState), Recorded.completed(0)]
     XCTAssertEqual(observer.events, expectedEvents)
   }

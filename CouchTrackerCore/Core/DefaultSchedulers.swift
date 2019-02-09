@@ -2,13 +2,13 @@ import RxSwift
 
 public final class DefaultSchedulers: Schedulers {
   public static let instance = DefaultSchedulers()
-  public var networkScheduler: ImmediateSchedulerType
+  public var networkScheduler: SchedulerType
   public var networkQueue: DispatchQueue
   public var dataSourceScheduler: ImmediateSchedulerType
   public var dataSourceQueue: DispatchQueue
-  public var ioScheduler: ImmediateSchedulerType
+  public var ioScheduler: SchedulerType
   public var ioQueue: DispatchQueue
-  public var mainScheduler: ImmediateSchedulerType
+  public var mainScheduler: SchedulerType
   public var mainQueue: DispatchQueue
 
   private init() {

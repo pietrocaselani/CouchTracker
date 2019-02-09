@@ -43,6 +43,8 @@ final class ShowsProgressViewController: UIViewController {
       .subscribe(onNext: { [weak self] viewState in
         self?.handleViewState(viewState)
       }).disposed(by: disposeBag)
+
+    presenter.viewDidLoad()
   }
 
   private func handleViewState(_ state: ShowProgressViewState) {

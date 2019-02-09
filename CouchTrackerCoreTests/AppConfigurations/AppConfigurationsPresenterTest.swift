@@ -3,13 +3,13 @@ import RxTest
 import TraktSwift
 import XCTest
 
-final class AppConfigurationsPresenterTest: XCTestCase {
-  private var router: AppConfigurationsRouterMock!
-  private var presenter: AppConfigurationsDefaultPresenter!
-  private var interactor: AppConfigurationsInteractorMock!
-  private var interactorError: AppConfigurationsInteractorErrorMock!
+final class AppStatePresenterTest: XCTestCase {
+  private var router: AppStateRouterMock!
+  private var presenter: AppStateDefaultPresenter!
+  private var interactor: AppStateInteractorMock!
+  private var interactorError: AppStateInteractorErrorMock!
   private var scheduler: TestScheduler!
-  private var viewStateObserver: TestableObserver<AppConfigurationsViewState>!
+  private var viewStateObserver: TestableObserver<AppStateViewState>!
 
   override func tearDown() {
     super.tearDown()
@@ -22,36 +22,36 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 
   override func setUp() {
     super.setUp()
-    router = AppConfigurationsRouterMock()
+    router = AppStateRouterMock()
     scheduler = TestScheduler(initialClock: 0)
-    viewStateObserver = scheduler.createObserver(AppConfigurationsViewState.self)
+    viewStateObserver = scheduler.createObserver(AppStateViewState.self)
   }
 
   private func setUpModuleWithError(_ error: Error) {
-    let repository = AppConfigurationsRepositoryErrorMock(error: error)
-    let output = AppConfigurationsMock.AppConfigurationsOutputMock()
-    let interactor = AppConfigurationsInteractorMock(repository: repository, output: output)
-    presenter = AppConfigurationsDefaultPresenter(interactor: interactor, router: router)
+    let repository = AppStateRepositoryErrorMock(error: error)
+    let output = AppStateMock.AppStateOutputMock()
+    let interactor = AppStateInteractorMock(repository: repository, output: output)
+    presenter = AppStateDefaultPresenter(interactor: interactor, router: router)
   }
 
   private func setupModule(error: Error) {
-    router = AppConfigurationsRouterMock()
-    let repository = AppConfigurationsRepositoryMock(usersProvider: createTraktProviderMock().users, isEmpty: true)
-    let output = AppConfigurationsMock.AppConfigurationsOutputMock()
-    let interactor = AppConfigurationsInteractorErrorMock(repository: repository, output: output)
+    router = AppStateRouterMock()
+    let repository = AppStateRepositoryMock(usersProvider: createTraktProviderMock().users, isEmpty: true)
+    let output = AppStateMock.AppStateOutputMock()
+    let interactor = AppStateInteractorErrorMock(repository: repository, output: output)
     interactor.error = error
-    presenter = AppConfigurationsDefaultPresenter(interactor: interactor, router: router)
+    presenter = AppStateDefaultPresenter(interactor: interactor, router: router)
   }
 
   private func setupModule(empty: Bool = false) {
-    router = AppConfigurationsRouterMock()
-    let repository = AppConfigurationsRepositoryMock(usersProvider: createTraktProviderMock().users, isEmpty: empty)
-    let output = AppConfigurationsMock.AppConfigurationsOutputMock()
-    interactor = AppConfigurationsInteractorMock(repository: repository, output: output)
-    presenter = AppConfigurationsDefaultPresenter(interactor: interactor, router: router)
+    router = AppStateRouterMock()
+    let repository = AppStateRepositoryMock(usersProvider: createTraktProviderMock().users, isEmpty: empty)
+    let output = AppStateMock.AppStateOutputMock()
+    interactor = AppStateInteractorMock(repository: repository, output: output)
+    presenter = AppStateDefaultPresenter(interactor: interactor, router: router)
   }
 
-  func testAppConfigurationsPresenter_receivesGenericError_notifyViewNotLogged() {
+  func testAppStatePresenter_receivesGenericError_notifyViewNotLogged() {
     // Given
     let message = "decrypt error"
     setUpModuleWithError(NSError(domain: "io.github.pietrocaselani", code: 203, userInfo: [NSLocalizedDescriptionKey: message]))
@@ -63,25 +63,25 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 
     // Then
     let connectToTraktViewModel = AppConfigurationViewModel(title: "Connect to Trakt", subtitle: nil, value: .traktLogin(wantsToLogin: true))
-    let traktViewModel = AppConfigurationsViewModel(title: "Trakt", configurations: [connectToTraktViewModel])
+    let traktViewModel = AppStateViewModel(title: "Trakt", configurations: [connectToTraktViewModel])
 
     let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .hideSpecials(wantsToHideSpecials: false))
-    let generalViewModel = AppConfigurationsViewModel(title: "General", configurations: [hideSpecialsViewModel])
+    let generalViewModel = AppStateViewModel(title: "General", configurations: [hideSpecialsViewModel])
 
     let goToGithubViewModel = AppConfigurationViewModel(title: "CouchTracker on GitHub", value: .externalURL(url: Constants.githubURL))
-    let otherViewModel = AppConfigurationsViewModel(title: "Other", configurations: [goToGithubViewModel])
+    let otherViewModel = AppStateViewModel(title: "Other", configurations: [goToGithubViewModel])
 
     let viewModels = [traktViewModel, generalViewModel, otherViewModel]
 
-    let expectedEvents = [Recorded.next(0, AppConfigurationsViewState.loading),
-                          Recorded.next(0, AppConfigurationsViewState.showing(configs: viewModels))]
+    let expectedEvents = [Recorded.next(0, AppStateViewState.loading),
+                          Recorded.next(0, AppStateViewState.showing(configs: viewModels))]
 
     XCTAssertEqual(viewStateObserver.events, expectedEvents)
   }
 
-  func testAppConfigurationsPresenter_receivesUserNotLoggedError_notifyView() {
+  func testAppStatePresenter_receivesUserNotLoggedError_notifyView() {
     // Given
-    setUpModuleWithError(AppConfigurationsMock.createUnauthorizedErrorMock())
+    setUpModuleWithError(AppStateMock.createUnauthorizedErrorMock())
 
     _ = presenter.observeViewState().subscribe(viewStateObserver)
 
@@ -90,23 +90,23 @@ final class AppConfigurationsPresenterTest: XCTestCase {
 
     // Then
     let connectToTraktViewModel = AppConfigurationViewModel(title: "Connect to Trakt", subtitle: nil, value: .traktLogin(wantsToLogin: true))
-    let traktViewModel = AppConfigurationsViewModel(title: "Trakt", configurations: [connectToTraktViewModel])
+    let traktViewModel = AppStateViewModel(title: "Trakt", configurations: [connectToTraktViewModel])
 
     let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .hideSpecials(wantsToHideSpecials: false))
-    let generalViewModel = AppConfigurationsViewModel(title: "General", configurations: [hideSpecialsViewModel])
+    let generalViewModel = AppStateViewModel(title: "General", configurations: [hideSpecialsViewModel])
 
     let goToGithubViewModel = AppConfigurationViewModel(title: "CouchTracker on GitHub", value: .externalURL(url: Constants.githubURL))
-    let otherViewModel = AppConfigurationsViewModel(title: "Other", configurations: [goToGithubViewModel])
+    let otherViewModel = AppStateViewModel(title: "Other", configurations: [goToGithubViewModel])
 
     let viewModels = [traktViewModel, generalViewModel, otherViewModel]
 
-    let expectedEvents = [Recorded.next(0, AppConfigurationsViewState.loading),
-                          Recorded.next(0, AppConfigurationsViewState.showing(configs: viewModels))]
+    let expectedEvents = [Recorded.next(0, AppStateViewState.loading),
+                          Recorded.next(0, AppStateViewState.showing(configs: viewModels))]
 
     XCTAssertEqual(viewStateObserver.events, expectedEvents)
   }
 
-  func testAppConfigurationsPresenter_receivesUserLogged_notifyView() {
+  func testAppStatePresenter_receivesUserLogged_notifyView() {
     // Given
     setupModule()
 
@@ -116,25 +116,25 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     presenter.viewDidLoad()
 
     // Then
-    let expectedUserName = AppConfigurationsMock.createUserMock().name
+    let expectedUserName = AppStateMock.createUserMock().name
     let connectToTraktViewModel = AppConfigurationViewModel(title: "Connected", subtitle: expectedUserName, value: .none)
-    let traktViewModel = AppConfigurationsViewModel(title: "Trakt", configurations: [connectToTraktViewModel])
+    let traktViewModel = AppStateViewModel(title: "Trakt", configurations: [connectToTraktViewModel])
 
     let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .hideSpecials(wantsToHideSpecials: false))
-    let generalViewModel = AppConfigurationsViewModel(title: "General", configurations: [hideSpecialsViewModel])
+    let generalViewModel = AppStateViewModel(title: "General", configurations: [hideSpecialsViewModel])
 
     let goToGithubViewModel = AppConfigurationViewModel(title: "CouchTracker on GitHub", value: .externalURL(url: Constants.githubURL))
-    let otherViewModel = AppConfigurationsViewModel(title: "Other", configurations: [goToGithubViewModel])
+    let otherViewModel = AppStateViewModel(title: "Other", configurations: [goToGithubViewModel])
 
     let viewModels = [traktViewModel, generalViewModel, otherViewModel]
 
-    let expectedEvents = [Recorded.next(0, AppConfigurationsViewState.loading),
-                          Recorded.next(0, AppConfigurationsViewState.showing(configs: viewModels))]
+    let expectedEvents = [Recorded.next(0, AppStateViewState.loading),
+                          Recorded.next(0, AppStateViewState.showing(configs: viewModels))]
 
     XCTAssertEqual(viewStateObserver.events, expectedEvents)
   }
 
-  func testAppConfigurationsPresenter_receivesEventAlreadyConnectedToTraktFromView_doesNothing() {
+  func testAppStatePresenter_receivesEventAlreadyConnectedToTraktFromView_doesNothing() {
     // Given
     setupModule()
 
@@ -148,7 +148,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     XCTAssertFalse(router.invokedShowTraktLogin)
   }
 
-  func testAppConfigurationsPresenter_receivesEventConnectToTraktFromView_notifyRouter() {
+  func testAppStatePresenter_receivesEventConnectToTraktFromView_notifyRouter() {
     // Given
     setupModule(empty: true)
     presenter.viewDidLoad()
@@ -161,7 +161,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     XCTAssertTrue(router.invokedShowTraktLogin)
   }
 
-  func testAppConfigurationsPresenter_receivesEventGoToGithubFromView_notifyRouter() {
+  func testAppStatePresenter_receivesEventGoToGithubFromView_notifyRouter() {
     // Given
     setupModule(empty: true)
     presenter.viewDidLoad()
@@ -176,7 +176,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     XCTAssertEqual(router.showExternalURLLastParameter, url)
   }
 
-  func testAppConfigurationsPresenter_receivesEventToggleHideSpecials_notifyInteractor() {
+  func testAppStatePresenter_receivesEventToggleHideSpecials_notifyInteractor() {
     // Given
     setupModule(empty: true)
     presenter.viewDidLoad()
@@ -189,7 +189,7 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     XCTAssertTrue(interactor.toggleHideSpecialsInvoked)
   }
 
-  func testAppConfigurationsPresenter_receivesErrorFromInteractor_notifyRouter() {
+  func testAppStatePresenter_receivesErrorFromInteractor_notifyRouter() {
     // Given
     let error = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 2002, userInfo: nil)
     setupModule(error: error)
@@ -231,20 +231,20 @@ final class AppConfigurationsPresenterTest: XCTestCase {
     presenter.loggedInSuccessfully()
 
     // Then
-    let expectedUserName = AppConfigurationsMock.createUserMock().name
+    let expectedUserName = AppStateMock.createUserMock().name
     let connectToTraktViewModel = AppConfigurationViewModel(title: "Connected", subtitle: expectedUserName, value: .none)
-    let traktViewModel = AppConfigurationsViewModel(title: "Trakt", configurations: [connectToTraktViewModel])
+    let traktViewModel = AppStateViewModel(title: "Trakt", configurations: [connectToTraktViewModel])
 
     let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .hideSpecials(wantsToHideSpecials: false))
-    let generalViewModel = AppConfigurationsViewModel(title: "General", configurations: [hideSpecialsViewModel])
+    let generalViewModel = AppStateViewModel(title: "General", configurations: [hideSpecialsViewModel])
 
     let goToGithubViewModel = AppConfigurationViewModel(title: "CouchTracker on GitHub", value: .externalURL(url: Constants.githubURL))
-    let otherViewModel = AppConfigurationsViewModel(title: "Other", configurations: [goToGithubViewModel])
+    let otherViewModel = AppStateViewModel(title: "Other", configurations: [goToGithubViewModel])
 
     let viewModels = [traktViewModel, generalViewModel, otherViewModel]
 
-    let expectedEvents = [Recorded.next(0, AppConfigurationsViewState.loading),
-                          Recorded.next(0, AppConfigurationsViewState.showing(configs: viewModels))]
+    let expectedEvents = [Recorded.next(0, AppStateViewState.loading),
+                          Recorded.next(0, AppStateViewState.showing(configs: viewModels))]
 
     XCTAssertEqual(viewStateObserver.events, expectedEvents)
   }

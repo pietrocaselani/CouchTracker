@@ -11,7 +11,7 @@ public final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
   public init(network: ShowEpisodeNetwork,
               schedulers: Schedulers = DefaultSchedulers.instance,
               synchronizer: WatchedShowSynchronizer,
-              appConfigurationsObservable: AppConfigurationsObservable,
+              appConfigurationsObservable: AppStateObservable,
               hideSpecials: Bool) {
     self.network = network
     self.schedulers = schedulers

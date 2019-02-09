@@ -2,43 +2,29 @@ import NonEmpty
 import RxSwift
 
 public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
-  private let viewStateSubject = BehaviorSubject<ShowProgressViewState>(value: .loading)
+  private let viewStateSubject = BehaviorSubject<ShowProgressViewState>(value: .notLogged)
   private let disposeBag = DisposeBag()
   private let interactor: ShowsProgressInteractor
   private let router: ShowsProgressRouter
   private let syncStateObservable: SyncStateObservable
+  private let appConfigsObservable: AppStateObservable
 
   public init(interactor: ShowsProgressInteractor,
               router: ShowsProgressRouter,
-              loginObservable: TraktLoginObservable,
+              appConfigsObservable: AppStateObservable,
               syncStateObservable: SyncStateObservable) {
     self.interactor = interactor
     self.router = router
     self.syncStateObservable = syncStateObservable
-
-    loginObservable.observe()
-      .subscribe(onNext: { [weak self] loginState in
-        if loginState == .notLogged {
-          self?.viewStateSubject.onNext(.notLogged)
-        } else {
-          self?.fetchShows()
-        }
-      }).disposed(by: disposeBag)
-
-    syncStateObservable.observe().subscribe(onNext: { syncState in
-      print("ViewState IsSync = \(syncState.isSyncing)")
-    }).disposed(by: disposeBag)
+    self.appConfigsObservable = appConfigsObservable
   }
 
   public func observeViewState() -> Observable<ShowProgressViewState> {
-    /* CT-TODO
-     This view state should be tied to SynchonizationState,
-     that will be implemented in a near future.
-     This is necessary to avoid a flow state
-     NotLogged -> Loading -> Empty -> Data
-     because realm emits empty and then, the sync finishes and realm will emit data
-     */
     return viewStateSubject.distinctUntilChanged()
+  }
+
+  public func viewDidLoad() {
+    fetchShows()
   }
 
   public func toggleDirection() {
@@ -61,10 +47,12 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
   }
 
   private func fetchShows() {
-    let showsObservable = interactor.fetchWatchedShowsProgress()
-    let syncStateStream = syncStateObservable.observe()
-    Observable.combineLatest(syncStateStream, showsObservable) { [weak self] syncState, entities in
+    Observable.combineLatest(syncStateObservable.observe(),
+                             interactor.fetchWatchedShowsProgress(),
+                             appConfigsObservable.observe()) { [weak self] syncState, entities, loginState in
       guard let strongSelf = self else { return .empty }
+
+      guard loginState.isLogged else { return ShowProgressViewState.notLogged }
 
       let listState = strongSelf.interactor.listState
       return createViewState(entities: entities, listState: listState, syncState: syncState)
@@ -82,12 +70,10 @@ private func createViewState(entities: [WatchedShowEntity],
                              listState: ShowProgressListState,
                              syncState: SyncState) -> ShowProgressViewState {
   if syncState.isSyncing {
-    print("ViewState if do isSyncing")
     return .loading
   }
 
   if entities.isEmpty {
-    print("ViewState if do isEmpty")
     return .empty
   }
 

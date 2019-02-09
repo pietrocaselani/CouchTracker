@@ -27,6 +27,7 @@ public protocol ShowsProgressRouter: class {
 
 public protocol ShowsProgressPresenter: class {
   func observeViewState() -> Observable<ShowProgressViewState>
+  func viewDidLoad()
 
   func change(sort: ShowProgressSort, filter: ShowProgressFilter)
   func toggleDirection()

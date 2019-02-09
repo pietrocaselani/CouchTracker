@@ -7,7 +7,7 @@ public final class CentralSynchronizer {
   private let syncStateOutput: SyncStateOutput
 
   public static func initialize(watchedShowsSynchronizer: WatchedShowsSynchronizer,
-                                appConfigObservable: AppConfigurationsObservable,
+                                appConfigObservable: AppStateObservable,
                                 syncStateOutput: SyncStateOutput) -> CentralSynchronizer {
     return CentralSynchronizer(watchedShowsSynchronizer: watchedShowsSynchronizer,
                                appConfigObservable: appConfigObservable,
@@ -15,29 +15,30 @@ public final class CentralSynchronizer {
   }
 
   private init(watchedShowsSynchronizer: WatchedShowsSynchronizer,
-               appConfigObservable: AppConfigurationsObservable,
+               appConfigObservable: AppStateObservable,
                syncStateOutput: SyncStateOutput) {
     self.watchedShowsSynchronizer = watchedShowsSynchronizer
     self.syncStateOutput = syncStateOutput
 
     appConfigObservable.observe()
-      .filter { $0.loginState != LoginState.notLogged }
+      .filter { $0.isLogged }
       .subscribe(onNext: { [weak self] newAppState in
         self?.handleNew(appState: newAppState)
       }).disposed(by: disposeBag)
   }
 
-  private func handleNew(appState: AppConfigurationsState) {
+  private func handleNew(appState: AppState) {
     let options = CentralSynchronizer.syncOptionsFor(appState: appState)
 
     syncStateOutput.newSyncState(state: SyncState(watchedShowsSyncState: .syncing))
 
     watchedShowsSynchronizer.syncWatchedShows(using: options)
       .notifySyncState(syncStateOutput)
-      .subscribe().disposed(by: disposeBag)
+      .subscribe()
+      .disposed(by: disposeBag)
   }
 
-  private static func syncOptionsFor(appState: AppConfigurationsState) -> WatchedShowEntitiesSyncOptions {
+  private static func syncOptionsFor(appState: AppState) -> WatchedShowEntitiesSyncOptions {
     let defaultOptions = Defaults.showsSyncOptions
     return WatchedShowEntitiesSyncOptions(extended: defaultOptions.extended, hiddingSpecials: appState.hideSpecials)
   }

@@ -1,14 +1,14 @@
 import CouchTrackerCore
 import RxSwift
 
-final class AppConfigurationsViewController: UITableViewController {
+final class AppStateViewController: UITableViewController {
   private static let defaultCellIdentifier = "DefaultAppConfigCell"
   private let disposeBag = DisposeBag()
-  private let presenter: AppConfigurationsPresenter
+  private let presenter: AppStatePresenter
   private let schedulers: Schedulers
-  private var configurationSections = [AppConfigurationsViewModel]()
+  private var configurationSections = [AppStateViewModel]()
 
-  init(presenter: AppConfigurationsPresenter, schedulers: Schedulers = DefaultSchedulers.instance) {
+  init(presenter: AppStatePresenter, schedulers: Schedulers = DefaultSchedulers.instance) {
     self.presenter = presenter
     self.schedulers = schedulers
 
@@ -36,7 +36,7 @@ final class AppConfigurationsViewController: UITableViewController {
     presenter.viewDidLoad()
   }
 
-  private func handleViewState(_ state: AppConfigurationsViewState) {
+  private func handleViewState(_ state: AppStateViewState) {
     switch state {
     case .loading: break
     case let .showing(configs):
@@ -44,7 +44,7 @@ final class AppConfigurationsViewController: UITableViewController {
     }
   }
 
-  private func showConfigurations(models: [AppConfigurationsViewModel]) {
+  private func showConfigurations(models: [AppStateViewModel]) {
     configurationSections.removeAll()
     configurationSections.append(contentsOf: models)
     tableView.reloadData()
@@ -66,7 +66,7 @@ final class AppConfigurationsViewController: UITableViewController {
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let identifier = AppConfigurationsViewController.defaultCellIdentifier
+    let identifier = AppStateViewController.defaultCellIdentifier
 
     let appConfigCell: UITableViewCell
 

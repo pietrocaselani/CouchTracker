@@ -9,13 +9,10 @@ public final class Environment {
   public let trakt: TraktProvider
   public let tmdb: TMDBProvider
   public let tvdb: TVDBProvider
-  public let loginObservable: TraktLoginObservable
-  public let defaultOutput: TraktLoginOutput
   public let schedulers: Schedulers
   public let realmProvider: RealmProvider
   public let buildConfig: BuildConfig
-  public let appConfigurationsObservable: AppConfigurationsObservable
-  public let appConfigurationsOutput: AppConfigurationsOutput
+  public let appStateManager: AppStateManager
   public let showsSynchronizer: WatchedShowsSynchronizer
   public let showSynchronizer: WatchedShowSynchronizer
   public let watchedShowEntitiesObservable: WatchedShowEntitiesObservable
@@ -31,14 +28,13 @@ public final class Environment {
   public let syncStateObservable: SyncStateObservable
   public let syncStateOutput: SyncStateOutput
 
-  var currentAppState: AppConfigurationsState {
+  var currentAppState: AppState {
     return Environment.getAppState(userDefaults: userDefaults)
   }
 
-  private static func getAppState(userDefaults: UserDefaults) -> AppConfigurationsState {
-    let loginState = AppConfigurationsUserDefaultsDataSource.currentLoginValue(userDefaults)
-    let hideSpecials = AppConfigurationsUserDefaultsDataSource.currentHideSpecialValue(userDefaults)
-    return AppConfigurationsState(loginState: loginState, hideSpecials: hideSpecials)
+  private static func getAppState(userDefaults _: UserDefaults) -> AppState {
+    return FileAppStateDataHolder.appState()
+//    return UserDefaultsAppStateDataHolder.currentAppConfig(userDefaults)
   }
 
   // swiftlint:disable function_body_length
@@ -96,17 +92,13 @@ public final class Environment {
 
     self.schedulers = schedulers
 
-    let traktLoginStore = TraktLoginStore(trakt: trakt)
-
-    loginObservable = traktLoginStore
-    defaultOutput = traktLoginStore.loginOutput
-
     realmProvider = DefaultRealmProvider(buildConfig: buildConfig)
 
-    let appConfigurationsStore = AppConfigurationsStore(appState: Environment.getAppState(userDefaults: userDefaults))
+//    let appStateDataHolder = UserDefaultsAppStateDataHolder(userDefaults: userDefaults)
+    let appStateDataHolder = FileAppStateDataHolder()
+    let appState = Environment.getAppState(userDefaults: userDefaults)
 
-    appConfigurationsOutput = appConfigurationsStore
-    appConfigurationsObservable = appConfigurationsStore
+    appStateManager = AppStateManager(appState: appState, trakt: trakt, dataHolder: appStateDataHolder)
 
     let genreDataSource = GenreRealmDataSource(realmProvider: realmProvider,
                                                schedulers: schedulers)
@@ -124,9 +116,7 @@ public final class Environment {
 
     let showDataSource = RealmShowDataSource(realmProvider: realmProvider, schedulers: schedulers)
 
-    let showsDataSource = RealmShowsDataSource(realmProvider: realmProvider,
-                                               syncObservable: syncStateStore,
-                                               schedulers: schedulers)
+    let showsDataSource = RealmShowsDataSource(realmProvider: realmProvider, schedulers: schedulers)
 
     watchedShowEntitiesObservable = showsDataSource
     watchedShowEntityObserable = showDataSource
@@ -142,7 +132,7 @@ public final class Environment {
                                                       scheduler: schedulers)
 
     centralSynchronizer = CentralSynchronizer.initialize(watchedShowsSynchronizer: showsSynchronizer,
-                                                         appConfigObservable: appConfigurationsObservable,
+                                                         appConfigObservable: appStateManager,
                                                          syncStateOutput: syncStateOutput)
 
     configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)

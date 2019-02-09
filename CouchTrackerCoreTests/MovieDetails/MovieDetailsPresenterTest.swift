@@ -34,7 +34,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
   func testMovieDetailsPresenter_fetchSuccess_andPresentMovieDetails() {
     let movie = TraktEntitiesMock.createUnwatchedMovieDetailsMock()
     let repository = MovieDetailsStoreMock(movie: movie)
-    let appConfigsObservable = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appConfigsObservable = AppStateMock.AppStateObservableMock()
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
                                              imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
     let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appConfigsObservable)
@@ -61,7 +61,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
   func testMovieDetailsPresenter_fetchWatchedMovieDetails_notifyView() {
     let movie = TraktEntitiesMock.createMovieDetailsMock()
     let repository = MovieDetailsStoreMock(movie: movie)
-    let appConfigsObservable = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appConfigsObservable = AppStateMock.AppStateObservableMock()
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
                                              imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
     let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appConfigsObservable)
@@ -89,7 +89,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
   func testMovieDetailsPresenter_fetchImagesSuccess_andNotifyView() {
     let movie = TraktEntitiesMock.createMovieMock(for: "the-dark-knight-2008")
     let repository = MovieDetailsStoreMock(movie: movie)
-    let appConfigsObservable = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appConfigsObservable = AppStateMock.AppStateObservableMock()
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
                                              imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
     let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appConfigsObservable)
@@ -117,7 +117,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let json = "{\"trakt\": 4,\"slug\": \"the-dark-knight-2008\",\"imdb\": \"tt0468569\",\"tmdb\": null}".data(using: .utf8)!
 
     let movieIds = try! JSONDecoder().decode(MovieIds.self, from: json)
-    let appConfigsObservable = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appConfigsObservable = AppStateMock.AppStateObservableMock()
 
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
                                              imageRepository: imageRepositoryRealMock, movieIds: movieIds)
@@ -140,7 +140,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let movie = TraktEntitiesMock.createMovieDetailsMock()
     let errorMessage = "There is no active connection"
     let detailsError = MovieDetailsError.noConnection(errorMessage)
-    let appConfigsObservable = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appConfigsObservable = AppStateMock.AppStateObservableMock()
     let repository = ErrorMovieDetailsStoreMock(error: detailsError)
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
                                              imageRepository: imageRepositoryMock, movieIds: movie.ids)
@@ -160,7 +160,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
   }
 
   func testMovieDetailsPresenter_fetchFailure_andIsCustomError() {
-    let appConfigsObservable = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appConfigsObservable = AppStateMock.AppStateObservableMock()
     let movie = TraktEntitiesMock.createMovieDetailsMock()
     let errorMessage = "Custom details error"
     let error = NSError(domain: "io.github.pietrocaselani.CouchTracker", code: 10, userInfo: [NSLocalizedDescriptionKey: errorMessage])
@@ -182,7 +182,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
   }
 
   func testMovieDetailsPresenter_handleWatchedWhenNotLogged_emitError() {
-    let appConfigsObservable = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appConfigsObservable = AppStateMock.AppStateObservableMock()
     let interactor = MovieDetailsMocks.Interactor()
     let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appConfigsObservable)
     presenter.viewDidLoad()
@@ -206,7 +206,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let movie = TraktEntitiesMock.createMovieDetailsMock()
     let errorMessage = "There is no active connection"
     let detailsError = MovieDetailsError.noConnection(errorMessage)
-    let appConfigsObservable = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appConfigsObservable = AppStateMock.AppStateObservableMock()
     let repository = ErrorMovieDetailsStoreMock(error: detailsError)
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
                                              imageRepository: imageRepositoryMock, movieIds: movie.ids)
@@ -229,10 +229,10 @@ final class MovieDetailsPresenterTest: XCTestCase {
   }
 
   func testMovieDetailsPresenter_handleWatched_notifyInteractor() {
-    let appConfigsObservable = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appConfigsObservable = AppStateMock.AppStateObservableMock()
     let interactor = MovieDetailsMocks.Interactor()
     let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appConfigsObservable)
-    let newState = AppConfigurationsState(loginState: LoginState.logged(settings: TraktEntitiesMock.createUserSettingsMock()), hideSpecials: false)
+    let newState = AppState(loginState: LoginState.logged(settings: TraktEntitiesMock.createUserSettingsMock()), hideSpecials: false)
     presenter.viewDidLoad()
 
     appConfigsObservable.change(state: newState)

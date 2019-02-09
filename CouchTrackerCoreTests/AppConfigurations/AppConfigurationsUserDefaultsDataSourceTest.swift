@@ -4,9 +4,9 @@ import RxTest
 import TraktSwift
 import XCTest
 
-final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
+final class AppStateUserDefaultsDataSourceTest: XCTestCase {
   private var userDefaultsMock: UserDefaults!
-  private var dataSource: AppConfigurationsUserDefaultsDataSource!
+  private var dataSource: AppStateUserDefaultsDataSource!
   private var scheduler: TestScheduler!
   private var observer: TestableObserver<LoginState>!
   private var hideSpecialsObserver: TestableObserver<Bool>!
@@ -17,7 +17,7 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
     scheduler = TestScheduler(initialClock: 0)
     observer = scheduler.createObserver(LoginState.self)
     hideSpecialsObserver = scheduler.createObserver(Bool.self)
-    userDefaultsMock = UserDefaults(suiteName: "AppConfigurationsUserDefaultsDataSourceTest")!
+    userDefaultsMock = UserDefaults(suiteName: "AppStateUserDefaultsDataSourceTest")!
     userDefaultsMock.clear()
   }
 
@@ -31,7 +31,7 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
   func testAppConfigurationUserDefaultsDataSource_fetchLoginStateWithEmptyUserDefaults_emitsNotLogged() {
     // Given an empty user defaults
     userDefaultsMock.clear()
-    dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
+    dataSource = AppStateUserDefaultsDataSource(userDefaults: userDefaultsMock)
 
     // When
     _ = dataSource.fetchLoginState().subscribe(observer)
@@ -47,7 +47,7 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
     // Given an invalid user defaults
     let data = "{ \"key1\": \"value1\", \"key2\": false }".data(using: .utf8)!
     userDefaultsMock.set(data, forKey: "traktUser")
-    dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
+    dataSource = AppStateUserDefaultsDataSource(userDefaults: userDefaultsMock)
 
     // When
     _ = dataSource.fetchLoginState().subscribe(observer)
@@ -63,7 +63,7 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
     // Given a valid user defaults
     let settingsData = Users.settings.sampleData
     userDefaultsMock.set(settingsData, forKey: "traktUser")
-    dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
+    dataSource = AppStateUserDefaultsDataSource(userDefaults: userDefaultsMock)
 
     // When
     _ = dataSource.fetchLoginState().subscribe(observer)
@@ -79,7 +79,7 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
   func testAppConfigurationUserDefaultsDataSource_saveSettings() {
     // Given
     XCTAssertNil(userDefaultsMock.data(forKey: "traktUser"))
-    dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
+    dataSource = AppStateUserDefaultsDataSource(userDefaults: userDefaultsMock)
     let settings = TraktEntitiesMock.createUserSettingsMock()
 
     // When
@@ -93,10 +93,10 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
     XCTAssertNotNil(userDefaultsMock.data(forKey: "traktUser"))
   }
 
-  func testAppConfigurationsUserDefaultsDataSource_toggleHideSpecials() {
+  func testAppStateUserDefaultsDataSource_toggleHideSpecials() {
     // Given
     XCTAssertFalse(userDefaultsMock.bool(forKey: "hideSpecials"))
-    dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
+    dataSource = AppStateUserDefaultsDataSource(userDefaults: userDefaultsMock)
 
     // When
     do {
@@ -119,10 +119,10 @@ final class AppConfigurationsUserDefaultsDataSourceTest: XCTestCase {
     XCTAssertFalse(userDefaultsMock.bool(forKey: "hideSpecials"))
   }
 
-  func testAppConfigurationsUserDefaultsDataSource_fetchHideSpecials() {
+  func testAppStateUserDefaultsDataSource_fetchHideSpecials() {
     // Given
     XCTAssertFalse(userDefaultsMock.bool(forKey: "hideSpecials"))
-    dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaultsMock)
+    dataSource = AppStateUserDefaultsDataSource(userDefaults: userDefaultsMock)
 
     // When
     _ = dataSource.fetchHideSpecials().subscribe(hideSpecialsObserver)

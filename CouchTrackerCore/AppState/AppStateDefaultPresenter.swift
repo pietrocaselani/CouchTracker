@@ -1,25 +1,29 @@
 import RxSwift
+import TraktSwift
 
-public final class AppConfigurationsDefaultPresenter: AppConfigurationsPresenter {
-  private let viewStateSubject = BehaviorSubject<AppConfigurationsViewState>(value: .loading)
+public final class AppStateDefaultPresenter: AppStatePresenter {
+  private let viewStateSubject = BehaviorSubject<AppStateViewState>(value: .loading)
   private let disposeBag = DisposeBag()
   private let schedulers: Schedulers
-  private let interactor: AppConfigurationsInteractor
-  private let router: AppConfigurationsRouter
+  private let interactor: AppStateInteractor
+  private let router: AppStateRouter
+  private let appStateObservable: AppStateObservable
 
-  public init(interactor: AppConfigurationsInteractor,
-              router: AppConfigurationsRouter,
+  public init(interactor: AppStateInteractor,
+              router: AppStateRouter,
+              appStateObservable: AppStateObservable,
               schedulers: Schedulers = DefaultSchedulers.instance) {
     self.interactor = interactor
     self.router = router
     self.schedulers = schedulers
+    self.appStateObservable = appStateObservable
   }
 
   public func viewDidLoad() {
     updateView()
   }
 
-  public func observeViewState() -> Observable<AppConfigurationsViewState> {
+  public func observeViewState() -> Observable<AppStateViewState> {
     return viewStateSubject.distinctUntilChanged()
   }
 
@@ -30,7 +34,7 @@ public final class AppConfigurationsDefaultPresenter: AppConfigurationsPresenter
       router.showExternal(url: url)
     case let .traktLogin(wantsToLogin):
       if wantsToLogin {
-        router.showTraktLogin(output: self)
+        performLogin()
       }
     case .hideSpecials:
       interactor.toggleHideSpecials().subscribe().disposed(by: disposeBag)
@@ -38,10 +42,11 @@ public final class AppConfigurationsDefaultPresenter: AppConfigurationsPresenter
   }
 
   private func updateView() {
-    interactor.fetchAppConfigurationsState()
-      .map { state -> AppConfigurationsViewState in
-        let viewModel = AppConfigurationsViewModelMapper.createViewModel(state)
-        return AppConfigurationsViewState.showing(configs: viewModel)
+    interactor.fetchAppState()
+      .observeOn(schedulers.mainScheduler)
+      .map { state -> AppStateViewState in
+        let viewModel = AppStateViewModelMapper.createViewModel(state)
+        return AppStateViewState.showing(configs: viewModel)
       }.observeOn(schedulers.mainScheduler)
       .subscribe(onNext: { [weak self] newViewState in
         self?.viewStateSubject.onNext(newViewState)
@@ -49,20 +54,21 @@ public final class AppConfigurationsDefaultPresenter: AppConfigurationsPresenter
         self?.router.showError(message: error.localizedDescription)
       }).disposed(by: disposeBag)
   }
+
+  private func performLogin() {
+    router.showTraktLogin()
+
+    appStateObservable.observe()
+      .filter { $0.isLogged }
+      .observeOn(schedulers.mainScheduler)
+      .subscribe(onNext: { [weak self] _ in
+        self?.router.finishLogin()
+      }).disposed(by: disposeBag)
+  }
 }
 
-extension AppConfigurationsDefaultPresenter: TraktLoginOutput {
-  public func loggedInSuccessfully() {
-    updateView()
-  }
-
-  public func logInFail(message: String) {
-    router.showError(message: message)
-  }
-}
-
-private enum AppConfigurationsViewModelMapper {
-  fileprivate static func createViewModel(_ state: AppConfigurationsState) -> [AppConfigurationsViewModel] {
+private enum AppStateViewModelMapper {
+  fileprivate static func createViewModel(_ state: AppState) -> [AppStateViewModel] {
     let traktConfigs = traktConfigurationsViewModel(state: state)
     let generalConfigs = generalConfigurationsViewModel(state: state)
     let otherConfigs = otherConfigurationsViewModel()
@@ -70,12 +76,10 @@ private enum AppConfigurationsViewModelMapper {
     return [traktConfigs, generalConfigs, otherConfigs]
   }
 
-  fileprivate static func traktConfigurationsViewModel(state: AppConfigurationsState) -> AppConfigurationsViewModel {
-    let loginState = state.loginState
-
+  fileprivate static func traktConfigurationsViewModel(state: AppState) -> AppStateViewModel {
     let connectedConfiguration: AppConfigurationViewModel
 
-    if case let .logged(settings) = loginState {
+    if let settings = state.userSettings {
       connectedConfiguration = AppConfigurationViewModel(title: "Connected".localized,
                                                          subtitle: settings.user.name,
                                                          value: .none)
@@ -87,21 +91,21 @@ private enum AppConfigurationsViewModelMapper {
 
     let configurations = [connectedConfiguration]
 
-    return AppConfigurationsViewModel(title: "Trakt", configurations: configurations)
+    return AppStateViewModel(title: "Trakt", configurations: configurations)
   }
 
-  fileprivate static func otherConfigurationsViewModel() -> AppConfigurationsViewModel {
+  fileprivate static func otherConfigurationsViewModel() -> AppStateViewModel {
     let value = AppConfigurationViewModelValue.externalURL(url: Constants.githubURL)
     let appOnGithub = AppConfigurationViewModel(title: "\(Constants.appName) on GitHub", subtitle: nil, value: value)
-    return AppConfigurationsViewModel(title: "Other", configurations: [appOnGithub])
+    return AppStateViewModel(title: "Other", configurations: [appOnGithub])
   }
 
-  fileprivate static func generalConfigurationsViewModel(state: AppConfigurationsState) -> AppConfigurationsViewModel {
+  fileprivate static func generalConfigurationsViewModel(state: AppState) -> AppStateViewModel {
     let value = AppConfigurationViewModelValue.hideSpecials(wantsToHideSpecials: state.hideSpecials)
     let hideSpecialConfiguration = AppConfigurationViewModel(title: "Hide specials",
                                                              subtitle: "Will not show special episodes",
                                                              value: value)
 
-    return AppConfigurationsViewModel(title: "General", configurations: [hideSpecialConfiguration])
+    return AppStateViewModel(title: "General", configurations: [hideSpecialConfiguration])
   }
 }

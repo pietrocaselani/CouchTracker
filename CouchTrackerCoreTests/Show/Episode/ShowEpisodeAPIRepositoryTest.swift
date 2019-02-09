@@ -10,7 +10,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     // Given
     let network = ShowEpisodeMocks.ShowEpisodeNetworkErrorMock(error: TraktError.mock())
     let schedulers = TestSchedulers()
-    let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appConfigsObservableMock = AppStateMock.AppStateObservableMock()
 
     let synchronizer = SynchronizerMocks.WatchedShowSynchronizerMock()
 
@@ -41,7 +41,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     // Given
     let network = ShowEpisodeMocks.ShowEpisodeNetworkErrorMock(error: TraktError.mock())
     let schedulers = TestSchedulers()
-    let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appConfigsObservableMock = AppStateMock.AppStateObservableMock()
 
     let synchronizer = SynchronizerMocks.WatchedShowSynchronizerMock()
 
@@ -71,7 +71,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     // Given
     let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
     let schedulers = TestSchedulers()
-    let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appConfigsObservableMock = AppStateMock.AppStateObservableMock()
 
     let synchronizer = SynchronizerMocks.WatchedShowSynchronizerMock(error: TraktError.mock())
 
@@ -81,7 +81,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
                                               appConfigurationsObservable: appConfigsObservableMock,
                                               hideSpecials: true)
 
-    appConfigsObservableMock.change(state: AppConfigurationsState(loginState: .notLogged, hideSpecials: false))
+    appConfigsObservableMock.change(state: AppState(loginState: .notLogged, hideSpecials: false))
 
     // When
     let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
@@ -98,7 +98,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     // Given
     let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
     let schedulers = TestSchedulers()
-    let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appConfigsObservableMock = AppStateMock.AppStateObservableMock()
 
     let synchronizer = SynchronizerMocks.WatchedShowSynchronizerMock()
 
@@ -126,7 +126,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     // Given
     let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
     let schedulers = TestSchedulers()
-    let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appConfigsObservableMock = AppStateMock.AppStateObservableMock()
 
     let synchronizer = SynchronizerMocks.WatchedShowSynchronizerMock()
 
