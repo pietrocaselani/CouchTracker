@@ -16,11 +16,11 @@ enum ShowsProgressModule {
     let interactor = ShowsProgressService(listStateDataSource: listStateDataSource,
                                           showsObserable: watchedShowsObservable,
                                           syncStateObservable: syncStateObservable,
-                                          appConfigsObservable: appStateManager)
+                                          appStateObservable: appStateManager)
 
     let presenter = ShowsProgressDefaultPresenter(interactor: interactor,
                                                   router: router,
-                                                  appConfigsObservable: appStateManager,
+                                                  appStateObservable: appStateManager,
                                                   syncStateObservable: syncStateObservable)
 
     let viewController = ShowsProgressViewController(presenter: presenter, cellInteractor: cellInteractor)

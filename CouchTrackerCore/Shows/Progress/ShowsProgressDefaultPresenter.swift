@@ -7,16 +7,16 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
   private let interactor: ShowsProgressInteractor
   private let router: ShowsProgressRouter
   private let syncStateObservable: SyncStateObservable
-  private let appConfigsObservable: AppStateObservable
+  private let appStateObservable: AppStateObservable
 
   public init(interactor: ShowsProgressInteractor,
               router: ShowsProgressRouter,
-              appConfigsObservable: AppStateObservable,
+              appStateObservable: AppStateObservable,
               syncStateObservable: SyncStateObservable) {
     self.interactor = interactor
     self.router = router
     self.syncStateObservable = syncStateObservable
-    self.appConfigsObservable = appConfigsObservable
+    self.appStateObservable = appStateObservable
   }
 
   public func observeViewState() -> Observable<ShowProgressViewState> {
@@ -47,12 +47,14 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
   }
 
   private func fetchShows() {
+
+
     Observable.combineLatest(syncStateObservable.observe(),
                              interactor.fetchWatchedShowsProgress(),
-                             appConfigsObservable.observe()) { [weak self] syncState, entities, loginState in
-      guard let strongSelf = self else { return .empty }
-
+                             appStateObservable.observe()) { [weak self] syncState, entities, loginState in
       guard loginState.isLogged else { return ShowProgressViewState.notLogged }
+
+      guard let strongSelf = self else { return .empty }
 
       let listState = strongSelf.interactor.listState
       return createViewState(entities: entities, listState: listState, syncState: syncState)
