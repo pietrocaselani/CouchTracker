@@ -1,21 +1,6 @@
 @testable import CouchTrackerCore
 import RxSwift
 
-final class TraktLoginOutputMock: TraktLoginOutput {
-  var invokedLoggedInSuccessfully = false
-  var invokedLogInFail = false
-  var invokedLoginFailParameters: (message: String, Void)?
-
-  func loggedInSuccessfully() {
-    invokedLoggedInSuccessfully = true
-  }
-
-  func logInFail(message: String) {
-    invokedLogInFail = true
-    invokedLoginFailParameters = (message, ())
-  }
-}
-
 final class TraktLoginErrorInteractorMock: TraktLoginInteractor {
   private let error: Error
   init(traktProvider _: TraktProvider = TraktProviderMock(), error: Error) {
@@ -28,6 +13,10 @@ final class TraktLoginErrorInteractorMock: TraktLoginInteractor {
 
   func fetchLoginURL() -> Single<URL> {
     return Single.error(error)
+  }
+
+  func allowedToProcess(request _: URLRequest) -> Completable {
+    return Completable.empty()
   }
 }
 
@@ -45,6 +34,10 @@ final class TraktLoginInteractorMock: TraktLoginInteractor {
   func fetchLoginURL() -> Single<URL> {
     return Single.just(url)
   }
+
+  func allowedToProcess(request _: URLRequest) -> Completable {
+    return Completable.empty()
+  }
 }
 
 final class TraktLoginViewMock: TraktLoginView {
@@ -58,4 +51,6 @@ final class TraktLoginViewMock: TraktLoginView {
     invokedLoadLogin = true
     invokedLoadLoginParameters = (url, ())
   }
+
+  func showError(error _: Error) {}
 }

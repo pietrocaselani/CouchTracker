@@ -48,7 +48,10 @@ final class ShowsProgressServiceTest: XCTestCase {
 
   func testShowsProgressService_fetchWatchedProgress() {
     // Given
-    let interactor = ShowsProgressService(listStateDataSource: listStateDataSource, showsObserable: watchedShowEntitiesObservableMock)
+    let interactor = ShowsProgressService(listStateDataSource: listStateDataSource,
+                                          showsObserable: watchedShowEntitiesObservableMock,
+                                          syncStateObservable: SyncStateMocks.SyncStateObservableMock(),
+                                          appStateObservable: AppStateMock.AppStateObservableMock())
 
     // When
     _ = interactor.fetchWatchedShowsProgress().subscribe(observer)
@@ -63,7 +66,10 @@ final class ShowsProgressServiceTest: XCTestCase {
 
   func testShowsProgressService_receiveSameDataFromRepository_emitsOnlyOnce() {
     // Given
-    let interactor = ShowsProgressService(listStateDataSource: listStateDataSource, showsObserable: watchedShowEntitiesObservableMock)
+    let interactor = ShowsProgressService(listStateDataSource: listStateDataSource,
+                                          showsObserable: watchedShowEntitiesObservableMock,
+                                          syncStateObservable: SyncStateMocks.SyncStateObservableMock(),
+                                          appStateObservable: AppStateMock.AppStateObservableMock())
     _ = interactor.fetchWatchedShowsProgress().subscribe(observer)
     scheduler.start()
 
@@ -79,7 +85,10 @@ final class ShowsProgressServiceTest: XCTestCase {
 
   func testShowsProgressService_receiveDifferentDataFromRepository_emitsNewData() {
     // Given
-    let interactor = ShowsProgressService(listStateDataSource: listStateDataSource, showsObserable: watchedShowEntitiesObservableMock)
+    let interactor = ShowsProgressService(listStateDataSource: listStateDataSource,
+                                          showsObserable: watchedShowEntitiesObservableMock,
+                                          syncStateObservable: SyncStateMocks.SyncStateObservableMock(),
+                                          appStateObservable: AppStateMock.AppStateObservableMock())
     _ = interactor.fetchWatchedShowsProgress().subscribe(observer)
     scheduler.start()
 
@@ -95,7 +104,10 @@ final class ShowsProgressServiceTest: XCTestCase {
 
   func testShowsProgressService_receivesNewListState_shouldNotifyDataSource() {
     // Given
-    let interactor = ShowsProgressService(listStateDataSource: listStateDataSource, showsObserable: watchedShowEntitiesObservableMock)
+    let interactor = ShowsProgressService(listStateDataSource: listStateDataSource,
+                                          showsObserable: watchedShowEntitiesObservableMock,
+                                          syncStateObservable: SyncStateMocks.SyncStateObservableMock(),
+                                          appStateObservable: AppStateMock.AppStateObservableMock())
 
     // When
     let listState = ShowProgressListState(sort: .lastWatched, filter: .watched, direction: .asc)

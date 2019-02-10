@@ -232,7 +232,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let appStateObservable = AppStateMock.AppStateObservableMock()
     let interactor = MovieDetailsMocks.Interactor()
     let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appStateObservable: appStateObservable)
-    let newState = AppState(loginState: LoginState.logged(settings: TraktEntitiesMock.createUserSettingsMock()), hideSpecials: false)
+    let newState = AppState(userSettings: TraktEntitiesMock.createUserSettingsMock(), hideSpecials: false)
     presenter.viewDidLoad()
 
     appStateObservable.change(state: newState)

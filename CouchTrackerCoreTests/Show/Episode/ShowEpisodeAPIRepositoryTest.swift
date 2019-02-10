@@ -81,7 +81,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
                                               appConfigurationsObservable: appStateObservableMock,
                                               hideSpecials: true)
 
-    appStateObservableMock.change(state: AppState(loginState: .notLogged, hideSpecials: false))
+    appStateObservableMock.change(state: AppState(userSettings: nil, hideSpecials: false))
 
     // When
     let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()

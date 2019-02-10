@@ -9,7 +9,6 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
   private var listStateDataSource: ShowsProgressMocks.ListStateDataSource!
   private var interactor: ShowsProgressInteractor!
   private var presenter: ShowsProgressDefaultPresenter!
-  private var loginObservable: TraktLoginObservableMock!
   private var schedulers: TestSchedulers!
   private var viewStateObserver: TestableObserver<ShowProgressViewState>!
 
@@ -20,15 +19,15 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     viewStateObserver = schedulers.createObserver(ShowProgressViewState.self)
   }
 
-  private func setupPresenter(_ loginState: TraktLoginState) {
-    loginObservable = TraktLoginObservableMock(state: loginState)
+  private func setupPresenter() {
     router = ShowsProgressMocks.ShowsProgressRouterMock()
     listStateDataSource = ShowsProgressMocks.ListStateDataSource()
     let syncStateObservable = SyncStateMocks.SyncStateObservableMock()
+    let appStateObservable = AppStateMock.AppStateObservableMock()
 
     presenter = ShowsProgressDefaultPresenter(interactor: interactor,
                                               router: router,
-                                              loginObservable: loginObservable,
+                                              appStateObservable: appStateObservable,
                                               syncStateObservable: syncStateObservable)
   }
 
@@ -37,7 +36,6 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     listStateDataSource = nil
     interactor = nil
     presenter = nil
-    loginObservable = nil
     schedulers = nil
     super.tearDown()
   }
@@ -45,7 +43,8 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
   func testShowsProgressPresenter_isLogged_RceivesNothing_emitsEmptyState() {
     // Given
     interactor = ShowsProgressMocks.EmptyShowsProgressInteractorMock()
-    setupPresenter(TraktLoginState.logged)
+//    setupPresenter(TraktLoginState.logged)
+    setupPresenter()
 
     // When
     _ = presenter.observeViewState().subscribe(viewStateObserver)
@@ -64,7 +63,8 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     entities.append(ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisodeDate())
 
     interactor = ShowsProgressMocks.ShowsProgressInteractorMock(entities: entities)
-    setupPresenter(TraktLoginState.logged)
+//    setupPresenter(TraktLoginState.logged)
+    setupPresenter()
 
     // When
     _ = presenter.observeViewState().subscribe(viewStateObserver)
@@ -82,7 +82,8 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
   func testShowsProgressPresenter_notLoggedOnTrakt_notifyView() {
     // Given
     interactor = ShowsProgressMocks.ShowsProgressInteractorMock()
-    setupPresenter(TraktLoginState.notLogged)
+//    setupPresenter(TraktLoginState.notLogged)
+    setupPresenter()
 
     // When
     _ = presenter.observeViewState().subscribe(viewStateObserver)
@@ -96,12 +97,13 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
   func testShowsProgressPresenter_receivesNotLoggedEvent_updateView() {
     // Given
     interactor = ShowsProgressMocks.ShowsProgressInteractorMock()
-    setupPresenter(TraktLoginState.logged)
+//    setupPresenter(TraktLoginState.logged)
+    setupPresenter()
 
     _ = presenter.observeViewState().subscribe(viewStateObserver)
 
     // When
-    loginObservable.changeTo(state: TraktLoginState.notLogged)
+//    loginObservable.changeTo(state: TraktLoginState.notLogged)
 
     // Then
     let expectedViewState = [Recorded.next(0, ShowProgressViewState.filterEmpty),
@@ -118,7 +120,8 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     entities.append(ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisodeDate())
 
     interactor = ShowsProgressMocks.ShowsProgressInteractorMock(entities: entities)
-    setupPresenter(TraktLoginState.logged)
+//    setupPresenter(TraktLoginState.logged)
+    setupPresenter()
 
     _ = presenter.observeViewState().subscribe(viewStateObserver)
 
@@ -137,7 +140,8 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     let error = NSError(domain: "io.github.pietrocaselani.couchtracker", code: 35, userInfo: userInfo)
 
     interactor = ShowsProgressMocks.ShowsProgressInteractorMock(error: error)
-    setupPresenter(TraktLoginState.logged)
+//    setupPresenter(TraktLoginState.logged)
+    setupPresenter()
 
     // When
     _ = presenter.observeViewState().subscribe(viewStateObserver)
@@ -156,7 +160,8 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     entities.append(ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisodeDate())
 
     interactor = ShowsProgressMocks.ShowsProgressInteractorMock(entities: entities)
-    setupPresenter(TraktLoginState.logged)
+//    setupPresenter(TraktLoginState.logged)
+    setupPresenter()
 
     _ = presenter.observeViewState().subscribe(viewStateObserver)
 
@@ -176,7 +181,8 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     entities.append(ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisodeDate())
 
     interactor = ShowsProgressMocks.ShowsProgressInteractorMock(entities: entities)
-    setupPresenter(TraktLoginState.logged)
+//    setupPresenter(TraktLoginState.logged)
+    setupPresenter()
 
     _ = presenter.observeViewState().subscribe(viewStateObserver)
 
@@ -197,7 +203,8 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
     interactor = ShowsProgressMocks.ShowsProgressInteractorMock(entities: entities)
     interactor.listState = ShowProgressListState(sort: .title, filter: .none, direction: .desc)
-    setupPresenter(TraktLoginState.logged)
+//    setupPresenter(TraktLoginState.logged)
+    setupPresenter()
 
     // When
     _ = presenter.observeViewState().subscribe(viewStateObserver)

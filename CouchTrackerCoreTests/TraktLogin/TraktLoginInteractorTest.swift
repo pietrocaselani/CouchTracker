@@ -10,15 +10,15 @@ final class TraktLoginInteractorTest: XCTestCase {
     super.tearDown()
   }
 
-  func testTraktLoginInteractor_createInstanceFailsWithoutOAuthURL() {
-    let interactor = TraktLoginService(traktProvider: TraktProviderMock(oauthURL: nil))
-    XCTAssertNil(interactor)
-  }
-
   func testTraktLoginInteractor_fetchLoginURLSuccess_emitsURL() {
     // Given
     let url = URL(string: "https://google.com/login")
-    let interactor = TraktLoginService(traktProvider: TraktProviderMock(oauthURL: url))!
+    let trakt = TraktProviderMock(oauthURL: nil)
+    let policyDecider = TraktTokenPolicyDecider(traktProvider: trakt)
+    let dataHolder = AppStateMock.DataHolderMock()
+    let manager = AppStateManager(appState: .initialState(), trakt: trakt, dataHolder: dataHolder)
+
+    let interactor = TraktLoginService(appStateManager: manager, policyDecider: policyDecider)
 
     // When
     let single = interactor.fetchLoginURL()

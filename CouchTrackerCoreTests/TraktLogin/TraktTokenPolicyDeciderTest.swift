@@ -5,7 +5,6 @@ import TraktSwift
 import XCTest
 
 final class TraktTokenPolicyDeciderTest: XCTestCase {
-  private var output: TraktLoginOutputMock!
   private var policyDecider: TraktLoginPolicyDecider!
   private var schedulers: TestSchedulers!
   private let request = URLRequest(url: URL(string: "couchtracker://my_awesome_url")!)
@@ -13,21 +12,19 @@ final class TraktTokenPolicyDeciderTest: XCTestCase {
   override func setUp() {
     super.setUp()
 
-    output = TraktLoginOutputMock()
     let testScheduler = TestScheduler(initialClock: 0)
 
     schedulers = TestSchedulers(mainScheduler: testScheduler, scheduler: testScheduler)
   }
 
   override func tearDown() {
-    output = nil
     schedulers = nil
 
     super.tearDown()
   }
 
   func setupPolicyDecider(_ traktProvider: TraktProvider = createTraktProviderMock()) {
-    policyDecider = TraktTokenPolicyDecider(loginOutput: output, traktProvider: traktProvider, schedulers: schedulers)
+    policyDecider = TraktTokenPolicyDecider(traktProvider: traktProvider)
   }
 
   func testTraktTokenPolicyDecider_receivesError_notifyOutput() {
@@ -48,8 +45,9 @@ final class TraktTokenPolicyDeciderTest: XCTestCase {
       element == expectedEvent
     }))
 
-    XCTAssertTrue(output.invokedLogInFail)
-    XCTAssertEqual(output.invokedLoginFailParameters?.message, errorMessage)
+//    XCTAssertTrue(output.invokedLogInFail)
+//    XCTAssertEqual(output.invokedLoginFailParameters?.message, errorMessage)
+    XCTFail()
   }
 
   func testTraktTokenPolicyDecider_receivesUndeterminedResult_doNothing() {
@@ -69,8 +67,9 @@ final class TraktTokenPolicyDeciderTest: XCTestCase {
       element == expectedEvent
     }))
 
-    XCTAssertFalse(output.invokedLogInFail)
-    XCTAssertFalse(output.invokedLoggedInSuccessfully)
+//    XCTAssertFalse(output.invokedLogInFail)
+//    XCTAssertFalse(output.invokedLoggedInSuccessfully)
+    XCTFail()
   }
 
   func testTraktTokenPolicyDecider_receivesAuthenticatedResult_notifyOutput() {
@@ -91,6 +90,7 @@ final class TraktTokenPolicyDeciderTest: XCTestCase {
       element == expectedEvent
     }))
 
-    XCTAssertTrue(output.invokedLoggedInSuccessfully)
+//    XCTAssertTrue(output.invokedLoggedInSuccessfully)
+    XCTFail()
   }
 }

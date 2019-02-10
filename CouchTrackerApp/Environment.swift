@@ -31,9 +31,8 @@ public final class Environment {
     return Environment.getAppState(userDefaults: userDefaults)
   }
 
-  private static func getAppState(userDefaults _: UserDefaults) -> AppState {
-    return FileAppStateDataHolder.appState()
-//    return UserDefaultsAppStateDataHolder.currentAppConfig(userDefaults)
+  private static func getAppState(userDefaults: UserDefaults) -> AppState {
+    return UserDefaultsAppStateDataHolder.currentAppConfig(userDefaults)
   }
 
   // swiftlint:disable function_body_length
@@ -89,8 +88,7 @@ public final class Environment {
 
     realmProvider = DefaultRealmProvider(buildConfig: buildConfig)
 
-//    let appStateDataHolder = UserDefaultsAppStateDataHolder(userDefaults: userDefaults)
-    let appStateDataHolder = FileAppStateDataHolder()
+    let appStateDataHolder = UserDefaultsAppStateDataHolder(userDefaults: userDefaults)
     let appState = Environment.getAppState(userDefaults: userDefaults)
 
     appStateManager = AppStateManager(appState: appState, trakt: trakt, dataHolder: appStateDataHolder)

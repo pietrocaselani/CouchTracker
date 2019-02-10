@@ -9,12 +9,10 @@ final class DefaultWatchedShowSynchronizerSyncStateTests: XCTestCase {
     // Given
     let downloader = SynchronizerMocks.WatchedShowEntityDownloaderMock()
     let dataSource = SynchronizerMocks.ShowDataSourceMock()
-    let syncStateOutput = SyncStateMocks.SyncStateOutputMock()
     let schedulers = TestSchedulers()
 
     let synchronizer = DefaultWatchedShowSynchronizer(downloader: downloader,
                                                       dataSource: dataSource,
-                                                      syncStateOutput: syncStateOutput,
                                                       scheduler: schedulers)
 
     // When
@@ -28,19 +26,17 @@ final class DefaultWatchedShowSynchronizerSyncStateTests: XCTestCase {
 
     // Then
     let expectedStates = [SyncState(watchedShowsSyncState: .syncing), SyncState(watchedShowsSyncState: .notSyncing)]
-    XCTAssertEqual(expectedStates, syncStateOutput.statesNotified)
+    XCTFail()
   }
 
   func testDefaultWatchedShowsSynchronizerSync_whenSyncStarts_notifyIsSyncing() {
     // Given
     let downloader = SynchronizerMocks.WatchedShowEntityDownloaderMock()
     let dataSource = SynchronizerMocks.ShowDataSourceMock()
-    let syncStateOutput = SyncStateMocks.SyncStateOutputMock()
     let schedulers = TestSchedulers()
 
     let synchronizer = DefaultWatchedShowSynchronizer(downloader: downloader,
                                                       dataSource: dataSource,
-                                                      syncStateOutput: syncStateOutput,
                                                       scheduler: schedulers)
 
     // When
@@ -60,9 +56,8 @@ final class DefaultWatchedShowSynchronizerSyncStateTests: XCTestCase {
     // Then
     let expectedStates = [SyncState(watchedShowsSyncState: .syncing), SyncState(watchedShowsSyncState: .notSyncing),
                           SyncState(watchedShowsSyncState: .syncing), SyncState(watchedShowsSyncState: .notSyncing)]
-    XCTAssertEqual(expectedStates, syncStateOutput.statesNotified)
-
-    expect(syncStateOutput.statesNotified).toEventually(equal(expectedStates))
+    XCTFail()
+//    expect(syncStateOutput.statesNotified).toEventually(equal(expectedStates))
   }
 
   func testDefaultWatchedShowsSynchronizerSync_whenErrorOccurs_notifyNotSyncing() {
@@ -70,12 +65,10 @@ final class DefaultWatchedShowSynchronizerSyncStateTests: XCTestCase {
     let error = NSError(code: .selfIsDead)
     let downloader = SynchronizerMocks.WatchedShowEntityDownloaderMock(error: error)
     let dataSource = SynchronizerMocks.ShowDataSourceMock()
-    let syncStateOutput = SyncStateMocks.SyncStateOutputMock()
     let schedulers = TestSchedulers()
 
     let synchronizer = DefaultWatchedShowSynchronizer(downloader: downloader,
                                                       dataSource: dataSource,
-                                                      syncStateOutput: syncStateOutput,
                                                       scheduler: schedulers)
 
     // When
@@ -89,6 +82,6 @@ final class DefaultWatchedShowSynchronizerSyncStateTests: XCTestCase {
 
     // Then
     let expectedStates = [SyncState(watchedShowsSyncState: .syncing), SyncState(watchedShowsSyncState: .notSyncing)]
-    XCTAssertEqual(expectedStates, syncStateOutput.statesNotified)
+    XCTFail()
   }
 }

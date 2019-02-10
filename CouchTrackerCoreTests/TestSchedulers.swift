@@ -6,10 +6,10 @@ final class TestSchedulers: Schedulers {
   var dataSourceScheduler: ImmediateSchedulerType
   var dataSourceQueue: DispatchQueue
   var networkQueue: DispatchQueue
-  var networkScheduler: ImmediateSchedulerType
+  var networkScheduler: SchedulerType
   var ioQueue: DispatchQueue
-  var ioScheduler: ImmediateSchedulerType
-  var mainScheduler: ImmediateSchedulerType
+  var ioScheduler: SchedulerType
+  var mainScheduler: SchedulerType
   var mainQueue: DispatchQueue
   let testScheduler: TestScheduler
 
@@ -18,7 +18,7 @@ final class TestSchedulers: Schedulers {
               scheduler: TestScheduler(initialClock: initialClock))
   }
 
-  init(mainScheduler: ImmediateSchedulerType, scheduler: TestScheduler) {
+  init(mainScheduler: SchedulerType, scheduler: TestScheduler) {
     testScheduler = scheduler
     networkQueue = DispatchQueue.main
     networkScheduler = scheduler
