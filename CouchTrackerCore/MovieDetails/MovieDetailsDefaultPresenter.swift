@@ -9,10 +9,10 @@ public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
   private let imagesStateSubject = BehaviorSubject<MovieDetailsImagesState>(value: .loading)
   private var isLogged = false
 
-  public init(interactor: MovieDetailsInteractor, appConfigObservable: AppStateObservable) {
+  public init(interactor: MovieDetailsInteractor, appStateObservable: AppStateObservable) {
     self.interactor = interactor
 
-    appConfigObservable.observe()
+    appStateObservable.observe()
       .subscribe(onNext: { [weak self] appConfig in
         self?.isLogged = appConfig.isLogged
       }).disposed(by: disposeBag)

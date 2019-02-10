@@ -1,17 +1,16 @@
 import Realm
 import RxSwift
-import TraktSwift
 
-public final class GenreRealmDataSource: GenreDataSource {
+public final class GenreRealmDataSource {
   private let realmProvider: RealmProvider
-  private let schedulers: Schedulers
+  private let scheduler: ImmediateSchedulerType
 
-  public init(realmProvider: RealmProvider, schedulers: Schedulers) {
+  public init(realmProvider: RealmProvider, scheduler: ImmediateSchedulerType) {
     self.realmProvider = realmProvider
-    self.schedulers = schedulers
+    self.scheduler = scheduler
   }
 
-  public func fetchGenres() -> Maybe<[Genre]> {
+  public func fetchRealmGenres() -> Maybe<[GenreRealm]> {
     let maybe = Maybe.deferred { [weak self] () -> Maybe<[GenreRealm]> in
       guard let strongSelf = self else { return Maybe.empty() }
 
@@ -21,16 +20,14 @@ public final class GenreRealmDataSource: GenreDataSource {
       return genres.isEmpty ? Maybe.empty() : Maybe.just(genres)
     }
 
-    return maybe.map { $0.map { $0.toEntity() } }.subscribeOn(schedulers.dataSourceScheduler)
+    return maybe.subscribeOn(scheduler)
   }
 
-  public func save(genres: [Genre]) throws {
-    let realmEntities = genres.map { $0.toRealm() }
-
+  public func save(realmGenres: [GenreRealm]) throws {
     let realm = realmProvider.realm
 
     try realm.write {
-      realm.add(realmEntities, update: true)
+      realm.add(realmGenres, update: true)
     }
   }
 }

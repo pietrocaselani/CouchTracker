@@ -52,22 +52,16 @@ final class ShowsProgressViewController: UIViewController {
 
     switch state {
     case .empty:
-      print("ViewState = Empty")
       showEmptyData(message: "Go watch some shows")
     case .filterEmpty:
-      print("ViewState = FilterEmpty")
       showEmptyData(message: "A lot of filters!")
     case .notLogged:
-      print("ViewState = NotLogged")
       showNotLogged()
     case .loading:
-      print("ViewState = Loading")
       showLoadingData()
     case let .error(error):
-      print("ViewState = Error")
       showError(error: error)
     case let .shows(entities, menu):
-      print("ViewState = Shows")
       showData(entities: entities, menu: menu)
     }
   }

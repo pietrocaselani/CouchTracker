@@ -3,24 +3,18 @@ import TraktSwift
 
 public final class CentralSynchronizer {
   private let disposeBag = DisposeBag()
+  private let syncStateSubject: BehaviorSubject<SyncState>
   private let watchedShowsSynchronizer: WatchedShowsSynchronizer
-  private let syncStateOutput: SyncStateOutput
+  private let watchedShowSynchronizer: WatchedShowSynchronizer
 
-  public static func initialize(watchedShowsSynchronizer: WatchedShowsSynchronizer,
-                                appConfigObservable: AppStateObservable,
-                                syncStateOutput: SyncStateOutput) -> CentralSynchronizer {
-    return CentralSynchronizer(watchedShowsSynchronizer: watchedShowsSynchronizer,
-                               appConfigObservable: appConfigObservable,
-                               syncStateOutput: syncStateOutput)
-  }
-
-  private init(watchedShowsSynchronizer: WatchedShowsSynchronizer,
-               appConfigObservable: AppStateObservable,
-               syncStateOutput: SyncStateOutput) {
+  public init(watchedShowsSynchronizer: WatchedShowsSynchronizer,
+              watchedShowSynchronizer: WatchedShowSynchronizer,
+              appStateObservable: AppStateObservable) {
     self.watchedShowsSynchronizer = watchedShowsSynchronizer
-    self.syncStateOutput = syncStateOutput
+    self.watchedShowSynchronizer = watchedShowSynchronizer
+    syncStateSubject = BehaviorSubject<SyncState>(value: .initial)
 
-    appConfigObservable.observe()
+    appStateObservable.observe()
       .filter { $0.isLogged }
       .subscribe(onNext: { [weak self] newAppState in
         self?.handleNew(appState: newAppState)
@@ -30,16 +24,39 @@ public final class CentralSynchronizer {
   private func handleNew(appState: AppState) {
     let options = CentralSynchronizer.syncOptionsFor(appState: appState)
 
-    syncStateOutput.newSyncState(state: SyncState(watchedShowsSyncState: .syncing))
-
-    watchedShowsSynchronizer.syncWatchedShows(using: options)
-      .notifySyncState(syncStateOutput)
-      .subscribe()
-      .disposed(by: disposeBag)
+    syncWatchedShows(using: options).subscribe().disposed(by: disposeBag)
   }
 
   private static func syncOptionsFor(appState: AppState) -> WatchedShowEntitiesSyncOptions {
     let defaultOptions = Defaults.showsSyncOptions
     return WatchedShowEntitiesSyncOptions(extended: defaultOptions.extended, hiddingSpecials: appState.hideSpecials)
+  }
+}
+
+extension CentralSynchronizer: WatchedShowsSynchronizer {
+  public func syncWatchedShows(using options: WatchedShowEntitiesSyncOptions) -> Single<[WatchedShowEntity]> {
+    syncStateSubject.onNext(SyncState(watchedShowsSyncState: .syncing))
+
+    return watchedShowsSynchronizer.syncWatchedShows(using: options)
+      .do(onDispose: { [weak self] in
+        self?.syncStateSubject.onNext(SyncState(watchedShowsSyncState: .notSyncing))
+      })
+  }
+}
+
+extension CentralSynchronizer: WatchedShowSynchronizer {
+  public func syncWatchedShow(using options: WatchedShowEntitySyncOptions) -> Single<WatchedShowEntity> {
+    syncStateSubject.onNext(SyncState(watchedShowsSyncState: .syncing))
+
+    return watchedShowSynchronizer.syncWatchedShow(using: options)
+      .do(onDispose: { [weak self] in
+        self?.syncStateSubject.onNext(SyncState(watchedShowsSyncState: .notSyncing))
+      })
+  }
+}
+
+extension CentralSynchronizer: SyncStateObservable {
+  public func observe() -> Observable<SyncState> {
+    return syncStateSubject.distinctUntilChanged()
   }
 }

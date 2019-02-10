@@ -1,18 +1,17 @@
 import RealmSwift
 import RxRealm
 import RxSwift
-import TraktSwift
 
-public final class RealmShowDataSource: ShowDataSource {
+public final class RealmShowDataSource {
   private let realmProvider: RealmProvider
-  private let schedulers: Schedulers
+  private let scheduler: ImmediateSchedulerType
 
-  public init(realmProvider: RealmProvider, schedulers: Schedulers) {
+  public init(realmProvider: RealmProvider, scheduler: ImmediateSchedulerType) {
     self.realmProvider = realmProvider
-    self.schedulers = schedulers
+    self.scheduler = scheduler
   }
 
-  public func observeWatchedShow(showIds: ShowIds) -> Observable<WatchedShowEntity> {
+  public func observeRealmWatchedShow(showIds: ShowIdsRealm) -> Observable<WatchedShowEntityRealm> {
     let observable = Observable.deferred { [weak self] () -> Observable<WatchedShowEntityRealm> in
       guard let strongSelf = self else {
         return Observable.empty()
@@ -29,18 +28,14 @@ public final class RealmShowDataSource: ShowDataSource {
       return Observable.from(object: show, emitInitialValue: true)
     }
 
-    return observable.map { result -> WatchedShowEntity in
-      result.toEntity()
-    }.subscribeOn(schedulers.dataSourceScheduler)
+    return observable.subscribeOn(scheduler)
   }
 
-  public func save(show: WatchedShowEntity) throws {
-    let realmEntity = show.toRealm()
-
+  public func save(realmShow: WatchedShowEntityRealm) throws {
     let realm = realmProvider.realm
 
     try realm.write {
-      realm.add(realmEntity, update: true)
+      realm.add(realmShow, update: true)
     }
   }
 }

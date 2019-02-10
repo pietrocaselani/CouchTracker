@@ -1,4 +1,5 @@
 import CouchTrackerCore
+import CouchTrackerPersistence
 import Moya
 import TMDBSwift
 import TraktSwift
@@ -17,7 +18,6 @@ public final class Environment {
   public let showSynchronizer: WatchedShowSynchronizer
   public let watchedShowEntitiesObservable: WatchedShowEntitiesObservable
   public let watchedShowEntityObserable: WatchedShowEntityObserable
-  public let centralSynchronizer: CentralSynchronizer
   public let userDefaults: UserDefaults
   public let genreRepository: GenreRepository
   public let imageRepository: ImageRepository
@@ -26,7 +26,6 @@ public final class Environment {
   public let showImageRepository: ShowImageCachedRepository
   public let episodeImageRepository: EpisodeImageCachedRepository
   public let syncStateObservable: SyncStateObservable
-  public let syncStateOutput: SyncStateOutput
 
   var currentAppState: AppState {
     return Environment.getAppState(userDefaults: userDefaults)
@@ -41,10 +40,6 @@ public final class Environment {
   private init() {
     userDefaults = UserDefaults.standard
     let schedulers = DefaultSchedulers.instance
-
-    let syncStateStore = SyncStateStore()
-    syncStateObservable = syncStateStore
-    syncStateOutput = syncStateStore
 
     let debug: Bool
 
@@ -101,7 +96,7 @@ public final class Environment {
     appStateManager = AppStateManager(appState: appState, trakt: trakt, dataHolder: appStateDataHolder)
 
     let genreDataSource = GenreRealmDataSource(realmProvider: realmProvider,
-                                               schedulers: schedulers)
+                                               scheduler: schedulers.dataSourceScheduler)
 
     genreRepository = TraktGenreRepository(traktProvider: trakt,
                                            dataSource: genreDataSource,
@@ -114,26 +109,29 @@ public final class Environment {
     let showDownloader = DefaultWatchedShowEntityDownloader(trakt: trakt,
                                                             scheduler: schedulers)
 
-    let showDataSource = RealmShowDataSource(realmProvider: realmProvider, schedulers: schedulers)
+    let showDataSource = RealmShowDataSource(realmProvider: realmProvider, scheduler: schedulers.dataSourceScheduler)
 
-    let showsDataSource = RealmShowsDataSource(realmProvider: realmProvider, schedulers: schedulers)
+    let showsDataSource = RealmShowsDataSource(realmProvider: realmProvider,
+                                               scheduler: schedulers.dataSourceScheduler)
+
+    let showsSynchronizer = DefaultWatchedShowsSynchronizer(downloader: showsDownloader,
+                                                            dataHolder: showsDataSource,
+                                                            schedulers: schedulers)
+
+    let showSynchronizer = DefaultWatchedShowSynchronizer(downloader: showDownloader,
+                                                          dataSource: showDataSource,
+                                                          scheduler: schedulers)
+
+    let centralSynchronizer = CentralSynchronizer(watchedShowsSynchronizer: showsSynchronizer,
+                                                  watchedShowSynchronizer: showSynchronizer,
+                                                  appStateObservable: appStateManager)
+
+    self.showsSynchronizer = centralSynchronizer
+    self.showSynchronizer = centralSynchronizer
+    syncStateObservable = centralSynchronizer
 
     watchedShowEntitiesObservable = showsDataSource
     watchedShowEntityObserable = showDataSource
-
-    showsSynchronizer = DefaultWatchedShowsSynchronizer(downloader: showsDownloader,
-                                                        dataHolder: showsDataSource,
-                                                        syncStateOutput: syncStateStore,
-                                                        schedulers: schedulers)
-
-    showSynchronizer = DefaultWatchedShowSynchronizer(downloader: showDownloader,
-                                                      dataSource: showDataSource,
-                                                      syncStateOutput: syncStateStore,
-                                                      scheduler: schedulers)
-
-    centralSynchronizer = CentralSynchronizer.initialize(watchedShowsSynchronizer: showsSynchronizer,
-                                                         appConfigObservable: appStateManager,
-                                                         syncStateOutput: syncStateOutput)
 
     configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
 

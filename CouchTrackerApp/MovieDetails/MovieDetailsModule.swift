@@ -16,7 +16,7 @@ public final class MovieDetailsModule {
     let interactor = MovieDetailsService(repository: repository, genreRepository: genreRepository,
                                          imageRepository: imageRespository, movieIds: movieIds)
 
-    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appStateManager)
+    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appStateObservable: appStateManager)
 
     return MovieDetailsViewController(presenter: presenter)
   }

@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     Environment.instance.syncStateObservable.observe()
       .observeOn(MainScheduler.instance)
       .subscribe(onNext: { syncState in
-        print("Is Sync = \(syncState.isSyncing)")
         UIApplication.shared.isNetworkActivityIndicatorVisible = syncState.isSyncing
       }).disposed(by: disposeBag)
 

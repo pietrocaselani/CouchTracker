@@ -37,7 +37,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let appStateObservable = AppStateMock.AppStateObservableMock()
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
                                              imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
-    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appStateObservable)
+    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appStateObservable: appStateObservable)
 
     presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
 
@@ -64,7 +64,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let appStateObservable = AppStateMock.AppStateObservableMock()
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
                                              imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
-    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appStateObservable)
+    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appStateObservable: appStateObservable)
 
     presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
 
@@ -92,7 +92,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let appStateObservable = AppStateMock.AppStateObservableMock()
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
                                              imageRepository: imageRepositoryRealMock, movieIds: movie.ids)
-    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appStateObservable)
+    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appStateObservable: appStateObservable)
 
     presenter.observeImagesState().subscribe(imageObserver).disposed(by: disposeBag)
 
@@ -121,7 +121,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
 
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
                                              imageRepository: imageRepositoryRealMock, movieIds: movieIds)
-    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appStateObservable)
+    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appStateObservable: appStateObservable)
 
     presenter.observeImagesState().subscribe(imageObserver).disposed(by: disposeBag)
 
@@ -144,7 +144,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let repository = ErrorMovieDetailsStoreMock(error: detailsError)
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
                                              imageRepository: imageRepositoryMock, movieIds: movie.ids)
-    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appStateObservable)
+    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appStateObservable: appStateObservable)
 
     presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
 
@@ -167,7 +167,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let repository = ErrorMovieDetailsStoreMock(error: error)
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
                                              imageRepository: imageRepositoryMock, movieIds: movie.ids)
-    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appStateObservable)
+    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appStateObservable: appStateObservable)
 
     presenter.observeViewState().subscribe(viewObserver).disposed(by: disposeBag)
 
@@ -184,7 +184,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
   func testMovieDetailsPresenter_handleWatchedWhenNotLogged_emitError() {
     let appStateObservable = AppStateMock.AppStateObservableMock()
     let interactor = MovieDetailsMocks.Interactor()
-    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appStateObservable)
+    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appStateObservable: appStateObservable)
     presenter.viewDidLoad()
 
     let observer = scheduler.createObserver(Never.self)
@@ -210,7 +210,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
     let repository = ErrorMovieDetailsStoreMock(error: detailsError)
     let interactor = MovieDetailsServiceMock(repository: repository, genreRepository: genreRepository,
                                              imageRepository: imageRepositoryMock, movieIds: movie.ids)
-    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appStateObservable)
+    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appStateObservable: appStateObservable)
     presenter.viewDidLoad()
 
     let observer = scheduler.createObserver(Never.self)
@@ -231,7 +231,7 @@ final class MovieDetailsPresenterTest: XCTestCase {
   func testMovieDetailsPresenter_handleWatched_notifyInteractor() {
     let appStateObservable = AppStateMock.AppStateObservableMock()
     let interactor = MovieDetailsMocks.Interactor()
-    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appConfigObservable: appStateObservable)
+    let presenter = MovieDetailsDefaultPresenter(interactor: interactor, appStateObservable: appStateObservable)
     let newState = AppState(loginState: LoginState.logged(settings: TraktEntitiesMock.createUserSettingsMock()), hideSpecials: false)
     presenter.viewDidLoad()
 

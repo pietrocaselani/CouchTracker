@@ -1,5 +1,4 @@
 import RealmSwift
-import TraktSwift
 
 public final class EpisodeIdsRealm: Object {
   @objc public dynamic var trakt = -1
@@ -24,27 +23,5 @@ public final class EpisodeIdsRealm: Object {
       lhs.imdb == rhs.imdb &&
       lhs.tvdb.value == rhs.tvdb.value &&
       lhs.tvrage.value == rhs.tvrage.value
-  }
-
-  public func toEntity() -> EpisodeIds {
-    return EpisodeIds(trakt: trakt,
-                      tmdb: tmdb.value,
-                      imdb: imdb,
-                      tvdb: tvdb.value,
-                      tvrage: tvrage.value)
-  }
-}
-
-public extension EpisodeIds {
-  public func toRealm() -> EpisodeIdsRealm {
-    let entity = EpisodeIdsRealm()
-
-    entity.trakt = trakt
-    entity.tmdb.value = tmdb
-    entity.imdb = imdb
-    entity.tvdb.value = tvdb
-    entity.tvrage.value = tvrage
-
-    return entity
   }
 }

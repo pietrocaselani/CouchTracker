@@ -10,21 +10,22 @@ public struct EpisodeEntity: Hashable, Codable, EpisodeImageInput {
   public let season: Int
   public let firstAired: Date?
 
+  public init(ids: EpisodeIds, showIds: ShowIds, title: String,
+              overview: String?, number: Int, season: Int, firstAired: Date?) {
+    self.ids = ids
+    self.showIds = showIds
+    self.title = title
+    self.overview = overview
+    self.number = number
+    self.season = season
+    self.firstAired = firstAired
+  }
+
   public var tvdb: Int? {
     return ids.tvdb
   }
 
   public var tmdb: Int? {
     return showIds.tmdb
-  }
-
-  public var hashValue: Int {
-    var hash = ids.hashValue ^ title.hashValue ^ number.hashValue ^ season.hashValue
-    firstAired.run { hash ^= $0.hashValue }
-    return hash
-  }
-
-  public static func == (lhs: EpisodeEntity, rhs: EpisodeEntity) -> Bool {
-    return lhs.hashValue == rhs.hashValue
   }
 }

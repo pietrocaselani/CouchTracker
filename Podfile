@@ -10,8 +10,6 @@ def common_pods
   pod 'Trakt', path: './vendor/Trakt-Swift'
   pod 'TMDB', path: './vendor/TMDB-Swift'
   pod 'TVDB', path: './vendor/TVDB-Swift'
-  pod 'RxRealm', '0.7.6'
-  pod 'RealmSwift', '3.7.6'
   pod 'RxSwift', RX_SWIFT_VERSION
 end
 
@@ -24,6 +22,11 @@ def ios_pods
   pod 'Tabman', '2.1.0'
   pod 'Cartography', '3.1.0'
   pod 'FlowKitManager', '0.6.1'
+end
+
+def persistence_pods
+  pod 'RxRealm', '0.7.6'
+  pod 'RealmSwift', '3.7.6'
 end
 
 def tests_shared_pods
@@ -62,6 +65,15 @@ target 'CouchTrackerApp' do
   inhibit_all_warnings!
 
   ios_pods
+  persistence_pods
+end
+
+target 'CouchTrackerPersistence' do
+  platform :ios, IOS_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  persistence_pods
 end
 
 target 'CouchTracker' do

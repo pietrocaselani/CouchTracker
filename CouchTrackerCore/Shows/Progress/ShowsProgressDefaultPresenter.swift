@@ -47,25 +47,57 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
   }
 
   private func fetchShows() {
-
-
-    Observable.combineLatest(syncStateObservable.observe(),
-                             interactor.fetchWatchedShowsProgress(),
-                             appStateObservable.observe()) { [weak self] syncState, entities, loginState in
-      guard loginState.isLogged else { return ShowProgressViewState.notLogged }
-
-      guard let strongSelf = self else { return .empty }
-
-      let listState = strongSelf.interactor.listState
-      return createViewState(entities: entities, listState: listState, syncState: syncState)
-    }.ifEmpty(default: .empty)
-      .catchError { error -> Observable<ShowProgressViewState> in
-        Observable.just(ShowProgressViewState.error(error: error))
+    appStateObservable.observe().do(onNext: { [weak self] appState in
+      if !appState.isLogged {
+        self?.viewStateSubject.onNext(.notLogged)
       }
-      .subscribe(onNext: { [weak self] newViewState in
-        self?.viewStateSubject.onNext(newViewState)
-      }).disposed(by: disposeBag)
+    }).filter { $0.isLogged }
+      .flatMap { [weak self] _ -> Observable<SyncState> in
+        guard let strongSelf = self else { return Observable.just(SyncState.initial) }
+        return strongSelf.syncStateObservable.observe()
+      }.do(onNext: { [weak self] syncState in
+        let viewState = syncState.isSyncing ? ShowProgressViewState.loading : ShowProgressViewState.empty
+        self?.viewStateSubject.onNext(viewState)
+      }).filter { $0.isSyncing == false }
+      .flatMap { [weak self] _ -> Observable<[WatchedShowEntity]> in
+        guard let strongSelf = self else { return Observable.just([]) }
+        return strongSelf.interactor.fetchWatchedShowsProgress()
+      }.do(onNext: { [weak self] shows in
+        guard let strongSelf = self else { return }
+
+        let listState = strongSelf.interactor.listState
+
+        let viewState = createViewState(entities: shows, listState: listState)
+
+        self?.viewStateSubject.onNext(viewState)
+      })
+      .subscribe()
+      .disposed(by: disposeBag)
   }
+}
+
+private func createViewState(entities: [WatchedShowEntity],
+                             listState: ShowProgressListState) -> ShowProgressViewState {
+  if entities.isEmpty {
+    return .empty
+  }
+
+  var newEntities = entities.filter(listState.filter.filter()).sorted(by: listState.sort.comparator())
+
+  if listState.direction == .desc {
+    newEntities = newEntities.reversed()
+  }
+
+  guard let headEntity = newEntities.first else { return .filterEmpty }
+
+  let nonEmptyEntities = NonEmptyArray<WatchedShowEntity>(headEntity, Array(newEntities.dropFirst()))
+
+  let menu = ShowsProgressMenuOptions(sort: ShowProgressSort.allValues(),
+                                      filter: ShowProgressFilter.allValues(),
+                                      currentFilter: listState.filter,
+                                      currentSort: listState.sort)
+
+  return .shows(entities: nonEmptyEntities, menu: menu)
 }
 
 private func createViewState(entities: [WatchedShowEntity],
