@@ -1,7 +1,13 @@
 import RxSwift
 import TraktSwift
 
-public final class AppStateManager: AppStateObservable {
+public protocol AppStateManager: AppStateObservable {
+  func login() -> Completable
+  func toggleHideSpecials() -> Completable
+  func loginURL() -> Single<URL>
+}
+
+public final class DefaultAppStateManager: AppStateManager {
   private let trakt: TraktProvider
   private let dataHolder: AppStateDataHolder
   private let subject: BehaviorSubject<AppState>

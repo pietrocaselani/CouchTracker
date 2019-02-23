@@ -22,13 +22,15 @@ private class WatchedShowEntitiesObservableMock: WatchedShowEntitiesObservable {
 }
 
 final class ShowsProgressServiceTest: XCTestCase {
-  private let scheduler = TestSchedulers()
+  private var scheduler: TestSchedulers!
   private var observer: TestableObserver<[WatchedShowEntity]>!
   private var listStateDataSource: ShowsProgressMocks.ListStateDataSource!
   private var watchedShowEntitiesObservableMock: WatchedShowEntitiesObservableMock!
 
   override func setUp() {
     super.setUp()
+
+    scheduler = TestSchedulers()
 
     observer = scheduler.createObserver([WatchedShowEntity].self)
 
@@ -40,6 +42,7 @@ final class ShowsProgressServiceTest: XCTestCase {
 
   override func tearDown() {
     observer = nil
+    scheduler = nil
     listStateDataSource = nil
     watchedShowEntitiesObservableMock = nil
 
@@ -51,17 +54,22 @@ final class ShowsProgressServiceTest: XCTestCase {
     let interactor = ShowsProgressService(listStateDataSource: listStateDataSource,
                                           showsObserable: watchedShowEntitiesObservableMock,
                                           syncStateObservable: SyncStateMocks.SyncStateObservableMock(),
-                                          appStateObservable: AppStateMock.AppStateObservableMock())
+                                          appStateObservable: AppStateMock.AppStateObservableMock(),
+                                          schedulers: scheduler)
 
     // When
-    _ = interactor.fetchWatchedShowsProgress().subscribe(observer)
-    scheduler.start()
+//    _ = interactor.fetchWatchedShowsProgress().subscribe(observer)
+//    scheduler.start()
+    let res = scheduler.start {
+      interactor.fetchWatchedShowsProgress()
+    }
 
     // Then
     let entity = ShowsProgressMocks.mockWatchedShowEntity()
     let expectedEvents = [Recorded.next(0, [entity])]
 
-    RXAssertEvents(observer.events, expectedEvents)
+//    RXAssertEvents(observer.events, expectedEvents)
+    RXAssertEvents(res.events, expectedEvents)
   }
 
   func testShowsProgressService_receiveSameDataFromRepository_emitsOnlyOnce() {

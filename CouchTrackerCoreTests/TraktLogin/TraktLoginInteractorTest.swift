@@ -1,5 +1,6 @@
 @testable import CouchTrackerCore
 import RxSwift
+import RxTest
 import XCTest
 
 final class TraktLoginInteractorTest: XCTestCase {
@@ -12,26 +13,22 @@ final class TraktLoginInteractorTest: XCTestCase {
 
   func testTraktLoginInteractor_fetchLoginURLSuccess_emitsURL() {
     // Given
-    let url = URL(string: "https://google.com/login")
-    let trakt = TraktProviderMock(oauthURL: nil)
+    let url = URL(validURL: "https://google.com/login")
+    let trakt = TraktProviderMock(oauthURL: url)
     let policyDecider = TraktTokenPolicyDecider(traktProvider: trakt)
     let dataHolder = AppStateMock.DataHolderMock()
-    let manager = AppStateManager(appState: .initialState(), trakt: trakt, dataHolder: dataHolder)
+    let manager = DefaultAppStateManager(appState: .initialState(), trakt: trakt, dataHolder: dataHolder)
 
     let interactor = TraktLoginService(appStateManager: manager, policyDecider: policyDecider)
 
     // When
-    let single = interactor.fetchLoginURL()
+    let scheduler = TestScheduler(initialClock: 0)
+    let res = scheduler.start { interactor.fetchLoginURL().asObservable() }
 
     // Then
-    let resultExpectation = expectation(description: "Expect login URL")
+    let expectedEvents = [Recorded.next(200, url),
+                          Recorded.completed(200)]
 
-    let disposable = single.subscribe(onSuccess: { resultURL in
-      resultExpectation.fulfill()
-      XCTAssertEqual(resultURL, url)
-    })
-    _ = disposeBag.insert(disposable)
-
-    wait(for: [resultExpectation], timeout: 1)
+    XCTAssertEqual(res.events, expectedEvents)
   }
 }

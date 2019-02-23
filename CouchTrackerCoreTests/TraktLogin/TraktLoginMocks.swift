@@ -46,11 +46,16 @@ final class TraktLoginViewMock: TraktLoginView {
 
   var invokedLoadLogin = false
   var invokedLoadLoginParameters: (url: URL, Void)?
+  var showErrorInvokedCount = 0
+  var showErrorLastParemeter: Error?
 
   func loadLogin(using url: URL) {
     invokedLoadLogin = true
     invokedLoadLoginParameters = (url, ())
   }
 
-  func showError(error _: Error) {}
+  func showError(error: Error) {
+    showErrorInvokedCount += 1
+    showErrorLastParemeter = error
+  }
 }

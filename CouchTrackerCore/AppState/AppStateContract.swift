@@ -2,6 +2,11 @@ import Foundation
 import RxSwift
 import TraktSwift
 
+public enum AppStateViewState: Hashable {
+  case loading
+  case showing(configs: [AppStateViewModel])
+}
+
 public protocol AppStateDataHolder: class {
   func currentAppState() throws -> AppState
   func save(appState: AppState) throws
@@ -12,11 +17,6 @@ public protocol AppStateRouter: class {
   func finishLogin()
   func showExternal(url: URL)
   func showError(message: String)
-}
-
-public protocol AppStateInteractor: class {
-  func fetchAppState() -> Observable<AppState>
-  func toggleHideSpecials() -> Completable
 }
 
 public protocol AppStatePresenter: class {

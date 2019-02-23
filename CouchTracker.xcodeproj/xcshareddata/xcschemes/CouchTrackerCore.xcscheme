@@ -38,6 +38,11 @@
                BlueprintName = "CouchTrackerCoreTests"
                ReferencedContainer = "container:CouchTracker.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "AppStatePresenterTest/testAppConfigrationsPresenter_receivesNewAppState_updatesView()">
+               </Test>
+            </SkippedTests>
             <LocationScenarioReference
                identifier = "New York, NY, USA"
                referenceType = "1">

@@ -91,7 +91,7 @@ public final class Environment {
     let appStateDataHolder = UserDefaultsAppStateDataHolder(userDefaults: userDefaults)
     let appState = Environment.getAppState(userDefaults: userDefaults)
 
-    appStateManager = AppStateManager(appState: appState, trakt: trakt, dataHolder: appStateDataHolder)
+    appStateManager = DefaultAppStateManager(appState: appState, trakt: trakt, dataHolder: appStateDataHolder)
 
     let genreDataSource = GenreRealmDataSource(realmProvider: realmProvider,
                                                scheduler: schedulers.dataSourceScheduler)

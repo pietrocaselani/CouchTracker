@@ -5,18 +5,15 @@ public final class AppStateDefaultPresenter: AppStatePresenter {
   private let viewStateSubject = BehaviorSubject<AppStateViewState>(value: .loading)
   private let disposeBag = DisposeBag()
   private let schedulers: Schedulers
-  private let interactor: AppStateInteractor
   private let router: AppStateRouter
-  private let appStateObservable: AppStateObservable
+  private let appStateManager: AppStateManager
 
-  public init(interactor: AppStateInteractor,
-              router: AppStateRouter,
-              appStateObservable: AppStateObservable,
+  public init(router: AppStateRouter,
+              appStateManager: AppStateManager,
               schedulers: Schedulers = DefaultSchedulers.instance) {
-    self.interactor = interactor
     self.router = router
     self.schedulers = schedulers
-    self.appStateObservable = appStateObservable
+    self.appStateManager = appStateManager
   }
 
   public func viewDidLoad() {
@@ -37,13 +34,20 @@ public final class AppStateDefaultPresenter: AppStatePresenter {
         performLogin()
       }
     case .hideSpecials:
-      interactor.toggleHideSpecials().subscribe().disposed(by: disposeBag)
+      toggleHideSpecials()
     }
   }
 
-  private func updateView() {
-    interactor.fetchAppState()
+  private func toggleHideSpecials() {
+    appStateManager.toggleHideSpecials()
       .observeOn(schedulers.mainScheduler)
+      .subscribe(onError: { [weak self] error in
+        self?.router.showError(message: error.localizedDescription)
+      }).disposed(by: disposeBag)
+  }
+
+  private func updateView() {
+    appStateManager.observe()
       .map { state -> AppStateViewState in
         let viewModel = AppStateViewModelMapper.createViewModel(state)
         return AppStateViewState.showing(configs: viewModel)
@@ -58,7 +62,7 @@ public final class AppStateDefaultPresenter: AppStatePresenter {
   private func performLogin() {
     router.showTraktLogin()
 
-    appStateObservable.observe()
+    appStateManager.observe()
       .filter { $0.isLogged }
       .observeOn(schedulers.mainScheduler)
       .subscribe(onNext: { [weak self] _ in

@@ -36,9 +36,8 @@ final class TraktLoginPresenterTest: XCTestCase {
     schedulers.start()
 
     // Then
-//    XCTAssertTrue(output.invokedLogInFail)
-//    XCTAssertEqual(output.invokedLoginFailParameters?.message, message)
-    XCTFail()
+    XCTAssertEqual(view.showErrorInvokedCount, 1)
+    XCTAssertEqual(view.showErrorLastParemeter?.localizedDescription, message)
   }
 
   func testTraktLoginPresenter_fetchLoginURLSuccess_notifyView() {
