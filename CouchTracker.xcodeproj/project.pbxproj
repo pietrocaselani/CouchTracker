@@ -2881,7 +2881,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sh $SRCROOT/scripts/swiftformat\n";
+			shellScript = "sh $SRCROOT/build_phases/swiftformat\n";
 		};
 		4FAC4A92210F281D0096BCE0 /* SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2909,7 +2909,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sh $SRCROOT/scripts/swiftformat\n";
+			shellScript = "sh $SRCROOT/build_phases/swiftformat\n";
 		};
 		4FAC4A94210FDD4B0096BCE0 /* SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2923,7 +2923,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sh $SRCROOT/scripts/swiftformat\n";
+			shellScript = "sh $SRCROOT/build_phases/swiftformat\n";
 		};
 		6455BA751F45B862000660C6 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3015,7 +3015,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sh $SRCROOT/scripts/swiftformat\n";
+			shellScript = "sh $SRCROOT/build_phases/swiftformat\n";
 		};
 		824A784C220F68830001F3BF /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3051,7 +3051,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sh $SRCROOT/scripts/swiftformat\n";
+			shellScript = "sh $SRCROOT/build_phases/swiftformat\n";
 		};
 		9C6F0D2340CF87135C62A2BE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
