@@ -1,9 +1,11 @@
 import CouchTrackerApp
+import RxSwift
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   let window = UIWindow()
+  private let disposeBag = DisposeBag()
 
   func application(_: UIApplication,
                    didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
@@ -16,6 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UITabBar.appearance().tintColor = Colors.TabBar.tintColor
 
     UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self]).textColor = UIColor.ctzircon
+
+    Environment.instance.syncStateObservable.observe()
+      .observeOn(MainScheduler.instance)
+      .subscribe(onNext: { syncState in
+        UIApplication.shared.isNetworkActivityIndicatorVisible = syncState.isSyncing
+      }).disposed(by: disposeBag)
 
     let view = AppFlowModule.setupModule()
 

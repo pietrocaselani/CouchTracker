@@ -1,42 +1,38 @@
 import CouchTrackerCore
+import CouchTrackerPersistence
 import Moya
 import TMDBSwift
 import TraktSwift
 import TVDBSwift
 
-final class Environment {
-  static let instance = Environment()
-  let trakt: TraktProvider
-  let tmdb: TMDBProvider
-  let tvdb: TVDBProvider
-  let loginObservable: TraktLoginObservable
-  let defaultOutput: TraktLoginOutput
-  let schedulers: Schedulers
-  let realmProvider: RealmProvider
-  let buildConfig: BuildConfig
-  let appConfigurationsObservable: AppConfigurationsObservable
-  let appConfigurationsOutput: AppConfigurationsOutput
-  let showsSynchronizer: WatchedShowsSynchronizer
-  let showSynchronizer: WatchedShowSynchronizer
-  let watchedShowEntitiesObservable: WatchedShowEntitiesObservable
-  let watchedShowEntityObserable: WatchedShowEntityObserable
-  let centralSynchronizer: CentralSynchronizer
-  let userDefaults: UserDefaults
-  let genreRepository: GenreRepository
-  let imageRepository: ImageRepository
-  let configurationRepository: ConfigurationCachedRepository
-  let movieImageRepository: MovieImageCachedRepository
-  let showImageRepository: ShowImageCachedRepository
-  let episodeImageRepository: EpisodeImageCachedRepository
+public final class Environment {
+  public static let instance = Environment()
+  public let trakt: TraktProvider
+  public let tmdb: TMDBProvider
+  public let tvdb: TVDBProvider
+  public let schedulers: Schedulers
+  public let realmProvider: RealmProvider
+  public let buildConfig: BuildConfig
+  public let appStateManager: AppStateManager
+  public let showsSynchronizer: WatchedShowsSynchronizer
+  public let showSynchronizer: WatchedShowSynchronizer
+  public let watchedShowEntitiesObservable: WatchedShowEntitiesObservable
+  public let watchedShowEntityObserable: WatchedShowEntityObserable
+  public let userDefaults: UserDefaults
+  public let genreRepository: GenreRepository
+  public let imageRepository: ImageRepository
+  public let configurationRepository: ConfigurationCachedRepository
+  public let movieImageRepository: MovieImageCachedRepository
+  public let showImageRepository: ShowImageCachedRepository
+  public let episodeImageRepository: EpisodeImageCachedRepository
+  public let syncStateObservable: SyncStateObservable
 
-  var currentAppState: AppConfigurationsState {
+  var currentAppState: AppState {
     return Environment.getAppState(userDefaults: userDefaults)
   }
 
-  private static func getAppState(userDefaults: UserDefaults) -> AppConfigurationsState {
-    let loginState = AppConfigurationsUserDefaultsDataSource.currentLoginValue(userDefaults)
-    let hideSpecials = AppConfigurationsUserDefaultsDataSource.currentHideSpecialValue(userDefaults)
-    return AppConfigurationsState(loginState: loginState, hideSpecials: hideSpecials)
+  private static func getAppState(userDefaults: UserDefaults) -> AppState {
+    return UserDefaultsAppStateDataHolder.currentAppConfig(userDefaults)
   }
 
   // swiftlint:disable function_body_length
@@ -90,20 +86,15 @@ final class Environment {
 
     self.schedulers = schedulers
 
-    let traktLoginStore = TraktLoginStore(trakt: trakt)
-
-    loginObservable = traktLoginStore
-    defaultOutput = traktLoginStore.loginOutput
-
     realmProvider = DefaultRealmProvider(buildConfig: buildConfig)
 
-    let appConfigurationsStore = AppConfigurationsStore(appState: Environment.getAppState(userDefaults: userDefaults))
+    let appStateDataHolder = UserDefaultsAppStateDataHolder(userDefaults: userDefaults)
+    let appState = Environment.getAppState(userDefaults: userDefaults)
 
-    appConfigurationsOutput = appConfigurationsStore
-    appConfigurationsObservable = appConfigurationsStore
+    appStateManager = DefaultAppStateManager(appState: appState, trakt: trakt, dataHolder: appStateDataHolder)
 
     let genreDataSource = GenreRealmDataSource(realmProvider: realmProvider,
-                                               schedulers: schedulers)
+                                               scheduler: schedulers.dataSourceScheduler)
 
     genreRepository = TraktGenreRepository(traktProvider: trakt,
                                            dataSource: genreDataSource,
@@ -116,23 +107,29 @@ final class Environment {
     let showDownloader = DefaultWatchedShowEntityDownloader(trakt: trakt,
                                                             scheduler: schedulers)
 
-    let showDataSource = RealmShowDataSource(realmProvider: realmProvider, schedulers: schedulers)
+    let showDataSource = RealmShowDataSource(realmProvider: realmProvider, scheduler: schedulers.dataSourceScheduler)
 
-    let showsDataSource = RealmShowsDataSource(realmProvider: realmProvider, schedulers: schedulers)
+    let showsDataSource = RealmShowsDataSource(realmProvider: realmProvider,
+                                               scheduler: schedulers.dataSourceScheduler)
+
+    let showsSynchronizer = DefaultWatchedShowsSynchronizer(downloader: showsDownloader,
+                                                            dataHolder: showsDataSource,
+                                                            schedulers: schedulers)
+
+    let showSynchronizer = DefaultWatchedShowSynchronizer(downloader: showDownloader,
+                                                          dataSource: showDataSource,
+                                                          scheduler: schedulers)
+
+    let centralSynchronizer = CentralSynchronizer(watchedShowsSynchronizer: showsSynchronizer,
+                                                  watchedShowSynchronizer: showSynchronizer,
+                                                  appStateObservable: appStateManager)
+
+    self.showsSynchronizer = centralSynchronizer
+    self.showSynchronizer = centralSynchronizer
+    syncStateObservable = centralSynchronizer
 
     watchedShowEntitiesObservable = showsDataSource
     watchedShowEntityObserable = showDataSource
-
-    showsSynchronizer = DefaultWatchedShowsSynchronizer(downloader: showsDownloader,
-                                                        dataHolder: showsDataSource,
-                                                        schedulers: schedulers)
-
-    showSynchronizer = DefaultWatchedShowSynchronizer(downloader: showDownloader,
-                                                      dataSource: showDataSource,
-                                                      scheduler: schedulers)
-
-    centralSynchronizer = CentralSynchronizer.initialize(watchedShowsSynchronizer: showsSynchronizer,
-                                                         appConfigObservable: appConfigurationsObservable)
 
     configurationRepository = ConfigurationCachedRepository(tmdbProvider: tmdb)
 

@@ -1,22 +1,13 @@
 import CouchTrackerCore
 
-enum AppConfigurationsModule {
+enum AppStateModule {
   static func setupModule() -> BaseView {
-    let appConfigurationsOutput = Environment.instance.appConfigurationsOutput
-    let traktProvider = Environment.instance.trakt
-    let schedulers = Environment.instance.schedulers
-    let userDefaults = UserDefaults.standard
+    let appStateManager = Environment.instance.appStateManager
 
-    let dataSource = AppConfigurationsUserDefaultsDataSource(userDefaults: userDefaults)
-    let appConfigurationsNetwork = AppConfigurationsMoyaNetwork(trakt: traktProvider)
-    let repository = AppConfigurationsDefaultRepository(dataSource: dataSource,
-                                                        network: appConfigurationsNetwork,
-                                                        schedulers: schedulers)
-    let interactor = AppConfigurationsService(repository: repository, output: appConfigurationsOutput)
-    let router = AppConfigurationsiOSRouter()
-    let presenter = AppConfigurationsDefaultPresenter(interactor: interactor, router: router)
+    let router = AppStateiOSRouter()
+    let presenter = AppStateDefaultPresenter(router: router, appStateManager: appStateManager)
 
-    let viewController = AppConfigurationsViewController(presenter: presenter)
+    let viewController = AppStateViewController(presenter: presenter)
 
     router.viewController = viewController
 

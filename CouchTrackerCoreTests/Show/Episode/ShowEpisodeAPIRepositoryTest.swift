@@ -10,14 +10,14 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     // Given
     let network = ShowEpisodeMocks.ShowEpisodeNetworkErrorMock(error: TraktError.mock())
     let schedulers = TestSchedulers()
-    let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appStateObservableMock = AppStateMock.AppStateObservableMock()
 
     let synchronizer = SynchronizerMocks.WatchedShowSynchronizerMock()
 
     let repository = ShowEpisodeAPIRepository(network: network,
                                               schedulers: schedulers,
                                               synchronizer: synchronizer,
-                                              appConfigurationsObservable: appConfigsObservableMock,
+                                              appConfigurationsObservable: appStateObservableMock,
                                               hideSpecials: true)
 
     // When
@@ -41,14 +41,14 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     // Given
     let network = ShowEpisodeMocks.ShowEpisodeNetworkErrorMock(error: TraktError.mock())
     let schedulers = TestSchedulers()
-    let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appStateObservableMock = AppStateMock.AppStateObservableMock()
 
     let synchronizer = SynchronizerMocks.WatchedShowSynchronizerMock()
 
     let repository = ShowEpisodeAPIRepository(network: network,
                                               schedulers: schedulers,
                                               synchronizer: synchronizer,
-                                              appConfigurationsObservable: appConfigsObservableMock,
+                                              appConfigurationsObservable: appStateObservableMock,
                                               hideSpecials: true)
 
     // When
@@ -71,17 +71,17 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     // Given
     let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
     let schedulers = TestSchedulers()
-    let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appStateObservableMock = AppStateMock.AppStateObservableMock()
 
     let synchronizer = SynchronizerMocks.WatchedShowSynchronizerMock(error: TraktError.mock())
 
     let repository = ShowEpisodeAPIRepository(network: network,
                                               schedulers: schedulers,
                                               synchronizer: synchronizer,
-                                              appConfigurationsObservable: appConfigsObservableMock,
+                                              appConfigurationsObservable: appStateObservableMock,
                                               hideSpecials: true)
 
-    appConfigsObservableMock.change(state: AppConfigurationsState(loginState: .notLogged, hideSpecials: false))
+    appStateObservableMock.change(state: AppState(userSettings: nil, hideSpecials: false))
 
     // When
     let episodeEntity = ShowsProgressMocks.mockEpisodeEntity()
@@ -98,14 +98,14 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     // Given
     let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
     let schedulers = TestSchedulers()
-    let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appStateObservableMock = AppStateMock.AppStateObservableMock()
 
     let synchronizer = SynchronizerMocks.WatchedShowSynchronizerMock()
 
     let repository = ShowEpisodeAPIRepository(network: network,
                                               schedulers: schedulers,
                                               synchronizer: synchronizer,
-                                              appConfigurationsObservable: appConfigsObservableMock,
+                                              appConfigurationsObservable: appStateObservableMock,
                                               hideSpecials: true)
 
     // When
@@ -126,14 +126,14 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     // Given
     let network = ShowEpisodeMocks.ShowEpisodeNetworkMock()
     let schedulers = TestSchedulers()
-    let appConfigsObservableMock = AppConfigurationsMock.AppConfigurationsObservableMock()
+    let appStateObservableMock = AppStateMock.AppStateObservableMock()
 
     let synchronizer = SynchronizerMocks.WatchedShowSynchronizerMock()
 
     let repository = ShowEpisodeAPIRepository(network: network,
                                               schedulers: schedulers,
                                               synchronizer: synchronizer,
-                                              appConfigurationsObservable: appConfigsObservableMock,
+                                              appConfigurationsObservable: appStateObservableMock,
                                               hideSpecials: true)
 
     // When

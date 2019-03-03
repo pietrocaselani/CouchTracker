@@ -23,8 +23,6 @@ public final class PosterCellDefaultPresenter: PosterCellPresenter {
         guard let view = self.view else { return }
 
         view.showPosterImage(with: imageURL)
-      }, onError: { error in
-        print(error)
       }).disposed(by: disposeBag)
   }
 }

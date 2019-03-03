@@ -10,7 +10,7 @@ func RXAssertEvents<T: Equatable>(_ observerEvents: [Recorded<Event<[T]>>], _ ev
   XCTAssertEqual(observerEvents.count, events.count, file: file, line: line)
 
   if observerEvents.count != events.count {
-    XCTFail("Number of events don't match", file: file, line: line)
+    XCTFail("Number of events don't match: Expected: \(events) got \(observerEvents)", file: file, line: line)
     return
   }
 

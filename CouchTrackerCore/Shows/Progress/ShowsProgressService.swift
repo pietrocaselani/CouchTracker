@@ -4,6 +4,7 @@ import TraktSwift
 public final class ShowsProgressService: ShowsProgressInteractor {
   private let listStateDataSource: ShowsProgressListStateDataSource
   private let showsObserable: WatchedShowEntitiesObservable
+  private let schedulers: Schedulers
 
   public var listState: ShowProgressListState {
     get {
@@ -15,12 +16,14 @@ public final class ShowsProgressService: ShowsProgressInteractor {
   }
 
   public init(listStateDataSource: ShowsProgressListStateDataSource,
-              showsObserable: WatchedShowEntitiesObservable) {
+              showsObserable: WatchedShowEntitiesObservable,
+              schedulers: Schedulers = DefaultSchedulers.instance) {
     self.listStateDataSource = listStateDataSource
     self.showsObserable = showsObserable
+    self.schedulers = schedulers
   }
 
-  public func fetchWatchedShowsProgress() -> Observable<[WatchedShowEntity]> {
+  public func fetchWatchedShowsProgress() -> Observable<WatchedShowEntitiesState> {
     return showsObserable.observeWatchedShows().distinctUntilChanged()
   }
 }

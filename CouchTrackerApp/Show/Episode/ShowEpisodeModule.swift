@@ -4,7 +4,7 @@ final class ShowEpisodeModule {
   static func setupModule(for show: WatchedShowEntity) -> BaseView {
     let trakt = Environment.instance.trakt
     let schedulers = Environment.instance.schedulers
-    let appConfigsObservable = Environment.instance.appConfigurationsObservable
+    let appStateManager = Environment.instance.appStateManager
     let hideSpecials = Environment.instance.currentAppState.hideSpecials
     let showSynchronizer = Environment.instance.showSynchronizer
     let imageRepository = Environment.instance.imageRepository
@@ -14,7 +14,7 @@ final class ShowEpisodeModule {
     let repository = ShowEpisodeAPIRepository(network: showEpisodeNetwork,
                                               schedulers: schedulers,
                                               synchronizer: showSynchronizer,
-                                              appConfigurationsObservable: appConfigsObservable,
+                                              appConfigurationsObservable: appStateManager,
                                               hideSpecials: hideSpecials)
 
     let interactor = ShowEpisodeService(repository: repository, imageRepository: imageRepository)

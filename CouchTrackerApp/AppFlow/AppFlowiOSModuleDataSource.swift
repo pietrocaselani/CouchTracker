@@ -10,7 +10,7 @@ final class AppFlowiOSModuleDataSource: AppFlowModuleDataSource {
     let showsView = ShowsManagerModule.setupModule()
     let showsPage = ModulePage(page: showsView, title: R.string.localizable.shows())
 
-    let appConfigsView = AppConfigurationsModule.setupModule()
+    let appConfigsView = AppStateModule.setupModule()
     let appConfigsPage = ModulePage(page: appConfigsView, title: R.string.localizable.settings())
 
     modulePages = [moviesPage, showsPage, appConfigsPage]

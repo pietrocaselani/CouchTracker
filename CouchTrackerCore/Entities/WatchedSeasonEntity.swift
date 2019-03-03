@@ -10,8 +10,8 @@ public struct WatchedSeasonEntity: Hashable, Codable {
   public let overview: String?
   public let title: String?
 
-  init(showIds: ShowIds, seasonIds: SeasonIds, number: Int, aired: Int?, completed: Int?,
-       episodes: [WatchedEpisodeEntity], overview: String?, title: String?) {
+  public init(showIds: ShowIds, seasonIds: SeasonIds, number: Int, aired: Int?, completed: Int?,
+              episodes: [WatchedEpisodeEntity], overview: String?, title: String?) {
     self.showIds = showIds
     self.seasonIds = seasonIds
     self.number = number

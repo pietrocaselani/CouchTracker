@@ -8,7 +8,6 @@ final class TraktLoginViewController: UIViewController, TraktLoginView {
   fileprivate let disposeBag = DisposeBag()
   private weak var webView: WKWebView!
   var presenter: TraktLoginPresenter!
-  var policyDecider: TraktLoginPolicyDecider!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,18 +21,27 @@ final class TraktLoginViewController: UIViewController, TraktLoginView {
     presenter.viewDidLoad()
   }
 
+  override func viewWillDisappear(_ animated: Bool) {
+    webView.navigationDelegate = nil
+    super.viewWillDisappear(animated)
+  }
+
   func loadLogin(using url: URL) {
     webView.load(URLRequest(url: url))
   }
+
+  func showError(error _: Error) {}
 }
 
 extension TraktLoginViewController: WKNavigationDelegate {
   func webView(_: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
                decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-    policyDecider.allowedToProceed(with: navigationAction.request).subscribe(onSuccess: { _ in
-      decisionHandler(.allow)
-    }, onError: { _ in
-      decisionHandler(.cancel)
-    }).disposed(by: disposeBag)
+    presenter.allowedToProcess(request: navigationAction.request)
+      .observeOn(MainScheduler.instance)
+      .subscribe(onCompleted: {
+        decisionHandler(.allow)
+      }, onError: { _ in
+        decisionHandler(.cancel)
+      }).disposed(by: disposeBag)
   }
 }

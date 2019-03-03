@@ -6,7 +6,9 @@ public final class DefaultWatchedShowsSynchronizer: WatchedShowsSynchronizer {
   private let dataHolder: ShowsDataHolder
   private let schedulers: Schedulers
 
-  public init(downloader: WatchedShowEntitiesDownloader, dataHolder: ShowsDataHolder, schedulers: Schedulers) {
+  public init(downloader: WatchedShowEntitiesDownloader,
+              dataHolder: ShowsDataHolder,
+              schedulers: Schedulers = DefaultSchedulers.instance) {
     self.downloader = downloader
     self.dataHolder = dataHolder
     self.schedulers = schedulers

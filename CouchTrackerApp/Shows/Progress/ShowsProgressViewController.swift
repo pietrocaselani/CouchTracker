@@ -43,6 +43,8 @@ final class ShowsProgressViewController: UIViewController {
       .subscribe(onNext: { [weak self] viewState in
         self?.handleViewState(viewState)
       }).disposed(by: disposeBag)
+
+    presenter.viewDidLoad()
   }
 
   private func handleViewState(_ state: ShowProgressViewState) {
@@ -50,9 +52,9 @@ final class ShowsProgressViewController: UIViewController {
 
     switch state {
     case .empty:
-      showEmptyData()
+      showEmptyData(message: "Go watch some shows")
     case .filterEmpty:
-      showEmptyData()
+      showEmptyData(message: "A lot of filters!")
     case .notLogged:
       showNotLogged()
     case .loading:
@@ -64,10 +66,10 @@ final class ShowsProgressViewController: UIViewController {
     }
   }
 
-  private func showEmptyData() {
+  private func showEmptyData(message: String) {
     showsView.tableView.isHidden = true
     showsView.emptyView.isHidden = false
-    showsView.emptyView.label.text = "Nothing to show"
+    showsView.emptyView.label.text = message
   }
 
   private func showData(entities: NonEmpty<[WatchedShowEntity]>, menu: ShowsProgressMenuOptions) {

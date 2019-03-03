@@ -194,7 +194,13 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
 
     let errorEvent = watchedResults.events.first!
     XCTAssertEqual(errorEvent.time, watchedEvent.time)
-    XCTAssertEqual(errorEvent.value.error! as NSError, watchedError)
+
+    guard let errorEventValue = errorEvent.value.error else {
+      XCTFail()
+      return
+    }
+
+    XCTAssertEqual(errorEventValue as NSError, watchedError)
 
     XCTAssertTrue(interactor.toogleWatchInvoked)
   }

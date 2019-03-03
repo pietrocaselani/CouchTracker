@@ -7,14 +7,14 @@ public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
   private let interactor: MovieDetailsInteractor
   private let viewStateSubject = BehaviorSubject<MovieDetailsViewState>(value: .loading)
   private let imagesStateSubject = BehaviorSubject<MovieDetailsImagesState>(value: .loading)
-  private var loginState = LoginState.notLogged
+  private var isLogged = false
 
-  public init(interactor: MovieDetailsInteractor, appConfigObservable: AppConfigurationsObservable) {
+  public init(interactor: MovieDetailsInteractor, appStateObservable: AppStateObservable) {
     self.interactor = interactor
 
-    appConfigObservable.observe()
+    appStateObservable.observe()
       .subscribe(onNext: { [weak self] appConfig in
-        self?.loginState = appConfig.loginState
+        self?.isLogged = appConfig.isLogged
       }).disposed(by: disposeBag)
   }
 
@@ -32,7 +32,7 @@ public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
       return Completable.empty()
     }
 
-    guard case .logged = loginState else {
+    guard isLogged else {
       return Completable.error(TraktError.loginRequired)
     }
 
