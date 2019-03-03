@@ -48,7 +48,18 @@ lane :beta do
     changelog: changelog
   )
 
-  # build_app(scheme: 'CouchTracker')
+  sh '../scripts/generate_secrets'
+
+  build_ios_app(
+    workspace: 'CouchTracker.xcworkspace',
+    scheme: 'CouchTracker',
+    configuration: 'Release'
+  )
+
+  upload_to_testflight(
+    changelog: changelog,
+    skip_waiting_for_build_processing: false
+  )
 
   upload_sonar
 end
