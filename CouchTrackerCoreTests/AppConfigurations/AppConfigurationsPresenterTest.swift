@@ -155,29 +155,41 @@ final class AppStatePresenterTest: XCTestCase {
     // Given
     setupModule(empty: true)
 
-    let res = scheduler.start {
-      self.presenter.observeViewState()
-    }
+    _ = presenter.observeViewState().subscribe(viewStateObserver)
+
+    presenter.viewDidLoad()
 
     // When
     manager.change(state: AppStateMock.loggedAppState)
 
     // Then
-    let expectedUserName = AppStateMock.createUserMock().name
-    let connectToTraktViewModel = AppConfigurationViewModel(title: "Connected", subtitle: expectedUserName, value: .none)
-    let traktViewModel = AppStateViewModel(title: "Trakt", configurations: [connectToTraktViewModel])
+    let connectToTraktViewModel = AppConfigurationViewModel(title: "Connect to Trakt", subtitle: nil, value: .traktLogin(wantsToLogin: true))
+    let traktViewModel1 = AppStateViewModel(title: "Trakt", configurations: [connectToTraktViewModel])
 
     let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .hideSpecials(wantsToHideSpecials: false))
-    let generalViewModel = AppStateViewModel(title: "General", configurations: [hideSpecialsViewModel])
+    let generalViewModel1 = AppStateViewModel(title: "General", configurations: [hideSpecialsViewModel])
 
-    let goToGithubViewModel = AppConfigurationViewModel(title: "CouchTracker on GitHub", value: .externalURL(url: Constants.githubURL))
-    let otherViewModel = AppStateViewModel(title: "Other", configurations: [goToGithubViewModel])
+    let goToGithubViewModel1 = AppConfigurationViewModel(title: "CouchTracker on GitHub", value: .externalURL(url: Constants.githubURL))
+    let otherViewModel1 = AppStateViewModel(title: "Other", configurations: [goToGithubViewModel1])
 
-    let viewModels = [traktViewModel, generalViewModel, otherViewModel]
+    let notLoggedViewModels = [traktViewModel1, generalViewModel1, otherViewModel1]
+
+    let expectedUserName = AppStateMock.createUserMock().name
+    let connectedViewModel = AppConfigurationViewModel(title: "Connected", subtitle: expectedUserName, value: .none)
+    let traktViewModel2 = AppStateViewModel(title: "Trakt", configurations: [connectedViewModel])
+
+    let hideSpecialsViewModel2 = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .hideSpecials(wantsToHideSpecials: true))
+    let generalViewModel2 = AppStateViewModel(title: "General", configurations: [hideSpecialsViewModel2])
+
+    let goToGithubViewModel2 = AppConfigurationViewModel(title: "CouchTracker on GitHub", value: .externalURL(url: Constants.githubURL))
+    let otherViewModel2 = AppStateViewModel(title: "Other", configurations: [goToGithubViewModel2])
+
+    let loggedViewModels = [traktViewModel2, generalViewModel2, otherViewModel2]
 
     let expectedEvents = [Recorded.next(0, AppStateViewState.loading),
-                          Recorded.next(0, AppStateViewState.showing(configs: viewModels))]
+                          Recorded.next(0, AppStateViewState.showing(configs: notLoggedViewModels)),
+                          Recorded.next(0, AppStateViewState.showing(configs: loggedViewModels))]
 
-    XCTAssertEqual(res.events, expectedEvents)
+    XCTAssertEqual(viewStateObserver.events, expectedEvents)
   }
 }

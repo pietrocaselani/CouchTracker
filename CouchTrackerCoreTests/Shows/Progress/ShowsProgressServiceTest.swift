@@ -6,24 +6,25 @@ import XCTest
 
 // CT-TODO Move this to a proper place
 private class WatchedShowEntitiesObservableMock: WatchedShowEntitiesObservable {
-  private let subject: BehaviorSubject<[WatchedShowEntity]>
+  private let subject: BehaviorSubject<WatchedShowEntitiesState>
 
-  init(shows: [WatchedShowEntity]) {
-    subject = BehaviorSubject<[WatchedShowEntity]>(value: shows)
+  init(shows: [WatchedShowEntity]?) {
+    let state = shows.map { WatchedShowEntitiesState.available(shows: $0) } ?? .unavailable
+    subject = BehaviorSubject<WatchedShowEntitiesState>(value: state)
   }
 
-  func observeWatchedShows() -> Observable<[WatchedShowEntity]> {
+  func observeWatchedShows() -> Observable<WatchedShowEntitiesState> {
     return subject
   }
 
   func emitsAgain(_ shows: [WatchedShowEntity]) {
-    subject.onNext(shows)
+    subject.onNext(WatchedShowEntitiesState.available(shows: shows))
   }
 }
 
 final class ShowsProgressServiceTest: XCTestCase {
   private var scheduler: TestSchedulers!
-  private var observer: TestableObserver<[WatchedShowEntity]>!
+  private var observer: TestableObserver<WatchedShowEntitiesState>!
   private var listStateDataSource: ShowsProgressMocks.ListStateDataSource!
   private var watchedShowEntitiesObservableMock: WatchedShowEntitiesObservableMock!
 
@@ -32,7 +33,7 @@ final class ShowsProgressServiceTest: XCTestCase {
 
     scheduler = TestSchedulers()
 
-    observer = scheduler.createObserver([WatchedShowEntity].self)
+    observer = scheduler.createObserver(WatchedShowEntitiesState.self)
 
     let watchedShow = ShowsProgressMocks.mockWatchedShowEntity()
 
@@ -53,31 +54,24 @@ final class ShowsProgressServiceTest: XCTestCase {
     // Given
     let interactor = ShowsProgressService(listStateDataSource: listStateDataSource,
                                           showsObserable: watchedShowEntitiesObservableMock,
-                                          syncStateObservable: SyncStateMocks.SyncStateObservableMock(),
-                                          appStateObservable: AppStateMock.AppStateObservableMock(),
                                           schedulers: scheduler)
 
     // When
-//    _ = interactor.fetchWatchedShowsProgress().subscribe(observer)
-//    scheduler.start()
     let res = scheduler.start {
       interactor.fetchWatchedShowsProgress()
     }
 
     // Then
     let entity = ShowsProgressMocks.mockWatchedShowEntity()
-    let expectedEvents = [Recorded.next(0, [entity])]
+    let expectedEvents = [Recorded.next(200, WatchedShowEntitiesState.available(shows: [entity]))]
 
-//    RXAssertEvents(observer.events, expectedEvents)
-    RXAssertEvents(res.events, expectedEvents)
+    XCTAssertEqual(res.events, expectedEvents)
   }
 
   func testShowsProgressService_receiveSameDataFromRepository_emitsOnlyOnce() {
     // Given
     let interactor = ShowsProgressService(listStateDataSource: listStateDataSource,
-                                          showsObserable: watchedShowEntitiesObservableMock,
-                                          syncStateObservable: SyncStateMocks.SyncStateObservableMock(),
-                                          appStateObservable: AppStateMock.AppStateObservableMock())
+                                          showsObserable: watchedShowEntitiesObservableMock)
     _ = interactor.fetchWatchedShowsProgress().subscribe(observer)
     scheduler.start()
 
@@ -86,17 +80,15 @@ final class ShowsProgressServiceTest: XCTestCase {
 
     // Then
     let entity = ShowsProgressMocks.mockWatchedShowEntity()
-    let expectedEvents = [Recorded.next(0, [entity])]
+    let expectedEvents = [Recorded.next(0, WatchedShowEntitiesState.available(shows: [entity]))]
 
-    RXAssertEvents(observer.events, expectedEvents)
+    XCTAssertEqual(observer.events, expectedEvents)
   }
 
   func testShowsProgressService_receiveDifferentDataFromRepository_emitsNewData() {
     // Given
     let interactor = ShowsProgressService(listStateDataSource: listStateDataSource,
-                                          showsObserable: watchedShowEntitiesObservableMock,
-                                          syncStateObservable: SyncStateMocks.SyncStateObservableMock(),
-                                          appStateObservable: AppStateMock.AppStateObservableMock())
+                                          showsObserable: watchedShowEntitiesObservableMock)
     _ = interactor.fetchWatchedShowsProgress().subscribe(observer)
     scheduler.start()
 
@@ -105,17 +97,16 @@ final class ShowsProgressServiceTest: XCTestCase {
 
     // Then
     let entity = ShowsProgressMocks.mockWatchedShowEntity()
-    let expectedEvents = [Recorded.next(0, [entity]), Recorded.next(0, [WatchedShowEntity]())]
+    let expectedEvents = [Recorded.next(0, WatchedShowEntitiesState.available(shows: [entity])),
+                          Recorded.next(0, WatchedShowEntitiesState.available(shows: [WatchedShowEntity]()))]
 
-    RXAssertEvents(observer.events, expectedEvents)
+    XCTAssertEqual(observer.events, expectedEvents)
   }
 
   func testShowsProgressService_receivesNewListState_shouldNotifyDataSource() {
     // Given
     let interactor = ShowsProgressService(listStateDataSource: listStateDataSource,
-                                          showsObserable: watchedShowEntitiesObservableMock,
-                                          syncStateObservable: SyncStateMocks.SyncStateObservableMock(),
-                                          appStateObservable: AppStateMock.AppStateObservableMock())
+                                          showsObserable: watchedShowEntitiesObservableMock)
 
     // When
     let listState = ShowProgressListState(sort: .lastWatched, filter: .watched, direction: .asc)

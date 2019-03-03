@@ -26,8 +26,15 @@ extension RealmShowDataSource: ShowDataSource {
 }
 
 extension RealmShowsDataSource: WatchedShowEntitiesObservable, ShowsDataHolder {
-  public func observeWatchedShows() -> Observable<[WatchedShowEntity]> {
-    return observeRealmWatchedShows().mapElements { $0.toEntity() }
+  public func observeWatchedShows() -> Observable<WatchedShowEntitiesState> {
+    return observeRealmWatchedShows().map { objectState -> WatchedShowEntitiesState in
+      switch objectState {
+      case .notInitialized:
+        return WatchedShowEntitiesState.unavailable
+      case let .available(value):
+        return WatchedShowEntitiesState.available(shows: value.map { $0.toEntity() })
+      }
+    }
   }
 
   public func save(shows: [WatchedShowEntity]) throws {

@@ -10,15 +10,10 @@ public protocol ShowsProgressListStateDataSource: class {
   var currentState: ShowProgressListState { get set }
 }
 
-public protocol ShowsProgressRepository: class {
-  func fetchWatchedShowsProgress(extended: Extended, hiddingSpecials: Bool) -> Observable<[WatchedShowEntity]>
-  func reload(extended: Extended, hiddingSpecials: Bool) -> Completable
-}
-
 public protocol ShowsProgressInteractor: class {
   var listState: ShowProgressListState { get set }
 
-  func fetchWatchedShowsProgress() -> Observable<[WatchedShowEntity]>
+  func fetchWatchedShowsProgress() -> Observable<WatchedShowEntitiesState>
 }
 
 public protocol ShowsProgressRouter: class {

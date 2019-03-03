@@ -25,9 +25,6 @@ public final class GenreRealmDataSource {
 
   public func save(realmGenres: [GenreRealm]) throws {
     let realm = realmProvider.realm
-
-    try realm.write {
-      realm.add(realmGenres, update: true)
-    }
+    try realm.initializeAndAdd(realmGenres, update: true)
   }
 }

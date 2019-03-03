@@ -18,14 +18,9 @@ public final class RealmShowDataSource {
       }
 
       let realm = strongSelf.realmProvider.realm
-
       let key = WatchedShowEntityRealm.createRealmId(using: showIds.trakt)
 
-      guard let show = realm.object(ofType: WatchedShowEntityRealm.self, forPrimaryKey: key) else {
-        return Observable.empty()
-      }
-
-      return Observable.from(object: show, emitInitialValue: true)
+      return realm.observeObject(of: WatchedShowEntityRealm.self, primaryKey: key)
     }
 
     return observable.subscribeOn(scheduler)
@@ -33,9 +28,6 @@ public final class RealmShowDataSource {
 
   public func save(realmShow: WatchedShowEntityRealm) throws {
     let realm = realmProvider.realm
-
-    try realm.write {
-      realm.add(realmShow, update: true)
-    }
+    try realm.initializeAndAdd(realmShow, update: true)
   }
 }

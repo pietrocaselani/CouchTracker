@@ -501,6 +501,7 @@
 		82854F2421E2468D00F0BAEA /* ShowProgressViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82854F2321E2468D00F0BAEA /* ShowProgressViewState.swift */; };
 		82854F2521E2468D00F0BAEA /* ShowProgressViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82854F2321E2468D00F0BAEA /* ShowProgressViewState.swift */; };
 		82854F2721E2B41400F0BAEA /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82854F2621E2B41400F0BAEA /* TableViewCell.swift */; };
+		82858D0F22273B860087B438 /* Realm+Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82858D0E22273B860087B438 /* Realm+Initialization.swift */; };
 		82882F5721DED60E00B1A732 /* SearchResultEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82882F5621DED60E00B1A732 /* SearchResultEntity.swift */; };
 		82882F5821DED60E00B1A732 /* SearchResultEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82882F5621DED60E00B1A732 /* SearchResultEntity.swift */; };
 		82882F5A21DED8BA00B1A732 /* SearchiOSRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82882F5921DED8BA00B1A732 /* SearchiOSRouter.swift */; };
@@ -989,6 +990,7 @@
 		82836EB7219039DA0037A798 /* ShowSeasonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSeasonsViewController.swift; sourceTree = "<group>"; };
 		82854F2321E2468D00F0BAEA /* ShowProgressViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProgressViewState.swift; sourceTree = "<group>"; };
 		82854F2621E2B41400F0BAEA /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		82858D0E22273B860087B438 /* Realm+Initialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Initialization.swift"; sourceTree = "<group>"; };
 		82882F5621DED60E00B1A732 /* SearchResultEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultEntity.swift; sourceTree = "<group>"; };
 		82882F5921DED8BA00B1A732 /* SearchiOSRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchiOSRouter.swift; sourceTree = "<group>"; };
 		82930A18216C1C7B00A824F6 /* DefaultWatchedShowEntityDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWatchedShowEntityDownloader.swift; sourceTree = "<group>"; };
@@ -1762,9 +1764,10 @@
 			children = (
 				824A784B220F65280001F3BF /* Entities */,
 				4F2F281F21290A010000CC17 /* GenreRealmDataSource.swift */,
+				82858D0E22273B860087B438 /* Realm+Initialization.swift */,
+				645323022024D25D00449B0A /* RealmProvider.swift */,
 				697236062E78C293F50658F8 /* RealmShowDataSource.swift */,
 				69723B2DE85E11A441AE3CF7 /* RealmShowsDataSource.swift */,
-				645323022024D25D00449B0A /* RealmProvider.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -3650,6 +3653,7 @@
 				824A783D220F5E3D0001F3BF /* WatchedEpisodeEntityRealm.swift in Sources */,
 				824A783F220F5E3D0001F3BF /* WatchedShowEntityRealm.swift in Sources */,
 				824A7835220F5E3D0001F3BF /* RealmShowsDataSource.swift in Sources */,
+				82858D0F22273B860087B438 /* Realm+Initialization.swift in Sources */,
 				824A7837220F5E3D0001F3BF /* EpisodeIdsRealm.swift in Sources */,
 				824A783E220F5E3D0001F3BF /* WatchedSeasonEntityRealm.swift in Sources */,
 				824A7836220F5E3D0001F3BF /* EpisodeEntityRealm.swift in Sources */,

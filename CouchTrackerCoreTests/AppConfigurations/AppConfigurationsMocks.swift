@@ -59,7 +59,11 @@ enum AppStateMock {
   }
 
   final class AppStateObservableMock: AppStateObservable {
-    var subject = PublishSubject<AppState>()
+    var subject: BehaviorSubject<AppState>
+
+    init(appState: AppState = AppState.initialState()) {
+      subject = BehaviorSubject(value: appState)
+    }
 
     func change(state: AppState) {
       subject.onNext(state)

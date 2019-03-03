@@ -11,23 +11,20 @@ public final class RealmShowsDataSource {
     self.scheduler = scheduler
   }
 
-  public func observeRealmWatchedShows() -> Observable<[WatchedShowEntityRealm]> {
-    return Observable.deferred { [weak self] () -> Observable<[WatchedShowEntityRealm]> in
+  public func observeRealmWatchedShows() -> Observable<RealmObjectState<[WatchedShowEntityRealm]>> {
+    return Observable.deferred { [weak self] () -> Observable<RealmObjectState<[WatchedShowEntityRealm]>> in
       guard let strongSelf = self else {
         return Observable.empty()
       }
 
       let realm = strongSelf.realmProvider.realm
-      let results = realm.objects(WatchedShowEntityRealm.self)
-      return Observable.array(from: results)
+
+      return realm.observeArray(of: WatchedShowEntityRealm.self)
     }.subscribeOn(scheduler)
   }
 
   public func save(realmShows: [WatchedShowEntityRealm]) throws {
     let realm = realmProvider.realm
-
-    try realm.write {
-      realm.add(realmShows, update: true)
-    }
+    try realm.initializeAndAdd(realmShows, update: true)
   }
 }

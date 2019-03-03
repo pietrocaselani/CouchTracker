@@ -1,12 +1,17 @@
 import RxSwift
 import TraktSwift
 
+public enum WatchedShowEntitiesState: Hashable {
+  case unavailable
+  case available(shows: [WatchedShowEntity])
+}
+
 public protocol ShowsDataHolder {
   func save(shows: [WatchedShowEntity]) throws
 }
 
 public protocol WatchedShowEntitiesObservable {
-  func observeWatchedShows() -> Observable<[WatchedShowEntity]>
+  func observeWatchedShows() -> Observable<WatchedShowEntitiesState>
 }
 
 public protocol ShowDataHolder {

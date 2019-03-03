@@ -117,33 +117,11 @@ enum ShowsProgressMocks {
     return WatchedShowEntity(show: show, aired: 65, completed: 60, nextEpisode: nextEpisode, lastWatched: dateTransformer.transformFromJSON("2017-09-21T12:28:21.000Z"), seasons: seasons)
   }
 
-  final class ShowsProgressRepositoryMock: ShowsProgressRepository {
-    private let trakt: TraktProvider
-    private let subject: BehaviorSubject<[WatchedShowEntity]>
-
-    init(trakt: TraktProvider, value: [WatchedShowEntity] = [ShowsProgressMocks.mockWatchedShowEntity()]) {
-      self.trakt = trakt
-      subject = BehaviorSubject(value: value)
-    }
-
-    func fetchWatchedShowsProgress(extended _: Extended, hiddingSpecials _: Bool) -> Observable<[WatchedShowEntity]> {
-      return subject.asObservable()
-    }
-
-    func reload(extended _: Extended, hiddingSpecials _: Bool) -> Completable {
-      return Completable.empty()
-    }
-
-    func emitsAgain(_ value: [WatchedShowEntity]) {
-      subject.onNext(value)
-    }
-  }
-
   final class EmptyShowsProgressInteractorMock: ShowsProgressInteractor {
     var listState: ShowProgressListState = ShowProgressListState.initialState
 
-    func fetchWatchedShowsProgress() -> Observable<[WatchedShowEntity]> {
-      return Observable.empty()
+    func fetchWatchedShowsProgress() -> Observable<WatchedShowEntitiesState> {
+      return Observable.just(WatchedShowEntitiesState.available(shows: [WatchedShowEntity]()))
     }
   }
 
@@ -156,8 +134,7 @@ enum ShowsProgressMocks {
       self.schedulers = schedulers
     }
 
-    func fetchWatchedShowsProgress() -> Observable<[WatchedShowEntity]> {
-//      return Observable.empty().delaySubscription(10, scheduler: schedulers.mainScheduler as! SchedulerType)
+    func fetchWatchedShowsProgress() -> Observable<WatchedShowEntitiesState> {
       return Observable.empty().delay(2, scheduler: schedulers.mainScheduler as! SchedulerType)
     }
   }
@@ -172,12 +149,12 @@ enum ShowsProgressMocks {
       self.error = error
     }
 
-    func fetchWatchedShowsProgress() -> Observable<[WatchedShowEntity]> {
+    func fetchWatchedShowsProgress() -> Observable<WatchedShowEntitiesState> {
       if let error = error {
         return Observable.error(error)
       }
 
-      return Observable.just(entities)
+      return Observable.just(WatchedShowEntitiesState.available(shows: entities))
     }
 
     func updateListState(newState _: ShowProgressListState) {}

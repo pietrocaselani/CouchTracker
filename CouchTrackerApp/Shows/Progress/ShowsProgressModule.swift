@@ -14,9 +14,7 @@ enum ShowsProgressModule {
     let cellInteractor = ShowProgressCellService(imageRepository: imageRepository)
 
     let interactor = ShowsProgressService(listStateDataSource: listStateDataSource,
-                                          showsObserable: watchedShowsObservable,
-                                          syncStateObservable: syncStateObservable,
-                                          appStateObservable: appStateManager)
+                                          showsObserable: watchedShowsObservable)
 
     let presenter = ShowsProgressDefaultPresenter(interactor: interactor,
                                                   router: router,
