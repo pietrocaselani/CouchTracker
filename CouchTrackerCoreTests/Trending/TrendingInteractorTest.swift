@@ -107,7 +107,7 @@ final class TrendingInteractorTest: XCTestCase {
     scheduler.start()
 
     let expectedMovies = movies.map { trendingMovie -> TrendingMovieEntity in
-      return MovieEntityMapper.entity(for: trendingMovie, with: [Genre]())
+      MovieEntityMapper.entity(for: trendingMovie, with: [Genre]())
     }
 
     let events: [Recorded<Event<[TrendingMovieEntity]>>] = [Recorded.next(0, expectedMovies), Recorded.completed(0)]

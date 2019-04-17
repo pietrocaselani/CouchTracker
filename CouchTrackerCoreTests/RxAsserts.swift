@@ -29,7 +29,7 @@ func RXAssertEvents<T: Equatable>(_ observerEvents: [Recorded<Event<[T]>>], _ ev
   }
 }
 
-fileprivate func assertArrayEvent<T: Equatable>(_ lhs: Event<[T]>, _ rhs: Event<[T]>, file: StaticString = #file, line: UInt = #line) {
+private func assertArrayEvent<T: Equatable>(_ lhs: Event<[T]>, _ rhs: Event<[T]>, file: StaticString = #file, line: UInt = #line) {
   XCTAssertEqual(lhs.error?.localizedDescription, rhs.error?.localizedDescription, file: file, line: line)
   XCTAssertEqual(lhs.isCompleted, rhs.isCompleted, file: file, line: line)
 

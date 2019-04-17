@@ -42,13 +42,21 @@ final class ShowEpisodeViewController: UIViewController {
       self?.handleWatch()
     }
 
+    episodeView.didTouchOnPreview = {
+      print("Preview!!!")
+    }
+
     presenter.viewDidLoad()
   }
 
   private func handleWatch() {
     presenter.handleWatch()
       .observeOn(schedulers.mainScheduler)
-      .subscribe { [weak self] error in
+      .do(onSubscribe: { [weak self] in
+        self?.episodeView.watchButton.isLoading = true
+      }, onDispose: { [weak self] in
+        self?.episodeView.watchButton.isLoading = false
+      }).subscribe { [weak self] error in
         self?.handleSync(error: error)
       }.disposed(by: disposeBag)
   }
@@ -78,12 +86,13 @@ final class ShowEpisodeViewController: UIViewController {
     episodeView.overviewLabel.text = episode.episode.overview ?? "No overview"
     episodeView.releaseDateLabel.text = episode.episode.firstAired?.shortString() ?? "Unknown".localized
     episodeView.watchedAtLabel.text = episode.lastWatched?.shortString() ?? "Unwatched"
+    episodeView.seasonAndNumberLabel.text = episode.episode.seasonAndNumberFormatted()
 
     let buttonTitle = episode.lastWatched == nil ?
       R.string.localizable.addToHistory() :
       R.string.localizable.removeFromHistory()
 
-    episodeView.watchButton.setTitle(buttonTitle, for: .normal)
+    episodeView.watchButton.button.setTitle(buttonTitle, for: .normal)
   }
 
   private func handleViewState(_ viewState: ShowEpisodeViewState) {

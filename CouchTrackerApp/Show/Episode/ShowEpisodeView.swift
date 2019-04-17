@@ -1,6 +1,6 @@
 import Cartography
 
-public class ShowEpisodeView: View {
+public final class ShowEpisodeView: View {
   public var didTouchOnPreview: (() -> Void)?
   public var didTouchOnWatch: (() -> Void)?
 
@@ -49,10 +49,16 @@ public class ShowEpisodeView: View {
     return label
   }()
 
-  public let watchButton: UIButton = {
-    let button = UIButton()
-    button.addTarget(self, action: #selector(didTapOnWatch), for: .touchUpInside)
-    return button
+  public let seasonAndNumberLabel: UILabel = {
+    let label = UILabel()
+    label.textColor = Colors.Text.secondaryTextColor
+    return label
+  }()
+
+  public lazy var watchButton: LoadingButton = {
+    let view = LoadingButton()
+    view.button.addTarget(self, action: #selector(didTapOnWatch), for: .touchUpInside)
+    return view
   }()
 
   // Private Views
@@ -70,7 +76,7 @@ public class ShowEpisodeView: View {
 
   private lazy var contentStackView: UIStackView = {
     let subviews = [previewImageView, titleLabel, overviewLabel,
-                    releaseDateLabel, watchedAtLabel, watchButton]
+                    releaseDateLabel, seasonAndNumberLabel, watchedAtLabel, watchButton]
     let stackView = UIStackView(arrangedSubviews: subviews)
 
     let spacing: CGFloat = 20
@@ -81,6 +87,7 @@ public class ShowEpisodeView: View {
     stackView.distribution = .equalSpacing
     stackView.layoutMargins = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
     stackView.isLayoutMarginsRelativeArrangement = true
+    stackView.isUserInteractionEnabled = true
 
     return stackView
   }()

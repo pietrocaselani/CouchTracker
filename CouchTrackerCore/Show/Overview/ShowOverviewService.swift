@@ -21,7 +21,7 @@ public final class ShowOverviewService: ShowOverviewInteractor {
 
     return Observable.combineLatest(showObservable, genreObservable) { (show, genres) -> ShowEntity in
       let showGenres = genres.filter { genre -> Bool in
-        return show.genres?.contains(where: { $0 == genre.slug }) ?? false
+        show.genres?.contains(where: { $0 == genre.slug }) ?? false
       }
 
       return ShowEntityMapper.entity(for: show, with: showGenres)

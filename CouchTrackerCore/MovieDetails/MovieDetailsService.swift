@@ -24,7 +24,7 @@ public final class MovieDetailsService: MovieDetailsInteractor {
                                     genresObservable,
                                     watchedObservable) { (movie, genres, watchedMovieResult) -> MovieEntity in
       let movieGenres = genres.filter { genre -> Bool in
-        return movie.genres?.contains(genre.slug) ?? false
+        movie.genres?.contains(genre.slug) ?? false
       }
 
       let watchedAt: Date?

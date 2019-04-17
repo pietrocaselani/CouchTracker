@@ -110,7 +110,7 @@ final class ShowsProgressServiceTest: XCTestCase {
 
     // When
     let listState = ShowProgressListState(sort: .lastWatched, filter: .watched, direction: .asc)
-    interactor.listState = listState
+    _ = interactor.change(sort: .lastWatched, filter: .watched).subscribe()
 
     // Then
     XCTAssertEqual(listStateDataSource.currentStateInvokedCount, 1)

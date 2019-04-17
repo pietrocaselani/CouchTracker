@@ -96,7 +96,7 @@ extension EpisodeIdsRealm {
 }
 
 public extension EpisodeIds {
-  public func toRealm() -> EpisodeIdsRealm {
+  func toRealm() -> EpisodeIdsRealm {
     let entity = EpisodeIdsRealm()
 
     entity.trakt = trakt
@@ -217,7 +217,8 @@ extension EpisodeEntityRealm {
                          overview: overview,
                          number: number,
                          season: season,
-                         firstAired: firstAired)
+                         firstAired: firstAired,
+                         absoluteNumber: absoluteNumber.value)
   }
 }
 
@@ -232,6 +233,7 @@ extension EpisodeEntity {
     entity.number = number
     entity.season = season
     entity.firstAired = firstAired
+    entity.absoluteNumber.value = absoluteNumber
 
     return entity
   }

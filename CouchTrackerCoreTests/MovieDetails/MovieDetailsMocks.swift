@@ -163,7 +163,7 @@ final class MovieDetailsServiceMock: MovieDetailsInteractor {
 
     return Observable.combineLatest(detailsObservable, genresObservable, watchedObservable) { movie, genres, watched in
       let movieGenres = genres.filter { genre -> Bool in
-        return movie.genres?.contains(genre.slug) ?? false
+        movie.genres?.contains(genre.slug) ?? false
       }
 
       let watchedAt: Date?
