@@ -1,4 +1,4 @@
-fastlane_version '2.93.1'
+fastlane_version '2.120.0'
 
 desc 'Run bundle exec pod install --repo-update'
 lane :pods do
