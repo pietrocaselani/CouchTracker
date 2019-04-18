@@ -1,3 +1,6 @@
+# 0.0.1 (3) 
+
+
 # 0.0.1 (2) 
 * Merge pull request #184 from pietrocaselani/sync_state [view commit](http://github.com/pietrocaselani/CouchTracker/commit/2281baa3e04a08d187a6f312a638709196a0c66e)
 * Wrap Realm around a initialized/not initialized state [view commit](http://github.com/pietrocaselani/CouchTracker/commit/9c97375002e1d2d18c254e59cc0a08287f664520)
