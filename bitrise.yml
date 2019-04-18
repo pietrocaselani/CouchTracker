@@ -9,7 +9,7 @@ trigger_map:
 - push_branch: master
   workflow: master
 - pull_request_source_branch: '*'
-  workflow: master
+  workflow: pullRequests
 workflows:
   master:
     steps:
