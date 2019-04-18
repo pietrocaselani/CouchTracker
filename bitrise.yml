@@ -4,7 +4,6 @@ project_type: ios
 app:
   envs:
   - FASTLANE_XCODE_LIST_TIMEOUT: "120"
-  - FASTLANE_WORK_DIR: .
 trigger_map:
 - push_branch: master
   workflow: master
@@ -20,7 +19,6 @@ workflows:
     - fastlane@2.3.12:
         inputs:
         - lane: beta
-        - work_dir: $FASTLANE_WORK_DIR
   pullRequests:
     steps:
     - activate-ssh-key@4.0.3:
@@ -30,4 +28,3 @@ workflows:
     - fastlane@2.3.12:
         inputs:
         - lane: lint
-        - work_dir: $FASTLANE_WORK_DIR
