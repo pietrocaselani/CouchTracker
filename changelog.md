@@ -1,3 +1,8 @@
+# 0.0.1 (18) 
+* Bump everything to 0.0.1 (17) [view commit](http://github.com/pietrocaselani/CouchTracker/commit/f0317042aa57b58f85e3386518151af747ec824f)
+* Merge branch 'master' of github.com:pietrocaselani/CouchTracker [view commit](http://github.com/pietrocaselani/CouchTracker/commit/96087465eadfb5a3ae0b1b8a411b061aa2a860a8)
+* Bump build 2 [ci skip] [view commit](http://github.com/pietrocaselani/CouchTracker/commit/1740d839f111e1a68653e9d199cd8cca8a9a2342)
+
 # 0.0.1 (2) 
 * Merge pull request #184 from pietrocaselani/sync_state [view commit](http://github.com/pietrocaselani/CouchTracker/commit/2281baa3e04a08d187a6f312a638709196a0c66e)
 * Wrap Realm around a initialized/not initialized state [view commit](http://github.com/pietrocaselani/CouchTracker/commit/9c97375002e1d2d18c254e59cc0a08287f664520)
