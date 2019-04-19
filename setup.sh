@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function clone_dependency() {
     if [ ! -d "vendor/$1" ]; then

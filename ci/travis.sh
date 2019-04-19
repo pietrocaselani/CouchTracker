@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
     echo "Running pull_request.sh"

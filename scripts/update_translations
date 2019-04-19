@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 SCRIPTS_DIR=$(cd "$(dirname "$0")" || exit 1; pwd)
 COUCH_TRACKER_CORE_DIR=$(cd "$SCRIPTS_DIR"/../CouchTrackerCore || exit 1; pwd)
