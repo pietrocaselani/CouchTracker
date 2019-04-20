@@ -1,14 +1,31 @@
 version: 2
 
+defaults: &defaults
+  macos:
+    xcode: '10.1.0'
+  parallelism: 1
+  environment:
+    LANG: en_US.UTF-8
+
 jobs:
   build-and-test:
-    macos: # Specify the Xcode version to use
-      xcode: "10.1.0"
     steps:
       - checkout
+      - restore_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+      - restore_cache:
+          key: 1-pods-{{ checksum "Podfile.lock" }}
       - run:
           name: Setup build dependencies
           command: bash setup.sh
+      - save_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - save_cache:
+          key: 1-pods-{{ checksum "Podfile.lock" }}
+          paths:
+            - Pods
       - run:
           name: Build and run tests
           command: bundle exec fastlane lint
