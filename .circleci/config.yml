@@ -1,14 +1,11 @@
 version: 2
 
-defaults: &defaults
-  macos:
-    xcode: '10.1.0'
-  parallelism: 1
-  environment:
-    LANG: en_US.UTF-8
-
 jobs:
   build-and-test:
+    macos:
+      xcode: '10.1.0'
+    environment:
+      LANG: en_US.UTF-8
     steps:
       - checkout
       - restore_cache:
