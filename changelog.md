@@ -1,3 +1,10 @@
+# 0.0.1 (20) 
+* Add CircleCI badge [view commit](http://github.com/pietrocaselani/CouchTracker/commit/745f567e811b0df19cb4a38dd25662a109a5395d)
+* Don't run PR pipeline on master branch [view commit](http://github.com/pietrocaselani/CouchTracker/commit/2f99468b0b80f55b37ac63b51880924c97ad0b8c)
+* Sets build number to 19 [view commit](http://github.com/pietrocaselani/CouchTracker/commit/16da3e69378cf50f4c45d1966f1453e2efcb603a)
+* Merge branch 'master' of github.com:pietrocaselani/CouchTracker [view commit](http://github.com/pietrocaselani/CouchTracker/commit/d2316b56887b9643270a2fef3d160b1aa2bd1d32)
+* Bump build 18 [ci skip] [view commit](http://github.com/pietrocaselani/CouchTracker/commit/cfb1f39543ea3a7de0a6b611be47fbf6dfc0037d)
+
 # 0.0.1 (18)
 * Bump everything to 0.0.1 (17) [view commit](http://github.com/pietrocaselani/CouchTracker/commit/f0317042aa57b58f85e3386518151af747ec824f)
 * Merge branch 'master' of github.com:pietrocaselani/CouchTracker [view commit](http://github.com/pietrocaselani/CouchTracker/commit/96087465eadfb5a3ae0b1b8a411b061aa2a860a8)
