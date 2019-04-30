@@ -1,3 +1,6 @@
+# 0.0.1 (22) 
+* Perhaps this will be our first release [view commit](http://github.com/pietrocaselani/CouchTracker/commit/15fdf7886a733518df1b7a531d8f168c9f2cd331)
+
 # 0.0.1 (21) 
 * Removes command to update cocoapods repository [view commit](http://github.com/pietrocaselani/CouchTracker/commit/1c60014a461a00b21f48af7cecd302808b1fce1f)
 * Add missing parameter when invoking publish_to_github [view commit](http://github.com/pietrocaselani/CouchTracker/commit/cbd6ccbf455f70339c8fe4cd3b792b87d9dcafcf)
