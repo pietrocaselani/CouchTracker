@@ -19,9 +19,9 @@ def ios_pods
   pod 'Kingfisher', '5.0.1'
   pod 'RxCocoa', RX_SWIFT_VERSION
   pod 'ActionSheetPicker-3.0', '2.2.0'
-  pod 'Tabman', '2.1.0'
+  pod 'Tabman', '2.1.4'
   pod 'Cartography', '3.1.0'
-  pod 'FlowKitManager', '0.6.1'
+  pod 'RxDataSources', '3.1.0'
 end
 
 def persistence_pods

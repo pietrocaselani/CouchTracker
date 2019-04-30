@@ -102,7 +102,8 @@ enum ShowsProgressMocks {
                          overview: "Ned Stark, Lord of Winterfell learns that his mentor, Jon Arryn, has died and that King Robert is on his way north to offer Ned Arryn’s position as the King’s Hand. Across the Narrow Sea in Pentos, Viserys Targaryen plans to wed his sister Daenerys to the nomadic Dothraki warrior leader, Khal Drogo to forge an alliance to take the throne.",
                          number: 1,
                          season: 1,
-                         firstAired: aired)
+                         firstAired: aired,
+                         absoluteNumber: 1)
   }
 
   static func mockWatchedShowEntityWithoutNextEpisodeDate() -> WatchedShowEntity {
@@ -118,7 +119,19 @@ enum ShowsProgressMocks {
   }
 
   final class EmptyShowsProgressInteractorMock: ShowsProgressInteractor {
-    var listState: ShowProgressListState = ShowProgressListState.initialState
+    func toggleDirection() -> Completable {
+      return Completable.empty()
+    }
+
+    func change(sort _: ShowProgressSort, filter _: ShowProgressFilter) -> Completable {
+      return Completable.empty()
+    }
+
+    var listState: Observable<ShowProgressListState> {
+      return Observable.just(ShowProgressListState.initialState)
+    }
+
+    func newListState(listState _: ShowProgressListState) {}
 
     func fetchWatchedShowsProgress() -> Observable<WatchedShowEntitiesState> {
       return Observable.just(WatchedShowEntitiesState.available(shows: [WatchedShowEntity]()))
@@ -126,7 +139,17 @@ enum ShowsProgressMocks {
   }
 
   final class DelayEmptyShowsProgressInteractorMock: ShowsProgressInteractor {
-    var listState: ShowProgressListState = ShowProgressListState.initialState
+    func toggleDirection() -> Completable {
+      return Completable.empty()
+    }
+
+    func change(sort _: ShowProgressSort, filter _: ShowProgressFilter) -> Completable {
+      return Completable.empty()
+    }
+
+    var listState: Observable<ShowProgressListState> {
+      return Observable.just(ShowProgressListState.initialState)
+    }
 
     private let schedulers: TestSchedulers
 
@@ -135,18 +158,30 @@ enum ShowsProgressMocks {
     }
 
     func fetchWatchedShowsProgress() -> Observable<WatchedShowEntitiesState> {
-      return Observable.empty().delay(2, scheduler: schedulers.mainScheduler as! SchedulerType)
+      return Observable.empty().delay(2, scheduler: schedulers.mainScheduler)
     }
+
+    func newListState(listState _: ShowProgressListState) {}
   }
 
   final class ShowsProgressInteractorMock: ShowsProgressInteractor {
-    var listState: ShowProgressListState = ShowProgressListState.initialState
     let error: Error?
     let entities: [WatchedShowEntity]
+    let initialListState: ShowProgressListState
 
-    init(entities: [WatchedShowEntity] = [WatchedShowEntity](), error: Error? = nil) {
+    var toggleDirectionInvokedCount = 0
+    var changeInvokedCount = 0
+
+    var listState: Observable<ShowProgressListState> {
+      return Observable.just(initialListState)
+    }
+
+    init(entities: [WatchedShowEntity] = [WatchedShowEntity](),
+         error: Error? = nil,
+         listState: ShowProgressListState = ShowProgressListState.initialState) {
       self.entities = entities
       self.error = error
+      initialListState = listState
     }
 
     func fetchWatchedShowsProgress() -> Observable<WatchedShowEntitiesState> {
@@ -157,7 +192,15 @@ enum ShowsProgressMocks {
       return Observable.just(WatchedShowEntitiesState.available(shows: entities))
     }
 
-    func updateListState(newState _: ShowProgressListState) {}
+    func toggleDirection() -> Completable {
+      toggleDirectionInvokedCount += 1
+      return Completable.empty()
+    }
+
+    func change(sort _: ShowProgressSort, filter _: ShowProgressFilter) -> Completable {
+      changeInvokedCount += 1
+      return Completable.empty()
+    }
   }
 
   final class ShowsProgressRouterMock: ShowsProgressRouter {

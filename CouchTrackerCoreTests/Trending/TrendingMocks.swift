@@ -7,16 +7,21 @@ let trendingRepositoryMock = TrendingRepositoryMock(traktProvider: createTraktPr
 
 final class TrendingViewMock: TrendingViewProtocol {
   var presenter: TrendingPresenter!
-  var invokedShowEmptyView = false
+
+  var showEmptyViewInvokedCount = 0
+  var showTrendingsViewInvokedCount = 0
+  var showLoadingViewInvokedCount = 0
 
   func showEmptyView() {
-    invokedShowEmptyView = true
+    showEmptyViewInvokedCount += 1
   }
 
-  var invokedShow = false
-
   func showTrendingsView() {
-    invokedShow = true
+    showTrendingsViewInvokedCount += 1
+  }
+
+  func showLoadingView() {
+    showLoadingViewInvokedCount += 1
   }
 }
 

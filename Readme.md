@@ -19,7 +19,7 @@ Run the following commands
 
 * This project uses the [Trakt API](https://trakt.docs.apiary.io/), [TMDB API](https://developers.themoviedb.org/3/getting-started) and [TVDB API](https://api.thetvdb.com/swagger)
 
-* To run the app, please create a file at `CouchTracker/Utils/Secrets.swift` with yours API keys like this
+* To run the app, please create a file at `CouchTrackerApp/Utils/Secrets.swift` with yours API keys like this
 
 ```swift
 enum Secrets {

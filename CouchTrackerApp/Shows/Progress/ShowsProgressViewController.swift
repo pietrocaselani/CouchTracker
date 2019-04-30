@@ -1,8 +1,8 @@
 import ActionSheetPicker_3_0
 import CouchTrackerCore
-import FlowKitManager
 import NonEmpty
 import RxCocoa
+import RxDataSources
 import RxSwift
 
 final class ShowsProgressViewController: UIViewController {
@@ -38,13 +38,37 @@ final class ShowsProgressViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    let tableView = showsView.tableView
+    let cellIdentifier = ShowProgressCell.identifier
+    let cellType = ShowProgressCell.self
+
+    tableView.register(cellType, forCellReuseIdentifier: cellIdentifier)
+
     presenter.observeViewState()
       .observeOn(schedulers.mainScheduler)
-      .subscribe(onNext: { [weak self] viewState in
+      .do(onNext: { [weak self] viewState in
         self?.handleViewState(viewState)
-      }).disposed(by: disposeBag)
+      }).map { viewState -> [WatchedShowEntity]? in
+        if case let .shows(entities, _) = viewState {
+          return Array(entities)
+        }
+        return nil
+      }.unwrap()
+      .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier,
+                                   cellType: cellType)) { [localCellInteractor = cellInteractor] _, model, cell in
+        let viewModel = WatchedShowEntityMapper.viewModel(for: model)
 
-    presenter.viewDidLoad()
+        let presenter = ShowProgressCellDefaultPresenter(interactor: localCellInteractor, viewModel: viewModel)
+        cell.presenter = presenter
+      }.disposed(by: disposeBag)
+
+    tableView.rx.modelSelected(WatchedShowEntity.self)
+      .subscribe(onNext: { [localPresenter = presenter, localTableView = tableView] entity in
+        localPresenter.select(show: entity)
+        if let indexPath = localTableView.indexPathForSelectedRow {
+          localTableView.deselectRow(at: indexPath, animated: true)
+        }
+      }).disposed(by: disposeBag)
   }
 
   private func handleViewState(_ state: ShowProgressViewState) {
@@ -61,8 +85,8 @@ final class ShowsProgressViewController: UIViewController {
       showLoadingData()
     case let .error(error):
       showError(error: error)
-    case let .shows(entities, menu):
-      showData(entities: entities, menu: menu)
+    case let .shows(_, menu):
+      showData(menu: menu)
     }
   }
 
@@ -72,27 +96,8 @@ final class ShowsProgressViewController: UIViewController {
     showsView.emptyView.label.text = message
   }
 
-  private func showData(entities: NonEmpty<[WatchedShowEntity]>, menu: ShowsProgressMenuOptions) {
+  private func showData(menu: ShowsProgressMenuOptions) {
     configureBarButtonItems(menu: menu)
-
-    let tableView = showsView.tableView
-    let director = tableView.director
-
-    if !director.sections.isEmpty {
-      director.removeAll()
-    }
-
-    let viewModels = Array(entities.map(WatchedShowEntityMapper.viewModel(for:)))
-
-    let adapter = ShowProgressTableAdapter(presenter: presenter, interactor: cellInteractor, entities: Array(entities))
-
-    // CT-TODO Remove this line when this got fixed: https://github.com/malcommac/FlowKit/issues/21
-    tableView.register(ShowProgressCell.self, forCellReuseIdentifier: ShowProgressCell.identifier)
-
-    director.register(adapter: adapter)
-    director.add(models: viewModels)
-    director.rowHeight = .fixed(height: 100)
-    director.reloadData()
 
     showsView.emptyView.isHidden = true
     showsView.tableView.isHidden = false
@@ -130,9 +135,11 @@ final class ShowsProgressViewController: UIViewController {
     }).disposed(by: disposeBag)
 
     let directionItem = UIBarButtonItem(image: R.image.direction(), style: .plain, target: nil, action: nil)
-    directionItem.rx.tap.asDriver().drive(onNext: { [weak self] in
-      self?.presenter.toggleDirection()
-    }).disposed(by: disposeBag)
+
+    directionItem.rx.tap.flatMapLatest { [localPresenter = presenter] in
+      localPresenter.toggleDirection()
+    }.subscribe()
+      .disposed(by: disposeBag)
 
     parentPageboy?.navigationItem.rightBarButtonItems = [filterItem, directionItem]
     navigationItem.rightBarButtonItems = [filterItem, directionItem]
@@ -157,37 +164,14 @@ final class ShowsProgressViewController: UIViewController {
                                                    let sort = ShowProgressSort.allValues()[sortIndex]
                                                    let filter = ShowProgressFilter.allValues()[filterIndex]
 
-                                                   self?.presenter.change(sort: sort, filter: filter)
+                                                   self?.change(sort: sort, filter: filter)
                                                  },
                                                  cancel: { _ in },
                                                  origin: view)
     picker?.show()
   }
-}
 
-extension WatchedShowViewModel: ModelProtocol {
-  public var modelID: Int {
-    return hashValue
-  }
-}
-
-private class ShowProgressTableAdapter: TableAdapter<WatchedShowViewModel, ShowProgressCell> {
-  init(presenter: ShowsProgressPresenter, interactor: ShowProgressCellInteractor, entities: [WatchedShowEntity]) {
-    super.init()
-
-    on.dequeue = { context in
-      guard let cell = context.cell else { return }
-
-      let viewModel = context.model
-      let presenter = ShowProgressCellDefaultPresenter(interactor: interactor, viewModel: viewModel)
-
-      cell.presenter = presenter
-    }
-
-    on.tap = { context in
-      let entity = entities[context.indexPath.row]
-      presenter.select(show: entity)
-      return .deselectAnimated
-    }
+  private func change(sort: ShowProgressSort, filter: ShowProgressFilter) {
+    presenter.change(sort: sort, filter: filter).subscribe().disposed(by: disposeBag)
   }
 }

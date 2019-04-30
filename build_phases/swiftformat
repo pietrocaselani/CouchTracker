@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 swiftformat --indent 2 CouchTracker/
 swiftformat --indent 2 CouchTrackerApp/
