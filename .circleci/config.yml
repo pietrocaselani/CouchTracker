@@ -39,9 +39,40 @@ jobs:
       - store_artifacts:
           path: ~/Library/Logs/scan
           destination: scan-logs
+  build-beta-release:
+    macos:
+      xcode: '10.1.0'
+    environment:
+      LANG: en_US.UTF-8
+    steps:
+      - checkout
+      - restore_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+      - restore_cache:
+          key: 1-pods-{{ checksum "Podfile.lock" }}
+      - run:
+          name: Setup build dependencies
+          command: bash setup.sh
+      - save_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - save_cache:
+          key: 1-pods-{{ checksum "Podfile.lock" }}
+          paths:
+            - Pods
+      - run:
+          name: Release to Test Flight
+          command: bundle exec fastlane beta
 
 workflows:
   version: 2
   build-and-test:
     jobs:
       - build-and-test
+  beta-release:
+    jobs:
+      - build-beta-release:
+        filters:
+          branches:
+            only: master
