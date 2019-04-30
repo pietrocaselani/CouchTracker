@@ -1,3 +1,6 @@
+# 0.0.1 (24) 
+* Now I really hope this will ship to TestFlight [view commit](http://github.com/pietrocaselani/CouchTracker/commit/5c6b2fc8f6421b3d2c45c44ee128324b30a768ed)
+
 # 0.0.1 (23) 
 * Bump fastlane to 2.121.1 [view commit](http://github.com/pietrocaselani/CouchTracker/commit/ace7c4837e3bc5f7fbbaccb375e730501c156794)
 
