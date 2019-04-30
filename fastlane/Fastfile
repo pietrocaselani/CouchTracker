@@ -42,7 +42,7 @@ lane :beta do
   new_build_number = increment_build_number
   version_number = get_version_number(target: 'CouchTracker')
 
-  commit_and_release(
+  bump_and_commit(
     build_number: new_build_number,
     version_number: version_number,
     changelog: changelog
@@ -59,12 +59,16 @@ lane :beta do
     export_method: 'app-store'
   )
 
+  publish_to_github(
+    build_number: new_build_number,
+    version_number: version_number,
+    changelog: changelog
+  )
+
   upload_to_testflight(
     changelog: changelog,
     skip_waiting_for_build_processing: false
   )
-
-  upload_sonar
 end
 
 private_lane :get_changelog do
@@ -74,7 +78,7 @@ private_lane :get_changelog do
   `git log #{tag}...HEAD --pretty=format:"#{log_format}"`.chomp ||= ''
 end
 
-private_lane :commit_and_release do |options|
+private_lane :bump_and_commit do |options|
   new_build_number = options[:build_number]
   changelog = options[:changelog]
 
@@ -93,9 +97,15 @@ private_lane :commit_and_release do |options|
     force: true
   )
 
-  push_to_github
-
   add_git_tag(tag: tag_name.to_s)
+end
+
+private_lane :publish_to_github do |options|
+  changelog = options[:changelog]
+  full_version_name = "#{options[:version_number]} (#{new_build_number})"
+  tag_name = "#{options[:version_number]}-#{new_build_number}"
+
+  push_to_github
 
   create_github_release(
     name: full_version_name.to_s,
