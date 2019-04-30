@@ -44,6 +44,8 @@ platform :ios do
   lane :beta do
     setup_git_on_ci
 
+    pods
+
     changelog = get_changelog
     new_build_number = increment_build_number
     version_number = get_version_number(target: 'CouchTracker')
