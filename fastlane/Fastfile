@@ -1,156 +1,159 @@
 fastlane_version '2.120.0'
+default_platform(:ios)
 
-before_all do
-  setup_circle_ci
-end
+platform :ios do
+  before_all do
+    setup_circle_ci
+  end
 
-desc 'Run bundle exec pod install --repo-update'
-lane :pods do
-  cocoapods(podfile: '.', repo_update: true)
-end
+  desc 'Run bundle exec pod install --repo-update'
+  lane :pods do
+    cocoapods(podfile: '.', repo_update: true)
+  end
 
-desc 'Run CouchTrackerCore tests'
-lane :tests do
-  pods
-  scan(workspace: 'CouchTracker.xcworkspace',
-       scheme: 'CouchTrackerCore',
-       clean: false,
-       code_coverage: true,
-       output_directory: './reports/')
-end
+  desc 'Run CouchTrackerCore tests'
+  lane :tests do
+    pods
+    scan(workspace: 'CouchTracker.xcworkspace',
+         scheme: 'CouchTrackerCore',
+         clean: false,
+         code_coverage: true,
+         output_directory: './reports/')
+  end
 
-desc 'Run tests and linters'
-lane :lint do
-  tests
-  slather(cobertura_xml: true,
-          travis: true,
-          scheme: 'CouchTrackerCore',
-          output_directory: './reports',
-          verbose: true,
-          proj: 'CouchTracker.xcodeproj',
-          workspace: 'CouchTracker.xcworkspace')
-  swiftlint(output_file: './reports/swiftlint.txt', ignore_exit_status: true)
-end
+  desc 'Run tests and linters'
+  lane :lint do
+    tests
+    slather(cobertura_xml: true,
+            travis: true,
+            scheme: 'CouchTrackerCore',
+            output_directory: './reports',
+            verbose: true,
+            proj: 'CouchTracker.xcodeproj',
+            workspace: 'CouchTracker.xcworkspace')
+    swiftlint(output_file: './reports/swiftlint.txt', ignore_exit_status: true)
+  end
 
-desc 'Run tests and linters then upload metrics to sonar'
-lane :upload_sonar do
-  lint
-  sonar(sonar_login: ENV['SONAR_LOGIN'])
-end
+  desc 'Run tests and linters then upload metrics to sonar'
+  lane :upload_sonar do
+    lint
+    sonar(sonar_login: ENV['SONAR_LOGIN'])
+  end
 
-desc 'Release a new build'
-lane :beta do
-  setup_git_on_ci
+  desc 'Release a new build'
+  lane :beta do
+    setup_git_on_ci
 
-  changelog = get_changelog
-  new_build_number = increment_build_number
-  version_number = get_version_number(target: 'CouchTracker')
+    changelog = get_changelog
+    new_build_number = increment_build_number
+    version_number = get_version_number(target: 'CouchTracker')
 
-  bump_and_commit(
-    build_number: new_build_number,
-    version_number: version_number,
-    changelog: changelog
-  )
+    bump_and_commit(
+      build_number: new_build_number,
+      version_number: version_number,
+      changelog: changelog
+    )
 
-  match(type: 'appstore')
+    match(type: 'appstore')
 
-  sh '../scripts/generate_secrets'
+    sh '../scripts/generate_secrets'
 
-  build_ios_app(
-    workspace: 'CouchTracker.xcworkspace',
-    scheme: 'CouchTracker',
-    configuration: 'Release',
-    export_method: 'app-store'
-  )
+    build_ios_app(
+      workspace: 'CouchTracker.xcworkspace',
+      scheme: 'CouchTracker',
+      configuration: 'Release',
+      export_method: 'app-store'
+    )
 
-  publish_to_github(
-    build_number: new_build_number,
-    version_number: version_number,
-    changelog: changelog
-  )
+    publish_to_github(
+      build_number: new_build_number,
+      version_number: version_number,
+      changelog: changelog
+    )
 
-  upload_to_testflight(
-    changelog: changelog,
-    skip_waiting_for_build_processing: false
-  )
-end
+    upload_to_testflight(
+      changelog: changelog,
+      skip_waiting_for_build_processing: false
+    )
+  end
 
-private_lane :get_changelog do
-  link_to_commit = 'http://github.com/pietrocaselani/CouchTracker/commit/%H'
-  log_format = "* %s [view commit](#{link_to_commit})"
-  tag = `git describe --tags --abbrev=0`.chomp
-  `git log #{tag}...HEAD --pretty=format:"#{log_format}"`.chomp ||= ''
-end
+  private_lane :get_changelog do
+    link_to_commit = 'http://github.com/pietrocaselani/CouchTracker/commit/%H'
+    log_format = "* %s [view commit](#{link_to_commit})"
+    tag = `git describe --tags --abbrev=0`.chomp
+    `git log #{tag}...HEAD --pretty=format:"#{log_format}"`.chomp ||= ''
+  end
 
-private_lane :bump_and_commit do |options|
-  new_build_number = options[:build_number]
-  changelog = options[:changelog]
+  private_lane :bump_and_commit do |options|
+    new_build_number = options[:build_number]
+    changelog = options[:changelog]
 
-  full_version_name = "#{options[:version_number]} (#{new_build_number})"
-  tag_name = "#{options[:version_number]}-#{new_build_number}"
+    full_version_name = "#{options[:version_number]} (#{new_build_number})"
+    tag_name = "#{options[:version_number]}-#{new_build_number}"
 
-  update_changelog_file(
-    version_name: full_version_name,
-    changelog: changelog
-  )
+    update_changelog_file(
+      version_name: full_version_name,
+      changelog: changelog
+    )
 
-  commit_version_bump(
-    message: "Bump build #{new_build_number} [ci skip]",
-    xcodeproj: './CouchTracker.xcodeproj',
-    include: './changelog.md',
-    force: true
-  )
+    commit_version_bump(
+      message: "Bump build #{new_build_number} [ci skip]",
+      xcodeproj: './CouchTracker.xcodeproj',
+      include: './changelog.md',
+      force: true
+    )
 
-  add_git_tag(tag: tag_name.to_s)
-end
+    add_git_tag(tag: tag_name.to_s)
+  end
 
-private_lane :publish_to_github do |options|
-  changelog = options[:changelog]
-  full_version_name = "#{options[:version_number]} (#{new_build_number})"
-  tag_name = "#{options[:version_number]}-#{new_build_number}"
+  private_lane :publish_to_github do |options|
+    changelog = options[:changelog]
+    full_version_name = "#{options[:version_number]} (#{new_build_number})"
+    tag_name = "#{options[:version_number]}-#{new_build_number}"
 
-  push_to_github
+    push_to_github
 
-  create_github_release(
-    name: full_version_name.to_s,
-    tag_name: tag_name.to_s,
-    description: changelog
-  )
-end
+    create_github_release(
+      name: full_version_name.to_s,
+      tag_name: tag_name.to_s,
+      description: changelog
+    )
+  end
 
-private_lane :update_changelog_file do |options|
-  version_name = options[:version_name]
-  changelog = options[:changelog]
+  private_lane :update_changelog_file do |options|
+    version_name = options[:version_name]
+    changelog = options[:changelog]
 
-  current_changelog = File.read('../changelog.md')
+    current_changelog = File.read('../changelog.md')
 
-  new_changelog = "# #{version_name} \n#{changelog}\n\n" + current_changelog
+    new_changelog = "# #{version_name} \n#{changelog}\n\n" + current_changelog
 
-  File.write('../changelog.md', new_changelog)
-end
+    File.write('../changelog.md', new_changelog)
+  end
 
-private_lane :setup_git_on_ci do
-  `git remote add github https://pietrocaselani:$GITHUB_TOKEN@github.com/pietrocaselani/CouchTracker.git`
-  `git checkout master`
-end
+  private_lane :setup_git_on_ci do
+    `git remote add github https://pietrocaselani:$GITHUB_TOKEN@github.com/pietrocaselani/CouchTracker.git`
+    `git checkout master`
+  end
 
-private_lane :push_to_github do
-  push_to_git_remote(
-    remote: 'github',
-    local_branch: 'master',
-    remote_branch: 'master',
-    tags: false,
-    force: true
-  )
-end
+  private_lane :push_to_github do
+    push_to_git_remote(
+      remote: 'github',
+      local_branch: 'master',
+      remote_branch: 'master',
+      tags: false,
+      force: true
+    )
+  end
 
-private_lane :create_github_release do |options|
-  set_github_release(
-    api_token: ENV['GITHUB_TOKEN'],
-    repository_name: 'pietrocaselani/CouchTracker',
-    name: options[:name],
-    tag_name: options[:tag_name],
-    description: options[:description],
-    commitish: 'master'
-  )
+  private_lane :create_github_release do |options|
+    set_github_release(
+      api_token: ENV['GITHUB_TOKEN'],
+      repository_name: 'pietrocaselani/CouchTracker',
+      name: options[:name],
+      tag_name: options[:tag_name],
+      description: options[:description],
+      commitish: 'master'
+    )
+  end
 end

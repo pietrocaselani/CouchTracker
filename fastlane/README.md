@@ -15,29 +15,30 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
-### pods
+## iOS
+### ios pods
 ```
-fastlane pods
+fastlane ios pods
 ```
 Run bundle exec pod install --repo-update
-### tests
+### ios tests
 ```
-fastlane tests
+fastlane ios tests
 ```
 Run CouchTrackerCore tests
-### lint
+### ios lint
 ```
-fastlane lint
+fastlane ios lint
 ```
 Run tests and linters
-### upload_sonar
+### ios upload_sonar
 ```
-fastlane upload_sonar
+fastlane ios upload_sonar
 ```
 Run tests and linters then upload metrics to sonar
-### beta
+### ios beta
 ```
-fastlane beta
+fastlane ios beta
 ```
 Release a new build
 
