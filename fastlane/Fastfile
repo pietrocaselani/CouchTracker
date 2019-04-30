@@ -1,5 +1,9 @@
 fastlane_version '2.120.0'
 
+before_all do
+  setup_circle_ci
+end
+
 desc 'Run bundle exec pod install --repo-update'
 lane :pods do
   cocoapods(podfile: '.', repo_update: true)
