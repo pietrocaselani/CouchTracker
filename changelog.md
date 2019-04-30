@@ -1,3 +1,6 @@
+# 0.0.1 (23) 
+* Bump fastlane to 2.121.1 [view commit](http://github.com/pietrocaselani/CouchTracker/commit/ace7c4837e3bc5f7fbbaccb375e730501c156794)
+
 # 0.0.1 (22) 
 * Perhaps this will be our first release [view commit](http://github.com/pietrocaselani/CouchTracker/commit/15fdf7886a733518df1b7a531d8f168c9f2cd331)
 
