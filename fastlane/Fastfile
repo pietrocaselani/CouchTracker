@@ -48,12 +48,15 @@ lane :beta do
     changelog: changelog
   )
 
+  match(type: 'appstore')
+
   sh '../scripts/generate_secrets'
 
   build_ios_app(
     workspace: 'CouchTracker.xcworkspace',
     scheme: 'CouchTracker',
-    configuration: 'Release'
+    configuration: 'Release',
+    export_method: 'app-store'
   )
 
   upload_to_testflight(
