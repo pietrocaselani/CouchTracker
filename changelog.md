@@ -1,3 +1,6 @@
+# 0.0.1 (25) 
+* Empty commit to trigger CI and test deploy to test flight [view commit](http://github.com/pietrocaselani/CouchTracker/commit/90410432da81526ea6102efa1aa1b2a1dcdfbd7b)
+
 # 0.0.1 (24) 
 * Now I really hope this will ship to TestFlight [view commit](http://github.com/pietrocaselani/CouchTracker/commit/5c6b2fc8f6421b3d2c45c44ee128324b30a768ed)
 
