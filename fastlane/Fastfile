@@ -110,6 +110,7 @@ platform :ios do
 
   private_lane :publish_to_github do |options|
     changelog = options[:changelog]
+    new_build_number = options[:build_number]
     full_version_name = "#{options[:version_number]} (#{new_build_number})"
     tag_name = "#{options[:version_number]}-#{new_build_number}"
 
