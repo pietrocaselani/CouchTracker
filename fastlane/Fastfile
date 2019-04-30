@@ -8,7 +8,7 @@ platform :ios do
 
   desc 'Run bundle exec pod install --repo-update'
   lane :pods do
-    cocoapods(podfile: '.', repo_update: true)
+    cocoapods(podfile: '.', repo_update: false)
   end
 
   desc 'Run CouchTrackerCore tests'
