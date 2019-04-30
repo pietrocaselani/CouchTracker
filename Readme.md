@@ -3,7 +3,7 @@ CouchTracker
 
 Keep track of your favorite movies and tv shows on your iPhone
 
-[![Build Status](https://travis-ci.org/pietrocaselani/CouchTracker.svg?branch=master)](https://travis-ci.org/pietrocaselani/CouchTracker)
+[![CircleCI](https://circleci.com/gh/pietrocaselani/CouchTracker.svg?style=svg)](https://circleci.com/gh/pietrocaselani/CouchTracker)
 [![codecov](https://codecov.io/gh/pietrocaselani/CouchTracker/branch/master/graph/badge.svg)](https://codecov.io/gh/pietrocaselani/CouchTracker)
 [![Twitter](https://img.shields.io/badge/twitter-@pietropc-red.svg?style=flat)](https://twitter.com/pietropc_)
 
