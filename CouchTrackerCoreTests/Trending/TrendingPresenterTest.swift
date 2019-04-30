@@ -38,8 +38,8 @@ final class TrendingPresenterTest: XCTestCase {
     presenter.viewDidLoad()
     schedulers.start()
 
-    XCTAssertTrue(view.invokedShowEmptyView)
-    XCTAssertFalse(view.invokedShow)
+    XCTAssertEqual(view.showEmptyViewInvokedCount, 1)
+    XCTAssertEqual(view.showTrendingsViewInvokedCount, 0)
   }
 
   func testTrendingPresenter_fetchShowsSuccessWithEmptyData_andPresentNothing() {
@@ -50,8 +50,8 @@ final class TrendingPresenterTest: XCTestCase {
     presenter.viewDidLoad()
     schedulers.start()
 
-    XCTAssertTrue(view.invokedShowEmptyView)
-    XCTAssertFalse(view.invokedShow)
+    XCTAssertEqual(view.showEmptyViewInvokedCount, 1)
+    XCTAssertEqual(view.showTrendingsViewInvokedCount, 0)
     XCTAssertFalse(dataSource.invokedSetViewModels)
     XCTAssertTrue(dataSource.viewModels.isEmpty)
   }
@@ -96,7 +96,7 @@ final class TrendingPresenterTest: XCTestCase {
       return PosterViewModel(title: trendingMovie.movie.title ?? "TBA", type: type)
     }
 
-    XCTAssertTrue(view.invokedShow)
+    XCTAssertEqual(view.showTrendingsViewInvokedCount, 1)
     XCTAssertTrue(dataSource.invokedSetViewModels)
     XCTAssertEqual(dataSource.viewModels, expectedViewModel)
   }
@@ -108,7 +108,7 @@ final class TrendingPresenterTest: XCTestCase {
     presenter.viewDidLoad()
     schedulers.start()
 
-    XCTAssertTrue(view.invokedShow)
+    XCTAssertEqual(view.showTrendingsViewInvokedCount, 1)
   }
 
   func testTrendingPresenter_fetchMoviewSuccess_andPresentNoMovies() {
@@ -121,8 +121,8 @@ final class TrendingPresenterTest: XCTestCase {
     presenter.viewDidLoad()
     schedulers.start()
 
-    XCTAssertTrue(view.invokedShowEmptyView)
-    XCTAssertFalse(view.invokedShow)
+    XCTAssertEqual(view.showEmptyViewInvokedCount, 1)
+    XCTAssertEqual(view.showTrendingsViewInvokedCount, 0)
   }
 
   func testTrendingPresenter_fetchMoviesFailure_andIsCustomError() {

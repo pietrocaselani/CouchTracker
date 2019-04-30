@@ -78,7 +78,7 @@ final class ImageRepositoryMock: ImageRepository {
   func fetchMovieImages(for movieId: Int, posterSize: PosterImageSize?, backdropSize: BackdropImageSize?) -> Maybe<ImagesEntity> {
     fetchMovieImagesInvoked = true
     let observable = configuration.fetchConfiguration().asObservable().flatMap { [unowned self] config -> Observable<ImagesEntity> in
-      return self.tmdb.movies.rx.request(.images(movieId: movieId)).asObservable().map(Images.self).map {
+      self.tmdb.movies.rx.request(.images(movieId: movieId)).asObservable().map(Images.self).map {
         let posterSize = posterSize ?? .w342
         let backdropSize = backdropSize ?? .w300
 

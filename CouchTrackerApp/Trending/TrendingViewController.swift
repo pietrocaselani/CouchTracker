@@ -81,7 +81,24 @@ extension TrendingViewController: TrendingViewProtocol {
 
   public func showEmptyView() {
     trendingView.collectionView.isHidden = true
+
+    let emptyText: String
+
+    if trendingType == .movies {
+      emptyText = R.string.localizable.noMoviesToShowRightNow()
+    } else {
+      emptyText = R.string.localizable.noTvShowsToShowRightNow()
+    }
+
+    trendingView.emptyView.label.text = emptyText
+
     trendingView.emptyView.isHidden = false
+  }
+
+  public func showLoadingView() {
+    trendingView.collectionView.isHidden = true
+    trendingView.emptyView.isHidden = false
+    trendingView.emptyView.label.text = "Loading"
   }
 
   private func makeListVisible() {

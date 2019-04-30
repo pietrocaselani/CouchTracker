@@ -1,4 +1,4 @@
-fastlane_version '2.93.1'
+fastlane_version '2.120.0'
 
 desc 'Run bundle exec pod install --repo-update'
 lane :pods do
@@ -48,7 +48,21 @@ lane :beta do
     changelog: changelog
   )
 
-  # build_app(scheme: 'CouchTracker')
+  match(type: 'appstore')
+
+  sh '../scripts/generate_secrets'
+
+  build_ios_app(
+    workspace: 'CouchTracker.xcworkspace',
+    scheme: 'CouchTracker',
+    configuration: 'Release',
+    export_method: 'app-store'
+  )
+
+  upload_to_testflight(
+    changelog: changelog,
+    skip_waiting_for_build_processing: false
+  )
 
   upload_sonar
 end

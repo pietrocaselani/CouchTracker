@@ -1,8 +1,6 @@
 import TraktSwift
 
-public final class EpisodeEntityMapper {
-  private init() {}
-
+public enum EpisodeEntityMapper {
   public static func entity(for episode: Episode, showIds: ShowIds) -> EpisodeEntity {
     // CT-TODO Don't handle title here
     return EpisodeEntity(ids: episode.ids,
@@ -11,6 +9,7 @@ public final class EpisodeEntityMapper {
                          overview: episode.overview,
                          number: episode.number,
                          season: episode.season,
-                         firstAired: episode.firstAired)
+                         firstAired: episode.firstAired,
+                         absoluteNumber: episode.absoluteNumber)
   }
 }

@@ -11,9 +11,11 @@ public protocol ShowsProgressListStateDataSource: class {
 }
 
 public protocol ShowsProgressInteractor: class {
-  var listState: ShowProgressListState { get set }
+  var listState: Observable<ShowProgressListState> { get }
 
   func fetchWatchedShowsProgress() -> Observable<WatchedShowEntitiesState>
+  func toggleDirection() -> Completable
+  func change(sort: ShowProgressSort, filter: ShowProgressFilter) -> Completable
 }
 
 public protocol ShowsProgressRouter: class {
@@ -22,9 +24,8 @@ public protocol ShowsProgressRouter: class {
 
 public protocol ShowsProgressPresenter: class {
   func observeViewState() -> Observable<ShowProgressViewState>
-  func viewDidLoad()
 
-  func change(sort: ShowProgressSort, filter: ShowProgressFilter)
-  func toggleDirection()
+  func change(sort: ShowProgressSort, filter: ShowProgressFilter) -> Completable
+  func toggleDirection() -> Completable
   func select(show: WatchedShowEntity)
 }

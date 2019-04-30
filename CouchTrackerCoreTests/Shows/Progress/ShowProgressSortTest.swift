@@ -107,7 +107,7 @@ final class ShowProgressSortTest: XCTestCase {
     XCTAssertEqual(sortedShows, expectedShows)
   }
 
-  func testShowProgressSort_nextEpisodeDataComparator() {
+  func testShowProgressSort_nextEpisodeDateComparator() {
     // Given
     let mock = ShowsProgressMocks.mockWatchedShowEntity()
     let episodeMock = ShowsProgressMocks.mockEpisodeEntity()
@@ -120,26 +120,44 @@ final class ShowProgressSortTest: XCTestCase {
     let date2 = Date(timeIntervalSince1970: 10)
     let date3: Date? = nil
 
-    let episode1 = EpisodeEntity(ids: episodeIds, showIds: showIds, title: "", overview: nil, number: 0, season: 0, firstAired: date1)
+    let episodeEntityAired = { date in
+      EpisodeEntity(ids: episodeIds,
+                    showIds: showIds,
+                    title: "",
+                    overview: nil,
+                    number: 0,
+                    season: 0,
+                    firstAired: date,
+                    absoluteNumber: 1)
+    }
 
-    let episode2 = EpisodeEntity(ids: episodeIds, showIds: showIds, title: "", overview: nil, number: 0, season: 0, firstAired: date2)
+    let episode1 = episodeEntityAired(date1)
+    let episode2 = episodeEntityAired(date2)
+    let episode3 = episodeEntityAired(date3)
+    let episode4 = episodeEntityAired(date3)
 
-    let episode3 = EpisodeEntity(ids: episodeIds, showIds: showIds, title: "", overview: nil, number: 0, season: 0, firstAired: date3)
+    let watchedEpisode = { episode in
+      WatchedEpisodeEntity(episode: episode, lastWatched: nil)
+    }
 
-    let episode4 = EpisodeEntity(ids: episodeIds, showIds: showIds, title: "", overview: nil, number: 0, season: 0, firstAired: date3)
+    let nextEpisode1 = watchedEpisode(episode1)
+    let nextEpisode2 = watchedEpisode(episode2)
+    let nextEpisode3 = watchedEpisode(episode3)
+    let nextEpisode4 = watchedEpisode(episode4)
 
-    let nextEpisode1 = WatchedEpisodeEntity(episode: episode1, lastWatched: nil)
-    let nextEpisode2 = WatchedEpisodeEntity(episode: episode2, lastWatched: nil)
-    let nextEpisode3 = WatchedEpisodeEntity(episode: episode3, lastWatched: nil)
-    let nextEpisode4 = WatchedEpisodeEntity(episode: episode4, lastWatched: nil)
+    let watchedShow = { nextEpisode, lastWatched in
+      WatchedShowEntity(show: show,
+                        aired: 10,
+                        completed: 10,
+                        nextEpisode: nextEpisode,
+                        lastWatched: lastWatched,
+                        seasons: seasons)
+    }
 
-    let watchedShow1 = WatchedShowEntity(show: show, aired: 10, completed: 10, nextEpisode: nextEpisode1, lastWatched: date1, seasons: seasons)
-
-    let watchedShow2 = WatchedShowEntity(show: show, aired: 10, completed: 5, nextEpisode: nextEpisode2, lastWatched: date2, seasons: seasons)
-
-    let watchedShow3 = WatchedShowEntity(show: show, aired: 3, completed: 1, nextEpisode: nextEpisode3, lastWatched: date3, seasons: seasons)
-
-    let watchedShow4 = WatchedShowEntity(show: show, aired: 3, completed: 3, nextEpisode: nextEpisode4, lastWatched: date3, seasons: seasons)
+    let watchedShow1 = watchedShow(nextEpisode1, date1)
+    let watchedShow2 = watchedShow(nextEpisode2, date2)
+    let watchedShow3 = watchedShow(nextEpisode3, date3)
+    let watchedShow4 = watchedShow(nextEpisode4, date3)
 
     let shows = [watchedShow2, watchedShow4, watchedShow1, watchedShow3]
 

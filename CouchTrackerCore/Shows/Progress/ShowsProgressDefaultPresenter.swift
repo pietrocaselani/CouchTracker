@@ -2,8 +2,6 @@ import NonEmpty
 import RxSwift
 
 public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
-  private let viewStateSubject = BehaviorSubject<ShowProgressViewState>(value: .notLogged)
-  private let disposeBag = DisposeBag()
   private let interactor: ShowsProgressInteractor
   private let router: ShowsProgressRouter
   private let syncStateObservable: SyncStateObservable
@@ -20,39 +18,14 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
   }
 
   public func observeViewState() -> Observable<ShowProgressViewState> {
-    return viewStateSubject.distinctUntilChanged()
-  }
-
-  public func viewDidLoad() {
-    fetchShows()
-  }
-
-  public func toggleDirection() {
-    let currentListState = interactor.listState
-    let newListState = currentListState.builder().direction(currentListState.direction.toggle()).build()
-    interactor.listState = newListState
-
-    fetchShows()
-  }
-
-  public func change(sort: ShowProgressSort, filter: ShowProgressFilter) {
-    let newListState = interactor.listState.builder().sort(sort).filter(filter).build()
-    interactor.listState = newListState
-
-    fetchShows()
-  }
-
-  public func select(show: WatchedShowEntity) {
-    router.show(tvShow: show)
-  }
-
-  private func fetchShows() {
     let appStateStream = appStateObservable.observe()
     let syncStateStream = syncStateObservable.observe()
+    let listStateStream = interactor.listState
 
-    Observable.combineLatest(appStateStream,
-                             syncStateStream) { (appState, syncState) -> AllStates in
-      return AllStates(appState: appState, syncState: syncState)
+    return Observable.combineLatest(appStateStream,
+                                    syncStateStream,
+                                    listStateStream) { (appState, syncState, listState) -> AllStates in
+      AllStates(appState: appState, syncState: syncState, listState: listState)
     }.flatMap { [weak self] states -> Observable<ShowProgressViewState> in
       guard states.appState.isLogged else { return .just(.notLogged) }
 
@@ -60,28 +33,37 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
 
       let defaultViewState: ShowProgressViewState = states.syncState.isSyncing ? .loading : .empty
 
-      let listState = strongSelf.interactor.listState
-
       return strongSelf.interactor.fetchWatchedShowsProgress()
         .map { showsState -> ShowProgressViewState in
           switch showsState {
           case .unavailable: return defaultViewState
           case let .available(shows):
-            return createViewState(entities: shows, listState: listState)
+            return createViewState(entities: shows, listState: states.listState)
           }
         }
     }
     .catchError { error -> Observable<ShowProgressViewState> in
-      return .just(ShowProgressViewState.error(error: error))
-    }.subscribe(onNext: { [weak self] viewState in
-      self?.viewStateSubject.onNext(viewState)
-    }).disposed(by: disposeBag)
+      .just(ShowProgressViewState.error(error: error))
+    }
+  }
+
+  public func toggleDirection() -> Completable {
+    return interactor.toggleDirection()
+  }
+
+  public func change(sort: ShowProgressSort, filter: ShowProgressFilter) -> Completable {
+    return interactor.change(sort: sort, filter: filter)
+  }
+
+  public func select(show: WatchedShowEntity) {
+    router.show(tvShow: show)
   }
 }
 
 private struct AllStates {
   let appState: AppState
   let syncState: SyncState
+  let listState: ShowProgressListState
 }
 
 private func createViewState(entities: [WatchedShowEntity],

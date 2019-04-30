@@ -6,6 +6,12 @@ extension ObservableType where E: Sequence {
   }
 }
 
+extension ObservableType {
+  public func unwrap<T>() -> Observable<T> where E == T? {
+    return filter { $0 != nil }.map { $0! }
+  }
+}
+
 extension PrimitiveSequenceType where TraitType == MaybeTrait, ElementType: Sequence {
   public func mapElements<R>(_ mapper: @escaping (ElementType.Element) -> R) -> Maybe<[R]> {
     return map { $0.map(mapper) }

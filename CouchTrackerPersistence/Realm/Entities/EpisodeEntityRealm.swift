@@ -9,6 +9,7 @@ public final class EpisodeEntityRealm: Object {
   @objc public dynamic var number = -1
   @objc public dynamic var season = -1
   @objc public dynamic var firstAired: Date?
+  public var absoluteNumber = RealmOptional<Int>()
 
   public var ids: EpisodeIdsRealm? {
     get {
@@ -45,6 +46,7 @@ public final class EpisodeEntityRealm: Object {
       lhs.overview == rhs.overview &&
       lhs.number == rhs.number &&
       lhs.season == rhs.season &&
-      lhs.firstAired == rhs.firstAired
+      lhs.firstAired == rhs.firstAired &&
+      lhs.absoluteNumber.value == rhs.absoluteNumber.value
   }
 }

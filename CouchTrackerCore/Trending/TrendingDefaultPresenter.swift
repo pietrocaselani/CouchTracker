@@ -61,7 +61,9 @@ public final class TrendingDefaultPresenter: TrendingPresenter {
 
   private func subscribe(on single: Single<[PosterViewModel]>) {
     single.observeOn(schedulers.mainScheduler)
-      .subscribe(onSuccess: { [unowned self] in
+      .do(onSubscribe: { [weak self] in
+        self?.view?.showLoadingView()
+      }).subscribe(onSuccess: { [unowned self] in
         self.present(viewModels: $0)
       }, onError: { error in
         guard let moviesListError = error as? TrendingError else {

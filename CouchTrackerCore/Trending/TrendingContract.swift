@@ -21,6 +21,7 @@ public protocol TrendingViewProtocol: BaseView {
 
   func showEmptyView()
   func showTrendingsView()
+  func showLoadingView()
 }
 
 public protocol TrendingRouter: class {

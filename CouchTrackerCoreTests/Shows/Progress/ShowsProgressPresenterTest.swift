@@ -55,11 +55,8 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     // When
     _ = presenter.observeViewState().subscribe(viewStateObserver)
 
-    presenter.viewDidLoad()
-
     // Then
-    let expectedViewState = [Recorded.next(0, ShowProgressViewState.notLogged),
-                             Recorded.next(0, ShowProgressViewState.empty)]
+    let expectedViewState = [Recorded.next(0, ShowProgressViewState.empty)]
 
     XCTAssertEqual(viewStateObserver.events, expectedViewState)
   }
@@ -77,15 +74,12 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     // When
     _ = presenter.observeViewState().subscribe(viewStateObserver)
 
-    presenter.viewDidLoad()
-
     // Then
     let nonEmptyEntities = NonEmptyArray(entities.first!, Array(entities.dropFirst()))
 
     let showViewState = ShowProgressViewState.shows(entities: nonEmptyEntities, menu: ShowsProgressMenuOptions.mock)
 
-    let expectedViewState = [Recorded.next(0, ShowProgressViewState.notLogged),
-                             Recorded.next(0, showViewState)]
+    let expectedViewState = [Recorded.next(0, showViewState)]
 
     XCTAssertEqual(viewStateObserver.events, expectedViewState)
   }
@@ -110,14 +104,12 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     setupPresenter(logged: true)
 
     _ = presenter.observeViewState().subscribe(viewStateObserver)
-    presenter.viewDidLoad()
 
     // When
     appStateObservable.change(state: AppState.initialState())
 
     // Then
-    let expectedViewState = [Recorded.next(0, ShowProgressViewState.notLogged),
-                             Recorded.next(0, ShowProgressViewState.empty),
+    let expectedViewState = [Recorded.next(0, ShowProgressViewState.empty),
                              Recorded.next(0, ShowProgressViewState.notLogged)]
 
     XCTAssertEqual(viewStateObserver.events, expectedViewState)
@@ -134,7 +126,6 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     setupPresenter(logged: true)
 
     _ = presenter.observeViewState().subscribe(viewStateObserver)
-    presenter.viewDidLoad()
 
     // When
     presenter.select(show: entities[1])
@@ -155,11 +146,10 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
     // When
     _ = presenter.observeViewState().subscribe(viewStateObserver)
-    presenter.viewDidLoad()
 
     // Then
-    let expectedViewState = [Recorded.next(0, ShowProgressViewState.notLogged),
-                             Recorded.next(0, ShowProgressViewState.error(error: error))]
+    let expectedViewState = [Recorded.next(0, ShowProgressViewState.error(error: error)),
+                             Recorded.completed(0)]
 
     XCTAssertEqual(viewStateObserver.events, expectedViewState)
   }
@@ -177,11 +167,10 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     _ = presenter.observeViewState().subscribe(viewStateObserver)
 
     // When
-    presenter.change(sort: .releaseDate, filter: .watched)
+    _ = presenter.change(sort: .releaseDate, filter: .watched).subscribe()
 
     // Then
-    let expectedListState = ShowProgressListState(sort: .releaseDate, filter: .watched, direction: .asc)
-    XCTAssertEqual(expectedListState, interactor.listState)
+    XCTAssertEqual((interactor as! ShowsProgressMocks.ShowsProgressInteractorMock).changeInvokedCount, 1)
   }
 
   func testShowsProgressPresenter_whenChangeDirection_shouldNotifyInteractor() {
@@ -197,11 +186,10 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     _ = presenter.observeViewState().subscribe(viewStateObserver)
 
     // When
-    presenter.toggleDirection()
+    _ = presenter.toggleDirection().subscribe()
 
     // Then
-    let expectedListState = ShowProgressListState(sort: .title, filter: .none, direction: .desc)
-    XCTAssertEqual(expectedListState, interactor.listState)
+    XCTAssertEqual((interactor as! ShowsProgressMocks.ShowsProgressInteractorMock).toggleDirectionInvokedCount, 1)
   }
 
   func testShowsProgressPresenter_whenDirectionIsDesc_emitsShowsReversed() {
@@ -211,13 +199,15 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     entities.append(ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisode())
     entities.append(ShowsProgressMocks.mockWatchedShowEntityWithoutNextEpisodeDate())
 
-    interactor = ShowsProgressMocks.ShowsProgressInteractorMock(entities: entities)
-    interactor.listState = ShowProgressListState(sort: .title, filter: .none, direction: .desc)
+    let initialListState = ShowProgressListState(sort: .title, filter: .none, direction: .desc)
+
+    interactor = ShowsProgressMocks.ShowsProgressInteractorMock(entities: entities,
+                                                                error: nil,
+                                                                listState: initialListState)
     setupPresenter(logged: true)
 
     // When
     _ = presenter.observeViewState().subscribe(viewStateObserver)
-    presenter.viewDidLoad()
 
     // Then
     let reversedList = entities.reversed()
@@ -225,8 +215,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
 
     let showViewState = ShowProgressViewState.shows(entities: nonEmptyEntities, menu: ShowsProgressMenuOptions.mock)
 
-    let expectedViewState = [Recorded.next(0, ShowProgressViewState.notLogged),
-                             Recorded.next(0, showViewState)]
+    let expectedViewState = [Recorded.next(0, showViewState)]
 
     XCTAssertEqual(viewStateObserver.events, expectedViewState)
   }
