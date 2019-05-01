@@ -6,7 +6,6 @@ IOS_VERSION = '10.0'.freeze
 
 def common_pods
   pod 'NonEmpty', '0.1.2'
-  pod 'SwiftLint', '0.29.2'
   pod 'Trakt', path: './vendor/Trakt-Swift'
   pod 'TMDB', path: './vendor/TMDB-Swift'
   pod 'TVDB', path: './vendor/TVDB-Swift'
@@ -22,6 +21,8 @@ def ios_pods
   pod 'Tabman', '2.1.4'
   pod 'Cartography', '3.1.0'
   pod 'RxDataSources', '3.1.0'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end
 
 def persistence_pods

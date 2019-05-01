@@ -9,6 +9,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_: UIApplication,
                    didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+    CrashReporter.initialize()
+
     UINavigationBar.appearance().barTintColor = Colors.NavigationBar.barTintColor
     UINavigationBar.appearance().isTranslucent = false
     UINavigationBar.appearance().tintColor = Colors.NavigationBar.tintColor

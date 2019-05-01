@@ -513,6 +513,7 @@
 		82983F8B22336BB1003DDCF0 /* EpisodeEntity+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82983F8922336BB1003DDCF0 /* EpisodeEntity+Formatter.swift */; };
 		829A590121B2404700B67753 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829A590021B2404700B67753 /* Container.swift */; };
 		829A590221B2404700B67753 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829A590021B2404700B67753 /* Container.swift */; };
+		829D3A14227A25BF000D24FB /* CrashReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829D3A13227A25BF000D24FB /* CrashReporter.swift */; };
 		82A1A78222067A2300EB50BB /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A1A78122067A2300EB50BB /* ObservableExtensions.swift */; };
 		82A1A78322067A2300EB50BB /* ObservableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A1A78122067A2300EB50BB /* ObservableExtensions.swift */; };
 		82A67D502267DA7C007B3622 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82A67D4F2267DA7C007B3622 /* Assets.xcassets */; };
@@ -1003,6 +1004,7 @@
 		8296594D21F3F98500DB1B4D /* ShowIdsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowIdsMock.swift; sourceTree = "<group>"; };
 		82983F8922336BB1003DDCF0 /* EpisodeEntity+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EpisodeEntity+Formatter.swift"; sourceTree = "<group>"; };
 		829A590021B2404700B67753 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		829D3A13227A25BF000D24FB /* CrashReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashReporter.swift; sourceTree = "<group>"; };
 		82A1A78122067A2300EB50BB /* ObservableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableExtensions.swift; sourceTree = "<group>"; };
 		82A67D4F2267DA7C007B3622 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82AC56E221F12E2300DCF165 /* SyncState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncState.swift; sourceTree = "<group>"; };
@@ -2186,6 +2188,7 @@
 				82854F2621E2B41400F0BAEA /* TableViewCell.swift */,
 				822A02FC21D2352400440AF8 /* View.swift */,
 				82609F0E21D870C90038EB29 /* ViewCalculations.swift */,
+				829D3A13227A25BF000D24FB /* CrashReporter.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -2353,8 +2356,6 @@
 				4F0F56F8203D5F4C00B86CB8 /* Frameworks */,
 				4F0F56F9203D5F4C00B86CB8 /* Headers */,
 				4F0F56FA203D5F4C00B86CB8 /* Resources */,
-				4F0F581C203D75FB00B86CB8 /* SwiftLint */,
-				4FAC4A91210F27F60096BCE0 /* SwiftFormat */,
 			);
 			buildRules = (
 			);
@@ -2398,8 +2399,6 @@
 				4F0F5854203D7A5B00B86CB8 /* Frameworks */,
 				4F0F5855203D7A5B00B86CB8 /* Headers */,
 				4F0F5856203D7A5B00B86CB8 /* Resources */,
-				4F0F5864203D7AEB00B86CB8 /* SwiftLint */,
-				4FAC4A94210FDD4B0096BCE0 /* SwiftFormat */,
 			);
 			buildRules = (
 			);
@@ -2432,6 +2431,7 @@
 			buildConfigurationList = 647632561F44824900F277F1 /* Build configuration list for PBXNativeTarget "CouchTracker" */;
 			buildPhases = (
 				EB6C6EE4FCE9F4239E708FE0 /* [CP] Check Pods Manifest.lock */,
+				829D3A12227A24D8000D24FB /* Export environment variables */,
 				647632351F44824900F277F1 /* Sources */,
 				647632361F44824900F277F1 /* Frameworks */,
 				647632371F44824900F277F1 /* Resources */,
@@ -2439,6 +2439,7 @@
 				6405CA021F549BE90039D6E6 /* Embed Frameworks */,
 				4FAC4A93210F28310096BCE0 /* SwiftFormat */,
 				303657ACD85152B4015403F8 /* [CP] Embed Pods Frameworks */,
+				8214A3102279004000FD78F4 /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -2495,8 +2496,6 @@
 				820406E921D0032000127F05 /* Sources */,
 				820406EA21D0032000127F05 /* Frameworks */,
 				820406EB21D0032000127F05 /* Resources */,
-				8204073B21D0074C00127F05 /* Swiftlint */,
-				8204073C21D0076D00127F05 /* SwiftFormat */,
 			);
 			buildRules = (
 			);
@@ -2518,8 +2517,6 @@
 				824A781A220F5C290001F3BF /* Sources */,
 				824A781B220F5C290001F3BF /* Frameworks */,
 				824A781C220F5C290001F3BF /* Resources */,
-				824A784C220F68830001F3BF /* SwiftLint */,
-				824A784D220F68960001F3BF /* Swiftformat */,
 			);
 			buildRules = (
 			);
@@ -2857,48 +2854,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4F0F581C203D75FB00B86CB8 /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, using from Pods. Please download from https://github.com/realm/SwiftLint\"\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi\n\n";
-		};
-		4F0F5864203D7AEB00B86CB8 /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, using from Pods. Please download from https://github.com/realm/SwiftLint\"\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi\n";
-		};
-		4FAC4A91210F27F60096BCE0 /* SwiftFormat */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = SwiftFormat;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh $SRCROOT/build_phases/swiftformat\n";
-		};
 		4FAC4A92210F281D0096BCE0 /* SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2927,20 +2882,6 @@
 			shellPath = /bin/sh;
 			shellScript = "sh $SRCROOT/build_phases/swiftformat\n";
 		};
-		4FAC4A94210FDD4B0096BCE0 /* SwiftFormat */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = SwiftFormat;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh $SRCROOT/build_phases/swiftformat\n";
-		};
 		6455BA751F45B862000660C6 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2953,7 +2894,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, using from Pods. Please download from https://github.com/realm/SwiftLint\"\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi\n";
+			shellScript = "$SRCROOT/build_phases/swiftlint\n";
 		};
 		8043BB3547FC34DF79CC2A5C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2991,13 +2932,13 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/GeneratedFiles/R.generated.swift,
+				"$SRCROOT/GeneratedFiles/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/GeneratedFiles/R.generated.swift\"\n";
 		};
-		8204073B21D0074C00127F05 /* Swiftlint */ = {
+		8214A3102279004000FD78F4 /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3005,17 +2946,18 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = Swiftlint;
+			name = Crashlytics;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, using from Pods. Please download from https://github.com/realm/SwiftLint\"\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi\n";
+			shellPath = /bin/bash;
+			shellScript = "${PODS_ROOT}/Fabric/run \"${CRASHLYTICS_API_KEY}\" \"${CRASHLYTICS_API_SECRET}\"\n";
 		};
-		8204073C21D0076D00127F05 /* SwiftFormat */ = {
+		829D3A12227A24D8000D24FB /* Export environment variables */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3024,50 +2966,14 @@
 			);
 			inputPaths = (
 			);
-			name = SwiftFormat;
+			name = "Export environment variables";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sh $SRCROOT/build_phases/swiftformat\n";
-		};
-		824A784C220F68830001F3BF /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, using from Pods. Please download from https://github.com/realm/SwiftLint\"\n    \"${PODS_ROOT}/SwiftLint/swiftlint\"\nfi\n";
-		};
-		824A784D220F68960001F3BF /* Swiftformat */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Swiftformat;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh $SRCROOT/build_phases/swiftformat\n";
+			shellScript = "export CRASHLYTICS_API_KEY=$(cat $SRCROOT/build_phases/crashlytics.apikey)\nexport CRASHLYTICS_API_SECRET=$(cat $SRCROOT/build_phases/crashlytics.apisecret)\n";
 		};
 		9C6F0D2340CF87135C62A2BE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3592,6 +3498,7 @@
 			files = (
 				8204070221D003F200127F05 /* Tabman+CouchTracker.swift in Sources */,
 				8204072021D0048900127F05 /* ShowsManageriOSCreator.swift in Sources */,
+				829D3A14227A25BF000D24FB /* CrashReporter.swift in Sources */,
 				820406FE21D003A500127F05 /* AppFlowiOSModuleDataSource.swift in Sources */,
 				82C6478021D7345200175B24 /* PosterAndTitleCell.swift in Sources */,
 				8204072121D0048900127F05 /* ShowsManagerModule.swift in Sources */,

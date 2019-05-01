@@ -3,7 +3,10 @@ PODS:
   - Alamofire (4.8.0)
   - AutoInsetter (1.5.1)
   - Cartography (3.1.0)
+  - Crashlytics (3.12.0):
+    - Fabric (~> 1.9.0)
   - Differentiator (3.1.0)
+  - Fabric (1.9.0)
   - Kingfisher (5.0.1)
   - Moya/Core (12.0.1):
     - Alamofire (~> 4.1)
@@ -55,6 +58,8 @@ PODS:
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.2.0)
   - Cartography (= 3.1.0)
+  - Crashlytics
+  - Fabric
   - Kingfisher (= 5.0.1)
   - Nimble (= 7.3.1)
   - NonEmpty (= 0.1.2)
@@ -65,7 +70,6 @@ DEPENDENCIES:
   - RxRealm (= 0.7.6)
   - RxSwift (= 4.4.0)
   - RxTest (= 4.4.0)
-  - SwiftLint (= 0.29.2)
   - Tabman (= 2.1.4)
   - TMDB (from `./vendor/TMDB-Swift`)
   - Trakt (from `./vendor/Trakt-Swift`)
@@ -77,7 +81,9 @@ SPEC REPOS:
     - Alamofire
     - AutoInsetter
     - Cartography
+    - Crashlytics
     - Differentiator
+    - Fabric
     - Kingfisher
     - Moya
     - Nimble
@@ -110,7 +116,9 @@ SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   AutoInsetter: 249b103e316d5a9f2c7b88193e966f59bc1aa7b2
   Cartography: 1988b7578871a56c036e7af17195cb2190edf18c
+  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   Kingfisher: 4f771421b9208185217550528a06fd48756cb7c2
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
@@ -133,6 +141,6 @@ SPEC CHECKSUMS:
   Trakt: 98bf8f1ef173603deff3a4c0eeda818522529bb6
   TVDB: 02147961f77ddc25989b72bff5746e3da78ffb3d
 
-PODFILE CHECKSUM: 473cb1a0a9d806763393bbbcb4b9d58a9561a16c
+PODFILE CHECKSUM: b7b34d46bf178a106ac5c6da047594a3135e25e5
 
 COCOAPODS: 1.5.3
