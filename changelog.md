@@ -1,3 +1,9 @@
+# 0.0.1 (29) 
+* Merge pull request #187 from pietrocaselani/setup_crashlytics [view commit](http://github.com/pietrocaselani/CouchTracker/commit/17d92857fcf32792af85c0033f82213670a3b604)
+* Only create test bundle when requested [view commit](http://github.com/pietrocaselani/CouchTracker/commit/9f39e33418e01f1de3c50752226825a0556d8ad7)
+* Change all classes protocol to use AnyObject [view commit](http://github.com/pietrocaselani/CouchTracker/commit/105760bf24d8b8fbaddddc3a90a90f5e77be69fc)
+* Setup Crashlytics [view commit](http://github.com/pietrocaselani/CouchTracker/commit/db5f29d691cac0494496829fc838e20b6e2069ce)
+
 # 0.0.1 (28) 
 * Empty commit to trigger CI and test deploy to test flight [view commit](http://github.com/pietrocaselani/CouchTracker/commit/9aca0e7504d82e85385d99351a93a3279b1fdbad)
 
