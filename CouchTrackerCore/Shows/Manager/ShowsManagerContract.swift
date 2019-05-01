@@ -7,7 +7,7 @@ public enum ShowsManagerOption: String {
   case search
 }
 
-public protocol ShowsManagerPresenter: class {
+public protocol ShowsManagerPresenter: AnyObject {
   init(dataSource: ShowsManagerDataSource)
 
   func observeViewState() -> Observable<ShowsManagerViewState>
@@ -15,7 +15,7 @@ public protocol ShowsManagerPresenter: class {
   func selectTab(index: Int)
 }
 
-public protocol ShowsManagerDataSource: class {
+public protocol ShowsManagerDataSource: AnyObject {
   init(creator: ShowsManagerModuleCreator)
 
   var options: [ShowsManagerOption] { get }
@@ -23,6 +23,6 @@ public protocol ShowsManagerDataSource: class {
   var defaultModuleIndex: Int { get set }
 }
 
-public protocol ShowsManagerModuleCreator: class {
+public protocol ShowsManagerModuleCreator: AnyObject {
   func createModule(for option: ShowsManagerOption) -> BaseView
 }

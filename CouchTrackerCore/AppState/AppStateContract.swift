@@ -7,19 +7,19 @@ public enum AppStateViewState: Hashable {
   case showing(configs: [AppStateViewModel])
 }
 
-public protocol AppStateDataHolder: class {
+public protocol AppStateDataHolder: AnyObject {
   func currentAppState() throws -> AppState
   func save(appState: AppState) throws
 }
 
-public protocol AppStateRouter: class {
+public protocol AppStateRouter: AnyObject {
   func showTraktLogin()
   func finishLogin()
   func showExternal(url: URL)
   func showError(message: String)
 }
 
-public protocol AppStatePresenter: class {
+public protocol AppStatePresenter: AnyObject {
   func viewDidLoad()
   func observeViewState() -> Observable<AppStateViewState>
   func select(configuration: AppConfigurationViewModel)

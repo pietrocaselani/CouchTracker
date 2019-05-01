@@ -1,11 +1,11 @@
 import RxSwift
 import TraktSwift
 
-public protocol ShowOverviewRepository: class {
+public protocol ShowOverviewRepository: AnyObject {
   func fetchDetailsOfShow(with identifier: String, extended: Extended) -> Single<Show>
 }
 
-public protocol ShowOverviewInteractor: class {
+public protocol ShowOverviewInteractor: AnyObject {
   init(showIds: ShowIds, repository: ShowOverviewRepository,
        genreRepository: GenreRepository, imageRepository: ImageRepository)
 
@@ -13,7 +13,7 @@ public protocol ShowOverviewInteractor: class {
   func fetchImages() -> Maybe<ImagesEntity>
 }
 
-public protocol ShowOverviewPresenter: class {
+public protocol ShowOverviewPresenter: AnyObject {
   init(interactor: ShowOverviewInteractor)
 
   func viewDidLoad()

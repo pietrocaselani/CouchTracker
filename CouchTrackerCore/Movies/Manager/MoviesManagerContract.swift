@@ -5,7 +5,7 @@ public enum MoviesManagerOption: String {
   case search
 }
 
-public protocol MoviesManagerPresenter: class {
+public protocol MoviesManagerPresenter: AnyObject {
   init(dataSource: MoviesManagerDataSource)
 
   func observeViewState() -> Observable<MoviesManagerViewState>
@@ -13,11 +13,11 @@ public protocol MoviesManagerPresenter: class {
   func selectTab(index: Int)
 }
 
-public protocol MoviesManagerModuleCreator: class {
+public protocol MoviesManagerModuleCreator: AnyObject {
   func createModule(for option: MoviesManagerOption) -> BaseView
 }
 
-public protocol MoviesManagerDataSource: class {
+public protocol MoviesManagerDataSource: AnyObject {
   var options: [MoviesManagerOption] { get }
   var modulePages: [ModulePage] { get }
   var defaultModuleIndex: Int { get set }

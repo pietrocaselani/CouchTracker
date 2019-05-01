@@ -1,6 +1,6 @@
 import RxSwift
 
-public protocol Schedulers: class {
+public protocol Schedulers: AnyObject {
   var networkScheduler: SchedulerType { get }
   var networkQueue: DispatchQueue { get }
   var dataSourceScheduler: ImmediateSchedulerType { get }

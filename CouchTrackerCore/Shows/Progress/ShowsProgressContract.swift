@@ -1,16 +1,16 @@
 import RxSwift
 import TraktSwift
 
-public protocol ShowsProgressDataSource: class {
+public protocol ShowsProgressDataSource: AnyObject {
   func fetchWatchedShows() -> Observable<[WatchedShowEntity]>
   func addWatched(shows: [WatchedShowEntity]) throws
 }
 
-public protocol ShowsProgressListStateDataSource: class {
+public protocol ShowsProgressListStateDataSource: AnyObject {
   var currentState: ShowProgressListState { get set }
 }
 
-public protocol ShowsProgressInteractor: class {
+public protocol ShowsProgressInteractor: AnyObject {
   var listState: Observable<ShowProgressListState> { get }
 
   func fetchWatchedShowsProgress() -> Observable<WatchedShowEntitiesState>
@@ -18,11 +18,11 @@ public protocol ShowsProgressInteractor: class {
   func change(sort: ShowProgressSort, filter: ShowProgressFilter) -> Completable
 }
 
-public protocol ShowsProgressRouter: class {
+public protocol ShowsProgressRouter: AnyObject {
   func show(tvShow entity: WatchedShowEntity)
 }
 
-public protocol ShowsProgressPresenter: class {
+public protocol ShowsProgressPresenter: AnyObject {
   func observeViewState() -> Observable<ShowProgressViewState>
 
   func change(sort: ShowProgressSort, filter: ShowProgressFilter) -> Completable
