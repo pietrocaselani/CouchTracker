@@ -1,1 +1,1 @@
-public protocol BaseView: class {}
+public protocol BaseView: AnyObject {}

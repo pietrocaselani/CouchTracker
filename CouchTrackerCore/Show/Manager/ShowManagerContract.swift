@@ -6,7 +6,7 @@ public enum ShowManagerOption: String {
   case seasons
 }
 
-public protocol ShowManagerPresenter: class {
+public protocol ShowManagerPresenter: AnyObject {
   init(dataSource: ShowManagerDataSource)
 
   func observeViewState() -> Observable<ShowManagerViewState>
@@ -14,11 +14,11 @@ public protocol ShowManagerPresenter: class {
   func selectTab(index: Int)
 }
 
-public protocol ShowManagerModuleCreator: class {
+public protocol ShowManagerModuleCreator: AnyObject {
   func createModule(for option: ShowManagerOption) -> BaseView
 }
 
-public protocol ShowManagerDataSource: class {
+public protocol ShowManagerDataSource: AnyObject {
   init(show: WatchedShowEntity, creator: ShowManagerModuleCreator)
 
   var showTitle: String? { get }

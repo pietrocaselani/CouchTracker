@@ -6,7 +6,7 @@ public enum TrendingType {
   case shows
 }
 
-public protocol TrendingPresenter: class {
+public protocol TrendingPresenter: AnyObject {
   var dataSource: TrendingDataSource { get }
 
   init(view: TrendingViewProtocol, interactor: TrendingInteractor,
@@ -24,22 +24,22 @@ public protocol TrendingViewProtocol: BaseView {
   func showLoadingView()
 }
 
-public protocol TrendingRouter: class {
+public protocol TrendingRouter: AnyObject {
   func showDetails(of movie: MovieEntity)
   func showDetails(of show: ShowEntity)
   func showError(message: String)
 }
 
-public protocol TrendingInteractor: class {
+public protocol TrendingInteractor: AnyObject {
   func fetchMovies(page: Int, limit: Int) -> Single<[TrendingMovieEntity]>
   func fetchShows(page: Int, limit: Int) -> Single<[TrendingShowEntity]>
 }
 
-public protocol TrendingRepository: class {
+public protocol TrendingRepository: AnyObject {
   func fetchMovies(page: Int, limit: Int) -> Single<[TrendingMovie]>
   func fetchShows(page: Int, limit: Int) -> Single<[TrendingShow]>
 }
 
-public protocol TrendingDataSource: class {
+public protocol TrendingDataSource: AnyObject {
   var viewModels: [PosterViewModel] { get set }
 }

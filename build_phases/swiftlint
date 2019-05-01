@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if command -v swiftlint >/dev/null; then
+    swiftlint
+else
+    echo "warning: SwiftLint is not installed. Vistit http://github.com/realm/SwiftLint to learn more."
+fi

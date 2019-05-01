@@ -1,10 +1,10 @@
 import RxSwift
 
-public protocol AppFlowModuleDataSource: class {
+public protocol AppFlowModuleDataSource: AnyObject {
   var modulePages: [ModulePage] { get }
 }
 
-public protocol AppFlowPresenter: class {
+public protocol AppFlowPresenter: AnyObject {
   init(repository: AppFlowRepository, moduleDataSource: AppFlowModuleDataSource)
 
   func observeViewState() -> Observable<AppFlowViewState>
@@ -12,6 +12,6 @@ public protocol AppFlowPresenter: class {
   func selectTab(index: Int)
 }
 
-public protocol AppFlowRepository: class {
+public protocol AppFlowRepository: AnyObject {
   var lastSelectedTab: Int { get set }
 }

@@ -50,3 +50,5 @@ Pods/
 /vendor
 .bundle
 CouchTrackerApp/Utils/Secrets.swift
+crashlytics.apikey
+crashlytics.apisecret

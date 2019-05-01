@@ -3,8 +3,6 @@ import Foundation
 final class BundleProvider {
   static let testing = NSClassFromString("XCTestCase") != nil
 
-  private static var testBundle = Bundle(identifier: "io.github.pietrocaselani.CouchTrackerCoreTests")!
-
   private init() {
     fatalError("No instances for you!")
   }
@@ -14,6 +12,6 @@ final class BundleProvider {
       return Bundle.main
     }
 
-    return testBundle
+    return Bundle(identifier: "io.github.pietrocaselani.CouchTrackerCoreTests")!
   }
 }
