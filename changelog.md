@@ -1,3 +1,7 @@
+# 0.0.1 (30) 
+* Explain the project structure on readme [view commit](http://github.com/pietrocaselani/CouchTracker/commit/c1fe8658d4c93ce375f7a4c59ffee4f0857d3228)
+* Add some app screenshots [view commit](http://github.com/pietrocaselani/CouchTracker/commit/eb5faddee3beccc05c3f984c0d4403ad74fc979d)
+
 # 0.0.1 (29) 
 * Merge pull request #187 from pietrocaselani/setup_crashlytics [view commit](http://github.com/pietrocaselani/CouchTracker/commit/17d92857fcf32792af85c0033f82213670a3b604)
 * Only create test bundle when requested [view commit](http://github.com/pietrocaselani/CouchTracker/commit/9f39e33418e01f1de3c50752226825a0556d8ad7)
