@@ -1,3 +1,6 @@
+# 0.0.1 (31) 
+* Changes the changelog message for Test Flight The message that was being used was formatted for markdown, and Test Flight can't render markdown [view commit](http://github.com/pietrocaselani/CouchTracker/commit/ba44fd0ab1746e0b5f4f2bdc283019ddfdfffb26)
+
 # 0.0.1 (30) 
 * Explain the project structure on readme [view commit](http://github.com/pietrocaselani/CouchTracker/commit/c1fe8658d4c93ce375f7a4c59ffee4f0857d3228)
 * Add some app screenshots [view commit](http://github.com/pietrocaselani/CouchTracker/commit/eb5faddee3beccc05c3f984c0d4403ad74fc979d)
