@@ -48,10 +48,13 @@ platform :ios do
 
     changelog = get_changelog_as_markdown
     test_flight_changelog = get_changelog_clean
-    new_build_number = increment_build_number
-    version_number = get_version_number(target: 'CouchTracker')
 
-    bump_and_commit(
+    bump_build_number
+
+    version_number = get_version_number(target: 'CouchTracker')
+    new_build_number = get_build_number
+
+    commit_new_build_number_and_changelog(
       build_number: new_build_number,
       version_number: version_number,
       changelog: changelog
@@ -95,7 +98,14 @@ platform :ios do
     `git log #{tag}...HEAD --pretty=format:"#{log_format}"`.chomp ||= ''
   end
 
-  private_lane :bump_and_commit do |options|
+  private_lane :bump_build_number do |_options|
+    version = get_version_number(target: 'CouchTracker')
+    lastest_build = latest_testflight_build_number(version: version)
+    new_build_number = lastest_build + 1
+    increment_build_number(build_number: new_build_number)
+  end
+
+  private_lane :commit_new_build_number_and_changelog do |options|
     new_build_number = options[:build_number]
     changelog = options[:changelog]
 
