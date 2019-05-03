@@ -68,6 +68,8 @@ platform :ios do
       export_method: 'app-store'
     )
 
+    upload_symbols_to_bugsnag
+
     publish_to_github(
       build_number: new_build_number,
       version_number: version_number,

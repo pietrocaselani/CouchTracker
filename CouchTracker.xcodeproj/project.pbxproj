@@ -2431,7 +2431,6 @@
 			buildConfigurationList = 647632561F44824900F277F1 /* Build configuration list for PBXNativeTarget "CouchTracker" */;
 			buildPhases = (
 				EB6C6EE4FCE9F4239E708FE0 /* [CP] Check Pods Manifest.lock */,
-				829D3A12227A24D8000D24FB /* Export environment variables */,
 				647632351F44824900F277F1 /* Sources */,
 				647632361F44824900F277F1 /* Frameworks */,
 				647632371F44824900F277F1 /* Resources */,
@@ -2439,7 +2438,6 @@
 				6405CA021F549BE90039D6E6 /* Embed Frameworks */,
 				4FAC4A93210F28310096BCE0 /* SwiftFormat */,
 				303657ACD85152B4015403F8 /* [CP] Embed Pods Frameworks */,
-				8214A3102279004000FD78F4 /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -2810,6 +2808,7 @@
 				"${BUILT_PRODUCTS_DIR}/Trakt-iOS/TraktSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/AutoInsetter/AutoInsetter.framework",
+				"${BUILT_PRODUCTS_DIR}/Bugsnag/Bugsnag.framework",
 				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -2837,6 +2836,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TraktSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AutoInsetter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bugsnag.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -2932,48 +2932,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/GeneratedFiles/R.generated.swift",
+				$SRCROOT/GeneratedFiles/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/GeneratedFiles/R.generated.swift\"\n";
-		};
-		8214A3102279004000FD78F4 /* Crashlytics */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = Crashlytics;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "${PODS_ROOT}/Fabric/run \"${CRASHLYTICS_API_KEY}\" \"${CRASHLYTICS_API_SECRET}\"\n";
-		};
-		829D3A12227A24D8000D24FB /* Export environment variables */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Export environment variables";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export CRASHLYTICS_API_KEY=$(cat $SRCROOT/build_phases/crashlytics.apikey)\nexport CRASHLYTICS_API_SECRET=$(cat $SRCROOT/build_phases/crashlytics.apisecret)\n";
 		};
 		9C6F0D2340CF87135C62A2BE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4036,6 +3999,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = B5RPM7SE3L;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CouchTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -4058,6 +4022,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = B5RPM7SE3L;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CouchTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
