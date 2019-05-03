@@ -1,3 +1,11 @@
+# 0.0.1 (32) 
+* Merge pull request #189 from pietrocaselani/deploy_fixes [view commit](http://github.com/pietrocaselani/CouchTracker/commit/29f949c3886e56f34311b55685356b3d399f8466)
+* Add Codecov again I forgot this during Travis - Circle migration [view commit](http://github.com/pietrocaselani/CouchTracker/commit/cae2e576aa65c5233e8ab57b665da96d02f4c3b7)
+* Change the logic to auto bump the build number. This way, with the CI commiting and pushing to master, makes the CircleCI badge show as FAILED, because the lastest status of the master branch is Skiped. [view commit](http://github.com/pietrocaselani/CouchTracker/commit/31913de2e3be3a54377d400a287420ebea3f957c)
+* Merge branch 'master' into deploy_fixes [view commit](http://github.com/pietrocaselani/CouchTracker/commit/23fc9a53a4d31972f64084e07e0356846057ef70)
+* Change crash report tool to Bugsnag I was facing some issues with Fabric/Crashlytics and I did want to add Firebase [view commit](http://github.com/pietrocaselani/CouchTracker/commit/2190989b49617109d94c47068d088e6e81179d06)
+* Sets ITSAppUsesNonExemptEncryption to false [view commit](http://github.com/pietrocaselani/CouchTracker/commit/95c599e81dd6634c3d5f8d08771ce99faaae199b)
+
 # 0.0.1 (31) 
 * Changes the changelog message for Test Flight The message that was being used was formatted for markdown, and Test Flight can't render markdown [view commit](http://github.com/pietrocaselani/CouchTracker/commit/ba44fd0ab1746e0b5f4f2bdc283019ddfdfffb26)
 
