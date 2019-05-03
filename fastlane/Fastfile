@@ -88,14 +88,17 @@ platform :ios do
   private_lane :get_changelog_as_markdown do
     link_to_commit = 'http://github.com/pietrocaselani/CouchTracker/commit/%H'
     log_format = "* %s [view commit](#{link_to_commit})"
-    tag = `git describe --tags --abbrev=0`.chomp
-    `git log #{tag}...HEAD --pretty=format:"#{log_format}"`.chomp ||= ''
+    get_changelog_with_format(log_format: log_format)
   end
 
   private_lane :get_changelog_clean do
-    log_format = '* %s'
+    get_changelog_with_format(log_format: '* %s')
+  end
+
+  private_lane :get_changelog_with_format do |options|
+    log_format = options[:log_format]
     tag = `git describe --tags --abbrev=0`.chomp
-    `git log #{tag}...HEAD --pretty=format:"#{log_format}"`.chomp ||= ''
+    `git log #{tag}...HEAD --no-merges --pretty=format:"#{log_format}"`.chomp ||= ''
   end
 
   private_lane :bump_build_number do |_options|
