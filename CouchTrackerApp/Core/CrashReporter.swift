@@ -1,7 +1,7 @@
-import Crashlytics
+import Bugsnag
 
 public enum CrashReporter {
   public static func initialize() {
-    Crashlytics.start(withAPIKey: Secrets.Crashlytics.apiKey)
+    Bugsnag.start(withApiKey: Secrets.Bugsnag.apiKey)
   }
 }

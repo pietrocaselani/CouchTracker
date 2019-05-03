@@ -21,8 +21,7 @@ def ios_pods
   pod 'Tabman', '2.1.4'
   pod 'Cartography', '3.1.0'
   pod 'RxDataSources', '3.1.0'
-  pod 'Fabric'
-  pod 'Crashlytics'
+  pod 'Bugsnag'
 end
 
 def persistence_pods

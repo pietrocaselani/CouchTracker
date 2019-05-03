@@ -38,7 +38,7 @@ enum Secrets {
     static let apiKey = ""
   }
 
-  enum Crashlytics {
+  enum Bugsnag {
     static let apiKey = ""
   }
 }
