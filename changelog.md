@@ -1,3 +1,7 @@
+# 0.0.1 (33) 
+* Remove unused ci folder and scripts [view commit](http://github.com/pietrocaselani/CouchTracker/commit/87e55195f841670effe8f14012aac068ea573149)
+* Don't show merge commits on changelog [view commit](http://github.com/pietrocaselani/CouchTracker/commit/a9704cbed7624d769d1164b6e3261c12ce7f34c2)
+
 # 0.0.1 (32) 
 * Merge pull request #189 from pietrocaselani/deploy_fixes [view commit](http://github.com/pietrocaselani/CouchTracker/commit/29f949c3886e56f34311b55685356b3d399f8466)
 * Add Codecov again I forgot this during Travis - Circle migration [view commit](http://github.com/pietrocaselani/CouchTracker/commit/cae2e576aa65c5233e8ab57b665da96d02f4c3b7)
