@@ -42,6 +42,11 @@ platform :ios do
 
   desc 'Release a new build'
   lane :beta do
+    if is_building_ci_commit
+      UI.important 'Skipping build since the CI commited'
+      next
+    end
+
     setup_git_on_ci
 
     pods
@@ -62,7 +67,7 @@ platform :ios do
 
     match(type: 'appstore')
 
-    sh '../scripts/generate_secrets'
+    sh('../scripts/generate_secrets', log: false)
 
     build_ios_app(
       workspace: 'CouchTracker.xcworkspace',
@@ -73,16 +78,25 @@ platform :ios do
 
     upload_symbols_to_bugsnag
 
+    upload_to_testflight(
+      changelog: test_flight_changelog,
+      skip_waiting_for_build_processing: false
+    )
+
     publish_to_github(
       build_number: new_build_number,
       version_number: version_number,
       changelog: changelog
     )
+  end
 
-    upload_to_testflight(
-      changelog: test_flight_changelog,
-      skip_waiting_for_build_processing: false
-    )
+  private_lane :is_building_ci_commit do
+    tag = sh('git describe --tags --abbrev=0', log: false).chomp
+
+    has_message = sh('git log --oneline -1', log: false).include? 'Bump build'
+    changelog_changed = sh("git diff --name-only #{tag}..HEAD | grep changelog.md", log: false, error_callback: ->(_) {}).strip == 'changelog.md'
+
+    has_message && changelog_changed
   end
 
   private_lane :get_changelog_as_markdown do
@@ -97,7 +111,7 @@ platform :ios do
 
   private_lane :get_changelog_with_format do |options|
     log_format = options[:log_format]
-    tag = `git describe --tags --abbrev=0`.chomp
+    tag = sh('git describe --tags --abbrev=0', log: false).chomp
     `git log #{tag}...HEAD --no-merges --pretty=format:"#{log_format}"`.chomp ||= ''
   end
 
@@ -121,7 +135,7 @@ platform :ios do
     )
 
     commit_version_bump(
-      message: "Bump build #{new_build_number} [ci skip]",
+      message: "Bump build #{new_build_number}",
       xcodeproj: './CouchTracker.xcodeproj',
       include: './changelog.md',
       force: true
