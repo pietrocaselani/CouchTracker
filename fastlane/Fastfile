@@ -91,10 +91,13 @@ platform :ios do
   end
 
   private_lane :is_building_ci_commit do
-    tag = sh('git describe --tags --abbrev=0', log: false).chomp
-
     has_message = sh('git log --oneline -1', log: false).include? 'Bump build'
-    changelog_changed = sh("git diff --name-only #{tag}..HEAD | grep changelog.md", log: false, error_callback: ->(_) {}).strip == 'changelog.md'
+
+    changelog_changed = sh(
+      "git tag --sort=version:refname | tail -n 2 | xargs -L1 bash -c 'git diff --name-only $0..$1' | xargs | grep 'changelog.md'",
+      log: false,
+      error_callback: ->(_) {}
+    ).include? 'changelog.md'
 
     has_message && changelog_changed
   end
