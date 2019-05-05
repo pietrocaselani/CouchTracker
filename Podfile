@@ -19,7 +19,7 @@ def ios_pods
   pod 'RxCocoa', RX_SWIFT_VERSION
   pod 'ActionSheetPicker-3.0', '2.2.0'
   pod 'Tabman', '2.1.4'
-  pod 'Cartography', '3.1.0'
+  pod 'SnapKit', '5.0.0'
   pod 'RxDataSources', '3.1.0'
   pod 'Bugsnag'
 end

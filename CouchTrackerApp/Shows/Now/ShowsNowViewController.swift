@@ -1,4 +1,4 @@
-import Cartography
+import SnapKit
 
 final class ShowsNowViewController: UIViewController {
   override func viewDidLoad() {
@@ -12,8 +12,6 @@ final class ShowsNowViewController: UIViewController {
 
     view.addSubview(label)
 
-    constrain(label) { label in
-      label.center == label.superview!.center
-    }
+    label.snp.makeConstraints { $0.center.equalToSuperview() }
   }
 }

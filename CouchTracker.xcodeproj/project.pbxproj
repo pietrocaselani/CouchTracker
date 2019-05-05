@@ -468,6 +468,7 @@
 		826041B62207E00A00089CDD /* UserDefaultsAppStateDataHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826041B42207E00A00089CDD /* UserDefaultsAppStateDataHolder.swift */; };
 		82609F0F21D870C90038EB29 /* ViewCalculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82609F0E21D870C90038EB29 /* ViewCalculations.swift */; };
 		826F9A0C21D9B02F001A4E05 /* ShowEpisodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826F9A0B21D9B02F001A4E05 /* ShowEpisodeView.swift */; };
+		827058C0227E447B0020CCA6 /* ScrollableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827058BF227E447B0020CCA6 /* ScrollableStackView.swift */; };
 		827BCD3D20EFF3F60080B242 /* ShowOverviewViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */; };
 		827BCD3E20EFF3F60080B242 /* ShowOverviewViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */; };
 		827BCD4020EFF5C30080B242 /* ShowOverviewImagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BCD3F20EFF5C30080B242 /* ShowOverviewImagesState.swift */; };
@@ -979,6 +980,7 @@
 		826041B42207E00A00089CDD /* UserDefaultsAppStateDataHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsAppStateDataHolder.swift; sourceTree = "<group>"; };
 		82609F0E21D870C90038EB29 /* ViewCalculations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCalculations.swift; sourceTree = "<group>"; };
 		826F9A0B21D9B02F001A4E05 /* ShowEpisodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeView.swift; sourceTree = "<group>"; };
+		827058BF227E447B0020CCA6 /* ScrollableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableStackView.swift; sourceTree = "<group>"; };
 		827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOverviewViewState.swift; sourceTree = "<group>"; };
 		827BCD3F20EFF5C30080B242 /* ShowOverviewImagesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOverviewImagesState.swift; sourceTree = "<group>"; };
 		827EB7A221DBE2C700B02001 /* SearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchState.swift; sourceTree = "<group>"; };
@@ -1603,6 +1605,7 @@
 				82C6477D21D72F5200175B24 /* DefaultEmptyView.swift */,
 				82C6477F21D7345200175B24 /* PosterAndTitleCell.swift */,
 				82B431372231C0A0006AB320 /* LoadingButton.swift */,
+				827058BF227E447B0020CCA6 /* ScrollableStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2809,13 +2812,13 @@
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/AutoInsetter/AutoInsetter.framework",
 				"${BUILT_PRODUCTS_DIR}/Bugsnag/Bugsnag.framework",
-				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Pageboy/Pageboy.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Tabman/Tabman.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -2837,13 +2840,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AutoInsetter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bugsnag.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pageboy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tabman.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -3471,6 +3474,7 @@
 				8204071121D0046400127F05 /* SearchViewController.swift in Sources */,
 				820406FF21D003A500127F05 /* AppFlowModule.swift in Sources */,
 				8204071A21D0047B00127F05 /* ShowManageriOSModuleCreator.swift in Sources */,
+				827058C0227E447B0020CCA6 /* ScrollableStackView.swift in Sources */,
 				824A7846220F5FBD0001F3BF /* RealmAdapters.swift in Sources */,
 				8226D9EB21D72731007BB979 /* CollectionViewCell.swift in Sources */,
 				8204070321D003F200127F05 /* UIAlertController+Error.swift in Sources */,

@@ -1,4 +1,4 @@
-import Cartography
+import SnapKit
 
 public final class SearchView: View {
   public let collectionView: UICollectionView
@@ -41,21 +41,17 @@ public final class SearchView: View {
   }
 
   public override func installConstraints() {
-    constrain(stackView, emptyView, searchBar) { stack, empty, search in
+    stackView.snp.makeConstraints { $0.size.equalToSuperview() }
+
+    emptyView.snp.makeConstraints { $0.center.equalToSuperview() }
+
+    searchBar.snp.makeConstraints {
       /*
-       CT-TODO Fix this + 43
+       TODO: Fix this + 43
        Without this constant, the search bar appears behind the top bar
        */
-      search.top == search.superview!.top + 43
-      search.width == search.superview!.width
-
-      stack.size == stack.superview!.size
-      stack.top == stack.superview!.top
-      stack.bottom == stack.superview!.bottom
-      stack.left == stack.superview!.left
-      stack.right == stack.superview!.right
-
-      empty.center == empty.superview!.center
+      $0.top.equalToSuperview().inset(43)
+      $0.width.equalToSuperview()
     }
   }
 }

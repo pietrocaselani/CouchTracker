@@ -3,7 +3,6 @@ PODS:
   - Alamofire (4.8.0)
   - AutoInsetter (1.5.1)
   - Bugsnag (5.20.0)
-  - Cartography (3.1.0)
   - Differentiator (3.1.0)
   - Kingfisher (5.0.1)
   - Moya/Core (12.0.1):
@@ -39,6 +38,7 @@ PODS:
   - RxTest (4.4.0):
     - RxAtomic (~> 4.4)
     - RxSwift (~> 4.0)
+  - SnapKit (5.0.0)
   - SwiftLint (0.29.2)
   - Tabman (2.1.4):
     - AutoInsetter (~> 1.5)
@@ -56,7 +56,6 @@ PODS:
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.2.0)
   - Bugsnag
-  - Cartography (= 3.1.0)
   - Kingfisher (= 5.0.1)
   - Nimble (= 7.3.1)
   - NonEmpty (= 0.1.2)
@@ -67,6 +66,7 @@ DEPENDENCIES:
   - RxRealm (= 0.7.6)
   - RxSwift (= 4.4.0)
   - RxTest (= 4.4.0)
+  - SnapKit (= 5.0.0)
   - Tabman (= 2.1.4)
   - TMDB (from `./vendor/TMDB-Swift`)
   - Trakt (from `./vendor/Trakt-Swift`)
@@ -78,7 +78,6 @@ SPEC REPOS:
     - Alamofire
     - AutoInsetter
     - Bugsnag
-    - Cartography
     - Differentiator
     - Kingfisher
     - Moya
@@ -96,6 +95,7 @@ SPEC REPOS:
     - RxRealm
     - RxSwift
     - RxTest
+    - SnapKit
     - SwiftLint
     - Tabman
 
@@ -112,7 +112,6 @@ SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   AutoInsetter: 249b103e316d5a9f2c7b88193e966f59bc1aa7b2
   Bugsnag: 004de6246295afd742093871d10ebaede63aa02c
-  Cartography: 1988b7578871a56c036e7af17195cb2190edf18c
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   Kingfisher: 4f771421b9208185217550528a06fd48756cb7c2
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
@@ -130,12 +129,13 @@ SPEC CHECKSUMS:
   RxRealm: 5379eddd74f8d617ca7681d1f8d144af25b432b0
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   RxTest: 19d03286bdc0a3aaea5d61d4cde31fdf4bb8a5ba
+  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SwiftLint: 47df60bdea6e7e902b193b6596db8683aafd86a3
   Tabman: f8a6a1967312077334631d2f67010fe905a545f1
   TMDB: c898c13c09362e35225a92badb51a406b692e844
   Trakt: 98bf8f1ef173603deff3a4c0eeda818522529bb6
   TVDB: 02147961f77ddc25989b72bff5746e3da78ffb3d
 
-PODFILE CHECKSUM: 57e6c4296d465c5f8334c501070520012a3cfa0f
+PODFILE CHECKSUM: 474edd972442d057ef84e404ee1b8a5ec3d55ec4
 
 COCOAPODS: 1.5.3

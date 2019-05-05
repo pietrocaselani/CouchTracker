@@ -1,4 +1,4 @@
-import Cartography
+import SnapKit
 
 public final class MovieDetailsView: View {
   public var didTouchOnPoster: (() -> Void)?
@@ -103,8 +103,6 @@ public final class MovieDetailsView: View {
   // Setup
 
   public override func initialize() {
-    super.initialize()
-
     addSubview(posterImageView)
     addSubview(posterShadowView)
 
@@ -114,26 +112,23 @@ public final class MovieDetailsView: View {
   }
 
   public override func installConstraints() {
-    super.installConstraints()
+    scrollView.snp.makeConstraints { $0.size.equalToSuperview() }
 
-    constrain(scrollView,
-              contentStackView,
-              posterImageView,
-              backdropImageView,
-              posterShadowView) { scroll, content, poster, backdrop, shadow in
-      scroll.size == scroll.superview!.size
-
-      poster.size == poster.superview!.size
-      shadow.size == shadow.superview!.size
-
-      backdrop.height == scroll.superview!.height * 0.27
-
-      content.width == content.superview!.width
-      content.top == content.superview!.top + 20
-      content.leading == content.superview!.leading
-      content.bottom == content.superview!.bottom
-      content.trailing == content.superview!.trailing
+    contentStackView.snp.makeConstraints {
+      $0.width.equalToSuperview()
+      $0.top.equalToSuperview()
+      $0.bottom.equalToSuperview()
+      $0.leading.equalToSuperview()
+      $0.trailing.equalToSuperview()
     }
+
+    posterImageView.snp.makeConstraints { $0.size.equalToSuperview() }
+
+    backdropImageView.snp.makeConstraints {
+      $0.height.equalTo(scrollView.snp.height).multipliedBy(0.27)
+    }
+
+    posterShadowView.snp.makeConstraints { $0.size.equalToSuperview() }
   }
 
   @objc private func didTapOnPoster() {

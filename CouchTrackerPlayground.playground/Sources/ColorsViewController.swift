@@ -1,8 +1,14 @@
+import PlaygroundSupport
 import UIKit
 
 import CouchTrackerApp
-
-import Cartography
+import CouchTrackerCore
+import TraktSwift
+import TMDBSwift
+import TVDBSwift
+import Kingfisher
+import SnapKit
+import RxSwift
 
 class ColorsView: CouchTrackerApp.View {
     public lazy var label1: UILabel = {
@@ -69,9 +75,9 @@ class ColorsView: CouchTrackerApp.View {
     }
 
     override func installConstraints() {
-        constrain(stackview) { contentView in
-            contentView.size == contentView.superview!.size
-        }
+//        constrain(stackview) { contentView in
+//            contentView.size == contentView.superview!.size
+//        }
     }
 }
 

@@ -1,4 +1,4 @@
-import Cartography
+import SnapKit
 
 public final class DefaultEmptyView: View {
   public let label: UILabel = {
@@ -14,8 +14,6 @@ public final class DefaultEmptyView: View {
   }
 
   public override func installConstraints() {
-    constrain(label) { label in
-      label.center == label.superview!.center
-    }
+    label.snp.makeConstraints { $0.center.equalToSuperview() }
   }
 }

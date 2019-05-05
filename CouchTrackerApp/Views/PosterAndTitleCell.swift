@@ -1,6 +1,6 @@
-import Cartography
 import CouchTrackerCore
 import Kingfisher
+import SnapKit
 
 public final class PosterAndTitleCell: CollectionViewCell {
   public static let identifier = "PosterAndTitleCell"
@@ -46,10 +46,12 @@ public final class PosterAndTitleCell: CollectionViewCell {
   }
 
   public override func installConstraints() {
-    constrain(stackView, posterImageView, titleLabel) { stack, _, label in
-      stack.size == stack.superview!.size
+    stackView.snp.makeConstraints {
+      $0.edges.equalToSuperview()
+    }
 
-      label.height == label.superview!.height * 0.17
+    titleLabel.snp.makeConstraints {
+      $0.height.equalTo(stackView.snp.height).multipliedBy(0.17)
     }
   }
 }
