@@ -28,21 +28,14 @@ public final class ScrollableStackView: View {
 
   public override func installConstraints() {
     scrollView.snp.makeConstraints {
-      $0.leading.equalToSuperview()
-      $0.trailing.equalToSuperview()
-      $0.top.equalToSuperview()
-      $0.bottom.equalToSuperview()
-      $0.width.equalTo(self.snp.width)
-      $0.height.equalTo(self.snp.height)
+      $0.edges.equalToSuperview()
+      $0.width.equalToSuperview()
+      $0.height.equalToSuperview()
     }
 
     stackView.snp.makeConstraints {
-      $0.leading.equalTo(scrollView.snp.leading)
-      $0.trailing.equalTo(scrollView.snp.trailing)
-      $0.top.equalTo(scrollView.snp.top)
-      $0.bottom.equalTo(scrollView.snp.bottom)
+      $0.edges.equalTo(scrollView.snp.edges)
       $0.width.equalTo(self.snp.width)
-      $0.height.equalTo(self.snp.height)
     }
   }
 }

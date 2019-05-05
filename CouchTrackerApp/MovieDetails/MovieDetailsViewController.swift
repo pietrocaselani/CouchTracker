@@ -55,7 +55,11 @@ public final class MovieDetailsViewController: UIViewController {
   private func handleWatch() {
     presenter.handleWatched()
       .observeOn(schedulers.mainScheduler)
-      .subscribe(onCompleted: nil) { [weak self] error in
+      .do(onSubscribe: { [weak self] in
+        self?.movieView.watchButton.isLoading = true
+      }, onDispose: { [weak self] in
+        self?.movieView.watchButton.isLoading = false
+      }).subscribe(onCompleted: nil) { [weak self] error in
         self?.showError(error)
       }.disposed(by: disposeBag)
   }
@@ -111,7 +115,7 @@ public final class MovieDetailsViewController: UIViewController {
     let watchButtonTitle: String
 
     if let watchedDate = details.watchedAt {
-      watchedText = R.string.localizable.watchedAt() + formatter.string(from: watchedDate)
+      watchedText = formatter.string(from: watchedDate)
       watchButtonTitle = R.string.localizable.removeFromHistory()
     } else {
       watchedText = R.string.localizable.unwatched()
@@ -119,15 +123,15 @@ public final class MovieDetailsViewController: UIViewController {
     }
 
     let releaseDate = details.releaseDate.map(formatter.string(from:)) ?? R.string.localizable.unknown()
-    let genres = details.genres?.map { $0.name }.joined(separator: " | ")
+    let genres = details.genres?.map { $0.name }.joined(separator: ", ") ?? R.string.localizable.unknown()
 
     movieView.titleLabel.text = details.title
     movieView.taglineLabel.text = details.tagline
     movieView.overviewLabel.text = details.overview
-    movieView.releaseDateLabel.text = releaseDate
-    movieView.genresLabel.text = genres
-    movieView.watchedAtLabel.text = watchedText
-    movieView.watchButton.setTitle(watchButtonTitle, for: .normal)
+    movieView.releaseDateLabel.setText(title: "Release date", detail: releaseDate)
+    movieView.genresLabel.setText(title: "Genres", detail: genres)
+    movieView.watchedAtLabel.setText(title: "Watched at", detail: watchedText)
+    movieView.watchButton.button.setTitle(watchButtonTitle, for: .normal)
   }
 
   private func show(images: ImagesViewModel) {
