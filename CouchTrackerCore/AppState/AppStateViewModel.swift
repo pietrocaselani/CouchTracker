@@ -3,18 +3,6 @@ import Foundation
 public struct AppStateViewModel: Hashable {
   public let title: String
   public let configurations: [AppConfigurationViewModel]
-
-  public var hashValue: Int {
-    var hash = title.hashValue
-
-    configurations.forEach { hash ^= $0.hashValue }
-
-    return hash
-  }
-
-  public static func == (lhs: AppStateViewModel, rhs: AppStateViewModel) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-  }
 }
 
 public struct AppConfigurationViewModel: Hashable {
@@ -26,20 +14,6 @@ public struct AppConfigurationViewModel: Hashable {
     self.title = title
     self.subtitle = subtitle
     self.value = value
-  }
-
-  public var hashValue: Int {
-    var hash = title.hashValue ^ value.hashValue
-
-    if let subtitleHash = subtitle?.hashValue {
-      hash ^= subtitleHash
-    }
-
-    return hash
-  }
-
-  public static func == (lhs: AppConfigurationViewModel, rhs: AppConfigurationViewModel) -> Bool {
-    return lhs.hashValue == rhs.hashValue
   }
 }
 

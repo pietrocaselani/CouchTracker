@@ -8,6 +8,7 @@ extension ObservableType where E: Sequence {
 
 extension ObservableType {
   public func unwrap<T>() -> Observable<T> where E == T? {
+    // swiftlint:disable force_unwrapping
     return filter { $0 != nil }.map { $0! }
   }
 }

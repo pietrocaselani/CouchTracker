@@ -44,19 +44,4 @@ public struct WatchedSeasonEntityBuilder: Hashable {
                                aired: progressSeason?.aired, completed: progressSeason?.completed,
                                episodes: episodeEntities, overview: detailSeason.overview, title: detailSeason.title)
   }
-
-  public var hashValue: Int {
-    var hash = showIds.hashValue
-
-    progressSeason.run { hash ^= $0.hashValue }
-    detailSeason.run { hash ^= $0.hashValue }
-
-    episodes?.forEach { hash ^= $0.hashValue }
-
-    return hash
-  }
-
-  public static func == (lhs: WatchedSeasonEntityBuilder, rhs: WatchedSeasonEntityBuilder) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-  }
 }

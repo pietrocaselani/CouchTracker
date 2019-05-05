@@ -17,7 +17,9 @@ public protocol TrendingPresenter: AnyObject {
 }
 
 public protocol TrendingViewProtocol: BaseView {
+  // swiftlint:disable implicitly_unwrapped_optional
   var presenter: TrendingPresenter! { get set }
+  // swiftlint:enable implicitly_unwrapped_optional
 
   func showEmptyView()
   func showTrendingsView()

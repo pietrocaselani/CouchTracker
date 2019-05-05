@@ -5,7 +5,9 @@ import Tabman
 
 final class ShowManagerViewController: TabmanViewController, TMBarCouchTracker {
   private let disposeBag = DisposeBag()
+  // swiftlint:disable implicitly_unwrapped_optional
   var presenter: ShowManagerPresenter!
+  // swiftlint:enable implicitly_unwrapped_optional
   private var pages = [ModulePage]()
   private var defaultPageIndex = 0
 

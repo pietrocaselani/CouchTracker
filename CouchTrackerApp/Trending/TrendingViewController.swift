@@ -3,7 +3,9 @@ import RxCocoa
 import RxSwift
 
 public final class TrendingViewController: UIViewController {
+  // swiftlint:disable implicitly_unwrapped_optional
   public var presenter: TrendingPresenter!
+  // swiftlint:enable implicitly_unwrapped_optional
   public var trendingType: TrendingType = .movies
 
   private var trendingView: TrendingView {

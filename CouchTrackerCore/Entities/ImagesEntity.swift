@@ -22,18 +22,6 @@ public struct ImagesEntity: Hashable {
     })
   }
 
-  public var hashValue: Int {
-    var hash = identifier.hashValue
-    backdrops.forEach { hash = hash ^ $0.hashValue }
-    posters.forEach { hash = hash ^ $0.hashValue }
-    stills.forEach { hash = hash ^ $0.hashValue }
-    return hash
-  }
-
-  public static func == (lhs: ImagesEntity, rhs: ImagesEntity) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-  }
-
   public static func empty() -> ImagesEntity {
     let imageEntities = [ImageEntity]()
     return ImagesEntity(identifier: -1, backdrops: imageEntities, posters: imageEntities, stills: imageEntities)

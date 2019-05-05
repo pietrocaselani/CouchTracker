@@ -12,14 +12,4 @@ public struct WatchedEpisodeEntity: Hashable, Codable {
   func asImageInput() -> EpisodeImageInput {
     return episode
   }
-
-  public var hashValue: Int {
-    var hash = episode.hashValue
-    lastWatched.run { hash ^= $0.hashValue }
-    return hash
-  }
-
-  public static func == (lhs: WatchedEpisodeEntity, rhs: WatchedEpisodeEntity) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-  }
 }

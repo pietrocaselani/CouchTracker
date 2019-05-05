@@ -3,18 +3,25 @@ public enum MovieDetailsImagesState: Hashable {
   case showing(images: ImagesViewModel)
   case error(error: Error)
 
-  public var hashValue: Int {
+  public func hash(into hasher: inout Hasher) {
     switch self {
     case .loading:
-      return "MovieDetailsImagesState.loading".hashValue
-    case let .showing(viewModel):
-      return "MovieDetailsImagesState.showing".hashValue ^ viewModel.hashValue
+      hasher.combine("MovieDetailsImagesState.loading")
+    case let .showing(images):
+      hasher.combine("MovieDetailsImagesState.showing")
+      hasher.combine(images)
     case let .error(error):
-      return "MovieDetailsImagesState.error".hashValue ^ error.localizedDescription.hashValue
+      hasher.combine("MovieDetailsImagesState.error")
+      hasher.combine(error.localizedDescription)
     }
   }
 
   public static func == (lhs: MovieDetailsImagesState, rhs: MovieDetailsImagesState) -> Bool {
-    return lhs.hashValue == rhs.hashValue
+    switch (lhs, rhs) {
+    case (.loading, loading): return true
+    case let (.showing(lhsImages), showing(rhsImages)): return lhsImages == rhsImages
+    case let (.error(lhsError), error(rhsError)): return lhsError.localizedDescription == rhsError.localizedDescription
+    default: return false
+    }
   }
 }

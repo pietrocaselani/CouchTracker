@@ -15,7 +15,9 @@ public protocol TraktLoginPresenter: AnyObject {
 }
 
 public protocol TraktLoginView: AnyObject {
+  // swiftlint:disable implicitly_unwrapped_optional
   var presenter: TraktLoginPresenter! { get set }
+  // swiftlint:enable implicitly_unwrapped_optional
 
   func loadLogin(using url: URL)
   func showError(error: Error)

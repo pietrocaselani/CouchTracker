@@ -101,16 +101,21 @@ public final class WatchedShowBuilder: Hashable {
     return show?.genres(for: allGenres) ?? [Genre]()
   }
 
-  public var hashValue: Int {
-    var hash = ids.hashValue
-    progressShow.run { hash ^= $0.hashValue }
-    detailShow.run { hash ^= $0.hashValue }
-    episode.run { hash ^= $0.hashValue }
-    seasons.forEach { hash ^= $0.hashValue }
-    return hash
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(ids)
+    hasher.combine(detailShow)
+    hasher.combine(progressShow)
+    hasher.combine(episode)
+    hasher.combine(seasons)
+    hasher.combine(genres)
   }
 
   public static func == (lhs: WatchedShowBuilder, rhs: WatchedShowBuilder) -> Bool {
-    return lhs.hashValue == rhs.hashValue
+    return lhs.ids == rhs.ids &&
+      lhs.detailShow == rhs.detailShow &&
+      lhs.progressShow == rhs.progressShow &&
+      lhs.episode == rhs.episode &&
+      lhs.seasons == rhs.seasons &&
+      lhs.genres == rhs.genres
   }
 }

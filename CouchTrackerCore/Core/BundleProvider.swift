@@ -12,6 +12,7 @@ final class BundleProvider {
       return Bundle.main
     }
 
+    // swiftlint:disable force_unwrapping
     return Bundle(identifier: "io.github.pietrocaselani.CouchTrackerCoreTests")!
   }
 }

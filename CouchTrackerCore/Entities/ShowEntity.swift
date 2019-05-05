@@ -20,19 +20,4 @@ public struct ShowEntity: Hashable, Codable {
     self.status = status
     self.firstAired = firstAired
   }
-
-  public var hashValue: Int {
-    var hash = ids.hashValue
-    title.run { hash ^= $0.hashValue }
-    overview.run { hash ^= $0.hashValue }
-    status.run { hash ^= $0.hashValue }
-    firstAired.run { hash ^= $0.hashValue }
-    network.run { hash ^= $0.hashValue }
-    genres.forEach { hash ^= $0.hashValue }
-    return hash
-  }
-
-  public static func == (lhs: ShowEntity, rhs: ShowEntity) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-  }
 }

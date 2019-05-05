@@ -4,16 +4,26 @@ public enum ShowOverviewImagesState: Hashable {
   case showing(images: ImagesViewModel)
   case error(error: Error)
 
-  public var hashValue: Int {
+  public func hash(into hasher: inout Hasher) {
     switch self {
-    case .loading: return "ShowOverviewImagesState.loading".hashValue
-    case .empty: return "ShowOverviewImagesState.empty".hashValue
-    case let .showing(images): return "ShowOverviewImagesState.showing".hashValue ^ images.hashValue
-    case let .error(error): return "ShowOverviewImagesState.error".hashValue ^ error.localizedDescription.hashValue
+    case .loading: hasher.combine("ShowOverviewImagesState.loading")
+    case .empty: hasher.combine("ShowOverviewImagesState.empty")
+    case let .showing(images):
+      hasher.combine("ShowOverviewImagesState.showing")
+      hasher.combine(images)
+    case let .error(error):
+      hasher.combine("ShowOverviewImagesState.error")
+      hasher.combine(error.localizedDescription)
     }
   }
 
   public static func == (lhs: ShowOverviewImagesState, rhs: ShowOverviewImagesState) -> Bool {
-    return lhs.hashValue == rhs.hashValue
+    switch (lhs, rhs) {
+    case (.loading, loading): return true
+    case (.empty, empty): return true
+    case let (.showing(lhsImages), showing(rhsImages)): return lhsImages == rhsImages
+    case let (.error(lhsError), error(rhsError)): return lhsError.localizedDescription == rhsError.localizedDescription
+    default: return false
+    }
   }
 }

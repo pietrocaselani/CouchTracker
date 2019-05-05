@@ -1,6 +1,7 @@
 import Foundation
 
 final class ThreadWithRunLoop: Thread {
+  // swiftlint:disable implicitly_unwrapped_optional
   var runLoop: RunLoop!
 
   override func main() {

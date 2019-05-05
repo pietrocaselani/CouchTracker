@@ -6,6 +6,7 @@ public final class PosterAndTitleCell: CollectionViewCell {
   public static let identifier = "PosterAndTitleCell"
   private var imageTask: DownloadTask?
 
+  // swiftlint:disable implicitly_unwrapped_optional
   public var presenter: PosterCellPresenter! {
     didSet {
       imageTask?.cancel()
@@ -13,6 +14,8 @@ public final class PosterAndTitleCell: CollectionViewCell {
       presenter.viewWillAppear()
     }
   }
+
+  // swiftlint:enable implicitly_unwrapped_optional
 
   public override func prepareForReuse() {
     imageTask?.cancel()
