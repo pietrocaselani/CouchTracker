@@ -1,9 +1,8 @@
-//
-//  DebugMenuModule.swift
-//  CouchTrackerDebug
-//
-//  Created by Pietro Caselani on 12/05/19.
-//  Copyright © 2019 Pietro Caselani. All rights reserved.
-//
+import CouchTrackerCore
 
-import Foundation
+public enum DebugMenuModule {
+  public static func setupModule() -> BaseView {
+    //	swiftlint:disable force_cast
+    return UINavigationController(rootViewController: DebugMenuViewController()) as! BaseView
+  }
+}

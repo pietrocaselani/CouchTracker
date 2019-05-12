@@ -83,3 +83,11 @@ target 'CouchTracker' do
 
   ios_pods
 end
+
+target 'CouchTrackerDebug' do
+  platform :ios, IOS_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  pod 'SnapKit', SNAPKIT_VERSION
+end
