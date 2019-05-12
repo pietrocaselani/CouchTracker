@@ -4,6 +4,7 @@ import RxCocoa
 import RxSwift
 
 final class ShowEpisodeViewController: UIViewController {
+  private typealias Strings = CouchTrackerCoreStrings
   private let presenter: ShowEpisodePresenter
   private let schedulers: Schedulers
   private let disposeBag = DisposeBag()
@@ -67,15 +68,15 @@ final class ShowEpisodeViewController: UIViewController {
   }
 
   private func showEmptyView() {
-    print("Nothing to show here!")
+    print("Nothing to show here!") // TODO: Translate
   }
 
   private func showLoadingView() {
-    print("Loading view...")
+    print("Loading view...") // TODO: Translate
   }
 
   private func showErrorView(_ error: Error) {
-    print("Error view: \(error.localizedDescription)")
+    print("Error view: \(error.localizedDescription)") // TODO: Translate
   }
 
   private func updateView(episode: WatchedEpisodeEntity, images: ShowEpisodeImages? = nil) {
@@ -83,14 +84,14 @@ final class ShowEpisodeViewController: UIViewController {
     episodeView.posterImageView.kf.setImage(with: images?.posterURL)
 
     episodeView.titleLabel.text = episode.episode.title
-    episodeView.overviewLabel.text = episode.episode.overview ?? "No overview"
-    episodeView.releaseDateLabel.text = episode.episode.firstAired?.shortString() ?? "Unknown".localized
-    episodeView.watchedAtLabel.text = episode.lastWatched?.shortString() ?? "Unwatched"
+    episodeView.overviewLabel.text = episode.episode.overview ?? "No overview" // TODO: Translate
+    episodeView.releaseDateLabel.text = episode.episode.firstAired?.shortString() ?? Strings.unknown()
+    episodeView.watchedAtLabel.text = episode.lastWatched?.shortString() ?? Strings.unwatched()
     episodeView.seasonAndNumberLabel.text = episode.episode.seasonAndNumberFormatted()
 
     let buttonTitle = episode.lastWatched == nil ?
-      R.string.localizable.addToHistory() :
-      R.string.localizable.removeFromHistory()
+      Strings.addToHistory() :
+      Strings.removeFromHistory()
 
     episodeView.watchButton.button.setTitle(buttonTitle, for: .normal)
   }

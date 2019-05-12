@@ -14,9 +14,6 @@ PODS:
   - Nimble (7.3.1)
   - NonEmpty (0.1.2)
   - Pageboy (3.0.7)
-  - R.swift (5.0.0):
-    - R.swift.Library (~> 5.0.0)
-  - R.swift.Library (5.0.0)
   - Realm (3.7.6):
     - Realm/Headers (= 3.7.6)
   - Realm/Headers (3.7.6)
@@ -59,7 +56,6 @@ DEPENDENCIES:
   - Kingfisher (= 5.0.1)
   - Nimble (= 7.3.1)
   - NonEmpty (= 0.1.2)
-  - R.swift (= 5.0.0)
   - RealmSwift (= 3.7.6)
   - RxCocoa (= 4.4.0)
   - RxDataSources (= 3.1.0)
@@ -84,8 +80,6 @@ SPEC REPOS:
     - Nimble
     - NonEmpty
     - Pageboy
-    - R.swift
-    - R.swift.Library
     - Realm
     - RealmSwift
     - Result
@@ -118,8 +112,6 @@ SPEC CHECKSUMS:
   Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
   NonEmpty: b1054f956f717e9f771d379485c9dd7c2bc65a74
   Pageboy: 8210fff0db9dd487f58dc9769d5d046f2618ebe0
-  R.swift: f88c7d7d48a2be4dffa132dde1b3d389620310eb
-  R.swift.Library: 0bf390e729bc10bb2c9e4fb78bd043164a7be4ff
   Realm: 9eaecad54712d6246d08ba34c10f354e4715d7d3
   RealmSwift: 1fe08b4ebaeeaacf17f9ba0343f7b25c9fc31fa6
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
@@ -136,6 +128,6 @@ SPEC CHECKSUMS:
   Trakt: 98bf8f1ef173603deff3a4c0eeda818522529bb6
   TVDB: 02147961f77ddc25989b72bff5746e3da78ffb3d
 
-PODFILE CHECKSUM: 474edd972442d057ef84e404ee1b8a5ec3d55ec4
+PODFILE CHECKSUM: 0dc12ff98009ddc9f4efd33eb741a7c0459dc07f
 
 COCOAPODS: 1.5.3

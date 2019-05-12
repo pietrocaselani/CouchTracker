@@ -4,6 +4,7 @@ import RxSwift
 import Tabman
 
 final class MoviesManagerViewController: TabmanViewController, TMBarCouchTracker {
+  private typealias Strings = CouchTrackerCoreStrings
   private let presenter: MoviesManagerPresenter
   private let disposeBag = DisposeBag()
   private var pages = [ModulePage]()
@@ -21,7 +22,7 @@ final class MoviesManagerViewController: TabmanViewController, TMBarCouchTracker
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    title = R.string.localizable.movies()
+    title = Strings.movies()
     navigationItem.title = nil
     dataSource = self
     delegate = self

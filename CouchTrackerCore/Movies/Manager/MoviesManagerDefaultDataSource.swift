@@ -39,9 +39,9 @@ public final class MoviesManagerDefaultDataSource: MoviesManagerDataSource {
   private func moduleNameFor(option: MoviesManagerOption) -> String {
     switch option {
     case .trending:
-      return "Trending".localized
+      return CouchTrackerCoreStrings.trending()
     case .search:
-      return "Search".localized
+      return CouchTrackerCoreStrings.search()
     }
   }
 }

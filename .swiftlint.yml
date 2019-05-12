@@ -21,6 +21,10 @@ opt_in_rules:
   - unused_import
   - yoda_condition
 
+type_name:
+  excluded:
+    - S # Used for cleaner access to private and static properties
+
 yoda_condition:
   severity: error
 

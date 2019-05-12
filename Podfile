@@ -1,6 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 RX_SWIFT_VERSION = '4.4.0'.freeze
+SNAPKIT_VERSION = '5.0.0'.freeze
 OSX_VERSION = '10.11'.freeze
 IOS_VERSION = '10.0'.freeze
 
@@ -14,12 +15,11 @@ end
 
 def ios_pods
   common_pods
-  pod 'R.swift', '5.0.0'
   pod 'Kingfisher', '5.0.1'
   pod 'RxCocoa', RX_SWIFT_VERSION
   pod 'ActionSheetPicker-3.0', '2.2.0'
   pod 'Tabman', '2.1.4'
-  pod 'SnapKit', '5.0.0'
+  pod 'SnapKit', SNAPKIT_VERSION
   pod 'RxDataSources', '3.1.0'
   pod 'Bugsnag'
 end

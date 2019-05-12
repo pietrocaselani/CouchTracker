@@ -65,7 +65,7 @@ final class AppStatePresenterTest: XCTestCase {
 
     // Then
     let expectedUserName = AppStateMock.createUserMock().name
-    let connectToTraktViewModel = AppConfigurationViewModel(title: "Connected", subtitle: expectedUserName, value: .none)
+    let connectToTraktViewModel = AppConfigurationViewModel(title: "Connected to Trakt", subtitle: expectedUserName, value: .none)
     let traktViewModel = AppStateViewModel(title: "Trakt", configurations: [connectToTraktViewModel])
 
     let hideSpecialsViewModel = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .hideSpecials(wantsToHideSpecials: true))
@@ -175,7 +175,7 @@ final class AppStatePresenterTest: XCTestCase {
     let notLoggedViewModels = [traktViewModel1, generalViewModel1, otherViewModel1]
 
     let expectedUserName = AppStateMock.createUserMock().name
-    let connectedViewModel = AppConfigurationViewModel(title: "Connected", subtitle: expectedUserName, value: .none)
+    let connectedViewModel = AppConfigurationViewModel(title: "Connected to Trakt", subtitle: expectedUserName, value: .none)
     let traktViewModel2 = AppStateViewModel(title: "Trakt", configurations: [connectedViewModel])
 
     let hideSpecialsViewModel2 = AppConfigurationViewModel(title: "Hide specials", subtitle: "Will not show special episodes", value: .hideSpecials(wantsToHideSpecials: true))

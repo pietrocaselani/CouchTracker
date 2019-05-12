@@ -1,7 +1,7 @@
 import CouchTrackerCore
 
 extension UIAlertController {
-  static func createErrorAlert(with title: String = "Error".localized, message: String) -> UIAlertController {
+  static func createErrorAlert(with title: String = "Error", message: String) -> UIAlertController {
     let errorAlert = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
     let okAction = UIAlertAction(title: "Ok", style: .default) { _ in

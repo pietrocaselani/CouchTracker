@@ -96,7 +96,7 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
       return
     }
 
-    let imageURL = URL(string: "path/to/image.png")!
+    let imageURL = URL(fileURLWithPath: "path/to/image.png")
     let images = ShowEpisodeImages(posterURL: imageURL, previewURL: imageURL)
 
     let expectedViewEvents = [
@@ -150,7 +150,7 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
       return
     }
 
-    let url = URL(string: "path/to/image.png")!
+    let url = URL(fileURLWithPath: "path/to/image.png")
     let images = ShowEpisodeImages(posterURL: url, previewURL: url)
 
     let expectedViewEvents = [
@@ -180,7 +180,7 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
 
     // Then
     let episode = show.nextEpisode!
-    let url = URL(string: "path/to/image.png")!
+    let url = URL(fileURLWithPath: "path/to/image.png")
     let images = ShowEpisodeImages(posterURL: url, previewURL: url)
 
     let expectedViewEvents = [

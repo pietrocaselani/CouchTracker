@@ -3,6 +3,7 @@ import Kingfisher
 import RxSwift
 
 public final class MovieDetailsViewController: UIViewController {
+  private typealias Strings = CouchTrackerCoreStrings
   private let presenter: MovieDetailsPresenter
   private let schedulers: Schedulers
   private let disposeBag = DisposeBag()
@@ -95,7 +96,7 @@ public final class MovieDetailsViewController: UIViewController {
 
     if let traktError = error as? TraktError {
       switch traktError {
-      case .loginRequired: message = R.string.localizable.traktLoginRequired()
+      case .loginRequired: message = Strings.requiresTraktLogin()
       }
     } else {
       message = error.localizedDescription
@@ -116,31 +117,31 @@ public final class MovieDetailsViewController: UIViewController {
 
     if let watchedDate = details.watchedAt {
       watchedText = formatter.string(from: watchedDate)
-      watchButtonTitle = R.string.localizable.removeFromHistory()
+      watchButtonTitle = Strings.removeFromHistory()
     } else {
-      watchedText = R.string.localizable.unwatched()
-      watchButtonTitle = R.string.localizable.addToHistory()
+      watchedText = Strings.unwatched()
+      watchButtonTitle = Strings.addToHistory()
     }
 
-    let releaseDate = details.releaseDate.map(formatter.string(from:)) ?? R.string.localizable.unknown()
-    let genres = details.genres?.map { $0.name }.joined(separator: ", ") ?? R.string.localizable.unknown()
+    let releaseDate = details.releaseDate.map(formatter.string(from:)) ?? Strings.unknown()
+    let genres = details.genres?.map { $0.name }.joined(separator: ", ") ?? Strings.unknown()
 
     movieView.titleLabel.text = details.title
     movieView.taglineLabel.text = details.tagline
     movieView.overviewLabel.text = details.overview
-    movieView.releaseDateLabel.setText(title: "Release date", detail: releaseDate)
-    movieView.genresLabel.setText(title: "Genres", detail: genres)
-    movieView.watchedAtLabel.setText(title: "Watched at", detail: watchedText)
+    movieView.releaseDateLabel.setText(title: "Release date", detail: releaseDate) // TODO: Translate
+    movieView.genresLabel.setText(title: "Genres", detail: genres) // TODO: Translate
+    movieView.watchedAtLabel.setText(title: "Watched at", detail: watchedText) // TODO: Translate
     movieView.watchButton.button.setTitle(watchButtonTitle, for: .normal)
   }
 
   private func show(images: ImagesViewModel) {
     if let backdropLink = images.backdropLink {
-      movieView.backdropImageView.kf.setImage(with: backdropLink.toURL, placeholder: R.image.backdropPlaceholder())
+      movieView.backdropImageView.kf.setImage(with: backdropLink.toURL, placeholder: Images.backdropPlaceholder())
     }
 
     if let posterLink = images.posterLink {
-      movieView.posterImageView.kf.setImage(with: posterLink.toURL, placeholder: R.image.posterPlacehoder())
+      movieView.posterImageView.kf.setImage(with: posterLink.toURL, placeholder: Images.posterPlacehoder())
     }
   }
 }
