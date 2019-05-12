@@ -1,3 +1,9 @@
+# 0.0.1 (35) 
+* Fix logic to check if changelog file was modified [view commit](http://github.com/pietrocaselani/CouchTracker/commit/6b21aa78d21bbba0a3b92f0b5a4fc19982e1ca07)
+
+# 0.0.1 (34) 
+* Move logic to skip CI from CircleCI to Fastlane. The TestFlight release workflow checks if it's a bump commit and there is no need anymore to use the special commit message. [view commit](http://github.com/pietrocaselani/CouchTracker/commit/4395a49929f86ea68dfbf8da0bc94029517111fa)
+
 # 0.0.1 (33) 
 * Remove unused ci folder and scripts [view commit](http://github.com/pietrocaselani/CouchTracker/commit/87e55195f841670effe8f14012aac068ea573149)
 * Don't show merge commits on changelog [view commit](http://github.com/pietrocaselani/CouchTracker/commit/a9704cbed7624d769d1164b6e3261c12ce7f34c2)
