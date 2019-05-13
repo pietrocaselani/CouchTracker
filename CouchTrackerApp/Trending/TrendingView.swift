@@ -1,4 +1,4 @@
-import Cartography
+import SnapKit
 
 public final class TrendingView: View {
   public let collectionView: UICollectionView
@@ -23,13 +23,8 @@ public final class TrendingView: View {
   }
 
   public override func installConstraints() {
-    constrain(collectionView, emptyView) { collectionView, empty in
-      collectionView.top == collectionView.superview!.top
-      collectionView.bottom == collectionView.superview!.bottom
-      collectionView.left == collectionView.superview!.left
-      collectionView.right == collectionView.superview!.right
+    collectionView.snp.makeConstraints { $0.size.equalToSuperview() }
 
-      empty.center == empty.superview!.center
-    }
+    emptyView.snp.makeConstraints { $0.center.equalToSuperview() }
   }
 }

@@ -3,7 +3,10 @@ import RxCocoa
 import RxSwift
 
 public final class TrendingViewController: UIViewController {
+  private typealias Strings = CouchTrackerCoreStrings
+  // swiftlint:disable implicitly_unwrapped_optional
   public var presenter: TrendingPresenter!
+  // swiftlint:enable implicitly_unwrapped_optional
   public var trendingType: TrendingType = .movies
 
   private var trendingView: TrendingView {
@@ -51,9 +54,9 @@ public final class TrendingViewController: UIViewController {
     let emptyText: String
 
     if trendingType == .movies {
-      emptyText = R.string.localizable.noMoviesToShowRightNow()
+      emptyText = Strings.noMovies()
     } else {
-      emptyText = R.string.localizable.noTvShowsToShowRightNow()
+      emptyText = Strings.noShows()
     }
 
     trendingView.emptyView.label.text = emptyText
@@ -85,9 +88,9 @@ extension TrendingViewController: TrendingViewProtocol {
     let emptyText: String
 
     if trendingType == .movies {
-      emptyText = R.string.localizable.noMoviesToShowRightNow()
+      emptyText = Strings.noMovies()
     } else {
-      emptyText = R.string.localizable.noTvShowsToShowRightNow()
+      emptyText = Strings.noShows()
     }
 
     trendingView.emptyView.label.text = emptyText
@@ -98,7 +101,7 @@ extension TrendingViewController: TrendingViewProtocol {
   public func showLoadingView() {
     trendingView.collectionView.isHidden = true
     trendingView.emptyView.isHidden = false
-    trendingView.emptyView.label.text = "Loading"
+    trendingView.emptyView.label.text = "Loading" // TODO: translate
   }
 
   private func makeListVisible() {

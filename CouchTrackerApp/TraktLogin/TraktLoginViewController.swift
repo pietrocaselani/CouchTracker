@@ -6,8 +6,10 @@ import WebKit
 
 final class TraktLoginViewController: UIViewController, TraktLoginView {
   fileprivate let disposeBag = DisposeBag()
+  // swiftlint:disable implicitly_unwrapped_optional
   private weak var webView: WKWebView!
   var presenter: TraktLoginPresenter!
+  // swiftlint:enable implicitly_unwrapped_optional
 
   override func viewDidLoad() {
     super.viewDidLoad()

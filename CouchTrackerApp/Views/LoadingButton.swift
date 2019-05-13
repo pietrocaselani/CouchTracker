@@ -1,4 +1,4 @@
-import Cartography
+import SnapKit
 
 public final class LoadingButton: View {
   public let button: UIButton = {
@@ -34,10 +34,13 @@ public final class LoadingButton: View {
   }
 
   public override func installConstraints() {
-    constrain(button, spinner) { button, spinner in
-      button.center == button.superview!.center
-      spinner.center == spinner.superview!.center
-      button.height == button.superview!.height
+    button.snp.makeConstraints {
+      $0.center.equalToSuperview()
+      $0.height.equalToSuperview()
+    }
+
+    spinner.snp.makeConstraints {
+      $0.center.equalToSuperview()
     }
   }
 }

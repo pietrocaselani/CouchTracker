@@ -4,6 +4,7 @@ import RxSwift
 import Tabman
 
 final class ShowsManagerViewController: TabmanViewController, TMBarCouchTracker {
+  private typealias Strings = CouchTrackerCoreStrings
   private let presenter: ShowsManagerPresenter
   private let disposeBag = DisposeBag()
   private var pages = [ModulePage]()
@@ -21,7 +22,7 @@ final class ShowsManagerViewController: TabmanViewController, TMBarCouchTracker 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    title = R.string.localizable.shows()
+    title = Strings.shows()
     navigationItem.title = nil
     dataSource = self
     delegate = self

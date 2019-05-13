@@ -1,6 +1,8 @@
 import RxSwift
 import TraktSwift
 
+private typealias Strings = CouchTrackerCoreStrings
+
 public final class AppStateDefaultPresenter: AppStatePresenter {
   private let viewStateSubject = BehaviorSubject<AppStateViewState>(value: .loading)
   private let disposeBag = DisposeBag()
@@ -84,11 +86,11 @@ private enum AppStateViewModelMapper {
     let connectedConfiguration: AppConfigurationViewModel
 
     if let settings = state.userSettings {
-      connectedConfiguration = AppConfigurationViewModel(title: "Connected".localized,
+      connectedConfiguration = AppConfigurationViewModel(title: Strings.connectedToTrakt(),
                                                          subtitle: settings.user.name,
                                                          value: .none)
     } else {
-      connectedConfiguration = AppConfigurationViewModel(title: "Connect to Trakt".localized,
+      connectedConfiguration = AppConfigurationViewModel(title: Strings.connectToTrakt(),
                                                          subtitle: nil,
                                                          value: .traktLogin(wantsToLogin: true))
     }

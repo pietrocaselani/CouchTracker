@@ -14,18 +14,4 @@ public struct WatchedShowViewModel: Hashable {
     self.status = status
     self.tmdbId = tmdbId
   }
-
-  public var hashValue: Int {
-    var hash = title.hashValue ^ status.hashValue
-
-    nextEpisode.run { hash ^= $0.hashValue }
-    nextEpisodeDate.run { hash ^= $0.hashValue }
-    tmdbId.run { hash ^= $0.hashValue }
-
-    return hash
-  }
-
-  public static func == (lhs: WatchedShowViewModel, rhs: WatchedShowViewModel) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-  }
 }

@@ -6,6 +6,7 @@ import RxDataSources
 import RxSwift
 
 final class ShowsProgressViewController: UIViewController {
+  private typealias Strings = CouchTrackerCoreStrings
   private let presenter: ShowsProgressPresenter
   private let cellInteractor: ShowProgressCellInteractor
   private let schedulers: Schedulers
@@ -76,9 +77,9 @@ final class ShowsProgressViewController: UIViewController {
 
     switch state {
     case .empty:
-      showEmptyData(message: "Go watch some shows")
+      showEmptyData(message: "Go watch some shows") // TODO: Translate
     case .filterEmpty:
-      showEmptyData(message: "A lot of filters!")
+      showEmptyData(message: "A lot of filters!") // TODO: Translate
     case .notLogged:
       showNotLogged()
     case .loading:
@@ -111,13 +112,13 @@ final class ShowsProgressViewController: UIViewController {
   private func showNotLogged() {
     showsView.tableView.isHidden = true
     showsView.emptyView.isHidden = false
-    showsView.emptyView.label.text = R.string.localizable.traktLoginRequired()
+    showsView.emptyView.label.text = Strings.requiresTraktLogin()
   }
 
   private func showLoadingData() {
     showsView.tableView.isHidden = true
     showsView.emptyView.isHidden = false
-    showsView.emptyView.label.text = "Loading..."
+    showsView.emptyView.label.text = "Loading..." // TODO: Translate
   }
 
   private func cleanBarButtonItems() {
@@ -125,16 +126,16 @@ final class ShowsProgressViewController: UIViewController {
   }
 
   private func configureBarButtonItems(menu: ShowsProgressMenuOptions) {
-    let sortTitles = menu.sort.map { $0.rawValue.localized }
-    let filterTitles = menu.filter.map { $0.rawValue.localized }
+    let sortTitles = menu.sort.map { $0.rawValue } // TODO: Translate
+    let filterTitles = menu.filter.map { $0.rawValue } // TODO: Translate
 
-    let filterItem = UIBarButtonItem(image: R.image.filter(), style: .plain, target: nil, action: nil)
+    let filterItem = UIBarButtonItem(image: Images.filter(), style: .plain, target: nil, action: nil)
     filterItem.rx.tap.asDriver().drive(onNext: { [weak self] in
       self?.showOptions(sorting: sortTitles, filtering: filterTitles,
                         currentSort: menu.currentSort, currentFilter: menu.currentFilter)
     }).disposed(by: disposeBag)
 
-    let directionItem = UIBarButtonItem(image: R.image.direction(), style: .plain, target: nil, action: nil)
+    let directionItem = UIBarButtonItem(image: Images.direction(), style: .plain, target: nil, action: nil)
 
     directionItem.rx.tap.flatMapLatest { [localPresenter = presenter] in
       localPresenter.toggleDirection()
@@ -147,10 +148,10 @@ final class ShowsProgressViewController: UIViewController {
 
   private func showOptions(sorting: [String], filtering: [String],
                            currentSort: ShowProgressSort, currentFilter: ShowProgressFilter) {
-    let initialSort = sorting.firstIndex(of: currentSort.rawValue.localized) ?? 0
-    let initialFilter = filtering.firstIndex(of: currentFilter.rawValue.localized) ?? 0
+    let initialSort = sorting.firstIndex(of: currentSort.rawValue) ?? 0 // TODO: Translate
+    let initialFilter = filtering.firstIndex(of: currentFilter.rawValue) ?? 0 // TODO: Translate
 
-    let title = "Sort & Filter"
+    let title = "Sort & Filter" // TODO: Translate
     let rows = [sorting, filtering]
     let initial = [initialSort, initialFilter]
 

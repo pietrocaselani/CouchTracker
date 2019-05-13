@@ -47,13 +47,13 @@ public final class ShowsManagerDefaultModuleSetup: ShowsManagerDataSource {
   private func moduleNameFor(option: ShowsManagerOption) -> String {
     switch option {
     case .progress:
-      return "Progress".localized
+      return CouchTrackerCoreStrings.showsProgress()
     case .now:
-      return "Now".localized
+      return CouchTrackerCoreStrings.showsNow()
     case .trending:
-      return "Trending".localized
+      return CouchTrackerCoreStrings.trending()
     case .search:
-      return "Search".localized
+      return CouchTrackerCoreStrings.search()
     }
   }
 }

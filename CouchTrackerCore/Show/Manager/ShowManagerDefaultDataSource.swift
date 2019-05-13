@@ -46,11 +46,11 @@ public final class ShowManagerDefaultDataSource: ShowManagerDataSource {
   private func moduleNameFor(option: ShowManagerOption) -> String {
     switch option {
     case .episode:
-      return "Episode".localized
+      return CouchTrackerCoreStrings.episode()
     case .overview:
-      return "Overview".localized
+      return CouchTrackerCoreStrings.overview()
     case .seasons:
-      return "Seasons".localized
+      return CouchTrackerCoreStrings.seasons()
     }
   }
 }

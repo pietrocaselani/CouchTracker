@@ -19,14 +19,4 @@ public struct WatchedEpisodeEntityBuilder: Hashable {
     let episodeEntity = EpisodeEntityMapper.entity(for: episode, showIds: showIds)
     return WatchedEpisodeEntity(episode: episodeEntity, lastWatched: lastWatched)
   }
-
-  public var hashValue: Int {
-    var hash = showIds.hashValue ^ episode.hashValue
-    lastWatched.run { hash ^= $0.hashValue }
-    return hash
-  }
-
-  public static func == (lhs: WatchedEpisodeEntityBuilder, rhs: WatchedEpisodeEntityBuilder) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-  }
 }

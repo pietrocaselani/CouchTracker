@@ -3,15 +3,24 @@ public enum ShowOverviewViewState: Hashable {
   case showing(show: ShowEntity)
   case error(error: Error)
 
-  public var hashValue: Int {
+  public func hash(into hasher: inout Hasher) {
     switch self {
-    case .loading: return "ShowOverviewViewState.loading".hashValue
-    case let .showing(show): return "ShowOverviewViewState.shwoing".hashValue ^ show.hashValue
-    case let .error(error): return "ShowOverviewViewState.error".hashValue ^ error.localizedDescription.hashValue
+    case .loading: hasher.combine("ShowOverviewViewState.loading")
+    case let .showing(show):
+      hasher.combine("ShowOverviewViewState.shwoing")
+      hasher.combine(show)
+    case let .error(error):
+      hasher.combine("ShowOverviewViewState.error")
+      hasher.combine(error.localizedDescription)
     }
   }
 
   public static func == (lhs: ShowOverviewViewState, rhs: ShowOverviewViewState) -> Bool {
-    return lhs.hashValue == rhs.hashValue
+    switch (lhs, rhs) {
+    case (.loading, .loading): return true
+    case let (.showing(lhsShow), .showing(rhShow)): return lhsShow == rhShow
+    case let (.error(lhsError), .error(rhsError)): return lhsError.localizedDescription == rhsError.localizedDescription
+    default: return false
+    }
   }
 }

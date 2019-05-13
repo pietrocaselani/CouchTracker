@@ -1,4 +1,4 @@
-import Cartography
+import SnapKit
 
 public final class ShowOverviewView: View {
   public var didTouchOnPoster: (() -> Void)?
@@ -16,8 +16,12 @@ public final class ShowOverviewView: View {
   public let backdropImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.contentMode = UIView.ContentMode.scaleAspectFill
+
+    let tap = UITapGestureRecognizer(target: self, action: #selector(didTapOnBackdrop))
+    tap.numberOfTapsRequired = 1
+
+    imageView.addGestureRecognizer(tap)
     imageView.isUserInteractionEnabled = true
-    imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapOnBackdrop)))
     return imageView
   }()
 
@@ -66,10 +70,6 @@ public final class ShowOverviewView: View {
 
   // Private Views
 
-  private let scrollView: UIScrollView = {
-    UIScrollView()
-  }()
-
   private let posterShadowView: UIView = {
     let view = UIView()
     view.backgroundColor = .black
@@ -77,57 +77,41 @@ public final class ShowOverviewView: View {
     return view
   }()
 
-  private lazy var contentStackView: UIStackView = {
+  private lazy var contentStackView: ScrollableStackView = {
     let subviews = [backdropImageView, titleLabel, statusLabel, networkLabel,
                     overviewLabel, genresLabel, releaseDateLabel]
-    let stackView = UIStackView(arrangedSubviews: subviews)
+    let view = ScrollableStackView(subviews: subviews)
 
     let spacing: CGFloat = 20
 
-    stackView.axis = .vertical
-    stackView.alignment = .fill
-    stackView.spacing = spacing
-    stackView.distribution = .equalSpacing
-    stackView.layoutMargins = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
-    stackView.isLayoutMarginsRelativeArrangement = true
-    stackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapOnPoster)))
+    view.stackView.axis = .vertical
+    view.stackView.alignment = .fill
+    view.stackView.spacing = spacing
+    view.stackView.distribution = .equalSpacing
+    view.stackView.layoutMargins = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
+    view.stackView.isLayoutMarginsRelativeArrangement = true
+    view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapOnPoster)))
+    view.stackView.isUserInteractionEnabled = false
 
-    return stackView
+    return view
   }()
 
   // Setup
 
   public override func initialize() {
-    super.initialize()
-
     addSubview(posterImageView)
     addSubview(posterShadowView)
 
-    scrollView.addSubview(contentStackView)
-
-    addSubview(scrollView)
+    addSubview(contentStackView)
   }
 
   public override func installConstraints() {
-    super.installConstraints()
+    contentStackView.snp.makeConstraints { $0.edges.equalToSuperview() }
 
-    constrain(scrollView,
-              contentStackView,
-              posterImageView,
-              backdropImageView,
-              posterShadowView) { scroll, content, poster, backdrop, shadow in
-      scroll.size == scroll.superview!.size
-
-      poster.size == poster.superview!.size
-      shadow.size == shadow.superview!.size
-
-      backdrop.height == scroll.superview!.height * 0.27
-
-      content.width == content.superview!.width
-      content.top == content.superview!.top
-      content.leading == content.superview!.leading
-      content.bottom == content.superview!.bottom
-      content.trailing == content.superview!.trailing
+    posterImageView.snp.makeConstraints { $0.edges.equalToSuperview() }
+    posterShadowView.snp.makeConstraints { $0.edges.equalToSuperview() }
+    backdropImageView.snp.makeConstraints {
+      $0.height.equalTo(posterShadowView.snp.height).multipliedBy(0.27)
     }
   }
 

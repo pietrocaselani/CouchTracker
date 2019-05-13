@@ -47,7 +47,7 @@ public final class SearchDefaultPresenter: SearchPresenter {
 
 private func mapResultsToSearchState(_ results: [SearchResult]) -> SearchState {
   let entities = results.compactMap(mapResultToEntity(result:))
-  guard entities.count > 0 else { return SearchState.emptyResults }
+  guard !entities.isEmpty else { return SearchState.emptyResults }
   return SearchState.results(entities: entities)
 }
 

@@ -1,7 +1,68 @@
-included:
-  - CouchTracker
-  - CouchTrackerApp
-  - CouchTrackerCore
 excluded:
   - Pods
-  - R.generated.swift
+  - GeneratedFiles
+  - vendor
+  - CouchTrackerCoreTests
+  - CouchTrackerPlayground.playground
+
+opt_in_rules:
+  - force_unwrapping
+  - force_cast
+  - force_try
+  - anyobject_protocol
+  - empty_count
+  - empty_string
+  - explicit_init
+  - implicit_return
+  - implicitly_unwrapped_optional
+  - literal_expression_end_indentation
+  - redundant_nil_coalescing
+  - redundant_type_annotation
+  - unused_import
+  - yoda_condition
+
+type_name:
+  excluded:
+    - S # Used for cleaner access to private and static properties
+
+yoda_condition:
+  severity: error
+
+unused_import:
+  severity: error
+
+redundant_type_annotation:
+  severity: error
+
+redundant_nil_coalescing:
+  severity: error
+
+literal_expression_end_indentation:
+  severity: error
+
+implicitly_unwrapped_optional:
+  severity: error
+
+implicit_return:
+  severity: error
+
+explicit_init:
+  severity: error
+
+empty_string:
+  severity: error
+
+empty_count:
+  severity: error
+
+anyobject_protocol:
+  severity: error
+
+force_unwrapping:
+  severity: error
+
+force_cast:
+  severity: error
+
+force_try:
+  severity: error

@@ -1,18 +1,25 @@
 import CouchTrackerCore
+import CouchTrackerDebug
 
 final class AppFlowiOSModuleDataSource: AppFlowModuleDataSource {
+  private typealias Strings = CouchTrackerCoreStrings
   var modulePages: [ModulePage]
 
-  init() {
+  init(buildConfig: BuildConfig) {
     let moviesView = MoviesManagerModule.setupModule()
-    let moviesPage = ModulePage(page: moviesView, title: R.string.localizable.movies())
+    let moviesPage = ModulePage(page: moviesView, title: Strings.movies())
 
     let showsView = ShowsManagerModule.setupModule()
-    let showsPage = ModulePage(page: showsView, title: R.string.localizable.shows())
+    let showsPage = ModulePage(page: showsView, title: Strings.shows())
 
     let appConfigsView = AppStateModule.setupModule()
-    let appConfigsPage = ModulePage(page: appConfigsView, title: R.string.localizable.settings())
+    let appConfigsPage = ModulePage(page: appConfigsView, title: Strings.settings())
 
-    modulePages = [moviesPage, showsPage, appConfigsPage]
+    if buildConfig.debug {
+      let debugPage = ModulePage(page: DebugMenuModule.setupModule(), title: "Debug")
+      modulePages = [moviesPage, showsPage, appConfigsPage, debugPage]
+    } else {
+      modulePages = [moviesPage, showsPage, appConfigsPage]
+    }
   }
 }

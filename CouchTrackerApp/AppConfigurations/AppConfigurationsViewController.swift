@@ -2,6 +2,7 @@ import CouchTrackerCore
 import RxSwift
 
 final class AppStateViewController: UITableViewController {
+  private typealias Strings = CouchTrackerCoreStrings
   private static let defaultCellIdentifier = "DefaultAppConfigCell"
   private let disposeBag = DisposeBag()
   private let presenter: AppStatePresenter
@@ -22,7 +23,7 @@ final class AppStateViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    title = R.string.localizable.settings()
+    title = Strings.settings()
 
     view.backgroundColor = Colors.View.background
     tableView.separatorColor = Colors.View.background

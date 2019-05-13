@@ -1,7 +1,7 @@
-import Cartography
 import CouchTrackerCore
 import Kingfisher
 import RxSwift
+import SnapKit
 
 final class ShowProgressCell: TableViewCell {
   static let identifier = "ShowProgressCell"
@@ -92,19 +92,20 @@ final class ShowProgressCell: TableViewCell {
   }
 
   override func installConstraints() {
-    constrain(labelsStackView, posterImageView) { stack, poster in
-      let margin: CGFloat = 5
+    let margin: CGFloat = 5
 
-      poster.height == poster.superview!.height - (margin * 2)
-      poster.width == poster.height * 0.75
-      poster.left == poster.superview!.left + margin
-      poster.top == poster.superview!.top + margin
-      poster.bottom == poster.superview!.bottom - margin
+    posterImageView.snp.makeConstraints {
+      $0.top.equalToSuperview().offset(margin)
+      $0.bottom.equalToSuperview().inset(margin)
+      $0.left.equalToSuperview().offset(margin)
+      $0.width.equalTo(posterImageView.snp.height).multipliedBy(0.75)
+    }
 
-      stack.left == poster.right + margin
-      stack.top == poster.top
-      stack.bottom == poster.bottom
-      stack.right == stack.superview!.right
+    labelsStackView.snp.makeConstraints {
+      $0.left.equalTo(posterImageView.snp.right).offset(margin)
+      $0.top.equalTo(posterImageView.snp.top)
+      $0.bottom.equalTo(posterImageView.snp.bottom)
+      $0.right.equalToSuperview()
     }
   }
 }

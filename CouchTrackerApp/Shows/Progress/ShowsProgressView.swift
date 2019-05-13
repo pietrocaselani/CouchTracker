@@ -1,4 +1,4 @@
-import Cartography
+import SnapKit
 
 final class ShowsProgressView: View {
   let emptyView = DefaultEmptyView()
@@ -19,15 +19,8 @@ final class ShowsProgressView: View {
   }
 
   override func installConstraints() {
-    constrain(tableView) { table in
-      table.top == table.superview!.top
-      table.left == table.superview!.left
-      table.right == table.superview!.right
-      table.bottom == table.superview!.bottom
-    }
+    tableView.snp.makeConstraints { $0.size.equalToSuperview() }
 
-    constrain(emptyView) { empty in
-      empty.center == empty.superview!.center
-    }
+    emptyView.snp.makeConstraints { $0.center.equalToSuperview() }
   }
 }

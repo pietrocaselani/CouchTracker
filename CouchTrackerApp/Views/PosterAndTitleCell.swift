@@ -1,11 +1,12 @@
-import Cartography
 import CouchTrackerCore
 import Kingfisher
+import SnapKit
 
 public final class PosterAndTitleCell: CollectionViewCell {
   public static let identifier = "PosterAndTitleCell"
   private var imageTask: DownloadTask?
 
+  // swiftlint:disable implicitly_unwrapped_optional
   public var presenter: PosterCellPresenter! {
     didSet {
       imageTask?.cancel()
@@ -13,6 +14,8 @@ public final class PosterAndTitleCell: CollectionViewCell {
       presenter.viewWillAppear()
     }
   }
+
+  // swiftlint:enable implicitly_unwrapped_optional
 
   public override func prepareForReuse() {
     imageTask?.cancel()
@@ -46,10 +49,12 @@ public final class PosterAndTitleCell: CollectionViewCell {
   }
 
   public override func installConstraints() {
-    constrain(stackView, posterImageView, titleLabel) { stack, _, label in
-      stack.size == stack.superview!.size
+    stackView.snp.makeConstraints {
+      $0.edges.equalToSuperview()
+    }
 
-      label.height == label.superview!.height * 0.17
+    titleLabel.snp.makeConstraints {
+      $0.height.equalTo(stackView.snp.height).multipliedBy(0.17)
     }
   }
 }

@@ -3,6 +3,7 @@ import Kingfisher
 import RxSwift
 
 public final class ShowOverviewViewController: UIViewController {
+  private typealias Strings = CouchTrackerCoreStrings
   private let presenter: ShowOverviewPresenter
   private let schedulers: Schedulers
   private let disposeBag = DisposeBag()
@@ -71,13 +72,14 @@ public final class ShowOverviewViewController: UIViewController {
   }
 
   func show(details: ShowEntity) {
-    let firstAired = details.firstAired?.parse() ?? "Unknown".localized
-
+    let firstAired = details.firstAired?.parse() ?? Strings.unknown()
     let genres = details.genres.map { $0.name }.joined(separator: " | ")
+    let status = details.status.map { Strings.showStatus(status: $0) } ?? Strings.unknown()
 
-    showView.titleLabel.text = details.title ?? R.string.localizable.tbA()
-    showView.statusLabel.text = details.status?.rawValue.localized ?? R.string.localizable.unknown()
-    showView.networkLabel.text = details.network ?? R.string.localizable.unknown()
+    showView.titleLabel.text = details.title ?? Strings.toBeAnnounced()
+
+    showView.statusLabel.text = status
+    showView.networkLabel.text = details.network ?? Strings.unknown()
     showView.overviewLabel.text = details.overview
     showView.genresLabel.text = genres
     showView.releaseDateLabel.text = firstAired
@@ -85,11 +87,11 @@ public final class ShowOverviewViewController: UIViewController {
 
   func show(images: ImagesViewModel) {
     if let posterLink = images.posterLink {
-      showView.posterImageView.kf.setImage(with: posterLink.toURL, placeholder: R.image.posterPlacehoder())
+      showView.posterImageView.kf.setImage(with: posterLink.toURL, placeholder: Images.posterPlacehoder())
     }
 
     if let backdropLink = images.backdropLink {
-      showView.backdropImageView.kf.setImage(with: backdropLink.toURL, placeholder: R.image.backdropPlaceholder())
+      showView.backdropImageView.kf.setImage(with: backdropLink.toURL, placeholder: Images.backdropPlaceholder())
     }
   }
 }

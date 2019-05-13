@@ -7,11 +7,11 @@ public struct ModulePage: Hashable {
     self.title = title
   }
 
-  public var hashValue: Int {
-    return title.hashValue
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(title)
   }
 
   public static func == (lhs: ModulePage, rhs: ModulePage) -> Bool {
-    return lhs.hashValue == rhs.hashValue
+    return lhs.title == rhs.title
   }
 }

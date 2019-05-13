@@ -40,6 +40,8 @@ public final class Environment {
     userDefaults = UserDefaults.standard
     let schedulers = DefaultSchedulers.instance
 
+    DefaultBundleProvider.update(userDefaults: userDefaults)
+
     let debug: Bool
 
     let plugins = [PluginType]()

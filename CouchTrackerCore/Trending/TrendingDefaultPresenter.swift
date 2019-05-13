@@ -78,7 +78,7 @@ public final class TrendingDefaultPresenter: TrendingPresenter {
   private func present(viewModels: [PosterViewModel]) {
     guard let view = view else { return }
 
-    guard viewModels.count > 0 else {
+    guard !viewModels.isEmpty else {
       view.showEmptyView()
       return
     }

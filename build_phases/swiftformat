@@ -5,3 +5,4 @@ swiftformat --indent 2 CouchTrackerApp/
 swiftformat --indent 2 CouchTrackerCore/
 swiftformat --indent 2 CouchTrackerCoreTests/
 swiftformat --indent 2 CouchTrackerPersistence/
+swiftformat --indent 2 CouchTrackerDebug/

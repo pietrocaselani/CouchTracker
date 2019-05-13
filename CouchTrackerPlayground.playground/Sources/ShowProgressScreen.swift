@@ -1,3 +1,4 @@
+import PlaygroundSupport
 import UIKit
 
 import CouchTrackerApp
@@ -6,7 +7,7 @@ import TraktSwift
 import TMDBSwift
 import TVDBSwift
 import Kingfisher
-import Cartography
+import SnapKit
 import RxSwift
 
 let posterLinks = [
@@ -41,12 +42,12 @@ private func fetchData() -> [WatchedShowViewModel] {
                          nextEpisode: nil,
                          nextEpisodeDate: "Continuing",
                          status: "The CW - Tue 12:00 AM",
-                         tmdbId: nil),
+                         tmdbId: nil)
   ]
 }
 
 final class ViewDemo: CouchTrackerApp.View {
-  var didTouch: (() -> ())?
+  var didTouch: (() -> Void)?
 
   let button: UIButton = {
     let button = UIButton()
@@ -69,15 +70,15 @@ final class ViewDemo: CouchTrackerApp.View {
   }
 
   override func installConstraints() {
-    constrain(button, tableView) { (button, table) in
-      button.top == button.superview!.top
-      button.left == button.superview!.left
-
-      table.top == button.bottom
-      table.left == table.superview!.left
-      table.right == table.superview!.right
-      table.bottom == table.superview!.bottom
-    }
+//    constrain(button, tableView) { (button, table) in
+//      button.top == button.superview!.top
+//      button.left == button.superview!.left
+//
+//      table.top == button.bottom
+//      table.left == table.superview!.left
+//      table.right == table.superview!.right
+//      table.bottom == table.superview!.bottom
+//    }
   }
 }
 
@@ -129,20 +130,20 @@ final class ShowProgressCellDemo: CouchTrackerApp.TableViewCell {
   }
 
   override func installConstraints() {
-    constrain(labelsStackView, posterImageView) { stack, poster in
-      let margin: CGFloat = 5
-
-      poster.height == poster.superview!.height - (margin * 2)
-      poster.width == poster.height * 0.75
-      poster.left == poster.superview!.left + margin
-      poster.top == poster.superview!.top + margin
-      poster.bottom == poster.superview!.bottom - margin
-
-      stack.left == poster.right + margin
-      stack.top == poster.top
-      stack.bottom == poster.bottom
-      stack.right == stack.superview!.right
-    }
+//    constrain(labelsStackView, posterImageView) { stack, poster in
+//      let margin: CGFloat = 5
+//
+//      poster.height == poster.superview!.height - (margin * 2)
+//      poster.width == poster.height * 0.75
+//      poster.left == poster.superview!.left + margin
+//      poster.top == poster.superview!.top + margin
+//      poster.bottom == poster.superview!.bottom - margin
+//
+//      stack.left == poster.right + margin
+//      stack.top == poster.top
+//      stack.bottom == poster.bottom
+//      stack.right == stack.superview!.right
+//    }
   }
 }
 
