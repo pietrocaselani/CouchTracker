@@ -540,6 +540,8 @@
 		82DAB2C52288D99200421D0F /* CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0F5858203D7A5B00B86CB8 /* CouchTrackerCore.framework */; };
 		82DAB2C72288D9EB00421D0F /* DebugMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DAB2C62288D9EB00421D0F /* DebugMenuViewController.swift */; };
 		82DAB2C82288DF8000421D0F /* CouchTrackerDebug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82DAB2BA2288D93400421D0F /* CouchTrackerDebug.framework */; };
+		82DAB2C92288F9F300421D0F /* CouchTrackerDebug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82DAB2BA2288D93400421D0F /* CouchTrackerDebug.framework */; };
+		82DAB2CA2288FA0200421D0F /* CouchTrackerDebug.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 82DAB2BA2288D93400421D0F /* CouchTrackerDebug.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		82E1DE6321D95B9A006C8EA8 /* AppFlowViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1DE6221D95B9A006C8EA8 /* AppFlowViewState.swift */; };
 		82E1DE6421D95B9C006C8EA8 /* AppFlowViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1DE6221D95B9A006C8EA8 /* AppFlowViewState.swift */; };
 		82E1DE6621D9657A006C8EA8 /* MoviesManagerViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1DE6521D9657A006C8EA8 /* MoviesManagerViewState.swift */; };
@@ -624,6 +626,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				82DAB2CA2288FA0200421D0F /* CouchTrackerDebug.framework in Embed Frameworks */,
 				824A785A220FCC3E0001F3BF /* CouchTrackerPersistence.framework in Embed Frameworks */,
 				820406F521D0032100127F05 /* CouchTrackerApp.framework in Embed Frameworks */,
 				4F2F0FD32040093700A76E95 /* CouchTrackerCore.framework in Embed Frameworks */,
@@ -1094,6 +1097,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82DAB2C92288F9F300421D0F /* CouchTrackerDebug.framework in Frameworks */,
 				824A7859220FCC350001F3BF /* CouchTrackerPersistence.framework in Frameworks */,
 				820406F421D0032100127F05 /* CouchTrackerApp.framework in Frameworks */,
 				4F2F0FD22040093700A76E95 /* CouchTrackerCore.framework in Frameworks */,
