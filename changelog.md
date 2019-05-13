@@ -1,3 +1,11 @@
+# 0.0.1 (36) 
+* Fix CouchTrackerDebug code signing [view commit](http://github.com/pietrocaselani/CouchTracker/commit/42bcc5cb19fa737c98728f56fe074be81992cec8)
+* Add a menu for debugging [view commit](http://github.com/pietrocaselani/CouchTracker/commit/1cbda7025bce7ad7ca34ccab8cc666b6ac12748a)
+* Initial support to change app/content language. R.swift dependency was removed. Closes #188 [view commit](http://github.com/pietrocaselani/CouchTracker/commit/d21b69af6379f7f6fe91401cb10dbc3408c8e6f2)
+* Add "title" labels on movie details screen [view commit](http://github.com/pietrocaselani/CouchTracker/commit/312d0b6450480eba5c74493835f177b5de8d0b55)
+* Makes swiftlint happy [view commit](http://github.com/pietrocaselani/CouchTracker/commit/0d702be922efe3a4a3c1f0d80332149da1c822fe)
+* Change AutoLayout lib from  Cartography to SnapKit [view commit](http://github.com/pietrocaselani/CouchTracker/commit/d15265045a5b99777da6137ce0299054735a364a)
+
 # 0.0.1 (35) 
 * Fix logic to check if changelog file was modified [view commit](http://github.com/pietrocaselani/CouchTracker/commit/6b21aa78d21bbba0a3b92f0b5a4fc19982e1ca07)
 
