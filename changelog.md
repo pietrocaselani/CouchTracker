@@ -1,3 +1,6 @@
+# 0.0.1 (37) 
+* Forgot to embed the new framework - ugh! [view commit](http://github.com/pietrocaselani/CouchTracker/commit/55acb6c8d8d3e5677d6effd47ec7369e094c70a8)
+
 # 0.0.1 (36) 
 * Fix CouchTrackerDebug code signing [view commit](http://github.com/pietrocaselani/CouchTracker/commit/42bcc5cb19fa737c98728f56fe074be81992cec8)
 * Add a menu for debugging [view commit](http://github.com/pietrocaselani/CouchTracker/commit/1cbda7025bce7ad7ca34ccab8cc666b6ac12748a)
