@@ -19,6 +19,11 @@ platform :ios do
          clean: false,
          code_coverage: true,
          output_directory: './reports/')
+    scan(workspace: 'CouchTracker.xcworkspace',
+         scheme: 'TraktSwift',
+         clean: false,
+         code_coverage: true,
+         output_directory: './reports/')
   end
 
   desc 'Run tests and linters'
