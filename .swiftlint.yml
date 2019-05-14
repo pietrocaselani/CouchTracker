@@ -3,6 +3,7 @@ excluded:
   - GeneratedFiles
   - vendor
   - CouchTrackerCoreTests
+  - TraktSwiftTests
   - CouchTrackerPlayground.playground
 
 opt_in_rules:
@@ -24,6 +25,11 @@ opt_in_rules:
 type_name:
   excluded:
     - S # Used for cleaner access to private and static properties
+
+identifier_name:
+  severity: error
+  excluded:
+    - id
 
 yoda_condition:
   severity: error

@@ -1,0 +1,37 @@
+{
+    "aired": 65,
+    "completed": 60,
+    "last_watched_at": "2017-09-21T12:28:21.000Z",
+    "seasons": [
+        {
+            "number": 5,
+            "aired": 13,
+            "completed": 8,
+            "episodes": [
+                {
+                    "number": 1,
+                    "completed": true,
+                    "last_watched_at": "2017-09-18T02:11:57.000Z"
+                },
+                {
+                    "number": 9,
+                    "completed": false,
+                    "last_watched_at": null
+                }
+            ]
+        }
+    ],
+    "hidden_seasons": [],
+    "next_episode": {
+        "season": 5,
+        "number": 9,
+        "title": "IHOP",
+        "ids": {
+            "trakt": 2294865,
+            "tvdb": 5952907,
+            "imdb": "tt6263006",
+            "tmdb": 1264347,
+            "tvrage": 0
+        }
+    }
+}

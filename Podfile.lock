@@ -43,9 +43,6 @@ PODS:
   - TMDB (0.1.0):
     - Moya/RxSwift (= 12.0.1)
     - SwiftLint (= 0.29.2)
-  - Trakt (0.1.0):
-    - Moya/RxSwift (= 12.0.1)
-    - SwiftLint (= 0.29.2)
   - TVDB (0.1.0):
     - Moya/RxSwift (= 12.0.1)
     - SwiftLint (= 0.29.2)
@@ -54,6 +51,7 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.2.0)
   - Bugsnag
   - Kingfisher (= 5.0.1)
+  - Moya/RxSwift (= 12.0.1)
   - Nimble (= 7.3.1)
   - NonEmpty (= 0.1.2)
   - RealmSwift (= 3.7.6)
@@ -65,7 +63,6 @@ DEPENDENCIES:
   - SnapKit (= 5.0.0)
   - Tabman (= 2.1.4)
   - TMDB (from `./vendor/TMDB-Swift`)
-  - Trakt (from `./vendor/Trakt-Swift`)
   - TVDB (from `./vendor/TVDB-Swift`)
 
 SPEC REPOS:
@@ -96,8 +93,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   TMDB:
     :path: "./vendor/TMDB-Swift"
-  Trakt:
-    :path: "./vendor/Trakt-Swift"
   TVDB:
     :path: "./vendor/TVDB-Swift"
 
@@ -125,9 +120,8 @@ SPEC CHECKSUMS:
   SwiftLint: 47df60bdea6e7e902b193b6596db8683aafd86a3
   Tabman: f8a6a1967312077334631d2f67010fe905a545f1
   TMDB: c898c13c09362e35225a92badb51a406b692e844
-  Trakt: 98bf8f1ef173603deff3a4c0eeda818522529bb6
   TVDB: 02147961f77ddc25989b72bff5746e3da78ffb3d
 
-PODFILE CHECKSUM: 0dc12ff98009ddc9f4efd33eb741a7c0459dc07f
+PODFILE CHECKSUM: 141012650d5b6f0d9ce0d68ae925a053316a299d
 
 COCOAPODS: 1.5.3
