@@ -23,7 +23,7 @@ public final class TrendingView: View {
   }
 
   public override func installConstraints() {
-    collectionView.snp.makeConstraints { $0.size.equalToSuperview() }
+    collectionView.snp.makeConstraints { $0.edges.equalToSuperview() }
 
     emptyView.snp.makeConstraints { $0.center.equalToSuperview() }
   }
