@@ -13,3 +13,5 @@ swiftformat --indent 2 CouchTrackerPersistence/
 swiftformat --indent 2 CouchTrackerDebug/
 swiftformat --indent 2 TraktSwift/
 swiftformat --indent 2 TraktSwiftTests/
+swiftformat --indent 2 TMDBSwift/
+swiftformat --indent 2 TMDBSwiftTests/

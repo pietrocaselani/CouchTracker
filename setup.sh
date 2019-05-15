@@ -11,5 +11,4 @@ brew bundle
 sudo pip install lizard
 bundle install --path vendor/bundle
 
-clone_dependency "TMDB-Swift"
 clone_dependency "TVDB-Swift"

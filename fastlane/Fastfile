@@ -14,16 +14,27 @@ platform :ios do
   desc 'Run CouchTrackerCore tests'
   lane :tests do
     pods
-    scan(workspace: 'CouchTracker.xcworkspace',
-         scheme: 'CouchTrackerCore',
-         clean: false,
-         code_coverage: true,
-         output_directory: './reports/')
-    scan(workspace: 'CouchTracker.xcworkspace',
-         scheme: 'TraktSwift',
-         clean: false,
-         code_coverage: true,
-         output_directory: './reports/')
+    scan(
+      workspace: 'CouchTracker.xcworkspace',
+      scheme: 'TMDBSwift',
+      clean: false,
+      code_coverage: true,
+      output_directory: './reports/'
+    )
+    scan(
+      workspace: 'CouchTracker.xcworkspace',
+      scheme: 'TraktSwift',
+      clean: false,
+      code_coverage: true,
+      output_directory: './reports/'
+    )
+    scan(
+      workspace: 'CouchTracker.xcworkspace',
+      scheme: 'CouchTrackerCore',
+      clean: false,
+      code_coverage: true,
+      output_directory: './reports/'
+    )
   end
 
   desc 'Run tests and linters'
