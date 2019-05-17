@@ -1,3 +1,14 @@
+# 0.0.1 (39) 
+* Setup git on the CI - ugh [view commit](http://github.com/pietrocaselani/CouchTracker/commit/6345348e8cbd587fa5e399fb11ba9f724d13fcfe)
+* Disable code signing for TVDBSwiftTestable [view commit](http://github.com/pietrocaselani/CouchTracker/commit/3bf1d35d0cb125351e86399bd7a2c6f45620f435)
+* Move TVDBSwift to CouchTracker repository [view commit](http://github.com/pietrocaselani/CouchTracker/commit/86fc67a02819d7b3855e99dacae27cfa218b778e)
+* Remove JSON and other fixtures files and uses the ones from testable frameworks [view commit](http://github.com/pietrocaselani/CouchTracker/commit/3940de611936e010347474a66c920b9bc1f61330)
+* Add TMDBSwift schemas [view commit](http://github.com/pietrocaselani/CouchTracker/commit/bc4a806d83c627497c02c2bc038fe8f0b2611fe3)
+* Fix bug that make the trending view disappears on scroll [view commit](http://github.com/pietrocaselani/CouchTracker/commit/41724332b4c7577d15649dd1127b4c608f14b024)
+* Move TMDBSwift to CouchTracker repo [view commit](http://github.com/pietrocaselani/CouchTracker/commit/acd4f11f7340f741dd9f9d1a15b404df7d949faa)
+* Run TraktSwift tests on CI [view commit](http://github.com/pietrocaselani/CouchTracker/commit/1ef1ac73957c5ba707097c4df8cb500d684a45cc)
+* Move Trakt-Swift repo to here [view commit](http://github.com/pietrocaselani/CouchTracker/commit/1b142ef15bf7033dc0cb544441beb85a5d173854)
+
 # 0.0.1 (37) 
 * Forgot to embed the new framework - ugh! [view commit](http://github.com/pietrocaselani/CouchTracker/commit/55acb6c8d8d3e5677d6effd47ec7369e094c70a8)
 
