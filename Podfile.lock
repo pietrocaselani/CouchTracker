@@ -36,13 +36,9 @@ PODS:
     - RxAtomic (~> 4.4)
     - RxSwift (~> 4.0)
   - SnapKit (5.0.0)
-  - SwiftLint (0.29.2)
   - Tabman (2.1.4):
     - AutoInsetter (~> 1.5)
     - Pageboy (~> 3.0)
-  - TVDB (0.1.0):
-    - Moya/RxSwift (= 12.0.1)
-    - SwiftLint (= 0.29.2)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (= 2.2.0)
@@ -59,7 +55,6 @@ DEPENDENCIES:
   - RxTest (= 4.4.0)
   - SnapKit (= 5.0.0)
   - Tabman (= 2.1.4)
-  - TVDB (from `./vendor/TVDB-Swift`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -83,12 +78,7 @@ SPEC REPOS:
     - RxSwift
     - RxTest
     - SnapKit
-    - SwiftLint
     - Tabman
-
-EXTERNAL SOURCES:
-  TVDB:
-    :path: "./vendor/TVDB-Swift"
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
@@ -111,10 +101,8 @@ SPEC CHECKSUMS:
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   RxTest: 19d03286bdc0a3aaea5d61d4cde31fdf4bb8a5ba
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
-  SwiftLint: 47df60bdea6e7e902b193b6596db8683aafd86a3
   Tabman: f8a6a1967312077334631d2f67010fe905a545f1
-  TVDB: 02147961f77ddc25989b72bff5746e3da78ffb3d
 
-PODFILE CHECKSUM: a8c0a9b8b009ac68b85ccab1d3e4b2ee5538e455
+PODFILE CHECKSUM: 1eb8619188e1cd337788296be2f00d10f310779f
 
 COCOAPODS: 1.5.3

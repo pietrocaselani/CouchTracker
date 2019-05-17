@@ -133,7 +133,7 @@ final class EpisodeImageCachedRepositoryTest: XCTestCase {
     }
 
     // Then
-    let expectedURL = URL(validURL: "https://www.thetvdb.com/banners/episodes/121361/3254641.jpg")
+    let expectedURL = URL(validURL: "https://www.thetvdb.com/banners/episodes/276564/5634087.jpg")
 
     let expectedEvents = [Recorded.next(200, expectedURL), Recorded.completed(200)]
 

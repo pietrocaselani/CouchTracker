@@ -4,7 +4,9 @@ excluded:
   - vendor
   - CouchTrackerCoreTests
   - TraktSwiftTests
+  - TraktSwiftTestable
   - TMDBSwiftTests
+  - TVDBSwiftTests
   - CouchTrackerPlayground.playground
 
 opt_in_rules:

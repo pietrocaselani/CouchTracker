@@ -11,8 +11,8 @@ def api_pods
 end
 
 def common_pods
+  api_pods
   pod 'NonEmpty', '0.1.2'
-  pod 'TVDB', path: './vendor/TVDB-Swift'
   pod 'RxSwift', RX_SWIFT_VERSION
 end
 
@@ -136,6 +136,30 @@ target 'TMDBSwift-iOS' do
 end
 
 target 'TMDBSwiftTests' do
+  platform :osx, OSX_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  tests_shared_pods
+end
+
+target 'TVDBSwift' do
+  platform :osx, OSX_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  api_pods
+end
+
+target 'TVDBSwift-iOS' do
+  platform :ios, IOS_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  api_pods
+end
+
+target 'TVDBSwiftTests' do
   platform :osx, OSX_VERSION
   use_frameworks!
   inhibit_all_warnings!

@@ -1,31 +1,8 @@
 import CouchTrackerCore
 import TraktSwift
+import TraktSwiftTestable
 
 final class TraktEntitiesMock {
-  static func decodeTraktJSON<T: Codable>(with name: String) -> T {
-    let data = traktDataForJSON(with: name)
-    return try! jsonDecoder.decode(T.self, from: data)
-  }
-
-  static func decodeTraktJSONArray<T: Codable>(with name: String) -> [T] {
-    let data = traktDataForJSON(with: name)
-    return try! jsonDecoder.decode([T].self, from: data)
-  }
-
-  static func traktDataForJSON(with name: String) -> Data {
-    let resourcesPath = Bundle(for: Trakt.self).bundlePath
-
-    let bundle = findBundleUsing(resourcesPath: resourcesPath)
-
-    let url = bundle.url(forResource: name, withExtension: "json")
-
-    guard let fileURL = url, let data = try? Data(contentsOf: fileURL) else {
-      return Data()
-    }
-
-    return data
-  }
-
   static var jsonDecoder: JSONDecoder {
     return JSONDecoder()
   }
@@ -88,8 +65,11 @@ final class TraktEntitiesMock {
   }
 
   static func createUnwatchedMovieDetailsMock() -> Movie {
-    let data = traktDataForJSON(with: "trakt_unwatched_movie_summary")
-    return try! jsonDecoder.decode(Movie.self, from: data)
+    return try! TraktTestableBundle.decode(resource: "trakt_unwatched_movie_summary")!
+  }
+
+  static func endedAndCompletedShow() -> WatchedShowEntity {
+    return try! TraktTestableBundle.decode(resource: "trakt_show_ended_completed")!
   }
 
   static func createMovieDetailsMock() -> Movie {
@@ -102,20 +82,5 @@ final class TraktEntitiesMock {
 
   static func createUserSettingsMock() -> Settings {
     return try! jsonDecoder.decode(Settings.self, from: Users.settings.sampleData)
-  }
-
-  private static func findBundleUsing(resourcesPath: String) -> Bundle {
-    var path = "/../"
-
-    var bundle: Bundle?
-    var attempt = 0
-
-    repeat {
-      bundle = Bundle(path: resourcesPath.appending("\(path)TraktTestsResources.bundle"))
-      path.append("../")
-      attempt += 1
-    } while bundle == nil && attempt < 5
-
-    return bundle!
   }
 }

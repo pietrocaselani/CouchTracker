@@ -4,6 +4,7 @@ default_platform(:ios)
 platform :ios do
   before_all do
     setup_circle_ci
+    pods
   end
 
   desc 'Run bundle exec pod install --repo-update'
@@ -13,28 +14,10 @@ platform :ios do
 
   desc 'Run CouchTrackerCore tests'
   lane :tests do
-    pods
-    scan(
-      workspace: 'CouchTracker.xcworkspace',
-      scheme: 'TMDBSwift',
-      clean: false,
-      code_coverage: true,
-      output_directory: './reports/'
-    )
-    scan(
-      workspace: 'CouchTracker.xcworkspace',
-      scheme: 'TraktSwift',
-      clean: false,
-      code_coverage: true,
-      output_directory: './reports/'
-    )
-    scan(
-      workspace: 'CouchTracker.xcworkspace',
-      scheme: 'CouchTrackerCore',
-      clean: false,
-      code_coverage: true,
-      output_directory: './reports/'
-    )
+    run_tests_for_scheme(scheme: 'TVDBSwift')
+    run_tests_for_scheme(scheme: 'TMDBSwift')
+    run_tests_for_scheme(scheme: 'TraktSwift')
+    run_tests_for_scheme(scheme: 'CouchTrackerCore')
   end
 
   desc 'Run tests and linters'
@@ -63,17 +46,12 @@ platform :ios do
       next
     end
 
-    setup_git_on_ci
-
-    pods
-
     changelog = get_changelog_as_markdown
     test_flight_changelog = get_changelog_clean
 
-    bump_build_number
+    new_build_number = bump_build_number
 
     version_number = get_version_number(target: 'CouchTracker')
-    new_build_number = get_build_number
 
     commit_new_build_number_and_changelog(
       build_number: new_build_number,
@@ -85,24 +63,35 @@ platform :ios do
 
     sh('../scripts/generate_secrets', log: false)
 
+    build_couchtracker_app
+
+    upload_symbols_to_bugsnag
+
+    upload_to_testflight(changelog: test_flight_changelog)
+
+    publish_to_github(
+      build_number: new_build_number,
+      version_number: version_number,
+      changelog: changelog
+    )
+  end
+
+  private_lane :build_couchtracker_app do
     build_ios_app(
       workspace: 'CouchTracker.xcworkspace',
       scheme: 'CouchTracker',
       configuration: 'Release',
       export_method: 'app-store'
     )
+  end
 
-    upload_symbols_to_bugsnag
-
-    upload_to_testflight(
-      changelog: test_flight_changelog,
-      skip_waiting_for_build_processing: false
-    )
-
-    publish_to_github(
-      build_number: new_build_number,
-      version_number: version_number,
-      changelog: changelog
+  private_lane :run_tests_for_scheme do |options|
+    scan(
+      workspace: 'CouchTracker.xcworkspace',
+      scheme: options[:scheme],
+      clean: false,
+      code_coverage: true,
+      output_directory: './reports/'
     )
   end
 
@@ -134,11 +123,12 @@ platform :ios do
     `git log #{tag}...HEAD --no-merges --pretty=format:"#{log_format}"`.chomp ||= ''
   end
 
-  private_lane :bump_build_number do |_options|
+  private_lane :bump_build_number do
     version = get_version_number(target: 'CouchTracker')
     lastest_build = latest_testflight_build_number(version: version)
     new_build_number = lastest_build + 1
     increment_build_number(build_number: new_build_number)
+    new_build_number
   end
 
   private_lane :commit_new_build_number_and_changelog do |options|

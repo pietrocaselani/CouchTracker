@@ -77,7 +77,8 @@ final class ShowEpisodeMocks {
     func addToHistory(items _: SyncItems) -> Single<SyncResponse> {
       addToHistoryInvoked = true
       return Single.deferred { () -> Single<SyncResponse> in
-        let syncResponse: SyncResponse = TraktEntitiesMock.decodeTraktJSON(with: "trakt_sync_addtohistory")
+        let addToHistoryData = Sync.addToHistory(items: SyncItems()).sampleData
+        let syncResponse = try JSONDecoder().decode(SyncResponse.self, from: addToHistoryData)
         return Single.just(syncResponse)
       }
     }
@@ -85,7 +86,8 @@ final class ShowEpisodeMocks {
     func removeFromHistory(items _: SyncItems) -> Single<SyncResponse> {
       removeFromHistoryInvoked = true
       return Single.deferred { () -> Single<SyncResponse> in
-        let syncResponse: SyncResponse = TraktEntitiesMock.decodeTraktJSON(with: "trakt_sync_removefromhistory")
+        let removeFromHistoryData = Sync.removeFromHistory(items: SyncItems()).sampleData
+        let syncResponse = try JSONDecoder().decode(SyncResponse.self, from: removeFromHistoryData)
         return Single.just(syncResponse)
       }
     }

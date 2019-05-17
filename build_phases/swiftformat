@@ -5,13 +5,10 @@ PROJECT_ROOT=$(cd "${SCRIPT_DIR}/.." && pwd)
 
 cd "${PROJECT_ROOT}" || exit 1
 
-swiftformat --indent 2 CouchTracker/
-swiftformat --indent 2 CouchTrackerApp/
-swiftformat --indent 2 CouchTrackerCore/
-swiftformat --indent 2 CouchTrackerCoreTests/
-swiftformat --indent 2 CouchTrackerPersistence/
-swiftformat --indent 2 CouchTrackerDebug/
-swiftformat --indent 2 TraktSwift/
-swiftformat --indent 2 TraktSwiftTests/
-swiftformat --indent 2 TMDBSwift/
-swiftformat --indent 2 TMDBSwiftTests/
+FOLDERS=("CouchTracker/" "CouchTrackerApp/" "CouchTrackerCore/" "CouchTrackerCoreTests/"
+"CouchTrackerPersistence/" "CouchTrackerDebug/" "TraktSwift/" "TraktSwiftTests/"
+"TMDBSwift/" "TMDBSwiftTests/" "TVDBSwift/" "TVDBSwiftTests/")
+
+for folder in ${FOLDERS[*]}; do
+    swiftformat --indent 2 "${folder}"
+done
