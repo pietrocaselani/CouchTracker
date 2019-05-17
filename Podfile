@@ -2,14 +2,17 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 RX_SWIFT_VERSION = '4.4.0'.freeze
 SNAPKIT_VERSION = '5.0.0'.freeze
-OSX_VERSION = '10.11'.freeze
+MOYA_VERSION = '12.0.1'.freeze
+OSX_VERSION = '10.12'.freeze
 IOS_VERSION = '10.0'.freeze
 
+def api_pods
+  pod 'Moya/RxSwift', MOYA_VERSION
+end
+
 def common_pods
+  api_pods
   pod 'NonEmpty', '0.1.2'
-  pod 'Trakt', path: './vendor/Trakt-Swift'
-  pod 'TMDB', path: './vendor/TMDB-Swift'
-  pod 'TVDB', path: './vendor/TVDB-Swift'
   pod 'RxSwift', RX_SWIFT_VERSION
 end
 
@@ -90,4 +93,76 @@ target 'CouchTrackerDebug' do
   inhibit_all_warnings!
 
   pod 'SnapKit', SNAPKIT_VERSION
+end
+
+target 'TraktSwift' do
+  platform :osx, OSX_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  api_pods
+end
+
+target 'TraktSwift-iOS' do
+  platform :ios, IOS_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  api_pods
+end
+
+target 'TraktSwiftTests' do
+  platform :osx, OSX_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  tests_shared_pods
+end
+
+target 'TMDBSwift' do
+  platform :osx, OSX_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  api_pods
+end
+
+target 'TMDBSwift-iOS' do
+  platform :ios, IOS_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  api_pods
+end
+
+target 'TMDBSwiftTests' do
+  platform :osx, OSX_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  tests_shared_pods
+end
+
+target 'TVDBSwift' do
+  platform :osx, OSX_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  api_pods
+end
+
+target 'TVDBSwift-iOS' do
+  platform :ios, IOS_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  api_pods
+end
+
+target 'TVDBSwiftTests' do
+  platform :osx, OSX_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  tests_shared_pods
 end

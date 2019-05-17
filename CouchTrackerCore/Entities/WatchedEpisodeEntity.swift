@@ -1,3 +1,4 @@
+import Foundation
 import TraktSwift
 
 public struct WatchedEpisodeEntity: Hashable, Codable {

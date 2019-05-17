@@ -5,5 +5,7 @@
         <page name='ShowOverviewView'/>
         <page name='ExampleViewController'/>
         <page name='ShowEpisodeView'/>
+        <page name='MovieDetailsView'/>
+        <page name='MovieDetailsViewFunction'/>
     </pages>
 </playground>
