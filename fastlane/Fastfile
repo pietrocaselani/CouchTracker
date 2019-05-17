@@ -46,6 +46,8 @@ platform :ios do
       next
     end
 
+    setup_git_on_ci
+
     changelog = get_changelog_as_markdown
     test_flight_changelog = get_changelog_clean
 
