@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
+SCRIPT_DIR=$(echo "${BASH_SOURCE[0]}" | xargs dirname | xargs -I % sh -c 'cd % && pwd')
+PROJECT_ROOT=$(cd "${SCRIPT_DIR}/.." && pwd)
+
+cd "${PROJECT_ROOT}" || exit 1
+
 if command -v swiftlint >/dev/null; then
-    swiftlint
+    swiftlint --config "${PROJECT_ROOT}/.swiftlint.yml"
 else
     echo "warning: SwiftLint is not installed. Vistit http://github.com/realm/SwiftLint to learn more."
 fi

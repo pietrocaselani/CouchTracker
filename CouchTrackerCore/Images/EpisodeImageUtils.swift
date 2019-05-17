@@ -1,3 +1,4 @@
+import Foundation
 import TVDBSwift
 
 enum EpisodeImageUtils {
@@ -8,7 +9,7 @@ enum EpisodeImageUtils {
   static func cacheKey(episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Int {
     var hasher = Hasher()
     hasher.combine(HashableEpisodeImageInput(episode))
-    size.run { hasher.combine($0) }
+    hasher.combine(size)
     return hasher.finalize()
   }
 }
