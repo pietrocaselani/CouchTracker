@@ -1,3 +1,6 @@
+# 0.0.1 (40) 
+* Add license scan report and status [view commit](http://github.com/pietrocaselani/CouchTracker/commit/87b66e2e587b6779a2b93310cdce40518747b3e0)
+
 # 0.0.1 (39) 
 * Setup git on the CI - ugh [view commit](http://github.com/pietrocaselani/CouchTracker/commit/6345348e8cbd587fa5e399fb11ba9f724d13fcfe)
 * Disable code signing for TVDBSwiftTestable [view commit](http://github.com/pietrocaselani/CouchTracker/commit/3bf1d35d0cb125351e86399bd7a2c6f45620f435)
