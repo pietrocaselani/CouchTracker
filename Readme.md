@@ -7,6 +7,7 @@ Keep track of your favorite movies and tv shows on your iPhone
 [![codecov](https://codecov.io/gh/pietrocaselani/CouchTracker/branch/master/graph/badge.svg)](https://codecov.io/gh/pietrocaselani/CouchTracker)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=io.github.pietrocaselani.couchtracker&metric=alert_status)](https://sonarcloud.io/dashboard?id=io.github.pietrocaselani.couchtracker)
 [![Twitter](https://img.shields.io/badge/twitter-@pietropc-red.svg?style=flat)](https://twitter.com/pietropc_)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpietrocaselani%2FCouchTracker.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpietrocaselani%2FCouchTracker?ref=badge_shield)
 
 ## Setup for development
 
@@ -59,3 +60,7 @@ The project is split into a few frameworks
 * `CouchTrackerApp`: Here you will find all the code related to UI and dependent on UIKit, so things like Views, ViewControllers. It's possible to import this framework into `CouchTrackerPlayground.playground` to see a preview of screens since the use of storyboards is being avoided.
 
 * `CouchTracker`: It's the app itself. You will only find the `AppDelegate` here.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpietrocaselani%2FCouchTracker.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpietrocaselani%2FCouchTracker?ref=badge_large)
