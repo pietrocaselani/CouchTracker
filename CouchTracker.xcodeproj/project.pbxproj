@@ -677,6 +677,7 @@
 		8256B0822280CFE1005BF35F /* Bundle+CouchTrackerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8256B0802280CFE1005BF35F /* Bundle+CouchTrackerCore.swift */; };
 		8256B0832280D18F005BF35F /* CouchTrackerCore.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8256B0862280D18F005BF35F /* CouchTrackerCore.strings */; };
 		8256B0842280D18F005BF35F /* CouchTrackerCore.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8256B0862280D18F005BF35F /* CouchTrackerCore.strings */; };
+		825798012290716F000D7E79 /* TVDBSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 82EB32C9228CE000009A7C73 /* TVDBSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		826041B52207E00A00089CDD /* UserDefaultsAppStateDataHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826041B42207E00A00089CDD /* UserDefaultsAppStateDataHolder.swift */; };
 		826041B62207E00A00089CDD /* UserDefaultsAppStateDataHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826041B42207E00A00089CDD /* UserDefaultsAppStateDataHolder.swift */; };
 		82609F0F21D870C90038EB29 /* ViewCalculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82609F0E21D870C90038EB29 /* ViewCalculations.swift */; };
@@ -917,6 +918,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				825798012290716F000D7E79 /* TVDBSwift.framework in Embed Frameworks */,
 				82299E20228C532E00B791F7 /* TMDBSwift.framework in Embed Frameworks */,
 				82DAB2CA2288FA0200421D0F /* CouchTrackerDebug.framework in Embed Frameworks */,
 				824A785A220FCC3E0001F3BF /* CouchTrackerPersistence.framework in Embed Frameworks */,
