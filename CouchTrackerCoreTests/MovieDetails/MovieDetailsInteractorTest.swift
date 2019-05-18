@@ -52,7 +52,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<ImagesEntity>>] = [completed(0)]
+    let events: [Recorded<Event<ImagesEntity>>] = [Recorded.completed(0)]
 
     XCTAssertEqual(imagesObserver.events, events)
   }
@@ -97,7 +97,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<MovieEntity>>] = [completed(0)]
+    let events: [Recorded<Event<MovieEntity>>] = [Recorded.completed(0)]
 
     XCTAssertEqual(observer.events, events)
   }
@@ -164,7 +164,7 @@ final class MovieDetailsInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<MovieEntity>>] = [error(0, connectionError)]
+    let events: [Recorded<Event<MovieEntity>>] = [Recorded.error(0, connectionError)]
 
     XCTAssertEqual(observer.events, events)
 
