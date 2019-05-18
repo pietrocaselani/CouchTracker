@@ -1,10 +1,11 @@
 @testable import CouchTrackerCore
 import RxTest
 import TMDBSwift
+import TMDBSwiftTestable
 import XCTest
 
 final class ConfigurationCachedRepositoryTests: XCTestCase {
-  func testConfigurationCachedRepository_fetchFromCache_whenCacheIsAvailable() {
+  func testConfigurationCachedRepository_fetchFromCache_whenCacheIsAvailable() throws {
     // Given
     let tmdb = TMDBProviderMock()
     let repository = ConfigurationCachedRepository(tmdbProvider: tmdb)
@@ -15,7 +16,8 @@ final class ConfigurationCachedRepositoryTests: XCTestCase {
     let observer2 = scheduler.start { repository.fetchConfiguration() }
 
     // Then
-    let mockConfig = Configuration.mockDefaultConfiguration()
+    let mockConfig: Configuration = try TMDBTestableBundle.decode(resource: "tmdb_configuration")
+
     let expectedEvents1 = [Recorded.next(200, mockConfig),
                            Recorded.completed(200)]
     let expectedEvents2 = [Recorded.next(1000, mockConfig),
