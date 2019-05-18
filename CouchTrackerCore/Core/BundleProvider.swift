@@ -53,7 +53,7 @@ public final class DefaultBundleProvider: BundleProvider, LanguageProvider {
   private static func languageBundleName(for language: SupportedLanguages) -> String {
     switch language {
     case .englishUS: return "en"
-    case .portugueseBrazil: return "pt-BR"
+    case .portugueseBR: return "pt-BR"
     }
   }
 }

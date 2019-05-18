@@ -18,9 +18,9 @@ final class DatePresentableTests: XCTestCase {
   }
 
   func testDatePresentable_inPortugueseBrazil() {
-    DefaultBundleProvider.update(language: .portugueseBrazil)
+    DefaultBundleProvider.update(language: .portugueseBR)
 
-    XCTAssertEqual(DefaultBundleProvider.instance.currentLanguage, .portugueseBrazil)
+    XCTAssertEqual(DefaultBundleProvider.instance.currentLanguage, .portugueseBR)
 
     let date = Date(timeIntervalSince1970: 1_557_187_200) //		2019-05-07 00:00:00 +0000
     let expectedString = "06 de maio"

@@ -35,8 +35,38 @@ public final class Environment {
     return UserDefaultsAppStateDataHolder.currentAppConfig(userDefaults)
   }
 
+  init(trakt: TraktProvider, tmdb: TMDBProvider, tvdb: TVDBProvider,
+       schedulers: Schedulers, realmProvider: RealmProvider, buildConfig: BuildConfig,
+       appStateManager: AppStateManager, showsSynchronizer: WatchedShowsSynchronizer,
+       showSynchronizer: WatchedShowSynchronizer, watchedShowEntitiesObservable: WatchedShowEntitiesObservable,
+       watchedShowEntityObserable: WatchedShowEntityObserable, userDefaults: UserDefaults,
+       genreRepository: GenreRepository, imageRepository: ImageRepository,
+       configurationRepository: ConfigurationCachedRepository,
+       movieImageRepository: MovieImageCachedRepository, showImageRepository: ShowImageCachedRepository,
+       episodeImageRepository: EpisodeImageCachedRepository, syncStateObservable: SyncStateObservable) {
+    self.trakt = trakt
+    self.tmdb = tmdb
+    self.tvdb = tvdb
+    self.schedulers = schedulers
+    self.realmProvider = realmProvider
+    self.buildConfig = buildConfig
+    self.appStateManager = appStateManager
+    self.showsSynchronizer = showsSynchronizer
+    self.showSynchronizer = showSynchronizer
+    self.watchedShowEntitiesObservable = watchedShowEntitiesObservable
+    self.watchedShowEntityObserable = watchedShowEntityObserable
+    self.userDefaults = userDefaults
+    self.genreRepository = genreRepository
+    self.imageRepository = imageRepository
+    self.configurationRepository = configurationRepository
+    self.movieImageRepository = movieImageRepository
+    self.showImageRepository = showImageRepository
+    self.episodeImageRepository = episodeImageRepository
+    self.syncStateObservable = syncStateObservable
+  }
+
   // swiftlint:disable function_body_length
-  private init() {
+  init() {
     userDefaults = UserDefaults.standard
     let schedulers = DefaultSchedulers.instance
 

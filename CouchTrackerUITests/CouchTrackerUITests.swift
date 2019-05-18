@@ -1,14 +1,6 @@
-//
-//  TVDBSwiftTests.swift
-//  TVDBSwiftTests
-//
-//  Created by Pietro Caselani on 15/05/19.
-//  Copyright © 2019 Pietro Caselani. All rights reserved.
-//
-
 import XCTest
 
-class TVDBSwiftTests: XCTestCase {
+class CouchTrackerUITests: XCTestCase {
   override func setUp() {
     // Put setup code here. This method is called before the invocation of each test method in the class.
   }
