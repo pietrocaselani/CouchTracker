@@ -1,3 +1,12 @@
+# 0.0.1 (42) 
+* Embed missing framework [view commit](http://github.com/pietrocaselani/CouchTracker/commit/d83a059b1101589a303f1ce1f7836213f21680c4)
+
+# 0.0.1 (41) 
+* Fix the UI test to handle the alert view controller [view commit](http://github.com/pietrocaselani/CouchTracker/commit/2b9abf88c9e49ba2e316b960aaf8d43a92677f5c)
+* Create a fake API key instead an empty string [view commit](http://github.com/pietrocaselani/CouchTracker/commit/2fd9db1103fc6413f8b7afc2b9c3e57830cf3cca)
+* Generates the secrets file before tests start [view commit](http://github.com/pietrocaselani/CouchTracker/commit/016a1341421c3990aeea8e287e8bae0cccfde2e0)
+* Create a simple UI test using KIF to ensure the app always starts ok [view commit](http://github.com/pietrocaselani/CouchTracker/commit/3979a833bcf567c03cb581eb70e3973094bf409d)
+
 # 0.0.1 (40) 
 * Add license scan report and status [view commit](http://github.com/pietrocaselani/CouchTracker/commit/87b66e2e587b6779a2b93310cdce40518747b3e0)
 
