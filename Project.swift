@@ -45,11 +45,12 @@ enum CouchTracker {
   private static func settings() -> Settings {
     let debug = [
       "PROVISIONING_PROFILE_SPECIFIER": "match Development io.github.pietrocaselani.couchtracker",
-      "OTHER_SWIFT_FLAGS": "-Xfrontend -warn-long-expression-type-checking=100 -Xfrontend -warn-long-function-bodies=100",
+      "OTHER_SWIFT_FLAGS": "$(inherited) -D COCOAPODS -D DEBUG -Xfrontend -warn-long-expression-type-checking=100 -Xfrontend -warn-long-function-bodies=100",
     ] + iOSBaseSettings() + debugCodeSigning()
 
     let release = [
       "PROVISIONING_PROFILE_SPECIFIER": "match AppStore io.github.pietrocaselani.couchtracker",
+      "OTHER_SWIFT_FLAGS": "$(inherited) -D COCOAPODS"
     ] + iOSBaseSettings() + releaseCodeSigning()
 
     return Settings(debug: debug.asConfig(), release: release.asConfig())
@@ -489,7 +490,7 @@ enum CouchTrackerUITests {
 
   static func target() -> Target {
     return Target(name: CouchTrackerUITests.name,
-                  platform: .macOS,
+                  platform: .iOS,
                   product: .unitTests,
                   bundleId: "\(baseBundleId).CouchTrackerUITests",
                   infoPlist: "CouchTrackerUITests/Info.plist",
