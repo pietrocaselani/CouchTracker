@@ -3,6 +3,8 @@ excluded:
   - GeneratedFiles
   - vendor
   - CouchTrackerCoreTests
+  - CouchTrackerUITests
+  - CouchTrackerAppTestable
   - TraktSwiftTests
   - TraktSwiftTestable
   - TMDBSwiftTests

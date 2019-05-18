@@ -18,6 +18,7 @@ platform :ios do
     run_tests_for_scheme(scheme: 'TMDBSwift')
     run_tests_for_scheme(scheme: 'TraktSwift')
     run_tests_for_scheme(scheme: 'CouchTrackerCore')
+    run_tests_for_scheme(scheme: 'CouchTracker')
   end
 
   desc 'Run tests and linters'

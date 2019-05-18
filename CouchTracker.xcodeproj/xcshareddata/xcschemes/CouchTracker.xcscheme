@@ -29,6 +29,16 @@
       codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "827BC4A3228E615000459ECD"
+               BuildableName = "CouchTrackerUITests.xctest"
+               BlueprintName = "CouchTrackerUITests"
+               ReferencedContainer = "container:CouchTracker.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

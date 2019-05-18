@@ -37,6 +37,10 @@ def tests_shared_pods
   pod 'Nimble', '7.3.1'
 end
 
+def ui_tests_pods
+  pod 'KIF', '3.7.7', configurations: ['Debug']
+end
+
 target 'CouchTrackerCore' do
   platform :osx, OSX_VERSION
   use_frameworks!
@@ -71,6 +75,14 @@ target 'CouchTrackerApp' do
   persistence_pods
 end
 
+target 'CouchTrackerAppTestable' do
+  platform :ios, IOS_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  ui_tests_pods
+end
+
 target 'CouchTrackerPersistence' do
   platform :ios, IOS_VERSION
   use_frameworks!
@@ -85,6 +97,14 @@ target 'CouchTracker' do
   inhibit_all_warnings!
 
   ios_pods
+end
+
+target 'CouchTrackerUITests' do
+  platform :ios, IOS_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  ui_tests_pods
 end
 
 target 'CouchTrackerDebug' do

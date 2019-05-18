@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04975698847910FE7EB1A484 /* Pods_CouchTrackerAppTestable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F8CEE229DDE3F0B9D76171 /* Pods_CouchTrackerAppTestable.framework */; };
 		0E3D78B4DD99EB9E8D0E5250 /* Pods_TVDBSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF95DE2F0EA04DDD99B85921 /* Pods_TVDBSwift.framework */; };
 		1AF8AA218E15D2A7EED4333B /* Pods_CouchTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5F58F15DBD163FD6F77015 /* Pods_CouchTrackerCore.framework */; };
 		1B3038AE3A9455960DCE663E /* Pods_TVDBSwift_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FFD41277FD440AFE4CFE28E /* Pods_TVDBSwift_iOS.framework */; };
@@ -681,6 +682,12 @@
 		82609F0F21D870C90038EB29 /* ViewCalculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82609F0E21D870C90038EB29 /* ViewCalculations.swift */; };
 		826F9A0C21D9B02F001A4E05 /* ShowEpisodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826F9A0B21D9B02F001A4E05 /* ShowEpisodeView.swift */; };
 		827058C0227E447B0020CCA6 /* ScrollableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827058BF227E447B0020CCA6 /* ScrollableStackView.swift */; };
+		827BC4AF228E62B900459ECD /* AppStartupEnglishUSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BC4AE228E62B900459ECD /* AppStartupEnglishUSTests.swift */; };
+		827BC4B5228E69CE00459ECD /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BC4B4228E69CE00459ECD /* AppEnvironment.swift */; };
+		827BC4BF228E6C7700459ECD /* CouchTrackerAppTestable.h in Headers */ = {isa = PBXBuildFile; fileRef = 827BC4BD228E6C7700459ECD /* CouchTrackerAppTestable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		827BC4C3228E6D2A00459ECD /* AppEnvironmentMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BC4B2228E684600459ECD /* AppEnvironmentMock.swift */; };
+		827BC4C4228E6D2A00459ECD /* KIFExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BC4B0228E65FF00459ECD /* KIFExtensions.swift */; };
+		827BC4C5228E6D6500459ECD /* CouchTrackerAppTestable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 827BC4BB228E6C7700459ECD /* CouchTrackerAppTestable.framework */; };
 		827BCD3D20EFF3F60080B242 /* ShowOverviewViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */; };
 		827BCD3E20EFF3F60080B242 /* ShowOverviewViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */; };
 		827BCD4020EFF5C30080B242 /* ShowOverviewImagesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827BCD3F20EFF5C30080B242 /* ShowOverviewImagesState.swift */; };
@@ -797,7 +804,6 @@
 		82EB3310228CE359009A7C73 /* tvdb_login.json in Resources */ = {isa = PBXBuildFile; fileRef = 82EB330D228CE358009A7C73 /* tvdb_login.json */; };
 		82EB3311228CE359009A7C73 /* tvdb_episodes.json in Resources */ = {isa = PBXBuildFile; fileRef = 82EB330E228CE358009A7C73 /* tvdb_episodes.json */; };
 		82EB3312228CE359009A7C73 /* tvdb_refreshtoken.json in Resources */ = {isa = PBXBuildFile; fileRef = 82EB330F228CE358009A7C73 /* tvdb_refreshtoken.json */; };
-		82EB331A228CE3F0009A7C73 /* TVDBSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EB3319228CE3F0009A7C73 /* TVDBSwiftTests.swift */; };
 		82EB331C228CE3F0009A7C73 /* TVDBSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82EB32AD228CDFEC009A7C73 /* TVDBSwift.framework */; };
 		82EB3323228CE449009A7C73 /* TVDBTestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EB3322228CE449009A7C73 /* TVDBTestable.swift */; };
 		82EB3328228CE45C009A7C73 /* TVDBTokenRequestInterceptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EB3324228CE45B009A7C73 /* TVDBTokenRequestInterceptorTests.swift */; };
@@ -816,6 +822,7 @@
 		B7F998098A1862316EE8A721 /* Pods_CouchTrackerDebug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398169DD83B2D55265CD632C /* Pods_CouchTrackerDebug.framework */; };
 		BC3D7B46DB0279C741E940F9 /* Pods_TMDBSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9387624EC69203AEDF086257 /* Pods_TMDBSwiftTests.framework */; };
 		C83C3721EDB6ABFACF9F09B6 /* Pods_TraktSwift_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEEDB75C3BA1C07814B2D876 /* Pods_TraktSwift_iOS.framework */; };
+		CD05B7B652CD3D7077AB3D00 /* Pods_CouchTrackerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE20BC01125C4F57276C8B4F /* Pods_CouchTrackerUITests.framework */; };
 		D44F238E7A49FA425C924714 /* Pods_TMDBSwift_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EF8A30F5D2FFCAB7D3504A /* Pods_TMDBSwift_iOS.framework */; };
 		DA916128F7A8B555684FFE3E /* Pods_CouchTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F801FA3133789ACF78637C /* Pods_CouchTracker.framework */; };
 		DF30110BDD6DE3CD2E358CB4 /* MoviesManagerMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32DD5EA6CF4B9E5350531C /* MoviesManagerMocks.swift */; };
@@ -886,6 +893,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 824A781D220F5C290001F3BF;
 			remoteInfo = CouchTrackerPersistence;
+		};
+		827BC4A9228E615100459ECD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 647632311F44824900F277F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 647632381F44824900F277F1;
+			remoteInfo = CouchTracker;
 		};
 		82EB331D228CE3F0009A7C73 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -967,6 +981,8 @@
 		078F9F91EC6ACBAB78C262F4 /* Pods-CouchTrackerPersistence.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerPersistence.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerPersistence/Pods-CouchTrackerPersistence.release.xcconfig"; sourceTree = "<group>"; };
 		0C1671BB3EF9C5FD640DE514 /* Pods_TMDBSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TMDBSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E0E2218CA681061E8990F83 /* Pods-TVDBSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVDBSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TVDBSwift/Pods-TVDBSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		14F8CEE229DDE3F0B9D76171 /* Pods_CouchTrackerAppTestable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerAppTestable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		15238F1812AC157501377E0A /* Pods-CouchTrackerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerUITests/Pods-CouchTrackerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		15A02267B36B2F5739DE07F9 /* Pods-TVDBSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVDBSwiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TVDBSwiftTests/Pods-TVDBSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
 		1BE8E89BC19B040BC97AB31A /* Pods_TraktSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraktSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D8384700ADF9873D8688801 /* Pods-CouchTrackerCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerCore/Pods-CouchTrackerCore.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1078,6 +1094,7 @@
 		4FFA6B2120EB1983008E0B78 /* ShowOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowOverviewViewController.swift; sourceTree = "<group>"; };
 		4FFA6B2220EB1983008E0B78 /* ShowOverviewModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowOverviewModule.swift; sourceTree = "<group>"; };
 		4FFD41277FD440AFE4CFE28E /* Pods_TVDBSwift_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TVDBSwift_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		53AC7285399754F284FD180B /* Pods-CouchTrackerAppTestable.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerAppTestable.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerAppTestable/Pods-CouchTrackerAppTestable.release.xcconfig"; sourceTree = "<group>"; };
 		5807C6AF81E9E26A70390D36 /* Pods-TVDBSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVDBSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-TVDBSwift/Pods-TVDBSwift.release.xcconfig"; sourceTree = "<group>"; };
 		593773791DBA0A150C0B4B02 /* Pods-CouchTrackerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerApp/Pods-CouchTrackerApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5D6EAE0E7BCD1A275528B87F /* Pods-CouchTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTracker/Pods-CouchTracker.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1448,6 +1465,15 @@
 		82609F0E21D870C90038EB29 /* ViewCalculations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCalculations.swift; sourceTree = "<group>"; };
 		826F9A0B21D9B02F001A4E05 /* ShowEpisodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEpisodeView.swift; sourceTree = "<group>"; };
 		827058BF227E447B0020CCA6 /* ScrollableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableStackView.swift; sourceTree = "<group>"; };
+		827BC4A4228E615000459ECD /* CouchTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CouchTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		827BC4A8228E615100459ECD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		827BC4AE228E62B900459ECD /* AppStartupEnglishUSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStartupEnglishUSTests.swift; sourceTree = "<group>"; };
+		827BC4B0228E65FF00459ECD /* KIFExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KIFExtensions.swift; sourceTree = "<group>"; };
+		827BC4B2228E684600459ECD /* AppEnvironmentMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironmentMock.swift; sourceTree = "<group>"; };
+		827BC4B4228E69CE00459ECD /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		827BC4BB228E6C7700459ECD /* CouchTrackerAppTestable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CouchTrackerAppTestable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		827BC4BD228E6C7700459ECD /* CouchTrackerAppTestable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CouchTrackerAppTestable.h; sourceTree = "<group>"; };
+		827BC4BE228E6C7700459ECD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		827BCD3C20EFF3F60080B242 /* ShowOverviewViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOverviewViewState.swift; sourceTree = "<group>"; };
 		827BCD3F20EFF5C30080B242 /* ShowOverviewImagesState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowOverviewImagesState.swift; sourceTree = "<group>"; };
 		827EB7A221DBE2C700B02001 /* SearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchState.swift; sourceTree = "<group>"; };
@@ -1523,7 +1549,6 @@
 		82EB330E228CE358009A7C73 /* tvdb_episodes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tvdb_episodes.json; sourceTree = "<group>"; };
 		82EB330F228CE358009A7C73 /* tvdb_refreshtoken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tvdb_refreshtoken.json; sourceTree = "<group>"; };
 		82EB3317228CE3F0009A7C73 /* TVDBSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVDBSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		82EB3319228CE3F0009A7C73 /* TVDBSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDBSwiftTests.swift; sourceTree = "<group>"; };
 		82EB331B228CE3F0009A7C73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82EB3322228CE449009A7C73 /* TVDBTestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVDBTestable.swift; sourceTree = "<group>"; };
 		82EB3324228CE45B009A7C73 /* TVDBTokenRequestInterceptorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVDBTokenRequestInterceptorTests.swift; sourceTree = "<group>"; };
@@ -1554,6 +1579,9 @@
 		EAC4758F955CE7FB43AA4A2B /* Pods-CouchTrackerCore-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerCore-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerCore-iOS/Pods-CouchTrackerCore-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		EB06504837EC23088A95F02D /* Pods-TMDBSwift-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMDBSwift-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TMDBSwift-iOS/Pods-TMDBSwift-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		F1CE680FC228FDD58A047F99 /* Pods-TVDBSwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVDBSwiftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TVDBSwiftTests/Pods-TVDBSwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F59AFF83001C2EAAA012CD66 /* Pods-CouchTrackerAppTestable.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerAppTestable.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerAppTestable/Pods-CouchTrackerAppTestable.debug.xcconfig"; sourceTree = "<group>"; };
+		FC6A72A97AD927274138658E /* Pods-CouchTrackerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchTrackerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchTrackerUITests/Pods-CouchTrackerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		FE20BC01125C4F57276C8B4F /* Pods_CouchTrackerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchTrackerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1694,6 +1722,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		827BC4A1228E615000459ECD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				827BC4C5228E6D6500459ECD /* CouchTrackerAppTestable.framework in Frameworks */,
+				CD05B7B652CD3D7077AB3D00 /* Pods_CouchTrackerUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		827BC4B8228E6C7700459ECD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04975698847910FE7EB1A484 /* Pods_CouchTrackerAppTestable.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		82DAB2B72288D93400421D0F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1759,6 +1804,8 @@
 				CF95DE2F0EA04DDD99B85921 /* Pods_TVDBSwift.framework */,
 				4FFD41277FD440AFE4CFE28E /* Pods_TVDBSwift_iOS.framework */,
 				6DBEDC60CF83CA0D61DE98C2 /* Pods_TVDBSwiftTests.framework */,
+				FE20BC01125C4F57276C8B4F /* Pods_CouchTrackerUITests.framework */,
+				14F8CEE229DDE3F0B9D76171 /* Pods_CouchTrackerAppTestable.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1798,6 +1845,10 @@
 				66FDE18F182D7424DF7C088A /* Pods-TVDBSwift-iOS.release.xcconfig */,
 				F1CE680FC228FDD58A047F99 /* Pods-TVDBSwiftTests.debug.xcconfig */,
 				15A02267B36B2F5739DE07F9 /* Pods-TVDBSwiftTests.release.xcconfig */,
+				15238F1812AC157501377E0A /* Pods-CouchTrackerUITests.debug.xcconfig */,
+				FC6A72A97AD927274138658E /* Pods-CouchTrackerUITests.release.xcconfig */,
+				F59AFF83001C2EAAA012CD66 /* Pods-CouchTrackerAppTestable.debug.xcconfig */,
+				53AC7285399754F284FD180B /* Pods-CouchTrackerAppTestable.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -2520,6 +2571,8 @@
 			children = (
 				8204074121D042BF00127F05 /* CouchTrackerPlayground.playground */,
 				6476323B1F44824900F277F1 /* CouchTracker */,
+				827BC4A5228E615100459ECD /* CouchTrackerUITests */,
+				827BC4BC228E6C7700459ECD /* CouchTrackerAppTestable */,
 				820406EE21D0032100127F05 /* CouchTrackerApp */,
 				4F0F56FD203D5F4C00B86CB8 /* CouchTrackerCore */,
 				4F0F5859203D7A5B00B86CB8 /* CouchTrackerCore-iOS */,
@@ -2569,6 +2622,8 @@
 				82EB32C9228CE000009A7C73 /* TVDBSwift.framework */,
 				82EB3304228CE33C009A7C73 /* TVDBSwiftTestable.framework */,
 				82EB3317228CE3F0009A7C73 /* TVDBSwiftTests.xctest */,
+				827BC4A4228E615000459ECD /* CouchTrackerUITests.xctest */,
+				827BC4BB228E6C7700459ECD /* CouchTrackerAppTestable.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2756,6 +2811,7 @@
 			isa = PBXGroup;
 			children = (
 				644BF5051F6B07AF0010CE35 /* AppConfigurations */,
+				827BC4B4228E69CE00459ECD /* AppEnvironment.swift */,
 				64CC08851F7171E7004D164A /* AppFlow */,
 				822A02FB21D2350600440AF8 /* Core */,
 				820406EF21D0032100127F05 /* CouchTrackerApp.h */,
@@ -3173,6 +3229,26 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
+		827BC4A5228E615100459ECD /* CouchTrackerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				827BC4A8228E615100459ECD /* Info.plist */,
+				827BC4AE228E62B900459ECD /* AppStartupEnglishUSTests.swift */,
+			);
+			path = CouchTrackerUITests;
+			sourceTree = "<group>";
+		};
+		827BC4BC228E6C7700459ECD /* CouchTrackerAppTestable */ = {
+			isa = PBXGroup;
+			children = (
+				827BC4B0228E65FF00459ECD /* KIFExtensions.swift */,
+				827BC4B2228E684600459ECD /* AppEnvironmentMock.swift */,
+				827BC4BD228E6C7700459ECD /* CouchTrackerAppTestable.h */,
+				827BC4BE228E6C7700459ECD /* Info.plist */,
+			);
+			path = CouchTrackerAppTestable;
+			sourceTree = "<group>";
+		};
 		82836E94218EA8670037A798 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
@@ -3337,7 +3413,6 @@
 				82EB3327228CE45C009A7C73 /* FatalErrorExpectation.swift */,
 				82EB331B228CE3F0009A7C73 /* Info.plist */,
 				82EB3326228CE45C009A7C73 /* TestableDateProvider.swift */,
-				82EB3319228CE3F0009A7C73 /* TVDBSwiftTests.swift */,
 				82EB3322228CE449009A7C73 /* TVDBTestable.swift */,
 				82EB3325228CE45B009A7C73 /* TVDBTests.swift */,
 				82EB3324228CE45B009A7C73 /* TVDBTokenRequestInterceptorTests.swift */,
@@ -3443,6 +3518,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				824A7822220F5C290001F3BF /* CouchTrackerPersistence.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		827BC4B6228E6C7700459ECD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				827BC4BF228E6C7700459ECD /* CouchTrackerAppTestable.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3765,6 +3848,45 @@
 			productReference = 824A781E220F5C290001F3BF /* CouchTrackerPersistence.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		827BC4A3228E615000459ECD /* CouchTrackerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 827BC4AD228E615100459ECD /* Build configuration list for PBXNativeTarget "CouchTrackerUITests" */;
+			buildPhases = (
+				6EBD82D095FB60C01F7FD17A /* [CP] Check Pods Manifest.lock */,
+				827BC4A0228E615000459ECD /* Sources */,
+				827BC4A1228E615000459ECD /* Frameworks */,
+				827BC4A2228E615000459ECD /* Resources */,
+				1B17B30CC8B08A78668F368C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				827BC4AA228E615100459ECD /* PBXTargetDependency */,
+			);
+			name = CouchTrackerUITests;
+			productName = CouchTrackerUITests;
+			productReference = 827BC4A4228E615000459ECD /* CouchTrackerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		827BC4BA228E6C7700459ECD /* CouchTrackerAppTestable */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 827BC4C0228E6C7700459ECD /* Build configuration list for PBXNativeTarget "CouchTrackerAppTestable" */;
+			buildPhases = (
+				8C5544122DCC5FF63568CF88 /* [CP] Check Pods Manifest.lock */,
+				827BC4B6228E6C7700459ECD /* Headers */,
+				827BC4B7228E6C7700459ECD /* Sources */,
+				827BC4B8228E6C7700459ECD /* Frameworks */,
+				827BC4B9228E6C7700459ECD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CouchTrackerAppTestable;
+			productName = CouchTrackerAppTestable;
+			productReference = 827BC4BB228E6C7700459ECD /* CouchTrackerAppTestable.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		82DAB2B92288D93400421D0F /* CouchTrackerDebug */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 82DAB2C12288D93500421D0F /* Build configuration list for PBXNativeTarget "CouchTrackerDebug" */;
@@ -3947,6 +4069,15 @@
 						DevelopmentTeam = B5RPM7SE3L;
 						ProvisioningStyle = Manual;
 					};
+					827BC4A3228E615000459ECD = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Manual;
+						TestTargetID = 647632381F44824900F277F1;
+					};
+					827BC4BA228E6C7700459ECD = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Manual;
+					};
 					82DAB2B92288D93400421D0F = {
 						CreatedOnToolsVersion = 10.1;
 						DevelopmentTeam = B5RPM7SE3L;
@@ -3989,7 +4120,9 @@
 			projectRoot = "";
 			targets = (
 				647632381F44824900F277F1 /* CouchTracker */,
+				827BC4A3228E615000459ECD /* CouchTrackerUITests */,
 				820406EC21D0032000127F05 /* CouchTrackerApp */,
+				827BC4BA228E6C7700459ECD /* CouchTrackerAppTestable */,
 				824A781D220F5C290001F3BF /* CouchTrackerPersistence */,
 				4F0F56FB203D5F4C00B86CB8 /* CouchTrackerCore */,
 				4F0F5857203D7A5B00B86CB8 /* CouchTrackerCore-iOS */,
@@ -4138,6 +4271,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		824A781C220F5C290001F3BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		827BC4A2228E615000459ECD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		827BC4B9228E6C7700459ECD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -4303,6 +4450,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1B17B30CC8B08A78668F368C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerUITests/Pods-CouchTrackerUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/KIF/KIF.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KIF.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchTrackerUITests/Pods-CouchTrackerUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		21B0699572264609EBA6ACE4 /* [CP] Embed Pods Frameworks */ = {
@@ -4609,6 +4778,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6EBD82D095FB60C01F7FD17A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CouchTrackerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6F66972414C3A3F0571074D7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4782,6 +4973,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "$SRCROOT/build_phases/swiftformat\n";
+		};
+		8C5544122DCC5FF63568CF88 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CouchTrackerAppTestable-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 		9C6F0D2340CF87135C62A2BE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -5362,6 +5575,7 @@
 				8204072C21D0049F00127F05 /* TraktLoginModule.swift in Sources */,
 				824A784A220F63560001F3BF /* CouchTrackerPersistenceExtensions.swift in Sources */,
 				8226D9E921D71719007BB979 /* Colors.swift in Sources */,
+				827BC4B5228E69CE00459ECD /* AppEnvironment.swift in Sources */,
 				8204072B21D0049800127F05 /* ShowsProgressViewController.swift in Sources */,
 				8204073221D004A500127F05 /* TrendingCollectionViewDataSource.swift in Sources */,
 				8204070521D003F200127F05 /* UIViewController+BaseView.swift in Sources */,
@@ -5637,6 +5851,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		827BC4A0228E615000459ECD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				827BC4AF228E62B900459ECD /* AppStartupEnglishUSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		827BC4B7228E6C7700459ECD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				827BC4C4228E6D2A00459ECD /* KIFExtensions.swift in Sources */,
+				827BC4C3228E6D2A00459ECD /* AppEnvironmentMock.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		82DAB2B62288D93400421D0F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5699,7 +5930,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82EB331A228CE3F0009A7C73 /* TVDBSwiftTests.swift in Sources */,
 				82EB332A228CE45C009A7C73 /* TestableDateProvider.swift in Sources */,
 				82EB3329228CE45C009A7C73 /* TVDBTests.swift in Sources */,
 				82EB3323228CE449009A7C73 /* TVDBTestable.swift in Sources */,
@@ -5755,6 +5985,11 @@
 			isa = PBXTargetDependency;
 			target = 824A781D220F5C290001F3BF /* CouchTrackerPersistence */;
 			targetProxy = 824A7841220F5E970001F3BF /* PBXContainerItemProxy */;
+		};
+		827BC4AA228E615100459ECD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 647632381F44824900F277F1 /* CouchTracker */;
+			targetProxy = 827BC4A9228E615100459ECD /* PBXContainerItemProxy */;
 		};
 		82EB331E228CE3F0009A7C73 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -6955,6 +7190,154 @@
 			};
 			name = Release;
 		};
+		827BC4AB228E615100459ECD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15238F1812AC157501377E0A /* Pods-CouchTrackerUITests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CouchTrackerUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.CouchTrackerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CouchTracker.app/CouchTracker";
+			};
+			name = Debug;
+		};
+		827BC4AC228E615100459ECD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC6A72A97AD927274138658E /* Pods-CouchTrackerUITests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CouchTrackerUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.CouchTrackerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CouchTracker.app/CouchTracker";
+			};
+			name = Release;
+		};
+		827BC4C1228E6C7700459ECD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F59AFF83001C2EAAA012CD66 /* Pods-CouchTrackerAppTestable.debug.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 37;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 37;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CouchTrackerAppTestable/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.CouchTrackerAppTestable;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		827BC4C2228E6C7700459ECD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53AC7285399754F284FD180B /* Pods-CouchTrackerAppTestable.release.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 37;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 37;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CouchTrackerAppTestable/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.pietrocaselani.CouchTrackerAppTestable;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		82DAB2BF2288D93500421D0F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 724BC675FDFE2F69AF7BFE44 /* Pods-CouchTrackerDebug.debug.xcconfig */;
@@ -7490,6 +7873,24 @@
 			buildConfigurations = (
 				824A7824220F5C290001F3BF /* Debug */,
 				824A7825220F5C290001F3BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		827BC4AD228E615100459ECD /* Build configuration list for PBXNativeTarget "CouchTrackerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				827BC4AB228E615100459ECD /* Debug */,
+				827BC4AC228E615100459ECD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		827BC4C0228E6C7700459ECD /* Build configuration list for PBXNativeTarget "CouchTrackerAppTestable" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				827BC4C1228E6C7700459ECD /* Debug */,
+				827BC4C2228E6C7700459ECD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
