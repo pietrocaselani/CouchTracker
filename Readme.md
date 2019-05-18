@@ -12,6 +12,11 @@ Keep track of your favorite movies and tv shows on your iPhone
 
 ## Setup for development
 
+You will need
+
+* Xcode 10.2.1
+* Swift 5.0.1
+
 Run the following commands
 
 * `git clone git@github.com:pietrocaselani/CouchTracker.git`
