@@ -14,6 +14,8 @@ platform :ios do
 
   desc 'Run CouchTrackerCore tests'
   lane :tests do
+    sh('../scripts/generate_secrets empty', log: false)
+
     run_tests_for_scheme(scheme: 'TVDBSwift')
     run_tests_for_scheme(scheme: 'TMDBSwift')
     run_tests_for_scheme(scheme: 'TraktSwift')
