@@ -1,3 +1,6 @@
+# 0.0.1 (42) 
+* Embed missing framework [view commit](http://github.com/pietrocaselani/CouchTracker/commit/d83a059b1101589a303f1ce1f7836213f21680c4)
+
 # 0.0.1 (41) 
 * Fix the UI test to handle the alert view controller [view commit](http://github.com/pietrocaselani/CouchTracker/commit/2b9abf88c9e49ba2e316b960aaf8d43a92677f5c)
 * Create a fake API key instead an empty string [view commit](http://github.com/pietrocaselani/CouchTracker/commit/2fd9db1103fc6413f8b7afc2b9c3e57830cf3cca)
