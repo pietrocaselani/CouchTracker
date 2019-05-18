@@ -19,9 +19,9 @@ public final class DefaultWatchedShowsSynchronizer: WatchedShowsSynchronizer {
       .observeOn(schedulers.networkScheduler)
       .toArray()
       .observeOn(schedulers.dataSourceScheduler)
-      .do(onNext: { [weak self] shows in
+      .do(onSuccess: { [weak self] shows in
         guard let strongSelf = self else { return }
         try strongSelf.dataHolder.save(shows: shows)
-      }).asSingle()
+      })
   }
 }

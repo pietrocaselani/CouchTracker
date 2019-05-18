@@ -25,7 +25,7 @@ public enum ShowProgressFilter: String {
   }
 
   public func index() -> Int {
-    return ShowProgressFilter.allValues().index(of: self) ?? 0
+    return ShowProgressFilter.allValues().firstIndex(of: self) ?? 0
   }
 
   public func filter() -> (WatchedShowEntity) -> Bool {

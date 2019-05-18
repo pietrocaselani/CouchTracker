@@ -142,7 +142,7 @@ final class ShowsProgressViewController: UIViewController {
     }.subscribe()
       .disposed(by: disposeBag)
 
-    parentPageboy?.navigationItem.rightBarButtonItems = [filterItem, directionItem]
+    pageboyParent?.navigationItem.rightBarButtonItems = [filterItem, directionItem]
     navigationItem.rightBarButtonItems = [filterItem, directionItem]
   }
 

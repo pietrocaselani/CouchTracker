@@ -50,7 +50,7 @@ enum CouchTracker {
 
     let release = [
       "PROVISIONING_PROFILE_SPECIFIER": "match AppStore io.github.pietrocaselani.couchtracker",
-      "OTHER_SWIFT_FLAGS": "$(inherited) -D COCOAPODS"
+      "OTHER_SWIFT_FLAGS": "$(inherited) -D COCOAPODS",
     ] + iOSBaseSettings() + releaseCodeSigning()
 
     return Settings(debug: debug.asConfig(), release: release.asConfig())
