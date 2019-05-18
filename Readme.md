@@ -8,6 +8,7 @@ Keep track of your favorite movies and tv shows on your iPhone
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=io.github.pietrocaselani.couchtracker&metric=alert_status)](https://sonarcloud.io/dashboard?id=io.github.pietrocaselani.couchtracker)
 [![Twitter](https://img.shields.io/badge/twitter-@pietropc-red.svg?style=flat)](https://twitter.com/pietropc_)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpietrocaselani%2FCouchTracker.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpietrocaselani%2FCouchTracker?ref=badge_shield)
+[![Tuist Badge](https://img.shields.io/badge/powered%20by-Tuist-green.svg?longCache=true)](https://github.com/tuist)
 
 ## Setup for development
 
@@ -15,7 +16,11 @@ Run the following commands
 
 * `git clone git@github.com:pietrocaselani/CouchTracker.git`
 
-* `cd CouchTracker && sh setup.sh && bundle exec pod install`
+* `cd CouchTracker && sh setup.sh`
+
+* `tuist generate`
+
+* `bundle exec pod install`
 
 * `open CouchTracker.xcworkspace`
 
@@ -26,21 +31,21 @@ Run the following commands
 ```swift
 enum Secrets {
   enum Trakt {
-    static let clientId = ""
-    static let clientSecret = ""
-    static let redirectURL = ""
+    static let clientId = "API_KEY"
+    static let clientSecret = "API_KEY"
+    static let redirectURL = "API_KEY"
   }
 
   enum TMDB {
-    static let apiKey = ""
+    static let apiKey = "API_KEY"
   }
 
   enum TVDB {
-    static let apiKey = ""
+    static let apiKey = "API_KEY"
   }
 
   enum Bugsnag {
-    static let apiKey = ""
+    static let apiKey = "API_KEY"
   }
 }
 ```
