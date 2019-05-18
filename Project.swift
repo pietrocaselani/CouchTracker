@@ -98,6 +98,9 @@ enum CouchTrackerAppTestable {
                   infoPlist: "CouchTrackerAppTestable/Info.plist",
                   sources: ["CouchTrackerAppTestable/**"],
                   headers: Headers(public: "CouchTrackerAppTestable/Headers/Public/CouchTrackerAppTestable.h"),
+                  dependencies: [
+                    .target(name: CouchTrackerCoreiOS.name),
+                  ],
                   settings: settings())
   }
 
