@@ -30,6 +30,7 @@ enum CouchTracker {
                   infoPlist: "CouchTracker/Info.plist",
                   sources: ["CouchTracker/**"],
                   resources: ["CouchTracker/Resources/**/*.{xcassets,png,strings,json,storyboard}"],
+                  actions: buildPhases(),
                   dependencies: [
                     .target(name: "CouchTrackerApp"),
                     .target(name: "CouchTrackerPersistence"),
@@ -37,7 +38,7 @@ enum CouchTracker {
                     .target(name: "CouchTrackerCore-iOS"),
                     .target(name: "TMDBSwift-iOS"),
                     .target(name: "TVDBSwift-iOS"),
-                    .target(name: "TraktSwift-iOS"),
+                    .target(name: "TraktSwift-iOS")
                   ],
                   settings: settings())
   }
@@ -45,15 +46,22 @@ enum CouchTracker {
   private static func settings() -> Settings {
     let debug = [
       "PROVISIONING_PROFILE_SPECIFIER": "match Development io.github.pietrocaselani.couchtracker",
-      "OTHER_SWIFT_FLAGS": "$(inherited) -D COCOAPODS -D DEBUG -Xfrontend -warn-long-expression-type-checking=100 -Xfrontend -warn-long-function-bodies=100",
+      "OTHER_SWIFT_FLAGS": "$(inherited) -D COCOAPODS -D DEBUG -Xfrontend -warn-long-expression-type-checking=100 -Xfrontend -warn-long-function-bodies=100"
     ] + iOSBaseSettings() + debugCodeSigning()
 
     let release = [
       "PROVISIONING_PROFILE_SPECIFIER": "match AppStore io.github.pietrocaselani.couchtracker",
-      "OTHER_SWIFT_FLAGS": "$(inherited) -D COCOAPODS",
+      "OTHER_SWIFT_FLAGS": "$(inherited) -D COCOAPODS"
     ] + iOSBaseSettings() + releaseCodeSigning()
 
     return Settings(debug: debug.asConfig(), release: release.asConfig())
+  }
+
+  private static func buildPhases() -> [TargetAction] {
+    return [
+      TargetAction.post(path: "build_phases/swiftlint", arguments: [], name: "Swiftlint"),
+      TargetAction.post(path: "build_phases/swiftformat", arguments: [], name: "Swiftformat")
+    ]
   }
 }
 
@@ -75,7 +83,7 @@ enum CouchTrackerApp {
                     .target(name: "CouchTrackerCore-iOS"),
                     .target(name: "TMDBSwift-iOS"),
                     .target(name: "TVDBSwift-iOS"),
-                    .target(name: "TraktSwift-iOS"),
+                    .target(name: "TraktSwift-iOS")
                   ],
                   settings: settings())
   }
@@ -100,7 +108,7 @@ enum CouchTrackerAppTestable {
                   headers: Headers(public: "CouchTrackerAppTestable/Headers/Public/CouchTrackerAppTestable.h"),
                   dependencies: [
                     .target(name: CouchTrackerCoreiOS.name),
-                    .target(name: CouchTrackerApp.name),
+                    .target(name: CouchTrackerApp.name)
                   ],
                   settings: settings())
   }
@@ -145,7 +153,7 @@ enum CouchTrackerDebug {
                   sources: ["CouchTrackerDebug/**"],
                   headers: Headers(public: "CouchTrackerDebug/Headers/Public/CouchTrackerDebug.h"),
                   dependencies: [
-                    .target(name: CouchTrackerCoreiOS.name),
+                    .target(name: CouchTrackerCoreiOS.name)
                   ],
                   settings: settings())
   }
@@ -172,7 +180,7 @@ enum CouchTrackerCoreiOS {
                   dependencies: [
                     .target(name: TMDBSwiftiOS.name),
                     .target(name: TVDBSwiftiOS.name),
-                    .target(name: TraktSwiftiOS.name),
+                    .target(name: TraktSwiftiOS.name)
                   ],
                   settings: settings())
   }
@@ -264,7 +272,7 @@ enum CouchTrackerCore {
                   dependencies: [
                     .target(name: TMDBSwift.name),
                     .target(name: TVDBSwift.name),
-                    .target(name: TraktSwift.name),
+                    .target(name: TraktSwift.name)
                   ],
                   settings: settings())
   }
@@ -306,7 +314,7 @@ enum TraktSwiftTestable {
                   resources: ["TraktSwiftTestable/Resources/**/*.{xcassets,png,strings,json}"],
                   headers: Headers(public: "TraktSwiftTestable/Headers/Public/TraktSwiftTestable.h"),
                   dependencies: [
-                    .target(name: TraktSwift.name),
+                    .target(name: TraktSwift.name)
                   ],
                   settings: settings())
   }
@@ -348,7 +356,7 @@ enum TMDBSwiftTestable {
                   resources: ["TMDBSwiftTestable/Resources/**/*.{xcassets,png,strings,json}"],
                   headers: Headers(public: "TMDBSwiftTestable/Headers/Public/TMDBSwiftTestable.h"),
                   dependencies: [
-                    .target(name: TMDBSwift.name),
+                    .target(name: TMDBSwift.name)
                   ],
                   settings: settings())
   }
@@ -411,7 +419,7 @@ enum TraktSwiftTests {
                   sources: ["TraktSwiftTests/**"],
                   dependencies: [
                     .target(name: TraktSwiftTestable.name),
-                    .target(name: TraktSwift.name),
+                    .target(name: TraktSwift.name)
                   ],
                   settings: settings())
   }
@@ -433,7 +441,7 @@ enum TMDBSwiftTests {
                   sources: ["TMDBSwiftTests/**"],
                   dependencies: [
                     .target(name: TMDBSwiftTestable.name),
-                    .target(name: TMDBSwift.name),
+                    .target(name: TMDBSwift.name)
                   ],
                   settings: settings())
   }
@@ -455,7 +463,7 @@ enum TVDBSwiftTests {
                   sources: ["TVDBSwiftTests/**"],
                   dependencies: [
                     .target(name: TVDBSwiftTestable.name),
-                    .target(name: TVDBSwift.name),
+                    .target(name: TVDBSwift.name)
                   ],
                   settings: settings())
   }
@@ -479,7 +487,7 @@ enum CouchTrackerCoreTests {
                     .target(name: CouchTrackerCore.name),
                     .target(name: TraktSwiftTestable.name),
                     .target(name: TMDBSwiftTestable.name),
-                    .target(name: TVDBSwiftTestable.name),
+                    .target(name: TVDBSwiftTestable.name)
                   ],
                   settings: settings())
   }
@@ -501,7 +509,7 @@ enum CouchTrackerUITests {
                   sources: ["CouchTrackerUITests/**"],
                   dependencies: [
                     .target(name: CouchTracker.name),
-                    .target(name: CouchTrackerAppTestable.name),
+                    .target(name: CouchTrackerAppTestable.name)
                   ],
                   settings: settings())
   }
@@ -510,7 +518,7 @@ enum CouchTrackerUITests {
     return Settings(base: [
       "DEVELOPMENT_TEAM": "",
       "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/CouchTracker.app/CouchTracker",
-      "BUNDLE_LOADER": "$(TEST_HOST)",
+      "BUNDLE_LOADER": "$(TEST_HOST)"
     ] + iOSBaseSettings() + disableCodeSigning())
   }
 }
@@ -521,14 +529,14 @@ func macOSBaseSettings() -> [String: String] {
   return [
     "MACOSX_DEPLOYMENT_TARGET": minmacOSVersion,
     "CODE_SIGN_STYLE": "Manual",
-    "DEVELOPMENT_TEAM": "",
+    "DEVELOPMENT_TEAM": ""
   ] + disableCodeSigning()
 }
 
 func macOSTestBaseSettings() -> [String: String] {
   return [
     "EXPANDED_CODE_SIGN_IDENTITY": "-",
-    "EXPANDED_CODE_SIGN_IDENTITY_NAME": "-",
+    "EXPANDED_CODE_SIGN_IDENTITY_NAME": "-"
   ]
 }
 
@@ -537,7 +545,7 @@ func iOSBaseSettings() -> [String: String] {
     "IPHONEOS_DEPLOYMENT_TARGET": miniOSVersion,
     "TARGETED_DEVICE_FAMILY": "1",
     "CODE_SIGN_STYLE": "Manual",
-    "DEVELOPMENT_TEAM": "B5RPM7SE3L",
+    "DEVELOPMENT_TEAM": "B5RPM7SE3L"
   ]
 }
 
@@ -575,7 +583,7 @@ func allTargets() -> [Target] {
     TMDBSwiftTests.target(),
     TVDBSwiftTests.target(),
     CouchTrackerCoreTests.target(),
-    CouchTrackerUITests.target(),
+    CouchTrackerUITests.target()
   ]
 }
 
@@ -606,7 +614,7 @@ enum TMDBSwiftScheme {
 func allSchemes() -> [Scheme] {
   return [
     TVDBSwiftScheme.scheme(),
-    TMDBSwiftScheme.scheme(),
+    TMDBSwiftScheme.scheme()
   ]
 }
 
@@ -615,6 +623,7 @@ func additionalFiles() -> [FileElement] {
     "changelog.md",
     "CouchTrackerPlayground.playground",
     "Readme.md",
+    ".swiftlint.yml"
   ]
 }
 

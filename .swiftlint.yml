@@ -8,8 +8,10 @@ excluded:
   - TraktSwiftTests
   - TraktSwiftTestable
   - TMDBSwiftTests
+  - TMDBSwiftTestable
   - TVDBSwiftTests
   - CouchTrackerPlayground.playground
+  - Project.swift
 
 opt_in_rules:
   - force_unwrapping
