@@ -1,5 +1,4 @@
 @testable import CouchTrackerCore
-import NonEmpty
 import RxSwift
 import RxTest
 import XCTest
@@ -75,9 +74,7 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     _ = presenter.observeViewState().subscribe(viewStateObserver)
 
     // Then
-    let nonEmptyEntities = NonEmptyArray(entities.first!, Array(entities.dropFirst()))
-
-    let showViewState = ShowProgressViewState.shows(entities: nonEmptyEntities, menu: ShowsProgressMenuOptions.mock)
+    let showViewState = ShowProgressViewState.shows(entities: entities, menu: ShowsProgressMenuOptions.mock)
 
     let expectedViewState = [Recorded.next(0, showViewState)]
 
@@ -210,10 +207,9 @@ final class ShowsProgressDefaultPresenterTest: XCTestCase {
     _ = presenter.observeViewState().subscribe(viewStateObserver)
 
     // Then
-    let reversedList = entities.reversed()
-    let nonEmptyEntities = NonEmptyArray(reversedList.first!, Array(reversedList.dropFirst()))
+    let reversedEntities = Array(entities.reversed())
 
-    let showViewState = ShowProgressViewState.shows(entities: nonEmptyEntities, menu: ShowsProgressMenuOptions.mock)
+    let showViewState = ShowProgressViewState.shows(entities: reversedEntities, menu: ShowsProgressMenuOptions.mock)
 
     let expectedViewState = [Recorded.next(0, showViewState)]
 

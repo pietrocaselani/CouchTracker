@@ -12,7 +12,6 @@ end
 
 def common_pods
   api_pods
-  pod 'NonEmpty', '0.2.0'
   pod 'RxSwift', git: 'https://github.com/ReactiveX/RxSwift.git', tag: RX_SWIFT_VERSION
 end
 

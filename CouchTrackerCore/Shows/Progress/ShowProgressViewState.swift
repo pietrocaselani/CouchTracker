@@ -1,5 +1,3 @@
-import NonEmpty
-
 public struct ShowsProgressMenuOptions: Hashable {
   public let sort: [ShowProgressSort]
   public let filter: [ShowProgressFilter]
@@ -11,7 +9,7 @@ public enum ShowProgressViewState: Hashable {
   case notLogged
   case loading
   case empty
-  case shows(entities: NonEmptyArray<WatchedShowEntity>, menu: ShowsProgressMenuOptions)
+  case shows(entities: [WatchedShowEntity], menu: ShowsProgressMenuOptions)
   case filterEmpty
   case error(error: Error)
 

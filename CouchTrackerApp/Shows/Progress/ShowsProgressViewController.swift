@@ -1,6 +1,5 @@
 import ActionSheetPicker_3_0
 import CouchTrackerCore
-import NonEmpty
 import RxCocoa
 import RxDataSources
 import RxSwift
