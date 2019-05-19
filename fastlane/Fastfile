@@ -4,7 +4,13 @@ default_platform(:ios)
 platform :ios do
   before_all do
     setup_circle_ci
+
+    branch = ENV['CIRCLE_BRANCH']
+    secrets_param = branch == 'master' ? '' : 'empty'
+
+    sh("../scripts/generate_secrets #{secrets_param}", log: false)
     sh('cd .. && tuist generate')
+
     pods
   end
 
@@ -15,8 +21,6 @@ platform :ios do
 
   desc 'Run CouchTrackerCore tests'
   lane :tests do
-    sh('../scripts/generate_secrets empty', log: false)
-
     run_tests_for_scheme(scheme: 'TVDBSwiftTests')
     run_tests_for_scheme(scheme: 'TMDBSwiftTests')
     run_tests_for_scheme(scheme: 'TraktSwiftTests')
