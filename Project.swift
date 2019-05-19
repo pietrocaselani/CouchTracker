@@ -29,7 +29,7 @@ enum CouchTracker {
                   bundleId: "\(baseBundleId).couchtracker",
                   infoPlist: "CouchTracker/Info.plist",
                   sources: ["CouchTracker/**"],
-                  resources: ["CouchTracker/Resources/**"],
+                  resources: ["CouchTracker/Resources/**/*.{xcassets,png,strings,json,storyboard}"],
                   dependencies: [
                     .target(name: "CouchTrackerApp"),
                     .target(name: "CouchTrackerPersistence"),
@@ -67,7 +67,7 @@ enum CouchTrackerApp {
                   bundleId: "\(baseBundleId).CouchTrackerApp",
                   infoPlist: "CouchTrackerApp/Info.plist",
                   sources: ["CouchTrackerApp/**"],
-                  resources: ["CouchTrackerApp/Resources/**"],
+                  resources: ["CouchTrackerApp/Resources/**/*.{xcassets,png,strings,json}"],
                   headers: Headers(public: "CouchTrackerApp/Headers/Public/CouchTrackerApp.h"),
                   dependencies: [
                     .target(name: "CouchTrackerPersistence"),
@@ -167,7 +167,7 @@ enum CouchTrackerCoreiOS {
                   bundleId: "\(baseBundleId).CouchTrackerCore-iOS",
                   infoPlist: "CouchTrackerCore-iOS/Info.plist",
                   sources: ["CouchTrackerCore/**"],
-                  resources: ["CouchTrackerCore/Resources/**"],
+                  resources: ["CouchTrackerCore/Resources/**/*.{xcassets,png,strings,json}"],
                   headers: Headers(public: "CouchTrackerCore-iOS/Headers/Public/CouchTrackerCore_iOS.h"),
                   dependencies: [
                     .target(name: TMDBSwiftiOS.name),
@@ -259,7 +259,7 @@ enum CouchTrackerCore {
                   bundleId: "\(baseBundleId).CouchTrackerCore",
                   infoPlist: "CouchTrackerCore/Info.plist",
                   sources: ["CouchTrackerCore/**"],
-                  resources: ["CouchTrackerCore/Resources/**"],
+                  resources: ["CouchTrackerCore/Resources/**/*.{strings}"],
                   headers: Headers(public: "CouchTrackerCore/Headers/Public/CouchTrackerCore.h"),
                   dependencies: [
                     .target(name: TMDBSwift.name),
@@ -303,7 +303,7 @@ enum TraktSwiftTestable {
                   bundleId: "\(baseBundleId).TraktSwiftTestable",
                   infoPlist: "TraktSwiftTestable/Info.plist",
                   sources: ["TraktSwiftTestable/**"],
-                  resources: ["TraktSwiftTestable/Resources/**"],
+                  resources: ["TraktSwiftTestable/Resources/**/*.{xcassets,png,strings,json}"],
                   headers: Headers(public: "TraktSwiftTestable/Headers/Public/TraktSwiftTestable.h"),
                   dependencies: [
                     .target(name: TraktSwift.name),
@@ -345,7 +345,7 @@ enum TMDBSwiftTestable {
                   bundleId: "\(baseBundleId).TMDBSwiftTestable",
                   infoPlist: "TMDBSwiftTestable/Info.plist",
                   sources: ["TMDBSwiftTestable/**"],
-                  resources: ["TMDBSwiftTestable/Resources/**"],
+                  resources: ["TMDBSwiftTestable/Resources/**/*.{xcassets,png,strings,json}"],
                   headers: Headers(public: "TMDBSwiftTestable/Headers/Public/TMDBSwiftTestable.h"),
                   dependencies: [
                     .target(name: TMDBSwift.name),
@@ -387,7 +387,7 @@ enum TVDBSwiftTestable {
                   bundleId: "\(baseBundleId).TVDBSwiftTestable",
                   infoPlist: "TVDBSwiftTestable/Info.plist",
                   sources: ["TVDBSwiftTestable/**"],
-                  resources: ["TVDBSwiftTestable/Resources/**"],
+                  resources: ["TVDBSwiftTestable/Resources/**/*.{xcassets,png,strings,json}"],
                   headers: Headers(public: "TVDBSwiftTestable/Headers/Public/TVDBSwiftTestable.h"),
                   settings: settings())
   }
