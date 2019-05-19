@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR=$(echo "${BASH_SOURCE[0]}" | xargs dirname | xargs -I % sh -c 'cd % && pwd')
+PROJECT_ROOT=$(cd "${SCRIPT_DIR}/.." || exit 1; pwd)
+
+VERSION=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "${PROJECT_ROOT}/CouchTracker/Info.plist")
+BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "${PROJECT_ROOT}/CouchTracker/Info.plist")
+
+while [ ! $# -eq 0 ]
+do
+	case "$1" in
+		"-v"|"--version")
+			shift
+            VERSION=$1
+			;;
+		"-b"|"--build")
+			shift
+            BUILD_NUMBER=$1
+			;;
+	esac
+    shift
+done
+
+PLIST_FILES=$(find "${PROJECT_ROOT}" -maxdepth 2 -type f -name "*.plist")
+
+for file in $PLIST_FILES; do
+    /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString ${VERSION}" "${file}" &&
+    /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${BUILD_NUMBER}" "${file}"
+done
+
+echo "New version is ${VERSION} - ${BUILD_NUMBER}"

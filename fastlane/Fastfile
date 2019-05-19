@@ -137,7 +137,9 @@ platform :ios do
     version = get_version_number(target: 'CouchTracker')
     lastest_build = latest_testflight_build_number(version: version)
     new_build_number = lastest_build + 1
-    increment_build_number(build_number: new_build_number)
+
+    sh("../scripts/bump -b #{new_build_number}")
+
     new_build_number
   end
 
