@@ -610,7 +610,16 @@ func allSchemes() -> [Scheme] {
   ]
 }
 
+func additionalFiles() -> [FileElement] {
+  return [
+    "changelog.md",
+    "CouchTrackerPlayground.playground",
+    "Readme.md",
+  ]
+}
+
 // MARK: - Project
 
-let project = Project(name: "CouchTracker",
-                      targets: allTargets())
+let project = Project(name: CouchTracker.name,
+                      targets: allTargets(),
+                      additionalFiles: additionalFiles())
