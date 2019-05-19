@@ -46,7 +46,7 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
 
     // Then
     let expectedViewEvents = [
-      Recorded.next(0, ShowEpisodeViewState.empty),
+      Recorded.next(0, ShowEpisodeViewState.empty)
     ]
 
     XCTAssertEqual(viewObserver.events, expectedViewEvents)
@@ -73,7 +73,7 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
     }
 
     let expectedViewEvents = [
-      Recorded.next(0, ShowEpisodeViewState.showingEpisode(episode: nextEpisode)),
+      Recorded.next(0, ShowEpisodeViewState.showingEpisode(episode: nextEpisode))
     ]
 
     XCTAssertEqual(viewObserver.events, expectedViewEvents)
@@ -100,7 +100,7 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
     let images = ShowEpisodeImages(posterURL: imageURL, previewURL: imageURL)
 
     let expectedViewEvents = [
-      Recorded.next(0, ShowEpisodeViewState.showing(episode: nextEpisode, images: images)),
+      Recorded.next(0, ShowEpisodeViewState.showing(episode: nextEpisode, images: images))
     ]
 
     XCTAssertEqual(viewObserver.events, expectedViewEvents)
@@ -124,7 +124,7 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
 
     // Then
     let expectedViewEvents = [
-      Recorded.next(0, ShowEpisodeViewState.showingEpisode(episode: nextEpisode)),
+      Recorded.next(0, ShowEpisodeViewState.showingEpisode(episode: nextEpisode))
     ]
 
     XCTAssertEqual(viewObserver.events, expectedViewEvents)
@@ -155,7 +155,7 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
 
     let expectedViewEvents = [
       Recorded.next(0, ShowEpisodeViewState.showing(episode: nextEpisode, images: images)),
-      Recorded.next(200, ShowEpisodeViewState.empty),
+      Recorded.next(200, ShowEpisodeViewState.empty)
     ]
 
     XCTAssertEqual(viewObserver.events, expectedViewEvents)
@@ -184,7 +184,7 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
     let images = ShowEpisodeImages(posterURL: url, previewURL: url)
 
     let expectedViewEvents = [
-      Recorded.next(0, ShowEpisodeViewState.showing(episode: episode, images: images)),
+      Recorded.next(0, ShowEpisodeViewState.showing(episode: episode, images: images))
     ]
 
     let watchedEvent: Recorded<Event<Never>> = Recorded.error(200, watchedError)
@@ -219,7 +219,7 @@ final class ShowEpisodeDefaultPresenterTest: XCTestCase {
 
     // Then
     let expectedViewEvents = [
-      Recorded.next(0, ShowEpisodeViewState.empty),
+      Recorded.next(0, ShowEpisodeViewState.empty)
     ]
 
     XCTAssertEqual(viewObserver.events, expectedViewEvents)
