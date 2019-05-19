@@ -77,7 +77,7 @@ private func createViewState(entities: [WatchedShowEntity],
     newEntities = newEntities.reversed()
   }
 
-    guard !newEntities.isEmpty else { return .filterEmpty }
+  guard !newEntities.isEmpty else { return .filterEmpty }
 
   let menu = ShowsProgressMenuOptions(sort: ShowProgressSort.allValues(),
                                       filter: ShowProgressFilter.allValues(),

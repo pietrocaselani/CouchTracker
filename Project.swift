@@ -100,6 +100,7 @@ enum CouchTrackerAppTestable {
                   headers: Headers(public: "CouchTrackerAppTestable/Headers/Public/CouchTrackerAppTestable.h"),
                   dependencies: [
                     .target(name: CouchTrackerCoreiOS.name),
+                    .target(name: CouchTrackerApp.name),
                   ],
                   settings: settings())
   }
