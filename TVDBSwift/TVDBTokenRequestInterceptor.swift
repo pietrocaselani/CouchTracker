@@ -8,7 +8,9 @@ final class TVDBTokenRequestInterceptor: RequestInterceptor {
     self.tvdb = tvdb
   }
 
-  func intercept<T>(target: T.Type, endpoint: Endpoint, done: @escaping MoyaProvider<T>.RequestResultClosure) where T: TVDBType {
+  func intercept<T>(target: T.Type,
+                    endpoint: Endpoint,
+                    done: @escaping MoyaProvider<T>.RequestResultClosure) where T: TVDBType {
     guard let tvdb = self.tvdb else {
       done(.failure(MoyaError.requestMapping(endpoint.url)))
       return

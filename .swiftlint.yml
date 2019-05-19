@@ -10,6 +10,7 @@ excluded:
   - TMDBSwiftTests
   - TMDBSwiftTestable
   - TVDBSwiftTests
+  - TVDBSwiftTestable
   - CouchTrackerPlayground.playground
   - Project.swift
 

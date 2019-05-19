@@ -37,7 +37,7 @@ final class SeasonsTests: XCTestCase {
       Swift.fatalError("Unable to parse JSON: \(error)")
     }
 
-    let expectedEvents = [next(200, expectedSeasons), completed(200)]
+    let expectedEvents = [Recorded.next(200, expectedSeasons), Recorded.completed(200)]
 
     XCTAssertEqual(res.events, expectedEvents)
   }

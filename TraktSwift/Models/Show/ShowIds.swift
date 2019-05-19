@@ -38,12 +38,21 @@ public final class ShowIds: BaseIds {
     try super.encode(to: encoder)
   }
 
-  public override var hashValue: Int {
-    var hash = super.hashValue ^ slug.hashValue ^ tvdb.hashValue
-    if let tvrageHash = tvrage?.hashValue {
-      hash = hash ^ tvrageHash
-    }
-    return hash
+  public override func hash(into hasher: inout Hasher) {
+    super.hash(into: &hasher)
+    hasher.combine(slug)
+    hasher.combine(tvdb)
+    hasher.combine(tvrage)
+  }
+
+  public static func == (lhs: ShowIds, rhs: ShowIds) -> Bool {
+    let lhsBaseIds = lhs as BaseIds
+    let rhsBaseIds = rhs as BaseIds
+
+    return lhsBaseIds == rhsBaseIds &&
+      lhs.slug == rhs.slug &&
+      lhs.tvdb == rhs.tvdb &&
+      lhs.tvrage == rhs.tvrage
   }
 
   public override var description: String {

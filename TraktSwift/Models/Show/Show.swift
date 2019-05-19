@@ -42,55 +42,40 @@ public final class Show: StandardMediaEntity {
     try super.init(from: decoder)
   }
 
-  public override var hashValue: Int {
-    var hash = super.hashValue ^ ids.hashValue
+  public override func hash(into hasher: inout Hasher) {
+    super.hash(into: &hasher)
+    hasher.combine(year)
+    hasher.combine(ids)
+    hasher.combine(firstAired)
+    hasher.combine(airs)
+    hasher.combine(runtime)
+    hasher.combine(certification)
+    hasher.combine(network)
+    hasher.combine(country)
+    hasher.combine(trailer)
+    hasher.combine(homepage)
+    hasher.combine(status)
+    hasher.combine(language)
+    hasher.combine(genres)
+  }
 
-    if let yearHash = year?.hashValue {
-      hash = hash ^ yearHash
-    }
+  public static func == (lhs: Show, rhs: Show) -> Bool {
+    let lhsMediaEntity = lhs as StandardMediaEntity
+    let rhsMediaEntity = rhs as StandardMediaEntity
 
-    if let firstAiredHash = firstAired?.hashValue {
-      hash = hash ^ firstAiredHash
-    }
-
-    if let airsHash = airs?.hashValue {
-      hash = hash ^ airsHash
-    }
-
-    if let runtimeHash = runtime?.hashValue {
-      hash = hash ^ runtimeHash
-    }
-
-    if let certificationHash = certification?.hashValue {
-      hash = hash ^ certificationHash
-    }
-
-    if let networkHash = network?.hashValue {
-      hash = hash ^ networkHash
-    }
-
-    if let countryHash = country?.hashValue {
-      hash = hash ^ countryHash
-    }
-
-    if let trailerHash = trailer?.hashValue {
-      hash = hash ^ trailerHash
-    }
-
-    if let homepageHash = homepage?.hashValue {
-      hash = hash ^ homepageHash
-    }
-
-    if let statusHash = status?.hashValue {
-      hash = hash ^ statusHash
-    }
-
-    if let languageHash = language?.hashValue {
-      hash = hash ^ languageHash
-    }
-
-    genres?.forEach { hash = hash ^ $0.hashValue }
-
-    return hash
+    return lhsMediaEntity == rhsMediaEntity &&
+      lhs.year == rhs.year &&
+      lhs.ids == rhs.ids &&
+      lhs.firstAired == rhs.firstAired &&
+      lhs.airs == rhs.airs &&
+      lhs.runtime == rhs.runtime &&
+      lhs.certification == rhs.certification &&
+      lhs.network == rhs.network &&
+      lhs.country == rhs.country &&
+      lhs.trailer == rhs.trailer &&
+      lhs.homepage == rhs.homepage &&
+      lhs.status == rhs.status &&
+      lhs.language == rhs.language &&
+      lhs.genres == rhs.genres
   }
 }

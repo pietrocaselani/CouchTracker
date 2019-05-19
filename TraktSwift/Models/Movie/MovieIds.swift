@@ -25,7 +25,15 @@ public final class MovieIds: BaseIds {
     try super.encode(to: encoder)
   }
 
-  public override var hashValue: Int {
-    return super.hashValue ^ slug.hashValue
+  public override func hash(into hasher: inout Hasher) {
+    super.hash(into: &hasher)
+    hasher.combine(slug)
+  }
+
+  public static func == (lhs: MovieIds, rhs: MovieIds) -> Bool {
+    let lhsBaseIds = lhs as BaseIds
+    let rhsBaseIds = rhs as BaseIds
+
+    return lhsBaseIds == rhsBaseIds && lhs.slug == rhs.slug
   }
 }

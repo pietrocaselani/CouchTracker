@@ -29,22 +29,16 @@ public class BaseIds: Codable, Hashable, CustomStringConvertible {
     try container.encodeIfPresent(imdb, forKey: .imdb)
   }
 
-  public var hashValue: Int {
-    var hash = trakt.hashValue
-
-    if let tmdbHash = tmdb?.hashValue {
-      hash = hash ^ tmdbHash
-    }
-
-    if let imdbHash = imdb?.hashValue {
-      hash = hash ^ imdbHash
-    }
-
-    return hash
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(trakt)
+    hasher.combine(tmdb)
+    hasher.combine(imdb)
   }
 
   public static func == (lhs: BaseIds, rhs: BaseIds) -> Bool {
-    return lhs.hashValue == rhs.hashValue
+    return lhs.trakt == rhs.trakt &&
+      lhs.tmdb == rhs.tmdb &&
+      lhs.imdb == rhs.imdb
   }
 
   public var description: String {
