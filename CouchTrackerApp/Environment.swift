@@ -35,36 +35,6 @@ public final class Environment {
     return UserDefaultsAppStateDataHolder.currentAppConfig(userDefaults)
   }
 
-  init(trakt: TraktProvider, tmdb: TMDBProvider, tvdb: TVDBProvider,
-       schedulers: Schedulers, realmProvider: RealmProvider, buildConfig: BuildConfig,
-       appStateManager: AppStateManager, showsSynchronizer: WatchedShowsSynchronizer,
-       showSynchronizer: WatchedShowSynchronizer, watchedShowEntitiesObservable: WatchedShowEntitiesObservable,
-       watchedShowEntityObserable: WatchedShowEntityObserable, userDefaults: UserDefaults,
-       genreRepository: GenreRepository, imageRepository: ImageRepository,
-       configurationRepository: ConfigurationCachedRepository,
-       movieImageRepository: MovieImageCachedRepository, showImageRepository: ShowImageCachedRepository,
-       episodeImageRepository: EpisodeImageCachedRepository, syncStateObservable: SyncStateObservable) {
-    self.trakt = trakt
-    self.tmdb = tmdb
-    self.tvdb = tvdb
-    self.schedulers = schedulers
-    self.realmProvider = realmProvider
-    self.buildConfig = buildConfig
-    self.appStateManager = appStateManager
-    self.showsSynchronizer = showsSynchronizer
-    self.showSynchronizer = showSynchronizer
-    self.watchedShowEntitiesObservable = watchedShowEntitiesObservable
-    self.watchedShowEntityObserable = watchedShowEntityObserable
-    self.userDefaults = userDefaults
-    self.genreRepository = genreRepository
-    self.imageRepository = imageRepository
-    self.configurationRepository = configurationRepository
-    self.movieImageRepository = movieImageRepository
-    self.showImageRepository = showImageRepository
-    self.episodeImageRepository = episodeImageRepository
-    self.syncStateObservable = syncStateObservable
-  }
-
   // swiftlint:disable function_body_length
   init() {
     userDefaults = UserDefaults.standard
@@ -77,13 +47,7 @@ public final class Environment {
     let plugins = [PluginType]()
 
     #if DEBUG
-      let traktClientId = Secrets.Trakt.clientId.isEmpty
-      let tmdbAPIKey = Secrets.TMDB.apiKey.isEmpty
-      let tvdbAPIKey = Secrets.TVDB.apiKey.isEmpty
-
-      if traktClientId || tmdbAPIKey || tvdbAPIKey {
-        Swift.fatalError("One or more API keys are empty. Check the class Secrets.swift")
-      }
+      Environment.checkForEmptySecrets()
 
       debug = true
     #else
@@ -178,5 +142,15 @@ public final class Environment {
     imageRepository = DefaultImageRepository(movieImageRepository: movieImageRepository,
                                              showImageRepository: showImageRepository,
                                              episodeImageRepository: episodeImageRepository)
+  }
+
+  private static func checkForEmptySecrets() {
+    let traktClientId = Secrets.Trakt.clientId.isEmpty
+    let tmdbAPIKey = Secrets.TMDB.apiKey.isEmpty
+    let tvdbAPIKey = Secrets.TVDB.apiKey.isEmpty
+
+    if traktClientId || tmdbAPIKey || tvdbAPIKey {
+      Swift.fatalError("One or more API keys are empty. Check the class Secrets.swift")
+    }
   }
 }
