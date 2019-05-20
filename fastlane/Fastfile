@@ -157,7 +157,7 @@ platform :ios do
 
     commit_version_bump(
       message: "Bump build #{new_build_number}",
-      xcodeproj: './CouchTracker.xcodeproj',
+      ignore: 'CouchTracker.xcodeproj',
       include: './changelog.md',
       force: true
     )
