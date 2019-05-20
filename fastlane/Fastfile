@@ -155,15 +155,8 @@ platform :ios do
       changelog: changelog
     )
 
-    commit_version_bump(
-      message: "Bump build #{new_build_number}",
-      xcodeproj: './CouchTracker.xcodeproj',
-      ignore: 'CouchTracker.xcodeproj',
-      include: './changelog.md',
-      force: true
-    )
-
-    add_git_tag(tag: tag_name.to_s)
+    sh("git commit -am \"Bump build #{new_build_number}\"")
+    sh("git tag #{tag_name}")
   end
 
   private_lane :publish_to_github do |options|
