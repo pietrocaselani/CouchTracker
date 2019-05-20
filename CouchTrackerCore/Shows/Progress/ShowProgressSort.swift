@@ -39,7 +39,7 @@ public enum ShowProgressSort: String {
   }
 
   public func index() -> Int {
-    return ShowProgressSort.allValues().index(of: self) ?? 0
+    return ShowProgressSort.allValues().firstIndex(of: self) ?? 0
   }
 
   public func comparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool {

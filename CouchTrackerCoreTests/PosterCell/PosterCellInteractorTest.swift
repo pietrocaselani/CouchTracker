@@ -47,7 +47,7 @@ final class PosterCellInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<URL>>] = [error(0, imageError)]
+    let events: [Recorded<Event<URL>>] = [Recorded.error(0, imageError)]
 
     XCTAssertEqual(observer.events, events)
   }
@@ -71,7 +71,7 @@ final class PosterCellInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<URL>>] = [completed(0)]
+    let events: [Recorded<Event<URL>>] = [Recorded.completed(0)]
 
     XCTAssertEqual(observer.events, events)
   }

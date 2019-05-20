@@ -1,40 +1,39 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-RX_SWIFT_VERSION = '4.4.0'.freeze
+RX_SWIFT_VERSION = '5.0.1'.freeze
 SNAPKIT_VERSION = '5.0.0'.freeze
-MOYA_VERSION = '12.0.1'.freeze
+MOYA_VERSION = '14.0.0-alpha.1'.freeze
 OSX_VERSION = '10.12'.freeze
 IOS_VERSION = '10.0'.freeze
 
 def api_pods
-  pod 'Moya/RxSwift', MOYA_VERSION
+  pod 'Moya/RxSwift', git: 'https://github.com/Moya/Moya.git', tag: MOYA_VERSION
 end
 
 def common_pods
   api_pods
-  pod 'NonEmpty', '0.1.2'
-  pod 'RxSwift', RX_SWIFT_VERSION
+  pod 'RxSwift', git: 'https://github.com/ReactiveX/RxSwift.git', tag: RX_SWIFT_VERSION
 end
 
 def ios_pods
   common_pods
-  pod 'Kingfisher', '5.0.1'
-  pod 'RxCocoa', RX_SWIFT_VERSION
-  pod 'ActionSheetPicker-3.0', '2.2.0'
-  pod 'Tabman', '2.1.4'
+  pod 'Kingfisher', '5.5.0'
+  pod 'RxCocoa', git: 'https://github.com/ReactiveX/RxSwift.git', tag: RX_SWIFT_VERSION
+  pod 'ActionSheetPicker-3.0', '2.3.0'
+  pod 'Tabman', '2.4.2'
   pod 'SnapKit', SNAPKIT_VERSION
-  pod 'RxDataSources', '3.1.0'
+  pod 'RxDataSources', '4.0.1'
   pod 'Bugsnag'
 end
 
 def persistence_pods
-  pod 'RxRealm', '0.7.6'
-  pod 'RealmSwift', '3.7.6'
+  pod 'RxRealm', '1.0.0'
+  pod 'RealmSwift', '3.15.0'
 end
 
 def tests_shared_pods
-  pod 'RxTest', RX_SWIFT_VERSION
-  pod 'Nimble', '7.3.1'
+  pod 'RxTest', git: 'https://github.com/ReactiveX/RxSwift.git', tag: RX_SWIFT_VERSION
+  pod 'Nimble', '8.0.1'
 end
 
 def ui_tests_pods

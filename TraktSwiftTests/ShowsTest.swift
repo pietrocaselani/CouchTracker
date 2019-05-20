@@ -38,7 +38,7 @@ final class ShowsTest: XCTestCase {
       Swift.fatalError("Unable to parse JSON")
     }
 
-    let expectedEvents: [Recorded<Event<Show>>] = [next(0, expectedShow), completed(0)]
+    let expectedEvents: [Recorded<Event<Show>>] = [Recorded.next(0, expectedShow), Recorded.completed(0)]
 
     XCTAssertEqual(showObserver.events, expectedEvents)
   }

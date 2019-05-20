@@ -48,7 +48,7 @@ final class ShowOverviewPresenterTest: XCTestCase {
 
     let expectedEvents = [
       Recorded.next(0, ShowOverviewViewState.loading),
-      Recorded.next(0, ShowOverviewViewState.error(error: showDetailsError)),
+      Recorded.next(0, ShowOverviewViewState.error(error: showDetailsError))
     ]
 
     XCTAssertEqual(viewObserver.events, expectedEvents)
@@ -78,7 +78,7 @@ final class ShowOverviewPresenterTest: XCTestCase {
 
     let expectedEvents = [
       Recorded.next(0, ShowOverviewViewState.loading),
-      Recorded.next(0, ShowOverviewViewState.showing(show: show)),
+      Recorded.next(0, ShowOverviewViewState.showing(show: show))
     ]
 
     XCTAssertEqual(viewObserver.events, expectedEvents)
@@ -100,7 +100,7 @@ final class ShowOverviewPresenterTest: XCTestCase {
 
     let expectedEvents = [
       Recorded.next(0, ShowOverviewImagesState.loading),
-      Recorded.next(0, ShowOverviewImagesState.error(error: imageError)),
+      Recorded.next(0, ShowOverviewImagesState.error(error: imageError))
     ]
 
     XCTAssertEqual(imageObserver.events, expectedEvents)
@@ -123,7 +123,7 @@ final class ShowOverviewPresenterTest: XCTestCase {
 
     let expectedEvents = [
       Recorded.next(0, ShowOverviewImagesState.loading),
-      Recorded.next(0, ShowOverviewImagesState.showing(images: expectedImagesViewModel)),
+      Recorded.next(0, ShowOverviewImagesState.showing(images: expectedImagesViewModel))
     ]
 
     XCTAssertEqual(imageObserver.events, expectedEvents)
@@ -143,7 +143,7 @@ final class ShowOverviewPresenterTest: XCTestCase {
 
     let expectedEvents = [
       Recorded.next(0, ShowOverviewImagesState.loading),
-      Recorded.next(0, ShowOverviewImagesState.empty),
+      Recorded.next(0, ShowOverviewImagesState.empty)
     ]
 
     XCTAssertEqual(imageObserver.events, expectedEvents)

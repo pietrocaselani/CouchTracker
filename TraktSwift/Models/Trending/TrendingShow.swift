@@ -21,7 +21,15 @@ public final class TrendingShow: BaseTrendingEntity {
     try super.encode(to: encoder)
   }
 
-  public override var hashValue: Int {
-    return super.hashValue ^ show.hashValue
+  public override func hash(into hasher: inout Hasher) {
+    super.hash(into: &hasher)
+    hasher.combine(show)
+  }
+
+  public static func == (lhs: TrendingShow, rhs: TrendingShow) -> Bool {
+    let lhsTrendingEntity = lhs as BaseTrendingEntity
+    let rhsTrendingEntity = rhs as BaseTrendingEntity
+
+    return lhsTrendingEntity == rhsTrendingEntity && lhs.show == rhs.show
   }
 }

@@ -1,4 +1,3 @@
-import NonEmpty
 import RxSwift
 
 public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
@@ -78,14 +77,12 @@ private func createViewState(entities: [WatchedShowEntity],
     newEntities = newEntities.reversed()
   }
 
-  guard let headEntity = newEntities.first else { return .filterEmpty }
-
-  let nonEmptyEntities = NonEmptyArray<WatchedShowEntity>(headEntity, Array(newEntities.dropFirst()))
+  guard !newEntities.isEmpty else { return .filterEmpty }
 
   let menu = ShowsProgressMenuOptions(sort: ShowProgressSort.allValues(),
                                       filter: ShowProgressFilter.allValues(),
                                       currentFilter: listState.filter,
                                       currentSort: listState.sort)
 
-  return .shows(entities: nonEmptyEntities, menu: menu)
+  return .shows(entities: newEntities, menu: menu)
 }

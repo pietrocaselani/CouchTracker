@@ -1,64 +1,62 @@
 PODS:
-  - ActionSheetPicker-3.0 (2.2.0)
-  - Alamofire (4.8.0)
-  - AutoInsetter (1.5.1)
+  - ActionSheetPicker-3.0 (2.3.0)
+  - Alamofire (4.8.2)
+  - AutoInsetter (1.7.1)
   - Bugsnag (5.20.0)
-  - Differentiator (3.1.0)
+  - Differentiator (4.0.1)
   - KIF (3.7.7):
     - KIF/Core (= 3.7.7)
   - KIF/Core (3.7.7)
-  - Kingfisher (5.0.1)
-  - Moya/Core (12.0.1):
+  - Kingfisher (5.5.0)
+  - Moya/Core (14.0.0-alpha.1):
     - Alamofire (~> 4.1)
-    - Result (~> 4.0)
-  - Moya/RxSwift (12.0.1):
+    - Result (~> 4.1)
+  - Moya/RxSwift (14.0.0-alpha.1):
     - Moya/Core
-    - RxSwift (~> 4.0)
-  - Nimble (7.3.1)
-  - NonEmpty (0.1.2)
-  - Pageboy (3.0.7)
-  - Realm (3.7.6):
-    - Realm/Headers (= 3.7.6)
-  - Realm/Headers (3.7.6)
-  - RealmSwift (3.7.6):
-    - Realm (= 3.7.6)
-  - Result (4.0.0)
-  - RxAtomic (4.4.0)
-  - RxCocoa (4.4.0):
-    - RxSwift (~> 4.0)
-  - RxDataSources (3.1.0):
-    - Differentiator (~> 3.0)
-    - RxCocoa (~> 4.0)
-    - RxSwift (~> 4.0)
-  - RxRealm (0.7.6):
-    - RealmSwift (~> 3.0)
-    - RxSwift (~> 4.0)
-  - RxSwift (4.4.0):
-    - RxAtomic (~> 4.4)
-  - RxTest (4.4.0):
-    - RxAtomic (~> 4.4)
-    - RxSwift (~> 4.0)
+    - RxSwift (~> 5.0)
+  - Nimble (8.0.1)
+  - Pageboy (3.2.2)
+  - Realm (3.15.0):
+    - Realm/Headers (= 3.15.0)
+  - Realm/Headers (3.15.0)
+  - RealmSwift (3.15.0):
+    - Realm (= 3.15.0)
+  - Result (4.1.0)
+  - RxCocoa (5.0.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxRealm (1.0.0):
+    - RealmSwift (~> 3.14)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.1)
+  - RxTest (5.0.1):
+    - RxSwift (~> 5)
   - SnapKit (5.0.0)
-  - Tabman (2.1.4):
-    - AutoInsetter (~> 1.5)
-    - Pageboy (~> 3.0)
+  - Tabman (2.4.2):
+    - AutoInsetter (~> 1.7)
+    - Pageboy (~> 3.2)
 
 DEPENDENCIES:
-  - ActionSheetPicker-3.0 (= 2.2.0)
+  - ActionSheetPicker-3.0 (= 2.3.0)
   - Bugsnag
   - KIF (= 3.7.7)
-  - Kingfisher (= 5.0.1)
-  - Moya/RxSwift (= 12.0.1)
-  - Nimble (= 7.3.1)
-  - NonEmpty (= 0.1.2)
-  - RealmSwift (= 3.7.6)
-  - RxCocoa (= 4.4.0)
-  - RxDataSources (= 3.1.0)
-  - RxRealm (= 0.7.6)
-  - RxSwift (= 4.4.0)
-  - RxTest (= 4.4.0)
+  - Kingfisher (= 5.5.0)
+  - Moya/RxSwift (from `https://github.com/Moya/Moya.git`, tag `14.0.0-alpha.1`)
+  - Nimble (= 8.0.1)
+  - RealmSwift (= 3.15.0)
+  - RxCocoa (from `https://github.com/ReactiveX/RxSwift.git`, tag `5.0.1`)
+  - RxDataSources (= 4.0.1)
+  - RxRealm (= 1.0.0)
+  - RxSwift (from `https://github.com/ReactiveX/RxSwift.git`, tag `5.0.1`)
+  - RxTest (from `https://github.com/ReactiveX/RxSwift.git`, tag `5.0.1`)
   - SnapKit (= 5.0.0)
-  - Tabman (= 2.1.4)
+  - Tabman (= 2.4.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -69,46 +67,68 @@ SPEC REPOS:
     - Differentiator
     - KIF
     - Kingfisher
-    - Moya
     - Nimble
-    - NonEmpty
     - Pageboy
     - Realm
     - RealmSwift
     - Result
-    - RxAtomic
-    - RxCocoa
     - RxDataSources
     - RxRealm
-    - RxSwift
-    - RxTest
+    - RxRelay
     - SnapKit
     - Tabman
 
-SPEC CHECKSUMS:
-  ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
-  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
-  AutoInsetter: 249b103e316d5a9f2c7b88193e966f59bc1aa7b2
-  Bugsnag: 004de6246295afd742093871d10ebaede63aa02c
-  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
-  KIF: 6f525b18d4cca3d6445f3c5d683294e9157bd3f4
-  Kingfisher: 4f771421b9208185217550528a06fd48756cb7c2
-  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
-  Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
-  NonEmpty: b1054f956f717e9f771d379485c9dd7c2bc65a74
-  Pageboy: 8210fff0db9dd487f58dc9769d5d046f2618ebe0
-  Realm: 9eaecad54712d6246d08ba34c10f354e4715d7d3
-  RealmSwift: 1fe08b4ebaeeaacf17f9ba0343f7b25c9fc31fa6
-  Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
-  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
-  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
-  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
-  RxRealm: 5379eddd74f8d617ca7681d1f8d144af25b432b0
-  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
-  RxTest: 19d03286bdc0a3aaea5d61d4cde31fdf4bb8a5ba
-  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
-  Tabman: f8a6a1967312077334631d2f67010fe905a545f1
+EXTERNAL SOURCES:
+  Moya:
+    :git: https://github.com/Moya/Moya.git
+    :tag: 14.0.0-alpha.1
+  RxCocoa:
+    :git: https://github.com/ReactiveX/RxSwift.git
+    :tag: 5.0.1
+  RxSwift:
+    :git: https://github.com/ReactiveX/RxSwift.git
+    :tag: 5.0.1
+  RxTest:
+    :git: https://github.com/ReactiveX/RxSwift.git
+    :tag: 5.0.1
 
-PODFILE CHECKSUM: 777b8b9b868fd3b3e01d3faadbc1eadc2126116a
+CHECKOUT OPTIONS:
+  Moya:
+    :git: https://github.com/Moya/Moya.git
+    :tag: 14.0.0-alpha.1
+  RxCocoa:
+    :git: https://github.com/ReactiveX/RxSwift.git
+    :tag: 5.0.1
+  RxSwift:
+    :git: https://github.com/ReactiveX/RxSwift.git
+    :tag: 5.0.1
+  RxTest:
+    :git: https://github.com/ReactiveX/RxSwift.git
+    :tag: 5.0.1
+
+SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  AutoInsetter: 0c40f6505369c7b75cf7ac27e3cce2170293ac27
+  Bugsnag: 004de6246295afd742093871d10ebaede63aa02c
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  KIF: 6f525b18d4cca3d6445f3c5d683294e9157bd3f4
+  Kingfisher: 6fe5e67a90fd335e49b0f5c075ff55ac5ebedd94
+  Moya: 65485239114b3b327a17dc2e839f6c8b7143aae9
+  Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
+  Pageboy: b6e8f5082c23ef2490ddf21339fb6e19673d1453
+  Realm: 9b834e1be6062f544805252c812348872dc5d4ed
+  RealmSwift: 8a41886f8ab6efef9eb8df97de2f2bb911561a79
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  RxCocoa: dcceba42244a647ac976575f1b85b48030478ef1
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxRealm: 1e81dcfca1fb50c3e9b3e1f8102bc875c5156a2e
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSwift: 3a0c158ad22a75080a707abd9dc9191149e03522
+  RxTest: cfdad28bbd90a52106a71409a1b39e77fd4bf257
+  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
+  Tabman: 6e0888c9b9227d9da03e51a90f1f91f53454bfa1
+
+PODFILE CHECKSUM: 2e9783e88b20386f48d44a2e0dddd970cddd2b34
 
 COCOAPODS: 1.5.3

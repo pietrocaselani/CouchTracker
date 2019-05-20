@@ -20,8 +20,9 @@ FOLDERS=(
     "TMDBSwiftTests/"
     "TVDBSwift/"
     "TVDBSwiftTests/"
+    "Project.swift"
 )
 
 for folder in ${FOLDERS[*]}; do
-    swiftformat --indent 2 "${folder}"
+    swiftformat "${folder}"
 done

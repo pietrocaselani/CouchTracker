@@ -68,7 +68,7 @@ final class TrendingInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<[TrendingMovieEntity]>>] = [error(0, connectionError)]
+    let events: [Recorded<Event<[TrendingMovieEntity]>>] = [Recorded.error(0, connectionError)]
 
     RXAssertEvents(moviesObserver, events)
   }
@@ -87,7 +87,7 @@ final class TrendingInteractorTest: XCTestCase {
 
     scheduler.start()
 
-    let events: [Recorded<Event<[TrendingShowEntity]>>] = [error(0, connectionError)]
+    let events: [Recorded<Event<[TrendingShowEntity]>>] = [Recorded.error(0, connectionError)]
 
     RXAssertEvents(showsObserver, events)
   }

@@ -1,6 +1,6 @@
 import Foundation
 
-public final class BaseShow: Codable, Hashable {
+public struct BaseShow: Codable, Hashable {
   public let show: Show?
   public let seasons: [BaseSeason]?
   public let lastCollectedAt: Date?
@@ -21,7 +21,7 @@ public final class BaseShow: Codable, Hashable {
     case nextEpisode = "next_episode"
   }
 
-  public required init(from decoder: Decoder) throws {
+  public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     show = try container.decodeIfPresent(Show.self, forKey: .show)
@@ -39,51 +39,5 @@ public final class BaseShow: Codable, Hashable {
     self.lastCollectedAt = TraktDateTransformer.dateTimeTransformer.transformFromJSON(lastCollectedAt)
     self.listedAt = TraktDateTransformer.dateTimeTransformer.transformFromJSON(listedAt)
     self.lastWatchedAt = TraktDateTransformer.dateTimeTransformer.transformFromJSON(lastWatchedAt)
-  }
-
-  public var hashValue: Int {
-    var hash = 11
-
-    if let showHash = show?.hashValue {
-      hash = hash ^ showHash
-    }
-
-    seasons?.forEach { hash = hash ^ $0.hashValue }
-
-    if let lastCollectedAtHash = lastCollectedAt?.hashValue {
-      hash = hash ^ lastCollectedAtHash
-    }
-
-    if let listedAtHash = listedAt?.hashValue {
-      hash = hash ^ listedAtHash
-    }
-
-    if let playsHash = plays?.hashValue {
-      hash = hash ^ playsHash
-    }
-
-    if let lastWatchedAtHash = lastWatchedAt?.hashValue {
-      hash = hash ^ lastWatchedAtHash
-    }
-
-    if let airedHash = aired?.hashValue {
-      hash = hash ^ airedHash
-    }
-
-    if let completedHash = completed?.hashValue {
-      hash = hash ^ completedHash
-    }
-
-    hiddenSeasons?.forEach { hash = hash ^ $0.hashValue }
-
-    if let nextEpisodeHash = nextEpisode?.hashValue {
-      hash = hash ^ nextEpisodeHash
-    }
-
-    return hash
-  }
-
-  public static func == (lhs: BaseShow, rhs: BaseShow) -> Bool {
-    return lhs.hashValue == rhs.hashValue
   }
 }

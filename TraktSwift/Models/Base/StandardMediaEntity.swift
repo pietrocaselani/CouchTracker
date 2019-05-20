@@ -1,12 +1,12 @@
 import Foundation
 
 public class StandardMediaEntity: Codable, Hashable {
-  public var title: String?
-  public var overview: String?
-  public var rating: Double?
-  public var votes: Int?
-  public var updatedAt: Date?
-  public var translations: [String]?
+  public let title: String?
+  public let overview: String?
+  public let rating: Double?
+  public let votes: Int?
+  public let updatedAt: Date?
+  public let translations: [String]?
 
   private enum CodingKeys: String, CodingKey {
     case title
@@ -40,35 +40,21 @@ public class StandardMediaEntity: Codable, Hashable {
     self.updatedAt = TraktDateTransformer.dateTimeTransformer.transformFromJSON(updatedAt)
   }
 
-  public var hashValue: Int {
-    var hash = 0
-
-    if let titleHash = title?.hashValue {
-      hash = hash ^ titleHash
-    }
-
-    if let overviewHash = overview?.hashValue {
-      hash = hash ^ overviewHash
-    }
-
-    if let ratingHash = rating?.hashValue {
-      hash = hash ^ ratingHash
-    }
-
-    if let votesHash = votes?.hashValue {
-      hash = hash ^ votesHash
-    }
-
-    if let updatedAtHash = updatedAt?.hashValue {
-      hash = hash ^ updatedAtHash
-    }
-
-    translations?.forEach { hash = hash ^ $0.hashValue }
-
-    return hash
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(title)
+    hasher.combine(overview)
+    hasher.combine(rating)
+    hasher.combine(votes)
+    hasher.combine(updatedAt)
+    hasher.combine(translations)
   }
 
   public static func == (lhs: StandardMediaEntity, rhs: StandardMediaEntity) -> Bool {
-    return lhs.hashValue == rhs.hashValue
+    return lhs.title == rhs.title &&
+      lhs.overview == rhs.overview &&
+      lhs.rating == rhs.rating &&
+      lhs.votes == rhs.votes &&
+      lhs.updatedAt == rhs.updatedAt &&
+      lhs.translations == rhs.translations
   }
 }

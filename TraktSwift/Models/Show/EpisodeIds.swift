@@ -29,17 +29,17 @@ public final class EpisodeIds: BaseIds {
     try super.encode(to: encoder)
   }
 
-  public override var hashValue: Int {
-    var hash = super.hashValue
+  public override func hash(into hasher: inout Hasher) {
+    super.hash(into: &hasher)
+    hasher.combine(tvdb)
+    hasher.combine(tvrage)
+  }
 
-    if let tvdbHash = tvdb?.hashValue {
-      hash ^= tvdbHash
-    }
+  public static func == (lhs: EpisodeIds, rhs: EpisodeIds) -> Bool {
+    let lhsBaseIds = lhs as BaseIds
+    let rhsBaseIds = rhs as BaseIds
 
-    if let tvrageHash = tvrage?.hashValue {
-      hash ^= tvrageHash
-    }
-    return hash
+    return lhsBaseIds == rhsBaseIds && lhs.tvdb == rhs.tvdb && lhs.tvrage == rhs.tvrage
   }
 
   public override var description: String {

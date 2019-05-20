@@ -1,6 +1,6 @@
 import Foundation
 
-public final class BaseMovie: Codable, Hashable {
+public struct BaseMovie: Codable, Hashable {
   public let movie: Movie?
   public let collectedAt: Date?
   public let watchedAt: Date?
@@ -14,7 +14,7 @@ public final class BaseMovie: Codable, Hashable {
     case listedAt = "listed_at"
   }
 
-  public required init(from decoder: Decoder) throws {
+  public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
     movie = try container.decodeIfPresent(Movie.self, forKey: .movie)
@@ -27,35 +27,5 @@ public final class BaseMovie: Codable, Hashable {
     self.collectedAt = TraktDateTransformer.dateTimeTransformer.transformFromJSON(collectedAt)
     self.listedAt = TraktDateTransformer.dateTimeTransformer.transformFromJSON(listedAt)
     self.watchedAt = TraktDateTransformer.dateTimeTransformer.transformFromJSON(watchedAt)
-  }
-
-  public var hashValue: Int {
-    var hash = 11
-
-    if let movieHash = movie?.hashValue {
-      hash ^= movieHash
-    }
-
-    if let collectedAtHash = collectedAt?.hashValue {
-      hash ^= collectedAtHash
-    }
-
-    if let watchedAtHash = watchedAt?.hashValue {
-      hash ^= watchedAtHash
-    }
-
-    if let listedAtHash = listedAt?.hashValue {
-      hash ^= listedAtHash
-    }
-
-    if let playsHash = plays?.hashValue {
-      hash ^= playsHash
-    }
-
-    return hash
-  }
-
-  public static func == (lhs: BaseMovie, rhs: BaseMovie) -> Bool {
-    return lhs.hashValue == rhs.hashValue
   }
 }

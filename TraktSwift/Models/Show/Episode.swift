@@ -42,17 +42,26 @@ public final class Episode: StandardMediaEntity {
     try super.init(from: decoder)
   }
 
-  public override var hashValue: Int {
-    var hash = super.hashValue ^ season.hashValue ^ number.hashValue ^ ids.hashValue
+  public override func hash(into hasher: inout Hasher) {
+    super.hash(into: &hasher)
+    hasher.combine(season)
+    hasher.combine(number)
+    hasher.combine(ids)
+    hasher.combine(absoluteNumber)
+    hasher.combine(firstAired)
+    hasher.combine(runtime)
+  }
 
-    if let absoluteNumberHash = absoluteNumber?.hashValue {
-      hash = hash ^ absoluteNumberHash
-    }
+  public static func == (lhs: Episode, rhs: Episode) -> Bool {
+    let lhsMediaEntity = lhs as StandardMediaEntity
+    let rhsMediaEntity = rhs as StandardMediaEntity
 
-    if let firstAiredHash = firstAired?.hashValue {
-      hash = hash ^ firstAiredHash
-    }
-
-    return hash
+    return lhsMediaEntity == rhsMediaEntity &&
+      lhs.title == rhs.title &&
+      lhs.overview == rhs.overview &&
+      lhs.rating == rhs.rating &&
+      lhs.votes == rhs.votes &&
+      lhs.updatedAt == rhs.updatedAt &&
+      lhs.translations == rhs.translations
   }
 }

@@ -35,43 +35,34 @@ public final class Movie: StandardMediaEntity {
     try super.init(from: decoder)
   }
 
-  public override var hashValue: Int {
-    var hash = super.hashValue ^ ids.hashValue
+  public override func hash(into hasher: inout Hasher) {
+    super.hash(into: &hasher)
+    hasher.combine(year)
+    hasher.combine(ids)
+    hasher.combine(certification)
+    hasher.combine(tagline)
+    hasher.combine(released)
+    hasher.combine(runtime)
+    hasher.combine(trailer)
+    hasher.combine(homepage)
+    hasher.combine(language)
+    hasher.combine(genres)
+  }
 
-    if let yearHash = year?.hashValue {
-      hash = hash ^ yearHash
-    }
+  public static func == (lhs: Movie, rhs: Movie) -> Bool {
+    let lhsMediaEntity = lhs as StandardMediaEntity
+    let rhsMediaEntity = rhs as StandardMediaEntity
 
-    if let certificationHash = certification?.hashValue {
-      hash = hash ^ certificationHash
-    }
-
-    if let taglineHash = tagline?.hashValue {
-      hash = hash ^ taglineHash
-    }
-
-    if let releasedHash = released?.hashValue {
-      hash = hash ^ releasedHash
-    }
-
-    if let runtimeHash = runtime?.hashValue {
-      hash = hash ^ runtimeHash
-    }
-
-    if let trailerHash = trailer?.hashValue {
-      hash = hash ^ trailerHash
-    }
-
-    if let homepageHash = homepage?.hashValue {
-      hash = hash ^ homepageHash
-    }
-
-    if let languageHash = language?.hashValue {
-      hash = hash ^ languageHash
-    }
-
-    genres?.forEach { hash = hash ^ $0.hashValue }
-
-    return hash
+    return lhsMediaEntity == rhsMediaEntity &&
+      lhs.year == rhs.year &&
+      lhs.ids == rhs.ids &&
+      lhs.certification == rhs.certification &&
+      lhs.tagline == rhs.tagline &&
+      lhs.released == rhs.released &&
+      lhs.runtime == rhs.runtime &&
+      lhs.trailer == rhs.trailer &&
+      lhs.homepage == rhs.homepage &&
+      lhs.language == rhs.language &&
+      lhs.genres == rhs.genres
   }
 }
