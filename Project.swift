@@ -44,17 +44,15 @@ enum CouchTracker {
   }
 
   private static func settings() -> Settings {
-    let debug = [
-      "PROVISIONING_PROFILE_SPECIFIER": "match Development io.github.pietrocaselani.couchtracker",
-      "OTHER_SWIFT_FLAGS": "$(inherited) -D COCOAPODS -D DEBUG -Xfrontend -warn-long-expression-type-checking=100 -Xfrontend -warn-long-function-bodies=100"
-    ] + iOSBaseSettings() + debugCodeSigning()
+    let debug = ([
+      "PROVISIONING_PROFILE_SPECIFIER": "match Development io.github.pietrocaselani.couchtracker"
+    ] + iOSBaseSettings() + debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
 
-    let release = [
-      "PROVISIONING_PROFILE_SPECIFIER": "match AppStore io.github.pietrocaselani.couchtracker",
-      "OTHER_SWIFT_FLAGS": "$(inherited) -D COCOAPODS"
-    ] + iOSBaseSettings() + releaseCodeSigning()
+    let release = ([
+      "PROVISIONING_PROFILE_SPECIFIER": "match AppStore io.github.pietrocaselani.couchtracker"
+    ] + iOSBaseSettings() + releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
 
-    return Settings(debug: debug.asConfig(), release: release.asConfig())
+    return Settings(debug: debug, release: release)
   }
 
   private static func buildPhases() -> [TargetAction] {
@@ -89,9 +87,12 @@ enum CouchTrackerApp {
   }
 
   private static func settings() -> Settings {
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
     return Settings(base: iOSBaseSettings(),
-                    debug: debugCodeSigning().asConfig(),
-                    release: releaseCodeSigning().asConfig())
+                    debug: debug,
+                    release: release)
   }
 }
 
@@ -114,9 +115,12 @@ enum CouchTrackerAppTestable {
   }
 
   private static func settings() -> Settings {
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
     return Settings(base: iOSBaseSettings(),
-                    debug: debugCodeSigning().asConfig(),
-                    release: releaseCodeSigning().asConfig())
+                    debug: debug,
+                    release: release)
   }
 }
 
@@ -135,9 +139,12 @@ enum CouchTrackerPersistence {
   }
 
   private static func settings() -> Settings {
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
     return Settings(base: iOSBaseSettings(),
-                    debug: debugCodeSigning().asConfig(),
-                    release: releaseCodeSigning().asConfig())
+                    debug: debug,
+                    release: release)
   }
 }
 
@@ -159,9 +166,12 @@ enum CouchTrackerDebug {
   }
 
   private static func settings() -> Settings {
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
     return Settings(base: iOSBaseSettings(),
-                    debug: debugCodeSigning().asConfig(),
-                    release: releaseCodeSigning().asConfig())
+                    debug: debug,
+                    release: release)
   }
 }
 
@@ -186,9 +196,12 @@ enum CouchTrackerCoreiOS {
   }
 
   private static func settings() -> Settings {
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
     return Settings(base: iOSBaseSettings() + ["PRODUCT_NAME": "CouchTrackerCore"],
-                    debug: debugCodeSigning().asConfig(),
-                    release: releaseCodeSigning().asConfig())
+                    debug: debug,
+                    release: release)
   }
 }
 
@@ -207,9 +220,12 @@ enum TraktSwiftiOS {
   }
 
   private static func settings() -> Settings {
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
     return Settings(base: iOSBaseSettings() + ["PRODUCT_NAME": "TraktSwift"],
-                    debug: debugCodeSigning().asConfig(),
-                    release: releaseCodeSigning().asConfig())
+                    debug: debug,
+                    release: release)
   }
 }
 
@@ -228,9 +244,12 @@ enum TMDBSwiftiOS {
   }
 
   private static func settings() -> Settings {
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
     return Settings(base: iOSBaseSettings() + ["PRODUCT_NAME": "TMDBSwift"],
-                    debug: debugCodeSigning().asConfig(),
-                    release: releaseCodeSigning().asConfig())
+                    debug: debug,
+                    release: release)
   }
 }
 
@@ -249,9 +268,12 @@ enum TVDBSwiftiOS {
   }
 
   private static func settings() -> Settings {
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
     return Settings(base: iOSBaseSettings() + ["PRODUCT_NAME": "TVDBSwift"],
-                    debug: debugCodeSigning().asConfig(),
-                    release: releaseCodeSigning().asConfig())
+                    debug: debug,
+                    release: release)
   }
 }
 
@@ -278,7 +300,12 @@ enum CouchTrackerCore {
   }
 
   private static func settings() -> Settings {
-    return Settings(base: macOSBaseSettings())
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
+    return Settings(base: macOSBaseSettings(),
+                    debug: debug,
+                    release: release)
   }
 }
 
@@ -297,7 +324,12 @@ enum TraktSwift {
   }
 
   private static func settings() -> Settings {
-    return Settings(base: macOSBaseSettings())
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
+    return Settings(base: macOSBaseSettings(),
+                    debug: debug,
+                    release: release)
   }
 }
 
@@ -320,7 +352,12 @@ enum TraktSwiftTestable {
   }
 
   private static func settings() -> Settings {
-    return Settings(base: macOSBaseSettings())
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
+    return Settings(base: macOSBaseSettings(),
+                    debug: debug,
+                    release: release)
   }
 }
 
@@ -339,7 +376,12 @@ enum TMDBSwift {
   }
 
   private static func settings() -> Settings {
-    return Settings(base: macOSBaseSettings())
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
+    return Settings(base: macOSBaseSettings(),
+                    debug: debug,
+                    release: release)
   }
 }
 
@@ -362,7 +404,12 @@ enum TMDBSwiftTestable {
   }
 
   private static func settings() -> Settings {
-    return Settings(base: macOSBaseSettings())
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
+    return Settings(base: macOSBaseSettings(),
+                    debug: debug,
+                    release: release)
   }
 }
 
@@ -381,7 +428,12 @@ enum TVDBSwift {
   }
 
   private static func settings() -> Settings {
-    return Settings(base: macOSBaseSettings())
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
+    return Settings(base: macOSBaseSettings(),
+                    debug: debug,
+                    release: release)
   }
 }
 
@@ -401,7 +453,12 @@ enum TVDBSwiftTestable {
   }
 
   private static func settings() -> Settings {
-    return Settings(base: macOSBaseSettings())
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
+    return Settings(base: macOSBaseSettings(),
+                    debug: debug,
+                    release: release)
   }
 }
 
@@ -524,6 +581,18 @@ enum CouchTrackerUITests {
 }
 
 // MARK: - Settings functions
+
+func sharedBaseDebugSettings() -> [String: String] {
+  return [
+    "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG"
+  ]
+}
+
+func sharedBaseReleaseSettings() -> [String: String] {
+  return [
+    "SWIFT_ACTIVE_COMPILATION_CONDITIONS": ""
+  ]
+}
 
 func macOSBaseSettings() -> [String: String] {
   return [
