@@ -1,0 +1,24 @@
+{% macro associatedValueNamedType associatedValue %}{% if associatedValue.localName %}{{ associatedValue.localName }}{% else %}value{{ forloop.counter }}{% endif %}{% endmacro %}
+{% macro associatedValueTypes associatedValues %}{% for associatedValue in associatedValues %}{% if forloop.first %}{{ associatedValue.typeName }}{% else %}, {{ associatedValue.typeName }}{% endif %}{% endfor %}{% endmacro %}
+{% macro associatedValueNames associatedValues %}{% for associatedValue in case.associatedValues %}{% if forloop.first %}{% call associatedValueNamedType associatedValue %}{% else %}, {% call associatedValueNamedType associatedValue %}{% endif %}{% endfor %}{% endmacro %}
+{% macro associatedTypeAsTuple associatedValues %}{% if associatedValues.count == 1 %}{{ associatedValues[0].typeName }}{% else %}({% for associatedValue in associatedValues %}{% if forloop.first %}{% call associatedValueNamedType associatedValue %}: {{ associatedValue.typeName }}{% else %}, {% call associatedValueNamedType associatedValue %}: {{ associatedValue.typeName }}{% endif %}{% endfor %}){% endif %}{% endmacro %}
+// MARK: - EnumProperties
+
+{% for enum in types.enums where enum.implements.EnumProperties %}
+extension {{ enum.name }} {
+    {% for case in enum.cases %}
+    {{ enum.accessLevel }} var is{{ case.name|capitalize }}: Bool {
+        guard case .{{ case.name }} = self else { return false }
+        return true
+    }
+    {% endfor %}
+    {% for case in enum.cases %}
+    {% if case.hasAssociatedValue %}
+    {{ enum.accessLevel }} var {{ case.name }}: {% call associatedTypeAsTuple case.associatedValues %}? {
+        guard case let .{{ case.name }}({% call associatedValueNames case.associatedValues %}) = self else { return nil }
+        return ({% call associatedValueNames case.associatedValues %})
+    }
+    {% endif %}
+    {% endfor %}
+}
+{% endfor %}

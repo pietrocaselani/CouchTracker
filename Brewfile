@@ -1,5 +1,6 @@
 tap 'blender/homebrew-tap'
-brew 'rome'
+
+brew 'sourcery'
 brew 'swiftlint'
 brew 'sonar-scanner'
 brew 'tailor'

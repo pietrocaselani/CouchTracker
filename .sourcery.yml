@@ -1,0 +1,5 @@
+sources:
+  - CouchTrackerCore
+templates:
+  - SourceryTemplates
+output: CouchTrackerCore/CodeGenerated
