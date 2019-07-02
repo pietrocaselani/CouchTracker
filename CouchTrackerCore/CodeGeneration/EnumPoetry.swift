@@ -1,5 +1,2 @@
-public protocol EnumClosures {}
-
-public protocol EnumProperties {}
-
+// See `EnumClosures` and `EnumProperties`
 public protocol EnumPoetry: EnumClosures, EnumProperties {}
