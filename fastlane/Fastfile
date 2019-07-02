@@ -9,14 +9,19 @@ platform :ios do
     secrets_param = branch == 'master' ? '' : 'empty'
 
     sh("../scripts/generate_secrets #{secrets_param}", log: false)
-    sh('cd .. && tuist generate')
-
-    pods
+    # sh('cd .. && tuist generate')
+    # pods
   end
 
   desc 'Run bundle exec pod install --repo-update'
   lane :pods do
     cocoapods(podfile: '.', repo_update: false)
+  end
+
+  desc 'Setup Certificates'
+  lane :setup_certs do
+    match(type: 'development')
+    match(type: 'appstore')
   end
 
   desc 'Run CouchTrackerCore tests'
