@@ -1,4 +1,4 @@
-public enum MovieDetailsViewState: Hashable {
+public enum MovieDetailsViewState: Hashable, EnumPoetry {
   case loading
   case showing(movie: MovieEntity)
   case error(error: Error)
