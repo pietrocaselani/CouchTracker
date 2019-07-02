@@ -1,13 +1,3 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR=$(echo "${BASH_SOURCE[0]}" | xargs dirname | xargs -I % sh -c 'cd % && pwd')
-PROJECT_ROOT=$(cd "${SCRIPT_DIR}/.." && pwd)
-
-cd "${PROJECT_ROOT}" || exit 1
-
-COUCH_TRACKER_CORE_DIR="${PROJECT_ROOT}/CouchTrackerCore"
-
-TEMPLATES_DIR="${PROJECT_ROOT}/SourceryTemplates"
-OUTPUT_DIR="${COUCH_TRACKER_CORE_DIR}/CodeGenerated"
-
-sourcery --templates ${TEMPLATES_DIR} --output ${OUTPUT_DIR} --sources ${COUCH_TRACKER_CORE_DIR}
+sourcery
