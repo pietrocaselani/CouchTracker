@@ -1,3 +1,12 @@
+# 0.0.1 (44) 
+* Code format [view commit](http://github.com/pietrocaselani/CouchTracker/commit/9615b8816fabeb2ed2903403c06dde484a31b8f3)
+* Fix tuist install URL [view commit](http://github.com/pietrocaselani/CouchTracker/commit/2cd7303909d5101394d533b03e005bbc291a1d9c)
+* We need to generate the project and run cocoapods always [view commit](http://github.com/pietrocaselani/CouchTracker/commit/df7a0467a4370c38d0921331959b96179f056c74)
+* Remove unused code to generate swift code [view commit](http://github.com/pietrocaselani/CouchTracker/commit/8a7b152991641283b64b44c7c33b04da37944875)
+* Generating properties and closures for enums [view commit](http://github.com/pietrocaselani/CouchTracker/commit/92ac97685455ad2827b483ddd42c5a7fbd430a79)
+* Adding Sourcery to create enum properties and more [view commit](http://github.com/pietrocaselani/CouchTracker/commit/9e3f06676db5d566363eca60f16214bdcd5c71a9)
+* Create a simple lane to setup certificates [view commit](http://github.com/pietrocaselani/CouchTracker/commit/389380d6ac3feeea23addf6bbca534727aceb080)
+
 # 0.0.1 (43) 
 * Trying a simpler approach to create the bump commit and tag [view commit](http://github.com/pietrocaselani/CouchTracker/commit/ba01027f45f4f2edc9d52405b796f6acbbd3b81d)
 * Specify project file to be changed [view commit](http://github.com/pietrocaselani/CouchTracker/commit/7e9ecdc05ce7f963e40cb2625052fd3ba1ee39a2)
