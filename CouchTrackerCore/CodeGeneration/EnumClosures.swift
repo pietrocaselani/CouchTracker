@@ -6,7 +6,7 @@
     case start(data: T)
     case loading
     case completed(count: Int, message: String)
-}
+ }
  ```
 
  will generate the following code
@@ -25,7 +25,7 @@
         guard case let .completed(count, message) = self else { return }
         fn(count, message)
     }
-}
+ }
  ```
  */
 public protocol EnumClosures {}

@@ -12,7 +12,7 @@
  will generate the following code
 
  ```
-extension ViewState {
+ extension ViewState {
     internal var isStart: Bool {
         guard case .start = self else { return false }
         return true
@@ -34,7 +34,7 @@ extension ViewState {
         guard case let .completed(count, message) = self else { return nil }
         return (count, message)
     }
-}
+ }
  ```
  */
 public protocol EnumProperties {}
