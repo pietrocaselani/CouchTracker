@@ -29,7 +29,7 @@ public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
   public func handleWatched() -> Completable {
     guard let viewState = try? viewStateSubject.value(),
       case let .showing(movie) = viewState else {
-      return Completable.empty()
+        return Completable.empty()
     }
 
     guard isLogged else {
@@ -65,9 +65,9 @@ public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
       .subscribe(onNext: { [weak self] movie in
         let viewState = MovieDetailsViewState.showing(movie: movie)
         self?.viewStateSubject.onNext(viewState)
-      }, onError: { [unowned self] error in
-        let viewState = MovieDetailsViewState.error(error: error)
-        self.viewStateSubject.onNext(viewState)
+        }, onError: { [unowned self] error in
+          let viewState = MovieDetailsViewState.error(error: error)
+          self.viewStateSubject.onNext(viewState)
       }).disposed(by: disposeBag)
   }
 }

@@ -56,8 +56,8 @@ public final class AppStateDefaultPresenter: AppStatePresenter {
       }.observeOn(schedulers.mainScheduler)
       .subscribe(onNext: { [weak self] newViewState in
         self?.viewStateSubject.onNext(newViewState)
-      }, onError: { [weak self] error in
-        self?.router.showError(message: error.localizedDescription)
+        }, onError: { [weak self] error in
+          self?.router.showError(message: error.localizedDescription)
       }).disposed(by: disposeBag)
   }
 

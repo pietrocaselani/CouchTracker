@@ -19,8 +19,8 @@ public final class TraktLoginDefaultPresenter: TraktLoginPresenter {
       .observeOn(schedulers.mainScheduler)
       .subscribe(onSuccess: { [weak self] url in
         self?.view?.loadLogin(using: url)
-      }, onError: { [weak self] error in
-        self?.view?.showError(error: error)
+        }, onError: { [weak self] error in
+          self?.view?.showError(error: error)
       }).disposed(by: disposeBag)
   }
 

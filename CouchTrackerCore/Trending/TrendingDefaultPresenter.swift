@@ -65,13 +65,13 @@ public final class TrendingDefaultPresenter: TrendingPresenter {
         self?.view?.showLoadingView()
       }).subscribe(onSuccess: { [unowned self] in
         self.present(viewModels: $0)
-      }, onError: { error in
-        guard let moviesListError = error as? TrendingError else {
-          self.router.showError(message: error.localizedDescription)
-          return
-        }
+        }, onError: { error in
+          guard let moviesListError = error as? TrendingError else {
+            self.router.showError(message: error.localizedDescription)
+            return
+          }
 
-        self.router.showError(message: moviesListError.message)
+          self.router.showError(message: moviesListError.message)
       }).disposed(by: disposeBag)
   }
 

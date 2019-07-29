@@ -33,7 +33,7 @@ public final class DefaultWatchedShowEntityDownloader: WatchedShowEntityDownload
     return fetchDetailsFromAPI(of: nextEpisode, using: options).map {
       WatchedEpisodeEntityBuilder(showIds: options.showIds, episode: $0)
     }.map { episodeBuilder in
-      builder.set(episode: episodeBuilder.createEntity())
+        builder.set(episode: episodeBuilder.createEntity())
     }
   }
 

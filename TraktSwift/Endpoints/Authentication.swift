@@ -3,7 +3,7 @@ import Moya
 public enum Authentication {
   case accessToken(code: String, clientId: String, clientSecret: String, redirectURL: String, grantType: String)
   case refreshToken(refreshToken: String, clientId: String,
-                    clientSecret: String, redirectURL: String, grantType: String)
+    clientSecret: String, redirectURL: String, grantType: String)
 }
 
 extension Authentication: TraktType {
