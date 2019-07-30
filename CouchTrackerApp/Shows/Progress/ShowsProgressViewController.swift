@@ -56,10 +56,10 @@ final class ShowsProgressViewController: UIViewController {
       }.unwrap()
       .bind(to: tableView.rx.items(cellIdentifier: cellIdentifier,
                                    cellType: cellType)) { [localCellInteractor = cellInteractor] _, model, cell in
-        let viewModel = WatchedShowEntityMapper.viewModel(for: model)
+                                    let viewModel = WatchedShowEntityMapper.viewModel(for: model)
 
-        let presenter = ShowProgressCellDefaultPresenter(interactor: localCellInteractor, viewModel: viewModel)
-        cell.presenter = presenter
+                                    let presenter = ShowProgressCellDefaultPresenter(interactor: localCellInteractor, viewModel: viewModel)
+                                    cell.presenter = presenter
       }.disposed(by: disposeBag)
 
     tableView.rx.modelSelected(WatchedShowEntity.self)
@@ -158,14 +158,14 @@ final class ShowsProgressViewController: UIViewController {
                                                  rows: rows,
                                                  initialSelection: initial,
                                                  doneBlock: { [weak self] _, indexes, _ in
-                                                   let sortIndex = (indexes?[0] as? Int) ?? 0
-                                                   let filterIndex = (indexes?[1] as? Int) ?? 0
+                                                  let sortIndex = (indexes?[0] as? Int) ?? 0
+                                                  let filterIndex = (indexes?[1] as? Int) ?? 0
 
-                                                   let sort = ShowProgressSort.allValues()[sortIndex]
-                                                   let filter = ShowProgressFilter.allValues()[filterIndex]
+                                                  let sort = ShowProgressSort.allValues()[sortIndex]
+                                                  let filter = ShowProgressFilter.allValues()[filterIndex]
 
-                                                   self?.change(sort: sort, filter: filter)
-                                                 },
+                                                  self?.change(sort: sort, filter: filter)
+      },
                                                  cancel: { _ in },
                                                  origin: view)
     picker?.show()

@@ -58,8 +58,8 @@ public final class MovieDetailsViewController: UIViewController {
       .observeOn(schedulers.mainScheduler)
       .do(onSubscribe: { [weak self] in
         self?.movieView.watchButton.isLoading = true
-      }, onDispose: { [weak self] in
-        self?.movieView.watchButton.isLoading = false
+        }, onDispose: { [weak self] in
+          self?.movieView.watchButton.isLoading = false
       }).subscribe(onCompleted: nil) { [weak self] error in
         self?.showError(error)
       }.disposed(by: disposeBag)

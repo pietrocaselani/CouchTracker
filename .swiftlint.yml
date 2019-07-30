@@ -29,6 +29,9 @@ opt_in_rules:
   - redundant_type_annotation
   - unused_import
   - yoda_condition
+  - closure_end_indentation
+
+indentation: 2
 
 type_name:
   excluded:

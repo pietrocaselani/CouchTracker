@@ -21,7 +21,7 @@ public final class ShowProgressCellDefaultPresenter: ShowProgressCellPresenter {
 
     guard let viewState = try? viewStateSubject.value(),
       case let .viewModel(model) = viewState else {
-      return
+        return
     }
 
     interactor.fetchPosterImageURL(for: tmdbId, with: .w185)

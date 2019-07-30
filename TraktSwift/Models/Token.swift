@@ -40,7 +40,7 @@ public final class Token: NSObject, Codable, NSCoding {
       let refreshToken = coder.decodeObject(forKey: "refreshToken") as? String,
       let tokenType = coder.decodeObject(forKey: "tokenType") as? String,
       let scope = coder.decodeObject(forKey: "scope") as? String
-    else { return nil }
+      else { return nil }
 
     self.init(accessToken: accessToken, expiresIn: expiresIn,
               refreshToken: refreshToken, tokenType: tokenType, scope: scope)

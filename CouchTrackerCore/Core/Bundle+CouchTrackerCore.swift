@@ -3,9 +3,9 @@ import Foundation
 extension Bundle {
   //	swiftlint:disable force_unwrapping
   #if os(iOS) || os(watchOS) || os(tvOS)
-    public static let couchTrackerCore = Bundle(identifier: "io.github.pietrocaselani.CouchTrackerCore-iOS")!
+  public static let couchTrackerCore = Bundle(identifier: "io.github.pietrocaselani.CouchTrackerCore-iOS")!
   #elseif os(OSX)
-    public static let couchTrackerCore = Bundle(identifier: "io.github.pietrocaselani.CouchTrackerCore")!
+  public static let couchTrackerCore = Bundle(identifier: "io.github.pietrocaselani.CouchTrackerCore")!
   #endif
   //	swiftlint:enable force_unwrapping
 }

@@ -55,8 +55,8 @@ final class ShowEpisodeViewController: UIViewController {
       .observeOn(schedulers.mainScheduler)
       .do(onSubscribe: { [weak self] in
         self?.episodeView.watchButton.isLoading = true
-      }, onDispose: { [weak self] in
-        self?.episodeView.watchButton.isLoading = false
+        }, onDispose: { [weak self] in
+          self?.episodeView.watchButton.isLoading = false
       }).subscribe { [weak self] error in
         self?.handleSync(error: error)
       }.disposed(by: disposeBag)

@@ -57,8 +57,7 @@ enum CouchTracker {
 
   private static func buildPhases() -> [TargetAction] {
     return [
-      TargetAction.post(path: "build_phases/swiftlint", arguments: [], name: "Swiftlint"),
-      TargetAction.post(path: "build_phases/swiftformat", arguments: [], name: "Swiftformat")
+      TargetAction.post(path: "build_phases/swiftlint", arguments: [], name: "Swiftlint")
     ]
   }
 }

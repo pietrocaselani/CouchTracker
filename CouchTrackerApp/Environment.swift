@@ -47,11 +47,11 @@ public final class Environment {
     let plugins = [PluginType]()
 
     #if DEBUG
-      Environment.checkForEmptySecrets()
+    Environment.checkForEmptySecrets()
 
-      debug = true
+    debug = true
     #else
-      debug = false
+    debug = false
     #endif
 
     var traktPlugins = plugins

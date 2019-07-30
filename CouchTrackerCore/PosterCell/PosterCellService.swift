@@ -21,7 +21,7 @@ public final class PosterCellService: PosterCellInteractor {
     return imagesObservable.flatMap { images -> Maybe<URL> in
       guard let imageLink = images.posterImage()?.link,
         let imageURL = URL(string: imageLink) else {
-        return Maybe.empty()
+          return Maybe.empty()
       }
 
       return Maybe.just(imageURL)

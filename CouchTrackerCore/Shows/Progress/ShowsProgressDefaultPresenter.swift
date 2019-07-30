@@ -24,26 +24,26 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
     return Observable.combineLatest(appStateStream,
                                     syncStateStream,
                                     listStateStream) { (appState, syncState, listState) -> AllStates in
-      AllStates(appState: appState, syncState: syncState, listState: listState)
+                                      AllStates(appState: appState, syncState: syncState, listState: listState)
     }.flatMap { [weak self] states -> Observable<ShowProgressViewState> in
-      guard states.appState.isLogged else { return .just(.notLogged) }
+        guard states.appState.isLogged else { return .just(.notLogged) }
 
-      guard let strongSelf = self else { return .just(.loading) }
+        guard let strongSelf = self else { return .just(.loading) }
 
-      let defaultViewState: ShowProgressViewState = states.syncState.isSyncing ? .loading : .empty
+        let defaultViewState: ShowProgressViewState = states.syncState.isSyncing ? .loading : .empty
 
-      return strongSelf.interactor.fetchWatchedShowsProgress()
-        .map { showsState -> ShowProgressViewState in
-          switch showsState {
-          case .unavailable: return defaultViewState
-          case let .available(shows):
-            return createViewState(entities: shows, listState: states.listState)
+        return strongSelf.interactor.fetchWatchedShowsProgress()
+          .map { showsState -> ShowProgressViewState in
+            switch showsState {
+            case .unavailable: return defaultViewState
+            case let .available(shows):
+              return createViewState(entities: shows, listState: states.listState)
+            }
           }
-        }
     }
-    .catchError { error -> Observable<ShowProgressViewState> in
-      .just(ShowProgressViewState.error(error: error))
-    }
+      .catchError { error -> Observable<ShowProgressViewState> in
+        .just(ShowProgressViewState.error(error: error))
+      }
   }
 
   public func toggleDirection() -> Completable {

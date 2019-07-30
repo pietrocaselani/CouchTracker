@@ -23,19 +23,19 @@ public final class MovieDetailsService: MovieDetailsInteractor {
     return Observable.combineLatest(detailsObservable,
                                     genresObservable,
                                     watchedObservable) { (movie, genres, watchedMovieResult) -> MovieEntity in
-      let movieGenres = genres.filter { genre -> Bool in
-        movie.genres?.contains(genre.slug) ?? false
-      }
+                                      let movieGenres = genres.filter { genre -> Bool in
+                                        movie.genres?.contains(genre.slug) ?? false
+                                      }
 
-      let watchedAt: Date?
+                                      let watchedAt: Date?
 
-      if case let .watched(watchedMovie) = watchedMovieResult {
-        watchedAt = watchedMovie.watchedAt
-      } else {
-        watchedAt = nil
-      }
+                                      if case let .watched(watchedMovie) = watchedMovieResult {
+                                        watchedAt = watchedMovie.watchedAt
+                                      } else {
+                                        watchedAt = nil
+                                      }
 
-      return MovieEntityMapper.entity(for: movie, with: movieGenres, watchedAt: watchedAt)
+                                      return MovieEntityMapper.entity(for: movie, with: movieGenres, watchedAt: watchedAt)
     }
   }
 
