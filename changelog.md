@@ -1,3 +1,6 @@
+# 0.0.1 (46) 
+* Remove SwiftFormat and now we only use SwiftLint [view commit](http://github.com/pietrocaselani/CouchTracker/commit/85f7c142ebc17cda05b5b7100b16b748a1ec0771)
+
 # 0.0.1 (45) 
 * Update Fastlane [view commit](http://github.com/pietrocaselani/CouchTracker/commit/c043e87a74e343f3a73f2962a09cf3c90950136b)
 * Bump build 44 [view commit](http://github.com/pietrocaselani/CouchTracker/commit/66f6cbef8bb2adcbaf81fd82fb7e6f909d966ed7)
