@@ -45,8 +45,7 @@ public enum RealmObjectState<T> {
 public extension Realm {
   func isInitialized(_ type: Object.Type) -> Bool {
     let objectName = String(describing: type)
-    let initialized = object(ofType: RealmInitialization.self, forPrimaryKey: objectName) != nil
-    return initialized
+    return object(ofType: RealmInitialization.self, forPrimaryKey: objectName) != nil
   }
 
   func observeInitialization(of type: Object.Type) -> Observable<Bool> {
@@ -55,24 +54,20 @@ public extension Realm {
 
   func observeArray<T: Object>(of type: T.Type) -> Observable<RealmObjectState<[T]>> {
     return observeInitialization(of: type)
-      .flatMap { [weak self] initialized -> Observable<RealmObjectState<[T]>> in
-        guard let strongSelf = self else { return .just(.notInitialized) }
-
+      .flatMap { initialized -> Observable<RealmObjectState<[T]>> in
         guard initialized else { return .just(.notInitialized) }
 
-        let results = strongSelf.objects(type)
+        let results = self.objects(type)
         return Observable.array(from: results).map { RealmObjectState.available(value: $0) }
       }
   }
 
   func observeObject<T: Object, KeyType>(of type: T.Type, primaryKey: KeyType) -> Observable<T> {
     return observeInitialization(of: type)
-      .flatMap { [weak self] initialized -> Observable<T> in
-        guard let strongSelf = self else { return Observable.empty() }
-
+      .flatMap { initialized -> Observable<T> in
         guard initialized else { return Observable.empty() }
 
-        guard let object = strongSelf.object(ofType: type, forPrimaryKey: primaryKey) else {
+        guard let object = self.object(ofType: type, forPrimaryKey: primaryKey) else {
           return Observable.empty()
         }
 
@@ -82,7 +77,7 @@ public extension Realm {
 
   func initializeAndAdd(_ object: Object, update: Bool = true) throws {
     try write {
-      add(object, update: update)
+      add(object, update: .modified)
       initialize(objectType: type(of: object))
     }
 
@@ -92,7 +87,7 @@ public extension Realm {
   func initializeAndAdd<S: Sequence>(_ objects: S, update: Bool = true) throws where S.Iterator.Element: Object {
     let objectType = S.Iterator.Element.self
     try write {
-      add(objects, update: update)
+      add(objects, update: .modified)
       initialize(objectType: objectType)
     }
 
@@ -104,6 +99,6 @@ public extension Realm {
     let initializationObject = RealmInitialization()
     initializationObject.name = objectName
 
-    add(initializationObject, update: true)
+    add(initializationObject, update: .modified)
   }
 }
