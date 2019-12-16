@@ -1,5 +1,4 @@
 import Moya
-import Result
 
 final class TVDBTokenRequestInterceptor: RequestInterceptor {
   private weak var tvdb: TVDB?
