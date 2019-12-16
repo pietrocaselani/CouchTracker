@@ -19,8 +19,8 @@ public final class DefaultWatchedShowEntityDownloader: WatchedShowEntityDownload
 
         return strongSelf.syncSeasons(using: options, into: builder)
       }.flatMap { [weak self] builder -> Single<WatchedShowBuilder> in
-        guard let strongSelf = self else { return Single.just(builder) }
-        return strongSelf.setNextEpisodeDetails(using: options, into: builder)
+      guard let strongSelf = self else { return Single.just(builder) }
+      return strongSelf.setNextEpisodeDetails(using: options, into: builder)
       }
   }
 
@@ -33,7 +33,7 @@ public final class DefaultWatchedShowEntityDownloader: WatchedShowEntityDownload
     return fetchDetailsFromAPI(of: nextEpisode, using: options).map {
       WatchedEpisodeEntityBuilder(showIds: options.showIds, episode: $0)
     }.map { episodeBuilder in
-        builder.set(episode: episodeBuilder.createEntity())
+      builder.set(episode: episodeBuilder.createEntity())
     }
   }
 
@@ -96,8 +96,8 @@ public final class DefaultWatchedShowEntityDownloader: WatchedShowEntityDownload
                                                                         progressSeasons: progressSeasons)
         }
       }.map {
-        let seasons = $0.map { $0.createEntity() }
-        return builder.set(seasons: seasons)
+      let seasons = $0.map { $0.createEntity() }
+      return builder.set(seasons: seasons)
       }
   }
 
