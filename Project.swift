@@ -198,7 +198,7 @@ enum CouchTrackerCoreiOS {
     let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
     let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
 
-    return Settings(base: iOSBaseSettings() + ["PRODUCT_NAME": "CouchTrackerCore"],
+    return Settings(base: iOSBaseSettings() + ["PRODUCT_NAME": CouchTrackerCore.name],
                     debug: debug,
                     release: release)
   }
@@ -222,7 +222,7 @@ enum TraktSwiftiOS {
     let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
     let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
 
-    return Settings(base: iOSBaseSettings() + ["PRODUCT_NAME": "TraktSwift"],
+    return Settings(base: iOSBaseSettings() + ["PRODUCT_NAME": TraktSwift.name],
                     debug: debug,
                     release: release)
   }
@@ -246,7 +246,7 @@ enum TMDBSwiftiOS {
     let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
     let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
 
-    return Settings(base: iOSBaseSettings() + ["PRODUCT_NAME": "TMDBSwift"],
+    return Settings(base: iOSBaseSettings() + ["PRODUCT_NAME": TMDBSwift.name],
                     debug: debug,
                     release: release)
   }
@@ -270,7 +270,7 @@ enum TVDBSwiftiOS {
     let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
     let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
 
-    return Settings(base: iOSBaseSettings() + ["PRODUCT_NAME": "TVDBSwift"],
+    return Settings(base: iOSBaseSettings() + ["PRODUCT_NAME": TVDBSwift.name],
                     debug: debug,
                     release: release)
   }
