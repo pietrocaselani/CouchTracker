@@ -13,7 +13,7 @@ extension Users: TraktType {
     return .requestPlain
   }
 
-  public var authorizationType: AuthorizationType {
+  public var authorizationType: AuthorizationType? {
     return .bearer
   }
 

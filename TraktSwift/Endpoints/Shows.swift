@@ -52,12 +52,10 @@ extension Shows: TraktType {
     return .requestParameters(parameters: params, encoding: URLEncoding.default)
   }
 
-  public var authorizationType: AuthorizationType {
+  public var authorizationType: AuthorizationType? {
     switch self {
-    case .watchedProgress:
-      return .bearer
-    default:
-      return .none
+    case .watchedProgress: return .bearer
+    default: return nil
     }
   }
 

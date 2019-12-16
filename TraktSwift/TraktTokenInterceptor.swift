@@ -1,5 +1,4 @@
 import Moya
-import Result
 
 final class TraktTokenInterceptor: RequestInterceptor {
   private weak var trakt: Trakt?

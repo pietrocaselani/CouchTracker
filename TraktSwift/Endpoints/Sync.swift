@@ -69,7 +69,7 @@ extension Sync: TraktType {
     }
   }
 
-  public var authorizationType: AuthorizationType {
+  public var authorizationType: AuthorizationType? {
     return .bearer
   }
 

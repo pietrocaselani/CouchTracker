@@ -51,14 +51,14 @@ public class Trakt {
 
     if let redirectURL = credentials.redirectURL {
       let url = Trakt.siteURL.appendingPathComponent(Trakt.OAuth2AuthorizationPath)
-      var componenets = URLComponents(url: url, resolvingAgainstBaseURL: false)
+      var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
 
       let responseTypeItem = URLQueryItem(name: "response_type", value: "code")
       let clientIdItem = URLQueryItem(name: "client_id", value: clientId)
       let redirectURIItem = URLQueryItem(name: "redirect_uri", value: redirectURL)
-      componenets?.queryItems = [responseTypeItem, clientIdItem, redirectURIItem]
+      components?.queryItems = [responseTypeItem, clientIdItem, redirectURIItem]
 
-      oauthURL = componenets?.url
+      oauthURL = components?.url
     } else {
       oauthURL = nil
     }
@@ -67,8 +67,8 @@ public class Trakt {
 
     interceptors.append(TraktTokenInterceptor(trakt: self))
 
-    plugins.append(AccessTokenPlugin { [weak self] () -> String in
-      self?.accessToken?.accessToken ?? ""
+    plugins.append(AccessTokenPlugin { [accessToken] _ -> String in
+      accessToken?.accessToken ?? ""
     })
   }
 
