@@ -1,5 +1,4 @@
 import Moya
-import Result
 
 public final class TMDB {
   let apiKey: String
