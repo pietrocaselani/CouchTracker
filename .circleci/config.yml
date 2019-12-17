@@ -3,7 +3,7 @@ version: 2
 jobs:
   build-and-test:
     macos:
-      xcode: '10.2.1'
+      xcode: '11.2.1'
     environment:
       LANG: en_US.UTF-8
     steps:
