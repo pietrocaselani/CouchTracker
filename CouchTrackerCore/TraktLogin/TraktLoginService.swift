@@ -17,12 +17,10 @@ public final class TraktLoginService: TraktLoginInteractor {
 
   public func allowedToProcess(request: URLRequest) -> Completable {
     return policyDecider.allowedToProceed(with: request)
-      .flatMapCompletable { [weak self] result -> Completable in
-        guard let strongSelf = self else { return Completable.empty() }
-
+      .flatMapCompletable { [appStateManager] result -> Completable in
         guard result == .authenticated else { return Completable.empty() }
 
-        return strongSelf.appStateManager.login()
+        return appStateManager.login()
       }
   }
 }

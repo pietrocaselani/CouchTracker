@@ -1,8 +1,8 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 RX_SWIFT_VERSION = '5.0.1'.freeze
-SNAPKIT_VERSION = '5.0.0'.freeze
-MOYA_VERSION = '14.0.0-alpha.1'.freeze
+SNAPKIT_VERSION = '5.0.1'.freeze
+MOYA_VERSION = '14.0.0-beta.6'.freeze
 OSX_VERSION = '10.12'.freeze
 IOS_VERSION = '10.0'.freeze
 
@@ -17,27 +17,27 @@ end
 
 def ios_pods
   common_pods
-  pod 'Kingfisher', '5.5.0'
+  pod 'Kingfisher', '5.12.0'
   pod 'RxCocoa', git: 'https://github.com/ReactiveX/RxSwift.git', tag: RX_SWIFT_VERSION
   pod 'ActionSheetPicker-3.0', '2.3.0'
-  pod 'Tabman', '2.4.2'
+  pod 'Tabman', '2.6.3'
   pod 'SnapKit', SNAPKIT_VERSION
   pod 'RxDataSources', '4.0.1'
   pod 'Bugsnag'
 end
 
 def persistence_pods
-  pod 'RxRealm', '1.0.0'
-  pod 'RealmSwift', '3.15.0'
+  pod 'RxRealm', '2.0.0'
+  pod 'RealmSwift', '4.1.1'
 end
 
 def tests_shared_pods
   pod 'RxTest', git: 'https://github.com/ReactiveX/RxSwift.git', tag: RX_SWIFT_VERSION
-  pod 'Nimble', '8.0.1'
+  pod 'Nimble', '8.0.4'
 end
 
 def ui_tests_pods
-  pod 'KIF', '3.7.7', configurations: ['Debug']
+  pod 'KIF', '3.7.8', configurations: ['Debug']
 end
 
 target 'CouchTrackerCore' do

@@ -1,4 +1,3 @@
-import Result
 import RxSwift
 import TraktSwift
 
@@ -22,9 +21,8 @@ public final class DefaultWatchedShowSynchronizer: WatchedShowSynchronizer {
     return Observable.zip(localObservable, remoteObservable) {
       try DefaultWatchedShowSynchronizer.merge(old: $0, with: $1)
     }.observeOn(scheduler.dataSourceScheduler)
-      .do(onNext: { [weak self] show in
-        guard let strongSelf = self else { return }
-        try strongSelf.dataSource.save(show: show)
+      .do(onNext: { [dataSource] show in
+        try dataSource.save(show: show)
       }).asSingle()
   }
 

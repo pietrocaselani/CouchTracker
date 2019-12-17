@@ -19,10 +19,6 @@ extension Seasons: TraktType {
     }
   }
 
-  public var authorizationType: AuthorizationType {
-    return .none
-  }
-
   public var sampleData: Data {
     switch self {
     case .summary:

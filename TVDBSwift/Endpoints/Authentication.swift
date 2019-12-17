@@ -13,9 +13,9 @@ extension Authentication: TVDBType {
     }
   }
 
-  public var authorizationType: AuthorizationType {
+  public var authorizationType: AuthorizationType? {
     switch self {
-    case .login: return .none
+    case .login: return nil
     case .refreshToken: return .bearer
     }
   }

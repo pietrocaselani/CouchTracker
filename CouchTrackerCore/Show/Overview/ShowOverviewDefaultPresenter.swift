@@ -17,7 +17,7 @@ public final class ShowOverviewDefaultPresenter: ShowOverviewPresenter {
         let viewModel = ImagesViewModelMapper.viewModel(for: $0)
         return ShowOverviewImagesState.showing(images: viewModel)
       }.catchError { error -> Maybe<ShowOverviewImagesState> in
-        Maybe.just(ShowOverviewImagesState.error(error: error))
+      Maybe.just(ShowOverviewImagesState.error(error: error))
       }.ifEmpty(default: ShowOverviewImagesState.empty)
       .observeOn(MainScheduler.instance)
       .subscribe(onSuccess: { [weak self] state in

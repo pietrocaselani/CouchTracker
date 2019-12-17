@@ -1,5 +1,4 @@
 import Moya
-import Result
 import RxSwift
 
 public class TVDB {
@@ -64,9 +63,9 @@ public class TVDB {
 
     interceptors.append(TVDBTokenRequestInterceptor(tvdb: self))
 
-    plugins.append(AccessTokenPlugin { [weak self] () -> String in
+    plugins.append(AccessTokenPlugin(tokenClosure: { [weak self] _ -> String in
       self?.token ?? ""
-    })
+    }))
   }
 
   func createProvider<T: TVDBType>(forTarget target: T.Type) -> MoyaProvider<T> {

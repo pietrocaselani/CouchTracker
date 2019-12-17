@@ -11,7 +11,7 @@ public extension TraktType {
 
   var task: Task { return .requestPlain }
 
-  var authorizationType: AuthorizationType { return .none }
+  var authorizationType: AuthorizationType? { return nil }
 
   var sampleData: Data {
     return "".utf8Encoded
@@ -23,7 +23,7 @@ public extension TraktType {
     hasher.combine(typeName)
     hasher.combine(path)
     hasher.combine(method)
-    hasher.combine(authorizationType.value)
+    hasher.combine(authorizationType?.value)
   }
 
   static func == (lhs: Self, rhs: Self) -> Bool {

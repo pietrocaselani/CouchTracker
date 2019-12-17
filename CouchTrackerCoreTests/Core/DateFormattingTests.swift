@@ -1,9 +1,11 @@
 @testable import CouchTrackerCore
+import Foundation
 import XCTest
 
-final class DatePresentableTests: XCTestCase {
+final class DateFormattingTests: XCTestCase {
   private var userDefaults: UserDefaults!
   private var oldLanguage: SupportedLanguages!
+  private let timeZone = { TimeZone(identifier: "America/Sao_Paulo")! }
 
   override func setUp() {
     super.setUp()
@@ -24,7 +26,7 @@ final class DatePresentableTests: XCTestCase {
 
     let date = Date(timeIntervalSince1970: 1_557_187_200) //		2019-05-07 00:00:00 +0000
     let expectedString = "06 de maio"
-    XCTAssertEqual(date.shortString(), expectedString)
+    XCTAssertEqual(date.shortString(timeZoneProvider: timeZone), expectedString)
   }
 
   func testDatePresentable_inEnglishUS() {
@@ -34,6 +36,6 @@ final class DatePresentableTests: XCTestCase {
 
     let date = Date(timeIntervalSince1970: 1_557_187_200) //		2019-05-07 00:00:00 +0000
     let expectedString = "May 06"
-    XCTAssertEqual(date.shortString(), expectedString)
+    XCTAssertEqual(date.shortString(timeZoneProvider: timeZone), expectedString)
   }
 }

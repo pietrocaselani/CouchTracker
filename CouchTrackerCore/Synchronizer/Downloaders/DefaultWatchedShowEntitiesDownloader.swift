@@ -42,10 +42,10 @@ public final class DefaultWatchedShowEntitiesDownloader: WatchedShowEntitiesDown
         guard let strongSelf = self else { return Observable.empty() }
         return strongSelf.mapToBaseShowWithGenres(baseShows).asObservable()
       }.flatMap { [weak self] showWithGenres -> Observable<ShowBuilderWithGenres> in
-        guard let strongSelf = self else { return Observable<ShowBuilderWithGenres>.empty() }
-        return strongSelf.mapToBuilderWithGenres(showWithGenres, options)
+      guard let strongSelf = self else { return Observable<ShowBuilderWithGenres>.empty() }
+      return strongSelf.mapToBuilderWithGenres(showWithGenres, options)
       }.map { builderWithGenres -> WatchedShowEntity in
-        builderWithGenres.builder.set(genres: builderWithGenres.genres).createEntity()
+      builderWithGenres.builder.set(genres: builderWithGenres.genres).createEntity()
       }
   }
 
