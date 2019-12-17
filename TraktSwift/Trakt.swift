@@ -67,8 +67,8 @@ public class Trakt {
 
     interceptors.append(TraktTokenInterceptor(trakt: self))
 
-    plugins.append(AccessTokenPlugin { [accessToken] _ -> String in
-      accessToken?.accessToken ?? ""
+    plugins.append(AccessTokenPlugin { [weak self] _ -> String in
+      self?.accessToken?.accessToken ?? ""
     })
   }
 

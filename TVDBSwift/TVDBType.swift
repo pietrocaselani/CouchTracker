@@ -9,7 +9,7 @@ public extension TVDBType {
 
   var method: Moya.Method { return .get }
 
-  var authorizationType: AuthorizationType? { return .bearer}
+  var authorizationType: AuthorizationType? { return .bearer }
 
   var sampleData: Data { return Data() }
 }

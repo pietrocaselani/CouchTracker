@@ -63,8 +63,8 @@ public class TVDB {
 
     interceptors.append(TVDBTokenRequestInterceptor(tvdb: self))
 
-    plugins.append(AccessTokenPlugin(tokenClosure: { [token] _ -> String in
-      token ?? ""
+    plugins.append(AccessTokenPlugin(tokenClosure: { [weak self] _ -> String in
+      self?.token ?? ""
     }))
   }
 
