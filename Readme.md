@@ -14,8 +14,8 @@ Keep track of your favorite movies and tv shows on your iPhone
 
 You will need
 
-* Xcode 10.2.1
-* Swift 5.0.1
+* Xcode 11.2.1
+* Swift 5.1.2
 
 Run the following commands
 
