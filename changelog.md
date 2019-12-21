@@ -1,3 +1,6 @@
+# 0.0.1 (48) 
+* Update dev dependencies [view commit](http://github.com/pietrocaselani/CouchTracker/commit/a6bebc241ed847338cff36635aad71d0b0f85aa3)
+
 # 0.0.1 (47) 
 * Update Xcode and Swift verion on CircleCI and Readme [view commit](http://github.com/pietrocaselani/CouchTracker/commit/ac0ec5a046ab23614e8c5c8a2bd0ca2d68498ac2)
 * Fix DateFormattingTests [view commit](http://github.com/pietrocaselani/CouchTracker/commit/8a735c242d8f1f8e04febf92bb1cea08a4251635)
