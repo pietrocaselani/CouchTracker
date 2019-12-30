@@ -204,6 +204,32 @@ enum CouchTrackerCoreiOS {
   }
 }
 
+enum CouchTrackerSynciOS {
+  static let name = "CouchTrackerSync-iOS"
+
+  static func target() -> Target {
+    return Target(name: CouchTrackerSynciOS.name,
+                  platform: .iOS,
+                  product: .framework,
+                  bundleId: "\(baseBundleId).CouchTrackerSync-iOS",
+                  infoPlist: "CouchTrackerSync-iOS/Info.plist",
+                  sources: ["CouchTrackerSync/**"],
+                  resources: ["CouchTrackerSync/Resources/**/*.{xcassets,png,strings,json}"],
+                  headers: Headers(public: "CouchTrackerSync-iOS/Headers/Public/CouchTrackerSync_iOS.h"),
+                  dependencies: [],
+                  settings: settings())
+  }
+
+  private static func settings() -> Settings {
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
+    return Settings(base: iOSBaseSettings() + ["PRODUCT_NAME": CouchTrackerSync.name],
+                    debug: debug,
+                    release: release)
+  }
+}
+
 enum TraktSwiftiOS {
   static let name = "TraktSwift-iOS"
 
@@ -295,6 +321,32 @@ enum CouchTrackerCore {
                     .target(name: TVDBSwift.name),
                     .target(name: TraktSwift.name)
                   ],
+                  settings: settings())
+  }
+
+  private static func settings() -> Settings {
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
+    return Settings(base: macOSBaseSettings(),
+                    debug: debug,
+                    release: release)
+  }
+}
+
+enum CouchTrackerSync {
+  static let name = "CouchTrackerSync"
+
+  static func target() -> Target {
+    return Target(name: CouchTrackerSync.name,
+                  platform: .macOS,
+                  product: .framework,
+                  bundleId: "\(baseBundleId).CouchTrackerSync",
+                  infoPlist: "CouchTrackerSync/Info.plist",
+                  sources: ["CouchTrackerSync/**"],
+                  resources: ["CouchTrackerSync/Resources/**/*.{strings}"],
+                  headers: Headers(public: "CouchTrackerSync/Headers/Public/CouchTrackerSync.h"),
+                  dependencies: [],
                   settings: settings())
   }
 
@@ -553,6 +605,27 @@ enum CouchTrackerCoreTests {
   }
 }
 
+enum CouchTrackerSyncTests {
+  static let name = "CouchTrackerSyncTests"
+
+  static func target() -> Target {
+    return Target(name: CouchTrackerSyncTests.name,
+                  platform: .macOS,
+                  product: .unitTests,
+                  bundleId: "\(baseBundleId).CouchTrackerSyncTests",
+                  infoPlist: "CouchTrackerSyncTests/Info.plist",
+                  sources: ["CouchTrackerSyncTests/**"],
+                  dependencies: [
+                    .target(name: CouchTrackerSync.name),
+                  ],
+                  settings: settings())
+  }
+
+  private static func settings() -> Settings {
+    return Settings(base: macOSBaseSettings() + macOSTestBaseSettings())
+  }
+}
+
 enum CouchTrackerUITests {
   static let name = "CouchTrackerUITests"
 
@@ -651,7 +724,10 @@ func allTargets() -> [Target] {
     TMDBSwiftTests.target(),
     TVDBSwiftTests.target(),
     CouchTrackerCoreTests.target(),
-    CouchTrackerUITests.target()
+    CouchTrackerUITests.target(),
+    CouchTrackerSync.target(),
+    CouchTrackerSyncTests.target(),
+    CouchTrackerSynciOS.target()
   ]
 }
 

@@ -10,9 +10,13 @@ def api_pods
   pod 'Moya/RxSwift', git: 'https://github.com/Moya/Moya.git', tag: MOYA_VERSION
 end
 
+def sync_pods
+  pod 'RxSwift', git: 'https://github.com/ReactiveX/RxSwift.git', tag: RX_SWIFT_VERSION
+end
+
 def common_pods
   api_pods
-  pod 'RxSwift', git: 'https://github.com/ReactiveX/RxSwift.git', tag: RX_SWIFT_VERSION
+  sync_pods
 end
 
 def ios_pods
@@ -63,6 +67,28 @@ target 'CouchTrackerCoreTests' do
 
   common_pods
   tests_shared_pods
+end
+
+target 'CouchTrackerSync' do
+  platform :osx, OSX_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  sync_pods
+end
+
+target 'CouchTrackerSync-iOS' do
+  platform :ios, IOS_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  sync_pods
+end
+
+target 'CouchTrackerSyncTests' do
+  platform :osx, OSX_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
 end
 
 target 'CouchTrackerApp' do
