@@ -3,6 +3,7 @@ import RxSwift
 import RxTest
 @testable import TraktSwift
 import XCTest
+import Foundation
 
 final class TraktTests: XCTestCase {
   private let userDefaultsMock = UserDefaults(suiteName: "TraktTestUserDefaults")!

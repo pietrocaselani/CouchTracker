@@ -1,5 +1,6 @@
 @testable import TVDBSwift
 import XCTest
+import Foundation
 
 final class TVDBTokenRequestInterceptorTests: XCTestCase {
   private let userDefaultsMock = UserDefaults(suiteName: "TraktTestUserDefaults")!

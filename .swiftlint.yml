@@ -12,7 +12,6 @@ excluded:
   - TVDBSwiftTests
   - TVDBSwiftTestable
   - CouchTrackerPlayground.playground
-  - Project.swift
 
 opt_in_rules:
   - force_unwrapping

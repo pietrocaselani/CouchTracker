@@ -45,14 +45,6 @@ def ui_tests_pods
 end
 
 target 'CouchTrackerCore' do
-  platform :osx, OSX_VERSION
-  use_frameworks!
-  inhibit_all_warnings!
-
-  common_pods
-end
-
-target 'CouchTrackerCore-iOS' do
   platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
@@ -61,7 +53,7 @@ target 'CouchTrackerCore-iOS' do
 end
 
 target 'CouchTrackerCoreTests' do
-  platform :osx, OSX_VERSION
+  platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
 
@@ -70,14 +62,6 @@ target 'CouchTrackerCoreTests' do
 end
 
 target 'CouchTrackerSync' do
-  platform :osx, OSX_VERSION
-  use_frameworks!
-  inhibit_all_warnings!
-
-  sync_pods
-end
-
-target 'CouchTrackerSync-iOS' do
   platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
@@ -86,7 +70,7 @@ target 'CouchTrackerSync-iOS' do
 end
 
 target 'CouchTrackerSyncTests' do
-  platform :osx, OSX_VERSION
+  platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
 end
@@ -141,14 +125,6 @@ target 'CouchTrackerDebug' do
 end
 
 target 'TraktSwift' do
-  platform :osx, OSX_VERSION
-  use_frameworks!
-  inhibit_all_warnings!
-
-  api_pods
-end
-
-target 'TraktSwift-iOS' do
   platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
@@ -157,7 +133,7 @@ target 'TraktSwift-iOS' do
 end
 
 target 'TraktSwiftTests' do
-  platform :osx, OSX_VERSION
+  platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
 
@@ -165,14 +141,6 @@ target 'TraktSwiftTests' do
 end
 
 target 'TMDBSwift' do
-  platform :osx, OSX_VERSION
-  use_frameworks!
-  inhibit_all_warnings!
-
-  api_pods
-end
-
-target 'TMDBSwift-iOS' do
   platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
@@ -181,7 +149,7 @@ target 'TMDBSwift-iOS' do
 end
 
 target 'TMDBSwiftTests' do
-  platform :osx, OSX_VERSION
+  platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
 
@@ -189,14 +157,6 @@ target 'TMDBSwiftTests' do
 end
 
 target 'TVDBSwift' do
-  platform :osx, OSX_VERSION
-  use_frameworks!
-  inhibit_all_warnings!
-
-  api_pods
-end
-
-target 'TVDBSwift-iOS' do
   platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
@@ -205,7 +165,7 @@ target 'TVDBSwift-iOS' do
 end
 
 target 'TVDBSwiftTests' do
-  platform :osx, OSX_VERSION
+  platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
 
