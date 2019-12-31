@@ -66,12 +66,12 @@ final class SyncWatchedShowsTests: XCTestCase {
     }
 
     return SyncTestableTrakt(builder: builder, endpointClosure: { target in
-      return Endpoint(
-          url: URL(target: target).absoluteString,
-          sampleResponseClosure: { sampleResponse },
-          method: target.method,
-          task: target.task,
-          httpHeaderFields: target.headers
+      Endpoint(
+        url: URL(target: target).absoluteString,
+        sampleResponseClosure: { sampleResponse },
+        method: target.method,
+        task: target.task,
+        httpHeaderFields: target.headers
       )
     })
   }

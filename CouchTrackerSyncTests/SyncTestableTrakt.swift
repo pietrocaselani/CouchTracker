@@ -15,8 +15,8 @@ final class SyncTestableTrakt<Target: TraktType>: Trakt {
     let fix = endpointClosure as! (T) -> Endpoint
 
     return MoyaProvider<T>(endpointClosure: fix,
-                        requestClosure: provider.requestClosure,
-                        stubClosure: MoyaProvider.immediatelyStub,
-                        plugins: provider.plugins)
+                           requestClosure: provider.requestClosure,
+                           stubClosure: MoyaProvider.immediatelyStub,
+                           plugins: provider.plugins)
   }
 }
