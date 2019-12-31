@@ -29,6 +29,12 @@ PODS:
     - Differentiator (~> 4.0)
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
+  - RxNimble/Core (4.6.0):
+    - Nimble (~> 8.0)
+    - RxSwift (~> 5.0)
+  - RxNimble/RxTest (4.6.0):
+    - RxNimble/Core
+    - RxTest
   - RxRealm (2.0.0):
     - RealmSwift (~> 4.0)
     - RxSwift (~> 5.0)
@@ -48,10 +54,10 @@ DEPENDENCIES:
   - KIF (= 3.7.8)
   - Kingfisher (= 5.12.0)
   - Moya/RxSwift (from `https://github.com/Moya/Moya.git`, tag `14.0.0-beta.6`)
-  - Nimble (= 8.0.4)
   - RealmSwift (= 4.1.1)
   - RxCocoa (from `https://github.com/ReactiveX/RxSwift.git`, tag `5.0.1`)
   - RxDataSources (= 4.0.1)
+  - RxNimble/RxTest
   - RxRealm (= 2.0.0)
   - RxSwift (from `https://github.com/ReactiveX/RxSwift.git`, tag `5.0.1`)
   - RxTest (from `https://github.com/ReactiveX/RxSwift.git`, tag `5.0.1`)
@@ -72,6 +78,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - RxDataSources
+    - RxNimble
     - RxRealm
     - RxRelay
     - SnapKit
@@ -120,6 +127,7 @@ SPEC CHECKSUMS:
   RealmSwift: 9e2657b33764f80e4a4dffd6d440e24715782052
   RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxNimble: abdbe797eed9ed087df75fd72d52d1c7e96c875f
   RxRealm: 900f5c7e6f0a2d6527b56eaf7283f3035ec1e8ba
   RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
@@ -127,6 +135,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Tabman: 63eae331ae7a9388ae389b1808f1939269fcdece
 
-PODFILE CHECKSUM: c3c437cb7652a42e668167964166cf365bbfc11c
+PODFILE CHECKSUM: 21815163a7b636b777d32ecf2236e5a4293280a5
 
 COCOAPODS: 1.8.4

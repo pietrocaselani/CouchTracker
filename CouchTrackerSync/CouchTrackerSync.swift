@@ -1,9 +1,23 @@
 import RxSwift
 
-struct SyncState {}
+enum SyncState {
+  case notSyncing
+  case started
+}
 
-enum SyncAction {}
+struct SyncData {
+  var state: SyncState
+}
 
-func syncReducer(state: inout SyncState, action: SyncAction) -> [Observable<SyncAction>] {
+enum SyncAction {
+  case start
+}
+
+func syncReducer(syncData: inout SyncData, action: SyncAction) -> [Observable<SyncAction>] {
+  switch action {
+  case .start:
+    syncData.state = .started
+  }
+
   return []
 }

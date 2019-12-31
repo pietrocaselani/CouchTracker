@@ -11,16 +11,12 @@ def api_pods
 end
 
 def sync_pods
+  api_pods
   pod 'RxSwift', git: 'https://github.com/ReactiveX/RxSwift.git', tag: RX_SWIFT_VERSION
 end
 
-def common_pods
-  api_pods
-  sync_pods
-end
-
 def ios_pods
-  common_pods
+  sync_pods
   pod 'Kingfisher', '5.12.0'
   pod 'RxCocoa', git: 'https://github.com/ReactiveX/RxSwift.git', tag: RX_SWIFT_VERSION
   pod 'ActionSheetPicker-3.0', '2.3.0'
@@ -37,7 +33,7 @@ end
 
 def tests_shared_pods
   pod 'RxTest', git: 'https://github.com/ReactiveX/RxSwift.git', tag: RX_SWIFT_VERSION
-  pod 'Nimble', '8.0.4'
+  pod 'RxNimble/RxTest'
 end
 
 def ui_tests_pods
@@ -49,7 +45,7 @@ target 'CouchTrackerCore' do
   use_frameworks!
   inhibit_all_warnings!
 
-  common_pods
+  sync_pods
 end
 
 target 'CouchTrackerCoreTests' do
@@ -57,7 +53,7 @@ target 'CouchTrackerCoreTests' do
   use_frameworks!
   inhibit_all_warnings!
 
-  common_pods
+  sync_pods
   tests_shared_pods
 end
 
@@ -73,6 +69,8 @@ target 'CouchTrackerSyncTests' do
   platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
+
+  tests_shared_pods
 end
 
 target 'CouchTrackerApp' do

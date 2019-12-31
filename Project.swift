@@ -204,7 +204,7 @@ enum CouchTrackerCore {
       infoPlist: "CouchTrackerCore/Info.plist",
       sources: ["CouchTrackerCore/**"],
       resources: ["CouchTrackerCore/Resources/**/*.{xcassets,png,strings,json}"],
-      headers: Headers(public: "CouchTrackerCore/Headers/Public/CouchTrackerCore_iOS.h"),
+      headers: Headers(public: "CouchTrackerCore/Headers/Public/CouchTrackerCore.h"),
       dependencies: [
         .target(name: TMDBSwift.name),
         .target(name: TVDBSwift.name),
@@ -263,9 +263,10 @@ enum CouchTrackerSync {
       bundleId: "\(baseBundleId).CouchTrackerSync",
       infoPlist: "CouchTrackerSync/Info.plist",
       sources: ["CouchTrackerSync/**"],
-      resources: ["CouchTrackerSync/Resources/**/*.{xcassets,png,strings,json}"],
-      headers: Headers(public: "CouchTrackerSync/Headers/Public/CouchTrackerSync_iOS.h"),
-      dependencies: [],
+      headers: Headers(public: "CouchTrackerSync/Headers/Public/CouchTrackerSync.h"),
+      dependencies: [
+        .target(name: TraktSwift.name)
+      ],
       settings: settings()
     )
   }
@@ -293,8 +294,10 @@ enum CouchTrackerSyncTests {
       bundleId: "\(baseBundleId).CouchTrackerSyncTests",
       infoPlist: "CouchTrackerSyncTests/Info.plist",
       sources: ["CouchTrackerSyncTests/**"],
+      resources: ["CouchTrackerSyncTests/**/*.json"],
       dependencies: [
-        .target(name: CouchTrackerSync.name)
+        .target(name: CouchTrackerSync.name),
+        .target(name: TraktSwiftTestable.name)
       ],
       settings: settings()
     )
@@ -316,7 +319,7 @@ enum TraktSwift {
       bundleId: "\(baseBundleId).TraktSwift",
       infoPlist: "TraktSwift/Info.plist",
       sources: ["TraktSwift/**"],
-      headers: Headers(public: "TraktSwift/Headers/Public/TraktSwift_iOS.h"),
+      headers: Headers(public: "TraktSwift/Headers/Public/TraktSwift.h"),
       settings: settings()
     )
   }
@@ -400,7 +403,7 @@ enum TMDBSwift {
       bundleId: "\(baseBundleId).TMDBSwift",
       infoPlist: "TMDBSwift/Info.plist",
       sources: ["TMDBSwift/**"],
-      headers: Headers(public: "TMDBSwift/Headers/Public/TMDBSwift_iOS.h"),
+      headers: Headers(public: "TMDBSwift/Headers/Public/TMDBSwift.h"),
       settings: settings()
     )
   }
@@ -484,7 +487,7 @@ enum TVDBSwift {
       bundleId: "\(baseBundleId).TVDBSwift",
       infoPlist: "TVDBSwift/Info.plist",
       sources: ["TVDBSwift/**"],
-      headers: Headers(public: "TVDBSwift/Headers/Public/TVDBSwift_iOS.h"),
+      headers: Headers(public: "TVDBSwift/Headers/Public/TVDBSwift.h"),
       settings: settings()
     )
   }

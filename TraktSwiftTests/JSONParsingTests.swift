@@ -53,6 +53,6 @@ final class JSONParsingTests: XCTestCase {
       return
     }
 
-    XCTAssertEqual(element.count, 105)
+    XCTAssertEqual(element.count, 125)
   }
 }
