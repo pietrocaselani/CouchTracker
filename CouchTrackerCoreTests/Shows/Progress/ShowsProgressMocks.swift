@@ -13,7 +13,7 @@ extension ShowsProgressMenuOptions {
 
 enum ShowsProgressMocks {
   static func createWatchedShowsMock() -> [BaseShow] {
-    return try! JSONDecoder().decode([BaseShow].self, from: Sync.watched(type: .shows, extended: .full).sampleData)
+    return try! JSONDecoder().decode([BaseShow].self, from: Sync.watched(type: .shows, extended: [.full]).sampleData)
   }
 
   static func createShowMock(_ showId: String) -> BaseShow? {

@@ -2,7 +2,7 @@ import TraktSwift
 
 public enum SeasonSyncOptions {
   case none
-  case yes(number: Int?, extended: Extended)
+  case yes(number: Int?, extended: [Extended])
 }
 
 public struct WatchedShowEntitySyncOptions {
@@ -22,9 +22,11 @@ public struct WatchedShowEntitySyncOptions {
 public struct WatchedShowEntitiesSyncOptions {
   public let extended: Extended
   public let hiddingSpecials: Bool
+  public let seasonExtended: [Extended]
 
-  public init(extended: Extended, hiddingSpecials: Bool) {
+  public init(extended: Extended, hiddingSpecials: Bool, seasonExtended: [Extended]) {
     self.extended = extended
     self.hiddingSpecials = hiddingSpecials
+    self.seasonExtended = seasonExtended
   }
 }

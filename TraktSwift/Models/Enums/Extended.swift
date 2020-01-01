@@ -4,5 +4,4 @@ public enum Extended: String {
   case full
   case noSeasons = "noseasons"
   case episodes
-  case fullEpisodes = "full,episodes"
 }

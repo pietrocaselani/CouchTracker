@@ -1,12 +1,33 @@
 import Moya
 
 public enum Shows {
+  /**
+   Only accepts .default or .full for Extended
+   */
   case trending(page: Int, limit: Int, extended: Extended)
+  /**
+   Only accepts .default or .full for Extended
+   */
   case popular(page: Int, limit: Int, extended: Extended)
+  /**
+   Only accepts .default or .full for Extended
+   */
   case played(period: Period, page: Int, limit: Int, extended: Extended)
+  /**
+   Only accepts .default or .full for Extended
+   */
   case watched(period: Period, page: Int, limit: Int, extended: Extended)
+  /**
+   Only accepts .default or .full for Extended
+   */
   case collected(period: Period, page: Int, limit: Int, extended: Extended)
+  /**
+   Only accepts .default or .full for Extended
+   */
   case anticipated(page: Int, limit: Int, extended: Extended)
+  /**
+   Only accepts .default or .full for Extended
+   */
   case summary(showId: String, extended: Extended)
   case watchedProgress(showId: String, hidden: Bool, specials: Bool, countSpecials: Bool)
 }

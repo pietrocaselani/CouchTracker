@@ -1,7 +1,10 @@
 import Moya
 
 public enum Sync {
-  case watched(type: WatchedType, extended: Extended)
+  /**
+   Accepts .min, .default, .full, .noSeasons and .full for Extended
+   */
+  case watched(type: WatchedType, extended: [Extended])
   case addToHistory(items: SyncItems)
   case removeFromHistory(items: SyncItems)
   case history(params: HistoryParameters?)
@@ -47,7 +50,7 @@ extension Sync: TraktType {
   public var task: Task {
     switch self {
     case let .watched(_, extended):
-      return .requestParameters(parameters: ["extended": extended.rawValue], encoding: URLEncoding.default)
+      return .requestParameters(parameters: ["extended": extended.separatedByComma()], encoding: URLEncoding.default)
     case let .history(parameters):
       guard let params = parameters else {
         return .requestPlain

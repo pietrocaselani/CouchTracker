@@ -22,7 +22,7 @@ final class ShowsTest: XCTestCase {
   }
 
   func testShows_requestSummaryForAShow_parseToModels() {
-    let target = Shows.summary(showId: "game-of-thrones", extended: .fullEpisodes)
+    let target = Shows.summary(showId: "game-of-thrones", extended: .full)
     let disposable = showsProvider.rx.request(target)
       .map(Show.self)
       .asObservable()
