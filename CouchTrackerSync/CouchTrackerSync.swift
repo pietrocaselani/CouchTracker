@@ -31,7 +31,7 @@ func startSync(options: SyncOptions) -> Observable<BaseShow> {
 }
 
 private func syncMain(_ options: SyncOptions) -> Observable<BaseShow> {
-  return Current.syncWatchedShows(.full)
+  return Current.syncWatchedShows([.full, .noSeasons])
     .flatMap { Observable.from($0) }
     .flatMap { watchedProgress(options: options.watchedProgress, baseShow: $0) }
 }

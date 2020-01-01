@@ -11,7 +11,7 @@ let traktBuilder = TraktBuilder {
 private let trakt = Trakt(builder: traktBuilder)
 
 struct SyncEnvironment {
-  var syncWatchedShows: (Extended) -> Observable<[BaseShow]>
+  var syncWatchedShows: ([Extended]) -> Observable<[BaseShow]>
   var watchedProgress: (WatchedProgressOptions, ShowIds) -> Observable<BaseShow>
 }
 
@@ -25,7 +25,7 @@ var Current = SyncEnvironment.live
 let Current = SyncEnvironment.live
 #endif
 
-private func syncWatchedShows(extended: Extended) -> Observable<[BaseShow]> {
+private func syncWatchedShows(extended: [Extended]) -> Observable<[BaseShow]> {
   return trakt.sync.rx.request(.watched(type: .shows, extended: extended)).map([BaseShow].self).asObservable()
 }
 

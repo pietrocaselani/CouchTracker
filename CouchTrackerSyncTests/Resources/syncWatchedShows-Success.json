@@ -14,7 +14,58 @@
                 "imdb": "tt2372162",
                 "tmdb": 1424,
                 "tvrage": 32950
-            }
+            },
+            "overview": "Piper Chapman is a public relations executive with a career and a fiance when her past suddenly catches up to her. In her mid-30s she is sentenced to spend time in a minimum-security women's prison in Connecticut for her association with a drug runner 10 years earlier. This Netflix original series is based on the book of the same title. Forced to trade power suits for prison orange, Chapman makes her way through the corrections system and adjusts to life behind bars, making friends with the many eccentric, unusual and unexpected people she meets.",
+            "first_aired": "2013-07-11T07:00:00.000Z",
+            "airs": {
+                "day": "Friday",
+                "time": "03:00",
+                "timezone": "America/New_York"
+            },
+            "runtime": 60,
+            "certification": "TV-MA",
+            "country": "us",
+            "trailer": "http://youtube.com/watch?v=vY0qzXi5oJg",
+            "homepage": "https://www.netflix.com/title/70242311",
+            "status": "ended",
+            "rating": 8.17317,
+            "votes": 20789,
+            "comment_count": 115,
+            "network": "Netflix",
+            "updated_at": "2019-12-30T08:10:53.000Z",
+            "language": "en",
+            "available_translations": [
+                "bg",
+                "bs",
+                "cs",
+                "da",
+                "de",
+                "el",
+                "en",
+                "es",
+                "fi",
+                "fr",
+                "he",
+                "hr",
+                "hu",
+                "it",
+                "ko",
+                "nl",
+                "pl",
+                "pt",
+                "ro",
+                "ru",
+                "sr",
+                "sv",
+                "tr",
+                "uk",
+                "zh"
+            ],
+            "genres": [
+                "comedy",
+                "drama"
+            ],
+            "aired_episodes": 91
         }
     }
 ]

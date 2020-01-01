@@ -27,22 +27,19 @@ final class CouchTrackerSyncTests: XCTestCase {
   }
 
   func testSync() {
-    Current.syncWatchedShows = { _ in
-      Observable.just(decode(file: "syncWatchedShows-Success", as: [BaseShow].self))
+    Current.syncWatchedShows = { extended in
+      XCTAssertEqual(extended, [.full, .noSeasons])
+      return Observable.just(decode(file: "syncWatchedShows-Success", as: [BaseShow].self))
     }
 
     Current.watchedProgress = { _, _ in
       Observable.just(decode(file: "watchedProgress-Success", as: BaseShow.self))
     }
 
-    let expectedShows = decode(file: "baseShow-Success", as: BaseShow.self)
-
-    let observable = startSync(options: SyncOptions())
-
-    expect(observable)
+    expect(startSync(options: SyncOptions()))
       .events(scheduler: scheduler, disposeBag: disposeBag)
       .to(equal([
-        Recorded.next(0, expectedShows),
+        Recorded.next(0, decode(file: "baseShow-Success", as: BaseShow.self)),
         Recorded.completed(0)
       ]))
   }
