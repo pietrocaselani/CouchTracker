@@ -91,7 +91,7 @@ final class ShowEpisodeAPIRepositoryTest: XCTestCase {
     }
 
     // Then
-    XCTAssertFalse(synchronizer.lastOptionsParameter?.hiddingSpecials ?? true)
+    XCTAssertFalse(synchronizer.lastOptionsParameter?.hidingSpecials ?? true)
   }
 
   func testShowEpisodeAPIRepository_addToHistorSuccess_emitsSyncResultWithShow() {

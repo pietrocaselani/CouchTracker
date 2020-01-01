@@ -48,7 +48,7 @@ public final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
       let options = WatchedShowEntitySyncOptions(showIds: showIds,
                                                  episodeExtended: .full,
                                                  seasonOptions: .yes(number: season, extended: [.full, .episodes]),
-                                                 hiddingSpecials: strongSelf.hideSpecials)
+                                                 hidingSpecials: strongSelf.hideSpecials)
 
       return strongSelf.synchronizer.syncWatchedShow(using: options)
     }

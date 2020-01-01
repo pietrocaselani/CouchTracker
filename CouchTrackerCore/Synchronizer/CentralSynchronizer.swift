@@ -29,7 +29,7 @@ public final class CentralSynchronizer {
 
   private static func syncOptionsFor(appState: AppState) -> WatchedShowEntitiesSyncOptions {
     let defaultOptions = Defaults.showsSyncOptions
-    return WatchedShowEntitiesSyncOptions(extended: defaultOptions.extended, hiddingSpecials: appState.hideSpecials, seasonExtended: [.full, .episodes])
+    return WatchedShowEntitiesSyncOptions(extended: defaultOptions.extended, hidingSpecials: appState.hideSpecials, seasonExtended: [.full, .episodes])
   }
 }
 

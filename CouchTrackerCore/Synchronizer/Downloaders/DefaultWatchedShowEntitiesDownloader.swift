@@ -78,7 +78,7 @@ public final class DefaultWatchedShowEntitiesDownloader: WatchedShowEntitiesDown
     let showOptions = WatchedShowEntitySyncOptions(showIds: show.ids,
                                                    episodeExtended: options.extended,
                                                    seasonOptions: .yes(number: nil, extended: options.seasonExtended),
-                                                   hiddingSpecials: options.hiddingSpecials)
+                                                   hidingSpecials: options.hidingSpecials)
 
     return showSynchronizer.syncWatchedShowEntitiy(using: showOptions).map { builder in
       builder.set(detailShow: detailShow)

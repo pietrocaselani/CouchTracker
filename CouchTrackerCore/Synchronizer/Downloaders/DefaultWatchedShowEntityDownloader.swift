@@ -61,9 +61,9 @@ public final class DefaultWatchedShowEntityDownloader: WatchedShowEntityDownload
 
   private func fetchProgressFromAPI(options: WatchedShowEntitySyncOptions) -> Single<BaseShow> {
     let target = Shows.watchedProgress(showId: options.showIds.realId,
-                                       hidden: !options.hiddingSpecials,
-                                       specials: !options.hiddingSpecials,
-                                       countSpecials: !options.hiddingSpecials)
+                                       hidden: !options.hidingSpecials,
+                                       specials: !options.hidingSpecials,
+                                       countSpecials: !options.hidingSpecials)
 
     return trakt.shows.rx.request(target)
       .filterSuccessfulStatusAndRedirectCodes()
