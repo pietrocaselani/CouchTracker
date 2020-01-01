@@ -9,8 +9,7 @@ import RxNimble
 
 @testable import CouchTrackerSync
 
-final class SyncWatchedShowsTests: XCTestCase {
-  private var originalTrakt: TraktProvider!
+final class CouchTrackerSyncTests: XCTestCase {
   private var scheduler: TestScheduler!
   private var disposeBag: DisposeBag!
 
@@ -18,26 +17,29 @@ final class SyncWatchedShowsTests: XCTestCase {
     super.setUp()
 
     disposeBag = DisposeBag()
-    originalTrakt = Current.trakt
     scheduler = TestScheduler(initialClock: 0)
   }
 
   override func tearDown() {
-    Current.trakt = originalTrakt
     scheduler = nil
     disposeBag = nil
     super.tearDown()
   }
 
-  func testSyncWatchedShows() throws {
-    let data = contentsOf(file: "SyncWatchedShowsSuccess")
-    let responseStubbed = EndpointSampleResponse.networkResponse(200, data)
-    let trakt: SyncTestableTrakt<Sync> = makeTestableTrakt(responseStubbed)
-    Current.trakt = trakt
+  func testSync() {
+    Current.syncWatchedShows = { _ in
+      Observable.just(decode(file: "syncWatchedShows-Success", as: [BaseShow].self))
+    }
 
-    let expectedShows = try JSONDecoder().decode([BaseShow].self, from: data)
+    Current.watchedProgress = { _, _ in
+      Observable.just(decode(file: "watchedProgress-Success", as: BaseShow.self))
+    }
 
-    expect(syncWatchedShows())
+    let expectedShows = decode(file: "baseShow-Success", as: BaseShow.self)
+
+    let observable = startSync(options: SyncOptions())
+
+    expect(observable)
       .events(scheduler: scheduler, disposeBag: disposeBag)
       .to(equal([
         Recorded.next(0, expectedShows),
