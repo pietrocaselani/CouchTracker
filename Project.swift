@@ -661,11 +661,13 @@ enum AllTests {
   static let name = "AllTests"
 
   static func scheme() -> Scheme {
+    let allTargetNames = allTargets().map { $0.name }
     let testTargetNames = alliOSTestTargets().map { $0.name }
 
     return Scheme(
       name: AllTests.name,
       shared: true,
+      buildAction: BuildAction(targets: allTargetNames),
       testAction: TestAction(targets: testTargetNames)
     )
   }
