@@ -26,12 +26,7 @@ platform :ios do
 
   desc 'Run CouchTrackerCore tests'
   lane :tests do
-    run_tests_for_scheme(scheme: 'TVDBSwiftTests')
-    run_tests_for_scheme(scheme: 'TMDBSwiftTests')
-    run_tests_for_scheme(scheme: 'TraktSwiftTests')
-    run_tests_for_scheme(scheme: 'CouchTrackerCoreTests')
-    run_tests_for_scheme(scheme: 'CouchTrackerSyncTests')
-    run_tests_for_scheme(scheme: 'CouchTrackerUITests')
+    run_tests_for_scheme(scheme: 'AllTests')
   end
 
   desc 'Run tests and linters'
