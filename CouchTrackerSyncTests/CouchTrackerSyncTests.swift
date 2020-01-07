@@ -26,21 +26,43 @@ final class CouchTrackerSyncTests: XCTestCase {
     super.tearDown()
   }
 
-  func testSync() {
-    Current.syncWatchedShows = { extended in
-      XCTAssertEqual(extended, [.full, .noSeasons])
-      return Observable.just(decode(file: "syncWatchedShows-Success", as: [BaseShow].self))
-    }
+    func testSync() {
+      let expectedWatchedProgressOptions = WatchedProgressOptions(hidden: false, specials: false, countSpecials: false)
+      let expectedShowIds = ShowIds(trakt: 1415,
+                                    tmdb: 1424,
+                                    imdb: "tt2372162",
+                                    slug: "orange-is-the-new-black",
+                                    tvdb: 264586,
+                                    tvrage: 32950)
 
-    Current.watchedProgress = { _, _ in
-      Observable.just(decode(file: "watchedProgress-Success", as: BaseShow.self))
-    }
+      Current.syncWatchedShows = { extended in
+        XCTAssertEqual(extended, [.full, .noSeasons])
+        return .just(decode(file: "syncWatchedShows", as: [BaseShow].self))
+      }
 
-    expect(startSync(options: SyncOptions()))
-      .events(scheduler: scheduler, disposeBag: disposeBag)
-      .to(equal([
-        Recorded.next(0, decode(file: "baseShow-Success", as: BaseShow.self)),
-        Recorded.completed(0)
-      ]))
-  }
+      Current.watchedProgress = { watchedProgressOptions, showIds in
+        XCTAssertEqual(watchedProgressOptions, expectedWatchedProgressOptions)
+        XCTAssertEqual(showIds, expectedShowIds)
+        return .just(decode(file: "watchedProgress", as: BaseShow.self))
+      }
+
+      Current.seasonsForShow = { showIds, extended in
+        XCTAssertEqual(showIds, expectedShowIds)
+        XCTAssertEqual(extended, [.full, .episodes])
+        return .just(decode(file: "seasonsForShow", as: [Season].self))
+      }
+
+      Current.genres = {
+        let movies = Observable.just(decode(file: "genresForMovies", as: [Genre].self))
+        let shows = Observable.just(decode(file: "genresForShows", as: [Genre].self))
+        return Observable.zip(movies, shows).map { Set($0 + $1) }
+      }
+
+      expect(startSync(options: SyncOptions()))
+        .events(scheduler: scheduler, disposeBag: disposeBag)
+        .to(equal([
+          Recorded.next(0, decode(file: "WatchedShow-Success", as: WatchedShow.self)),
+          Recorded.completed(0)
+        ]))
+    }
 }
