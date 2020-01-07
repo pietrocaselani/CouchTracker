@@ -115,7 +115,7 @@ public final class DefaultWatchedShowEntityDownloader: WatchedShowEntityDownload
   private func fetchSeasonsFromAPI(using options: WatchedShowEntitySyncOptions,
                                    seasonExtended: [Extended],
                                    number: Int?) -> Single<[Season]> {
-    let target = Seasons.summary(showId: options.showIds.realId, exteded: seasonExtended)
+    let target = Seasons.summary(showId: options.showIds.realId, extended: seasonExtended)
     let seasonsSingle = trakt.seasons.rx.request(target)
       .filterSuccessfulStatusAndRedirectCodes()
       .map([Season].self)
