@@ -5,49 +5,38 @@ import Moya
 typealias TraktShow = TraktSwift.Show
 typealias DomainShow = CouchTrackerSync.Show
 
-struct ShowDataForSyncing: DataStruct {
-  let progressShow: BaseShow
-  let show: TraktShow
-  let seasons: [Season]
-
-  var showIds: ShowIds {
-    return show.ids
-  }
-}
-
-public enum SyncError: Error, EnumPoetry {
+public enum SyncError: Error {
   case showIsNil
   case missingEpisodes(showIds: ShowIds, baseSeason: BaseSeason, season: Season)
 }
 
-struct WatchedProgressOptions: Hashable {
-  let hidden: Bool
-  let specials: Bool
-  let countSpecials: Bool
+public struct WatchedProgressOptions: Hashable {
+  public let hidden: Bool
+  public let specials: Bool
+  public let countSpecials: Bool
 
-  init(hidden: Bool = false, specials: Bool = false, countSpecials: Bool = false) {
+  public init(hidden: Bool = false, specials: Bool = false, countSpecials: Bool = false) {
     self.hidden = hidden
     self.specials = specials
     self.countSpecials = countSpecials
   }
 }
 
-struct SyncOptions: Hashable {
-  let watchedProgress: WatchedProgressOptions
+public struct SyncOptions: Hashable {
+  public static let defaultOptions = SyncOptions()
 
-  init(watchedProgress: WatchedProgressOptions = WatchedProgressOptions()) {
+  public let watchedProgress: WatchedProgressOptions
+
+  public init(watchedProgress: WatchedProgressOptions = WatchedProgressOptions()) {
     self.watchedProgress = watchedProgress
   }
 }
 
-func startSync(options: SyncOptions) -> Observable<WatchedShow> {
-  return syncMain(options)
-}
-
-private func syncMain(_ options: SyncOptions) -> Observable<WatchedShow> {
-  let genresObservable = Current.genres()
+func startSync(_ options: SyncOptions = SyncOptions()) -> Observable<WatchedShow> {
+  let genresObservable = Current.genres().asObservable()
 
   let showAndSeasonsObservable = Current.syncWatchedShows([.full, .noSeasons])
+    .asObservable()
     .flatMap { Observable.from($0) }
     .flatMap { watchedProgress(options: options.watchedProgress, baseShow: $0) }
     .flatMap { seasonsForShow(showData: $0) }
@@ -55,13 +44,13 @@ private func syncMain(_ options: SyncOptions) -> Observable<WatchedShow> {
   return Observable.zip(showAndSeasonsObservable, genresObservable).map(createWatchedShow(showData:allGenres:))
 }
 
-private func watchedProgress(options: WatchedProgressOptions, baseShow: BaseShow) -> Observable<ShowDataForSyncing> {
-  guard let show = baseShow.show else { return Observable.error(SyncError.showIsNil) }
+private func watchedProgress(options: WatchedProgressOptions, baseShow: BaseShow) -> Single<ShowDataForSyncing> {
+  guard let show = baseShow.show else { return Single.error(SyncError.showIsNil) }
   return Current.watchedProgress(options, show.ids)
     .map { ShowDataForSyncing(progressShow: $0, show: show, seasons: []) }
 }
 
-private func seasonsForShow(showData: ShowDataForSyncing) -> Observable<ShowDataForSyncing> {
+private func seasonsForShow(showData: ShowDataForSyncing) -> Single<ShowDataForSyncing> {
   return Current.seasonsForShow(showData.showIds, [.full, .episodes])
     .map { ShowDataForSyncing(progressShow: showData.progressShow, show: showData.show, seasons: $0) }
 }
@@ -76,10 +65,10 @@ private func createWatchedShow(showData: ShowDataForSyncing, allGenres: Set<Genr
   let showGenres = genresFromSlugs(allGenres: allGenres, slugs: showData.show.genres ?? [])
 
   let watchedSeasons = try createWatchedSeasons(showIds: showData.showIds,
-                                            baseSeasons: showData.progressShow.seasons ?? [],
-                                            seasons: showData.seasons)
+                                                baseSeasons: showData.progressShow.seasons ?? [],
+                                                seasons: showData.seasons)
 
-  let show = mapTraktShowToDomainShow(traktShow: showData.show, genres: showGenres, seasons: watchedSeasons)
+  let show = mapTraktShowToDomainShow(traktShow: showData.show, genres: showGenres, seasons: watchedSeasons, progressShow: showData.progressShow)
 
   return createWatchedShow(show: show, progressShow: showData.progressShow)
 }
@@ -129,7 +118,13 @@ private func createWatchedEpisode(showIds: ShowIds, baseEpisode: BaseEpisode, ep
   return WatchedEpisode(episode: episode, lastWatched: baseEpisode.lastWatchedAt)
 }
 
-private func mapTraktShowToDomainShow(traktShow: TraktShow, genres: [Genre], seasons: [WatchedSeason]) -> DomainShow {
+private func mapTraktShowToDomainShow(traktShow: TraktShow, genres: [Genre], seasons: [WatchedSeason], progressShow: BaseShow) -> DomainShow {
+  let nextEpisode = progressShow.nextEpisode.flatMap { findEpisodeOnSeasons(seasons: seasons, episode: $0) }
+  let lastEpisode = progressShow.lastEpisode.flatMap { findEpisodeOnSeasons(seasons: seasons, episode: $0) }
+  let completed = progressShow.completed
+
+  let watched = DomainShow.Watched(completed: completed, lastEpisode: lastEpisode)
+
   return DomainShow(ids: traktShow.ids,
                     title: traktShow.title,
                     overview: traktShow.overview,
@@ -137,12 +132,15 @@ private func mapTraktShowToDomainShow(traktShow: TraktShow, genres: [Genre], sea
                     genres: genres,
                     status: traktShow.status,
                     firstAired: traktShow.firstAired,
-                    seasons: seasons)
+                    seasons: seasons,
+                    aired: progressShow.aired,
+                    nextEpisode: nextEpisode,
+                    watched: watched)
 }
 
 private func createWatchedShow(show: DomainShow, progressShow: BaseShow) -> WatchedShow {
-  let nextEpisode = progressShow.nextEpisode.flatMap { findEpisodeOnShow(show: show, episode: $0) }
-  let lastEpisode = progressShow.lastEpisode.flatMap { findEpisodeOnShow(show: show, episode: $0) }
+  let nextEpisode = progressShow.nextEpisode.flatMap { findEpisodeOnSeasons(seasons: show.seasons, episode: $0) }
+  let lastEpisode = progressShow.lastEpisode.flatMap { findEpisodeOnSeasons(seasons: show.seasons, episode: $0) }
 
   return WatchedShow(show: show,
                      aired: progressShow.aired,
@@ -152,7 +150,7 @@ private func createWatchedShow(show: DomainShow, progressShow: BaseShow) -> Watc
                      lastWatched: progressShow.lastWatchedAt)
 }
 
-private func findEpisodeOnShow(show: DomainShow, episode: TraktSwift.Episode) -> WatchedEpisode? {
-  let season = show.seasons.first { $0.number == episode.season }
+private func findEpisodeOnSeasons(seasons: [WatchedSeason], episode: TraktSwift.Episode) -> WatchedEpisode? {
+  let season = seasons.first { $0.number == episode.season }
   return season?.episodes.first { $0.episode.number == episode.number }
 }

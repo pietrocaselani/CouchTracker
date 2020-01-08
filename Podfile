@@ -34,6 +34,7 @@ end
 def tests_shared_pods
   pod 'RxTest', git: 'https://github.com/ReactiveX/RxSwift.git', tag: RX_SWIFT_VERSION
   pod 'RxNimble/RxTest'
+  pod 'SnapshotTesting', '1.7.0'
 end
 
 def ui_tests_pods

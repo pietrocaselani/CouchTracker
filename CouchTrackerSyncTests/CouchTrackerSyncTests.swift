@@ -1,13 +1,10 @@
 import XCTest
-import Moya
 import TraktSwift
-import TraktSwiftTestable
 import RxSwift
 import RxTest
-import Nimble
-import RxNimble
-
-@testable import CouchTrackerSync
+import SnapshotTesting
+import CouchTrackerSync
+import TraktSwiftTestable
 
 final class CouchTrackerSyncTests: XCTestCase {
   private var scheduler: TestScheduler!
@@ -26,43 +23,46 @@ final class CouchTrackerSyncTests: XCTestCase {
     super.tearDown()
   }
 
-    func testSync() {
-      let expectedWatchedProgressOptions = WatchedProgressOptions(hidden: false, specials: false, countSpecials: false)
-      let expectedShowIds = ShowIds(trakt: 1415,
-                                    tmdb: 1424,
-                                    imdb: "tt2372162",
-                                    slug: "orange-is-the-new-black",
-                                    tvdb: 264586,
-                                    tvrage: 32950)
+  func testSyncForOneShowOnly() {
+    let expectedWatchedProgressOptions = WatchedProgressOptions()
 
-      Current.syncWatchedShows = { extended in
-        XCTAssertEqual(extended, [.full, .noSeasons])
-        return .just(decode(file: "syncWatchedShows", as: [BaseShow].self))
-      }
+    let expectedShowIds = ShowIds(trakt: 1415,
+                                  tmdb: 1424,
+                                  imdb: "tt2372162",
+                                  slug: "orange-is-the-new-black",
+                                  tvdb: 264586,
+                                  tvrage: 32950)
 
-      Current.watchedProgress = { watchedProgressOptions, showIds in
-        XCTAssertEqual(watchedProgressOptions, expectedWatchedProgressOptions)
-        XCTAssertEqual(showIds, expectedShowIds)
-        return .just(decode(file: "watchedProgress", as: BaseShow.self))
-      }
-
-      Current.seasonsForShow = { showIds, extended in
-        XCTAssertEqual(showIds, expectedShowIds)
-        XCTAssertEqual(extended, [.full, .episodes])
-        return .just(decode(file: "seasonsForShow", as: [Season].self))
-      }
-
-      Current.genres = {
-        let movies = Observable.just(decode(file: "genresForMovies", as: [Genre].self))
-        let shows = Observable.just(decode(file: "genresForShows", as: [Genre].self))
-        return Observable.zip(movies, shows).map { Set($0 + $1) }
-      }
-
-      expect(startSync(options: SyncOptions()))
-        .events(scheduler: scheduler, disposeBag: disposeBag)
-        .to(equal([
-          Recorded.next(0, decode(file: "WatchedShow-Success", as: WatchedShow.self)),
-          Recorded.completed(0)
-        ]))
+    Current.syncWatchedShows = { extended in
+      XCTAssertEqual(extended, [.full, .noSeasons])
+      return .just(decode(file: "syncWatchedShows", as: [BaseShow].self))
     }
+
+    Current.watchedProgress = { watchedProgressOptions, showIds in
+      XCTAssertEqual(watchedProgressOptions, expectedWatchedProgressOptions)
+      XCTAssertEqual(showIds, expectedShowIds)
+      return .just(decode(file: "watchedProgress", as: BaseShow.self))
+    }
+
+    Current.seasonsForShow = { showIds, extended in
+      XCTAssertEqual(showIds, expectedShowIds)
+      XCTAssertEqual(extended, [.full, .episodes])
+      return .just(decode(file: "seasonsForShow", as: [Season].self))
+    }
+
+    Current.genres = {
+      let movies = Single.just(decode(file: "genresForMovies", as: [Genre].self))
+      let shows = Single.just(decode(file: "genresForShows", as: [Genre].self))
+      return Single.zip(movies, shows).map { Set($0 + $1) }
+    }
+
+    let trakt = TestableTrakt()
+
+    let observer = scheduler.start { () -> Observable<WatchedShow> in
+      let startModule = setupSyncModule(trakt: trakt)
+      return startModule(.defaultOptions)
+    }
+
+    assertSnapshot(matching: observer.events, as: .unsortedJSON)
+  }
 }
