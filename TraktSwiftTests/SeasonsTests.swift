@@ -21,7 +21,7 @@ final class SeasonsTests: XCTestCase {
   }
 
   func testSeasons_requestSummaryforSeason_parseModels() {
-    let target = Seasons.summary(showId: "the-100", exteded: [.full, .episodes])
+    let target = Seasons.summary(showId: "the-100", extended: [.full, .episodes])
 
     let res = scheduler.start {
       self.seasonsProvider.rx.request(target)

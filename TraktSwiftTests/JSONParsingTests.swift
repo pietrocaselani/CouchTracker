@@ -1,6 +1,7 @@
 import RxSwift
 import RxTest
 @testable import TraktSwift
+import TraktSwiftTestable
 import XCTest
 
 final class JSONParsingTests: XCTestCase {
