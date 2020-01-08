@@ -138,6 +138,14 @@ target 'TraktSwiftTests' do
   tests_shared_pods
 end
 
+target 'TraktSwiftTestable' do
+  platform :ios, IOS_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  api_pods
+end
+
 target 'TMDBSwift' do
   platform :ios, IOS_VERSION
   use_frameworks!
