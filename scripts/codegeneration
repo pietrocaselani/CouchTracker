@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-sourcery
+sourcery --config CouchTrackerCore-sourcery.yml
+sourcery --config CouchTrackerSync-sourcery.yml

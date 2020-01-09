@@ -1,4 +1,3 @@
-import TraktSwift
 import RxSwift
 
 public struct SyncEnvironment {

@@ -3,16 +3,16 @@
 {% macro associatedValueNames associatedValues %}{% for associatedValue in case.associatedValues %}{% if forloop.first %}{% call associatedValueNamedType associatedValue %}{% else %}, {% call associatedValueNamedType associatedValue %}{% endif %}{% endfor %}{% endmacro %}
 // MARK: - EnumClosures
 
-{% for enum in types.enums where enum.implements.EnumClosures %}
+{% for enum in types.enums|based:"EnumClosures" %}
 extension {{ enum.name }} {
     {% for case in enum.cases %}
     {% if case.hasAssociatedValue %}
-    {{ enum.accessLevel }} func on{{ case.name|capitalize }}(_ fn: ({% call associatedValueTypes case.associatedValues %}) -> Void) {
+    {{ enum.accessLevel }} func on{{ case.name|upperFirstLetter }}(_ fn: ({% call associatedValueTypes case.associatedValues %}) -> Void) {
         guard case let .{{ case.name }}({% call associatedValueNames case.associatedValues %}) = self else { return }
         fn({% call associatedValueNames case.associatedValues %})
     }
     {% else %}
-    {{ enum.accessLevel }} func on{{ case.name|capitalize }}(_ fn: () -> Void) {
+    {{ enum.accessLevel }} func on{{ case.name|upperFirstLetter }}(_ fn: () -> Void) {
         guard case .{{ case.name }} = self else { return }
         fn()
     }

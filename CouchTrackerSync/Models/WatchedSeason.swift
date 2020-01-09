@@ -1,5 +1,3 @@
-import TraktSwift
-
 public struct WatchedSeason: Hashable, Codable {
   public let showIds: ShowIds
   public let seasonIds: SeasonIds

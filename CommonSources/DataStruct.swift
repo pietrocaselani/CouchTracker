@@ -1,4 +1,4 @@
-protocol DataStruct {}
+protocol DataStruct: Hashable {}
 
 extension DataStruct {
   func setValueOptional<T>(_ value: OptionalCopyValue<T>, _ defaultValue: T?) -> T? {

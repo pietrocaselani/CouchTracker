@@ -1,4 +1,3 @@
-import TraktSwift
 import RxSwift
 
 func syncWatchedShows(extended: [Extended]) -> Single<[BaseShow]> {

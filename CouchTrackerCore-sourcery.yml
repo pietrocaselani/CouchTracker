@@ -1,0 +1,8 @@
+project:
+  file: CouchTracker.xcodeproj
+  target:
+    - name: CouchTrackerCore
+    - name: TraktSwift
+templates:
+  - SourceryTemplates/
+output: CouchTrackerCore/CodeGenerated/

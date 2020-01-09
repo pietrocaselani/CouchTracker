@@ -1,5 +1,3 @@
-import TraktSwift
-
 public struct Show: Hashable, Codable {
   public let ids: ShowIds
   public let title: String?

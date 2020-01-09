@@ -5,7 +5,7 @@
 //  Created by Pietro Caselani on 30.12.19.
 //
 
-#import <Foundation/Foundation.h>
+#import <TraktSwift/TraktSwift.h>
 
 //! Project version number for CouchTrackerSync.
 FOUNDATION_EXPORT double CouchTrackerSyncVersionNumber;

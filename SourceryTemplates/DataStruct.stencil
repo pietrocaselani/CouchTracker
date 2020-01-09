@@ -1,0 +1,21 @@
+// MARK: - DataStruct
+
+{% for type in types.structs|based:"DataStruct" %}
+// sourcery:inline:{{ type.name }}.TemplateName
+{{ type.accessLevel }} func copy(
+{% for variable in type.storedVariables %}
+  {% if variable.typeName.isOptional %}{{ variable.name }}: OptionalCopyValue<{{ variable.unwrappedTypeName }}> = .same{% else %}{{ variable.name }}: CopyValue<{{ variable.typeName }}> = .same{% endif %}{% if not forloop.last %},{% endif %}
+{% endfor %}
+) -> {{ type.name }} {
+  {% for variable in type.storedVariables %}
+  {% if variable.typeName.isOptional %}
+  let new{{ variable.name|upperFirstLetter }}: {{ variable.typeName }} = setValueOptional({{ variable.name }}, self.{{ variable.name }}
+  {% else %}
+  let new{{ variable.name|upperFirstLetter }}: {{ variable.typeName }} = setValue({{ variable.name }}, self.{{ variable.name }})
+  {% endif %}
+  {% endfor %}
+
+  return {{ type.name }}({% for variable in type.storedVariables %}{{ variable.name }}: new{{ variable.name|upperFirstLetter }}{% if not forloop.last %}, {% else %}){% endif %}{% endfor %}
+}
+// sourcery:end
+{% endfor %}

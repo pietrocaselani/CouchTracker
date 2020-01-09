@@ -66,14 +66,9 @@ public final class MovieDetailsViewController: UIViewController {
   }
 
   private func handleViewState(_ viewState: MovieDetailsViewState) {
-    switch viewState {
-    case .loading:
-      showLoadingView()
-    case let .error(error):
-      showErrorView(error)
-    case let .showing(movie):
-      show(details: movie)
-    }
+    viewState.onLoading { showLoadingView() }
+    viewState.onError { showError($0) }
+    viewState.onShowing { show(details: $0) }
   }
 
   private func handleImagesState(_ imagesState: MovieDetailsImagesState) {

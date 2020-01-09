@@ -202,7 +202,7 @@ enum CouchTrackerCore {
       product: .framework,
       bundleId: "\(baseBundleId).CouchTrackerCore",
       infoPlist: "CouchTrackerCore/Info.plist",
-      sources: ["CouchTrackerCore/**"],
+      sources: ["CouchTrackerCore/**", "CommonSources/**"],
       resources: ["CouchTrackerCore/Resources/**/*.{xcassets,png,strings,json}"],
       headers: Headers(public: "CouchTrackerCore/Headers/Public/CouchTrackerCore.h"),
       dependencies: [
@@ -262,7 +262,7 @@ enum CouchTrackerSync {
       product: .framework,
       bundleId: "\(baseBundleId).CouchTrackerSync",
       infoPlist: "CouchTrackerSync/Info.plist",
-      sources: ["CouchTrackerSync/**"],
+      sources: ["CouchTrackerSync/**", "CommonSources/**"],
       headers: Headers(public: "CouchTrackerSync/Headers/Public/CouchTrackerSync.h"),
       dependencies: [
         .target(name: TraktSwift.name)
@@ -681,10 +681,28 @@ func allSchemes() -> [Scheme] {
 
 func additionalFiles() -> [FileElement] {
   return [
-    "changelog.md",
-    "CouchTrackerPlayground.playground",
+    "CouchTrackerCore-sourcery.yml",
+    "CouchTrackerSync-sourcery.yml",
+    ".circleci",
+    ".codecov.yml",
+    ".editorconfig",
+    ".gitignore",
+    ".swift-version",
+    ".swiftlint.yml",
+    ".tuist-version",
+    "Brewfile",
+    "Gemfile",
+    "Podfile",
     "Readme.md",
-    ".swiftlint.yml"
+    "SourceryTemplates",
+    "build_phases",
+    "changelog.md",
+    "fastlane",
+    "scripts",
+    "setup.sh",
+    "sonar-project.properties",
+    "CouchTrackerPlayground.playground",
+    "CommonSources"
   ]
 }
 

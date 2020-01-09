@@ -1,36 +1,8 @@
-import TraktSwift
 import RxSwift
 import Moya
 
 typealias TraktShow = TraktSwift.Show
 typealias DomainShow = CouchTrackerSync.Show
-
-public enum SyncError: Error {
-  case showIsNil
-  case missingEpisodes(showIds: ShowIds, baseSeason: BaseSeason, season: Season)
-}
-
-public struct WatchedProgressOptions: Hashable {
-  public let hidden: Bool
-  public let specials: Bool
-  public let countSpecials: Bool
-
-  public init(hidden: Bool = false, specials: Bool = false, countSpecials: Bool = false) {
-    self.hidden = hidden
-    self.specials = specials
-    self.countSpecials = countSpecials
-  }
-}
-
-public struct SyncOptions: Hashable {
-  public static let defaultOptions = SyncOptions()
-
-  public let watchedProgress: WatchedProgressOptions
-
-  public init(watchedProgress: WatchedProgressOptions = WatchedProgressOptions()) {
-    self.watchedProgress = watchedProgress
-  }
-}
 
 func startSync(_ options: SyncOptions = SyncOptions()) -> Observable<WatchedShow> {
   let genresObservable = Current.genres().asObservable()
@@ -52,7 +24,7 @@ private func watchedProgress(options: WatchedProgressOptions, baseShow: BaseShow
 
 private func seasonsForShow(showData: ShowDataForSyncing) -> Single<ShowDataForSyncing> {
   return Current.seasonsForShow(showData.showIds, [.full, .episodes])
-    .map { ShowDataForSyncing(progressShow: showData.progressShow, show: showData.show, seasons: $0) }
+    .map { showData.copy(seasons: .new($0)) }
 }
 
 private func genresFromSlugs(allGenres: Set<Genre>, slugs: [String]) -> [Genre] {
