@@ -37,7 +37,6 @@ fastlane/downloads
 *.p12
 Logs/
 ModuleCache
-*.generated.swift
 reports/
 ModuleCache/
 Logs/
