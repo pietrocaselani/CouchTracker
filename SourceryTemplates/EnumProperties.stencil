@@ -5,7 +5,7 @@
 // MARK: - EnumProperties
 
 {% for enum in types.enums|based:"EnumProperties" %}
-extension {{ enum.name }} {
+{{ enum.accessLevel }} extension {{ enum.name }} {
     {% for case in enum.cases %}
     {{ enum.accessLevel }} var is{{ case.name|upperFirstLetter }}: Bool {
         guard case .{{ case.name }} = self else { return false }

@@ -4,7 +4,7 @@
 // MARK: - EnumClosures
 
 {% for enum in types.enums|based:"EnumClosures" %}
-extension {{ enum.name }} {
+{{ enum.accessLevel }} extension {{ enum.name }} {
     {% for case in enum.cases %}
     {% if case.hasAssociatedValue %}
     {{ enum.accessLevel }} func on{{ case.name|upperFirstLetter }}(_ fn: ({% call associatedValueTypes case.associatedValues %}) -> Void) {
