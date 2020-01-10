@@ -1,2 +1,10 @@
 ignore:
   - "CouchTrackerCoreTests/**/*"
+  - "CouchTrackerSyncTests/**/*"
+  - "TMDBSwiftTestable/**/*"
+  - "TMDBSwiftTests/**/*"
+  - "TVDBSwiftTestable/**/*"
+  - "TVDBSwiftTests/**/*"
+  - "TraktSwiftTestable/**/*"
+  - "TraktSwiftTests/**/*"
+  - "CouchTrackerAppTestable/**/*"

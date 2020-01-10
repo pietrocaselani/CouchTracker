@@ -1,8 +1,4 @@
-public enum WatchedType: String, Equatable {
+public enum WatchedType: String {
   case movies
   case shows
-
-  public static func == (lhs: WatchedType, rhs: WatchedType) -> Bool {
-    return lhs.rawValue == rhs.rawValue
-  }
 }

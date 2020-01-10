@@ -37,7 +37,6 @@ fastlane/downloads
 *.p12
 Logs/
 ModuleCache
-*.generated.swift
 reports/
 ModuleCache/
 Logs/
@@ -50,5 +49,6 @@ Pods/
 /vendor
 .bundle
 CouchTrackerApp/Utils/Secrets.swift
+Secrets.swift
 CouchTracker.xcodeproj/
 CouchTracker.xcworkspace/

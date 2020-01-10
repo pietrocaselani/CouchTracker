@@ -4,10 +4,10 @@
 {% macro associatedTypeAsTuple associatedValues %}{% if associatedValues.count == 1 %}{{ associatedValues[0].typeName }}{% else %}({% for associatedValue in associatedValues %}{% if forloop.first %}{% call associatedValueNamedType associatedValue %}: {{ associatedValue.typeName }}{% else %}, {% call associatedValueNamedType associatedValue %}: {{ associatedValue.typeName }}{% endif %}{% endfor %}){% endif %}{% endmacro %}
 // MARK: - EnumProperties
 
-{% for enum in types.enums where enum.implements.EnumProperties %}
-extension {{ enum.name }} {
+{% for enum in types.enums|based:"EnumProperties" %}
+{{ enum.accessLevel }} extension {{ enum.name }} {
     {% for case in enum.cases %}
-    {{ enum.accessLevel }} var is{{ case.name|capitalize }}: Bool {
+    {{ enum.accessLevel }} var is{{ case.name|upperFirstLetter }}: Bool {
         guard case .{{ case.name }} = self else { return false }
         return true
     }

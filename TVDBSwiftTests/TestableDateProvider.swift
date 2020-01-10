@@ -1,4 +1,5 @@
 import TVDBSwift
+import Foundation
 
 final class TestableDateProvider: DateProvider {
   var now: Date

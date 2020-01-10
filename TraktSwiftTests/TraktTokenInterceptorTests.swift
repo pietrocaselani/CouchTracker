@@ -1,4 +1,5 @@
 @testable import TraktSwift
+import TraktSwiftTestable
 import XCTest
 
 final class TraktTokenInterceptorTests: XCTestCase {

@@ -1,5 +1,6 @@
 @testable import CouchTrackerCore
 import TMDBSwift
+import Foundation
 
 final class TMDBEntitiesMock {
   static var configurationMock: Configuration {

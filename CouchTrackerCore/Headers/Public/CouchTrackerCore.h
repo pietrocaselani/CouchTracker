@@ -6,7 +6,7 @@
 //  Copyright © 2018 Pietro Caselani. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for CouchTrackerCore.
 FOUNDATION_EXPORT double CouchTrackerCoreVersionNumber;

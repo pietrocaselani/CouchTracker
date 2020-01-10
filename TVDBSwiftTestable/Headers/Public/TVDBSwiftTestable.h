@@ -6,7 +6,7 @@
 //  Copyright © 2019 Pietro Caselani. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for TVDBSwiftTestable.
 FOUNDATION_EXPORT double TVDBSwiftTestableVersionNumber;

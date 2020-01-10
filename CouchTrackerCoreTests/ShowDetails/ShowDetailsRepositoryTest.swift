@@ -14,7 +14,7 @@ final class ShowOverviewRepositoryTest: XCTestCase {
 
     let expectedShow = TraktEntitiesMock.createTraktShowDetails()
 
-    _ = repository.fetchDetailsOfShow(with: "game-of-thrones", extended: .fullEpisodes)
+    _ = repository.fetchDetailsOfShow(with: "game-of-thrones", extended: .full)
       .subscribe(onSuccess: { show in
         testExpectation.fulfill()
         XCTAssertEqual(show, expectedShow)

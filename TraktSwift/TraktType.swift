@@ -13,9 +13,7 @@ public extension TraktType {
 
   var authorizationType: AuthorizationType? { return nil }
 
-  var sampleData: Data {
-    return "".utf8Encoded
-  }
+  var sampleData: Data { return Data() }
 
   func hash(into hasher: inout Hasher) {
     let typeName = String(reflecting: self)

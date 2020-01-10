@@ -1,6 +1,7 @@
 import RxSwift
 import RxTest
 @testable import TraktSwift
+import TraktSwiftTestable
 import XCTest
 
 final class JSONParsingTests: XCTestCase {
@@ -42,7 +43,7 @@ final class JSONParsingTests: XCTestCase {
     setupTraktForAuthentication(token)
 
     // Then
-    _ = trakt.sync.rx.request(.watched(type: .shows, extended: .full)).map([BaseShow].self).asObservable().subscribe(observer)
+    _ = trakt.sync.rx.request(.watched(type: .shows, extended: [.full])).map([BaseShow].self).asObservable().subscribe(observer)
 
     XCTAssertEqual(observer.events.count, 2)
     let event = observer.events.first!
@@ -53,6 +54,6 @@ final class JSONParsingTests: XCTestCase {
       return
     }
 
-    XCTAssertEqual(element.count, 105)
+    XCTAssertEqual(element.count, 125)
   }
 }

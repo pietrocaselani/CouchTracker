@@ -1,7 +1,10 @@
 import Moya
 
 public enum Seasons {
-  case summary(showId: String, exteded: Extended)
+  /**
+   Accepts, .default, .full,  and .episodes for Extended
+   */
+  case summary(showId: String, extended: [Extended])
 }
 
 extension Seasons: TraktType {
@@ -14,8 +17,8 @@ extension Seasons: TraktType {
 
   public var task: Task {
     switch self {
-    case let .summary(_, exteded):
-      return .requestParameters(parameters: ["extended": exteded.rawValue], encoding: URLEncoding.default)
+    case let .summary(_, extended):
+      return .requestParameters(parameters: ["extended": extended.separatedByComma()], encoding: URLEncoding.default)
     }
   }
 

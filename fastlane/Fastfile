@@ -26,11 +26,7 @@ platform :ios do
 
   desc 'Run CouchTrackerCore tests'
   lane :tests do
-    run_tests_for_scheme(scheme: 'TVDBSwiftTests')
-    run_tests_for_scheme(scheme: 'TMDBSwiftTests')
-    run_tests_for_scheme(scheme: 'TraktSwiftTests')
-    run_tests_for_scheme(scheme: 'CouchTrackerCoreTests')
-    run_tests_for_scheme(scheme: 'CouchTrackerUITests')
+    run_tests_for_scheme(scheme: 'AllTests')
   end
 
   desc 'Run tests and linters'
@@ -50,6 +46,12 @@ platform :ios do
   lane :upload_sonar do
     lint
     sonar(sonar_login: ENV['SONAR_LOGIN'])
+  end
+
+  lane :bump_app do
+    new_build_number = bump_build_number
+
+    version_number = get_version_number(target: 'CouchTracker')
   end
 
   desc 'Release a new build'

@@ -10,13 +10,13 @@ def api_pods
   pod 'Moya/RxSwift', git: 'https://github.com/Moya/Moya.git', tag: MOYA_VERSION
 end
 
-def common_pods
+def sync_pods
   api_pods
   pod 'RxSwift', git: 'https://github.com/ReactiveX/RxSwift.git', tag: RX_SWIFT_VERSION
 end
 
 def ios_pods
-  common_pods
+  sync_pods
   pod 'Kingfisher', '5.12.0'
   pod 'RxCocoa', git: 'https://github.com/ReactiveX/RxSwift.git', tag: RX_SWIFT_VERSION
   pod 'ActionSheetPicker-3.0', '2.3.0'
@@ -33,7 +33,8 @@ end
 
 def tests_shared_pods
   pod 'RxTest', git: 'https://github.com/ReactiveX/RxSwift.git', tag: RX_SWIFT_VERSION
-  pod 'Nimble', '8.0.4'
+  pod 'RxNimble/RxTest'
+  pod 'SnapshotTesting', '1.7.0'
 end
 
 def ui_tests_pods
@@ -41,27 +42,35 @@ def ui_tests_pods
 end
 
 target 'CouchTrackerCore' do
-  platform :osx, OSX_VERSION
-  use_frameworks!
-  inhibit_all_warnings!
-
-  common_pods
-end
-
-target 'CouchTrackerCore-iOS' do
   platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
 
-  common_pods
+  sync_pods
 end
 
 target 'CouchTrackerCoreTests' do
-  platform :osx, OSX_VERSION
+  platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
 
-  common_pods
+  sync_pods
+  tests_shared_pods
+end
+
+target 'CouchTrackerSync' do
+  platform :ios, IOS_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
+  sync_pods
+end
+
+target 'CouchTrackerSyncTests' do
+  platform :ios, IOS_VERSION
+  use_frameworks!
+  inhibit_all_warnings!
+
   tests_shared_pods
 end
 
@@ -115,14 +124,6 @@ target 'CouchTrackerDebug' do
 end
 
 target 'TraktSwift' do
-  platform :osx, OSX_VERSION
-  use_frameworks!
-  inhibit_all_warnings!
-
-  api_pods
-end
-
-target 'TraktSwift-iOS' do
   platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
@@ -131,22 +132,22 @@ target 'TraktSwift-iOS' do
 end
 
 target 'TraktSwiftTests' do
-  platform :osx, OSX_VERSION
+  platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
 
   tests_shared_pods
 end
 
-target 'TMDBSwift' do
-  platform :osx, OSX_VERSION
+target 'TraktSwiftTestable' do
+  platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
 
   api_pods
 end
 
-target 'TMDBSwift-iOS' do
+target 'TMDBSwift' do
   platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
@@ -155,7 +156,7 @@ target 'TMDBSwift-iOS' do
 end
 
 target 'TMDBSwiftTests' do
-  platform :osx, OSX_VERSION
+  platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
 
@@ -163,14 +164,6 @@ target 'TMDBSwiftTests' do
 end
 
 target 'TVDBSwift' do
-  platform :osx, OSX_VERSION
-  use_frameworks!
-  inhibit_all_warnings!
-
-  api_pods
-end
-
-target 'TVDBSwift-iOS' do
   platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
@@ -179,7 +172,7 @@ target 'TVDBSwift-iOS' do
 end
 
 target 'TVDBSwiftTests' do
-  platform :osx, OSX_VERSION
+  platform :ios, IOS_VERSION
   use_frameworks!
   inhibit_all_warnings!
 

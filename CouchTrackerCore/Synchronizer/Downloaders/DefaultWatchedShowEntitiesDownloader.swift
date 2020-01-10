@@ -37,7 +37,7 @@ public final class DefaultWatchedShowEntitiesDownloader: WatchedShowEntitiesDown
   // MARK: - Public Interface
 
   public func syncWatchedShowEntities(using options: WatchedShowEntitiesSyncOptions) -> Observable<WatchedShowEntity> {
-    return fetchWatchedShowsFromAPI(options: options).asObservable()
+    return fetchWatchedShowsFromAPI().asObservable()
       .flatMap { [weak self] baseShows -> Observable<BaseShowWithGenres> in
         guard let strongSelf = self else { return Observable.empty() }
         return strongSelf.mapToBaseShowWithGenres(baseShows).asObservable()
@@ -77,16 +77,16 @@ public final class DefaultWatchedShowEntitiesDownloader: WatchedShowEntitiesDown
 
     let showOptions = WatchedShowEntitySyncOptions(showIds: show.ids,
                                                    episodeExtended: options.extended,
-                                                   seasonOptions: .yes(number: nil, extended: options.extended),
-                                                   hiddingSpecials: options.hiddingSpecials)
+                                                   seasonOptions: .yes(number: nil, extended: options.seasonExtended),
+                                                   hidingSpecials: options.hidingSpecials)
 
     return showSynchronizer.syncWatchedShowEntitiy(using: showOptions).map { builder in
       builder.set(detailShow: detailShow)
     }
   }
 
-  private func fetchWatchedShowsFromAPI(options: WatchedShowEntitiesSyncOptions) -> Single<[BaseShow]> {
-    let target = Sync.watched(type: .shows, extended: options.extended)
+  private func fetchWatchedShowsFromAPI() -> Single<[BaseShow]> {
+    let target = Sync.watched(type: .shows, extended: [.full, .noSeasons])
     return trakt.sync.rx.request(target)
       .filterSuccessfulStatusAndRedirectCodes()
       .map([BaseShow].self)

@@ -8,11 +8,14 @@ public struct Season: Codable, Hashable {
   public let airedEpisodes: Int?
   public let episodes: [Episode]?
   public let title: String?
+  public let firstAired: Date?
+  public let network: String?
 
   private enum CodingKeys: String, CodingKey {
-    case number, ids, overview, rating, votes, episodes, title
+    case number, ids, overview, rating, votes, episodes, title, network
     case episodeCount = "episode_count"
     case airedEpisodes = "aired_episodes"
+    case firstAired = "first_aired"
   }
 
   public init(from decoder: Decoder) throws {
@@ -27,5 +30,9 @@ public struct Season: Codable, Hashable {
     airedEpisodes = try container.decodeIfPresent(Int.self, forKey: .airedEpisodes)
     episodes = try container.decodeIfPresent([Episode].self, forKey: .episodes)
     title = try container.decodeIfPresent(String.self, forKey: .title)
+    network = try container.decodeIfPresent(String.self, forKey: .network)
+
+    let firstAired = try container.decodeIfPresent(String.self, forKey: .firstAired)
+    self.firstAired = TraktDateTransformer.dateTimeTransformer.transformFromJSON(firstAired)
   }
 }

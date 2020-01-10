@@ -9,7 +9,7 @@ public extension TMDBType {
 
   var headers: [String: String]? { return nil }
 
-  var sampleData: Data { return "".utf8Encoded }
+  var sampleData: Data { return Data() }
 }
 
 func stubbedResponse(_ filename: String) -> Data {

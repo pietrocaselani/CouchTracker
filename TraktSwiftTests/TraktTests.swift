@@ -1,8 +1,10 @@
 import Moya
 import RxSwift
 import RxTest
+import TraktSwiftTestable
 @testable import TraktSwift
 import XCTest
+import Foundation
 
 final class TraktTests: XCTestCase {
   private let userDefaultsMock = UserDefaults(suiteName: "TraktTestUserDefaults")!
@@ -36,7 +38,7 @@ final class TraktTests: XCTestCase {
       $0.dateProvider = TestableDateProvider(now: beginOfTime)
     }
 
-    trakt = Trakt(builder: builder)
+    trakt = TestableTrakt(builder: builder)
   }
 
   private func setupTraktForAuthentication(_ token: Token? = nil) {
@@ -48,7 +50,7 @@ final class TraktTests: XCTestCase {
       $0.dateProvider = TestableDateProvider(now: beginOfTime)
     }
 
-    trakt = Trakt(builder: builder)
+    trakt = TestableTrakt(builder: builder)
     trakt.accessToken = token
   }
 
@@ -139,7 +141,7 @@ final class TraktTests: XCTestCase {
       $0.userDefaults = userDefaultsMock
     }
 
-    trakt = Trakt(builder: builder)
+    trakt = TestableTrakt(builder: builder)
     let request = URLRequest(url: authorizeURL)
     let observer = scheduler.createObserver(AuthenticationResult.self)
 
@@ -161,7 +163,7 @@ final class TraktTests: XCTestCase {
       $0.userDefaults = userDefaultsMock
     }
 
-    trakt = Trakt(builder: builder)
+    trakt = TestableTrakt(builder: builder)
     let request = URLRequest(url: authorizeURL)
     let observer = scheduler.createObserver(AuthenticationResult.self)
 
@@ -279,10 +281,10 @@ final class TraktTests: XCTestCase {
     let token = Token(accessToken: "accesstokenMock", expiresIn: expiresIn,
                       refreshToken: "refreshtokenMock", tokenType: "type1", scope: "all")
 
-    let trakt = Trakt(builder: builder)
+    let trakt = TestableTrakt(builder: builder)
     trakt.accessToken = token
 
-    let newTrakt = Trakt(builder: builder)
+    let newTrakt = TestableTrakt(builder: builder)
 
     XCTAssertEqual(token, newTrakt.accessToken)
   }

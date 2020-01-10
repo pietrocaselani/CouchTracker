@@ -61,9 +61,9 @@ public final class DefaultWatchedShowEntityDownloader: WatchedShowEntityDownload
 
   private func fetchProgressFromAPI(options: WatchedShowEntitySyncOptions) -> Single<BaseShow> {
     let target = Shows.watchedProgress(showId: options.showIds.realId,
-                                       hidden: !options.hiddingSpecials,
-                                       specials: !options.hiddingSpecials,
-                                       countSpecials: !options.hiddingSpecials)
+                                       hidden: !options.hidingSpecials,
+                                       specials: !options.hidingSpecials,
+                                       countSpecials: !options.hidingSpecials)
 
     return trakt.shows.rx.request(target)
       .filterSuccessfulStatusAndRedirectCodes()
@@ -84,7 +84,7 @@ public final class DefaultWatchedShowEntityDownloader: WatchedShowEntityDownload
 
   private func setSeasons(using options: WatchedShowEntitySyncOptions,
                           number: Int?,
-                          seasonExtended: Extended,
+                          seasonExtended: [Extended],
                           into builder: WatchedShowBuilder) -> Single<WatchedShowBuilder> {
     return fetchSeasonsFromAPI(using: options, seasonExtended: seasonExtended, number: number)
       .map { seasons -> [WatchedSeasonEntityBuilder] in
@@ -113,9 +113,9 @@ public final class DefaultWatchedShowEntityDownloader: WatchedShowEntityDownload
   }
 
   private func fetchSeasonsFromAPI(using options: WatchedShowEntitySyncOptions,
-                                   seasonExtended: Extended,
+                                   seasonExtended: [Extended],
                                    number: Int?) -> Single<[Season]> {
-    let target = Seasons.summary(showId: options.showIds.realId, exteded: seasonExtended)
+    let target = Seasons.summary(showId: options.showIds.realId, extended: seasonExtended)
     let seasonsSingle = trakt.seasons.rx.request(target)
       .filterSuccessfulStatusAndRedirectCodes()
       .map([Season].self)

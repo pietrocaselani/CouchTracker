@@ -1,7 +1,13 @@
 import Moya
 
 public enum Movies {
+  /**
+   Only accepts .default or .full for Extended
+   */
   case trending(page: Int, limit: Int, extended: Extended)
+  /**
+   Only accepts .default or .full for Extended
+   */
   case summary(movieId: String, extended: Extended)
 }
 

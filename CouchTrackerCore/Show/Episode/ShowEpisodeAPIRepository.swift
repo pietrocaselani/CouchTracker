@@ -46,9 +46,9 @@ public final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
       guard let strongSelf = self else { return Single.error(CouchTrackerError.selfDeinitialized) }
 
       let options = WatchedShowEntitySyncOptions(showIds: showIds,
-                                                 episodeExtended: .fullEpisodes,
-                                                 seasonOptions: .yes(number: season, extended: .fullEpisodes),
-                                                 hiddingSpecials: strongSelf.hideSpecials)
+                                                 episodeExtended: .full,
+                                                 seasonOptions: .yes(number: season, extended: [.full, .episodes]),
+                                                 hidingSpecials: strongSelf.hideSpecials)
 
       return strongSelf.synchronizer.syncWatchedShow(using: options)
     }

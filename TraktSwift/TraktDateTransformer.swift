@@ -14,19 +14,12 @@ public struct TraktDateTransformer {
   }
 
   public func transformFromJSON(_ value: String?) -> Date? {
-    if let stringDate = value {
-      let resultDate = dateFormatter.date(from: stringDate)
-      return resultDate
-    }
-
-    return nil
+    guard let stringDate = value else { return nil }
+    return dateFormatter.date(from: stringDate)
   }
 
   public func transformToJSON(_ value: Date?) -> String? {
-    if let date = value {
-      return dateFormatter.string(from: date)
-    }
-
-    return nil
+    guard let date = value else { return nil }
+    return dateFormatter.string(from: date)
   }
 }
