@@ -5,9 +5,9 @@ typealias TraktShow = TraktSwift.Show
 typealias DomainShow = CouchTrackerSync.Show
 
 func startSync(_ options: SyncOptions = SyncOptions()) -> Observable<WatchedShow> {
-  let genresObservable = Current.genres().asObservable()
+  let genresObservable = Current.api.genres().asObservable()
 
-  let showAndSeasonsObservable = Current.syncWatchedShows([.full, .noSeasons])
+  let showAndSeasonsObservable = Current.api.syncWatchedShows([.full, .noSeasons])
     .asObservable()
     .flatMap { Observable.from($0) }
     .flatMap { watchedProgress(options: options.watchedProgress, baseShow: $0) }
@@ -18,12 +18,12 @@ func startSync(_ options: SyncOptions = SyncOptions()) -> Observable<WatchedShow
 
 private func watchedProgress(options: WatchedProgressOptions, baseShow: BaseShow) -> Single<ShowDataForSyncing> {
   guard let show = baseShow.show else { return Single.error(SyncError.showIsNil) }
-  return Current.watchedProgress(options, show.ids)
+  return Current.api.watchedProgress(options, show.ids)
     .map { ShowDataForSyncing(progressShow: $0, show: show, seasons: []) }
 }
 
 private func seasonsForShow(showData: ShowDataForSyncing) -> Single<ShowDataForSyncing> {
-  return Current.seasonsForShow(showData.showIds, [.full, .episodes])
+  return Current.api.seasonsForShow(showData.showIds, [.full, .episodes])
     .map { showData.copy(seasons: .new($0)) }
 }
 
