@@ -8,9 +8,6 @@ typealias DomainShow = CouchTrackerSync.Show
 func startSync(_ options: SyncOptions = SyncOptions()) -> Observable<Show> {
   let genresObservable = Current.api.genres().asObservable()
 
-  let shows = Current.database.fetchWatchedShows()
-  show
-
   let showAndSeasonsObservable = Current.api.syncWatchedShows([.full, .noSeasons])
     .asObservable()
     .flatMap { Observable.from($0) }
