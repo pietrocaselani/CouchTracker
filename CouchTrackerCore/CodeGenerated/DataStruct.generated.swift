@@ -2,4 +2,3 @@
 // DO NOT EDIT
 
 // MARK: - DataStruct
-
