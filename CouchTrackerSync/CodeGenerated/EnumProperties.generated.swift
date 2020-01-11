@@ -12,7 +12,7 @@ public extension SyncError {
     guard case .missingEpisodes = self else { return false }
     return true
   }
-  var missingEpisodes: (showIds: ShowIds, baseSeason: BaseSeason, season: Season)? {
+  var missingEpisodes: (showIds: ShowIds, baseSeason: BaseSeason, season: TraktSwift.Season)? {
     guard case let .missingEpisodes(showIds, baseSeason, season) = self else { return nil }
     return (showIds, baseSeason, season)
   }

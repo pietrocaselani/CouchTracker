@@ -15,10 +15,10 @@ func watchedProgress(options: WatchedProgressOptions, showIds: ShowIds) -> Singl
   ).map(BaseShow.self)
 }
 
-func seasonsForShow(showIds: ShowIds, extended: [Extended]) -> Single<[Season]> {
+func seasonsForShow(showIds: ShowIds, extended: [Extended]) -> Single<[TraktSwift.Season]> {
   return trakt.seasons.rx
     .request(.summary(showId: showIds.realId, extended: extended))
-    .map([Season].self)
+    .map([TraktSwift.Season].self)
 }
 
 func genresForMoviesAndShows() -> Single<Set<Genre>> {

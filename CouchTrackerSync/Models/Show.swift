@@ -6,23 +6,23 @@ public struct Show: Hashable, Codable {
   public let genres: [Genre]
   public let status: Status?
   public let firstAired: Date?
-  public let seasons: [WatchedSeason]
+  public let seasons: [Season]
   public let aired: Int?
-  public let nextEpisode: WatchedEpisode?
-  public let watched: Watched
+  public let nextEpisode: Episode?
+  public let watched: Watched?
 
   public struct Watched: Hashable, Codable {
-    public let completed: Int?
-    public let lastEpisode: WatchedEpisode?
+    public let completed: Int
+    public let lastEpisode: Episode
 
-    public init(completed: Int?, lastEpisode: WatchedEpisode?) {
+    public init(completed: Int, lastEpisode: Episode) {
       self.completed = completed
       self.lastEpisode = lastEpisode
     }
   }
 
   public init(ids: ShowIds, title: String?, overview: String?, network: String?, genres: [Genre], status: Status?,
-              firstAired: Date?, seasons: [WatchedSeason], aired: Int?, nextEpisode: WatchedEpisode?, watched: Watched) {
+              firstAired: Date?, seasons: [Season], aired: Int?, nextEpisode: Episode?, watched: Watched?) {
     self.ids = ids
     self.title = title
     self.overview = overview

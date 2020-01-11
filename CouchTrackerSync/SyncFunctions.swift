@@ -44,15 +44,15 @@ private func createWatchedShow(showData: ShowDataForSyncing, allGenres: Set<Genr
   return mapTraktShowToDomainShow(showData: showData, genres: showGenres, seasons: watchedSeasons)
 }
 
-private func createWatchedSeasons(showIds: ShowIds, baseSeasons: [BaseSeason], seasons: [Season]) throws -> [WatchedSeason] {
-  return try seasons.compactMap { season -> WatchedSeason? in
+private func createWatchedSeasons(showIds: ShowIds, baseSeasons: [BaseSeason], seasons: [TraktSwift.Season]) throws -> [Season] {
+  return try seasons.compactMap { season -> Season? in
     guard let baseSeason = baseSeasons.first(where: { season.number == $0.number }) else { return nil }
     return try createWatchedSeason(showIds: showIds, baseSeason: baseSeason, season: season)
   }
 }
 
-private func createWatchedSeason(showIds: ShowIds, baseSeason: BaseSeason, season: Season) throws -> WatchedSeason {
-  let episodes = season.episodes?.compactMap { episode -> WatchedEpisode? in
+private func createWatchedSeason(showIds: ShowIds, baseSeason: BaseSeason, season: TraktSwift.Season) throws -> Season {
+  let episodes = season.episodes?.compactMap { episode -> Episode? in
     guard let baseEpisode = baseSeason.episodes.first(where: { episode.number == $0.number }) else { return nil }
     return createWatchedEpisode(showIds: showIds, baseEpisode: baseEpisode, episode: episode)
   }
@@ -61,43 +61,43 @@ private func createWatchedSeason(showIds: ShowIds, baseSeason: BaseSeason, seaso
     throw SyncError.missingEpisodes(showIds: showIds, baseSeason: baseSeason, season: season)
   }
 
-  return WatchedSeason(showIds: showIds,
-                       seasonIds: season.ids,
-                       number: season.number,
-                       aired: season.airedEpisodes,
-                       completed: baseSeason.completed,
-                       episodes: validEpisodes,
-                       overview: season.overview,
-                       title: season.title,
-                       firstAired: season.firstAired,
-                       network: season.network)
+  return Season(showIds: showIds,
+                seasonIds: season.ids,
+                number: season.number,
+                aired: season.airedEpisodes,
+                completed: baseSeason.completed,
+                episodes: validEpisodes,
+                overview: season.overview,
+                title: season.title,
+                firstAired: season.firstAired,
+                network: season.network)
 }
 
-private func createWatchedEpisode(showIds: ShowIds, baseEpisode: BaseEpisode, episode: TraktSwift.Episode) -> WatchedEpisode {
-  let episode = Episode(ids: episode.ids,
-                        showIds: showIds,
-                        title: episode.title,
-                        overview: episode.overview,
-                        number: episode.number,
-                        season: episode.season,
-                        firstAired: episode.firstAired,
-                        absoluteNumber: episode.absoluteNumber,
-                        runtime: episode.runtime,
-                        rating: episode.rating,
-                        votes: episode.votes)
-
-  return WatchedEpisode(episode: episode, lastWatched: baseEpisode.lastWatchedAt)
+private func createWatchedEpisode(showIds: ShowIds, baseEpisode: BaseEpisode, episode: TraktSwift.Episode) -> Episode {
+  return Episode(ids: episode.ids,
+                 showIds: showIds,
+                 title: episode.title,
+                 overview: episode.overview,
+                 number: episode.number,
+                 season: episode.season,
+                 firstAired: episode.firstAired,
+                 absoluteNumber: episode.absoluteNumber,
+                 runtime: episode.runtime,
+                 rating: episode.rating,
+                 votes: episode.votes,
+                 lastWatched: baseEpisode.lastWatchedAt)
 }
 
-private func mapTraktShowToDomainShow(showData: ShowDataForSyncing, genres: [Genre], seasons: [WatchedSeason]) -> DomainShow {
+private func mapTraktShowToDomainShow(showData: ShowDataForSyncing, genres: [Genre], seasons: [Season]) -> DomainShow {
   let progressShow = showData.progressShow
   let traktShow = showData.show
 
   let nextEpisode = progressShow.nextEpisode.flatMap { findEpisodeOnSeasons(seasons: seasons, episode: $0) }
+
   let lastEpisode = progressShow.lastEpisode.flatMap { findEpisodeOnSeasons(seasons: seasons, episode: $0) }
   let completed = progressShow.completed
 
-  let watched = DomainShow.Watched(completed: completed, lastEpisode: lastEpisode)
+  let watched = zip(a: completed, b: lastEpisode).map(DomainShow.Watched.init(completed:lastEpisode:))
 
   return DomainShow(ids: traktShow.ids,
                     title: traktShow.title,
@@ -112,7 +112,12 @@ private func mapTraktShowToDomainShow(showData: ShowDataForSyncing, genres: [Gen
                     watched: watched)
 }
 
-private func findEpisodeOnSeasons(seasons: [WatchedSeason], episode: TraktSwift.Episode) -> WatchedEpisode? {
+private func findEpisodeOnSeasons(seasons: [Season], episode: TraktSwift.Episode) -> Episode? {
   let season = seasons.first { $0.number == episode.season }
-  return season?.episodes.first { $0.episode.number == episode.number }
+  return season?.episodes.first { $0.number == episode.number }
+}
+
+private func zip<A, B>(a: A?, b: B?) -> (A,B)? {
+  guard let aValue = a, let bValue = b else { return nil }
+  return (aValue, bValue)
 }

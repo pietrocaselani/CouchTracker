@@ -47,7 +47,7 @@ final class CouchTrackerSyncTests: XCTestCase {
     Current.api.seasonsForShow = { showIds, extended in
       XCTAssertEqual(showIds, expectedShowIds)
       XCTAssertEqual(extended, [.full, .episodes])
-      return .just(decode(file: "seasonsForShow", as: [Season].self))
+      return .just(decode(file: "seasonsForShow", as: [TraktSwift.Season].self))
     }
 
     Current.api.genres = {

@@ -1,17 +1,17 @@
-public struct WatchedSeason: Hashable, Codable {
+public struct Season: Hashable, Codable {
   public let showIds: ShowIds
   public let seasonIds: SeasonIds
   public let number: Int
   public let aired: Int?
   public let completed: Int?
-  public let episodes: [WatchedEpisode]
+  public let episodes: [Episode]
   public let overview: String?
   public let title: String?
   public let firstAired: Date?
   public let network: String?
 
   public init(showIds: ShowIds, seasonIds: SeasonIds, number: Int,
-              aired: Int?, completed: Int?, episodes: [WatchedEpisode],
+              aired: Int?, completed: Int?, episodes: [Episode],
               overview: String?, title: String?, firstAired: Date?, network: String?) {
     self.showIds = showIds
     self.seasonIds = seasonIds

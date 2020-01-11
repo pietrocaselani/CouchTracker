@@ -8,7 +8,7 @@ public extension SyncError {
     guard case .showIsNil = self else { return }
     fn()
   }
-  func onMissingEpisodes(_ fn: (ShowIds, BaseSeason, Season) -> Void) {
+  func onMissingEpisodes(_ fn: (ShowIds, BaseSeason, TraktSwift.Season) -> Void) {
     guard case let .missingEpisodes(showIds, baseSeason, season) = self else { return }
     fn(showIds, baseSeason, season)
   }
