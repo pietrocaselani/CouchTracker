@@ -23,9 +23,3 @@ public func setupSyncModule(trakt: Trakt) -> (SyncOptions) -> Observable<Watched
     startSync(options)
   }
 }
-
-#if DEBUG
-public var Current = SyncEnvironment.live
-#else
-public let Current = SyncEnvironment.live
-#endif

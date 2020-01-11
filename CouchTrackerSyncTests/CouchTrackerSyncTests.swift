@@ -58,7 +58,7 @@ final class CouchTrackerSyncTests: XCTestCase {
 
     let trakt = TestableTrakt()
 
-    let observer = scheduler.start { () -> Observable<WatchedShow> in
+    let observer = scheduler.start { () -> Observable<CouchTrackerSync.Show> in
       let startModule = setupSyncModule(trakt: trakt)
       return startModule(.defaultOptions)
     }
