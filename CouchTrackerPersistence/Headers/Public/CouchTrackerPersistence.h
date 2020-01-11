@@ -6,7 +6,7 @@
 //  Copyright © 2019 Pietro Caselani. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for CouchTrackerPersistence.
 FOUNDATION_EXPORT double CouchTrackerPersistenceVersionNumber;
