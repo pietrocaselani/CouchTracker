@@ -13,6 +13,7 @@ end
 def sync_pods
   api_pods
   pod 'RxSwift', git: 'https://github.com/ReactiveX/RxSwift.git', tag: RX_SWIFT_VERSION
+  pod 'RxRelay', git: 'https://github.com/ReactiveX/RxSwift.git', tag: RX_SWIFT_VERSION
 end
 
 def ios_pods

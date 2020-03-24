@@ -208,7 +208,8 @@ enum CouchTrackerCore {
       dependencies: [
         .target(name: TMDBSwift.name),
         .target(name: TVDBSwift.name),
-        .target(name: TraktSwift.name)
+        .target(name: TraktSwift.name),
+        .target(name: CouchTrackerSync.name)
       ],
       settings: settings()
     )

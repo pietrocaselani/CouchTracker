@@ -1,0 +1,116 @@
+{
+    "aired": 16,
+    "completed": 16,
+    "last_watched_at": "2019-12-22T02:30:51.000Z",
+    "reset_at": null,
+    "seasons": [
+        {
+            "number": 1,
+            "aired": 8,
+            "completed": 8,
+            "episodes": [
+                {
+                    "number": 1,
+                    "completed": true,
+                    "last_watched_at": "2018-01-16T22:27:12.000Z"
+                },
+                {
+                    "number": 2,
+                    "completed": true,
+                    "last_watched_at": "2018-01-16T22:27:36.000Z"
+                },
+                {
+                    "number": 3,
+                    "completed": true,
+                    "last_watched_at": "2018-01-16T22:27:45.000Z"
+                },
+                {
+                    "number": 4,
+                    "completed": true,
+                    "last_watched_at": "2018-01-16T22:49:39.000Z"
+                },
+                {
+                    "number": 5,
+                    "completed": true,
+                    "last_watched_at": "2018-01-17T21:55:28.000Z"
+                },
+                {
+                    "number": 6,
+                    "completed": true,
+                    "last_watched_at": "2018-01-17T23:23:16.000Z"
+                },
+                {
+                    "number": 7,
+                    "completed": true,
+                    "last_watched_at": "2018-01-17T23:23:21.000Z"
+                },
+                {
+                    "number": 8,
+                    "completed": true,
+                    "last_watched_at": "2018-01-17T23:23:23.000Z"
+                }
+            ]
+        },
+        {
+            "number": 2,
+            "aired": 8,
+            "completed": 8,
+            "episodes": [
+                {
+                    "number": 1,
+                    "completed": true,
+                    "last_watched_at": "2019-12-22T02:30:51.000Z"
+                },
+                {
+                    "number": 2,
+                    "completed": true,
+                    "last_watched_at": "2019-12-22T02:30:51.000Z"
+                },
+                {
+                    "number": 3,
+                    "completed": true,
+                    "last_watched_at": "2019-12-22T02:30:51.000Z"
+                },
+                {
+                    "number": 4,
+                    "completed": true,
+                    "last_watched_at": "2019-12-22T02:30:51.000Z"
+                },
+                {
+                    "number": 5,
+                    "completed": true,
+                    "last_watched_at": "2019-12-22T02:30:51.000Z"
+                },
+                {
+                    "number": 6,
+                    "completed": true,
+                    "last_watched_at": "2019-12-22T02:30:51.000Z"
+                },
+                {
+                    "number": 7,
+                    "completed": true,
+                    "last_watched_at": "2019-12-22T02:30:51.000Z"
+                },
+                {
+                    "number": 8,
+                    "completed": true,
+                    "last_watched_at": "2019-12-22T02:30:51.000Z"
+                }
+            ]
+        }
+    ],
+    "hidden_seasons": [],
+    "next_episode": null,
+    "last_episode": {
+        "season": 2,
+        "number": 8,
+        "title": "Episode 8",
+        "ids": {
+            "trakt": 3755395,
+            "tvdb": 7395734,
+            "imdb": "tt10540548",
+            "tmdb": 1971978,
+            "tvrage": 0
+        }
+    }
+}

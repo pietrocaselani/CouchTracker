@@ -1,0 +1,126 @@
+{
+    "aired": 18,
+    "completed": 18,
+    "last_watched_at": "2020-01-11T22:23:25.000Z",
+    "reset_at": null,
+    "seasons": [
+        {
+            "number": 1,
+            "aired": 10,
+            "completed": 10,
+            "episodes": [
+                {
+                    "number": 1,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                },
+                {
+                    "number": 2,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                },
+                {
+                    "number": 3,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                },
+                {
+                    "number": 4,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                },
+                {
+                    "number": 5,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                },
+                {
+                    "number": 6,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                },
+                {
+                    "number": 7,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                },
+                {
+                    "number": 8,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                },
+                {
+                    "number": 9,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                },
+                {
+                    "number": 10,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                }
+            ]
+        },
+        {
+            "number": 2,
+            "aired": 8,
+            "completed": 8,
+            "episodes": [
+                {
+                    "number": 1,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                },
+                {
+                    "number": 2,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                },
+                {
+                    "number": 3,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                },
+                {
+                    "number": 4,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                },
+                {
+                    "number": 5,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                },
+                {
+                    "number": 6,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                },
+                {
+                    "number": 7,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                },
+                {
+                    "number": 8,
+                    "completed": true,
+                    "last_watched_at": "2020-01-11T22:23:25.000Z"
+                }
+            ]
+        }
+    ],
+    "hidden_seasons": [],
+    "next_episode": null,
+    "last_episode": {
+        "season": 2,
+        "number": 8,
+        "title": "Endings and Beginnings",
+        "ids": {
+            "trakt": 3582445,
+            "tvdb": 7241882,
+            "imdb": "tt10457654",
+            "tmdb": 1829349,
+            "tvrage": 0
+        }
+    }
+}

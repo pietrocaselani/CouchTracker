@@ -12,8 +12,8 @@ public final class DefaultSchedulers: Schedulers {
   public var mainQueue: DispatchQueue
 
   private init() {
-    networkQueue = DispatchQueue(label: "NetworkQueue", qos: .utility)
-    dataSourceQueue = DispatchQueue(label: "RealmQueue", qos: .utility)
+    networkQueue = DispatchQueue(label: "NetworkQueue", qos: .userInitiated)
+    dataSourceQueue = DispatchQueue(label: "RealmQueue", qos: .userInitiated)
     ioQueue = DispatchQueue(label: "IOQueue", qos: .utility)
     mainQueue = DispatchQueue.main
 

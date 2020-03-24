@@ -40,4 +40,8 @@ extension RealmShowsDataSource: WatchedShowEntitiesObservable, ShowsDataHolder {
   public func save(shows: [WatchedShowEntity]) throws {
     try save(realmShows: shows.map { $0.toRealm() })
   }
+
+  public func save(show: WatchedShowEntity) throws {
+    try save(shows: [show])
+  }
 }

@@ -23,7 +23,7 @@ extension DataStruct {
 }
 
 enum OptionalCopyValue<T> {
-  case new(T)
+  case new(T?)
   case same
   case `nil`
 }

@@ -44,10 +44,12 @@ public final class Environment {
 
     let debug: Bool
 
-    let plugins = [PluginType]()
+    var plugins = [PluginType]()
 
     #if DEBUG
     Environment.checkForEmptySecrets()
+
+    //    plugins.append(NetworkLoggerPlugin())
 
     debug = true
     #else
@@ -96,10 +98,6 @@ public final class Environment {
                                            dataSource: genreDataSource,
                                            schedulers: schedulers)
 
-    let showsDownloader = DefaultWatchedShowEntitiesDownloader(trakt: trakt,
-                                                               genreRepository: genreRepository,
-                                                               scheduler: schedulers)
-
     let showDownloader = DefaultWatchedShowEntityDownloader(trakt: trakt,
                                                             scheduler: schedulers)
 
@@ -108,15 +106,13 @@ public final class Environment {
     let showsDataSource = RealmShowsDataSource(realmProvider: realmProvider,
                                                scheduler: schedulers.dataSourceScheduler)
 
-    let showsSynchronizer = DefaultWatchedShowsSynchronizer(downloader: showsDownloader,
-                                                            dataHolder: showsDataSource,
-                                                            schedulers: schedulers)
-
     let showSynchronizer = DefaultWatchedShowSynchronizer(downloader: showDownloader,
                                                           dataSource: showDataSource,
                                                           scheduler: schedulers)
 
-    let centralSynchronizer = CentralSynchronizer(watchedShowsSynchronizer: showsSynchronizer,
+    let newSync = CouchTrackerSyncShowsSynchronizer(trakt: trakt, appStateObservable: appStateManager, showsDataHolder: showsDataSource)
+
+    let centralSynchronizer = CentralSynchronizer(watchedShowsSynchronizer: newSync,
                                                   watchedShowSynchronizer: showSynchronizer,
                                                   appStateObservable: appStateManager)
 

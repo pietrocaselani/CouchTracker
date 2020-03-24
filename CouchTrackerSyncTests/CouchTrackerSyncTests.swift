@@ -9,17 +9,26 @@ import TraktSwiftTestable
 final class CouchTrackerSyncTests: XCTestCase {
   private var scheduler: TestScheduler!
   private var disposeBag: DisposeBag!
+  private var genresInvokedCount = 0
 
   override func setUp() {
     super.setUp()
 
     disposeBag = DisposeBag()
     scheduler = TestScheduler(initialClock: 0)
+
+    Current.api.genres = {
+      self.genresInvokedCount += 1
+      let movies = Single.just(decode(file: "genresForMovies", as: [Genre].self))
+      let shows = Single.just(decode(file: "genresForShows", as: [Genre].self))
+      return Single.zip(movies, shows).map { Set($0 + $1) }
+    }
   }
 
   override func tearDown() {
     scheduler = nil
     disposeBag = nil
+    genresInvokedCount = 0
     super.tearDown()
   }
 
@@ -50,19 +59,48 @@ final class CouchTrackerSyncTests: XCTestCase {
       return .just(decode(file: "seasonsForShow", as: [TraktSwift.Season].self))
     }
 
-    Current.api.genres = {
-      let movies = Single.just(decode(file: "genresForMovies", as: [Genre].self))
-      let shows = Single.just(decode(file: "genresForShows", as: [Genre].self))
-      return Single.zip(movies, shows).map { Set($0 + $1) }
-    }
-
     let trakt = TestableTrakt()
+    let startModule = setupSyncModule(trakt: trakt, scheduler: scheduler)
 
     let observer = scheduler.start { () -> Observable<CouchTrackerSync.Show> in
-      let startModule = setupSyncModule(trakt: trakt)
-      return startModule(.defaultOptions)
+      startModule(.defaultOptions)
     }
 
     assertSnapshot(matching: observer.events, as: .unsortedJSON)
+  }
+
+  func testSyncWatchedShows() {
+    var syncWatchedShowsInvokedCount = 0
+    var watchedProgressInvokedCount = 0
+    var seasonsForShowInvokedCount = 0
+
+    Current.api.syncWatchedShows = { extended in
+      syncWatchedShowsInvokedCount += 1
+      return .just(decode(file: "syncWatchedShows-full", as: [BaseShow].self))
+    }
+
+    Current.api.watchedProgress = { watchedProgressOptions, showIds in
+      watchedProgressInvokedCount += 1
+      return .just(decode(file: "watchedProgress-\(showIds.trakt)", as: BaseShow.self))
+    }
+
+    Current.api.seasonsForShow = { showIds, extended in
+      seasonsForShowInvokedCount += 1
+      return .just(decode(file: "seasons-\(showIds.trakt)", as: [TraktSwift.Season].self))
+    }
+
+    let trakt = TestableTrakt()
+    let startModule = setupSyncModule(trakt: trakt, scheduler: scheduler)
+
+    let observer = scheduler.start { () -> Observable<CouchTrackerSync.Show> in
+      startModule(.defaultOptions)
+    }
+
+    XCTAssertEqual(syncWatchedShowsInvokedCount, 1)
+    XCTAssertEqual(genresInvokedCount, 1)
+    XCTAssertEqual(watchedProgressInvokedCount, 3)
+    XCTAssertEqual(seasonsForShowInvokedCount, 3)
+
+    assertSnapshot(matching: observer.events, as: .json)
   }
 }

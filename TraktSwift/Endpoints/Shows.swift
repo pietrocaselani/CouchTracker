@@ -67,7 +67,7 @@ extension Shows: TraktType {
     case let .summary(_, extended):
       params = ["extended": extended.rawValue]
     case let .watchedProgress(_, hidden, specials, countSpecials):
-      params = ["hidden": hidden, "specials": specials, "count_specials": countSpecials]
+      params = ["hidden": "\(hidden)", "specials": "\(specials)", "count_specials": "\(countSpecials)"]
     }
 
     return .requestParameters(parameters: params, encoding: URLEncoding.default)

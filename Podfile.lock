@@ -60,6 +60,7 @@ DEPENDENCIES:
   - RxDataSources (= 4.0.1)
   - RxNimble/RxTest
   - RxRealm (= 2.0.0)
+  - RxRelay (from `https://github.com/ReactiveX/RxSwift.git`, tag `5.0.1`)
   - RxSwift (from `https://github.com/ReactiveX/RxSwift.git`, tag `5.0.1`)
   - RxTest (from `https://github.com/ReactiveX/RxSwift.git`, tag `5.0.1`)
   - SnapKit (= 5.0.1)
@@ -82,7 +83,6 @@ SPEC REPOS:
     - RxDataSources
     - RxNimble
     - RxRealm
-    - RxRelay
     - SnapKit
     - SnapshotTesting
     - Tabman
@@ -92,6 +92,9 @@ EXTERNAL SOURCES:
     :git: https://github.com/Moya/Moya.git
     :tag: 14.0.0-beta.6
   RxCocoa:
+    :git: https://github.com/ReactiveX/RxSwift.git
+    :tag: 5.0.1
+  RxRelay:
     :git: https://github.com/ReactiveX/RxSwift.git
     :tag: 5.0.1
   RxSwift:
@@ -106,6 +109,9 @@ CHECKOUT OPTIONS:
     :git: https://github.com/Moya/Moya.git
     :tag: 14.0.0-beta.6
   RxCocoa:
+    :git: https://github.com/ReactiveX/RxSwift.git
+    :tag: 5.0.1
+  RxRelay:
     :git: https://github.com/ReactiveX/RxSwift.git
     :tag: 5.0.1
   RxSwift:
@@ -139,6 +145,6 @@ SPEC CHECKSUMS:
   SnapshotTesting: 273b614fcc60fac7d9f613f6648afa91a7da36be
   Tabman: 63eae331ae7a9388ae389b1808f1939269fcdece
 
-PODFILE CHECKSUM: 1f7c651371807c4f0aacaef6af614e8fbd06c060
+PODFILE CHECKSUM: 5d55f04d400f695d3cbf1c3ddae0f15666865a1b
 
 COCOAPODS: 1.8.4

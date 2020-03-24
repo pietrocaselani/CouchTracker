@@ -6,11 +6,12 @@ public var Current = SyncEnvironment.live
 public let Current = SyncEnvironment.live
 #endif
 
-var trakt: Trakt = { badTrakt! }()
-private var badTrakt: Trakt?
+var trakt: Trakt!
+var scheduler: ImmediateSchedulerType!
 
-public func setupSyncModule(trakt: Trakt) -> (SyncOptions) -> Observable<Show> {
-  badTrakt = trakt
+public func setupSyncModule(trakt: Trakt, schedulers: SyncSchedulers = .live) -> (SyncOptions) -> Observable<Show> {
+  CouchTrackerSync.trakt = trakt
+  CouchTrackerSync.scheduler = schedulers.syncScheduler
   return { options in
     startSync(options)
   }

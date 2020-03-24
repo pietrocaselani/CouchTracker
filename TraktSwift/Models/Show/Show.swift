@@ -32,7 +32,7 @@ public final class Show: StandardMediaEntity {
     country = try container.decodeIfPresent(String.self, forKey: .country)
     trailer = try container.decodeIfPresent(String.self, forKey: .trailer)
     homepage = try container.decodeIfPresent(String.self, forKey: .homepage)
-    status = try container.decodeIfPresent(Status.self, forKey: .status)
+    status = try container.decodeIfPresent(String.self, forKey: .status).flatMap(Status.init(rawValue:))
     language = try container.decodeIfPresent(String.self, forKey: .language)
     genres = try container.decodeIfPresent([String].self, forKey: .genres)
 

@@ -7,6 +7,7 @@ public enum WatchedShowEntitiesState: Hashable {
 }
 
 public protocol ShowsDataHolder {
+  func save(show: WatchedShowEntity) throws
   func save(shows: [WatchedShowEntity]) throws
 }
 
