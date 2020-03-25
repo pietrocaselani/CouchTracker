@@ -36,7 +36,6 @@ final class TVDBTokenRequestInterceptorTests: XCTestCase {
     interceptor.intercept(target: Episodes.self, endpoint: endpoint) { _ in
       // Then
       resultExpectation.fulfill()
-      XCTAssertNotNil(self.tvdb.token)
       XCTAssertEqual(self.tvdb.token, "cooltoken!")
     }
 
@@ -73,8 +72,7 @@ final class TVDBTokenRequestInterceptorTests: XCTestCase {
     interceptor.intercept(target: Episodes.self, endpoint: endpoint) { _ in
       // Then
       resultExpectation.fulfill()
-      XCTAssertNotNil(self.tvdb.token)
-      XCTAssertEqual(self.tvdb.token, "cooltoken!")
+      XCTAssertEqual(self.tvdb.token, "cool_new_token!")
     }
 
     wait(for: [resultExpectation], timeout: 1)
