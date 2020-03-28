@@ -104,6 +104,7 @@ target 'CouchTracker' do
   use_frameworks!
   inhibit_all_warnings!
 
+  pod 'SwiftLint', '0.39.1'
   ios_pods
 end
 
