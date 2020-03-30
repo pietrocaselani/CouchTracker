@@ -1,3 +1,8 @@
+# 0.0.1 (51) 
+* Update Fastlane and Cocoapods [view commit](http://github.com/pietrocaselani/CouchTracker/commit/d34b7b4ffead002a84a3cd770e3cefd3623231bb)
+* Run SwiftLint autocorrect [view commit](http://github.com/pietrocaselani/CouchTracker/commit/fc26d281a6d830a9514f755e5ce47fd5fa8a0ba7)
+* Run Rubocop [view commit](http://github.com/pietrocaselani/CouchTracker/commit/c813e33db260715d0a615fdd219ab4a4da708f13)
+
 # 0.0.1 (50) 
 * Install SwiftLint using CocoaPods [view commit](http://github.com/pietrocaselani/CouchTracker/commit/2225d459ce2942dda822117d479a40abdfe7b10e)
 * Fix TVDB Tests [view commit](http://github.com/pietrocaselani/CouchTracker/commit/af59e233ccc7968e825ff06f9285baade79f647b)
