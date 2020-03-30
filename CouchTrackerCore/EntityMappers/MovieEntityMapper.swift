@@ -5,7 +5,7 @@ public final class MovieEntityMapper {
   private init() {}
 
   public static func entity(for movie: Movie, with genres: [Genre], watchedAt: Date? = nil) -> MovieEntity {
-    return MovieEntity(ids: movie.ids,
+    MovieEntity(ids: movie.ids,
                        title: movie.title,
                        genres: genres,
                        tagline: movie.tagline,

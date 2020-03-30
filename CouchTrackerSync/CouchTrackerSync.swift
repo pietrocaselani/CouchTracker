@@ -23,12 +23,12 @@ private func watchedProgress(options: WatchedProgressOptions, baseShow: BaseShow
 }
 
 private func seasonsForShow(showData: ShowDataForSyncing) -> Single<ShowDataForSyncing> {
-  return Current.seasonsForShow(showData.showIds, [.full, .episodes])
+  Current.seasonsForShow(showData.showIds, [.full, .episodes])
     .map { showData.copy(seasons: .new($0)) }
 }
 
 private func genresFromSlugs(allGenres: Set<Genre>, slugs: [String]) -> [Genre] {
-  return slugs.compactMap { slug in
+  slugs.compactMap { slug in
     allGenres.first { $0.slug == slug }
   }
 }
@@ -46,7 +46,7 @@ private func createWatchedShow(showData: ShowDataForSyncing, allGenres: Set<Genr
 }
 
 private func createWatchedSeasons(showIds: ShowIds, baseSeasons: [BaseSeason], seasons: [Season]) throws -> [WatchedSeason] {
-  return try seasons.compactMap { season -> WatchedSeason? in
+  try seasons.compactMap { season -> WatchedSeason? in
     guard let baseSeason = baseSeasons.first(where: { season.number == $0.number }) else { return nil }
     return try createWatchedSeason(showIds: showIds, baseSeason: baseSeason, season: season)
   }

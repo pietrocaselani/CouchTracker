@@ -8,6 +8,6 @@ public struct ImageEntity: Hashable {
   public let voteCount: Int
 
   public func isBest(then: ImageEntity) -> Bool {
-    return voteAverage < then.voteAverage
+    voteAverage < then.voteAverage
   }
 }

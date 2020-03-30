@@ -7,7 +7,7 @@ public final class AppFlowUserDefaultsRepository: AppFlowRepository {
 
   public var lastSelectedTab: Int {
     get {
-      return userDefaults.integer(forKey: AppFlowUserDefaultsRepository.lastTabKey)
+      userDefaults.integer(forKey: AppFlowUserDefaultsRepository.lastTabKey)
     }
     set {
       userDefaults.set(newValue, forKey: AppFlowUserDefaultsRepository.lastTabKey)

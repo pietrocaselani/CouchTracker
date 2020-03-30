@@ -6,6 +6,6 @@ public final class Configuration: Hashable, Codable {
   }
 
   public static func == (lhs: Configuration, rhs: Configuration) -> Bool {
-    return lhs.hashValue == rhs.hashValue
+    lhs.hashValue == rhs.hashValue
   }
 }

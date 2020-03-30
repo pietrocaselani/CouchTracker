@@ -12,11 +12,11 @@ public final class TraktLoginService: TraktLoginInteractor {
   }
 
   public func fetchLoginURL() -> Single<URL> {
-    return appStateManager.loginURL()
+    appStateManager.loginURL()
   }
 
   public func allowedToProcess(request: URLRequest) -> Completable {
-    return policyDecider.allowedToProceed(with: request)
+    policyDecider.allowedToProceed(with: request)
       .flatMapCompletable { [appStateManager] result -> Completable in
         guard result == .authenticated else { return Completable.empty() }
 

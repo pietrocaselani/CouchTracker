@@ -16,16 +16,16 @@ public final class DefaultImageRepository: ImageRepository {
   public func fetchMovieImages(for movieId: Int,
                                posterSize: PosterImageSize?,
                                backdropSize: BackdropImageSize?) -> Maybe<ImagesEntity> {
-    return movieImageRepository.fetchMovieImages(for: movieId, posterSize: posterSize, backdropSize: backdropSize)
+    movieImageRepository.fetchMovieImages(for: movieId, posterSize: posterSize, backdropSize: backdropSize)
   }
 
   public func fetchShowImages(for showId: Int,
                               posterSize: PosterImageSize?,
                               backdropSize: BackdropImageSize?) -> Maybe<ImagesEntity> {
-    return showImageRepository.fetchShowImages(for: showId, posterSize: posterSize, backdropSize: backdropSize)
+    showImageRepository.fetchShowImages(for: showId, posterSize: posterSize, backdropSize: backdropSize)
   }
 
   public func fetchEpisodeImages(for episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Maybe<URL> {
-    return episodeImageRepository.fetchEpisodeImages(for: episode, size: size)
+    episodeImageRepository.fetchEpisodeImages(for: episode, size: size)
   }
 }

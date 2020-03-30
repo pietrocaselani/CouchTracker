@@ -14,11 +14,11 @@ public final class TraktGenreRepository: GenreRepository {
   }
 
   public func fetchMoviesGenres() -> Single<[Genre]> {
-    return fetchGenres(mediaType: .movies)
+    fetchGenres(mediaType: .movies)
   }
 
   public func fetchShowsGenres() -> Single<[Genre]> {
-    return fetchGenres(mediaType: .shows)
+    fetchGenres(mediaType: .shows)
   }
 
   private func fetchGenres(mediaType: GenreType) -> Single<[Genre]> {
@@ -30,7 +30,7 @@ public final class TraktGenreRepository: GenreRepository {
   }
 
   private func fetchGenreFromAPI(mediaType: GenreType) -> Single<[Genre]> {
-    return traktProvider.genres.rx.request(.list(mediaType))
+    traktProvider.genres.rx.request(.list(mediaType))
       .map([Genre].self)
       .observeOn(schedulers.dataSourceScheduler)
       .do(onSuccess: { [weak self] genres in

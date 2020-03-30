@@ -3,12 +3,12 @@ import ProjectDescription
 // MARK: - Extensions
 
 func + (lhs: [String: String], rhs: [String: String]) -> [String: String] {
-  return lhs.merging(rhs) { first, _ in first }
+  lhs.merging(rhs) { first, _ in first }
 }
 
 extension Dictionary where Key == String, Value == String {
   func asConfig() -> Configuration {
-    return Configuration(settings: self)
+    Configuration(settings: self)
   }
 }
 
@@ -23,7 +23,7 @@ let minmacOSVersion = "10.12"
 enum CouchTracker {
   static let name = "CouchTracker"
   static func target() -> Target {
-    return Target(
+    Target(
       name: CouchTracker.name,
       platform: .iOS,
       product: .app,
@@ -58,7 +58,7 @@ enum CouchTracker {
   }
 
   private static func buildPhases() -> [TargetAction] {
-    return [
+    [
       TargetAction.post(path: "build_phases/swiftlint", arguments: [], name: "SwiftLint")
     ]
   }
@@ -68,7 +68,7 @@ enum CouchTrackerApp {
   static let name = "CouchTrackerApp"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: CouchTrackerApp.name,
       platform: .iOS,
       product: .framework,
@@ -105,7 +105,7 @@ enum CouchTrackerAppTestable {
   static let name = "CouchTrackerAppTestable"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: CouchTrackerAppTestable.name,
       platform: .iOS,
       product: .framework,
@@ -137,7 +137,7 @@ enum CouchTrackerPersistence {
   static let name = "CouchTrackerPersistence"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: CouchTrackerPersistence.name,
       platform: .iOS,
       product: .framework,
@@ -165,7 +165,7 @@ enum CouchTrackerDebug {
   static let name = "CouchTrackerDebug"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: CouchTrackerDebug.name,
       platform: .iOS,
       product: .framework,
@@ -196,7 +196,7 @@ enum CouchTrackerCore {
   static let name = "CouchTrackerCore"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: CouchTrackerCore.name,
       platform: .iOS,
       product: .framework,
@@ -230,7 +230,7 @@ enum CouchTrackerCoreTests {
   static let name = "CouchTrackerCoreTests"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: CouchTrackerCoreTests.name,
       platform: .iOS,
       product: .unitTests,
@@ -248,7 +248,7 @@ enum CouchTrackerCoreTests {
   }
 
   private static func settings() -> Settings {
-    return Settings(base: iOSBaseSettings())
+    Settings(base: iOSBaseSettings())
   }
 }
 
@@ -256,7 +256,7 @@ enum CouchTrackerSync {
   static let name = "CouchTrackerSync"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: CouchTrackerSync.name,
       platform: .iOS,
       product: .framework,
@@ -287,7 +287,7 @@ enum CouchTrackerSyncTests {
   static let name = "CouchTrackerSyncTests"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: CouchTrackerSyncTests.name,
       platform: .iOS,
       product: .unitTests,
@@ -304,7 +304,7 @@ enum CouchTrackerSyncTests {
   }
 
   private static func settings() -> Settings {
-    return Settings(base: iOSBaseSettings())
+    Settings(base: iOSBaseSettings())
   }
 }
 
@@ -312,7 +312,7 @@ enum TraktSwift {
   static let name = "TraktSwift"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: TraktSwift.name,
       platform: .iOS,
       product: .framework,
@@ -340,7 +340,7 @@ enum TraktSwiftTests {
   static let name = "TraktSwiftTests"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: TraktSwiftTests.name,
       platform: .iOS,
       product: .unitTests,
@@ -356,7 +356,7 @@ enum TraktSwiftTests {
   }
 
   private static func settings() -> Settings {
-    return Settings(base: iOSBaseSettings())
+    Settings(base: iOSBaseSettings())
   }
 }
 
@@ -364,7 +364,7 @@ enum TraktSwiftTestable {
   static let name = "TraktSwiftTestable"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: TraktSwiftTestable.name,
       platform: .iOS,
       product: .framework,
@@ -396,7 +396,7 @@ enum TMDBSwift {
   static let name = "TMDBSwift"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: TMDBSwift.name,
       platform: .iOS,
       product: .framework,
@@ -424,7 +424,7 @@ enum TMDBSwiftTests {
   static let name = "TMDBSwiftTests"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: TMDBSwiftTests.name,
       platform: .iOS,
       product: .unitTests,
@@ -440,7 +440,7 @@ enum TMDBSwiftTests {
   }
 
   private static func settings() -> Settings {
-    return Settings(base: iOSBaseSettings())
+    Settings(base: iOSBaseSettings())
   }
 }
 
@@ -448,7 +448,7 @@ enum TMDBSwiftTestable {
   static let name = "TMDBSwiftTestable"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: TMDBSwiftTestable.name,
       platform: .iOS,
       product: .framework,
@@ -480,7 +480,7 @@ enum TVDBSwift {
   static let name = "TVDBSwift"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: TVDBSwift.name,
       platform: .iOS,
       product: .framework,
@@ -508,7 +508,7 @@ enum TVDBSwiftTests {
   static let name = "TVDBSwiftTests"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: TVDBSwiftTests.name,
       platform: .iOS,
       product: .unitTests,
@@ -524,7 +524,7 @@ enum TVDBSwiftTests {
   }
 
   private static func settings() -> Settings {
-    return Settings(base: iOSBaseSettings())
+    Settings(base: iOSBaseSettings())
   }
 }
 
@@ -532,7 +532,7 @@ enum TVDBSwiftTestable {
   static let name = "TVDBSwiftTestable"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: TVDBSwiftTestable.name,
       platform: .iOS,
       product: .framework,
@@ -561,7 +561,7 @@ enum CouchTrackerUITests {
   static let name = "CouchTrackerUITests"
 
   static func target() -> Target {
-    return Target(
+    Target(
       name: CouchTrackerUITests.name,
       platform: .iOS,
       product: .unitTests,
@@ -577,7 +577,7 @@ enum CouchTrackerUITests {
   }
 
   private static func settings() -> Settings {
-    return Settings(
+    Settings(
       base: [
         "DEVELOPMENT_TEAM": "",
         "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/CouchTracker.app/CouchTracker",
@@ -590,19 +590,19 @@ enum CouchTrackerUITests {
 // MARK: - Settings functions
 
 func sharedBaseDebugSettings() -> [String: String] {
-  return [
+  [
     "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "DEBUG"
   ]
 }
 
 func sharedBaseReleaseSettings() -> [String: String] {
-  return [
+  [
     "SWIFT_ACTIVE_COMPILATION_CONDITIONS": ""
   ]
 }
 
 func iOSBaseSettings() -> [String: String] {
-  return [
+  [
     "IPHONEOS_DEPLOYMENT_TARGET": miniOSVersion,
     "TARGETED_DEVICE_FAMILY": "1",
     "CODE_SIGN_STYLE": "Manual",
@@ -611,23 +611,23 @@ func iOSBaseSettings() -> [String: String] {
 }
 
 func disableCodeSigning() -> [String: String] {
-  return ["CODE_SIGN_IDENTITY": ""]
+  ["CODE_SIGN_IDENTITY": ""]
 }
 
 func releaseCodeSigning() -> [String: String] {
-  return ["CODE_SIGN_IDENTITY": "iPhone Distribution"]
+  ["CODE_SIGN_IDENTITY": "iPhone Distribution"]
 }
 
 func debugCodeSigning() -> [String: String] {
-  return ["CODE_SIGN_IDENTITY": "iPhone Developer"]
+  ["CODE_SIGN_IDENTITY": "iPhone Developer"]
 }
 
 func allTargets() -> [Target] {
-  return alliOSTargets() + alliOSTestTargets()
+  alliOSTargets() + alliOSTestTargets()
 }
 
 func alliOSTargets() -> [Target] {
-  return [
+  [
     CouchTracker.target(),
     CouchTrackerApp.target(),
     CouchTrackerAppTestable.target(),
@@ -645,7 +645,7 @@ func alliOSTargets() -> [Target] {
 }
 
 func alliOSTestTargets() -> [Target] {
-  return [
+  [
     CouchTrackerUITests.target(),
     TraktSwiftTests.target(),
     TMDBSwiftTests.target(),
@@ -674,13 +674,13 @@ enum AllTests {
 }
 
 func allSchemes() -> [Scheme] {
-  return [
+  [
     AllTests.scheme()
   ]
 }
 
 func additionalFiles() -> [FileElement] {
-  return [
+  [
     "CouchTrackerCore-sourcery.yml",
     "CouchTrackerSync-sourcery.yml",
     ".circleci",

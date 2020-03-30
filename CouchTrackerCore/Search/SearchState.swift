@@ -20,6 +20,6 @@ public enum SearchState: Hashable {
   }
 
   public static func == (lhs: SearchState, rhs: SearchState) -> Bool {
-    return lhs.hashValue == rhs.hashValue
+    lhs.hashValue == rhs.hashValue
   }
 }

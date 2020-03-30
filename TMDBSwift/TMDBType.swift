@@ -3,13 +3,13 @@ import Moya
 public protocol TMDBType: TargetType {}
 
 public extension TMDBType {
-  var baseURL: URL { return TMDB.baseURL }
+  var baseURL: URL { TMDB.baseURL }
 
-  var method: Moya.Method { return .get }
+  var method: Moya.Method { .get }
 
-  var headers: [String: String]? { return nil }
+  var headers: [String: String]? { nil }
 
-  var sampleData: Data { return Data() }
+  var sampleData: Data { Data() }
 }
 
 func stubbedResponse(_ filename: String) -> Data {

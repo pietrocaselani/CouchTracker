@@ -13,7 +13,7 @@ public final class DefaultWatchedShowEntityDownloader: WatchedShowEntityDownload
   // MARK: - Public Interface
 
   public func syncWatchedShowEntitiy(using options: WatchedShowEntitySyncOptions) -> Single<WatchedShowBuilder> {
-    return setShowProgress(using: options, into: WatchedShowBuilder(ids: options.showIds))
+    setShowProgress(using: options, into: WatchedShowBuilder(ids: options.showIds))
       .flatMap { [weak self] builder -> Single<WatchedShowBuilder> in
         guard let strongSelf = self else { return Single.just(builder) }
 
@@ -53,7 +53,7 @@ public final class DefaultWatchedShowEntityDownloader: WatchedShowEntityDownload
 
   private func setShowProgress(using options: WatchedShowEntitySyncOptions,
                                into builder: WatchedShowBuilder) -> Single<WatchedShowBuilder> {
-    return fetchProgressFromAPI(options: options)
+    fetchProgressFromAPI(options: options)
       .map { progressShow in
         builder.set(progressShow: progressShow)
       }
@@ -86,7 +86,7 @@ public final class DefaultWatchedShowEntityDownloader: WatchedShowEntityDownload
                           number: Int?,
                           seasonExtended: [Extended],
                           into builder: WatchedShowBuilder) -> Single<WatchedShowBuilder> {
-    return fetchSeasonsFromAPI(using: options, seasonExtended: seasonExtended, number: number)
+    fetchSeasonsFromAPI(using: options, seasonExtended: seasonExtended, number: number)
       .map { seasons -> [WatchedSeasonEntityBuilder] in
         seasons.map { season -> WatchedSeasonEntityBuilder in
           let progressSeasons = builder.progressShow?.seasons

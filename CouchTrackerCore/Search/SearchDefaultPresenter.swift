@@ -21,7 +21,7 @@ public final class SearchDefaultPresenter: SearchPresenter {
   }
 
   public func observeSearchState() -> Observable<SearchState> {
-    return searchStateSubject.distinctUntilChanged()
+    searchStateSubject.distinctUntilChanged()
   }
 
   public func search(query: String) {

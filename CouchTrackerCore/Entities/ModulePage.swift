@@ -12,6 +12,6 @@ public struct ModulePage: Hashable {
   }
 
   public static func == (lhs: ModulePage, rhs: ModulePage) -> Bool {
-    return lhs.title == rhs.title
+    lhs.title == rhs.title
   }
 }

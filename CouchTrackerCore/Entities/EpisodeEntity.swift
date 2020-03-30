@@ -24,10 +24,10 @@ public struct EpisodeEntity: Hashable, Codable, EpisodeImageInput {
   }
 
   public var tvdb: Int? {
-    return ids.tvdb
+    ids.tvdb
   }
 
   public var tmdb: Int? {
-    return showIds.tmdb
+    showIds.tmdb
   }
 }

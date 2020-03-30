@@ -10,7 +10,7 @@ public enum ShowProgressDirection: String {
   }
 
   public func toggle() -> ShowProgressDirection {
-    return self == .asc ? .desc : .asc
+    self == .asc ? .desc : .asc
   }
 }
 
@@ -26,7 +26,7 @@ public enum ShowProgressSort: String {
   }
 
   public static func allValues() -> [ShowProgressSort] {
-    return [.title, .remaining, .lastWatched, .releaseDate]
+    [.title, .remaining, .lastWatched, .releaseDate]
   }
 
   public static func sort(for index: Int) -> ShowProgressSort {
@@ -39,7 +39,7 @@ public enum ShowProgressSort: String {
   }
 
   public func index() -> Int {
-    return ShowProgressSort.allValues().firstIndex(of: self) ?? 0
+    ShowProgressSort.allValues().firstIndex(of: self) ?? 0
   }
 
   public func comparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool {
@@ -49,32 +49,28 @@ public enum ShowProgressSort: String {
     return releaseDateComparator()
   }
 
-  private func titleComparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool {
-    return { (lhs: WatchedShowEntity, rhs: WatchedShowEntity) in
+  private func titleComparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool { { (lhs: WatchedShowEntity, rhs: WatchedShowEntity) in
       let rhsTitle = rhs.show.title ?? ""
       let lhsTitle = lhs.show.title ?? ""
       return lhsTitle < rhsTitle
     }
   }
 
-  private func remainingComparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool {
-    return { (lhs: WatchedShowEntity, rhs: WatchedShowEntity) in
+  private func remainingComparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool { { (lhs: WatchedShowEntity, rhs: WatchedShowEntity) in
       let lhsRemaining = (lhs.aired ?? 0) - (lhs.completed ?? 0)
       let rhsRemaining = (rhs.aired ?? 0) - (rhs.completed ?? 0)
       return lhsRemaining < rhsRemaining
     }
   }
 
-  private func lastWatchedComparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool {
-    return { (lhs: WatchedShowEntity, rhs: WatchedShowEntity) in
+  private func lastWatchedComparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool { { (lhs: WatchedShowEntity, rhs: WatchedShowEntity) in
       let lhsLastWatched = lhs.lastWatched ?? Date(timeIntervalSince1970: 0)
       let rhsLastWatched = rhs.lastWatched ?? Date(timeIntervalSince1970: 0)
       return lhsLastWatched > rhsLastWatched
     }
   }
 
-  private func releaseDateComparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool {
-    return { (lhs: WatchedShowEntity, rhs: WatchedShowEntity) in
+  private func releaseDateComparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool { { (lhs: WatchedShowEntity, rhs: WatchedShowEntity) in
       let lhsFirstAired = lhs.nextEpisode?.episode.firstAired ?? Date(timeIntervalSince1970: 0)
       let rhsFirstAired = rhs.nextEpisode?.episode.firstAired ?? Date(timeIntervalSince1970: 0)
       return lhsFirstAired > rhsFirstAired

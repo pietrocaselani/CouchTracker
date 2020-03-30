@@ -8,7 +8,7 @@ public final class ShowsManagerDefaultModuleSetup: ShowsManagerDataSource {
 
   public var defaultModuleIndex: Int {
     get {
-      return userDefaults.integer(forKey: ShowsManagerDefaultModuleSetup.defaultIndexKey)
+      userDefaults.integer(forKey: ShowsManagerDefaultModuleSetup.defaultIndexKey)
     }
     set {
       userDefaults.set(newValue, forKey: ShowsManagerDefaultModuleSetup.defaultIndexKey)

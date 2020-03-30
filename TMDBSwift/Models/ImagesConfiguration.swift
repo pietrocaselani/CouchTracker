@@ -28,6 +28,6 @@ public final class ImagesConfiguration: Hashable, Codable {
   }
 
   public static func == (lhs: ImagesConfiguration, rhs: ImagesConfiguration) -> Bool {
-    return lhs.hashValue == rhs.hashValue
+    lhs.hashValue == rhs.hashValue
   }
 }

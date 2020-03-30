@@ -19,11 +19,11 @@ public final class DefaultAppStateManager: AppStateManager {
   }
 
   public func observe() -> Observable<AppState> {
-    return subject.distinctUntilChanged()
+    subject.distinctUntilChanged()
   }
 
   public func login() -> Completable {
-    return fetchUserSettings()
+    fetchUserSettings()
       .asSingle()
       .flatMapCompletable { settings -> Completable in
         Completable.from { [weak self] in
@@ -33,7 +33,7 @@ public final class DefaultAppStateManager: AppStateManager {
   }
 
   public func toggleHideSpecials() -> Completable {
-    return Completable.from { [weak self] in
+    Completable.from { [weak self] in
       try self?.updateAppStateTogglingHideSpecials()
     }
   }
@@ -47,7 +47,7 @@ public final class DefaultAppStateManager: AppStateManager {
   }
 
   private func fetchUserSettings() -> Observable<Settings> {
-    return trakt.users.rx.request(.settings)
+    trakt.users.rx.request(.settings)
       .filterSuccessfulStatusAndRedirectCodes()
       .map(Settings.self)
       .asObservable()

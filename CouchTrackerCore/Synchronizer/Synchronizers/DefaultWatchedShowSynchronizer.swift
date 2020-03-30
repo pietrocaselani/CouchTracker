@@ -27,11 +27,11 @@ public final class DefaultWatchedShowSynchronizer: WatchedShowSynchronizer {
   }
 
   private func fetchCurrentEntity(_ showIds: ShowIds) -> Observable<WatchedShowEntity> {
-    return dataSource.observeWatchedShow(showIds: showIds)
+    dataSource.observeWatchedShow(showIds: showIds)
   }
 
   private func downloadEntity(_ options: WatchedShowEntitySyncOptions) -> Observable<WatchedShowEntity> {
-    return downloader.syncWatchedShowEntitiy(using: options)
+    downloader.syncWatchedShowEntitiy(using: options)
       .observeOn(scheduler.networkScheduler)
       .map { $0.createEntity() }
       .asObservable()
@@ -59,7 +59,7 @@ public final class DefaultWatchedShowSynchronizer: WatchedShowSynchronizer {
 
   private static func mergeSeasons(old: [WatchedSeasonEntity],
                                    current: [WatchedSeasonEntity]) -> [WatchedSeasonEntity] {
-    return old.map { oldSeason -> WatchedSeasonEntity in
+    old.map { oldSeason -> WatchedSeasonEntity in
       guard let currentSeason = current.first(where: { $0.number == oldSeason.number }) else { return oldSeason }
 
       return WatchedSeasonEntity(showIds: oldSeason.showIds,

@@ -12,10 +12,10 @@ extension Episodes: TVDBType {
   }
 
   public var task: Task {
-    return .requestPlain
+    .requestPlain
   }
 
   public var sampleData: Data {
-    return stubbedResponse("tvdb_episodes")
+    stubbedResponse("tvdb_episodes")
   }
 }

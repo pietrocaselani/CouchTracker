@@ -9,7 +9,7 @@ public final class ShowManagerDefaultPresenter: ShowManagerPresenter {
   }
 
   public func observeViewState() -> Observable<ShowManagerViewState> {
-    return viewStateSubject.distinctUntilChanged()
+    viewStateSubject.distinctUntilChanged()
   }
 
   public func viewDidLoad() {

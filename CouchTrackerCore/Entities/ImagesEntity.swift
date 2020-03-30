@@ -5,19 +5,19 @@ public struct ImagesEntity: Hashable {
   public let stills: [ImageEntity]
 
   public func posterImage() -> ImageEntity? {
-    return bestImage(of: posters)
+    bestImage(of: posters)
   }
 
   public func backdropImage() -> ImageEntity? {
-    return bestImage(of: backdrops)
+    bestImage(of: backdrops)
   }
 
   public func stillImage() -> ImageEntity? {
-    return bestImage(of: stills)
+    bestImage(of: stills)
   }
 
   private func bestImage(of images: [ImageEntity]) -> ImageEntity? {
-    return images.max(by: { (lhs, rhs) -> Bool in
+    images.max(by: { (lhs, rhs) -> Bool in
       lhs.isBest(then: rhs)
     })
   }

@@ -4,7 +4,7 @@ import TraktSwift
 
 extension GenreRealm {
   func toEntity() -> Genre {
-    return Genre(name: name, slug: slug)
+    Genre(name: name, slug: slug)
   }
 }
 
@@ -21,7 +21,7 @@ extension Genre {
 
 extension ShowIdsRealm {
   func toEntity() -> ShowIds {
-    return ShowIds(trakt: trakt,
+    ShowIds(trakt: trakt,
                    tmdb: tmdb.value,
                    imdb: imdb,
                    slug: slug,
@@ -47,7 +47,7 @@ extension ShowIds {
 
 extension SeasonIdsRealm {
   public func toEntity() -> SeasonIds {
-    return SeasonIds(tvdb: tvdb.value, tmdb: tmdb.value, trakt: trakt, tvrage: tvrage.value)
+    SeasonIds(tvdb: tvdb.value, tmdb: tmdb.value, trakt: trakt, tvrage: tvrage.value)
   }
 }
 
@@ -87,7 +87,7 @@ extension WatchedEpisodeEntity {
 
 extension EpisodeIdsRealm {
   public func toEntity() -> EpisodeIds {
-    return EpisodeIds(trakt: trakt,
+    EpisodeIds(trakt: trakt,
                       tmdb: tmdb.value,
                       imdb: imdb,
                       tvdb: tvdb.value,

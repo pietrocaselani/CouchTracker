@@ -8,7 +8,7 @@ public final class MoviesManagerDefaultDataSource: MoviesManagerDataSource {
   public var options: [MoviesManagerOption]
 
   public var modulePages: [ModulePage] {
-    return options.map { option -> ModulePage in
+    options.map { option -> ModulePage in
       let view = creator.createModule(for: option)
       let title = moduleNameFor(option: option)
 
@@ -18,7 +18,7 @@ public final class MoviesManagerDefaultDataSource: MoviesManagerDataSource {
 
   public var defaultModuleIndex: Int {
     get {
-      return userDefaults.integer(forKey: MoviesManagerDefaultDataSource.moviesManagerLastTab)
+      userDefaults.integer(forKey: MoviesManagerDefaultDataSource.moviesManagerLastTab)
     }
     set {
       userDefaults.set(newValue, forKey: MoviesManagerDefaultDataSource.moviesManagerLastTab)
