@@ -145,6 +145,8 @@ public final class Environment {
   }
 
   private static func checkForEmptySecrets() {
+    guard NSClassFromString("XCTestCase") == nil else { return }
+
     let traktClientId = Secrets.Trakt.clientId.isEmpty
     let tmdbAPIKey = Secrets.TMDB.apiKey.isEmpty
     let tvdbAPIKey = Secrets.TVDB.apiKey.isEmpty

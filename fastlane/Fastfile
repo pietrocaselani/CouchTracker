@@ -39,7 +39,9 @@ platform :ios do
             verbose: true,
             proj: 'CouchTracker.xcodeproj',
             workspace: 'CouchTracker.xcworkspace')
-    swiftlint(output_file: './reports/swiftlint.txt', ignore_exit_status: true)
+    swiftlint(executable: 'Pods/SwiftLint/swiftlint',
+              output_file: './reports/swiftlint.txt',
+              ignore_exit_status: true)
   end
 
   desc 'Run tests and linters then upload metrics to sonar'

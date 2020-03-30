@@ -57,7 +57,7 @@ final class TVDBTests: XCTestCase {
         // Then
         responseExpectation.fulfill()
         let requestToken = response.request?.allHTTPHeaderFields!["Authorization"]
-        XCTAssertNotNil(requestToken)
+        XCTAssertEqual(requestToken, "Bearer cooltoken!")
 
         guard let episode = try? response.map(EpisodeResponse.self).episode else {
           XCTFail("Could not decode JSON")
