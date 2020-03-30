@@ -1,3 +1,7 @@
+# 0.0.1 (50) 
+* Install SwiftLint using CocoaPods [view commit](http://github.com/pietrocaselani/CouchTracker/commit/2225d459ce2942dda822117d479a40abdfe7b10e)
+* Fix TVDB Tests [view commit](http://github.com/pietrocaselani/CouchTracker/commit/af59e233ccc7968e825ff06f9285baade79f647b)
+
 # 0.0.1 (49) 
 * Update sourcery templates [view commit](http://github.com/pietrocaselani/CouchTracker/commit/f37bf4d4d9fafcfefbf281a27ab10ef1c3009bbf)
 * Add generated files to git [view commit](http://github.com/pietrocaselani/CouchTracker/commit/e042df726520db1ccbbd8b29fc7d5bff970063fd)

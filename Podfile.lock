@@ -65,7 +65,7 @@ DEPENDENCIES:
   - RxTest (from `https://github.com/ReactiveX/RxSwift.git`, tag `5.0.1`)
   - SnapKit (= 5.0.1)
   - SnapshotTesting (= 1.7.0)
-  - SwiftLint
+  - SwiftLint (= 0.39.1)
   - Tabman (= 2.6.3)
 
 SPEC REPOS:
@@ -143,6 +143,6 @@ SPEC CHECKSUMS:
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   Tabman: 63eae331ae7a9388ae389b1808f1939269fcdece
 
-PODFILE CHECKSUM: ce7004d67980cf1dd63a9867fded00a373d5fd72
+PODFILE CHECKSUM: 5a418adb31c85a2ca69900cec546fea00e3628af
 
 COCOAPODS: 1.8.4
