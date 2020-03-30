@@ -43,11 +43,11 @@ public final class DefaultBundleProvider: BundleProvider, LanguageProvider {
   }
 
   public var bundle: Bundle {
-    return Static._bundle
+    Static._bundle
   }
 
   public var currentLanguage: SupportedLanguages {
-    return Static._language
+    Static._language
   }
 
   private static func languageBundleName(for language: SupportedLanguages) -> String {

@@ -4,7 +4,7 @@ public final class ShowIds: BaseIds {
   public let tvrage: Int?
 
   public var realId: String {
-    return String(trakt)
+    String(trakt)
   }
 
   private enum CodingKeys: String, CodingKey {
@@ -56,6 +56,6 @@ public final class ShowIds: BaseIds {
   }
 
   public override var description: String {
-    return "\(super.description), slug: \(slug), tvdb: \(tvdb), tvrage: \(String(describing: tvrage))"
+    "\(super.description), slug: \(slug), tvdb: \(tvdb), tvrage: \(String(describing: tvrage))"
   }
 }

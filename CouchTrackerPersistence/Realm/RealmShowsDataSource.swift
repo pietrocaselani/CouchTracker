@@ -12,7 +12,7 @@ public final class RealmShowsDataSource {
   }
 
   public func observeRealmWatchedShows() -> Observable<RealmObjectState<[WatchedShowEntityRealm]>> {
-    return Observable.deferred { [weak self] () -> Observable<RealmObjectState<[WatchedShowEntityRealm]>> in
+    Observable.deferred { [weak self] () -> Observable<RealmObjectState<[WatchedShowEntityRealm]>> in
       guard let strongSelf = self else {
         return Observable.empty()
       }

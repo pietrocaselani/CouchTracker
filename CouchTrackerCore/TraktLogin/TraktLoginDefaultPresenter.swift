@@ -25,6 +25,6 @@ public final class TraktLoginDefaultPresenter: TraktLoginPresenter {
   }
 
   public func allowedToProcess(request: URLRequest) -> Completable {
-    return interactor.allowedToProcess(request: request)
+    interactor.allowedToProcess(request: request)
   }
 }

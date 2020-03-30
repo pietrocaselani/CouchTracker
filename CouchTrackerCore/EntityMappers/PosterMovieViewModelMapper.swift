@@ -5,11 +5,11 @@ public enum PosterMovieViewModelMapper {
 
   public static func viewModel(for movie: MovieEntity,
                                defaultTitle: String = CouchTrackerCoreStrings.toBeAnnounced()) -> PosterViewModel {
-    return PosterViewModel(title: movie.title ?? defaultTitle, type: movie.ids.tmdbModelType())
+    PosterViewModel(title: movie.title ?? defaultTitle, type: movie.ids.tmdbModelType())
   }
 
   public static func viewModel(for movie: Movie,
                                defaultTitle: String = CouchTrackerCoreStrings.toBeAnnounced()) -> PosterViewModel {
-    return PosterViewModel(title: movie.title ?? defaultTitle, type: movie.ids.tmdbModelType())
+    PosterViewModel(title: movie.title ?? defaultTitle, type: movie.ids.tmdbModelType())
   }
 }

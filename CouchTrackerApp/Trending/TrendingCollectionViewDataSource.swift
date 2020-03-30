@@ -10,7 +10,7 @@ final class TrendingCollectionViewDataSource: NSObject, TrendingDataSource, UICo
   }
 
   func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-    return viewModels.count
+    viewModels.count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

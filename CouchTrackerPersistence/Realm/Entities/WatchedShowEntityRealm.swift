@@ -11,7 +11,7 @@ public final class WatchedShowEntityRealm: Object {
 
   public var show: ShowEntityRealm? {
     get {
-      return backingShow
+      backingShow
     }
     set {
       backingShow = newValue
@@ -27,11 +27,11 @@ public final class WatchedShowEntityRealm: Object {
   }
 
   public override static func primaryKey() -> String? {
-    return "identifier"
+    "identifier"
   }
 
   public override static func ignoredProperties() -> [String] {
-    return ["show"]
+    ["show"]
   }
 
   public override func isEqual(_ object: Any?) -> Bool {
@@ -41,7 +41,7 @@ public final class WatchedShowEntityRealm: Object {
   }
 
   public static func == (lhs: WatchedShowEntityRealm, rhs: WatchedShowEntityRealm) -> Bool {
-    return lhs.identifier == rhs.identifier &&
+    lhs.identifier == rhs.identifier &&
       lhs.backingShow == rhs.backingShow &&
       lhs.aired.value == rhs.aired.value &&
       lhs.completed.value == rhs.completed.value &&

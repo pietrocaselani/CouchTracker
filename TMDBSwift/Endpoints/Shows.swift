@@ -13,7 +13,7 @@ extension Shows: TMDBType {
   }
 
   public var task: Task {
-    return .requestPlain
+    .requestPlain
   }
 
   public var sampleData: Data {

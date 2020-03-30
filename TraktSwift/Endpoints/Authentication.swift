@@ -7,9 +7,9 @@ public enum Authentication {
 }
 
 extension Authentication: TraktType {
-  public var path: String { return Trakt.OAuth2TokenPath }
+  public var path: String { Trakt.OAuth2TokenPath }
 
-  public var method: Moya.Method { return .post }
+  public var method: Moya.Method { .post }
 
   public var task: Task {
     var parameters = [String: Any]()

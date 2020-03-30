@@ -23,7 +23,7 @@ public final class AppStateDefaultPresenter: AppStatePresenter {
   }
 
   public func observeViewState() -> Observable<AppStateViewState> {
-    return viewStateSubject.distinctUntilChanged()
+    viewStateSubject.distinctUntilChanged()
   }
 
   public func select(configuration: AppConfigurationViewModel) {

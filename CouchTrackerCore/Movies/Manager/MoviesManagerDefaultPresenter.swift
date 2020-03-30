@@ -9,7 +9,7 @@ public final class MoviesManagerDefaultPresenter: MoviesManagerPresenter {
   }
 
   public func observeViewState() -> Observable<MoviesManagerViewState> {
-    return viewStateSubject.distinctUntilChanged()
+    viewStateSubject.distinctUntilChanged()
   }
 
   public func viewDidLoad() {

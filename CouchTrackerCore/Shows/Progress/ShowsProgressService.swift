@@ -20,7 +20,7 @@ public final class ShowsProgressService: ShowsProgressInteractor {
   }
 
   public func fetchWatchedShowsProgress() -> Observable<WatchedShowEntitiesState> {
-    return showsObserable.observeWatchedShows().distinctUntilChanged()
+    showsObserable.observeWatchedShows().distinctUntilChanged()
   }
 
   public func toggleDirection() -> Completable {

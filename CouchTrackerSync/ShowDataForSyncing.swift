@@ -4,7 +4,7 @@ struct ShowDataForSyncing: DataStruct {
   let seasons: [Season]
 
   var showIds: ShowIds {
-    return show.ids
+    show.ids
   }
 
   // sourcery:inline:ShowDataForSyncing.TemplateName

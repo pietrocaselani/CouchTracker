@@ -30,6 +30,6 @@ public enum ShowProgressViewState: Hashable {
   }
 
   public static func == (lhs: ShowProgressViewState, rhs: ShowProgressViewState) -> Bool {
-    return lhs.hashValue == rhs.hashValue
+    lhs.hashValue == rhs.hashValue
   }
 }

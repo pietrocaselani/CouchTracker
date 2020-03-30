@@ -11,7 +11,7 @@ public final class AppFlowDefaultPresenter: AppFlowPresenter {
   }
 
   public func observeViewState() -> Observable<AppFlowViewState> {
-    return viewStateSubject.distinctUntilChanged()
+    viewStateSubject.distinctUntilChanged()
   }
 
   public func viewDidLoad() {

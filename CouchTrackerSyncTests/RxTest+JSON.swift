@@ -44,7 +44,7 @@ private struct ClassNameKey: CodingKey {
   }
 
   init?(intValue: Int) {
-    return nil
+    nil
   }
 }
 

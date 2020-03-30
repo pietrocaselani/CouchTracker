@@ -6,18 +6,18 @@ public enum Users {
 
 extension Users: TraktType {
   public var path: String {
-    return "users/settings"
+    "users/settings"
   }
 
   public var task: Task {
-    return .requestPlain
+    .requestPlain
   }
 
   public var authorizationType: AuthorizationType? {
-    return .bearer
+    .bearer
   }
 
   public var sampleData: Data {
-    return stubbedResponse("trakt_users_settings")
+    stubbedResponse("trakt_users_settings")
   }
 }

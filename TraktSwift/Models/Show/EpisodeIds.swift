@@ -43,6 +43,6 @@ public final class EpisodeIds: BaseIds {
   }
 
   public override var description: String {
-    return "\(super.description), tvdb: \(String(describing: tvdb)), tvrage: \(String(describing: tvrage))"
+    "\(super.description), tvdb: \(String(describing: tvdb)), tvrage: \(String(describing: tvrage))"
   }
 }

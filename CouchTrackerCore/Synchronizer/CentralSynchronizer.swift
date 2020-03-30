@@ -57,6 +57,6 @@ extension CentralSynchronizer: WatchedShowSynchronizer {
 
 extension CentralSynchronizer: SyncStateObservable {
   public func observe() -> Observable<SyncState> {
-    return syncStateSubject.distinctUntilChanged()
+    syncStateSubject.distinctUntilChanged()
   }
 }

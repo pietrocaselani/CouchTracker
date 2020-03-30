@@ -2,7 +2,7 @@ public final class MovieIds: BaseIds {
   public let slug: String
 
   public var realId: String {
-    return String(trakt)
+    String(trakt)
   }
 
   private enum CodingKeys: String, CodingKey {

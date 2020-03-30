@@ -21,7 +21,7 @@ public final class WatchedShowBuilder: Hashable {
 
   @discardableResult
   public func set(episode: WatchedEpisodeEntity?) -> WatchedShowBuilder {
-    return WatchedShowBuilder(ids: ids,
+    WatchedShowBuilder(ids: ids,
                               detailShow: detailShow,
                               progressShow: progressShow,
                               episode: episode,
@@ -31,7 +31,7 @@ public final class WatchedShowBuilder: Hashable {
 
   @discardableResult
   public func set(progressShow: BaseShow?) -> WatchedShowBuilder {
-    return WatchedShowBuilder(ids: ids,
+    WatchedShowBuilder(ids: ids,
                               detailShow: detailShow,
                               progressShow: progressShow,
                               episode: episode,
@@ -41,7 +41,7 @@ public final class WatchedShowBuilder: Hashable {
 
   @discardableResult
   public func set(detailShow: BaseShow?) -> WatchedShowBuilder {
-    return WatchedShowBuilder(ids: ids,
+    WatchedShowBuilder(ids: ids,
                               detailShow: detailShow,
                               progressShow: progressShow,
                               episode: episode,
@@ -51,7 +51,7 @@ public final class WatchedShowBuilder: Hashable {
 
   @discardableResult
   public func set(seasons: [WatchedSeasonEntity]) -> WatchedShowBuilder {
-    return WatchedShowBuilder(ids: ids,
+    WatchedShowBuilder(ids: ids,
                               detailShow: detailShow,
                               progressShow: progressShow,
                               episode: episode,
@@ -61,7 +61,7 @@ public final class WatchedShowBuilder: Hashable {
 
   @discardableResult
   public func set(genres: [Genre]) -> WatchedShowBuilder {
-    return WatchedShowBuilder(ids: ids,
+    WatchedShowBuilder(ids: ids,
                               detailShow: detailShow,
                               progressShow: progressShow,
                               episode: episode,
@@ -70,7 +70,7 @@ public final class WatchedShowBuilder: Hashable {
   }
 
   public func createEntity(using showEntity: ShowEntity) -> WatchedShowEntity {
-    return WatchedShowEntity(show: showEntity,
+    WatchedShowEntity(show: showEntity,
                              aired: progressShow?.aired,
                              completed: progressShow?.completed,
                              nextEpisode: episode,
@@ -111,7 +111,7 @@ public final class WatchedShowBuilder: Hashable {
   }
 
   public static func == (lhs: WatchedShowBuilder, rhs: WatchedShowBuilder) -> Bool {
-    return lhs.ids == rhs.ids &&
+    lhs.ids == rhs.ids &&
       lhs.detailShow == rhs.detailShow &&
       lhs.progressShow == rhs.progressShow &&
       lhs.episode == rhs.episode &&

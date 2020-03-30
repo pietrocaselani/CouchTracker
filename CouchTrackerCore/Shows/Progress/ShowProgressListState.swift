@@ -4,11 +4,11 @@ public struct ShowProgressListState: Hashable {
   public let direction: ShowProgressDirection
 
   public static var initialState: ShowProgressListState {
-    return ShowProgressListState(sort: .title, filter: .none, direction: .asc)
+    ShowProgressListState(sort: .title, filter: .none, direction: .asc)
   }
 
   public static func newBuilder() -> Builder {
-    return Builder()
+    Builder()
   }
 
   public init(sort: ShowProgressSort, filter: ShowProgressFilter, direction: ShowProgressDirection) {
@@ -18,7 +18,7 @@ public struct ShowProgressListState: Hashable {
   }
 
   public func builder() -> Builder {
-    return Builder(state: self)
+    Builder(state: self)
   }
 
   public final class Builder {
@@ -33,7 +33,7 @@ public struct ShowProgressListState: Hashable {
     }
 
     public func build() -> ShowProgressListState {
-      return ShowProgressListState(sort: sort, filter: filter, direction: direction)
+      ShowProgressListState(sort: sort, filter: filter, direction: direction)
     }
 
     func sort(_ sort: ShowProgressSort) -> Builder {

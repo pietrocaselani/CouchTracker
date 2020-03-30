@@ -17,7 +17,7 @@ public final class ShowEpisodeDefaultPresenter: ShowEpisodePresenter {
   public func viewDidLoad() {}
 
   public func observeViewState() -> Observable<ShowEpisodeViewState> {
-    return viewStateSubject.distinctUntilChanged()
+    viewStateSubject.distinctUntilChanged()
   }
 
   public func handleWatch() -> Completable {

@@ -47,11 +47,11 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
   }
 
   public func toggleDirection() -> Completable {
-    return interactor.toggleDirection()
+    interactor.toggleDirection()
   }
 
   public func change(sort: ShowProgressSort, filter: ShowProgressFilter) -> Completable {
-    return interactor.change(sort: sort, filter: filter)
+    interactor.change(sort: sort, filter: filter)
   }
 
   public func select(show: WatchedShowEntity) {

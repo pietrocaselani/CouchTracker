@@ -42,7 +42,7 @@ public final class ShowEpisodeAPIRepository: ShowEpisodeRepository {
   private func performSync(_ single: Single<SyncResponse>,
                            _ showIds: ShowIds,
                            _ season: Int) -> Single<WatchedShowEntity> {
-    return single.flatMap { [weak self] _ -> Single<WatchedShowEntity> in
+    single.flatMap { [weak self] _ -> Single<WatchedShowEntity> in
       guard let strongSelf = self else { return Single.error(CouchTrackerError.selfDeinitialized) }
 
       let options = WatchedShowEntitySyncOptions(showIds: showIds,

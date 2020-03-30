@@ -8,7 +8,7 @@ public final class EpisodeIdsRealm: Object {
   public let tvrage = RealmOptional<Int>()
 
   public override static func primaryKey() -> String? {
-    return "trakt"
+    "trakt"
   }
 
   public override func isEqual(_ object: Any?) -> Bool {
@@ -18,7 +18,7 @@ public final class EpisodeIdsRealm: Object {
   }
 
   public static func == (lhs: EpisodeIdsRealm, rhs: EpisodeIdsRealm) -> Bool {
-    return lhs.trakt == rhs.trakt &&
+    lhs.trakt == rhs.trakt &&
       lhs.tmdb.value == rhs.tmdb.value &&
       lhs.imdb == rhs.imdb &&
       lhs.tvdb.value == rhs.tvdb.value &&

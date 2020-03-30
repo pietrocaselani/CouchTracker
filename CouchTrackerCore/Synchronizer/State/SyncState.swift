@@ -4,7 +4,7 @@ public struct SyncState: Hashable {
   public let watchedShowsSyncState: WatchedShowsSyncState
 
   public var isSyncing: Bool {
-    return watchedShowsSyncState == .syncing
+    watchedShowsSyncState == .syncing
   }
 }
 

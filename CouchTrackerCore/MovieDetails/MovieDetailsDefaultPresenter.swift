@@ -19,11 +19,11 @@ public final class MovieDetailsDefaultPresenter: MovieDetailsPresenter {
   }
 
   public func observeViewState() -> Observable<MovieDetailsViewState> {
-    return viewStateSubject
+    viewStateSubject
   }
 
   public func observeImagesState() -> Observable<MovieDetailsImagesState> {
-    return imagesStateSubject
+    imagesStateSubject
   }
 
   public func handleWatched() -> Completable {

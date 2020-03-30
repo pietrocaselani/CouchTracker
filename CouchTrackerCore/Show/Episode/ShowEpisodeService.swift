@@ -23,13 +23,13 @@ public final class ShowEpisodeService: ShowEpisodeInteractor {
   }
 
   public func toggleWatch(for episode: WatchedEpisodeEntity) -> Single<WatchedShowEntity> {
-    return episode.lastWatched == nil ?
+    episode.lastWatched == nil ?
       repository.addToHistory(episode: episode.episode) :
       repository.removeFromHistory(episode: episode.episode)
   }
 
   private func fetchShowPosterURL(tmdbId: Int) -> Maybe<URL> {
-    return imageRepository.fetchShowImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)
+    imageRepository.fetchShowImages(for: tmdbId, posterSize: .w780, backdropSize: .w780)
       .flatMap { entity -> Maybe<URL> in
         guard let link = entity.posterImage()?.link, let url = URL(string: link) else {
           return Maybe.empty()

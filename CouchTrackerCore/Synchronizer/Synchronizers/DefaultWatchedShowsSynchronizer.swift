@@ -15,7 +15,7 @@ public final class DefaultWatchedShowsSynchronizer: WatchedShowsSynchronizer {
   }
 
   public func syncWatchedShows(using options: WatchedShowEntitiesSyncOptions) -> Single<[WatchedShowEntity]> {
-    return downloader.syncWatchedShowEntities(using: options)
+    downloader.syncWatchedShowEntities(using: options)
       .observeOn(schedulers.networkScheduler)
       .toArray()
       .observeOn(schedulers.dataSourceScheduler)

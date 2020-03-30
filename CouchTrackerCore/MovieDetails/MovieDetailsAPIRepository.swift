@@ -12,7 +12,7 @@ public final class MovieDetailsAPIRepository: MovieDetailsRepository {
   }
 
   public func fetchDetails(movieId: String) -> Observable<Movie> {
-    return traktProvider.movies.rx.request(.summary(movieId: movieId, extended: .full))
+    traktProvider.movies.rx.request(.summary(movieId: movieId, extended: .full))
       .observeOn(schedulers.networkScheduler)
       .map(Movie.self)
       .asObservable()
@@ -48,7 +48,7 @@ public final class MovieDetailsAPIRepository: MovieDetailsRepository {
   }
 
   private func performSyncRequest(target: Sync) -> Single<SyncMovieResult> {
-    return traktProvider.sync.rx.request(target)
+    traktProvider.sync.rx.request(target)
       .filterSuccessfulStatusAndRedirectCodes()
       .map { _ -> SyncMovieResult in SyncMovieResult.success }
       .catchError { Single.just(SyncMovieResult.fail(error: $0)) }

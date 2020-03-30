@@ -5,6 +5,6 @@ public enum SupportedLanguages: String, Hashable, CaseIterable {
   case portugueseBR = "pt_BR"
 
   public var asLocale: Locale {
-    return Locale(identifier: rawValue)
+    Locale(identifier: rawValue)
   }
 }

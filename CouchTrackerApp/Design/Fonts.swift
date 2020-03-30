@@ -3,7 +3,7 @@ public enum Fonts {
   public static let secondaryText = UIFont.systemFont(ofSize: Sizes.secondaryText)
   public static let titleBold = bold(ofSize: Sizes.title)
   public static func bold(ofSize size: CGFloat = UIFont.labelFontSize) -> UIFont {
-    return UIFont.boldSystemFont(ofSize: size)
+    UIFont.boldSystemFont(ofSize: size)
   }
 
   public enum Sizes {

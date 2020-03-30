@@ -13,6 +13,6 @@ public final class Genre: Codable, Hashable {
   }
 
   public static func == (lhs: Genre, rhs: Genre) -> Bool {
-    return lhs.hashValue == rhs.hashValue
+    lhs.hashValue == rhs.hashValue
   }
 }

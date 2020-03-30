@@ -15,7 +15,7 @@ public final class UserDefaultsAppStateDataHolder: AppStateDataHolder {
   }
 
   public func currentAppState() throws -> AppState {
-    return UserDefaultsAppStateDataHolder.currentAppConfig(userDefaults)
+    UserDefaultsAppStateDataHolder.currentAppConfig(userDefaults)
   }
 
   public static func currentAppConfig(_ userDefaults: UserDefaults) -> AppState {

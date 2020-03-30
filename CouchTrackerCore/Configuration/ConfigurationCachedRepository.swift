@@ -18,7 +18,7 @@ public final class ConfigurationCachedRepository: ConfigurationRepository {
   }
 
   private func fetchConfigrationsFromAPI() -> Observable<Configuration> {
-    return tmdbProvider.configuration.rx.request(.configuration)
+    tmdbProvider.configuration.rx.request(.configuration)
       .filterSuccessfulStatusAndRedirectCodes()
       .map(Configuration.self)
       .do(onSuccess: { [weak self] config in

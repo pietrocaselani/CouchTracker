@@ -22,7 +22,7 @@ public final class ShowEpisodeMoyaNetwork: ShowEpisodeNetwork {
   }
 
   private func performRequest(_ target: Sync) -> Single<SyncResponse> {
-    return trakt.sync.rx.request(target)
+    trakt.sync.rx.request(target)
       .observeOn(schedulers.networkScheduler)
       .filterSuccessfulStatusAndRedirectCodes()
       .map(SyncResponse.self)

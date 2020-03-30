@@ -6,14 +6,14 @@ public enum ConfigurationService {
 
 extension ConfigurationService: TMDBType {
   public var path: String {
-    return "configuration"
+    "configuration"
   }
 
   public var task: Task {
-    return .requestPlain
+    .requestPlain
   }
 
   public var sampleData: Data {
-    return stubbedResponse("tmdb_configuration")
+    stubbedResponse("tmdb_configuration")
   }
 }
