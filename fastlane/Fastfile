@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 fastlane_version '2.121.1'
 default_platform(:ios)
 
@@ -48,12 +50,6 @@ platform :ios do
   lane :upload_sonar do
     lint
     sonar(sonar_login: ENV['SONAR_LOGIN'])
-  end
-
-  lane :bump_app do
-    new_build_number = bump_build_number
-
-    version_number = get_version_number(target: 'CouchTracker')
   end
 
   desc 'Release a new build'
