@@ -1,50 +1,15 @@
 PODS:
   - ActionSheetPicker-3.0 (2.3.0)
-  - Alamofire (5.0.0-rc.3)
   - AutoInsetter (1.8.0)
   - Bugsnag (5.23.0)
-  - Differentiator (4.0.1)
   - KIF (3.7.8):
     - KIF/Core (= 3.7.8)
   - KIF/Core (3.7.8)
   - Kingfisher (5.12.0):
     - Kingfisher/Core (= 5.12.0)
   - Kingfisher/Core (5.12.0)
-  - Moya/Core (14.0.0-beta.6):
-    - Alamofire (= 5.0.0-rc.3)
-  - Moya/RxSwift (14.0.0-beta.6):
-    - Moya/Core
-    - RxSwift (~> 5.0)
-  - Nimble (8.0.4)
   - Pageboy (3.5.0)
-  - Realm (4.1.1):
-    - Realm/Headers (= 4.1.1)
-  - Realm/Headers (4.1.1)
-  - RealmSwift (4.1.1):
-    - Realm (= 4.1.1)
-  - RxCocoa (5.0.1):
-    - RxRelay (~> 5)
-    - RxSwift (~> 5)
-  - RxDataSources (4.0.1):
-    - Differentiator (~> 4.0)
-    - RxCocoa (~> 5.0)
-    - RxSwift (~> 5.0)
-  - RxNimble/Core (4.6.0):
-    - Nimble (~> 8.0)
-    - RxSwift (~> 5.0)
-  - RxNimble/RxTest (4.6.0):
-    - RxNimble/Core
-    - RxTest
-  - RxRealm (2.0.0):
-    - RealmSwift (~> 4.0)
-    - RxSwift (~> 5.0)
-  - RxRelay (5.0.1):
-    - RxSwift (~> 5)
-  - RxSwift (5.0.1)
-  - RxTest (5.0.1):
-    - RxSwift (~> 5)
   - SnapKit (5.0.1)
-  - SnapshotTesting (1.7.0)
   - SwiftLint (0.39.1)
   - Tabman (2.6.3):
     - AutoInsetter (~> 1.8.0)
@@ -55,94 +20,33 @@ DEPENDENCIES:
   - Bugsnag
   - KIF (= 3.7.8)
   - Kingfisher (= 5.12.0)
-  - Moya/RxSwift (from `https://github.com/Moya/Moya.git`, tag `14.0.0-beta.6`)
-  - RealmSwift (= 4.1.1)
-  - RxCocoa (from `https://github.com/ReactiveX/RxSwift.git`, tag `5.0.1`)
-  - RxDataSources (= 4.0.1)
-  - RxNimble/RxTest
-  - RxRealm (= 2.0.0)
-  - RxSwift (from `https://github.com/ReactiveX/RxSwift.git`, tag `5.0.1`)
-  - RxTest (from `https://github.com/ReactiveX/RxSwift.git`, tag `5.0.1`)
   - SnapKit (= 5.0.1)
-  - SnapshotTesting (= 1.7.0)
   - SwiftLint (= 0.39.1)
   - Tabman (= 2.6.3)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - ActionSheetPicker-3.0
-    - Alamofire
     - AutoInsetter
     - Bugsnag
-    - Differentiator
     - KIF
     - Kingfisher
-    - Nimble
     - Pageboy
-    - Realm
-    - RealmSwift
-    - RxDataSources
-    - RxNimble
-    - RxRealm
-    - RxRelay
     - SnapKit
-    - SnapshotTesting
     - SwiftLint
     - Tabman
 
-EXTERNAL SOURCES:
-  Moya:
-    :git: https://github.com/Moya/Moya.git
-    :tag: 14.0.0-beta.6
-  RxCocoa:
-    :git: https://github.com/ReactiveX/RxSwift.git
-    :tag: 5.0.1
-  RxSwift:
-    :git: https://github.com/ReactiveX/RxSwift.git
-    :tag: 5.0.1
-  RxTest:
-    :git: https://github.com/ReactiveX/RxSwift.git
-    :tag: 5.0.1
-
-CHECKOUT OPTIONS:
-  Moya:
-    :git: https://github.com/Moya/Moya.git
-    :tag: 14.0.0-beta.6
-  RxCocoa:
-    :git: https://github.com/ReactiveX/RxSwift.git
-    :tag: 5.0.1
-  RxSwift:
-    :git: https://github.com/ReactiveX/RxSwift.git
-    :tag: 5.0.1
-  RxTest:
-    :git: https://github.com/ReactiveX/RxSwift.git
-    :tag: 5.0.1
-
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
-  Alamofire: ca8c0de6906873be89d6deec5c8de279e00bf872
   AutoInsetter: 0b90ca74e36561c340129045a3722c51a0b15c58
   Bugsnag: 1f33ee5b55bc4b131a30e0fe6db714da9c6609f6
-  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   KIF: 52e1af1a78cf6fe4ec6777b14776f3dd2eccc32e
   Kingfisher: dc6e0f53bb5b12c3e75bedb0e01bbd7a640eea69
-  Moya: d4821fbcb3e784f34d2f82869e6855057a0b85d1
-  Nimble: 18d5360282923225d62b09d781f63abc1a0111fc
   Pageboy: 3794c578aae5fcce06e90b3ed4a0ad6b807d75bb
-  Realm: 25f0a8244cbb1c2271c922963ea8666fc2d8104d
-  RealmSwift: 9e2657b33764f80e4a4dffd6d440e24715782052
-  RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
-  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
-  RxNimble: abdbe797eed9ed087df75fd72d52d1c7e96c875f
-  RxRealm: 900f5c7e6f0a2d6527b56eaf7283f3035ec1e8ba
-  RxRelay: 89d54507f4fd4d969e6ec1d4bd7f3673640b4640
-  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
-  RxTest: 0132f952a61da82d5233abedaa559df91e5330e5
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  SnapshotTesting: 273b614fcc60fac7d9f613f6648afa91a7da36be
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   Tabman: 63eae331ae7a9388ae389b1808f1939269fcdece
 
-PODFILE CHECKSUM: 6dd2be21f07921958faaf675b2ecc89300350bee
+PODFILE CHECKSUM: 75d6f0525d9c43eb417d5c7bd2ce9fb7e24a2c81
 
 COCOAPODS: 1.9.1

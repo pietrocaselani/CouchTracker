@@ -97,7 +97,7 @@ private func mapTraktShowToDomainShow(showData: ShowDataForSyncing, genres: [Gen
   let lastEpisode = progressShow.lastEpisode.flatMap { findEpisodeOnSeasons(seasons: seasons, episode: $0) }
   let completed = progressShow.completed
 
-  let watched = DomainShow.Watched(completed: completed, lastEpisode: lastEpisode)
+  let watched = zip(completed, lastEpisode).map(DomainShow.Watched.init(completed:lastEpisode:))
 
   return DomainShow(ids: traktShow.ids,
                     title: traktShow.title,

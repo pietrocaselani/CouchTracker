@@ -1,5 +1,4 @@
 import Moya
-import RxSwift
 
 public class TVDB {
   let apiKey: String

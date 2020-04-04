@@ -6,7 +6,7 @@ public var Current = SyncEnvironment.live
 public let Current = SyncEnvironment.live
 #endif
 
-var trakt: Trakt = { badTrakt! }()
+var trakt: Trakt = { badTrakt! }() // swiftlint:disable:this force_unwrapping
 private var badTrakt: Trakt?
 
 public func setupSyncModule(trakt: Trakt) -> (SyncOptions) -> Observable<Show> {

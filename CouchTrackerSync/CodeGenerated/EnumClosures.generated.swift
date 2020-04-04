@@ -4,12 +4,12 @@
 // MARK: - EnumClosures
 
 public extension SyncError {
-  func onShowIsNil(_ fn: () -> Void) {
+  func onShowIsNil(_ action: () -> Void) {
     guard case .showIsNil = self else { return }
-    fn()
+    action()
   }
-  func onMissingEpisodes(_ fn: (ShowIds, BaseSeason, Season) -> Void) {
+  func onMissingEpisodes(_ action: (ShowIds, BaseSeason, Season) -> Void) {
     guard case let .missingEpisodes(showIds, baseSeason, season) = self else { return }
-    fn(showIds, baseSeason, season)
+    action(showIds, baseSeason, season)
   }
 }

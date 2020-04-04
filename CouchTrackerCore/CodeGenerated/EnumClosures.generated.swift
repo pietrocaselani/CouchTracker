@@ -4,26 +4,26 @@
 // MARK: - EnumClosures
 
 public extension MovieDetailsViewState {
-  func onLoading(_ fn: () -> Void) {
+  func onLoading(_ action: () -> Void) {
     guard case .loading = self else { return }
-    fn()
+    action()
   }
-  func onShowing(_ fn: (MovieEntity) -> Void) {
+  func onShowing(_ action: (MovieEntity) -> Void) {
     guard case let .showing(movie) = self else { return }
-    fn(movie)
+    action(movie)
   }
-  func onError(_ fn: (Error) -> Void) {
+  func onError(_ action: (Error) -> Void) {
     guard case let .error(error) = self else { return }
-    fn(error)
+    action(error)
   }
 }
 public extension MoviesManagerViewState {
-  func onLoading(_ fn: () -> Void) {
+  func onLoading(_ action: () -> Void) {
     guard case .loading = self else { return }
-    fn()
+    action()
   }
-  func onShowing(_ fn: ([ModulePage], Int) -> Void) {
+  func onShowing(_ action: ([ModulePage], Int) -> Void) {
     guard case let .showing(pages, selectedIndex) = self else { return }
-    fn(pages, selectedIndex)
+    action(pages, selectedIndex)
   }
 }

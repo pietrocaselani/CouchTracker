@@ -1,0 +1,6 @@
+github "ReactiveX/RxSwift" == 5.0.1
+github "Moya/Moya" == 14.0.0
+github "RxSwiftCommunity/RxNimble" == 4.7.2
+github "RxSwiftCommunity/RxRealm" == 2.0.0
+github "RxSwiftCommunity/RxDataSources" == 4.0.1
+github "pointfreeco/swift-snapshot-testing" == 1.7.2

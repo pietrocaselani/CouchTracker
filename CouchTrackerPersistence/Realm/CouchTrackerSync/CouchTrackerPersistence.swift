@@ -7,8 +7,8 @@ public var Current = RealmEnvironment.live
 public let Current = RealmEnvironment.live
 #endif
 
-var realmProvider: RealmProvider = { badRealmProvider! }()
-var scheduler: ImmediateSchedulerType = { badScheduler! }()
+var realmProvider: RealmProvider = { badRealmProvider! }() // swiftlint:disable:this force_unwrapping
+var scheduler: ImmediateSchedulerType = { badScheduler! }() // swiftlint:disable:this force_unwrapping
 
 private var badRealmProvider: RealmProvider?
 private var badScheduler: ImmediateSchedulerType?

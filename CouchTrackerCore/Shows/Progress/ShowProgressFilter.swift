@@ -35,10 +35,10 @@ public enum ShowProgressFilter: String {
     return filterReturningWatched()
   }
 
-  private func filterNone() -> (WatchedShowEntity) -> Bool { { (_: WatchedShowEntity) in true }
-  }
+  private func filterNone() -> (WatchedShowEntity) -> Bool { { _ in true } }
 
-  private func filterWatched() -> (WatchedShowEntity) -> Bool { { (entity: WatchedShowEntity) in (entity.aired ?? -1) - (entity.completed ?? -1) > 0 }
+  private func filterWatched() -> (WatchedShowEntity) -> Bool { { (entity: WatchedShowEntity) in
+    (entity.aired ?? -1) - (entity.completed ?? -1) > 0 }
   }
 
   private func filterReturning() -> (WatchedShowEntity) -> Bool { { (entity: WatchedShowEntity) in entity.show.status == Status.returning }
