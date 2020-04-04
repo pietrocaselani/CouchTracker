@@ -1,3 +1,6 @@
+# 0.0.1 (52) 
+* Update Nokogiri to fix security alerts [view commit](http://github.com/pietrocaselani/CouchTracker/commit/ed3bb412297cd5b1e2b13f33d7b7ec36a391d194)
+
 # 0.0.1 (51) 
 * Update Fastlane and Cocoapods [view commit](http://github.com/pietrocaselani/CouchTracker/commit/d34b7b4ffead002a84a3cd770e3cefd3623231bb)
 * Run SwiftLint autocorrect [view commit](http://github.com/pietrocaselani/CouchTracker/commit/fc26d281a6d830a9514f755e5ce47fd5fa8a0ba7)
