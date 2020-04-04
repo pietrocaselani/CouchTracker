@@ -1,3 +1,6 @@
+# 0.0.1 (53) 
+* Run SwiftLint autocorrect [view commit](http://github.com/pietrocaselani/CouchTracker/commit/4d79142b1d855912212bc6ab0dbb30031330b79c)
+
 # 0.0.1 (52) 
 * Update Nokogiri to fix security alerts [view commit](http://github.com/pietrocaselani/CouchTracker/commit/ed3bb412297cd5b1e2b13f33d7b7ec36a391d194)
 
