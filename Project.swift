@@ -10,7 +10,7 @@ func + (lhs: [String: String], rhs: [String: String]) -> [String: String] {
 
 extension Dictionary where Key == String, Value == String {
   func asConfig() -> Configuration {
-    Configuration(settings: self)
+    Configuration(settings: mapValues(SettingValue.init(stringLiteral:)))
   }
 }
 
@@ -774,8 +774,8 @@ enum AllTests {
   static let name = "AllTests"
 
   static func scheme() -> Scheme {
-    let allTargetNames = allTargets().map { $0.name }
-    let testTargetNames = alliOSTestTargets().map { $0.name }
+    let allTargetNames = allTargets().map { TargetReference(stringLiteral: $0.name) }
+    let testTargetNames = alliOSTestTargets().map { TestableTarget(stringLiteral: $0.name) }
 
     return Scheme(
       name: AllTests.name,
@@ -814,8 +814,7 @@ func additionalFiles() -> [FileElement] {
     "scripts",
     "setup.sh",
     "sonar-project.properties",
-    "CouchTrackerPlayground.playground",
-    "CommonSources"
+    "CouchTrackerPlayground.playground"
   ]
 }
 
