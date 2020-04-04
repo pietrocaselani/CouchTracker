@@ -1,11 +1,11 @@
 import RxSwift
 
 func syncWatchedShows(extended: [Extended]) -> Single<[BaseShow]> {
-  return trakt.sync.rx.request(.watched(type: .shows, extended: extended)).map([BaseShow].self)
+  trakt.sync.rx.request(.watched(type: .shows, extended: extended)).map([BaseShow].self)
 }
 
 func watchedProgress(options: WatchedProgressOptions, showIds: ShowIds) -> Single<BaseShow> {
-  return trakt.shows.rx.request(
+  trakt.shows.rx.request(
     .watchedProgress(
       showId: showIds.realId,
       hidden: options.countSpecials,
@@ -16,7 +16,7 @@ func watchedProgress(options: WatchedProgressOptions, showIds: ShowIds) -> Singl
 }
 
 func seasonsForShow(showIds: ShowIds, extended: [Extended]) -> Single<[Season]> {
-  return trakt.seasons.rx
+  trakt.seasons.rx
     .request(.summary(showId: showIds.realId, extended: extended))
     .map([Season].self)
 }

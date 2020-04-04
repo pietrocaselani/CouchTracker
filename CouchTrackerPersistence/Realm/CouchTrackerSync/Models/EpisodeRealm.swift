@@ -15,7 +15,7 @@ public final class EpisodeRealm: Object {
   public var votes = RealmOptional<Int>()
 
   public var ids: EpisodeIdsRealm? {
-    get { return backingIds }
+    get { backingIds }
     set {
       backingIds = newValue
       if let traktId = newValue?.trakt {
@@ -26,11 +26,11 @@ public final class EpisodeRealm: Object {
   }
 
   public override static func primaryKey() -> String? {
-    return "identifier"
+    "identifier"
   }
 
   public override static func ignoredProperties() -> [String] {
-    return ["ids"]
+    ["ids"]
   }
 
   public override func isEqual(_ object: Any?) -> Bool {
@@ -40,7 +40,7 @@ public final class EpisodeRealm: Object {
   }
 
   public static func == (lhs: EpisodeRealm, rhs: EpisodeRealm) -> Bool {
-    return lhs.identifier == rhs.identifier &&
+    lhs.identifier == rhs.identifier &&
       lhs.backingIds == rhs.backingIds &&
       lhs.showIds == rhs.showIds &&
       lhs.title == rhs.title &&

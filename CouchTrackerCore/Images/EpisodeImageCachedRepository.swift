@@ -57,7 +57,7 @@ public final class EpisodeImageCachedRepository: EpisodeImageRepository {
 
   private func tmdbObservable(_ showId: Int, _ season: Int,
                               _ number: Int, _ size: StillImageSize) -> Maybe<URL> {
-    return fetchEpisodeImageFromTMDB(showId, season, number, size)
+    fetchEpisodeImageFromTMDB(showId, season, number, size)
   }
 
   private func fetchEpisodeImageFromTMDB(_ showId: Int, _ season: Int,

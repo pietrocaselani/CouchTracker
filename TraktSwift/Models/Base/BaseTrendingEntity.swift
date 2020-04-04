@@ -6,6 +6,6 @@ public class BaseTrendingEntity: Codable, Hashable {
   }
 
   public static func == (lhs: BaseTrendingEntity, rhs: BaseTrendingEntity) -> Bool {
-    return lhs.watchers == rhs.watchers
+    lhs.watchers == rhs.watchers
   }
 }

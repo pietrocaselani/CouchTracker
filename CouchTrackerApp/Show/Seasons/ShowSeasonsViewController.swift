@@ -34,7 +34,7 @@ final class ShowSeasonsViewController: UITableViewController {
   }
 
   override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-    return show?.seasons.count ?? 0
+    show?.seasons.count ?? 0
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

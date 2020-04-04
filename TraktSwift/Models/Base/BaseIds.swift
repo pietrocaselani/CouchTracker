@@ -36,12 +36,12 @@ public class BaseIds: Codable, Hashable, CustomStringConvertible {
   }
 
   public static func == (lhs: BaseIds, rhs: BaseIds) -> Bool {
-    return lhs.trakt == rhs.trakt &&
+    lhs.trakt == rhs.trakt &&
       lhs.tmdb == rhs.tmdb &&
       lhs.imdb == rhs.imdb
   }
 
   public var description: String {
-    return "trakt: \(trakt), tmdb: \(String(describing: tmdb)), imdb: \(String(describing: imdb))"
+    "trakt: \(trakt), tmdb: \(String(describing: tmdb)), imdb: \(String(describing: imdb))"
   }
 }

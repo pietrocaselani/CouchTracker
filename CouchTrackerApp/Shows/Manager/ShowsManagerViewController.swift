@@ -70,21 +70,21 @@ final class ShowsManagerViewController: TabmanViewController, TMBarCouchTracker 
 
 extension ShowsManagerViewController: TMBarDataSource {
   func barItem(for _: TMBar, at index: Int) -> TMBarItemable {
-    return TMBarItem(title: pages[index].title)
+    TMBarItem(title: pages[index].title)
   }
 }
 
 extension ShowsManagerViewController: PageboyViewControllerDataSource {
   func numberOfViewControllers(in _: PageboyViewController) -> Int {
-    return pages.count
+    pages.count
   }
 
   func viewController(for _: PageboyViewController,
                       at index: PageboyViewController.PageIndex) -> UIViewController? {
-    return pages[index].page as? UIViewController
+    pages[index].page as? UIViewController
   }
 
   func defaultPage(for _: PageboyViewController) -> PageboyViewController.Page? {
-    return Page.at(index: defaultPageIndex)
+    Page.at(index: defaultPageIndex)
   }
 }

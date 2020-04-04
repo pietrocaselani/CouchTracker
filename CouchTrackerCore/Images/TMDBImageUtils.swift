@@ -29,6 +29,6 @@ enum TMDBImageUtils {
   }
 
   static func imagesFromAPI<T: TMDBType>(using provider: MoyaProvider<T>, with target: T) -> Observable<Images> {
-    return provider.rx.request(target).filterSuccessfulStatusAndRedirectCodes().map(Images.self).asObservable()
+    provider.rx.request(target).filterSuccessfulStatusAndRedirectCodes().map(Images.self).asObservable()
   }
 }

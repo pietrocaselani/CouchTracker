@@ -28,7 +28,7 @@ final class TVDBTokenRequestInterceptor: RequestInterceptor {
       if tvdb.hasValidToken {
         done(.success(request))
       } else {
-        doLogin(target, tvdb, request, endpoint, done)
+        refreshToken(target, tvdb, request, endpoint, done)
       }
     }
   }
@@ -39,6 +39,14 @@ final class TVDBTokenRequestInterceptor: RequestInterceptor {
                                     _: Endpoint,
                                     _ done: @escaping MoyaProvider<T>.RequestResultClosure) {
     requestToken(tvdb, Authentication.login(apiKey: tvdb.apiKey), request, target, done)
+  }
+
+  private func refreshToken<T: TVDBType>(_ target: T.Type,
+                                         _ tvdb: TVDB,
+                                         _ request: URLRequest,
+                                         _: Endpoint,
+                                         _ done: @escaping MoyaProvider<T>.RequestResultClosure) {
+    requestToken(tvdb, Authentication.refreshToken, request, target, done)
   }
 
   private func requestToken<T: TVDBType>(_ tvdb: TVDB,

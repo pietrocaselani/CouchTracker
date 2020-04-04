@@ -13,7 +13,7 @@ public final class TrendingService: TrendingInteractor {
   }
 
   public func fetchShows(page: Int, limit: Int) -> Single<[TrendingShowEntity]> {
-    return repository.fetchShows(page: page, limit: limit)
+    repository.fetchShows(page: page, limit: limit)
       .flatMap { [weak self] shows in
         guard let strongSelf = self else { return Single.just([TrendingShowEntity]()) }
         return strongSelf.mapTrendingShows(shows)
@@ -21,7 +21,7 @@ public final class TrendingService: TrendingInteractor {
   }
 
   public func fetchMovies(page: Int, limit: Int) -> Single<[TrendingMovieEntity]> {
-    return repository.fetchMovies(page: page, limit: limit)
+    repository.fetchMovies(page: page, limit: limit)
       .flatMap { [weak self] movies in
         guard let strongSelf = self else { return Single.just([TrendingMovieEntity]()) }
         return strongSelf.mapTrendingMovies(movies)
@@ -29,13 +29,13 @@ public final class TrendingService: TrendingInteractor {
   }
 
   private func mapTrendingShows(_ trendingShows: [TrendingShow]) -> Single<[TrendingShowEntity]> {
-    return genreRepository.fetchShowsGenres().map { genres in
+    genreRepository.fetchShowsGenres().map { genres in
       trendingShows.map { ShowEntityMapper.entity(for: $0, with: $0.show.genres(for: genres)) }
     }
   }
 
   private func mapTrendingMovies(_ trendingMovies: [TrendingMovie]) -> Single<[TrendingMovieEntity]> {
-    return genreRepository.fetchShowsGenres().map { genres in
+    genreRepository.fetchShowsGenres().map { genres in
       trendingMovies.map { MovieEntityMapper.entity(for: $0, with: $0.movie.genres(for: genres)) }
     }
   }

@@ -3,17 +3,17 @@ import Moya
 public protocol TraktType: TargetType, AccessTokenAuthorizable, Hashable {}
 
 public extension TraktType {
-  var baseURL: URL { return Trakt.baseURL }
+  var baseURL: URL { Trakt.baseURL }
 
-  var method: Moya.Method { return .get }
+  var method: Moya.Method { .get }
 
-  var headers: [String: String]? { return nil }
+  var headers: [String: String]? { nil }
 
-  var task: Task { return .requestPlain }
+  var task: Task { .requestPlain }
 
-  var authorizationType: AuthorizationType? { return nil }
+  var authorizationType: AuthorizationType? { nil }
 
-  var sampleData: Data { return Data() }
+  var sampleData: Data { Data() }
 
   func hash(into hasher: inout Hasher) {
     let typeName = String(reflecting: self)
@@ -25,7 +25,7 @@ public extension TraktType {
   }
 
   static func == (lhs: Self, rhs: Self) -> Bool {
-    return lhs.hashValue == rhs.hashValue
+    lhs.hashValue == rhs.hashValue
   }
 }
 

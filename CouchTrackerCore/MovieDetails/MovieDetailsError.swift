@@ -13,6 +13,6 @@ public enum MovieDetailsError: Error, Hashable {
   }
 
   public static func == (lhs: MovieDetailsError, rhs: MovieDetailsError) -> Bool {
-    return lhs.message == rhs.message
+    lhs.message == rhs.message
   }
 }

@@ -11,6 +11,6 @@ public struct WatchedEpisodeEntity: Hashable, Codable {
   }
 
   func asImageInput() -> EpisodeImageInput {
-    return episode
+    episode
   }
 }

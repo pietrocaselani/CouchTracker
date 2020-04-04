@@ -11,19 +11,19 @@ struct HashableEpisodeImageInput: EpisodeImageInput, Hashable {
   private let episodeImageInput: EpisodeImageInput
 
   var tmdb: Int? {
-    return episodeImageInput.tmdb
+    episodeImageInput.tmdb
   }
 
   var tvdb: Int? {
-    return episodeImageInput.tvdb
+    episodeImageInput.tvdb
   }
 
   var season: Int {
-    return episodeImageInput.season
+    episodeImageInput.season
   }
 
   var number: Int {
-    return episodeImageInput.number
+    episodeImageInput.number
   }
 
   init(_ episodeImageInput: EpisodeImageInput) {
@@ -39,6 +39,6 @@ struct HashableEpisodeImageInput: EpisodeImageInput, Hashable {
   }
 
   static func == (lhs: HashableEpisodeImageInput, rhs: HashableEpisodeImageInput) -> Bool {
-    return lhs.hashValue == rhs.hashValue
+    lhs.hashValue == rhs.hashValue
   }
 }

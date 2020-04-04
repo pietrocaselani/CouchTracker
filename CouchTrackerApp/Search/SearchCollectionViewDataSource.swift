@@ -10,7 +10,7 @@ final class SearchCollectionViewDataSource: NSObject, SearchDataSource {
   }
 
   func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-    return entities.count
+    entities.count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

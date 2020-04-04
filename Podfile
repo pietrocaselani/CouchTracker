@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 source 'https://github.com/CocoaPods/Specs.git'
 
-RX_SWIFT_VERSION = '5.0.1'.freeze
-SNAPKIT_VERSION = '5.0.1'.freeze
-MOYA_VERSION = '14.0.0-beta.6'.freeze
-OSX_VERSION = '10.12'.freeze
-IOS_VERSION = '10.0'.freeze
+RX_SWIFT_VERSION = '5.0.1'
+SNAPKIT_VERSION = '5.0.1'
+MOYA_VERSION = '14.0.0-beta.6'
+OSX_VERSION = '10.12'
+IOS_VERSION = '10.0'
 
 def api_pods
   pod 'Moya/RxSwift', git: 'https://github.com/Moya/Moya.git', tag: MOYA_VERSION
@@ -104,6 +106,7 @@ target 'CouchTracker' do
   use_frameworks!
   inhibit_all_warnings!
 
+  pod 'SwiftLint', '0.39.1'
   ios_pods
 end
 

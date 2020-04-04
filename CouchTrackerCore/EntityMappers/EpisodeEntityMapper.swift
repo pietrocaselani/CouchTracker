@@ -2,7 +2,7 @@ import TraktSwift
 
 public enum EpisodeEntityMapper {
   public static func entity(for episode: Episode, showIds: ShowIds) -> EpisodeEntity {
-    return EpisodeEntity(
+    EpisodeEntity(
       ids: episode.ids,
       showIds: showIds,
       title: episode.title ?? CouchTrackerCoreStrings.toBeAnnounced(), // CT-TODO Don't handle title here

@@ -13,7 +13,7 @@ public final class ShowProgressCellDefaultPresenter: ShowProgressCellPresenter {
   }
 
   public func observeViewState() -> Observable<ShowProgressCellViewState> {
-    return viewStateSubject.distinctUntilChanged()
+    viewStateSubject.distinctUntilChanged()
   }
 
   public func viewWillAppear() {

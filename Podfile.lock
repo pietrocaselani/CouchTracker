@@ -45,6 +45,7 @@ PODS:
     - RxSwift (~> 5)
   - SnapKit (5.0.1)
   - SnapshotTesting (1.7.0)
+  - SwiftLint (0.39.1)
   - Tabman (2.6.3):
     - AutoInsetter (~> 1.8.0)
     - Pageboy (~> 3.5.0)
@@ -64,6 +65,7 @@ DEPENDENCIES:
   - RxTest (from `https://github.com/ReactiveX/RxSwift.git`, tag `5.0.1`)
   - SnapKit (= 5.0.1)
   - SnapshotTesting (= 1.7.0)
+  - SwiftLint (= 0.39.1)
   - Tabman (= 2.6.3)
 
 SPEC REPOS:
@@ -85,6 +87,7 @@ SPEC REPOS:
     - RxRelay
     - SnapKit
     - SnapshotTesting
+    - SwiftLint
     - Tabman
 
 EXTERNAL SOURCES:
@@ -137,8 +140,9 @@ SPEC CHECKSUMS:
   RxTest: 0132f952a61da82d5233abedaa559df91e5330e5
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SnapshotTesting: 273b614fcc60fac7d9f613f6648afa91a7da36be
+  SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   Tabman: 63eae331ae7a9388ae389b1808f1939269fcdece
 
-PODFILE CHECKSUM: 1f7c651371807c4f0aacaef6af614e8fbd06c060
+PODFILE CHECKSUM: 6dd2be21f07921958faaf675b2ecc89300350bee
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

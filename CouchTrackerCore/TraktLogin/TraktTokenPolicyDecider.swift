@@ -9,6 +9,6 @@ public final class TraktTokenPolicyDecider: TraktLoginPolicyDecider {
   }
 
   public func allowedToProceed(with request: URLRequest) -> Single<AuthenticationResult> {
-    return trakt.finishesAuthentication(with: request)
+    trakt.finishesAuthentication(with: request)
   }
 }

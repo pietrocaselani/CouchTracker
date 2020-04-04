@@ -13,7 +13,7 @@ public struct WatchedEpisodeEntityBuilder: Hashable {
   }
 
   public func set(lastWatched: Date?) -> WatchedEpisodeEntityBuilder {
-    return WatchedEpisodeEntityBuilder(showIds: showIds, episode: episode, lastWatched: lastWatched)
+    WatchedEpisodeEntityBuilder(showIds: showIds, episode: episode, lastWatched: lastWatched)
   }
 
   public func createEntity() -> WatchedEpisodeEntity {

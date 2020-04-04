@@ -5,7 +5,7 @@ public struct AppState: Hashable, Codable {
   public let hideSpecials: Bool
 
   public var isLogged: Bool {
-    return userSettings != nil
+    userSettings != nil
   }
 
   public init(userSettings: Settings?, hideSpecials: Bool) {
@@ -14,11 +14,11 @@ public struct AppState: Hashable, Codable {
   }
 
   public static func initialState() -> AppState {
-    return Defaults.appState
+    Defaults.appState
   }
 
   public func newBuilder() -> AppStateBuilder {
-    return AppStateBuilder(state: self)
+    AppStateBuilder(state: self)
   }
 
   public func buildUpon(_ builderFn: (inout AppStateBuilder) -> Void) -> AppState {
@@ -38,6 +38,6 @@ public struct AppStateBuilder {
   }
 
   public func build() -> AppState {
-    return AppState(userSettings: userSettings, hideSpecials: hideSpecials)
+    AppState(userSettings: userSettings, hideSpecials: hideSpecials)
   }
 }

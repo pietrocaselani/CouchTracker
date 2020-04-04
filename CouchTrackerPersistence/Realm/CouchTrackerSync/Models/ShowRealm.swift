@@ -16,7 +16,7 @@ public final class ShowRealm: Object {
   @objc public dynamic var lastEpisode: WatchedEpisodeRealm?
 
   public var ids: ShowIdsRealm? {
-    get { return backingIds }
+    get { backingIds }
     set {
       backingIds = newValue
       if let traktId = newValue?.trakt {
@@ -27,11 +27,11 @@ public final class ShowRealm: Object {
   }
 
   public override static func primaryKey() -> String? {
-    return "identifier"
+    "identifier"
   }
 
   public override static func ignoredProperties() -> [String] {
-    return ["ids"]
+    ["ids"]
   }
 
   public override func isEqual(_ object: Any?) -> Bool {
@@ -40,7 +40,7 @@ public final class ShowRealm: Object {
   }
 
   public static func == (lhs: ShowRealm, rhs: ShowRealm) -> Bool {
-    return lhs.identifier == rhs.identifier &&
+    lhs.identifier == rhs.identifier &&
       lhs.backingIds == rhs.backingIds &&
       lhs.title == rhs.title &&
       lhs.overview == rhs.overview &&

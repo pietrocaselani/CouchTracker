@@ -19,7 +19,7 @@ extension Date {
     localeProvider: () -> Locale = { DefaultBundleProvider.instance.currentLanguage.asLocale },
     timeZoneProvider: () -> TimeZone = { NSTimeZone.system }
   ) -> String {
-    return DateFormatting.shortString(
+    DateFormatting.shortString(
       localeProvider: localeProvider,
       timeZoneProvider: timeZoneProvider,
       date: self

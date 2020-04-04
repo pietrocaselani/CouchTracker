@@ -14,7 +14,7 @@ public final class WatchedSeasonRealm: Object {
   public let episodes = List<WatchedEpisodeRealm>()
 
   public var number: Int {
-    get { return backingNumber }
+    get { backingNumber }
     set {
       backingNumber = newValue
       updateIdentifier()
@@ -22,7 +22,7 @@ public final class WatchedSeasonRealm: Object {
   }
 
   public var showIds: ShowIdsRealm? {
-    get { return backingShowIds }
+    get { backingShowIds }
     set {
       backingShowIds = newValue
       updateIdentifier()
@@ -30,7 +30,7 @@ public final class WatchedSeasonRealm: Object {
   }
 
   public var seasonIds: SeasonIdsRealm? {
-    get { return backingSeasonIds }
+    get { backingSeasonIds }
     set {
       backingSeasonIds = newValue
       updateIdentifier()
@@ -45,11 +45,11 @@ public final class WatchedSeasonRealm: Object {
   }
 
   public override static func primaryKey() -> String? {
-    return "identifier"
+    "identifier"
   }
 
   public override static func ignoredProperties() -> [String] {
-    return ["showIds", "number", "seasonIds"]
+    ["showIds", "number", "seasonIds"]
   }
 
   public override func isEqual(_ object: Any?) -> Bool {
@@ -58,7 +58,7 @@ public final class WatchedSeasonRealm: Object {
   }
 
   public static func == (lhs: WatchedSeasonRealm, rhs: WatchedSeasonRealm) -> Bool {
-    return lhs.identifier == rhs.identifier &&
+    lhs.identifier == rhs.identifier &&
       lhs.backingShowIds == rhs.backingShowIds &&
       lhs.backingSeasonIds == rhs.backingSeasonIds &&
       lhs.backingNumber == rhs.backingNumber &&

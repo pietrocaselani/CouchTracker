@@ -7,7 +7,7 @@ extension Bundle {
 public func couchTrackerCoreLocalizable(key: String,
                                         bundleProvider: BundleProvider = DefaultBundleProvider.instance,
                                         tableName: String = "CouchTrackerCore") -> String {
-  return NSLocalizedString(key, tableName: tableName, bundle: bundleProvider.bundle, comment: "\(key) not found")
+  NSLocalizedString(key, tableName: tableName, bundle: bundleProvider.bundle, comment: "\(key) not found")
 }
 
 public func couchTrackerCoreLocalizable(key: String,

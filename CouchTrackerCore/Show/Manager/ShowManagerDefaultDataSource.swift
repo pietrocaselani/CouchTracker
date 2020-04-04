@@ -10,7 +10,7 @@ public final class ShowManagerDefaultDataSource: ShowManagerDataSource {
   public var showTitle: String?
   public var options: [ShowManagerOption]
   public var modulePages: [ModulePage] {
-    return options.map {
+    options.map {
       let view = creator.createModule(for: $0)
       let name = moduleNameFor(option: $0)
       return ModulePage(page: view, title: name)
@@ -19,7 +19,7 @@ public final class ShowManagerDefaultDataSource: ShowManagerDataSource {
 
   public var defaultModuleIndex: Int {
     get {
-      return userDefaults.integer(forKey: ShowManagerDefaultDataSource.lastTabKey)
+      userDefaults.integer(forKey: ShowManagerDefaultDataSource.lastTabKey)
     }
     set {
       userDefaults.set(newValue, forKey: ShowManagerDefaultDataSource.lastTabKey)

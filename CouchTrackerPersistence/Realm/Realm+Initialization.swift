@@ -6,7 +6,7 @@ public final class RealmInitialization: Object {
   @objc public dynamic var name = ""
 
   public override static func primaryKey() -> String? {
-    return "name"
+    "name"
   }
 }
 
@@ -49,11 +49,11 @@ public extension Realm {
   }
 
   func observeInitialization(of type: Object.Type) -> Observable<Bool> {
-    return RealmInitializationObservable.observe(realm: self, type: type)
+    RealmInitializationObservable.observe(realm: self, type: type)
   }
 
   func observeArray<T: Object>(of type: T.Type) -> Observable<RealmObjectState<[T]>> {
-    return observeInitialization(of: type)
+    observeInitialization(of: type)
       .flatMap { initialized -> Observable<RealmObjectState<[T]>> in
         guard initialized else { return .just(.notInitialized) }
 
@@ -63,7 +63,7 @@ public extension Realm {
   }
 
   func observeObject<T: Object, KeyType>(of type: T.Type, primaryKey: KeyType) -> Observable<T> {
-    return observeInitialization(of: type)
+    observeInitialization(of: type)
       .flatMap { initialized -> Observable<T> in
         guard initialized else { return Observable.empty() }
 

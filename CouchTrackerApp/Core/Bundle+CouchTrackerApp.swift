@@ -16,5 +16,5 @@ public final class CouchTrackerAppBundleProvider: BundleProvider {
 public func couchTrackerAppImage(named name: String,
                                  bundleProvider: BundleProvider = CouchTrackerAppBundleProvider.instance,
                                  compatibleWith traits: UITraitCollection? = nil) -> UIImage? {
-  return UIImage(named: name, in: bundleProvider.bundle, compatibleWith: traits)
+  UIImage(named: name, in: bundleProvider.bundle, compatibleWith: traits)
 }

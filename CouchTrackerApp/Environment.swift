@@ -28,11 +28,11 @@ public final class Environment {
   public let syncStateObservable: SyncStateObservable
 
   var currentAppState: AppState {
-    return Environment.getAppState(userDefaults: userDefaults)
+    Environment.getAppState(userDefaults: userDefaults)
   }
 
   private static func getAppState(userDefaults: UserDefaults) -> AppState {
-    return UserDefaultsAppStateDataHolder.currentAppConfig(userDefaults)
+    UserDefaultsAppStateDataHolder.currentAppConfig(userDefaults)
   }
 
   // swiftlint:disable function_body_length
@@ -145,6 +145,8 @@ public final class Environment {
   }
 
   private static func checkForEmptySecrets() {
+    guard NSClassFromString("XCTestCase") == nil else { return }
+
     let traktClientId = Secrets.Trakt.clientId.isEmpty
     let tmdbAPIKey = Secrets.TMDB.apiKey.isEmpty
     let tvdbAPIKey = Secrets.TVDB.apiKey.isEmpty

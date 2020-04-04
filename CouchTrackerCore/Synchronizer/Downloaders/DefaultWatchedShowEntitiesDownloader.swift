@@ -37,7 +37,7 @@ public final class DefaultWatchedShowEntitiesDownloader: WatchedShowEntitiesDown
   // MARK: - Public Interface
 
   public func syncWatchedShowEntities(using options: WatchedShowEntitiesSyncOptions) -> Observable<WatchedShowEntity> {
-    return fetchWatchedShowsFromAPI().asObservable()
+    fetchWatchedShowsFromAPI().asObservable()
       .flatMap { [weak self] baseShows -> Observable<BaseShowWithGenres> in
         guard let strongSelf = self else { return Observable.empty() }
         return strongSelf.mapToBaseShowWithGenres(baseShows).asObservable()
@@ -52,7 +52,7 @@ public final class DefaultWatchedShowEntitiesDownloader: WatchedShowEntitiesDown
   // MARK: - Private Interface - BaseShow with Genres
 
   private func mapToBaseShowWithGenres(_ shows: [BaseShow]) -> Observable<BaseShowWithGenres> {
-    return genreRepository.fetchShowsGenres()
+    genreRepository.fetchShowsGenres()
       .asObservable()
       .flatMap { genres -> Observable<BaseShowWithGenres> in
         Observable.from(shows).map { BaseShowWithGenres(baseShow: $0, genres: genres) }
@@ -63,7 +63,7 @@ public final class DefaultWatchedShowEntitiesDownloader: WatchedShowEntitiesDown
 
   private func mapToBuilderWithGenres(_ baseShowWithGenres: BaseShowWithGenres,
                                       _ options: WatchedShowEntitiesSyncOptions) -> Observable<ShowBuilderWithGenres> {
-    return fetchProgress(of: baseShowWithGenres.baseShow, using: options)
+    fetchProgress(of: baseShowWithGenres.baseShow, using: options)
       .map { builder -> ShowBuilderWithGenres in
         ShowBuilderWithGenres(builder: builder, genres: baseShowWithGenres.genres)
       }.asObservable()

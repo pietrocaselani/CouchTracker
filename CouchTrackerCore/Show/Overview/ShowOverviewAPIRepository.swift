@@ -12,7 +12,7 @@ public final class ShowOverviewAPIRepository: ShowOverviewRepository {
   }
 
   public func fetchDetailsOfShow(with identifier: String, extended: Extended) -> Single<Show> {
-    return traktProvider.shows.rx.request(.summary(showId: identifier, extended: extended))
+    traktProvider.shows.rx.request(.summary(showId: identifier, extended: extended))
       .observeOn(schedulers.networkScheduler)
       .map(Show.self)
   }

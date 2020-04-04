@@ -50,7 +50,7 @@ public class StandardMediaEntity: Codable, Hashable {
   }
 
   public static func == (lhs: StandardMediaEntity, rhs: StandardMediaEntity) -> Bool {
-    return lhs.title == rhs.title &&
+    lhs.title == rhs.title &&
       lhs.overview == rhs.overview &&
       lhs.rating == rhs.rating &&
       lhs.votes == rhs.votes &&

@@ -3,7 +3,7 @@ import TVDBSwift
 
 enum EpisodeImageUtils {
   static func tvdbBaseURLFor(size: TVDBEpisodeImageSize?) -> URL {
-    return (size ?? .normal) == .normal ? TVDB.bannersImageURL : TVDB.smallBannersImageURL
+    (size ?? .normal) == .normal ? TVDB.bannersImageURL : TVDB.smallBannersImageURL
   }
 
   static func cacheKey(episode: EpisodeImageInput, size: EpisodeImageSizes?) -> Int {

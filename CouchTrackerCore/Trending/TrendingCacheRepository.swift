@@ -12,13 +12,13 @@ public final class TrendingCacheRepository: TrendingRepository {
   }
 
   public func fetchMovies(page: Int, limit: Int) -> Single<[TrendingMovie]> {
-    return traktProvider.movies.rx.request(.trending(page: page, limit: limit, extended: .full))
+    traktProvider.movies.rx.request(.trending(page: page, limit: limit, extended: .full))
       .observeOn(schedulers.networkScheduler)
       .map([TrendingMovie].self)
   }
 
   public func fetchShows(page: Int, limit: Int) -> Single<[TrendingShow]> {
-    return traktProvider.shows.rx.request(.trending(page: page, limit: limit, extended: .full))
+    traktProvider.shows.rx.request(.trending(page: page, limit: limit, extended: .full))
       .observeOn(schedulers.networkScheduler)
       .map([TrendingShow].self)
   }

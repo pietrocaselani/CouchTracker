@@ -12,7 +12,7 @@ public enum ShowProgressFilter: String {
   }
 
   public static func allValues() -> [ShowProgressFilter] {
-    return [.none, .watched, .returning, returningWatched]
+    [.none, .watched, .returning, returningWatched]
   }
 
   public static func filter(for index: Int) -> ShowProgressFilter {
@@ -25,7 +25,7 @@ public enum ShowProgressFilter: String {
   }
 
   public func index() -> Int {
-    return ShowProgressFilter.allValues().firstIndex(of: self) ?? 0
+    ShowProgressFilter.allValues().firstIndex(of: self) ?? 0
   }
 
   public func filter() -> (WatchedShowEntity) -> Bool {
@@ -35,21 +35,17 @@ public enum ShowProgressFilter: String {
     return filterReturningWatched()
   }
 
-  private func filterNone() -> (WatchedShowEntity) -> Bool {
-    return { (_: WatchedShowEntity) in true }
+  private func filterNone() -> (WatchedShowEntity) -> Bool { { (_: WatchedShowEntity) in true }
   }
 
-  private func filterWatched() -> (WatchedShowEntity) -> Bool {
-    return { (entity: WatchedShowEntity) in (entity.aired ?? -1) - (entity.completed ?? -1) > 0 }
+  private func filterWatched() -> (WatchedShowEntity) -> Bool { { (entity: WatchedShowEntity) in (entity.aired ?? -1) - (entity.completed ?? -1) > 0 }
   }
 
-  private func filterReturning() -> (WatchedShowEntity) -> Bool {
-    return { (entity: WatchedShowEntity) in entity.show.status == Status.returning }
+  private func filterReturning() -> (WatchedShowEntity) -> Bool { { (entity: WatchedShowEntity) in entity.show.status == Status.returning }
   }
 
-  private func filterReturningWatched() -> (WatchedShowEntity) -> Bool {
-    return { (entity: WatchedShowEntity) in
-      (entity.aired ?? -1) - (entity.completed ?? -1) > 0 || entity.show.status == Status.returning
+  private func filterReturningWatched() -> (WatchedShowEntity) -> Bool { { (entity: WatchedShowEntity) in
+    (entity.aired ?? -1) - (entity.completed ?? -1) > 0 || entity.show.status == Status.returning
     }
   }
 }

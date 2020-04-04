@@ -34,10 +34,10 @@ public final class ShowOverviewDefaultPresenter: ShowOverviewPresenter {
   }
 
   public func observeViewState() -> Observable<ShowOverviewViewState> {
-    return viewStateSubject
+    viewStateSubject
   }
 
   public func observeImagesState() -> Observable<ShowOverviewImagesState> {
-    return imagesStateSubject
+    imagesStateSubject
   }
 }

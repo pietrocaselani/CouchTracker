@@ -6,7 +6,7 @@ import TraktSwift
 
 extension GenreRealmDataSource: GenreDataSource {
   public func fetchGenres() -> Maybe<[Genre]> {
-    return fetchRealmGenres().mapElements { $0.toEntity() }
+    fetchRealmGenres().mapElements { $0.toEntity() }
   }
 
   public func save(genres: [Genre]) throws {
@@ -21,13 +21,13 @@ extension RealmShowDataSource: ShowDataSource {
   }
 
   public func observeWatchedShow(showIds: ShowIds) -> Observable<WatchedShowEntity> {
-    return observeRealmWatchedShow(showIds: showIds.toRealm()).map { $0.toEntity() }
+    observeRealmWatchedShow(showIds: showIds.toRealm()).map { $0.toEntity() }
   }
 }
 
 extension RealmShowsDataSource: WatchedShowEntitiesObservable, ShowsDataHolder {
   public func observeWatchedShows() -> Observable<WatchedShowEntitiesState> {
-    return observeRealmWatchedShows().map { objectState -> WatchedShowEntitiesState in
+    observeRealmWatchedShows().map { objectState -> WatchedShowEntitiesState in
       switch objectState {
       case .notInitialized:
         return WatchedShowEntitiesState.unavailable

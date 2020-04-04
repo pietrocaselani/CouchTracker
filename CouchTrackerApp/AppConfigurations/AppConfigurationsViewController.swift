@@ -52,7 +52,7 @@ final class AppStateViewController: UITableViewController {
   }
 
   override func numberOfSections(in _: UITableView) -> Int {
-    return configurationSections.count
+    configurationSections.count
   }
 
   override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
