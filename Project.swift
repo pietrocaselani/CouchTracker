@@ -403,33 +403,6 @@ enum TraktSwiftTests {
   private static func settings() -> Settings {
     Settings(base: iOSBaseSettings())
   }
-
-  private static func buildPhases() -> [TargetAction] {
-    commonBuildPhases() + copyCarthageFrameworks()
-  }
-
-  private static func copyCarthageFrameworks() -> [TargetAction] {
-    [
-      TargetAction.post(
-        path: "build_phases/carthage.sh",
-        name: "Copy Carthage frameworks",
-        inputPaths: [
-          carthageFramworkPathForBuildPhase(named: "Moya"),
-          carthageFramworkPathForBuildPhase(named: "RxSwift"),
-          carthageFramworkPathForBuildPhase(named: "RxTest"),
-          carthageFramworkPathForBuildPhase(named: "RxMoya"),
-          carthageFramworkPathForBuildPhase(named: "Alamofire")
-        ],
-        outputPaths: [
-          carthageOutputPath(named: "Moya"),
-          carthageOutputPath(named: "RxSwift"),
-          carthageOutputPath(named: "RxTest"),
-          carthageOutputPath(named: "RxMoya"),
-          carthageOutputPath(named: "Alamofire")
-        ]
-      )
-    ]
-  }
 }
 
 enum TraktSwiftTestable {
@@ -503,7 +476,8 @@ enum TMDBSwift {
       infoPlist: "TMDBSwift/Info.plist",
       sources: ["TMDBSwift/**"],
       headers: Headers(public: "TMDBSwift/Headers/Public/TMDBSwift.h"),
-      actions: commonBuildPhases(),
+      actions: buildPhases(),
+      dependencies: [.framework(path: carthageFramworkPath(named: "Moya"))],
       settings: settings()
     )
   }
@@ -517,6 +491,21 @@ enum TMDBSwift {
       debug: debug,
       release: release
     )
+  }
+
+  private static func buildPhases() -> [TargetAction] {
+    commonBuildPhases() + copyCarthageFrameworks()
+  }
+
+  private static func copyCarthageFrameworks() -> [TargetAction] {
+    [
+      TargetAction.post(
+        path: "build_phases/carthage.sh",
+        name: "Copy Carthage frameworks",
+        inputPaths: [ carthageFramworkPathForBuildPhase(named: "Moya") ],
+        outputPaths: [ carthageOutputPath(named: "Moya") ]
+      )
+    ]
   }
 }
 
@@ -533,7 +522,9 @@ enum TMDBSwiftTests {
       sources: ["TMDBSwiftTests/**"],
       dependencies: [
         .target(name: TMDBSwiftTestable.name),
-        .target(name: TMDBSwift.name)
+        .target(name: TMDBSwift.name),
+        .framework(path: carthageFramworkPath(named: "Moya")),
+        .framework(path: carthageFramworkPath(named: "Alamofire"))
       ],
       settings: settings()
     )
@@ -557,8 +548,10 @@ enum TMDBSwiftTestable {
       sources: ["TMDBSwiftTestable/**"],
       resources: ["TMDBSwiftTestable/Resources/**/*.{xcassets,png,strings,json}"],
       headers: Headers(public: "TMDBSwiftTestable/Headers/Public/TMDBSwiftTestable.h"),
+      actions: buildPhases(),
       dependencies: [
-        .target(name: TMDBSwift.name)
+        .target(name: TMDBSwift.name),
+        .framework(path: carthageFramworkPath(named: "Moya"))
       ],
       settings: settings()
     )
@@ -573,6 +566,25 @@ enum TMDBSwiftTestable {
       debug: debug,
       release: release
     )
+  }
+
+  private static func buildPhases() -> [TargetAction] {
+    commonBuildPhases() + copyCarthageFrameworks()
+  }
+
+  private static func copyCarthageFrameworks() -> [TargetAction] {
+    [
+      TargetAction.post(
+        path: "build_phases/carthage.sh",
+        name: "Copy Carthage frameworks",
+        inputPaths: [
+          carthageFramworkPathForBuildPhase(named: "Moya")
+        ],
+        outputPaths: [
+          carthageOutputPath(named: "Moya")
+        ]
+      )
+    ]
   }
 }
 
