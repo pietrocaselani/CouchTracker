@@ -45,7 +45,7 @@ public enum ShowProgressFilter: String {
   }
 
   private func filterReturningWatched() -> (WatchedShowEntity) -> Bool { { (entity: WatchedShowEntity) in
-      (entity.aired ?? -1) - (entity.completed ?? -1) > 0 || entity.show.status == Status.returning
+    (entity.aired ?? -1) - (entity.completed ?? -1) > 0 || entity.show.status == Status.returning
     }
   }
 }

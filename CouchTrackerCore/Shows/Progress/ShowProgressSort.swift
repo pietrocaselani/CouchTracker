@@ -50,30 +50,30 @@ public enum ShowProgressSort: String {
   }
 
   private func titleComparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool { { (lhs: WatchedShowEntity, rhs: WatchedShowEntity) in
-      let rhsTitle = rhs.show.title ?? ""
-      let lhsTitle = lhs.show.title ?? ""
-      return lhsTitle < rhsTitle
+    let rhsTitle = rhs.show.title ?? ""
+    let lhsTitle = lhs.show.title ?? ""
+    return lhsTitle < rhsTitle
     }
   }
 
   private func remainingComparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool { { (lhs: WatchedShowEntity, rhs: WatchedShowEntity) in
-      let lhsRemaining = (lhs.aired ?? 0) - (lhs.completed ?? 0)
-      let rhsRemaining = (rhs.aired ?? 0) - (rhs.completed ?? 0)
-      return lhsRemaining < rhsRemaining
+    let lhsRemaining = (lhs.aired ?? 0) - (lhs.completed ?? 0)
+    let rhsRemaining = (rhs.aired ?? 0) - (rhs.completed ?? 0)
+    return lhsRemaining < rhsRemaining
     }
   }
 
   private func lastWatchedComparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool { { (lhs: WatchedShowEntity, rhs: WatchedShowEntity) in
-      let lhsLastWatched = lhs.lastWatched ?? Date(timeIntervalSince1970: 0)
-      let rhsLastWatched = rhs.lastWatched ?? Date(timeIntervalSince1970: 0)
-      return lhsLastWatched > rhsLastWatched
+    let lhsLastWatched = lhs.lastWatched ?? Date(timeIntervalSince1970: 0)
+    let rhsLastWatched = rhs.lastWatched ?? Date(timeIntervalSince1970: 0)
+    return lhsLastWatched > rhsLastWatched
     }
   }
 
   private func releaseDateComparator() -> (WatchedShowEntity, WatchedShowEntity) -> Bool { { (lhs: WatchedShowEntity, rhs: WatchedShowEntity) in
-      let lhsFirstAired = lhs.nextEpisode?.episode.firstAired ?? Date(timeIntervalSince1970: 0)
-      let rhsFirstAired = rhs.nextEpisode?.episode.firstAired ?? Date(timeIntervalSince1970: 0)
-      return lhsFirstAired > rhsFirstAired
+    let lhsFirstAired = lhs.nextEpisode?.episode.firstAired ?? Date(timeIntervalSince1970: 0)
+    let rhsFirstAired = rhs.nextEpisode?.episode.firstAired ?? Date(timeIntervalSince1970: 0)
+    return lhsFirstAired > rhsFirstAired
     }
   }
 }

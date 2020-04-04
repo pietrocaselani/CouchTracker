@@ -22,60 +22,60 @@ public final class WatchedShowBuilder: Hashable {
   @discardableResult
   public func set(episode: WatchedEpisodeEntity?) -> WatchedShowBuilder {
     WatchedShowBuilder(ids: ids,
-                              detailShow: detailShow,
-                              progressShow: progressShow,
-                              episode: episode,
-                              seasons: seasons,
-                              genres: genres)
+                       detailShow: detailShow,
+                       progressShow: progressShow,
+                       episode: episode,
+                       seasons: seasons,
+                       genres: genres)
   }
 
   @discardableResult
   public func set(progressShow: BaseShow?) -> WatchedShowBuilder {
     WatchedShowBuilder(ids: ids,
-                              detailShow: detailShow,
-                              progressShow: progressShow,
-                              episode: episode,
-                              seasons: seasons,
-                              genres: genres)
+                       detailShow: detailShow,
+                       progressShow: progressShow,
+                       episode: episode,
+                       seasons: seasons,
+                       genres: genres)
   }
 
   @discardableResult
   public func set(detailShow: BaseShow?) -> WatchedShowBuilder {
     WatchedShowBuilder(ids: ids,
-                              detailShow: detailShow,
-                              progressShow: progressShow,
-                              episode: episode,
-                              seasons: seasons,
-                              genres: genres)
+                       detailShow: detailShow,
+                       progressShow: progressShow,
+                       episode: episode,
+                       seasons: seasons,
+                       genres: genres)
   }
 
   @discardableResult
   public func set(seasons: [WatchedSeasonEntity]) -> WatchedShowBuilder {
     WatchedShowBuilder(ids: ids,
-                              detailShow: detailShow,
-                              progressShow: progressShow,
-                              episode: episode,
-                              seasons: seasons,
-                              genres: genres)
+                       detailShow: detailShow,
+                       progressShow: progressShow,
+                       episode: episode,
+                       seasons: seasons,
+                       genres: genres)
   }
 
   @discardableResult
   public func set(genres: [Genre]) -> WatchedShowBuilder {
     WatchedShowBuilder(ids: ids,
-                              detailShow: detailShow,
-                              progressShow: progressShow,
-                              episode: episode,
-                              seasons: seasons,
-                              genres: genres)
+                       detailShow: detailShow,
+                       progressShow: progressShow,
+                       episode: episode,
+                       seasons: seasons,
+                       genres: genres)
   }
 
   public func createEntity(using showEntity: ShowEntity) -> WatchedShowEntity {
     WatchedShowEntity(show: showEntity,
-                             aired: progressShow?.aired,
-                             completed: progressShow?.completed,
-                             nextEpisode: episode,
-                             lastWatched: progressShow?.lastWatchedAt,
-                             seasons: seasons)
+                      aired: progressShow?.aired,
+                      completed: progressShow?.completed,
+                      nextEpisode: episode,
+                      lastWatched: progressShow?.lastWatchedAt,
+                      seasons: seasons)
   }
 
   public func createEntity() -> WatchedShowEntity {

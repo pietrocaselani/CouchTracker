@@ -6,12 +6,12 @@ public final class MovieEntityMapper {
 
   public static func entity(for movie: Movie, with genres: [Genre], watchedAt: Date? = nil) -> MovieEntity {
     MovieEntity(ids: movie.ids,
-                       title: movie.title,
-                       genres: genres,
-                       tagline: movie.tagline,
-                       overview: movie.overview,
-                       releaseDate: movie.released,
-                       watchedAt: watchedAt)
+                title: movie.title,
+                genres: genres,
+                tagline: movie.tagline,
+                overview: movie.overview,
+                releaseDate: movie.released,
+                watchedAt: watchedAt)
   }
 
   public static func entity(for trendingMovie: TrendingMovie, with genres: [Genre]) -> TrendingMovieEntity {

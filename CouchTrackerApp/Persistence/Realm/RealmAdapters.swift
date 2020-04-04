@@ -22,11 +22,11 @@ extension Genre {
 extension ShowIdsRealm {
   func toEntity() -> ShowIds {
     ShowIds(trakt: trakt,
-                   tmdb: tmdb.value,
-                   imdb: imdb,
-                   slug: slug,
-                   tvdb: tvdb,
-                   tvrage: tvrage.value)
+            tmdb: tmdb.value,
+            imdb: imdb,
+            slug: slug,
+            tvdb: tvdb,
+            tvrage: tvrage.value)
   }
 }
 
@@ -88,10 +88,10 @@ extension WatchedEpisodeEntity {
 extension EpisodeIdsRealm {
   public func toEntity() -> EpisodeIds {
     EpisodeIds(trakt: trakt,
-                      tmdb: tmdb.value,
-                      imdb: imdb,
-                      tvdb: tvdb.value,
-                      tvrage: tvrage.value)
+               tmdb: tmdb.value,
+               imdb: imdb,
+               tvdb: tvdb.value,
+               tvrage: tvrage.value)
   }
 }
 

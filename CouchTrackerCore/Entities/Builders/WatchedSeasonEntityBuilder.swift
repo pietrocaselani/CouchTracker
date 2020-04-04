@@ -16,23 +16,23 @@ public struct WatchedSeasonEntityBuilder: Hashable {
 
   public func set(progressSeason: BaseSeason?) -> WatchedSeasonEntityBuilder {
     WatchedSeasonEntityBuilder(showIds: showIds,
-                                      progressSeason: progressSeason,
-                                      detailSeason: detailSeason,
-                                      episodes: episodes)
+                               progressSeason: progressSeason,
+                               detailSeason: detailSeason,
+                               episodes: episodes)
   }
 
   public func set(episodes: [WatchedEpisodeEntityBuilder]?) -> WatchedSeasonEntityBuilder {
     WatchedSeasonEntityBuilder(showIds: showIds,
-                                      progressSeason: progressSeason,
-                                      detailSeason: detailSeason,
-                                      episodes: episodes)
+                               progressSeason: progressSeason,
+                               detailSeason: detailSeason,
+                               episodes: episodes)
   }
 
   public func set(detailSeason: Season?) -> WatchedSeasonEntityBuilder {
     WatchedSeasonEntityBuilder(showIds: showIds,
-                                      progressSeason: progressSeason,
-                                      detailSeason: detailSeason,
-                                      episodes: episodes)
+                               progressSeason: progressSeason,
+                               detailSeason: detailSeason,
+                               episodes: episodes)
   }
 
   public func createEntity() -> WatchedSeasonEntity {
