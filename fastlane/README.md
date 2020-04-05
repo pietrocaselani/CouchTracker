@@ -16,11 +16,6 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
-### ios pods
-```
-fastlane ios pods
-```
-Run bundle exec pod install --repo-update
 ### ios setup_certs
 ```
 fastlane ios setup_certs
