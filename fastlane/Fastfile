@@ -12,7 +12,7 @@ platform :ios do
 
     sh("../scripts/generate_secrets #{secrets_param}", log: false)
     sh('../start-development.sh')
-    pods
+    cocoapods(podfile: '.', repo_update: false)
   end
 
   desc 'Setup Certificates'
