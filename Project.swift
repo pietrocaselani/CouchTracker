@@ -343,7 +343,7 @@ enum TraktSwift {
       infoPlist: "TraktSwift/Info.plist",
       sources: ["TraktSwift/**"],
       headers: Headers(public: "TraktSwift/Headers/Public/TraktSwift.h"),
-      actions: buildPhases(),
+      actions: commonBuildPhases(),
       dependencies: [.framework(path: carthageFramworkPath(named: "Moya"))],
       settings: settings()
     )
@@ -358,21 +358,6 @@ enum TraktSwift {
       debug: debug,
       release: release
     )
-  }
-
-  private static func buildPhases() -> [TargetAction] {
-    commonBuildPhases() + copyCarthageFrameworks()
-  }
-
-  private static func copyCarthageFrameworks() -> [TargetAction] {
-    [
-      TargetAction.post(
-        path: "build_phases/carthage.sh",
-        name: "Copy Carthage frameworks",
-        inputPaths: [ carthageFramworkPathForBuildPhase(named: "Moya") ],
-        outputPaths: [ carthageOutputPath(named: "Moya") ]
-      )
-    ]
   }
 }
 
@@ -418,7 +403,7 @@ enum TraktSwiftTestable {
       sources: ["TraktSwiftTestable/**"],
       resources: ["TraktSwiftTestable/Resources/**/*.{xcassets,png,strings,json}"],
       headers: Headers(public: "TraktSwiftTestable/Headers/Public/TraktSwiftTestable.h"),
-      actions: buildPhases(),
+      actions: commonBuildPhases(),
       dependencies: [
         .target(name: TraktSwift.name),
         .framework(path: carthageFramworkPath(named: "RxSwift")),
@@ -439,29 +424,6 @@ enum TraktSwiftTestable {
       release: release
     )
   }
-
-  private static func buildPhases() -> [TargetAction] {
-    commonBuildPhases() + copyCarthageFrameworks()
-  }
-
-  private static func copyCarthageFrameworks() -> [TargetAction] {
-    [
-      TargetAction.post(
-        path: "build_phases/carthage.sh",
-        name: "Copy Carthage frameworks",
-        inputPaths: [
-          carthageFramworkPathForBuildPhase(named: "Moya"),
-          carthageFramworkPathForBuildPhase(named: "RxSwift"),
-          carthageFramworkPathForBuildPhase(named: "RxTest")
-        ],
-        outputPaths: [
-          carthageOutputPath(named: "Moya"),
-          carthageOutputPath(named: "RxSwift"),
-          carthageOutputPath(named: "RxTest")
-        ]
-      )
-    ]
-  }
 }
 
 enum TMDBSwift {
@@ -476,7 +438,7 @@ enum TMDBSwift {
       infoPlist: "TMDBSwift/Info.plist",
       sources: ["TMDBSwift/**"],
       headers: Headers(public: "TMDBSwift/Headers/Public/TMDBSwift.h"),
-      actions: buildPhases(),
+      actions: commonBuildPhases(),
       dependencies: [.framework(path: carthageFramworkPath(named: "Moya"))],
       settings: settings()
     )
@@ -491,21 +453,6 @@ enum TMDBSwift {
       debug: debug,
       release: release
     )
-  }
-
-  private static func buildPhases() -> [TargetAction] {
-    commonBuildPhases() + copyCarthageFrameworks()
-  }
-
-  private static func copyCarthageFrameworks() -> [TargetAction] {
-    [
-      TargetAction.post(
-        path: "build_phases/carthage.sh",
-        name: "Copy Carthage frameworks",
-        inputPaths: [ carthageFramworkPathForBuildPhase(named: "Moya") ],
-        outputPaths: [ carthageOutputPath(named: "Moya") ]
-      )
-    ]
   }
 }
 
@@ -548,7 +495,7 @@ enum TMDBSwiftTestable {
       sources: ["TMDBSwiftTestable/**"],
       resources: ["TMDBSwiftTestable/Resources/**/*.{xcassets,png,strings,json}"],
       headers: Headers(public: "TMDBSwiftTestable/Headers/Public/TMDBSwiftTestable.h"),
-      actions: buildPhases(),
+      actions: commonBuildPhases(),
       dependencies: [
         .target(name: TMDBSwift.name),
         .framework(path: carthageFramworkPath(named: "Moya"))
@@ -567,25 +514,6 @@ enum TMDBSwiftTestable {
       release: release
     )
   }
-
-  private static func buildPhases() -> [TargetAction] {
-    commonBuildPhases() + copyCarthageFrameworks()
-  }
-
-  private static func copyCarthageFrameworks() -> [TargetAction] {
-    [
-      TargetAction.post(
-        path: "build_phases/carthage.sh",
-        name: "Copy Carthage frameworks",
-        inputPaths: [
-          carthageFramworkPathForBuildPhase(named: "Moya")
-        ],
-        outputPaths: [
-          carthageOutputPath(named: "Moya")
-        ]
-      )
-    ]
-  }
 }
 
 enum TVDBSwift {
@@ -601,6 +529,10 @@ enum TVDBSwift {
       sources: ["TVDBSwift/**"],
       headers: Headers(public: "TVDBSwift/Headers/Public/TVDBSwift.h"),
       actions: commonBuildPhases(),
+      dependencies: [
+        .framework(path: carthageFramworkPath(named: "Moya")),
+        .framework(path: carthageFramworkPath(named: "Alamofire"))
+      ],
       settings: settings()
     )
   }
@@ -630,7 +562,8 @@ enum TVDBSwiftTests {
       sources: ["TVDBSwiftTests/**"],
       dependencies: [
         .target(name: TVDBSwiftTestable.name),
-        .target(name: TVDBSwift.name)
+        .target(name: TVDBSwift.name),
+        .framework(path: carthageFramworkPath(named: "Moya"))
       ],
       settings: settings()
     )
