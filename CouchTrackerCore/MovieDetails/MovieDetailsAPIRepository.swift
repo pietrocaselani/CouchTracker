@@ -1,4 +1,4 @@
-import Moya
+import RxMoya
 import RxSwift
 import TraktSwift
 

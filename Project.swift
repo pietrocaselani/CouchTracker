@@ -234,7 +234,8 @@ enum CouchTrackerCore {
       dependencies: [
         .target(name: TMDBSwift.name),
         .target(name: TVDBSwift.name),
-        .target(name: TraktSwift.name)
+        .target(name: TraktSwift.name),
+        .framework(path: carthageFramworkPath(named: "RxSwift"))
       ],
       settings: settings()
     )
@@ -267,7 +268,10 @@ enum CouchTrackerCoreTests {
         .target(name: CouchTrackerCore.name),
         .target(name: TraktSwiftTestable.name),
         .target(name: TMDBSwiftTestable.name),
-        .target(name: TVDBSwiftTestable.name)
+        .target(name: TVDBSwiftTestable.name),
+        .framework(path: carthageFramworkPath(named: "RxTest")),
+        .framework(path: carthageFramworkPath(named: "Nimble")),
+        .framework(path: carthageFramworkPath(named: "RxMoya"))
       ],
       settings: settings()
     )
