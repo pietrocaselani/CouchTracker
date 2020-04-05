@@ -1,4 +1,5 @@
 import RxSwift
+import RxMoya
 
 func syncWatchedShows(extended: [Extended]) -> Single<[BaseShow]> {
   trakt.sync.rx.request(.watched(type: .shows, extended: extended)).map([BaseShow].self)

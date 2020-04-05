@@ -165,6 +165,10 @@ enum CouchTrackerPersistence {
       sources: ["CouchTrackerPersistence/**"],
       headers: Headers(public: "CouchTrackerPersistence/Headers/Public/CouchTrackerPersistence.h"),
       actions: commonBuildPhases(),
+      dependencies: [
+        .framework(path: carthageFramworkPath(named: "RxSwift")),
+        .framework(path: carthageFramworkPath(named: "RealmSwift"))
+      ],
       settings: settings()
     )
   }
@@ -288,7 +292,8 @@ enum CouchTrackerSync {
       headers: Headers(public: "CouchTrackerSync/Headers/Public/CouchTrackerSync.h"),
       actions: commonBuildPhases(),
       dependencies: [
-        .target(name: TraktSwift.name)
+        .target(name: TraktSwift.name),
+        .framework(path: carthageFramworkPath(named: "RxMoya"))
       ],
       settings: settings()
     )
@@ -320,7 +325,10 @@ enum CouchTrackerSyncTests {
       resources: ["CouchTrackerSyncTests/**/*.json"],
       dependencies: [
         .target(name: CouchTrackerSync.name),
-        .target(name: TraktSwiftTestable.name)
+        .target(name: TraktSwiftTestable.name),
+        .framework(path: carthageFramworkPath(named: "SnapshotTesting")),
+        .framework(path: carthageFramworkPath(named: "RxTest")),
+        .framework(path: carthageFramworkPath(named: "Alamofire"))
       ],
       settings: settings()
     )
