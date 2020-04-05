@@ -51,5 +51,5 @@ private func filterReturning(_ entity: WatchedShowEntity) -> Bool {
 }
 
 private func filterReturningWatched(_ entity: WatchedShowEntity) -> Bool {
-  filterWatched(entity) && filterReturning(entity)
+  filterWatched(entity) || filterReturning(entity)
 }
