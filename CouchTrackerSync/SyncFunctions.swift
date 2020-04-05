@@ -44,7 +44,9 @@ private func createWatchedShow(showData: ShowDataForSyncing, allGenres: Set<Genr
   return mapTraktShowToDomainShow(showData: showData, genres: showGenres, seasons: watchedSeasons)
 }
 
-private func createWatchedSeasons(showIds: ShowIds, baseSeasons: [BaseSeason], seasons: [Season]) throws -> [WatchedSeason] {
+private func createWatchedSeasons(showIds: ShowIds,
+                                  baseSeasons: [BaseSeason],
+                                  seasons: [Season]) throws -> [WatchedSeason] {
   try seasons.compactMap { season -> WatchedSeason? in
     guard let baseSeason = baseSeasons.first(where: { season.number == $0.number }) else { return nil }
     return try createWatchedSeason(showIds: showIds, baseSeason: baseSeason, season: season)
@@ -73,7 +75,10 @@ private func createWatchedSeason(showIds: ShowIds, baseSeason: BaseSeason, seaso
                        network: season.network)
 }
 
-private func createWatchedEpisode(showIds: ShowIds, baseEpisode: BaseEpisode, episode: TraktSwift.Episode) -> WatchedEpisode {
+private func createWatchedEpisode(showIds: ShowIds,
+                                  baseEpisode: BaseEpisode,
+                                  episode: TraktSwift.Episode)
+  -> WatchedEpisode {
   let episode = Episode(ids: episode.ids,
                         showIds: showIds,
                         title: episode.title,
@@ -89,7 +94,10 @@ private func createWatchedEpisode(showIds: ShowIds, baseEpisode: BaseEpisode, ep
   return WatchedEpisode(episode: episode, lastWatched: baseEpisode.lastWatchedAt)
 }
 
-private func mapTraktShowToDomainShow(showData: ShowDataForSyncing, genres: [Genre], seasons: [WatchedSeason]) -> DomainShow {
+private func mapTraktShowToDomainShow(showData: ShowDataForSyncing,
+                                      genres: [Genre],
+                                      seasons: [WatchedSeason])
+  -> DomainShow {
   let progressShow = showData.progressShow
   let traktShow = showData.show
 

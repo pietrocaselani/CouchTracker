@@ -29,23 +29,27 @@ public enum ShowProgressFilter: String {
   }
 
   public func filter() -> (WatchedShowEntity) -> Bool {
-    if self == .none { return filterNone() }
-    if self == .watched { return filterWatched() }
-    if self == .returning { return filterReturning() }
-    return filterReturningWatched()
-  }
-
-  private func filterNone() -> (WatchedShowEntity) -> Bool { { _ in true } }
-
-  private func filterWatched() -> (WatchedShowEntity) -> Bool { { (entity: WatchedShowEntity) in
-    (entity.aired ?? -1) - (entity.completed ?? -1) > 0 }
-  }
-
-  private func filterReturning() -> (WatchedShowEntity) -> Bool { { (entity: WatchedShowEntity) in entity.show.status == Status.returning }
-  }
-
-  private func filterReturningWatched() -> (WatchedShowEntity) -> Bool { { (entity: WatchedShowEntity) in
-    (entity.aired ?? -1) - (entity.completed ?? -1) > 0 || entity.show.status == Status.returning
+    switch self {
+    case .none: return filterNone(_:)
+    case .watched: return filterWatched(_:)
+    case .returning: return filterReturning(_:)
+    case .returningWatched: return filterReturningWatched(_:)
     }
   }
+}
+
+private func filterNone(_ entity: WatchedShowEntity) -> Bool {
+  true
+}
+
+private func filterWatched(_ entity: WatchedShowEntity) -> Bool {
+  (entity.aired ?? -1) - (entity.completed ?? -1) > 0
+}
+
+private func filterReturning(_ entity: WatchedShowEntity) -> Bool {
+  entity.show.status == .returning
+}
+
+private func filterReturningWatched(_ entity: WatchedShowEntity) -> Bool {
+  filterWatched(entity) && filterReturning(entity)
 }

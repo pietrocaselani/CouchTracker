@@ -32,6 +32,9 @@ opt_in_rules:
   - yoda_condition
   - closure_end_indentation
 
+disabled_rules:
+  - large_tuple
+
 indentation: 2
 
 type_name:

@@ -35,7 +35,9 @@ public final class MovieDetailsService: MovieDetailsInteractor {
                                         watchedAt = nil
                                       }
 
-                                      return MovieEntityMapper.entity(for: movie, with: movieGenres, watchedAt: watchedAt)
+                                      return MovieEntityMapper.entity(for: movie,
+                                                                      with: movieGenres,
+                                                                      watchedAt: watchedAt)
     }
   }
 

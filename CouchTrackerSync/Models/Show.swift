@@ -21,8 +21,10 @@ public struct Show: Hashable, Codable {
     }
   }
 
-  public init(ids: ShowIds, title: String?, overview: String?, network: String?, genres: [Genre], status: Status?,
-              firstAired: Date?, seasons: [WatchedSeason], aired: Int?, nextEpisode: WatchedEpisode?, watched: Watched?) {
+  public init(ids: ShowIds, title: String?, overview: String?,
+              network: String?, genres: [Genre], status: Status?,
+              firstAired: Date?, seasons: [WatchedSeason], aired: Int?,
+              nextEpisode: WatchedEpisode?, watched: Watched?) {
     self.ids = ids
     self.title = title
     self.overview = overview
