@@ -63,7 +63,13 @@ enum CouchTracker {
         .target(name: CouchTrackerCore.name),
         .target(name: TMDBSwift.name),
         .target(name: TVDBSwift.name),
-        .target(name: TraktSwift.name)
+        .target(name: TraktSwift.name),
+        .framework(path: carthageFramworkPath(named: "RxSwift")),
+        .framework(path: carthageFramworkPath(named: "RxCocoa")),
+        .framework(path: carthageFramworkPath(named: "RxRelay")),
+        .framework(path: carthageFramworkPath(named: "RxMoya")),
+        .framework(path: carthageFramworkPath(named: "Realm")),
+        .framework(path: carthageFramworkPath(named: "RxRealm"))
       ],
       settings: settings()
     )
@@ -102,7 +108,9 @@ enum CouchTrackerApp {
         .target(name: CouchTrackerCore.name),
         .target(name: TMDBSwift.name),
         .target(name: TVDBSwift.name),
-        .target(name: TraktSwift.name)
+        .target(name: TraktSwift.name),
+        .framework(path: carthageFramworkPath(named: "RxSwift")),
+        .framework(path: carthageFramworkPath(named: "RxCocoa"))
       ],
       settings: settings()
     )
