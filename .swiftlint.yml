@@ -3,6 +3,7 @@ excluded:
   - GeneratedFiles
   - vendor
   - CouchTrackerCoreTests
+  - CouchTrackerSyncTests
   - CouchTrackerUITests
   - CouchTrackerAppTestable
   - TraktSwiftTests
@@ -12,6 +13,7 @@ excluded:
   - TVDBSwiftTests
   - TVDBSwiftTestable
   - CouchTrackerPlayground.playground
+  - Carthage/
 
 opt_in_rules:
   - force_unwrapping
@@ -30,6 +32,9 @@ opt_in_rules:
   - yoda_condition
   - closure_end_indentation
 
+disabled_rules:
+  - large_tuple
+
 indentation: 2
 
 type_name:
@@ -40,6 +45,9 @@ identifier_name:
   severity: error
   excluded:
     - id
+    - a # Used for generic functions
+    - b # Used for generic functions
+    - Current
 
 yoda_condition:
   severity: error

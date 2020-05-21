@@ -1,5 +1,7 @@
 import ProjectDescription
 
+// swiftlint:disable: file_length
+
 // MARK: - Extensions
 
 func + (lhs: [String: String], rhs: [String: String]) -> [String: String] {
@@ -8,8 +10,30 @@ func + (lhs: [String: String], rhs: [String: String]) -> [String: String] {
 
 extension Dictionary where Key == String, Value == String {
   func asConfig() -> Configuration {
-    Configuration(settings: self)
+    Configuration(settings: mapValues(SettingValue.init(stringLiteral:)))
   }
+}
+
+// MARK: - Common
+
+private func carthageFramworkPath(named name: String) -> Path {
+  Path("./Carthage/Build/iOS//\(name).framework")
+}
+
+private func carthageFramworkPathForBuildPhase(named name: String) -> Path {
+  Path("$(SRCROOT)/Carthage/Build/iOS//\(name).framework")
+}
+
+private func carthageOutputPath(named name: String) -> Path {
+  Path("$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)//\(name).framework")
+}
+
+private func actionSwiftLint() -> TargetAction {
+  TargetAction.post(path: "build_phases/swiftlint", arguments: [], name: "SwiftLint")
+}
+
+private func commonBuildPhases() -> [TargetAction] {
+  [ actionSwiftLint() ]
 }
 
 // MARK: - Constants
@@ -31,7 +55,7 @@ enum CouchTracker {
       infoPlist: "CouchTracker/Info.plist",
       sources: ["CouchTracker/**"],
       resources: ["CouchTracker/Resources/**/*.{xcassets,png,strings,json,storyboard}"],
-      actions: buildPhases(),
+      actions: commonBuildPhases(),
       dependencies: [
         .target(name: CouchTrackerApp.name),
         .target(name: CouchTrackerPersistence.name),
@@ -39,7 +63,13 @@ enum CouchTracker {
         .target(name: CouchTrackerCore.name),
         .target(name: TMDBSwift.name),
         .target(name: TVDBSwift.name),
-        .target(name: TraktSwift.name)
+        .target(name: TraktSwift.name),
+        .framework(path: carthageFramworkPath(named: "RxSwift")),
+        .framework(path: carthageFramworkPath(named: "RxCocoa")),
+        .framework(path: carthageFramworkPath(named: "RxRelay")),
+        .framework(path: carthageFramworkPath(named: "RxMoya")),
+        .framework(path: carthageFramworkPath(named: "Realm")),
+        .framework(path: carthageFramworkPath(named: "RxRealm"))
       ],
       settings: settings()
     )
@@ -56,12 +86,6 @@ enum CouchTracker {
 
     return Settings(debug: debug, release: release)
   }
-
-  private static func buildPhases() -> [TargetAction] {
-    [
-      TargetAction.post(path: "build_phases/swiftlint", arguments: [], name: "SwiftLint")
-    ]
-  }
 }
 
 enum CouchTrackerApp {
@@ -77,13 +101,16 @@ enum CouchTrackerApp {
       sources: ["CouchTrackerApp/**"],
       resources: ["CouchTrackerApp/Resources/**/*.{xcassets,png,strings,json}"],
       headers: Headers(public: "CouchTrackerApp/Headers/Public/CouchTrackerApp.h"),
+      actions: commonBuildPhases(),
       dependencies: [
         .target(name: CouchTrackerPersistence.name),
         .target(name: CouchTrackerDebug.name),
         .target(name: CouchTrackerCore.name),
         .target(name: TMDBSwift.name),
         .target(name: TVDBSwift.name),
-        .target(name: TraktSwift.name)
+        .target(name: TraktSwift.name),
+        .framework(path: carthageFramworkPath(named: "RxSwift")),
+        .framework(path: carthageFramworkPath(named: "RxCocoa"))
       ],
       settings: settings()
     )
@@ -145,6 +172,11 @@ enum CouchTrackerPersistence {
       infoPlist: "CouchTrackerPersistence/Info.plist",
       sources: ["CouchTrackerPersistence/**"],
       headers: Headers(public: "CouchTrackerPersistence/Headers/Public/CouchTrackerPersistence.h"),
+      actions: commonBuildPhases(),
+      dependencies: [
+        .framework(path: carthageFramworkPath(named: "RxSwift")),
+        .framework(path: carthageFramworkPath(named: "RealmSwift"))
+      ],
       settings: settings()
     )
   }
@@ -173,6 +205,7 @@ enum CouchTrackerDebug {
       infoPlist: "CouchTrackerDebug/Info.plist",
       sources: ["CouchTrackerDebug/**"],
       headers: Headers(public: "CouchTrackerDebug/Headers/Public/CouchTrackerDebug.h"),
+      actions: commonBuildPhases(),
       dependencies: [
         .target(name: CouchTrackerCore.name)
       ],
@@ -205,10 +238,12 @@ enum CouchTrackerCore {
       sources: ["CouchTrackerCore/**", "CommonSources/**"],
       resources: ["CouchTrackerCore/Resources/**/*.{xcassets,png,strings,json}"],
       headers: Headers(public: "CouchTrackerCore/Headers/Public/CouchTrackerCore.h"),
+      actions: commonBuildPhases(),
       dependencies: [
         .target(name: TMDBSwift.name),
         .target(name: TVDBSwift.name),
-        .target(name: TraktSwift.name)
+        .target(name: TraktSwift.name),
+        .framework(path: carthageFramworkPath(named: "RxSwift"))
       ],
       settings: settings()
     )
@@ -241,7 +276,10 @@ enum CouchTrackerCoreTests {
         .target(name: CouchTrackerCore.name),
         .target(name: TraktSwiftTestable.name),
         .target(name: TMDBSwiftTestable.name),
-        .target(name: TVDBSwiftTestable.name)
+        .target(name: TVDBSwiftTestable.name),
+        .framework(path: carthageFramworkPath(named: "RxTest")),
+        .framework(path: carthageFramworkPath(named: "Nimble")),
+        .framework(path: carthageFramworkPath(named: "RxMoya"))
       ],
       settings: settings()
     )
@@ -264,8 +302,10 @@ enum CouchTrackerSync {
       infoPlist: "CouchTrackerSync/Info.plist",
       sources: ["CouchTrackerSync/**", "CommonSources/**"],
       headers: Headers(public: "CouchTrackerSync/Headers/Public/CouchTrackerSync.h"),
+      actions: commonBuildPhases(),
       dependencies: [
-        .target(name: TraktSwift.name)
+        .target(name: TraktSwift.name),
+        .framework(path: carthageFramworkPath(named: "RxMoya"))
       ],
       settings: settings()
     )
@@ -297,7 +337,10 @@ enum CouchTrackerSyncTests {
       resources: ["CouchTrackerSyncTests/**/*.json"],
       dependencies: [
         .target(name: CouchTrackerSync.name),
-        .target(name: TraktSwiftTestable.name)
+        .target(name: TraktSwiftTestable.name),
+        .framework(path: carthageFramworkPath(named: "SnapshotTesting")),
+        .framework(path: carthageFramworkPath(named: "RxTest")),
+        .framework(path: carthageFramworkPath(named: "Alamofire"))
       ],
       settings: settings()
     )
@@ -320,6 +363,8 @@ enum TraktSwift {
       infoPlist: "TraktSwift/Info.plist",
       sources: ["TraktSwift/**"],
       headers: Headers(public: "TraktSwift/Headers/Public/TraktSwift.h"),
+      actions: commonBuildPhases(),
+      dependencies: [.framework(path: carthageFramworkPath(named: "Moya"))],
       settings: settings()
     )
   }
@@ -349,7 +394,12 @@ enum TraktSwiftTests {
       sources: ["TraktSwiftTests/**"],
       dependencies: [
         .target(name: TraktSwiftTestable.name),
-        .target(name: TraktSwift.name)
+        .target(name: TraktSwift.name),
+        .framework(path: carthageFramworkPath(named: "RxSwift")),
+        .framework(path: carthageFramworkPath(named: "RxTest")),
+        .framework(path: carthageFramworkPath(named: "Moya")),
+        .framework(path: carthageFramworkPath(named: "RxMoya")),
+        .framework(path: carthageFramworkPath(named: "Alamofire"))
       ],
       settings: settings()
     )
@@ -373,8 +423,12 @@ enum TraktSwiftTestable {
       sources: ["TraktSwiftTestable/**"],
       resources: ["TraktSwiftTestable/Resources/**/*.{xcassets,png,strings,json}"],
       headers: Headers(public: "TraktSwiftTestable/Headers/Public/TraktSwiftTestable.h"),
+      actions: commonBuildPhases(),
       dependencies: [
-        .target(name: TraktSwift.name)
+        .target(name: TraktSwift.name),
+        .framework(path: carthageFramworkPath(named: "RxSwift")),
+        .framework(path: carthageFramworkPath(named: "RxTest")),
+        .framework(path: carthageFramworkPath(named: "Moya"))
       ],
       settings: settings()
     )
@@ -404,6 +458,8 @@ enum TMDBSwift {
       infoPlist: "TMDBSwift/Info.plist",
       sources: ["TMDBSwift/**"],
       headers: Headers(public: "TMDBSwift/Headers/Public/TMDBSwift.h"),
+      actions: commonBuildPhases(),
+      dependencies: [.framework(path: carthageFramworkPath(named: "Moya"))],
       settings: settings()
     )
   }
@@ -433,7 +489,9 @@ enum TMDBSwiftTests {
       sources: ["TMDBSwiftTests/**"],
       dependencies: [
         .target(name: TMDBSwiftTestable.name),
-        .target(name: TMDBSwift.name)
+        .target(name: TMDBSwift.name),
+        .framework(path: carthageFramworkPath(named: "Moya")),
+        .framework(path: carthageFramworkPath(named: "Alamofire"))
       ],
       settings: settings()
     )
@@ -457,8 +515,10 @@ enum TMDBSwiftTestable {
       sources: ["TMDBSwiftTestable/**"],
       resources: ["TMDBSwiftTestable/Resources/**/*.{xcassets,png,strings,json}"],
       headers: Headers(public: "TMDBSwiftTestable/Headers/Public/TMDBSwiftTestable.h"),
+      actions: commonBuildPhases(),
       dependencies: [
-        .target(name: TMDBSwift.name)
+        .target(name: TMDBSwift.name),
+        .framework(path: carthageFramworkPath(named: "Moya"))
       ],
       settings: settings()
     )
@@ -488,6 +548,11 @@ enum TVDBSwift {
       infoPlist: "TVDBSwift/Info.plist",
       sources: ["TVDBSwift/**"],
       headers: Headers(public: "TVDBSwift/Headers/Public/TVDBSwift.h"),
+      actions: commonBuildPhases(),
+      dependencies: [
+        .framework(path: carthageFramworkPath(named: "Moya")),
+        .framework(path: carthageFramworkPath(named: "Alamofire"))
+      ],
       settings: settings()
     )
   }
@@ -517,7 +582,8 @@ enum TVDBSwiftTests {
       sources: ["TVDBSwiftTests/**"],
       dependencies: [
         .target(name: TVDBSwiftTestable.name),
-        .target(name: TVDBSwift.name)
+        .target(name: TVDBSwift.name),
+        .framework(path: carthageFramworkPath(named: "Moya"))
       ],
       settings: settings()
     )
@@ -661,8 +727,8 @@ enum AllTests {
   static let name = "AllTests"
 
   static func scheme() -> Scheme {
-    let allTargetNames = allTargets().map { $0.name }
-    let testTargetNames = alliOSTestTargets().map { $0.name }
+    let allTargetNames = allTargets().map { TargetReference(stringLiteral: $0.name) }
+    let testTargetNames = alliOSTestTargets().map { TestableTarget(stringLiteral: $0.name) }
 
     return Scheme(
       name: AllTests.name,
@@ -701,8 +767,7 @@ func additionalFiles() -> [FileElement] {
     "scripts",
     "setup.sh",
     "sonar-project.properties",
-    "CouchTrackerPlayground.playground",
-    "CommonSources"
+    "CouchTrackerPlayground.playground"
   ]
 }
 

@@ -11,7 +11,7 @@ public final class SeasonIdsRealm: Object {
   }
 
   public override func isEqual(_ object: Any?) -> Bool {
-    guard let entity = object as? EpisodeIdsRealm else { return false }
+    guard let entity = object as? SeasonIdsRealm else { return false }
 
     return self == entity
   }

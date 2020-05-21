@@ -7,14 +7,14 @@
 {{ enum.accessLevel }} extension {{ enum.name }} {
     {% for case in enum.cases %}
     {% if case.hasAssociatedValue %}
-    {{ enum.accessLevel }} func on{{ case.name|upperFirstLetter }}(_ fn: ({% call associatedValueTypes case.associatedValues %}) -> Void) {
+    func on{{ case.name|upperFirstLetter }}(_ action: ({% call associatedValueTypes case.associatedValues %}) -> Void) {
         guard case let .{{ case.name }}({% call associatedValueNames case.associatedValues %}) = self else { return }
-        fn({% call associatedValueNames case.associatedValues %})
+        action({% call associatedValueNames case.associatedValues %})
     }
     {% else %}
-    {{ enum.accessLevel }} func on{{ case.name|upperFirstLetter }}(_ fn: () -> Void) {
+    func on{{ case.name|upperFirstLetter }}(_ action: () -> Void) {
         guard case .{{ case.name }} = self else { return }
-        fn()
+        action()
     }
     {% endif %}
     {% endfor %}

@@ -1,6 +1,6 @@
 import RealmSwift
 
-public final class ShowEntityRealm: Object {
+public final class ShowRealm: Object {
   @objc private dynamic var identifier = ""
   @objc private dynamic var backingIds: ShowIdsRealm?
   @objc public dynamic var title: String?
@@ -9,15 +9,18 @@ public final class ShowEntityRealm: Object {
   public let genres = List<GenreRealm>()
   @objc public dynamic var status: String?
   @objc public dynamic var firstAired: Date?
+  public let seasons = List<WatchedSeasonRealm>()
+  public let aired = RealmOptional<Int>()
+  public let completed = RealmOptional<Int>()
+  @objc public dynamic var nextEpisode: WatchedEpisodeRealm?
+  @objc public dynamic var lastEpisode: WatchedEpisodeRealm?
 
   public var ids: ShowIdsRealm? {
-    get {
-      backingIds
-    }
+    get { backingIds }
     set {
       backingIds = newValue
       if let traktId = newValue?.trakt {
-        let typeName = String(describing: ShowEntityRealm.self)
+        let typeName = String(describing: ShowRealm.self)
         identifier = "\(typeName)-\(traktId)"
       }
     }
@@ -32,19 +35,23 @@ public final class ShowEntityRealm: Object {
   }
 
   public override func isEqual(_ object: Any?) -> Bool {
-    guard let entity = object as? ShowEntityRealm else { return false }
-
+    guard let entity = object as? ShowRealm else { return false }
     return self == entity
   }
 
-  public static func == (lhs: ShowEntityRealm, rhs: ShowEntityRealm) -> Bool {
+  public static func == (lhs: ShowRealm, rhs: ShowRealm) -> Bool {
     lhs.identifier == rhs.identifier &&
       lhs.backingIds == rhs.backingIds &&
       lhs.title == rhs.title &&
       lhs.overview == rhs.overview &&
       lhs.network == rhs.network &&
-      lhs.genres.toArray() == rhs.genres.toArray() &&
+      lhs.genres == rhs.genres &&
       lhs.status == rhs.status &&
-      lhs.firstAired == rhs.firstAired
+      lhs.firstAired == rhs.firstAired &&
+      lhs.seasons == rhs.seasons &&
+      lhs.aired.value == rhs.aired.value &&
+      lhs.nextEpisode == rhs.nextEpisode &&
+      lhs.completed.value == rhs.completed.value &&
+      lhs.lastEpisode == rhs.lastEpisode
   }
 }

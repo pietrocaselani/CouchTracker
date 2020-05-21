@@ -11,12 +11,7 @@ platform :ios do
     secrets_param = branch == 'master' ? '' : 'empty'
 
     sh("../scripts/generate_secrets #{secrets_param}", log: false)
-    sh('cd .. && tuist generate')
-    pods
-  end
-
-  desc 'Run bundle exec pod install --repo-update'
-  lane :pods do
+    sh('../start-development.sh')
     cocoapods(podfile: '.', repo_update: false)
   end
 

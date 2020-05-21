@@ -1,6 +1,6 @@
 import RealmSwift
 
-public final class EpisodeEntityRealm: Object {
+public final class EpisodeRealm: Object {
   @objc private dynamic var identifier = ""
   @objc private dynamic var backingIds: EpisodeIdsRealm?
   @objc public dynamic var showIds: ShowIdsRealm?
@@ -10,15 +10,16 @@ public final class EpisodeEntityRealm: Object {
   @objc public dynamic var season = -1
   @objc public dynamic var firstAired: Date?
   public var absoluteNumber = RealmOptional<Int>()
+  public var runtime = RealmOptional<Int>()
+  public var rating = RealmOptional<Double>()
+  public var votes = RealmOptional<Int>()
 
   public var ids: EpisodeIdsRealm? {
-    get {
-      backingIds
-    }
+    get { backingIds }
     set {
       backingIds = newValue
       if let traktId = newValue?.trakt {
-        let typeName = String(describing: EpisodeEntityRealm.self)
+        let typeName = String(describing: EpisodeRealm.self)
         identifier = "\(typeName)-\(traktId)"
       }
     }
@@ -33,12 +34,12 @@ public final class EpisodeEntityRealm: Object {
   }
 
   public override func isEqual(_ object: Any?) -> Bool {
-    guard let entity = object as? EpisodeEntityRealm else { return false }
+    guard let entity = object as? EpisodeRealm else { return false }
 
     return self == entity
   }
 
-  public static func == (lhs: EpisodeEntityRealm, rhs: EpisodeEntityRealm) -> Bool {
+  public static func == (lhs: EpisodeRealm, rhs: EpisodeRealm) -> Bool {
     lhs.identifier == rhs.identifier &&
       lhs.backingIds == rhs.backingIds &&
       lhs.showIds == rhs.showIds &&
@@ -47,6 +48,9 @@ public final class EpisodeEntityRealm: Object {
       lhs.number == rhs.number &&
       lhs.season == rhs.season &&
       lhs.firstAired == rhs.firstAired &&
-      lhs.absoluteNumber.value == rhs.absoluteNumber.value
+      lhs.absoluteNumber.value == rhs.absoluteNumber.value &&
+      lhs.runtime.value == rhs.runtime.value &&
+      lhs.rating.value == rhs.rating.value &&
+      lhs.votes.value == rhs.votes.value
   }
 }

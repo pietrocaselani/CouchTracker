@@ -1,4 +1,5 @@
 import SnapshotTesting
+import Foundation
 
 extension Snapshotting where Value: Encodable, Format == String {
   public static var unsortedJSON: Snapshotting {

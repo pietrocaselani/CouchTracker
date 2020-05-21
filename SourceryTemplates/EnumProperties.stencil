@@ -7,14 +7,14 @@
 {% for enum in types.enums|based:"EnumProperties" %}
 {{ enum.accessLevel }} extension {{ enum.name }} {
     {% for case in enum.cases %}
-    {{ enum.accessLevel }} var is{{ case.name|upperFirstLetter }}: Bool {
+    var is{{ case.name|upperFirstLetter }}: Bool {
         guard case .{{ case.name }} = self else { return false }
         return true
     }
     {% endfor %}
     {% for case in enum.cases %}
     {% if case.hasAssociatedValue %}
-    {{ enum.accessLevel }} var {{ case.name }}: {% call associatedTypeAsTuple case.associatedValues %}? {
+    var {{ case.name }}: {% call associatedTypeAsTuple case.associatedValues %}? {
         guard case let .{{ case.name }}({% call associatedValueNames case.associatedValues %}) = self else { return nil }
         return ({% call associatedValueNames case.associatedValues %})
     }

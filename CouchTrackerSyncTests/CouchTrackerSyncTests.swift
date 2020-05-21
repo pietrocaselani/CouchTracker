@@ -33,24 +33,24 @@ final class CouchTrackerSyncTests: XCTestCase {
                                   tvdb: 264586,
                                   tvrage: 32950)
 
-    Current.syncWatchedShows = { extended in
+    Current.api.syncWatchedShows = { extended in
       XCTAssertEqual(extended, [.full, .noSeasons])
       return .just(decode(file: "syncWatchedShows", as: [BaseShow].self))
     }
 
-    Current.watchedProgress = { watchedProgressOptions, showIds in
+    Current.api.watchedProgress = { watchedProgressOptions, showIds in
       XCTAssertEqual(watchedProgressOptions, expectedWatchedProgressOptions)
       XCTAssertEqual(showIds, expectedShowIds)
       return .just(decode(file: "watchedProgress", as: BaseShow.self))
     }
 
-    Current.seasonsForShow = { showIds, extended in
+    Current.api.seasonsForShow = { showIds, extended in
       XCTAssertEqual(showIds, expectedShowIds)
       XCTAssertEqual(extended, [.full, .episodes])
       return .just(decode(file: "seasonsForShow", as: [Season].self))
     }
 
-    Current.genres = {
+    Current.api.genres = {
       let movies = Single.just(decode(file: "genresForMovies", as: [Genre].self))
       let shows = Single.just(decode(file: "genresForShows", as: [Genre].self))
       return Single.zip(movies, shows).map { Set($0 + $1) }
@@ -58,7 +58,7 @@ final class CouchTrackerSyncTests: XCTestCase {
 
     let trakt = TestableTrakt()
 
-    let observer = scheduler.start { () -> Observable<WatchedShow> in
+    let observer = scheduler.start { () -> Observable<CouchTrackerSync.Show> in
       let startModule = setupSyncModule(trakt: trakt)
       return startModule(.defaultOptions)
     }

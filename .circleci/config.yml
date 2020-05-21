@@ -12,17 +12,11 @@ jobs:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
       - restore_cache:
           key: 1-pods-{{ checksum "Podfile.lock" }}
+      - restore_cache:
+          key: 1-carthage-{{ checksum "Cartfile.resolved" }}
       - run:
           name: Setup build dependencies
           command: bash setup.sh
-      - save_cache:
-          key: 1-gems-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-      - save_cache:
-          key: 1-pods-{{ checksum "Podfile.lock" }}
-          paths:
-            - Pods
       - run:
           name: Build and run tests
           command: bundle exec fastlane lint
@@ -42,6 +36,18 @@ jobs:
       - store_artifacts:
           path: ~/Library/Logs/scan
           destination: scan-logs
+      - save_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - save_cache:
+          key: 1-pods-{{ checksum "Podfile.lock" }}
+          paths:
+            - Pods
+      - save_cache:
+          key: 1-carthage-{{ checksum "Cartfile.resolved" }}
+          paths:
+            - Carthage/Build/iOS
   beta-release:
     macos:
       xcode: '11.2.1'
@@ -53,9 +59,14 @@ jobs:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
       - restore_cache:
           key: 1-pods-{{ checksum "Podfile.lock" }}
+      - restore_cache:
+          key: 1-carthage-{{ checksum "Cartfile.resolved" }}
       - run:
           name: Setup build dependencies
           command: bash setup.sh
+      - run:
+          name: Release to Test Flight
+          command: bundle exec fastlane beta
       - save_cache:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
           paths:
@@ -64,9 +75,10 @@ jobs:
           key: 1-pods-{{ checksum "Podfile.lock" }}
           paths:
             - Pods
-      - run:
-          name: Release to Test Flight
-          command: bundle exec fastlane beta
+      - save_cache:
+          key: 1-carthage-{{ checksum "Cartfile.resolved" }}
+          paths:
+            - Carthage/Build/iOS
 
 workflows:
   version: 2

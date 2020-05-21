@@ -58,7 +58,8 @@ final class ShowsProgressViewController: UIViewController {
                                    cellType: cellType)) { [localCellInteractor = cellInteractor] _, model, cell in
                                     let viewModel = WatchedShowEntityMapper.viewModel(for: model)
 
-                                    let presenter = ShowProgressCellDefaultPresenter(interactor: localCellInteractor, viewModel: viewModel)
+                                    let presenter = ShowProgressCellDefaultPresenter(interactor: localCellInteractor,
+                                                                                     viewModel: viewModel)
                                     cell.presenter = presenter
       }.disposed(by: disposeBag)
 

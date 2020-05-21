@@ -1,7 +1,9 @@
 import Foundation
 
-extension Bundle {
-  public static let couchTrackerCore = Bundle(identifier: "io.github.pietrocaselani.CouchTrackerCore")! // swiftlint:disable force_unwrapping
+public extension Bundle {
+  // swiftlint:disable force_unwrapping
+  static let couchTrackerCore = Bundle(identifier: "io.github.pietrocaselani.CouchTrackerCore")!
+  // swiftlint:enable force_unwrapping
 }
 
 public func couchTrackerCoreLocalizable(key: String,

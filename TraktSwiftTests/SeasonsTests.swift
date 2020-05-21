@@ -3,6 +3,7 @@ import RxSwift
 import RxTest
 import TraktSwift
 import XCTest
+import RxMoya
 
 final class SeasonsTests: XCTestCase {
   private let seasonsProvider = MoyaProvider<Seasons>(stubClosure: MoyaProvider.immediatelyStub)
