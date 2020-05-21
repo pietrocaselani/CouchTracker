@@ -665,7 +665,7 @@ func sharedBaseReleaseSettings() -> [String: String] {
 
 func iOSBaseSettings() -> [String: String] {
   [
-    "IPHONEOS_DEPLOYMENT_TARGET":  miniOSVersion,
+    "IPHONEOS_DEPLOYMENT_TARGET": miniOSVersion,
     "TARGETED_DEVICE_FAMILY": "1",
     "CODE_SIGN_STYLE": "Manual",
     "DEVELOPMENT_TEAM": "B5RPM7SE3L"
