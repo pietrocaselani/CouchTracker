@@ -79,45 +79,45 @@ private func createWatchedEpisode(showIds: ShowIds,
                                   baseEpisode: BaseEpisode,
                                   episode: TraktSwift.Episode)
   -> WatchedEpisode {
-  let episode = Episode(ids: episode.ids,
-                        showIds: showIds,
-                        title: episode.title,
-                        overview: episode.overview,
-                        number: episode.number,
-                        season: episode.season,
-                        firstAired: episode.firstAired,
-                        absoluteNumber: episode.absoluteNumber,
-                        runtime: episode.runtime,
-                        rating: episode.rating,
-                        votes: episode.votes)
+    let episode = Episode(ids: episode.ids,
+                          showIds: showIds,
+                          title: episode.title,
+                          overview: episode.overview,
+                          number: episode.number,
+                          season: episode.season,
+                          firstAired: episode.firstAired,
+                          absoluteNumber: episode.absoluteNumber,
+                          runtime: episode.runtime,
+                          rating: episode.rating,
+                          votes: episode.votes)
 
-  return WatchedEpisode(episode: episode, lastWatched: baseEpisode.lastWatchedAt)
+    return WatchedEpisode(episode: episode, lastWatched: baseEpisode.lastWatchedAt)
 }
 
 private func mapTraktShowToDomainShow(showData: ShowDataForSyncing,
                                       genres: [Genre],
                                       seasons: [WatchedSeason])
   -> DomainShow {
-  let progressShow = showData.progressShow
-  let traktShow = showData.show
+    let progressShow = showData.progressShow
+    let traktShow = showData.show
 
-  let nextEpisode = progressShow.nextEpisode.flatMap { findEpisodeOnSeasons(seasons: seasons, episode: $0) }
-  let lastEpisode = progressShow.lastEpisode.flatMap { findEpisodeOnSeasons(seasons: seasons, episode: $0) }
-  let completed = progressShow.completed
+    let nextEpisode = progressShow.nextEpisode.flatMap { findEpisodeOnSeasons(seasons: seasons, episode: $0) }
+    let lastEpisode = progressShow.lastEpisode.flatMap { findEpisodeOnSeasons(seasons: seasons, episode: $0) }
+    let completed = progressShow.completed
 
-  let watched = zip(completed, lastEpisode).map(DomainShow.Watched.init(completed:lastEpisode:))
+    let watched = zip(completed, lastEpisode).map(DomainShow.Watched.init(completed:lastEpisode:))
 
-  return DomainShow(ids: traktShow.ids,
-                    title: traktShow.title,
-                    overview: traktShow.overview,
-                    network: traktShow.network,
-                    genres: genres,
-                    status: traktShow.status,
-                    firstAired: traktShow.firstAired,
-                    seasons: seasons,
-                    aired: progressShow.aired,
-                    nextEpisode: nextEpisode,
-                    watched: watched)
+    return DomainShow(ids: traktShow.ids,
+                      title: traktShow.title,
+                      overview: traktShow.overview,
+                      network: traktShow.network,
+                      genres: genres,
+                      status: traktShow.status,
+                      firstAired: traktShow.firstAired,
+                      seasons: seasons,
+                      aired: progressShow.aired,
+                      nextEpisode: nextEpisode,
+                      watched: watched)
 }
 
 private func findEpisodeOnSeasons(seasons: [WatchedSeason], episode: TraktSwift.Episode) -> WatchedEpisode? {

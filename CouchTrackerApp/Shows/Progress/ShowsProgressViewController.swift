@@ -1,4 +1,4 @@
-import ActionSheetPicker_3_0
+import CoreActionSheetPicker
 import CouchTrackerCore
 import RxCocoa
 import RxDataSources

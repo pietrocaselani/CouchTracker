@@ -5,8 +5,11 @@ PROJECT_ROOT=$(cd "${SCRIPT_DIR}/.." && pwd)
 
 cd "${PROJECT_ROOT}" || exit 1
 
+TARGET_NAME="$1"
+TARGET_DIR="${PROJECT_ROOT}/${TARGET_NAME}"
+
 if command -v swiftlint >/dev/null; then
-    Pods/SwiftLint/swiftlint --config "${PROJECT_ROOT}/.swiftlint.yml"
+    Pods/SwiftLint/swiftlint --config "${PROJECT_ROOT}/.swiftlint.yml" lint "${TARGET_DIR}"
 else
     echo "warning: SwiftLint is not installed. Vistit http://github.com/realm/SwiftLint to learn more."
 fi

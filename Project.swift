@@ -12,20 +12,16 @@ extension Dictionary where Key == String, Value == String {
   func asConfig() -> Configuration {
     Configuration(settings: mapValues(SettingValue.init(stringLiteral:)))
   }
+
+  func asSettings() -> SettingsDictionary {
+    mapValues(SettingValue.init(stringLiteral:))
+  }
 }
 
 // MARK: - Common
 
 private func carthageFramworkPath(named name: String) -> Path {
   Path("./Carthage/Build/iOS//\(name).framework")
-}
-
-private func carthageFramworkPathForBuildPhase(named name: String) -> Path {
-  Path("$(SRCROOT)/Carthage/Build/iOS//\(name).framework")
-}
-
-private func carthageOutputPath(named name: String) -> Path {
-  Path("$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)//\(name).framework")
 }
 
 private func actionSwiftLint() -> TargetAction {
@@ -110,7 +106,12 @@ enum CouchTrackerApp {
         .target(name: TVDBSwift.name),
         .target(name: TraktSwift.name),
         .framework(path: carthageFramworkPath(named: "RxSwift")),
-        .framework(path: carthageFramworkPath(named: "RxCocoa"))
+        .framework(path: carthageFramworkPath(named: "RxCocoa")),
+        .framework(path: carthageFramworkPath(named: "CoreActionSheetPicker")),
+        .framework(path: carthageFramworkPath(named: "Kingfisher")),
+        .framework(path: carthageFramworkPath(named: "Pageboy")),
+        .framework(path: carthageFramworkPath(named: "Tabman")),
+        .framework(path: carthageFramworkPath(named: "SnapKit"))
       ],
       settings: settings()
     )
@@ -121,7 +122,7 @@ enum CouchTrackerApp {
     let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
 
     return Settings(
-      base: iOSBaseSettings(),
+      base: iOSBaseSettings().asSettings(),
       debug: debug,
       release: release
     )
@@ -153,7 +154,7 @@ enum CouchTrackerAppTestable {
     let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
 
     return Settings(
-      base: iOSBaseSettings(),
+      base: iOSBaseSettings().asSettings(),
       debug: debug,
       release: release
     )
@@ -186,7 +187,7 @@ enum CouchTrackerPersistence {
     let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
 
     return Settings(
-      base: iOSBaseSettings(),
+      base: iOSBaseSettings().asSettings(),
       debug: debug,
       release: release
     )
@@ -218,7 +219,7 @@ enum CouchTrackerDebug {
     let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
 
     return Settings(
-      base: iOSBaseSettings(),
+      base: iOSBaseSettings().asSettings(),
       debug: debug,
       release: release
     )
@@ -254,7 +255,7 @@ enum CouchTrackerCore {
     let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
 
     return Settings(
-      base: iOSBaseSettings(),
+      base: iOSBaseSettings().asSettings(),
       debug: debug,
       release: release
     )
@@ -286,7 +287,7 @@ enum CouchTrackerCoreTests {
   }
 
   private static func settings() -> Settings {
-    Settings(base: iOSBaseSettings())
+    Settings(base: iOSBaseSettings().asSettings())
   }
 }
 
@@ -316,7 +317,7 @@ enum CouchTrackerSync {
     let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
 
     return Settings(
-      base: iOSBaseSettings(),
+      base: iOSBaseSettings().asSettings(),
       debug: debug,
       release: release
     )
@@ -347,7 +348,7 @@ enum CouchTrackerSyncTests {
   }
 
   private static func settings() -> Settings {
-    Settings(base: iOSBaseSettings())
+    Settings(base: iOSBaseSettings().asSettings())
   }
 }
 
@@ -374,7 +375,7 @@ enum TraktSwift {
     let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
 
     return Settings(
-      base: iOSBaseSettings(),
+      base: iOSBaseSettings().asSettings(),
       debug: debug,
       release: release
     )
@@ -406,7 +407,7 @@ enum TraktSwiftTests {
   }
 
   private static func settings() -> Settings {
-    Settings(base: iOSBaseSettings())
+    Settings(base: iOSBaseSettings().asSettings())
   }
 }
 
@@ -439,7 +440,7 @@ enum TraktSwiftTestable {
     let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
 
     return Settings(
-      base: iOSBaseSettings(),
+      base: iOSBaseSettings().asSettings(),
       debug: debug,
       release: release
     )
@@ -469,7 +470,7 @@ enum TMDBSwift {
     let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
 
     return Settings(
-      base: iOSBaseSettings(),
+      base: iOSBaseSettings().asSettings(),
       debug: debug,
       release: release
     )
@@ -498,7 +499,7 @@ enum TMDBSwiftTests {
   }
 
   private static func settings() -> Settings {
-    Settings(base: iOSBaseSettings())
+    Settings(base: iOSBaseSettings().asSettings())
   }
 }
 
@@ -529,7 +530,7 @@ enum TMDBSwiftTestable {
     let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
 
     return Settings(
-      base: iOSBaseSettings(),
+      base: iOSBaseSettings().asSettings(),
       debug: debug,
       release: release
     )
@@ -562,7 +563,7 @@ enum TVDBSwift {
     let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
 
     return Settings(
-      base: iOSBaseSettings(),
+      base: iOSBaseSettings().asSettings(),
       debug: debug,
       release: release
     )
@@ -590,7 +591,7 @@ enum TVDBSwiftTests {
   }
 
   private static func settings() -> Settings {
-    Settings(base: iOSBaseSettings())
+    Settings(base: iOSBaseSettings().asSettings())
   }
 }
 
@@ -616,7 +617,7 @@ enum TVDBSwiftTestable {
     let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
 
     return Settings(
-      base: iOSBaseSettings(),
+      base: iOSBaseSettings().asSettings(),
       debug: debug,
       release: release
     )
@@ -644,11 +645,11 @@ enum CouchTrackerUITests {
 
   private static func settings() -> Settings {
     Settings(
-      base: [
+      base: ([
         "DEVELOPMENT_TEAM": "",
         "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/CouchTracker.app/CouchTracker",
         "BUNDLE_LOADER": "$(TEST_HOST)"
-      ] + iOSBaseSettings() + disableCodeSigning()
+      ] + iOSBaseSettings() + disableCodeSigning()).asSettings()
     )
   }
 }

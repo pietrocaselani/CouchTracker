@@ -1,52 +1,26 @@
 PODS:
-  - ActionSheetPicker-3.0 (2.3.0)
-  - AutoInsetter (1.8.0)
   - Bugsnag (5.23.0)
   - KIF (3.7.8):
     - KIF/Core (= 3.7.8)
   - KIF/Core (3.7.8)
-  - Kingfisher (5.12.0):
-    - Kingfisher/Core (= 5.12.0)
-  - Kingfisher/Core (5.12.0)
-  - Pageboy (3.5.0)
-  - SnapKit (5.0.1)
-  - SwiftLint (0.39.1)
-  - Tabman (2.6.3):
-    - AutoInsetter (~> 1.8.0)
-    - Pageboy (~> 3.5.0)
+  - SwiftLint (0.39.2)
 
 DEPENDENCIES:
-  - ActionSheetPicker-3.0 (= 2.3.0)
   - Bugsnag
   - KIF (= 3.7.8)
-  - Kingfisher (= 5.12.0)
-  - SnapKit (= 5.0.1)
-  - SwiftLint (= 0.39.1)
-  - Tabman (= 2.6.3)
+  - SwiftLint (= 0.39.2)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - ActionSheetPicker-3.0
-    - AutoInsetter
     - Bugsnag
     - KIF
-    - Kingfisher
-    - Pageboy
-    - SnapKit
     - SwiftLint
-    - Tabman
 
 SPEC CHECKSUMS:
-  ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
-  AutoInsetter: 0b90ca74e36561c340129045a3722c51a0b15c58
   Bugsnag: 1f33ee5b55bc4b131a30e0fe6db714da9c6609f6
   KIF: 52e1af1a78cf6fe4ec6777b14776f3dd2eccc32e
-  Kingfisher: dc6e0f53bb5b12c3e75bedb0e01bbd7a640eea69
-  Pageboy: 3794c578aae5fcce06e90b3ed4a0ad6b807d75bb
-  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
-  Tabman: 63eae331ae7a9388ae389b1808f1939269fcdece
+  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: 75d6f0525d9c43eb417d5c7bd2ce9fb7e24a2c81
+PODFILE CHECKSUM: 6328459bf0c9c56366bddf8fcc8d985a79960345
 
 COCOAPODS: 1.9.1

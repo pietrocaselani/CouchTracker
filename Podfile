@@ -2,15 +2,9 @@
 
 source 'https://github.com/CocoaPods/Specs.git'
 
-SNAPKIT_VERSION = '5.0.1'
-OSX_VERSION = '10.12'
 IOS_VERSION = '10.0'
 
 def ios_pods
-  pod 'Kingfisher', '5.12.0'
-  pod 'ActionSheetPicker-3.0', '2.3.0'
-  pod 'Tabman', '2.6.3'
-  pod 'SnapKit', SNAPKIT_VERSION
   pod 'Bugsnag'
 end
 
@@ -39,7 +33,7 @@ target 'CouchTracker' do
   use_frameworks!
   inhibit_all_warnings!
 
-  pod 'SwiftLint', '0.39.1'
+  pod 'SwiftLint', '0.39.2'
   ios_pods
 end
 
@@ -49,12 +43,4 @@ target 'CouchTrackerUITests' do
   inhibit_all_warnings!
 
   ui_tests_pods
-end
-
-target 'CouchTrackerDebug' do
-  platform :ios, IOS_VERSION
-  use_frameworks!
-  inhibit_all_warnings!
-
-  pod 'SnapKit', SNAPKIT_VERSION
 end
