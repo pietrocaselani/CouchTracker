@@ -106,7 +106,12 @@ enum CouchTrackerApp {
         .target(name: TVDBSwift.name),
         .target(name: TraktSwift.name),
         .framework(path: carthageFramworkPath(named: "RxSwift")),
-        .framework(path: carthageFramworkPath(named: "RxCocoa"))
+        .framework(path: carthageFramworkPath(named: "RxCocoa")),
+        .framework(path: carthageFramworkPath(named: "CoreActionSheetPicker")),
+        .framework(path: carthageFramworkPath(named: "Kingfisher")),
+        .framework(path: carthageFramworkPath(named: "Pageboy")),
+        .framework(path: carthageFramworkPath(named: "Tabman")),
+        .framework(path: carthageFramworkPath(named: "SnapKit"))
       ],
       settings: settings()
     )
