@@ -3,4 +3,4 @@
 brew bundle
 bundle install --path vendor/bundle
 bash <(curl -Ls https://install.tuist.io)
-tuist install 0.19.0
+tuist install 1.15.0

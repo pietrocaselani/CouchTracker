@@ -2,14 +2,14 @@
 
 source 'https://github.com/CocoaPods/Specs.git'
 
-IOS_VERSION = '10.0'
+IOS_VERSION = '13.0'
 
 def ios_pods
   pod 'Bugsnag'
 end
 
 def ui_tests_pods
-  pod 'KIF', '3.7.8', configurations: ['Debug']
+  pod 'KIF', '3.7.9', configurations: ['Debug']
 end
 
 target 'CouchTrackerApp' do

@@ -1,3 +1,10 @@
+public func couchTrackerAppImage(named name: String,
+                                 bundleProvider: BundleProvider = CouchTrackerAppBundleProvider.instance,
+                                 compatibleWith traits: UITraitCollection? = nil) -> UIImage? {
+  UIImage(named: name, in: bundleProvider.bundle, compatibleWith: traits)
+}
+
+
 public enum Images {
   //	swiftlint:disable force_unwrapping
   public static func filter() -> UIImage {

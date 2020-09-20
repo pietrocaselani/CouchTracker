@@ -12,8 +12,6 @@ jobs:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
       - restore_cache:
           key: 1-pods-{{ checksum "Podfile.lock" }}
-      - restore_cache:
-          key: 1-carthage-{{ checksum "Cartfile.resolved" }}
       - run:
           name: Setup build dependencies
           command: bash setup.sh
@@ -44,10 +42,6 @@ jobs:
           key: 1-pods-{{ checksum "Podfile.lock" }}
           paths:
             - Pods
-      - save_cache:
-          key: 1-carthage-{{ checksum "Cartfile.resolved" }}
-          paths:
-            - Carthage/Build/iOS
   beta-release:
     macos:
       xcode: '11.2.1'
@@ -59,8 +53,6 @@ jobs:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
       - restore_cache:
           key: 1-pods-{{ checksum "Podfile.lock" }}
-      - restore_cache:
-          key: 1-carthage-{{ checksum "Cartfile.resolved" }}
       - run:
           name: Setup build dependencies
           command: bash setup.sh
@@ -75,10 +67,6 @@ jobs:
           key: 1-pods-{{ checksum "Podfile.lock" }}
           paths:
             - Pods
-      - save_cache:
-          key: 1-carthage-{{ checksum "Cartfile.resolved" }}
-          paths:
-            - Carthage/Build/iOS
 
 workflows:
   version: 2

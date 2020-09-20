@@ -20,10 +20,6 @@ extension Dictionary where Key == String, Value == String {
 
 // MARK: - Common
 
-private func carthageFramworkPath(named name: String) -> Path {
-  Path("./Carthage/Build/iOS//\(name).framework")
-}
-
 private func actionSwiftLint() -> TargetAction {
   TargetAction.post(path: "build_phases/swiftlint", arguments: [], name: "SwiftLint")
 }
@@ -35,8 +31,7 @@ private func commonBuildPhases() -> [TargetAction] {
 // MARK: - Constants
 
 let baseBundleId = "io.github.pietrocaselani"
-let miniOSVersion = "10.0"
-let minmacOSVersion = "10.12"
+let iOSDKSVersion = "13.0"
 
 // MARK: - iOS Target structures
 
@@ -53,19 +48,16 @@ enum CouchTracker {
       resources: ["CouchTracker/Resources/**/*.{xcassets,png,strings,json,storyboard}"],
       actions: commonBuildPhases(),
       dependencies: [
-        .target(name: CouchTrackerApp.name),
-        .target(name: CouchTrackerPersistence.name),
-        .target(name: CouchTrackerDebug.name),
+        //        .target(name: CouchTrackerApp.name),
+        //        .target(name: CouchTrackerPersistence.name),
+        //        .target(name: CouchTrackerDebug.name),
         .target(name: CouchTrackerCore.name),
+        .target(name: CouchTrackerAppTCA.name),
         .target(name: TMDBSwift.name),
         .target(name: TVDBSwift.name),
         .target(name: TraktSwift.name),
-        .framework(path: carthageFramworkPath(named: "RxSwift")),
-        .framework(path: carthageFramworkPath(named: "RxCocoa")),
-        .framework(path: carthageFramworkPath(named: "RxRelay")),
-        .framework(path: carthageFramworkPath(named: "RxMoya")),
-        .framework(path: carthageFramworkPath(named: "Realm")),
-        .framework(path: carthageFramworkPath(named: "RxRealm"))
+        .package(product: "ComposableArchitecture"),
+        .package(product: "RxMoya")
       ],
       settings: settings()
     )
@@ -99,19 +91,14 @@ enum CouchTrackerApp {
       headers: Headers(public: "CouchTrackerApp/Headers/Public/CouchTrackerApp.h"),
       actions: commonBuildPhases(),
       dependencies: [
-        .target(name: CouchTrackerPersistence.name),
+        //        .target(name: CouchTrackerPersistence.name),
         .target(name: CouchTrackerDebug.name),
         .target(name: CouchTrackerCore.name),
+        .target(name: CouchTrackerSync.name),
         .target(name: TMDBSwift.name),
         .target(name: TVDBSwift.name),
         .target(name: TraktSwift.name),
-        .framework(path: carthageFramworkPath(named: "RxSwift")),
-        .framework(path: carthageFramworkPath(named: "RxCocoa")),
-        .framework(path: carthageFramworkPath(named: "CoreActionSheetPicker")),
-        .framework(path: carthageFramworkPath(named: "Kingfisher")),
-        .framework(path: carthageFramworkPath(named: "Pageboy")),
-        .framework(path: carthageFramworkPath(named: "Tabman")),
-        .framework(path: carthageFramworkPath(named: "SnapKit"))
+        .target(name: SPMLibraries.name)
       ],
       settings: settings()
     )
@@ -175,8 +162,7 @@ enum CouchTrackerPersistence {
       headers: Headers(public: "CouchTrackerPersistence/Headers/Public/CouchTrackerPersistence.h"),
       actions: commonBuildPhases(),
       dependencies: [
-        .framework(path: carthageFramworkPath(named: "RxSwift")),
-        .framework(path: carthageFramworkPath(named: "RealmSwift"))
+
       ],
       settings: settings()
     )
@@ -244,7 +230,7 @@ enum CouchTrackerCore {
         .target(name: TMDBSwift.name),
         .target(name: TVDBSwift.name),
         .target(name: TraktSwift.name),
-        .framework(path: carthageFramworkPath(named: "RxSwift"))
+        .target(name: SPMLibraries.name)
       ],
       settings: settings()
     )
@@ -277,10 +263,7 @@ enum CouchTrackerCoreTests {
         .target(name: CouchTrackerCore.name),
         .target(name: TraktSwiftTestable.name),
         .target(name: TMDBSwiftTestable.name),
-        .target(name: TVDBSwiftTestable.name),
-        .framework(path: carthageFramworkPath(named: "RxTest")),
-        .framework(path: carthageFramworkPath(named: "Nimble")),
-        .framework(path: carthageFramworkPath(named: "RxMoya"))
+        .target(name: TVDBSwiftTestable.name)
       ],
       settings: settings()
     )
@@ -306,7 +289,7 @@ enum CouchTrackerSync {
       actions: commonBuildPhases(),
       dependencies: [
         .target(name: TraktSwift.name),
-        .framework(path: carthageFramworkPath(named: "RxMoya"))
+        .target(name: SPMLibraries.name)
       ],
       settings: settings()
     )
@@ -338,10 +321,8 @@ enum CouchTrackerSyncTests {
       resources: ["CouchTrackerSyncTests/**/*.json"],
       dependencies: [
         .target(name: CouchTrackerSync.name),
-        .target(name: TraktSwiftTestable.name),
-        .framework(path: carthageFramworkPath(named: "SnapshotTesting")),
-        .framework(path: carthageFramworkPath(named: "RxTest")),
-        .framework(path: carthageFramworkPath(named: "Alamofire"))
+        .target(name: TraktSwiftTestable.name)
+
       ],
       settings: settings()
     )
@@ -365,7 +346,9 @@ enum TraktSwift {
       sources: ["TraktSwift/**"],
       headers: Headers(public: "TraktSwift/Headers/Public/TraktSwift.h"),
       actions: commonBuildPhases(),
-      dependencies: [.framework(path: carthageFramworkPath(named: "Moya"))],
+      dependencies: [
+        .target(name: SPMLibraries.name)
+      ],
       settings: settings()
     )
   }
@@ -396,11 +379,10 @@ enum TraktSwiftTests {
       dependencies: [
         .target(name: TraktSwiftTestable.name),
         .target(name: TraktSwift.name),
-        .framework(path: carthageFramworkPath(named: "RxSwift")),
-        .framework(path: carthageFramworkPath(named: "RxTest")),
-        .framework(path: carthageFramworkPath(named: "Moya")),
-        .framework(path: carthageFramworkPath(named: "RxMoya")),
-        .framework(path: carthageFramworkPath(named: "Alamofire"))
+        .package(product: "RxSwift"),
+        .package(product: "RxTest"),
+        .package(product: "Moya"),
+        .package(product: "RxMoya")
       ],
       settings: settings()
     )
@@ -427,9 +409,9 @@ enum TraktSwiftTestable {
       actions: commonBuildPhases(),
       dependencies: [
         .target(name: TraktSwift.name),
-        .framework(path: carthageFramworkPath(named: "RxSwift")),
-        .framework(path: carthageFramworkPath(named: "RxTest")),
-        .framework(path: carthageFramworkPath(named: "Moya"))
+        .package(product: "RxSwift"),
+        .package(product: "RxTest"),
+        .package(product: "RxMoya")
       ],
       settings: settings()
     )
@@ -455,12 +437,14 @@ enum TMDBSwift {
       name: TMDBSwift.name,
       platform: .iOS,
       product: .framework,
-      bundleId: "\(baseBundleId).TMDBSwift",
-      infoPlist: "TMDBSwift/Info.plist",
-      sources: ["TMDBSwift/**"],
-      headers: Headers(public: "TMDBSwift/Headers/Public/TMDBSwift.h"),
+      bundleId: "\(baseBundleId).\(Self.name)",
+      infoPlist: .default,
+      sources: ["\(Self.name)/Sources/**"],
+      headers: Headers(public: "TMDBSwift/Headers/Public/**/*.h"),
       actions: commonBuildPhases(),
-      dependencies: [.framework(path: carthageFramworkPath(named: "Moya"))],
+      dependencies: [
+        .target(name: HTTPClient.name)
+      ],
       settings: settings()
     )
   }
@@ -491,8 +475,7 @@ enum TMDBSwiftTests {
       dependencies: [
         .target(name: TMDBSwiftTestable.name),
         .target(name: TMDBSwift.name),
-        .framework(path: carthageFramworkPath(named: "Moya")),
-        .framework(path: carthageFramworkPath(named: "Alamofire"))
+        .target(name: HTTPClientTestable.name),
       ],
       settings: settings()
     )
@@ -518,8 +501,7 @@ enum TMDBSwiftTestable {
       headers: Headers(public: "TMDBSwiftTestable/Headers/Public/TMDBSwiftTestable.h"),
       actions: commonBuildPhases(),
       dependencies: [
-        .target(name: TMDBSwift.name),
-        .framework(path: carthageFramworkPath(named: "Moya"))
+        .target(name: TMDBSwift.name)
       ],
       settings: settings()
     )
@@ -551,8 +533,7 @@ enum TVDBSwift {
       headers: Headers(public: "TVDBSwift/Headers/Public/TVDBSwift.h"),
       actions: commonBuildPhases(),
       dependencies: [
-        .framework(path: carthageFramworkPath(named: "Moya")),
-        .framework(path: carthageFramworkPath(named: "Alamofire"))
+        .target(name: SPMLibraries.name)
       ],
       settings: settings()
     )
@@ -584,7 +565,7 @@ enum TVDBSwiftTests {
       dependencies: [
         .target(name: TVDBSwiftTestable.name),
         .target(name: TVDBSwift.name),
-        .framework(path: carthageFramworkPath(named: "Moya"))
+        .package(product: "Moya"),
       ],
       settings: settings()
     )
@@ -654,6 +635,149 @@ enum CouchTrackerUITests {
   }
 }
 
+enum SPMLibraries {
+  static let name = "SPMLibraries"
+
+  static func target() -> Target {
+    Target(
+      name: "SPMLibraries",
+      platform: .iOS,
+      product: .framework,
+      bundleId: "\(baseBundleId).SPMLibraries",
+      infoPlist: .default,
+      dependencies: [
+        .package(product: "ComposableArchitecture"),
+        .package(product: "RxMoya"),
+        .package(product: "Alamofire")
+      ]
+    )
+  }
+}
+
+enum CouchTrackerAppTCA {
+  static let name = "CouchTrackerAppTCA"
+
+  static func target() -> Target {
+    Target(
+      name: CouchTrackerAppTCA.name,
+      platform: .iOS,
+      product: .framework,
+      productName: CouchTrackerAppTCA.name,
+      bundleId: "\(baseBundleId).CouchTrackerAppTCA",
+      infoPlist: "CouchTrackerAppTCA/Info.plist",
+      sources: ["CouchTrackerAppTCA/**"],
+      resources: ["CouchTrackerAppTCA/Resources/**/*.{xcassets,png,strings,json}"],
+      headers: Headers(public: "CouchTrackerAppTCA/Headers/Public/CouchTrackerAppTCA.h"),
+      actions: commonBuildPhases(),
+      dependencies: [
+        .target(name: SPMLibraries.name),
+        .target(name: TraktSwift.name),
+        .target(name: TMDBSwift.name),
+        .target(name: TVDBSwift.name),
+        .target(name: CouchTrackerSync.name),
+        .target(name: CouchTrackerCore.name),
+      ],
+      settings: settings()
+    )
+  }
+
+  private static func settings() -> Settings {
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
+    return Settings(
+      base: iOSBaseSettings().asSettings(),
+      debug: debug,
+      release: release
+    )
+  }
+}
+
+enum HTTPClient {
+  static let name = "HTTPClient"
+
+  static func target() -> Target {
+    Target(
+      name: Self.name,
+      platform: .iOS,
+      product: .framework,
+      productName: Self.name,
+      bundleId: "\(baseBundleId).\(Self.name)",
+      infoPlist: .default,
+      sources: ["\(Self.name)/Sources/**"],
+      resources: ["\(Self.name)/Resources/**/*.{xcassets,png,strings,json}"],
+      headers: Headers(public: "HTTPClient/Headers/Public/**/*.h"),
+      actions: commonBuildPhases(),
+      settings: settings()
+    )
+  }
+
+  private static func settings() -> Settings {
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
+    return Settings(
+      base: iOSBaseSettings().asSettings(),
+      debug: debug,
+      release: release
+    )
+  }
+}
+
+enum HTTPClientTests {
+  static let name = "HTTPClientTests"
+
+  static func target() -> Target {
+    Target(
+      name: Self.name,
+      platform: .iOS,
+      product: .unitTests,
+      bundleId: "\(baseBundleId).\(Self.name)",
+      infoPlist: .default,
+      sources: ["\(Self.name)/Sources/**"],
+      dependencies: [
+        .target(name: HTTPClient.name),
+        .target(name: HTTPClientTestable.name)
+      ],
+      settings: settings()
+    )
+  }
+
+  private static func settings() -> Settings {
+    Settings(base: iOSBaseSettings().asSettings())
+  }
+}
+
+enum HTTPClientTestable {
+  static let name = "HTTPClientTestable"
+
+  static func target() -> Target {
+    Target(
+      name: Self.name,
+      platform: .iOS,
+      product: .framework,
+      productName: Self.name,
+      bundleId: "\(baseBundleId).\(Self.name)",
+      infoPlist: .default,
+      sources: ["\(Self.name)/Sources/**"],
+      headers: Headers(public: "HTTPClientTestable/Headers/Public/**/*.h"),
+      actions: commonBuildPhases(),
+      settings: settings()
+    )
+  }
+
+  private static func settings() -> Settings {
+    let debug = (debugCodeSigning() + sharedBaseDebugSettings()).asConfig()
+    let release = (releaseCodeSigning() + sharedBaseReleaseSettings()).asConfig()
+
+    return Settings(
+      base: iOSBaseSettings().asSettings(),
+      debug: debug,
+      release: release
+    )
+  }
+}
+
 // MARK: - Settings functions
 
 func sharedBaseDebugSettings() -> [String: String] {
@@ -670,7 +794,7 @@ func sharedBaseReleaseSettings() -> [String: String] {
 
 func iOSBaseSettings() -> [String: String] {
   [
-    "IPHONEOS_DEPLOYMENT_TARGET": miniOSVersion,
+    "IPHONEOS_DEPLOYMENT_TARGET": iOSDKSVersion,
     "TARGETED_DEVICE_FAMILY": "1",
     "CODE_SIGN_STYLE": "Manual",
     "DEVELOPMENT_TEAM": "B5RPM7SE3L"
@@ -696,9 +820,10 @@ func allTargets() -> [Target] {
 func alliOSTargets() -> [Target] {
   [
     CouchTracker.target(),
+    CouchTrackerAppTCA.target(),
     CouchTrackerApp.target(),
     CouchTrackerAppTestable.target(),
-    CouchTrackerPersistence.target(),
+    //    CouchTrackerPersistence.target(),
     CouchTrackerDebug.target(),
     CouchTrackerCore.target(),
     CouchTrackerSync.target(),
@@ -707,12 +832,16 @@ func alliOSTargets() -> [Target] {
     TVDBSwift.target(),
     TraktSwiftTestable.target(),
     TMDBSwiftTestable.target(),
-    TVDBSwiftTestable.target()
+    TVDBSwiftTestable.target(),
+    HTTPClient.target(),
+    HTTPClientTestable.target(),
+    SPMLibraries.target()
   ]
 }
 
 func alliOSTestTargets() -> [Target] {
   [
+    HTTPClientTests.target(),
     CouchTrackerUITests.target(),
     TraktSwiftTests.target(),
     TMDBSwiftTests.target(),
@@ -772,11 +901,28 @@ func additionalFiles() -> [FileElement] {
   ]
 }
 
+func swiftPackages() -> [Package] {
+  [
+    .package(url: "https://github.com/pointfreeco/swift-composable-architecture", .upToNextMajor(from: "0.8.0")),
+    //        .package(url: "https://github.com/uias/Tabman", .upToNextMajor(from: "2.9.1"))
+    //        .package(url: "https://github.com/RxSwiftCommunity/RxRealm", .upToNextMajor(from: "3.1.0")),
+    //        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", .upToNextMajor(from: "1.8.2")),
+    //        .package(url: "https://github.com/onevcat/Kingfisher", .upToNextMajor(from: "5.15.0")),
+    //        .package(url: "https://github.com/ReactiveX/RxSwift", .upToNextMajor(from: "5.1.1")),
+    //        .package(url: "https://github.com/RxSwiftCommunity/RxDataSources", .upToNextMajor(from: "4.0.1")),
+    //        .package(url: "https://github.com/RxSwiftCommunity/RxNimble", .upToNextMajor(from: "4.7.2")),
+    //  .local(path: "Swift-Packages/TrendingMovies")
+  ]
+}
+
 // MARK: - Project
 
 let project = Project(
   name: CouchTracker.name,
+  organizationName: "Pietro Caselani",
+  packages: swiftPackages(),
   targets: allTargets(),
   schemes: allSchemes(),
   additionalFiles: additionalFiles()
 )
+

@@ -13,7 +13,7 @@ public final class DefaultBundleProvider: BundleProvider, LanguageProvider {
   private static let languageKey = "CouchTrackerCoreLanguage"
   public static let instance = DefaultBundleProvider()
   private static var _language: SupportedLanguages = .englishUS
-  private static var _bundle = Bundle.couchTrackerCore
+  private static var _bundle = Bundle.module
   private static var _userDefaults = UserDefaults.standard
 
   private init() {
@@ -30,7 +30,7 @@ public final class DefaultBundleProvider: BundleProvider, LanguageProvider {
   public static func update(language: SupportedLanguages) {
     let bundleName = languageBundleName(for: language)
 
-    guard let path = Bundle.couchTrackerCore.path(forResource: bundleName, ofType: "lproj") else { return }
+    guard let path = Bundle.module.path(forResource: bundleName, ofType: "lproj") else { return }
 
     guard let languageBundle = Bundle(path: path) else { return }
     languageBundle.load()

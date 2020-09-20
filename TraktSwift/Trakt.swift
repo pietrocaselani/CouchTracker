@@ -96,10 +96,13 @@ public class Trakt {
     let endpointClosure = createEndpointClosure(forTarget: target)
     let requestClosure = createRequestClosure(forTarget: target)
 
-    return MoyaProvider<T>(endpointClosure: endpointClosure,
-                           requestClosure: requestClosure,
-                           callbackQueue: callbackQueue,
-                           plugins: plugins)
+    return MoyaProvider<T>(
+        endpointClosure: endpointClosure,
+        requestClosure: requestClosure,
+        callbackQueue: callbackQueue,
+        session: .default,
+        plugins: plugins
+    )
   }
 
   private func loadToken() {

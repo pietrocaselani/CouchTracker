@@ -1,6 +1,6 @@
 import Moya
 
-public class TVDB {
+public final class TVDB {
   let apiKey: String
   let dateProvider: DateProvider
   private let userDefaults: UserDefaults

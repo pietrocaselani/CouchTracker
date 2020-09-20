@@ -45,6 +45,7 @@ identifier_name:
   severity: error
   excluded:
     - id
+    - ok
     - a # Used for generic functions
     - b # Used for generic functions
     - Current

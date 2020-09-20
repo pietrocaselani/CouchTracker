@@ -1,39 +1,43 @@
-import CouchTrackerApp
-import RxSwift
+//import CouchTrackerApp
+//import RxSwift
+import CouchTrackerAppTCA
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   let window = UIWindow()
-  private let disposeBag = DisposeBag()
+//  private let disposeBag = DisposeBag()
 
   func application(_: UIApplication,
                    didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-    CrashReporter.initialize()
+//    CrashReporter.initialize()
 
-    UINavigationBar.appearance().barTintColor = Colors.NavigationBar.barTintColor
-    UINavigationBar.appearance().isTranslucent = false
-    UINavigationBar.appearance().tintColor = Colors.NavigationBar.tintColor
-    UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: Colors.NavigationBar.titleTextColor]
+//    UINavigationBar.appearance().barTintColor = Colors.NavigationBar.barTintColor
+//    UINavigationBar.appearance().isTranslucent = false
+//    UINavigationBar.appearance().tintColor = Colors.NavigationBar.tintColor
+//    UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: Colors.NavigationBar.titleTextColor]
 
-    UITabBar.appearance().barTintColor = Colors.TabBar.backgroundColor
-    UITabBar.appearance().tintColor = Colors.TabBar.tintColor
+//    UITabBar.appearance().barTintColor = Colors.TabBar.backgroundColor
+//    UITabBar.appearance().tintColor = Colors.TabBar.tintColor
 
-    UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self]).textColor = UIColor.ctzircon
+//    UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self]).textColor = UIColor.ctzircon
 
-    Environment.instance.syncStateObservable.observe()
-      .observeOn(MainScheduler.instance)
-      .subscribe(onNext: { syncState in
-        UIApplication.shared.isNetworkActivityIndicatorVisible = syncState.isSyncing
-      }).disposed(by: disposeBag)
+//    Environment.instance.syncStateObservable.observe()
+//      .observeOn(MainScheduler.instance)
+//      .subscribe(onNext: { syncState in
+//        UIApplication.shared.isNetworkActivityIndicatorVisible = syncState.isSyncing
+//      }).disposed(by: disposeBag)
 
-    let view = AppFlowModule.setupModule()
+//    let view = AppFlowModule.setupModule()
 
-    guard let viewController = view as? UIViewController else {
-      fatalError("view should be an instance of UIViewController")
-    }
+//    guard let viewController = view as? UIViewController else {
+//      fatalError("view should be an instance of UIViewController")
+//    }
 
-    window.rootViewController = viewController
+//    window.rootViewController = viewController
+
+    initializeCouchTracker(window: window)
+
     window.makeKeyAndVisible()
 
     return true
