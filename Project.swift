@@ -527,13 +527,13 @@ enum TVDBSwift {
       name: TVDBSwift.name,
       platform: .iOS,
       product: .framework,
-      bundleId: "\(baseBundleId).TVDBSwift",
-      infoPlist: "TVDBSwift/Info.plist",
-      sources: ["TVDBSwift/**"],
+      bundleId: "\(baseBundleId).\(Self.name)",
+      infoPlist: .default,
+      sources: ["\(Self.name)/Sources/**"],
       headers: Headers(public: "TVDBSwift/Headers/Public/TVDBSwift.h"),
       actions: commonBuildPhases(),
       dependencies: [
-        .target(name: SPMLibraries.name)
+        .target(name: HTTPClient.name)
       ],
       settings: settings()
     )
@@ -559,13 +559,14 @@ enum TVDBSwiftTests {
       name: TVDBSwiftTests.name,
       platform: .iOS,
       product: .unitTests,
-      bundleId: "\(baseBundleId).TVDBSwiftTests",
-      infoPlist: "TVDBSwiftTests/Info.plist",
-      sources: ["TVDBSwiftTests/**"],
+      bundleId: "\(baseBundleId).\(Self.name)",
+      infoPlist: .default,
+      sources: ["\(Self.name)/Sources/**"],
       dependencies: [
         .target(name: TVDBSwiftTestable.name),
         .target(name: TVDBSwift.name),
-        .package(product: "Moya"),
+        .target(name: HTTPClientTestable.name),
+        .target(name: HTTPClient.name)
       ],
       settings: settings()
     )
@@ -584,10 +585,10 @@ enum TVDBSwiftTestable {
       name: TVDBSwiftTestable.name,
       platform: .iOS,
       product: .framework,
-      bundleId: "\(baseBundleId).TVDBSwiftTestable",
-      infoPlist: "TVDBSwiftTestable/Info.plist",
-      sources: ["TVDBSwiftTestable/**"],
-      resources: ["TVDBSwiftTestable/Resources/**/*.{xcassets,png,strings,json}"],
+      bundleId: "\(baseBundleId).\(Self.name)",
+      infoPlist: .default,
+      sources: ["\(Self.name)/Sources/**"],
+      resources: ["\(Self.name)/Resources/**/*.{xcassets,png,strings,json}"],
       headers: Headers(public: "TVDBSwiftTestable/Headers/Public/TVDBSwiftTestable.h"),
       settings: settings()
     )
@@ -705,7 +706,6 @@ enum HTTPClient {
       bundleId: "\(baseBundleId).\(Self.name)",
       infoPlist: .default,
       sources: ["\(Self.name)/Sources/**"],
-      resources: ["\(Self.name)/Resources/**/*.{xcassets,png,strings,json}"],
       headers: Headers(public: "HTTPClient/Headers/Public/**/*.h"),
       actions: commonBuildPhases(),
       settings: settings()
