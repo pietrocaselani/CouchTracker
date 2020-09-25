@@ -1,3 +1,5 @@
+import TVDBSwift
+
 public final class TVDBTestableBundle {
     public static let bundle = Bundle(for: TVDBTestableBundle.self)
 

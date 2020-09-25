@@ -16,6 +16,21 @@ public final class FakeAddQueryItemMiddleware: HTTPMiddleware {
   }
 }
 
+public final class FakeAddHeaderMiddleware: HTTPMiddleware {
+  private let header, value: String
+
+  public init(header: String, value: String) {
+    self.header = header
+    self.value = value
+  }
+
+  public func respond(to request: HTTPRequest, andCallNext responder: HTTPResponding) -> HTTPCallPublisher {
+    var request = request
+    request.headers[header] = value
+    return responder.respond(to: request)
+  }
+}
+
 public final class FakeResponder: HTTPResponding {
   private let callPublisher: HTTPCallPublisher
   public private(set) var requests = [HTTPRequest]()

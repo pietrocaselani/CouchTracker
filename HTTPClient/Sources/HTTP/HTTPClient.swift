@@ -17,11 +17,12 @@ public struct HTTPClient {
   }
 
   public func call(request: HTTPRequest) -> HTTPCallPublisher {
-    rootResponder.respond(to: request)
+    print(">>> HTTP calling \(request.path)")
+    return rootResponder.respond(to: request)
   }
 
   public func appending(
-    middlewares: [HTTPMiddleware]
+    middlewares: HTTPMiddleware...
   ) -> HTTPClient {
     .using(responder: rootResponder, middlewares: middlewares)
   }

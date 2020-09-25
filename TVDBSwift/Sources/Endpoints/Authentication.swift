@@ -1,45 +1,35 @@
-import Moya
+import HTTPClient
 
-public enum Authentication {
-  case login(apiKey: String)
-  case refreshToken
+struct RefreshTokenService {
+  let refresh: () -> APICallPublisher<TVDBToken>
+
+  static func from(apiClient: APIClient) -> RefreshTokenService {
+    .init(
+      refresh: {
+        apiClient.get(.init(path: "refresh_token"))
+          .decoded(as: TVDBToken.self)
+      }
+    )
+  }
 }
 
-extension Authentication: TVDBType {
-  public var path: String {
-    switch self {
-    case .login: return "login"
-    case .refreshToken: return "refresh_token"
-    }
-  }
+struct LoginService {
+  let login: (LoginParams) -> APICallPublisher<TVDBToken>
 
-  public var authorizationType: AuthorizationType? {
-    switch self {
-    case .login: return nil
-    case .refreshToken: return .bearer
-    }
+  static func from(apiClient: APIClient) -> LoginService {
+    .init(
+      login: { params in
+        apiClient.post(
+          .init(
+            path: "login",
+            body: .encodableModel(value: params)
+          )
+        ).decoded(as: TVDBToken.self)
+      }
+    )
   }
+}
 
-  public var method: Moya.Method {
-    switch self {
-    case .login: return .post
-    case .refreshToken: return .get
-    }
-  }
-
-  public var task: Task {
-    switch self {
-    case let .login(apiKey):
-      return .requestParameters(parameters: ["apikey": apiKey], encoding: JSONEncoding.default)
-    case .refreshToken:
-      return .requestPlain
-    }
-  }
-
-  public var sampleData: Data {
-    switch self {
-    case .login: return stubbedResponse("tvdb_login")
-    case .refreshToken: return stubbedResponse("tvdb_refreshtoken")
-    }
-  }
+struct LoginParams: Equatable, Encodable {
+  let apikey: String
 }

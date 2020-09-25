@@ -1,21 +1,15 @@
-import Moya
+import HTTPClient
 
-public enum Episodes {
-  case episode(id: Int)
-}
+public struct EpisodesService {
+  public let episodeDetailsForID: (Int) -> APICallPublisher<EpisodeResponse>
 
-extension Episodes: TVDBType {
-  public var path: String {
-    switch self {
-    case let .episode(id): return "episodes/\(id)"
-    }
-  }
-
-  public var task: Task {
-    .requestPlain
-  }
-
-  public var sampleData: Data {
-    stubbedResponse("tvdb_episodes")
+  static func from(apiClient: APIClient) -> EpisodesService {
+    .init(
+      episodeDetailsForID: { episodeID in
+        apiClient.get(
+          .init(path: "episodes/\(episodeID)")
+        ).decoded(as: EpisodeResponse.self)
+      }
+    )
   }
 }

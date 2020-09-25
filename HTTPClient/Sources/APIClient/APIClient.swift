@@ -23,7 +23,16 @@ public struct APIClient {
   public func get(_ getRequest: Requests.GET) -> HTTPCallPublisher {
     var request = HTTPRequest(components: components)
     request.path += "/" + getRequest.path
-    request.method = getRequest.method
+    request.method = .get
+
+    return client.call(request: request)
+  }
+
+  public func post(_ postRequest: Requests.POST) -> HTTPCallPublisher {
+    var request = HTTPRequest(components: components)
+    request.path += "/" + postRequest.path
+    request.method = .post
+    request.body = postRequest.body ?? .empty
 
     return client.call(request: request)
   }
@@ -31,11 +40,20 @@ public struct APIClient {
 
 public enum Requests {
   public struct GET {
-    let method = HTTPMethod.get
     let path: String
 
     public init(path: String) {
       self.path = path
+    }
+  }
+
+  public struct POST {
+    let path: String
+    let body: HTTPBody?
+
+    public init(path: String, body: HTTPBody?) {
+      self.path = path
+      self.body = body
     }
   }
 }
