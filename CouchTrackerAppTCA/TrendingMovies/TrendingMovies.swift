@@ -28,7 +28,8 @@ struct TrendingMovieError: Error, Hashable {
     let message: String
 }
 
-let trendingMoviesReducer = Reducer<TrendingMoviesState, TrendingMoviesAction, TrendingMoviesEnvironment> { state, action, environment in
+let trendingMoviesReducer: Reducer<TrendingMoviesState, TrendingMoviesAction, TrendingMoviesEnvironment>
+trendingMoviesReducer = { state, action, environment in
     switch action {
     case .requestNextPage:
         return requestMovies(&state, environment)

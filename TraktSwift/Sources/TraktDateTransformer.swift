@@ -7,6 +7,7 @@ public struct TraktDateTransformer {
   public let dateFormatter: DateFormatter
 
   private init(format: String) {
+    //TODO: Inject locale and timezone?
     dateFormatter = DateFormatter()
     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
     dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)

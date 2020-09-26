@@ -4,7 +4,6 @@ public func couchTrackerAppImage(named name: String,
   UIImage(named: name, in: bundleProvider.bundle, compatibleWith: traits)
 }
 
-
 public enum Images {
   //	swiftlint:disable force_unwrapping
   public static func filter() -> UIImage {

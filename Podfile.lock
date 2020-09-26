@@ -3,12 +3,12 @@ PODS:
   - KIF (3.7.9):
     - KIF/Core (= 3.7.9)
   - KIF/Core (3.7.9)
-  - SwiftLint (0.39.2)
+  - SwiftLint (0.40.3)
 
 DEPENDENCIES:
   - Bugsnag
   - KIF (= 3.7.9)
-  - SwiftLint (= 0.39.2)
+  - SwiftLint (= 0.40.3)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -19,8 +19,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Bugsnag: 1f33ee5b55bc4b131a30e0fe6db714da9c6609f6
   KIF: 350f96fb4205972a10e4c1a45774d48b2d8482d8
-  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
+  SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
 
-PODFILE CHECKSUM: 6a148bd9c4377f8bcdf8c5168bf32a841a128565
+PODFILE CHECKSUM: feafd26d073460256a45dbe2c7261742188c055d
 
 COCOAPODS: 1.9.1

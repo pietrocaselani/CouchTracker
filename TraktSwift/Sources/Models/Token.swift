@@ -65,18 +65,12 @@ public final class Token: NSObject, Codable, NSCoding {
   }
 
   public override var hash: Int {
-    accessToken.hashValue ^ expiresIn.hashValue ^
-      refreshToken.hashValue ^ tokenType.hashValue ^ scope.hashValue
+    hashValue
   }
 
   public override func isEqual(_ object: Any?) -> Bool {
     guard let otherToken = object as? Token else { return false }
 
-    return Token.areTokensEqual(lhs: self, rhs: otherToken)
-  }
-
-  private static func areTokensEqual(lhs: Token, rhs: Token) -> Bool {
-    lhs.accessToken == rhs.accessToken && lhs.expiresIn == rhs.expiresIn &&
-      lhs.refreshToken == rhs.refreshToken && lhs.tokenType == rhs.tokenType && lhs.scope == rhs.scope
+    return self == otherToken
   }
 }

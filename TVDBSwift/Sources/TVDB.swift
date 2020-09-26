@@ -14,7 +14,7 @@ private let acceptValue = "application/vnd.thetvdb.v\(apiVersion)"
 private let headerContentType = "Content-Type"
 private let contentTypeJSON = "application/json"
 
-public final class TVDB {
+public struct TVDB {
   private let login: LoginService
   private let refreshToken: RefreshTokenService
 
@@ -76,7 +76,7 @@ private struct TVDBHeadersMiddleware: HTTPMiddleware {
   func respond(to request: HTTPRequest, andCallNext responder: HTTPResponding) -> HTTPCallPublisher {
     var request = request
 
-    request.headers = request.headers.merging(Self.tvdbHeaders) { (lhs, rhs) -> String in
+    request.headers = request.headers.merging(Self.tvdbHeaders) { _, rhs -> String in
       rhs
     }
 

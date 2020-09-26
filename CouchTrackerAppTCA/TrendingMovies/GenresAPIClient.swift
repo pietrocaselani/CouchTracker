@@ -31,16 +31,5 @@ private func requestGenres(
     client: HTTPClient,
     genreType: GenreType
 ) -> Effect<[Genre], Error> {
-    
-
-//    Effect.catching { () -> URLRequest in
-//        try trakt.genres.makeRequest(.list(genreType))
-//    }
-//    .mapUnhandledError()
-//    .flatMap(session.dataTaskIO(for:))
-//    .map(\.data)
-//    .decode(type: [Genre].self, decoder: JSONDecoder())
-//    .eraseToEffect()
-
-    return .none
+    .none
 }

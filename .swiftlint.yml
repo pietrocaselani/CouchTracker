@@ -16,6 +16,7 @@ excluded:
   - Carthage/
 
 opt_in_rules:
+  - unneeded_parentheses_in_closure_argument
   - force_unwrapping
   - force_cast
   - force_try
@@ -49,6 +50,7 @@ identifier_name:
     - a # Used for generic functions
     - b # Used for generic functions
     - Current
+    - client_id
 
 yoda_condition:
   severity: error

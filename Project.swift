@@ -1,6 +1,6 @@
 import ProjectDescription
 
-// swiftlint:disable: file_length
+// swiftlint:disable file_length
 
 // MARK: - Extensions
 
@@ -341,13 +341,13 @@ enum TraktSwift {
       name: TraktSwift.name,
       platform: .iOS,
       product: .framework,
-      bundleId: "\(baseBundleId).TraktSwift",
-      infoPlist: "TraktSwift/Info.plist",
-      sources: ["TraktSwift/**"],
+      bundleId: "\(baseBundleId).\(Self.name)",
+      infoPlist: .default,
+      sources: ["\(Self.name)/Sources/**"],
       headers: Headers(public: "TraktSwift/Headers/Public/TraktSwift.h"),
       actions: commonBuildPhases(),
       dependencies: [
-        .target(name: SPMLibraries.name)
+        .target(name: HTTPClient.name)
       ],
       settings: settings()
     )
@@ -373,16 +373,13 @@ enum TraktSwiftTests {
       name: TraktSwiftTests.name,
       platform: .iOS,
       product: .unitTests,
-      bundleId: "\(baseBundleId).TraktSwiftTests",
-      infoPlist: "TraktSwiftTests/Info.plist",
-      sources: ["TraktSwiftTests/**"],
+      bundleId: "\(baseBundleId).\(Self.name)",
+      infoPlist: .default,
+      sources: ["\(Self.name)/Sources/**"],
       dependencies: [
         .target(name: TraktSwiftTestable.name),
         .target(name: TraktSwift.name),
-        .package(product: "RxSwift"),
-        .package(product: "RxTest"),
-        .package(product: "Moya"),
-        .package(product: "RxMoya")
+        .target(name: HTTPClientTestable.name)
       ],
       settings: settings()
     )
@@ -401,17 +398,15 @@ enum TraktSwiftTestable {
       name: TraktSwiftTestable.name,
       platform: .iOS,
       product: .framework,
-      bundleId: "\(baseBundleId).TraktSwiftTestable",
-      infoPlist: "TraktSwiftTestable/Info.plist",
-      sources: ["TraktSwiftTestable/**"],
-      resources: ["TraktSwiftTestable/Resources/**/*.{xcassets,png,strings,json}"],
+      bundleId: "\(baseBundleId).\(Self.name)",
+      infoPlist: .default,
+      sources: ["\(Self.name)/Sources/**"],
+      resources: ["\(Self.name)/Resources/**/*.{xcassets,png,strings,json}"],
       headers: Headers(public: "TraktSwiftTestable/Headers/Public/TraktSwiftTestable.h"),
       actions: commonBuildPhases(),
       dependencies: [
         .target(name: TraktSwift.name),
-        .package(product: "RxSwift"),
-        .package(product: "RxTest"),
-        .package(product: "RxMoya")
+        .target(name: HTTPClient.name)
       ],
       settings: settings()
     )
@@ -475,7 +470,7 @@ enum TMDBSwiftTests {
       dependencies: [
         .target(name: TMDBSwiftTestable.name),
         .target(name: TMDBSwift.name),
-        .target(name: HTTPClientTestable.name),
+        .target(name: HTTPClientTestable.name)
       ],
       settings: settings()
     )
@@ -676,7 +671,7 @@ enum CouchTrackerAppTCA {
         .target(name: TMDBSwift.name),
         .target(name: TVDBSwift.name),
         .target(name: CouchTrackerSync.name),
-        .target(name: CouchTrackerCore.name),
+        .target(name: CouchTrackerCore.name)
       ],
       settings: settings()
     )
@@ -903,7 +898,7 @@ func additionalFiles() -> [FileElement] {
 
 func swiftPackages() -> [Package] {
   [
-    .package(url: "https://github.com/pointfreeco/swift-composable-architecture", .upToNextMajor(from: "0.8.0")),
+    .package(url: "https://github.com/pointfreeco/swift-composable-architecture", .upToNextMajor(from: "0.8.0"))
     //        .package(url: "https://github.com/uias/Tabman", .upToNextMajor(from: "2.9.1"))
     //        .package(url: "https://github.com/RxSwiftCommunity/RxRealm", .upToNextMajor(from: "3.1.0")),
     //        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", .upToNextMajor(from: "1.8.2")),
@@ -925,4 +920,3 @@ let project = Project(
   schemes: allSchemes(),
   additionalFiles: additionalFiles()
 )
-

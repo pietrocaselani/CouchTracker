@@ -22,7 +22,7 @@ public final class MovieDetailsService: MovieDetailsInteractor {
 
     return Observable.combineLatest(detailsObservable,
                                     genresObservable,
-                                    watchedObservable) { (movie, genres, watchedMovieResult) -> MovieEntity in
+                                    watchedObservable) { movie, genres, watchedMovieResult -> MovieEntity in
                                       let movieGenres = genres.filter { genre -> Bool in
                                         movie.genres?.contains(genre.slug) ?? false
                                       }

@@ -27,7 +27,7 @@ func genresForMoviesAndShows() -> Single<Set<Genre>> {
     trakt.genres.rx.request(.list(type)).map([Genre].self)
   }
 
-  return Single.zip(genresForType(.movies), genresForType(.shows)) { (movies, shows) in
+  return Single.zip(genresForType(.movies), genresForType(.shows)) { movies, shows in
     Set(movies + shows)
   }
 }

@@ -23,7 +23,7 @@ public final class ShowsProgressDefaultPresenter: ShowsProgressPresenter {
 
     return Observable.combineLatest(appStateStream,
                                     syncStateStream,
-                                    listStateStream) { (appState, syncState, listState) -> AllStates in
+                                    listStateStream) { appState, syncState, listState -> AllStates in
                                       AllStates(appState: appState, syncState: syncState, listState: listState)
     }.flatMap { [weak self] states -> Observable<ShowProgressViewState> in
       guard states.appState.isLogged else { return .just(.notLogged) }

@@ -17,7 +17,7 @@ public struct ImagesEntity: Hashable {
   }
 
   private func bestImage(of images: [ImageEntity]) -> ImageEntity? {
-    images.max(by: { (lhs, rhs) -> Bool in
+    images.max(by: { lhs, rhs -> Bool in
       lhs.isBest(then: rhs)
     })
   }

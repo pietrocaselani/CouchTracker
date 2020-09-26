@@ -1,13 +1,13 @@
-private let accessTokenKey = "tvdb_token"
-private let accessTokenDateKey = "tvdb_token_date"
+private let tokenKey = "trakt_token"
+private let tokenDateKey = "trakt_token_date"
 
 public struct TokenManager {
   public enum TokenStatus {
-    case valid(TVDBToken)
-    case refresh(TVDBToken)
+    case valid(Token)
+    case refresh(Token)
     case invalid
 
-    var token: TVDBToken? {
+    var token: Token? {
       switch self {
       case .invalid: return nil
       case let .valid(token),
@@ -17,11 +17,11 @@ public struct TokenManager {
   }
 
   let tokenStatus: () -> TokenStatus
-  let saveToken: (TVDBToken) -> Void
+  let saveToken: (Token) -> Void
 
   init(
     tokenStatus: @escaping () -> TokenStatus,
-    saveToken: @escaping  (TVDBToken) -> Void
+    saveToken: @escaping  (Token) -> Void
   ) {
     self.tokenStatus = tokenStatus
     self.saveToken = saveToken
@@ -33,36 +33,31 @@ public struct TokenManager {
   ) -> TokenManager {
     .init(
       tokenStatus: {
-        let tokenData = userDefaults.object(forKey: accessTokenKey) as? Data
+        let tokenData = userDefaults.object(forKey: tokenKey) as? Data
 
         let token = tokenData.flatMap {
-          try? NSKeyedUnarchiver.unarchivedObject(ofClass: SecureToken.self, from: $0)
+          try? NSKeyedUnarchiver.unarchivedObject(ofClass: Token.self, from: $0)
         }
-        .map(\.token)
-        .map(TVDBToken.init(token:))
 
         guard let validToken = token else { return TokenStatus.invalid }
 
-        let tokenDate = userDefaults.object(forKey: accessTokenDateKey) as? Date
+        let tokenDate = userDefaults.object(forKey: tokenDateKey) as? Date
 
-        guard let tokenDate = tokenDate else { return TokenStatus.refresh(validToken) }
+        guard let validDate = tokenDate else { return TokenStatus.refresh(validToken) }
 
-        let diff = date().timeIntervalSince1970 - tokenDate.timeIntervalSince1970
-
-        return diff < 82800 ? TokenStatus.valid(validToken) : TokenStatus.refresh(validToken)
+        return validDate.compare(date()) == .orderedDescending ?
+          TokenStatus.valid(validToken) : TokenStatus.refresh(validToken)
       },
-      saveToken: { (token: TVDBToken) in
-        let secureToken = SecureToken(token: token.token)
-
+      saveToken: { (token: Token) in
         let tokenData = try? NSKeyedArchiver.archivedData(
-          withRootObject: secureToken,
+          withRootObject: token,
           requiringSecureCoding: true
         )
 
         guard let data = tokenData else { return }
 
-        userDefaults.set(data, forKey: accessTokenKey)
-        userDefaults.set(date(), forKey: accessTokenDateKey)
+        userDefaults.set(data, forKey: tokenKey)
+        userDefaults.set(date(), forKey: tokenDateKey)
       }
     )
   }
