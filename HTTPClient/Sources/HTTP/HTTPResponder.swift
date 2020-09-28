@@ -1,3 +1,9 @@
-public protocol HTTPResponding {
-    func respond(to request: HTTPRequest) -> HTTPCallPublisher
+public struct HTTPResponder {
+  public let respondTo: (HTTPRequest) -> HTTPCallPublisher
+
+  public init(
+    respondTo: @escaping (HTTPRequest) -> HTTPCallPublisher
+  ) {
+    self.respondTo = respondTo
+  }
 }

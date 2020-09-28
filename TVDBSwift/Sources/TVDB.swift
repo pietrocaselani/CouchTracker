@@ -9,11 +9,6 @@ private let smallBannersImageURL = URL(string: "https://www.thetvdb.com/banners/
 private let apiHost = "api.thetvdb.com"
 private let apiVersion = "2.1.2"
 
-private let headerAccept = "Accept"
-private let acceptValue = "application/vnd.thetvdb.v\(apiVersion)"
-private let headerContentType = "Content-Type"
-private let contentTypeJSON = "application/json"
-
 public struct TVDB {
   private let login: LoginService
   private let refreshToken: RefreshTokenService
@@ -25,9 +20,7 @@ public struct TVDB {
     client: HTTPClient,
     manager: TokenManager
   ) throws {
-    let headersMiddleware = TVDBHeadersMiddleware()
-
-    let loginClient = client.appending(middlewares: headersMiddleware)
+    let loginClient = client.appending(middlewares: .tvdbHeaders)
 
     self.login = .from(
       apiClient: try APIClient(
@@ -36,13 +29,13 @@ public struct TVDB {
       )
     )
 
-    let addTokenMiddleware = TVDBAddTokenMiddleware(
-      tokenProvider: {
-        manager.tokenStatus().token
-      }
+    let refreshClient = loginClient.appending(
+      middlewares: .addTVDBToken(
+        tokenProvider: { () -> TVDBToken? in
+          manager.tokenStatus().token
+        }
+      )
     )
-
-    let refreshClient = loginClient.appending(middlewares: addTokenMiddleware)
 
     self.refreshToken = .from(
       apiClient: try APIClient(
@@ -51,15 +44,17 @@ public struct TVDB {
       )
     )
 
-    let refreshTokenMiddleware = TVDBTokenRefresherMiddleware(
-      apiKey: apiKey,
-      tokenManager: manager,
-      loginService: self.login,
-      refreshService: self.refreshToken
+    let tvdbClient = refreshClient.appending(
+      middlewares: .refreshToken(
+        apiKey: apiKey,
+        tokenManager: manager,
+        loginService: login,
+        refreshService: refreshToken
+      )
     )
 
     let apiClient = try APIClient(
-      client: refreshClient.appending(middlewares: refreshTokenMiddleware),
+      client: tvdbClient,
       baseURL: baseURL
     )
 
@@ -67,81 +62,56 @@ public struct TVDB {
   }
 }
 
-private struct TVDBHeadersMiddleware: HTTPMiddleware {
-  private static let tvdbHeaders = [
-    headerContentType: contentTypeJSON,
-    headerAccept: acceptValue
-  ]
-
-  func respond(to request: HTTPRequest, andCallNext responder: HTTPResponding) -> HTTPCallPublisher {
+private extension HTTPMiddleware {
+  static let tvdbHeaders = Self { request, responder -> HTTPCallPublisher in
     var request = request
+    request.headers["Content-Type"] = "application/json"
+    request.headers["Accept"] = "application/vnd.thetvdb.v\(apiVersion)"
 
-    request.headers = request.headers.merging(Self.tvdbHeaders) { _, rhs -> String in
-      rhs
+    return responder.respondTo(request)
+  }
+
+  static func addTVDBToken(tokenProvider: @escaping () -> TVDBToken?) -> Self {
+    .init { request, responder -> HTTPCallPublisher in
+      guard let token = tokenProvider() else {
+        return responder.respondTo(request)
+      }
+
+      var request = request
+      return responder.respondTo(request.authorize(token: token))
     }
-
-    return responder.respond(to: request)
-  }
-}
-
-private struct TVDBAddTokenMiddleware: HTTPMiddleware {
-  private let tokenProvider: () -> TVDBToken?
-
-  init(tokenProvider: @escaping () -> TVDBToken?) {
-    self.tokenProvider = tokenProvider
   }
 
-  func respond(to request: HTTPRequest, andCallNext responder: HTTPResponding) -> HTTPCallPublisher {
-    guard let token = tokenProvider() else {
-      return responder.respond(to: request)
-    }
-
-    var request = request
-    return responder.respond(to: request.authorize(token: token))
-  }
-}
-
-private struct TVDBTokenRefresherMiddleware: HTTPMiddleware {
-  private let apiKey: String
-  private let tokenManager: TokenManager
-  private let loginService: LoginService
-  private let refreshService: RefreshTokenService
-
-  init(
+  static func refreshToken(
     apiKey: String,
     tokenManager: TokenManager,
     loginService: LoginService,
     refreshService: RefreshTokenService
-  ) {
-    self.apiKey = apiKey
-    self.tokenManager = tokenManager
-    self.loginService = loginService
-    self.refreshService = refreshService
-  }
-
-  func respond(to request: HTTPRequest, andCallNext responder: HTTPResponding) -> HTTPCallPublisher {
-    let status = tokenManager.tokenStatus()
-
-    switch status {
-    case .valid:
-      return responder.respond(to: request)
-    case .refresh:
-      return refreshToken()
-        .flatMap { _ in responder.respond(to: request) }
-        .eraseToAnyPublisher()
-    case .invalid:
-      return login()
-        .flatMap { _ in responder.respond(to: request) }
-        .eraseToAnyPublisher()
+  ) -> Self {
+    let refreshToken: () -> APICallPublisher<TVDBToken> = {
+      refreshService.refresh().saveToken(tokenManager)
     }
-  }
 
-  private func refreshToken() -> APICallPublisher<TVDBToken> {
-    refreshService.refresh().saveToken(tokenManager)
-  }
+    let login: () -> APICallPublisher<TVDBToken> = {
+      loginService.login(.init(apikey: apiKey)).saveToken(tokenManager)
+    }
 
-  private func login() -> APICallPublisher<TVDBToken> {
-    loginService.login(.init(apikey: apiKey)).saveToken(tokenManager)
+    return .init { request, responder -> HTTPCallPublisher in
+      let status = tokenManager.tokenStatus()
+
+      switch status {
+      case .valid:
+        return responder.respondTo(request)
+      case .refresh:
+        return refreshToken()
+          .flatMap { _ in responder.respondTo(request) }
+          .eraseToAnyPublisher()
+      case .invalid:
+        return login()
+          .flatMap { _ in responder.respondTo(request) }
+          .eraseToAnyPublisher()
+      }
+    }
   }
 }
 

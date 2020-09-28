@@ -7,7 +7,7 @@ import TMDBSwiftTestable
 import HTTPClientTestable
 
 final class TMDBConfigurationTest: XCTestCase {
-  private let fakeResponder = FakeHandlerResponder()
+  private let fakeResponder = FakeResponder()
   private var cancellables = Set<AnyCancellable>()
 
   func testTMDD_configurationRequest() throws {
@@ -18,7 +18,10 @@ final class TMDBConfigurationTest: XCTestCase {
       return .init(response: .fakeFrom(request: request, data: data))
     }
 
-    let tmdb = try TMDB(apiKey: "fake-key", client: .using(responder: responder))
+    let tmdb = try TMDB(
+      apiKey: "fake-key",
+      client: .using(responder: responder.makeResponder())
+    )
 
     let configurationExpectation = expectation(description: "Expect configuration")
 

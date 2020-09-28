@@ -1,30 +1,31 @@
-public protocol HTTPMiddleware {
-    func respond(to request: HTTPRequest, andCallNext responder: HTTPResponding) -> HTTPCallPublisher
+public struct HTTPMiddleware {
+  public let respondToRequestAndCallResponder: (HTTPRequest, HTTPResponder) -> HTTPCallPublisher
+
+  public init(
+    respondToRequestAndCallResponder: @escaping (HTTPRequest, HTTPResponder) -> HTTPCallPublisher
+  ) {
+    self.respondToRequestAndCallResponder = respondToRequestAndCallResponder
+  }
 }
 
 private extension HTTPMiddleware {
-    func makeResponder(chainingTo responder: HTTPResponding) -> HTTPResponding {
-        MiddlewareResponder(middleware: self, responder: responder)
-    }
-}
-
-private struct MiddlewareResponder: HTTPResponding {
-    let middleware: HTTPMiddleware
-    let responder: HTTPResponding
-
-    func respond(to request: HTTPRequest) -> HTTPCallPublisher {
-        middleware.respond(to: request, andCallNext: responder)
-    }
+  func makeRespponder(chainingTo responder: HTTPResponder) -> HTTPResponder {
+    .init(
+      respondTo: { request -> HTTPCallPublisher in
+        self.respondToRequestAndCallResponder(request, responder)
+      }
+    )
+  }
 }
 
 extension Array where Element == HTTPMiddleware {
-    func makeResponder(chainingTo responder: HTTPResponding) -> HTTPResponding {
-        var responder = responder
+  func makeResponder(chainingTo responder: HTTPResponder) -> HTTPResponder {
+    var responder = responder
 
-        for middleware in reversed() {
-            responder = middleware.makeResponder(chainingTo: responder)
-        }
-
-        return responder
+    for middleware in reversed() {
+      responder = middleware.makeRespponder(chainingTo: responder)
     }
+
+    return responder
+  }
 }

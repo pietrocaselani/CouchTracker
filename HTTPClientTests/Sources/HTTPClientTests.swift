@@ -8,71 +8,79 @@ final class HTTPClientTests: XCTestCase {
   private var httpClient: HTTPClient!
   private var cancellables = Set<AnyCancellable>()
 
-  func setUpHTTPClient(toRespond callPublisher: HTTPCallPublisher) {
-    fakeResponder = FakeResponder(callPublisher: callPublisher)
-    httpClient = HTTPClient.using(responder: fakeResponder)
+  override func setUp() {
+    super.setUp()
+
+    fakeResponder = FakeResponder()
+    httpClient = HTTPClient.using(responder: fakeResponder.makeResponder())
+  }
+
+  override func tearDown() {
+    fakeResponder = nil
+    httpClient = nil
+    super.tearDown()
   }
 
   func testCallsRequest() {
     var request = HTTPRequest()
-    request.path = "api.github.com/zen"
+    request.host = "api.github.com"
+    request.path = "/zen"
 
-    let response = HTTPResponse(response: .init(), request: request, body: Data())
-
-    let call = Just<HTTPResponse>(response)
-      .eraseToAnyPublisher()
-      .setFailureType(to: HTTPError.self)
-      .eraseToAnyPublisher()
-
-    setUpHTTPClient(toRespond: call)
+    fakeResponder.then { request -> HTTPCallPublisher in
+      XCTAssertEqual(request.url?.absoluteString, "https://api.github.com/zen")
+      return .init(
+        response: .fakeFrom(
+          request: request,
+          data: Data()
+        )
+      )
+    }.then { request -> HTTPCallPublisher in
+      XCTAssertEqual(request.url?.absoluteString, "https://api.github.com/zen")
+      return .init(
+        response: .fakeFrom(
+          request: request,
+          data: Data()
+        )
+      )
+    }
 
     httpClient.call(request: request)
       .sink(
-        receiveCompletion: { _ in
-          XCTAssertEqual(self.fakeResponder.requests, [request])
-        },
+        receiveCompletion: { _ in },
         receiveValue: { _ in }
       ).store(in: &cancellables)
 
     httpClient.call(request: request)
       .sink(
-        receiveCompletion: { _ in
-          XCTAssertEqual(self.fakeResponder.requests, [request, request])
-        },
+        receiveCompletion: { _ in },
         receiveValue: { _ in }
       ).store(in: &cancellables)
   }
 
   func testAppendingMiddlewares() {
     var request = HTTPRequest()
-    request.path = "api.github.com/zen"
-
-    let response = HTTPResponse(response: .init(), request: request, body: Data())
-
-    let call = Just<HTTPResponse>(response)
-      .eraseToAnyPublisher()
-      .setFailureType(to: HTTPError.self)
-      .eraseToAnyPublisher()
-
-    setUpHTTPClient(toRespond: call)
+    request.host = "api.github.com"
+    request.path = "/zen"
 
     let queryItem = URLQueryItem(name: "apikey", value: "fake-key")
 
     let newClient = httpClient.appending(
-      middlewares: [
-        FakeAddQueryItemMiddleware(queryItem: queryItem)
-      ]
+      middlewares: .addQueryItem(item: queryItem)
     )
 
-    var expectedRequest = HTTPRequest(method: .get, headers: [:], body: .empty)
-    expectedRequest.path = "api.github.com/zen"
-    expectedRequest.query = [.init(name: "apikey", value: "fake-key")]
+    fakeResponder.then { request -> HTTPCallPublisher in
+      XCTAssertEqual(request.url?.absoluteString, "https://api.github.com/zen?apikey=fake-key")
+      return .init(
+        response: .fakeFrom(
+          request: request,
+          data: Data()
+        )
+      )
+    }
 
     newClient.call(request: request)
       .sink(
-        receiveCompletion: { _ in
-          XCTAssertEqual(self.fakeResponder.requests, [expectedRequest])
-        },
+        receiveCompletion: { _ in },
         receiveValue: { _ in }
       ).store(in: &cancellables)
   }

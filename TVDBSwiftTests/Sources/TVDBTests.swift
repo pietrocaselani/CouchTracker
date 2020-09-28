@@ -9,7 +9,7 @@ import HTTPClientTestable
 final class TVDBTests: XCTestCase {
   private var cancellables = Set<AnyCancellable>()
   private let userDefaultsMock = UserDefaults(suiteName: "TraktTestUserDefaults")!
-  private let fakeResponder = FakeHandlerResponder()
+  private let fakeResponder = FakeResponder()
   private let apiKey = "my_apikey"
 
   private var tokenManager: TokenManager!
@@ -40,7 +40,7 @@ final class TVDBTests: XCTestCase {
 
     tvdb = try TVDB(
       apiKey: apiKey,
-      client: .using(responder: fakeResponder, middlewares: middlewares),
+      client: .using(responder: fakeResponder.makeResponder(), middlewares: middlewares),
       manager: tokenManager
     )
   }

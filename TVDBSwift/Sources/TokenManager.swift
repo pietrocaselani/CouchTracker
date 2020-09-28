@@ -45,9 +45,9 @@ public struct TokenManager {
 
         let tokenDate = userDefaults.object(forKey: accessTokenDateKey) as? Date
 
-        guard let tokenDate = tokenDate else { return TokenStatus.refresh(validToken) }
+        guard let validTokenDate = tokenDate else { return TokenStatus.refresh(validToken) }
 
-        let diff = date().timeIntervalSince1970 - tokenDate.timeIntervalSince1970
+        let diff = date().timeIntervalSince1970 - validTokenDate.timeIntervalSince1970
 
         return diff < 82800 ? TokenStatus.valid(validToken) : TokenStatus.refresh(validToken)
       },

@@ -56,9 +56,9 @@ public struct Trakt {
       self.authenticator = nil
     }
 
-    let headersMiddleware = TraktHeadersMiddleware(clientID: credentials.clientId)
-
-    let clientWithHeaders = client.appending(middlewares: headersMiddleware)
+    let clientWithHeaders = client.appending(
+      middlewares: .traktHeaders(clientID: credentials.clientId)
+    )
 
     let apiClient = try APIClient(
       client: clientWithHeaders,
@@ -88,38 +88,28 @@ private func createOAuthURL(
   return components.url
 }
 
-private struct TraktHeadersMiddleware: HTTPMiddleware {
-  private let clientID: String
+private extension HTTPMiddleware {
+  static func traktHeaders(clientID: String) -> Self {
+    .init { request, responder -> HTTPCallPublisher in
+      var request = request
 
-  init(clientID: String) {
-    self.clientID = clientID
-  }
+      request.headers["trakt-api-key"] = clientID
+      request.headers["trakt-api-version"] = apiVersion
+      request.headers["Content-Type"] = "application/json"
 
-  func respond(to request: HTTPRequest, andCallNext responder: HTTPResponding) -> HTTPCallPublisher {
-    var request = request
-
-    request.headers["trakt-api-key"] = clientID
-    request.headers["trakt-api-version"] = apiVersion
-    request.headers["Content-Type"] = "application/json"
-
-    return responder.respond(to: request)
-  }
-}
-
-private struct TraktAddTokenMiddleware: HTTPMiddleware {
-  private let tokenProvider: () -> Token?
-
-  init(tokenProvider: @escaping () -> Token?) {
-    self.tokenProvider = tokenProvider
-  }
-
-  func respond(to request: HTTPRequest, andCallNext responder: HTTPResponding) -> HTTPCallPublisher {
-    guard let token = tokenProvider() else {
-      return responder.respond(to: request)
+      return responder.respondTo(request)
     }
+  }
 
-    var request = request
-    return responder.respond(to: request.authorize(token: token))
+  static func addToken(tokenProvider: @escaping () -> Token?) -> Self {
+    .init { request, responder -> HTTPCallPublisher in
+      guard let token = tokenProvider() else {
+        return responder.respondTo(request)
+      }
+
+      var request = request
+      return responder.respondTo(request.authorize(token: token))
+    }
   }
 }
 

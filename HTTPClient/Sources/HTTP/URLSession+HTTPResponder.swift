@@ -1,20 +1,23 @@
 import Combine
 
-extension URLSession: HTTPResponding {
-  public func respond(to request: HTTPRequest) -> HTTPCallPublisher {
-    let urlRequestResult = request.makeURLRequest()
+public extension HTTPResponder {
+  static func fromURLSession(_ urlSession: URLSession) -> HTTPResponder {
+    .init(respondTo: { request in
+      let urlRequestResult = request.makeURLRequest()
 
-    switch urlRequestResult {
-    case let .failure(httpError):
-      return Fail(error: httpError).eraseToAnyPublisher()
-    case let .success(urlRequest):
-      return dataTaskPublisher(for: urlRequest)
-        .mapError { urlError in
-          .urlError(request: request, error: urlError)
-        }.flatMap { data, response in
-          makeHTTPResponse(data: data, response: response, request: request)
-        }.eraseToAnyPublisher()
-    }
+      switch urlRequestResult {
+      case let .failure(httpError):
+        return Fail(error: httpError).eraseToAnyPublisher()
+      case let .success(urlRequest):
+        return urlSession
+          .dataTaskPublisher(for: urlRequest)
+          .mapError { urlError in
+            .urlError(request: request, error: urlError)
+          }.flatMap { data, response in
+            makeHTTPResponse(data: data, response: response, request: request)
+          }.eraseToAnyPublisher()
+      }
+    })
   }
 }
 

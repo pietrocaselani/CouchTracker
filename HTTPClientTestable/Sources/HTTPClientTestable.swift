@@ -1,78 +1,47 @@
 import HTTPClient
 import Combine
 
-public final class FakeAddQueryItemMiddleware: HTTPMiddleware {
-  private let queryItem: URLQueryItem
+public extension HTTPMiddleware {
+  static func addQueryItem(item: URLQueryItem) -> Self {
+    .init { request, responder -> HTTPCallPublisher in
+      var request = request
+      request.query += [item]
 
-  public init(queryItem: URLQueryItem) {
-    self.queryItem = queryItem
+      return responder.respondTo(request)
+    }
   }
 
-  public func respond(to request: HTTPRequest, andCallNext responder: HTTPResponding) -> HTTPCallPublisher {
-    var request = request
-    request.query += [queryItem]
-
-    return responder.respond(to: request)
-  }
-}
-
-public final class FakeAddHeaderMiddleware: HTTPMiddleware {
-  private let header, value: String
-
-  public init(header: String, value: String) {
-    self.header = header
-    self.value = value
-  }
-
-  public func respond(to request: HTTPRequest, andCallNext responder: HTTPResponding) -> HTTPCallPublisher {
-    var request = request
-    request.headers[header] = value
-    return responder.respond(to: request)
+  static func addHeader(header: String, value: String) -> Self {
+    .init { request, responder -> HTTPCallPublisher in
+      var request = request
+      request.headers[header] = value
+      return responder.respondTo(request)
+    }
   }
 }
 
-public final class FakeResponder: HTTPResponding {
-  private let callPublisher: HTTPCallPublisher
-  public private(set) var requests = [HTTPRequest]()
-
-  public init(callPublisher: HTTPCallPublisher) {
-    self.callPublisher = callPublisher
-  }
-
-  public convenience init(response: HTTPResponse) {
-    self.init(callPublisher: .init(response: response))
-  }
-
-  public convenience init(error: HTTPError) {
-    self.init(callPublisher: .init(error: error))
-  }
-
-  public func respond(to request: HTTPRequest) -> HTTPCallPublisher {
-    requests.append(request)
-    return callPublisher
-  }
-}
-
-public final class FakeHandlerResponder: HTTPResponding {
+public final class FakeResponder {
   public typealias MockHandler = (HTTPRequest) -> HTTPCallPublisher
 
   private var nextHandlers = [MockHandler]()
 
   public init() {}
 
-  public func respond(to request: HTTPRequest) -> HTTPCallPublisher {
-    if nextHandlers.isEmpty == false {
-      let next = nextHandlers.removeFirst()
-      return next(request)
-    } else {
-      return .init(error: .fakeError(request))
-    }
-  }
-
   @discardableResult
-  public func then(_ handler: @escaping MockHandler) -> FakeHandlerResponder {
+  public func then(_ handler: @escaping MockHandler) -> FakeResponder {
     nextHandlers.append(handler)
     return self
+  }
+
+  public func makeResponder() -> HTTPResponder {
+    .init { request -> HTTPCallPublisher in
+      if self.nextHandlers.isEmpty == false {
+        let next = self.nextHandlers.removeFirst()
+        return next(request)
+      } else {
+        return .init(error: .fakeError(request))
+      }
+    }
   }
 }
 

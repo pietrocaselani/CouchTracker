@@ -18,9 +18,9 @@ public struct TMDB {
   public let episodes: EpisodesService
 
   public init(apiKey: String, client: HTTPClient) throws {
-    let tmdbMiddleware = TMDBMiddleware(apiKey: apiKey)
+    let tmdbMiddleware = HTTPMiddleware.tmdbMiddleware(apiKey: apiKey)
     let apiClient = try APIClient(
-      client: client.appending(middlewares: [tmdbMiddleware]),
+      client: client.appending(middlewares: tmdbMiddleware),
       baseURL: baseURL
     )
 
@@ -31,17 +31,12 @@ public struct TMDB {
   }
 }
 
-private struct TMDBMiddleware: HTTPMiddleware {
-  private let apiKey: String
-
-  init(apiKey: String) {
-    self.apiKey = apiKey
-  }
-
-  func respond(to request: HTTPRequest, andCallNext responder: HTTPResponding) -> HTTPCallPublisher {
-    var request = request
-    request.query += [.init(name: "api_key", value: self.apiKey)]
-
-    return responder.respond(to: request)
+private extension HTTPMiddleware {
+  static func tmdbMiddleware(apiKey: String) -> HTTPMiddleware {
+    .init { request, responder -> HTTPCallPublisher in
+      var request = request
+      request.query += [.init(name: "api_key", value: apiKey)]
+      return responder.respondTo(request)
+    }
   }
 }
