@@ -1,8 +1,8 @@
 private let tokenKey = "trakt_token"
-private let tokenDateKey = "trakt_token_date"
+private let tokenExperirationDateKey = "trakt_token_experiration_date"
 
 public struct TokenManager {
-  public enum TokenStatus {
+  public enum TokenStatus: Equatable {
     case valid(Token)
     case refresh(Token)
     case invalid
@@ -17,11 +17,11 @@ public struct TokenManager {
   }
 
   let tokenStatus: () -> TokenStatus
-  let saveToken: (Token) -> Void
+  let saveToken: (Token) -> Result<Token, Error>
 
   init(
     tokenStatus: @escaping () -> TokenStatus,
-    saveToken: @escaping  (Token) -> Void
+    saveToken: @escaping  (Token) -> Result<Token, Error>
   ) {
     self.tokenStatus = tokenStatus
     self.saveToken = saveToken
@@ -41,50 +41,33 @@ public struct TokenManager {
 
         guard let validToken = token else { return TokenStatus.invalid }
 
-        let tokenDate = userDefaults.object(forKey: tokenDateKey) as? Date
+        let tokenDate = userDefaults.object(forKey: tokenExperirationDateKey) as? Date
 
-        guard let validDate = tokenDate else { return TokenStatus.refresh(validToken) }
+        guard let experirationDate = tokenDate else { return TokenStatus.refresh(validToken) }
 
-        return validDate.compare(date()) == .orderedDescending ?
+        let now = date()
+        let result = experirationDate.compare(now)
+
+        return result == .orderedDescending ?
           TokenStatus.valid(validToken) : TokenStatus.refresh(validToken)
       },
-      saveToken: { (token: Token) in
-        let tokenData = try? NSKeyedArchiver.archivedData(
-          withRootObject: token,
-          requiringSecureCoding: true
-        )
+      saveToken: { (token: Token) -> Result<Token, Error> in
+        Result {
+          let tokenData = try NSKeyedArchiver.archivedData(
+            withRootObject: token,
+            requiringSecureCoding: true
+          )
 
-        guard let data = tokenData else { return }
+          let experirationDate = Date(
+            timeIntervalSince1970: date().timeIntervalSince1970 + token.expiresIn
+          )
 
-        userDefaults.set(data, forKey: tokenKey)
-        userDefaults.set(date(), forKey: tokenDateKey)
+          userDefaults.set(tokenData, forKey: tokenKey)
+          userDefaults.set(experirationDate, forKey: tokenExperirationDateKey)
+
+          return token
+        }
       }
     )
-  }
-}
-
-public struct TVDBToken: Decodable {
-  let token: String
-}
-
-@objc(ObjcSecureToken)
-private final class SecureToken: NSObject, NSSecureCoding {
-  static var supportsSecureCoding: Bool = true
-  let token: String
-
-  init(token: String) {
-    self.token = token
-  }
-
-  init?(coder: NSCoder) {
-    guard let string = coder.decodeObject() as? String else {
-      return nil
-    }
-
-    self.token = string
-  }
-
-  func encode(with coder: NSCoder) {
-    coder.encode(token)
   }
 }

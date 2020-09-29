@@ -4,8 +4,3 @@ public enum TraktError: Error, Hashable {
   case authenticateError(statusCode: Int, response: String?)
   case missingJSONValue(message: String)
 }
-
-public enum AuthenticationResult: Int {
-  case authenticated
-  case undetermined
-}

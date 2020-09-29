@@ -2,7 +2,6 @@ import HTTPClient
 
 // swiftlint:disable force_unwrapping
 private let baseURL = URL(string: "https://\(apiHost)")!
-private let siteURL = URL(string: "https://trakt.tv")!
 // swiftlint:enable force_unwrapping
 
 private let apiHost = "api.trakt.tv"
@@ -35,57 +34,31 @@ public struct Trakt {
     }
   }
 
-  private let authenticator: TraktAuthenticator?
-
-  public let authentication: AuthenticationService
+  public let authenticator: Authenticator?
 
   public init(
     credentials: Credentials,
-    client: HTTPClient
+    client: HTTPClient,
+    manager: TokenManager
   ) throws {
-    if let authData = credentials.authData {
-      guard let url = createOAuthURL(
-        clientID: credentials.clientId,
-        redirectURL: authData.redirectURL
-      ) else {
-        throw TraktError.failedToCreateOAuthURL
-      }
+    let clientWithHeaders = client.appending(
+      middlewares: .traktHeaders(clientID: credentials.clientId),
+      .addToken(tokenProvider: { manager.tokenStatus().token })
+    )
 
-      self.authenticator = .init(authData: authData, oauthURL: url)
+    if let authData = credentials.authData {
+      let authenticator = try Authenticator(
+        manager: manager,
+        client: clientWithHeaders,
+        clientID: credentials.clientId,
+        authData: authData
+      )
+
+      self.authenticator = authenticator
     } else {
       self.authenticator = nil
     }
-
-    let clientWithHeaders = client.appending(
-      middlewares: .traktHeaders(clientID: credentials.clientId)
-    )
-
-    let apiClient = try APIClient(
-      client: clientWithHeaders,
-      baseURL: baseURL
-    )
-
-    self.authentication = .from(apiClient: apiClient)
   }
-}
-
-private func createOAuthURL(
-  clientID: String,
-  redirectURL: URL
-) -> URL? {
-  guard var components = URLComponents(
-    url: siteURL,
-    resolvingAgainstBaseURL: false
-  ) else { return nil }
-
-  components.path = "oauth/authorize"
-  components.queryItems = [
-    .init(name: "response_type", value: "code"),
-    .init(name: "client_id", value: clientID),
-    .init(name: "redirect_uri", value: redirectURL.absoluteString)
-  ]
-
-  return components.url
 }
 
 private extension HTTPMiddleware {
@@ -101,6 +74,34 @@ private extension HTTPMiddleware {
     }
   }
 
+  static func refreshTokenMiddleware(
+    tokenManager: TokenManager,
+    refreshToken: RefreshTokenService,
+    clientID: String,
+    authData: Trakt.AuthData
+  ) -> Self {
+    .init { request, responder -> HTTPCallPublisher in
+      guard case let .refresh(token) = tokenManager.tokenStatus() else {
+        return responder.respondTo(request)
+      }
+
+      var request = request
+
+      return refreshToken.refresh(
+        .init(
+          refreshToken: token.refreshToken,
+          client_id: clientID,
+          clientSecret: authData.clientSecret,
+          redirectURL: authData.redirectURL.absoluteString,
+          grantType: "refresh_token"
+        )
+      )
+      .flatMap { token in
+        responder.respondTo(request.authorize(token: token))
+      }.eraseToAnyPublisher()
+    }
+  }
+
   static func addToken(tokenProvider: @escaping () -> Token?) -> Self {
     .init { request, responder -> HTTPCallPublisher in
       guard let token = tokenProvider() else {
@@ -113,14 +114,24 @@ private extension HTTPMiddleware {
   }
 }
 
-struct TraktAuthenticator {
-  init(authData: Trakt.AuthData, oauthURL: URL) {
-  }
-}
-
 private extension HTTPRequest {
   mutating func authorize(token: Token) -> HTTPRequest {
     self.headers["Authorization"] = "Bearer " + token.accessToken
     return self
+  }
+}
+
+extension HTTPError {
+  static func couldNotSaveTraktToken(
+    request: HTTPRequest,
+    response: HTTPResponse?,
+    error: Error
+  ) -> HTTPError {
+    .init(
+      code: .unknown,
+      request: request,
+      response: response,
+      underlyingError: error as? NSError
+    )
   }
 }

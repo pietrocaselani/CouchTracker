@@ -1,6 +1,8 @@
 import Foundation
 
-public final class Token: NSObject, Codable, NSCoding {
+public final class Token: NSObject, Codable, NSCoding, NSSecureCoding {
+  public static let supportsSecureCoding = true
+
   public let accessToken: String
   public let expiresIn: TimeInterval
   public let refreshToken: String
@@ -69,8 +71,19 @@ public final class Token: NSObject, Codable, NSCoding {
   }
 
   public override func isEqual(_ object: Any?) -> Bool {
-    guard let otherToken = object as? Token else { return false }
+    guard let otherObject = object else { return false }
+    guard let otherToken = otherObject as? Token else { return false }
 
-    return self == otherToken
+    let isaccessToken = self.accessToken == otherToken.accessToken
+    let isexpiresIn = self.expiresIn == otherToken.expiresIn
+    let isrefreshToken = self.refreshToken == otherToken.refreshToken
+    let istokenType = self.tokenType == otherToken.tokenType
+    let isscope = self.scope == otherToken.scope
+
+    return isaccessToken &&
+    isexpiresIn &&
+    isrefreshToken &&
+    istokenType &&
+    isscope
   }
 }
