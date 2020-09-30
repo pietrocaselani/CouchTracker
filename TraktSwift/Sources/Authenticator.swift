@@ -20,7 +20,7 @@ public struct Authenticator {
   private let clientID: String
   private let tokenManager: TokenManager
   private let accessToken: AccessTokenService
-  private let refreshToken: RefreshTokenService
+  let refreshToken: RefreshTokenService
 
   init(
     manager: TokenManager,
@@ -41,8 +41,8 @@ public struct Authenticator {
     self.tokenManager = manager
 
     self.accessToken = .from(apiClient: try .init(
-                              client: client,
-                              baseURL: baseURL
+      client: client,
+      baseURL: baseURL
     ))
 
     refreshToken = .from(apiClient: try .init(

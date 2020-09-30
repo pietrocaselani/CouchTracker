@@ -41,9 +41,11 @@ public struct APIClient {
 public enum Requests {
   public struct GET {
     let path: String
+    let queryItems: [URLQueryItem]
 
-    public init(path: String) {
+    public init(path: String, queryItems: [URLQueryItem] = []) {
       self.path = path
+      self.queryItems = queryItems
     }
   }
 

@@ -43,10 +43,10 @@ public struct TokenManager {
 
         let tokenDate = userDefaults.object(forKey: tokenExperirationDateKey) as? Date
 
-        guard let experirationDate = tokenDate else { return TokenStatus.refresh(validToken) }
+        guard let expirationDate = tokenDate else { return TokenStatus.refresh(validToken) }
 
         let now = date()
-        let result = experirationDate.compare(now)
+        let result = expirationDate.compare(now)
 
         return result == .orderedDescending ?
           TokenStatus.valid(validToken) : TokenStatus.refresh(validToken)

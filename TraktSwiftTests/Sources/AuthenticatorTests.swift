@@ -113,13 +113,7 @@ final class AuthenticatorTests: XCTestCase {
       .finished
     ])
 
-    let expectedToken = Token(
-      accessToken: "fake-access-token",
-      expiresIn: 7200,
-      refreshToken: "fake-refresh-token",
-      tokenType: "fake-type",
-      scope: "fake-scope"
-    )
+    let expectedToken = Token.fake()
 
     let status = tokenManager.tokenStatus()
 

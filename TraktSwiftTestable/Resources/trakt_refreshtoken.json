@@ -1,0 +1,8 @@
+{
+  "access_token": "fake-access-token-refreshed",
+  "token_type": "fake-type-refreshed",
+  "expires_in": 7200,
+  "refresh_token": "fake-refresh-token-refreshed",
+  "scope": "fake-scope-refreshed",
+  "created_at": 1487889742
+}

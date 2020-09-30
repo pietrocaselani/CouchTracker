@@ -1,10 +1,47 @@
+import HTTPClient
+
+public struct MoviesService {
+  public let trending: (TrendingMoviesParameters) -> APICallPublisher<[TrendingMovie]>
+}
+
+public extension MoviesService {
+  struct TrendingMoviesParameters {
+    public let page, limit: Int
+    /**
+     Only accepts .default or .full for Extended
+     */
+    public let extended: Extended
+
+    public init(page: Int, limit: Int, extended: Extended) {
+      self.page = page
+      self.limit = limit
+      self.extended = extended
+    }
+  }
+}
+
+extension MoviesService {
+  static func from(apiClient: APIClient) -> Self {
+    .init(
+      trending: { params in
+        apiClient.get(
+          .init(
+            path: "movies/trending",
+            queryItems: [
+              .init(name: "page", value: String(params.page)),
+              .init(name: "limit", value: String(params.limit)),
+              .init(name: "extended", value: params.extended.rawValue)
+            ]
+          )
+        ).decoded(as: [TrendingMovie].self)
+      }
+    )
+  }
+}
+
 //import Moya
 //
 //public enum Movies {
-//  /**
-//   Only accepts .default or .full for Extended
-//   */
-//  case trending(page: Int, limit: Int, extended: Extended)
 //  /**
 //   Only accepts .default or .full for Extended
 //   */

@@ -32,7 +32,7 @@ final class TokenManagerTests: XCTestCase {
     XCTAssertEqual(manager.tokenStatus(), .invalid)
   }
 
-  func testTokenManagerWithValidToken() throws {
+  func testTokenInvalidValidRefreshFlow() throws {
     let beginOfTime = Date(timeIntervalSince1970: 0)
     var testDate = beginOfTime
 
@@ -43,15 +43,7 @@ final class TokenManagerTests: XCTestCase {
 
     XCTAssertEqual(manager.tokenStatus(), .invalid)
 
-    let token = try manager.saveToken(
-      .init(
-        accessToken: "fake-access-token",
-        expiresIn: beginOfTime.timeIntervalSince1970 + 7200,
-        refreshToken: "fake-refresh-token",
-        tokenType: "fake-type",
-        scope: "fake-scope"
-      )
-    ).get()
+    let token = try manager.saveToken(.fake()).get()
 
     XCTAssertEqual(manager.tokenStatus(), .valid(token))
 

@@ -35,29 +35,47 @@ public struct Trakt {
   }
 
   public let authenticator: Authenticator?
+  public let movies: MoviesService
 
   public init(
     credentials: Credentials,
     client: HTTPClient,
     manager: TokenManager
   ) throws {
-    let clientWithHeaders = client.appending(
+    let clientWithHeadersAndToken = client.appending(
       middlewares: .traktHeaders(clientID: credentials.clientId),
       .addToken(tokenProvider: { manager.tokenStatus().token })
     )
 
+    let traktClient: HTTPClient
+
     if let authData = credentials.authData {
       let authenticator = try Authenticator(
         manager: manager,
-        client: clientWithHeaders,
+        client: clientWithHeadersAndToken,
         clientID: credentials.clientId,
         authData: authData
       )
 
       self.authenticator = authenticator
+
+      traktClient = clientWithHeadersAndToken.appending(
+        middlewares: .refreshTokenMiddleware(
+          tokenManager: manager,
+          refreshToken: authenticator.refreshToken,
+          clientID: credentials.clientId,
+          authData: authData
+        )
+      )
     } else {
       self.authenticator = nil
+      traktClient = clientWithHeadersAndToken
     }
+
+    movies = .from(apiClient: try .init(
+      client: traktClient,
+      baseURL: baseURL
+    ))
   }
 }
 
@@ -96,6 +114,7 @@ private extension HTTPMiddleware {
           grantType: "refresh_token"
         )
       )
+      .saveToken(tokenManager)
       .flatMap { token in
         responder.respondTo(request.authorize(token: token))
       }.eraseToAnyPublisher()
@@ -118,20 +137,5 @@ private extension HTTPRequest {
   mutating func authorize(token: Token) -> HTTPRequest {
     self.headers["Authorization"] = "Bearer " + token.accessToken
     return self
-  }
-}
-
-extension HTTPError {
-  static func couldNotSaveTraktToken(
-    request: HTTPRequest,
-    response: HTTPResponse?,
-    error: Error
-  ) -> HTTPError {
-    .init(
-      code: .unknown,
-      request: request,
-      response: response,
-      underlyingError: error as? NSError
-    )
   }
 }
