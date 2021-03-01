@@ -32,9 +32,3 @@ extension Publisher where Failure == URLError {
         }
     }
 }
-
-extension URLSession {
-    func dataTaskIO(for request: URLRequest) -> Publishers.MapError<DataTaskPublisher, CouchTrackerError> {
-        dataTaskPublisher(for: request).mapNetworkError()
-    }
-}

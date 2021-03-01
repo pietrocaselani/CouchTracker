@@ -1,6 +1,5 @@
 import UIKit
 import TraktSwift
-import CouchTrackerCore
 
 import Combine
 
@@ -35,60 +34,5 @@ public func initializeCouchTracker(
 //        )
 //    )
 
-    window.rootViewController = FakeVC()
-}
-
-final class FakeVC: UIViewController {
-    private var cancellables = Set<AnyCancellable>()
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        let client = makeTraktHTTPClient()
-
-        var genresRequest = HTTPRequest()
-        genresRequest.path = "genres/\(GenreType.movies)"
-
-        client.call(request: genresRequest)
-            .decoded(as: [Genre].self)
-            .sink(
-                receiveCompletion: { completion in
-                    dump(completion)
-                },
-                receiveValue: { response in
-                    dump(response)
-                }
-            ).store(in: &cancellables)
-    }
-}
-
-private func makeTraktHTTPClient() -> HTTPClient {
-    let traktMiddleware = TraktMiddleware(clientID: Secrets.Trakt.clientId)
-    return .using(session: .shared, middlewares: [traktMiddleware])
-}
-
-struct TraktMiddleware: HTTPMiddleware {
-    let basePath = "api.trakt.tv/"
-    private let clientID: String
-
-    init(clientID: String) {
-        self.clientID = clientID
-    }
-
-    func respond(to request: HTTPRequest, andCallNext responder: HTTPResponder) -> HTTPCallPublisher {
-        var request = request
-
-        let traktHeaders = [
-            "Content-type": "application/json",
-            "trakt-api-version": "2",
-            "trakt-api-key": self.clientID
-        ]
-
-        request.headers.merge(traktHeaders) { _, b -> String in
-            b
-        }
-
-        request.path = basePath + request.path
-
-        return responder.respond(to: request)
-    }
+    window.rootViewController = UIViewController()
 }

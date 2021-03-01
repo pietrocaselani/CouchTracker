@@ -84,6 +84,8 @@ private extension HTTPMiddleware {
     .init { request, responder -> HTTPCallPublisher in
       var request = request
 
+      print(">>> Trakt headers")
+
       request.headers["trakt-api-key"] = clientID
       request.headers["trakt-api-version"] = apiVersion
       request.headers["Content-Type"] = "application/json"
@@ -99,6 +101,8 @@ private extension HTTPMiddleware {
     authData: Trakt.AuthData
   ) -> Self {
     .init { request, responder -> HTTPCallPublisher in
+      print(">>> Trakt refresh token")
+
       guard case let .refresh(token) = tokenManager.tokenStatus() else {
         return responder.respondTo(request)
       }
@@ -123,6 +127,8 @@ private extension HTTPMiddleware {
 
   static func addToken(tokenProvider: @escaping () -> Token?) -> Self {
     .init { request, responder -> HTTPCallPublisher in
+      print(">>> Trakt add token")
+
       guard let token = tokenProvider() else {
         return responder.respondTo(request)
       }

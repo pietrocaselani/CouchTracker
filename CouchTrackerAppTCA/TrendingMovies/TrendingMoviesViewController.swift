@@ -1,6 +1,5 @@
 import UIKit
 import Combine
-import CouchTrackerCore
 import ComposableArchitecture
 
 private extension UICollectionViewLayout {

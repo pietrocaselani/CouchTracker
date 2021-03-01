@@ -1,5 +1,4 @@
 import ComposableArchitecture
-import CouchTrackerCore
 import TraktSwift
 
 struct TrendingMoviesState: Hashable {
@@ -9,7 +8,7 @@ struct TrendingMoviesState: Hashable {
         var extended = Extended.full
     }
 
-    var trendingMovies = [TrendingMovieEntity]()
+    var trendingMovies = [TrendingMovie]()
     var isRequestMoviesInFlight = false
     var genericError: TrendingMovieError?
     var apiValues = APIValues()
@@ -17,27 +16,27 @@ struct TrendingMoviesState: Hashable {
 
 enum TrendingMoviesAction: Equatable {
     case requestNextPage
-    case requestMoviesResponse(Result<[TrendingMovieEntity], TrendingMovieError>)
+    case requestMoviesResponse(Result<[TrendingMovie], TrendingMovieError>)
 }
 
 struct TrendingMoviesEnvironment {
-    var client: TrendingMoviesAPIClient
+    var client: MoviesService
 }
 
 struct TrendingMovieError: Error, Hashable {
     let message: String
 }
 
-let trendingMoviesReducer: Reducer<TrendingMoviesState, TrendingMoviesAction, TrendingMoviesEnvironment>
-trendingMoviesReducer = { state, action, environment in
-    switch action {
-    case .requestNextPage:
-        return requestMovies(&state, environment)
-    case let .requestMoviesResponse(result):
-        handleMoviesResponse(&state, result)
-        return .none
-    }
-}
+//let trendingMoviesReducer: Reducer<TrendingMoviesState, TrendingMoviesAction, TrendingMoviesEnvironment>
+//trendingMoviesReducer = { state, action, environment in
+//    switch action {
+//    case .requestNextPage:
+//        return requestMovies(&state, environment)
+//    case let .requestMoviesResponse(result):
+//        handleMoviesResponse(&state, result)
+//        return .none
+//    }
+//}
 
 private func requestMovies(
     _ state: inout TrendingMoviesState,

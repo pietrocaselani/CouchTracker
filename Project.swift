@@ -642,9 +642,7 @@ enum SPMLibraries {
       bundleId: "\(baseBundleId).SPMLibraries",
       infoPlist: .default,
       dependencies: [
-        .package(product: "ComposableArchitecture"),
-        .package(product: "RxMoya"),
-        .package(product: "Alamofire")
+        .package(product: "ComposableArchitecture")
       ]
     )
   }
@@ -670,8 +668,6 @@ enum CouchTrackerAppTCA {
         .target(name: TraktSwift.name),
         .target(name: TMDBSwift.name),
         .target(name: TVDBSwift.name),
-        .target(name: CouchTrackerSync.name),
-        .target(name: CouchTrackerCore.name)
       ],
       settings: settings()
     )
